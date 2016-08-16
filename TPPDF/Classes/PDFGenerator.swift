@@ -109,15 +109,15 @@ public class PDFGenerator  {
         headerFooterCommands = commands.filter { return $0.0.isFooter || $0.0.isHeader }
         let contentCommands = commands.filter { return !$0.0.isFooter && !$0.0.isHeader }
         
-        let footers = contentCommands.filter { return $0.0.isFooter }
-        let headers = contentCommands.filter { return $0.0.isHeader }
+        let footers = commands.filter { return $0.0.isFooter }
+        let headers = commands.filter { return $0.0.isHeader }
         
         if footers.count == 0 {
-            headerSpace = 0
+            footerSpace = 0
         }
         
         if headers.count == 0 {
-            footerSpace = 0
+            headerSpace = 0
         }
         
         if contentCommands.count > 0 {
@@ -193,7 +193,7 @@ public class PDFGenerator  {
                 } else if container.isFooter {
                     return CGRect(x: pageMargin, y: footerHeight[container]!, width: textMaxWidth, height: textMaxHeight)
                 } else {
-                    return CGRect(x: pageMargin, y: maxHeaderHeight() + headerSpace, width: textMaxWidth, height: textMaxHeight)
+                    return CGRect(x: pageMargin, y: maxFooterHeight() + footerSpace, width: textMaxWidth, height: textMaxHeight)
                 }
             }()
             let framePath = UIBezierPath(rect: frame).CGPath
