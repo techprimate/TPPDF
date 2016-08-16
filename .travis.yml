@@ -4,6 +4,7 @@ cache: cocoapods
 podfile: Example/Podfile
 before_install:
  - rvm install ruby-2.2.2
+ - gem install xcpretty
  - gem install cocoapods # Since Travis is not always on latest version
  - pod install --project-directory=Example
  
