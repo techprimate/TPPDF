@@ -1,6 +1,6 @@
 # TPPDF
 
-[![CI Status](http://img.shields.io/travis/Philip Niedertscheider/TPPDF.svg?style=flat)](https://travis-ci.org/Philip Niedertscheider/TPPDF)
+[![CI Status](http://img.shields.io/travis/Philip Niedertscheider/TPPDF.svg?style=flat)](https://travis-ci.org/Techprimate/TPPDF.svg?branch=master)
 [![Version](https://img.shields.io/cocoapods/v/TPPDF.svg?style=flat)](http://cocoapods.org/pods/TPPDF)
 [![License](https://img.shields.io/cocoapods/l/TPPDF.svg?style=flat)](http://cocoapods.org/pods/TPPDF)
 [![Language](https://img.shields.io/badge/language-Swift-orange.svg)](https://developer.apple.com/swift/)
