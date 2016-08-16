@@ -252,6 +252,16 @@ The cell bounds are not the row/column grid of the table, but the lines between 
 pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 5, margin: 5, textColor: UIColor.blackColor(), lineColor: UIColor.darkGrayColor(), lineWidth: 1.5, drawCellBounds: false)
 ```        
 
+### Header & Footer
+
+If you want to add a text to the header or footer you simply need to choose the correct container.
+
+But there are some limitations:
+
+- Only one line. If you want multiple lines, add multiple commands
+- Currently only `AddText` and `AddAttributedText` are supported as header or footer command
+
+
 ## Contribute
 
 You need more commands?
