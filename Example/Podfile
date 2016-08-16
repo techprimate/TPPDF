@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TPPDF_Example' do
+  pod 'TPPDF', :path => '../'
+
+  target 'TPPDF_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
