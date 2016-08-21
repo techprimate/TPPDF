@@ -36,6 +36,11 @@ public class PDFGenerator  {
     private var headerFooterCommands: [(Container, Command)] = []
     private let font = UIFont.systemFontOfSize(UIFont.systemFontSize())
     
+    private var indentation: [Container: CGFloat] = [
+        .HeaderLeft : 0,
+        .ContentLeft : 0,
+        .FooterLeft : 0
+    ]
     
     // MARK: - Initializing
     
@@ -98,9 +103,13 @@ public class PDFGenerator  {
         commands += [(container, .AddTable(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds))]
     }
     
+    public func setIndentation(container: Container = Container.ContentLeft, indent: CGFloat) {
+        commands += [(container, .SetIndentation(points: indent))]
+    }
+    
     // MARK: - Generation
     
-    public func generatePDFdata() -> NSData {
+    public func generatePDFdata(progress: ((CGFloat) -> ())? = nil) -> NSData {
         let pdfData = NSMutableData()
         
         UIGraphicsBeginPDFContextToData(pdfData, pageBounds, nil)
@@ -124,8 +133,12 @@ public class PDFGenerator  {
             renderHeaderFooter()
         }
         
-        for (container, command) in contentCommands {
+        
+        let count: CGFloat = CGFloat(contentCommands.count)
+        
+        for (idx, (container, command)) in contentCommands.enumerate() {
             renderCommand(container, command: command)
+            progress?(CGFloat(idx + 1) / count)
         }
         
         UIGraphicsEndPDFContext()
@@ -175,7 +188,7 @@ public class PDFGenerator  {
             // that no old scaling factors are left in place.
             CGContextSetTextMatrix(currentContext, CGAffineTransformIdentity)
             
-            let textMaxWidth = pageBounds.width - 2 * pageMargin
+            let textMaxWidth = pageBounds.width - 2 * pageMargin - indentation[container.normalize]!
             let textMaxHeight: CGFloat = {
                 if container.isHeader {
                     return pageBounds.height - headerHeight[container]!
@@ -189,11 +202,11 @@ public class PDFGenerator  {
             // Create a path object to enclose the text.
             let frame: CGRect = {
                 if container.isHeader {
-                    return CGRect(x: pageMargin, y: 0, width: textMaxWidth, height: textMaxHeight)
+                    return CGRect(x: pageMargin + indentation[container.normalize]!, y: 0, width: textMaxWidth, height: textMaxHeight)
                 } else if container.isFooter {
-                    return CGRect(x: pageMargin, y: footerHeight[container]!, width: textMaxWidth, height: textMaxHeight)
+                    return CGRect(x: pageMargin + indentation[container.normalize]!, y: footerHeight[container]!, width: textMaxWidth, height: textMaxHeight)
                 } else {
-                    return CGRect(x: pageMargin, y: maxFooterHeight() + footerSpace, width: textMaxWidth, height: textMaxHeight)
+                    return CGRect(x: pageMargin + indentation[container.normalize]!, y: maxFooterHeight() + footerSpace, width: textMaxWidth, height: textMaxHeight)
                 }
             }()
             let framePath = UIBezierPath(rect: frame).CGPath
@@ -246,10 +259,10 @@ public class PDFGenerator  {
         
         /* calculate the aspect size of image */
         if size == CGSizeZero {
-            maxWidth = min(image.size.width, contentSize.width)
+            maxWidth = min(image.size.width, contentSize.width - indentation[container.normalize]!)
             maxHeight = min(image.size.height, contentSize.height)
         } else {
-            maxWidth = min(size.width, contentSize.width)
+            maxWidth = min(size.width, contentSize.width - indentation[container.normalize]!)
             maxHeight = min(size.width, contentSize.height - contentHeight)
         }
         let wFactor = image.size.width / maxWidth
@@ -263,7 +276,7 @@ public class PDFGenerator  {
         let x: CGFloat = {
             switch container {
             case .ContentLeft:
-                return pageMargin
+                return pageMargin + indentation[container.normalize]!
             case .ContentCenter:
                 return pageBounds.midX - aspectWidth / 2
             case .ContentRight:
@@ -281,7 +294,7 @@ public class PDFGenerator  {
     }
     
     private func drawLineSeparator(container: Container, thickness: CGFloat, color: UIColor) {
-        let drawRect = CGRect(x: pageMargin, y: contentHeight + maxHeaderHeight() + headerSpace, width: contentSize.width, height: thickness)
+        let drawRect = CGRect(x: pageMargin + indentation[container.normalize]!, y: contentHeight + maxHeaderHeight() + headerSpace, width: contentSize.width -  indentation[container.normalize]!, height: thickness)
         let path = UIBezierPath(rect: drawRect).CGPath
         
         // Get the graphics context.
@@ -304,8 +317,8 @@ public class PDFGenerator  {
             assert(row.count == relativeColumnWidth.count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
         }
         
-        let totalWidth = pageBounds.width - 2 * pageMargin
-        var x: CGFloat = pageMargin
+        let totalWidth = pageBounds.width - 2 * pageMargin - indentation[container.normalize]!
+        var x: CGFloat = pageMargin + indentation[container.normalize]!
         var y: CGFloat = contentHeight
         
         // Calculate cells
@@ -496,6 +509,8 @@ public class PDFGenerator  {
             drawLineSeparator(container, thickness: width, color: color)
         case let .AddTable(data, alignment, relativeWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds):
             drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds)
+        case let .SetIndentation(value):
+            indentation[container.normalize] = value
         }
     }
 }

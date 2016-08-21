@@ -1,8 +1,8 @@
 {
   "name": "TPPDF",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "summary": "TPPDF is a simple-to-use PDF builder for iOS",
-  "description": "TPPDF is a simple-to-use PDF builder. It uses the built-in framework for generating PDF files. Included features are: text, attributed text, images, tables",
+  "description": "TPPDF is a PDF builder based on the 'Builder' pattern. It uses the built-in framework for generating PDF files.",
   "homepage": "https://github.com/techprimate/TPPDF",
   "license": {
     "type": "MIT",
@@ -12,8 +12,8 @@
     "Philip Niedertscheider": "philip.niedertscheider@techprimate.com"
   },
   "source": {
-    "git": "https://github.com/techprimate/TPPDF.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/Techprimate/TPPDF.git",
+    "tag": "0.1.3"
   },
   "social_media_url": "https://twitter.com/techprimate",
   "platforms": {

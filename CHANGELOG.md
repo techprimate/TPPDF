@@ -5,6 +5,21 @@
 
 **Implemented enhancements:**
 
+- Added indentation command `SetIndentation(point: CGFloat)`
+
+**Fixed bugs:**
+
+**Closed issues:**
+
+**Merged pull requests:**
+
+## [0.1.3](https://github.com/Techprimate/TPPDF/tree/0.1.3) (2016-08-21)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.3...0.1.2)
+
+**Implemented enhancements:**
+
+- Added indentation command `SetIndentation(point: CGFloat)`
+
 **Fixed bugs:**
 
 **Closed issues:**

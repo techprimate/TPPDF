@@ -48,6 +48,19 @@ public enum Container {
             return false
         }
     }
+    
+    var normalize: Container {
+        switch self {
+        case .HeaderLeft, .HeaderCenter, .HeaderRight:
+            return .HeaderLeft
+        case .ContentLeft, .ContentCenter, .ContentRight:
+            return .ContentLeft
+        case .FooterLeft, .FooterCenter, .FooterRight:
+            return .FooterLeft
+        case .None:
+            return .None
+        }
+    }
 }
 
 public enum TableCellAlignment {

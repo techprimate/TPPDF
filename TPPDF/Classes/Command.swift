@@ -16,4 +16,6 @@ enum Command {
     case AddSpace(space: CGFloat)
     case AddLineSeparator(thickness: CGFloat, color: UIColor)
     case AddTable(data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool)
+    
+    case SetIndentation(points: CGFloat)
 }

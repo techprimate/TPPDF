@@ -47,6 +47,7 @@
 		D17FC7694F2FC04588A6AD27 /* Pods-TPPDF_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D4032E8B1D629AF700F1C14A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4032E8F1D629B5D00F1C14A /* Image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Image.jpg; sourceTree = "<group>"; };
+		D4520D851D6A4F1B00316BE3 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		DC41BDBFA33F0A39A5AEA582 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E3BAEA99CE7B3E2607E018AB /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +138,7 @@
 			children = (
 				3CE8F82DF1608DB936565179 /* TPPDF.podspec */,
 				81E2E4032A07FFB898A01D27 /* README.md */,
+				D4520D851D6A4F1B00316BE3 /* CHANGELOG.md */,
 				DC41BDBFA33F0A39A5AEA582 /* LICENSE */,
 			);
 			name = "Podspec Metadata";

@@ -252,6 +252,22 @@ The cell bounds are not the row/column grid of the table, but the lines between 
 pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 5, margin: 5, textColor: UIColor.blackColor(), lineColor: UIColor.darkGrayColor(), lineWidth: 1.5, drawCellBounds: false)
 ```        
 
+
+### SetIndentation(container, points)
+
+If you need to indent your content you can simply call this method.
+
+```swift
+pdf.setIndentation(indent: 50.0)
+```
+
+Now add more commands which are indented.
+If you need to reset the indentation simply call the function with `0.0` as parameter
+
+```swift
+pdf.setIndentation(indent: 0.0)
+```
+
 ### Header & Footer
 
 If you want to add a text to the header or footer you simply need to choose the correct container.
