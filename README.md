@@ -22,6 +22,15 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 - [ ] Tab insets
 - You need more features? Checkout #Contribute
 
+## Apps using TPPDF
+
+If you are using TPPDF in your app and want to be listed here, simply create a pull request or let me know on twitter or via github. I am always curious who is using my projects :)
+
+[Mama's Cookbook (future release)](https://itunes.apple.com/us/app/mamas-cookbook/id1019090528) - by Philip Niedertscheider
+
+![Mama's Cookbook](apps/MCB.png)
+
+
 ## Requirements
 
 + iOS 8.0+
