@@ -12,7 +12,7 @@
 **Merged pull requests:**
 
 
-## [0.1.4](https://github.com/Techprimate/TPPDF/tree/HEAD)
+## [0.1.4](https://github.com/Techprimate/TPPDF/tree/0.1.4) (2016-08-24)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.3...0.1.4)
 
 **Implemented enhancements:**
