@@ -277,6 +277,17 @@ If you need to reset the indentation simply call the function with `0.0` as para
 pdf.setIndentation(indent: 0.0)
 ```
 
+### SetOffset(container, points)
+
+If you do not want to add a space between two elements, you can also set a absolut offset form the top border.
+
+```swift
+pdf.setOffset(offset: 250.0)
+```
+
+One possible use case are layered PDF files.
+Simply call `pdf.setOffset(offset: 0.0)` and you can add content which is placed on top of the previously set content.
+
 ### Header & Footer
 
 If you want to add a text to the header or footer you simply need to choose the correct container.

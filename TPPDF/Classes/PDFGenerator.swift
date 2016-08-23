@@ -107,6 +107,10 @@ public class PDFGenerator  {
         commands += [(container, .SetIndentation(points: indent))]
     }
     
+    public func setAbsoluteOffset(container: Container = Container.ContentLeft, offset: CGFloat) {
+        commands += [(container, .SetOffset(points: offset))]
+    }
+    
     // MARK: - Generation
     
     public func generatePDFdata(progress: ((CGFloat) -> ())? = nil) -> NSData {
@@ -511,6 +515,15 @@ public class PDFGenerator  {
             drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds)
         case let .SetIndentation(value):
             indentation[container.normalize] = value
+        case let .SetOffset(value):
+            if container.isHeader {
+                headerHeight[container] = value
+            } else if container.isFooter {
+                footerHeight[container] = value
+            } else {
+                contentHeight = value
+            }
+            break
         }
     }
 }
