@@ -19,30 +19,18 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 - [x] Custom spacing
 - [x] Image support
 - [x] Horizontal line separators
-- [ ] Tab insets
+- [x] Custom indentation
+- [x] Custom top offset (good for layered rendering)
 - You need more features? Checkout #Contribute
-
-## Apps using TPPDF
-
-If you are using TPPDF in your app and want to be listed here, simply create a pull request or let me know on twitter or via github. I am always curious who is using my projects :)
-
-[Mama's Cookbook (future release)](https://itunes.apple.com/us/app/mamas-cookbook/id1019090528) - by Philip Niedertscheider
-
-![Mama's Cookbook](apps/MCB.png)
-
 
 ## Requirements
 
 + iOS 8.0+
-+ Xcode 7.3+
 
-## Communication
-
-- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf). (Tag 'TPPDF')
-- If you'd like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf).
-- If you **found a bug**, open an issue.
-- If you **have a feature request**, open an issue.
-- If you **want to contribute**, submit a pull request.
+| Language  | Branch | Pod version | Xcode version |
+| --------- | ------ | ----------- | ------------- |
+| Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 or greater|
+| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.x | Xcode 8, Xcode 7.3.x |
 
 ## Example
 
@@ -62,7 +50,7 @@ To integrate TPPDF into your Xcode project using CocoaPods, specify it in your `
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
@@ -134,6 +122,8 @@ Currently the following commands exist:
 - AddSpace
 - AddLineSeparator
 - AddTable
+- SetIndentation
+- SetAbsoluteOffset
 
 ### Container
 
@@ -144,8 +134,8 @@ When registering a command you provide the correct container - the default conta
 A good example would be the following call:
 
 ```swift
-let pdf = PDFGenerator(format: .A4)
-pdf.addText(.FooterCenter, text: "Created using TPPDF for iOS.")
+let pdf = PDFGenerator(format: .a4)
+pdf.addText(.footerCenter, text: "Created using TPPDF for iOS.")
 ```
 
 This command adds the text *"Created using TPPDF for iOS"* to the footer of all pages.
@@ -183,7 +173,7 @@ let title = NSMutableAttributedString(string: "Awesome attributed title!", attri
 pdf.addAttributedText(text: title)
 ```
 
-### AddImage(image, size)
+### AddImage(container, image, size)
 
 Draws an image in the given container. If the given size is not zero size, it will draw it using that size, proportionally scaling. The size of an image is limited by the page bounds.
 
@@ -277,7 +267,7 @@ If you need to reset the indentation simply call the function with `0.0` as para
 pdf.setIndentation(indent: 0.0)
 ```
 
-### SetOffset(container, points)
+### SetAbsoluteOffset(container, points)
 
 If you do not want to add a space between two elements, you can also set a absolut offset form the top border.
 
@@ -297,6 +287,13 @@ But there are some limitations:
 - Only one line. If you want multiple lines, add multiple commands
 - Currently only `AddText` and `AddAttributedText` are supported as header or footer command
 
+## Communication
+
+- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf). (Tag 'TPPDF')
+- If you'd like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf).
+- If you **found a bug**, open an issue.
+- If you **have a feature request**, open an issue.
+- If you **want to contribute**, submit a pull request.
 
 ## Contribute
 
@@ -340,6 +337,15 @@ public func setFont(container: Container = Container.ContentLeft, font: UIFont =
 
 The previous example does not handle different `Containers`. The correct way of doing this, would be three instance variables of type `UIFont`. One for the header, one for the content and one for the footer.
 Then, when calling the command, it changes the correct font variable, depending on the Container provided.
+
+## Apps using TPPDF
+
+If you are using TPPDF in your app and want to be listed here, simply create a pull request or let me know on twitter or via github. I am always curious who is using my projects :)
+
+[Mama's Cookbook (future release)](https://itunes.apple.com/us/app/mamas-cookbook/id1019090528) - by Philip Niedertscheider
+
+![Mama's Cookbook](apps/MCB.png)
+
 
 ## Credits
 

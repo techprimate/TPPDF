@@ -10,13 +10,13 @@ import UIKit
 
 enum Command {
     
-    case AddText(text: String, lineSpacing: CGFloat)
-    case AddAttributedText(text: NSAttributedString)
-    case AddImage(image: UIImage, size: CGSize)
-    case AddSpace(space: CGFloat)
-    case AddLineSeparator(thickness: CGFloat, color: UIColor)
-    case AddTable(data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool)
+    case addText(text: String, lineSpacing: CGFloat)
+    case addAttributedText(text: NSAttributedString)
+    case addImage(image: UIImage, size: CGSize)
+    case addSpace(space: CGFloat)
+    case addLineSeparator(thickness: CGFloat, color: UIColor)
+    case addTable(data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool)
     
-    case SetIndentation(points: CGFloat)
-    case SetOffset(points: CGFloat)
+    case setIndentation(points: CGFloat)
+    case setOffset(points: CGFloat)
 }

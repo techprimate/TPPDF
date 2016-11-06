@@ -7,33 +7,33 @@
 //
 
 public enum Container {
-    case None
-    case HeaderLeft, HeaderCenter, HeaderRight
-    case ContentLeft, ContentCenter, ContentRight
-    case FooterLeft, FooterCenter, FooterRight
+    case none
+    case headerLeft, headerCenter, headerRight
+    case contentLeft, contentCenter, contentRight
+    case footerLeft, footerCenter, footerRight
     
     var opposite: Container {
         switch self {
-        case .HeaderLeft:
-            return .FooterLeft
-        case .HeaderCenter:
-            return .FooterCenter
-        case .HeaderRight:
-            return .FooterRight
-        case .FooterLeft:
-            return .HeaderLeft
-        case .FooterCenter:
-            return .HeaderCenter
-        case .FooterRight:
-            return .HeaderRight
+        case .headerLeft:
+            return .footerLeft
+        case .headerCenter:
+            return .footerCenter
+        case .headerRight:
+            return .footerRight
+        case .footerLeft:
+            return .headerLeft
+        case .footerCenter:
+            return .headerCenter
+        case .footerRight:
+            return .headerRight
         default:
-            return .None
+            return .none
         }
     }
     
     var isHeader: Bool {
         switch self {
-        case .HeaderLeft, .HeaderCenter, .HeaderRight:
+        case .headerLeft, .headerCenter, .headerRight:
             return true
         default:
             return false
@@ -42,7 +42,7 @@ public enum Container {
     
     var isFooter: Bool {
         switch self {
-        case .FooterLeft, .FooterCenter, .FooterRight:
+        case .footerLeft, .footerCenter, .footerRight:
             return true
         default:
             return false
@@ -51,42 +51,42 @@ public enum Container {
     
     var normalize: Container {
         switch self {
-        case .HeaderLeft, .HeaderCenter, .HeaderRight:
-            return .HeaderLeft
-        case .ContentLeft, .ContentCenter, .ContentRight:
-            return .ContentLeft
-        case .FooterLeft, .FooterCenter, .FooterRight:
-            return .FooterLeft
-        case .None:
-            return .None
+        case .headerLeft, .headerCenter, .headerRight:
+            return .headerLeft
+        case .contentLeft, .contentCenter, .contentRight:
+            return .contentLeft
+        case .footerLeft, .footerCenter, .footerRight:
+            return .footerLeft
+        case .none:
+            return .none
         }
     }
 }
 
 public enum TableCellAlignment {
-    case TopLeft, Top, TopRight
-    case Left, Center, Right
-    case BottomLeft, Bottom, BottomRight
+    case topLeft, top, topRight
+    case left, center, right
+    case bottomLeft, bottom, bottomRight
     
     var normalizeVertical: TableCellAlignment {
         switch self {
-        case TopLeft, Top, TopRight:
-            return Top
-        case Left, Center, Right:
-            return Center
-        case BottomLeft, Bottom, BottomRight:
-            return Bottom
+        case .topLeft, .top, .topRight:
+            return .top
+        case .left, .center, .right:
+            return .center
+        case .bottomLeft, .bottom, .bottomRight:
+            return .bottom
         }
     }
     
     var normalizeHorizontal: TableCellAlignment {
         switch self {
-        case TopLeft, Left, BottomLeft:
-            return Left
-        case Top, Center, Bottom:
-            return Center
-        case TopRight, Right, BottomRight:
-            return Right
+        case .topLeft, .left, .bottomLeft:
+            return .left
+        case .top, .center, .bottom:
+            return .center
+        case .topRight, .right, .bottomRight:
+            return .right
         }
     }
 }

@@ -10,59 +10,59 @@ import UIKit
 
 public enum PageFormat {
     
-    case USLetter
-    case A4
+    case usLetter
+    case a4
     
     var size: CGSize {
         switch self {
-        case .USLetter:
+        case .usLetter:
             return CGSize(width: 612, height: 762)
-        case .A4:
+        case .a4:
             return CGSize(width: 592, height: 842)
         }
     }
     
     var headerMargin: CGFloat {
         switch self {
-        case .USLetter:
+        case .usLetter:
             return 30.0
-        case .A4:
+        case .a4:
             return 30.0
         }
     }
     
     var footerMargin: CGFloat {
         switch self {
-        case .USLetter:
+        case .usLetter:
             return 30.0
-        case .A4:
+        case .a4:
             return 30.0
         }
     }
     
     var margin: CGFloat {
         switch self {
-        case .USLetter:
+        case .usLetter:
             return 36
-        case .A4:
+        case .a4:
             return 60
         }
     }
     
     var headerSpace: CGFloat {
         switch self {
-        case .USLetter:
+        case .usLetter:
             return 15
-        case .A4:
+        case .a4:
             return 15
         }
     }
     
     var footerSpace: CGFloat {
         switch self {
-        case .USLetter:
+        case .usLetter:
             return 15
-        case .A4:
+        case .a4:
             return 15
         }
     }

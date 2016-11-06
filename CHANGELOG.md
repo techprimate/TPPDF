@@ -11,6 +11,19 @@
 
 **Merged pull requests:**
 
+## [Unreleased](https://github.com/Techprimate/TPPDF/tree/HEAD)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.4...0.2.0)
+
+**Implemented enhancements:**
+
+- Updated to Swift 3.0
+
+**Fixed bugs:**
+
+**Closed issues:**
+
+**Merged pull requests:**
+
 
 ## [0.1.4](https://github.com/Techprimate/TPPDF/tree/0.1.4) (2016-08-24)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.3...0.1.4)

@@ -17,32 +17,32 @@ class ViewController: UIViewController {
     }
     
     func generatePDF() {
-        let pdf = PDFGenerator(format: .A4)
+        let pdf = PDFGenerator(format: .a4)
         
-        pdf.addText(.FooterCenter, text: "Created using TPPDF for iOS.")
-        pdf.addText(.HeaderLeft, text: "Recipe: Pasta with tomato sauce")
+        pdf.addText(.footerCenter, text: "Created using TPPDF for iOS.")
+        pdf.addText(.headerLeft, text: "Recipe: Pasta with tomato sauce")
         
         let title = NSMutableAttributedString(string: "Pasta with tomato sauce", attributes: [
-            NSFontAttributeName : UIFont.systemFontOfSize(28.0),
+            NSFontAttributeName : UIFont.systemFont(ofSize: 28.0),
             NSForegroundColorAttributeName : UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0, alpha: 1.0)
             ])
         pdf.addAttributedText(text: title)
         
         let category =  NSAttributedString(string: "Category: Meal", attributes: [
-            NSFontAttributeName : UIFont.systemFontOfSize(16.0),
-            NSForegroundColorAttributeName : UIColor.darkGrayColor()
+            NSFontAttributeName : UIFont.systemFont(ofSize: 16.0),
+            NSForegroundColorAttributeName : UIColor.darkGray
             ])
         pdf.addAttributedText(text: category)
         
         pdf.addSpace(space: 12.0)
         
-        pdf.addLineSeparator(thickness: 0.1, color: UIColor.lightGrayColor())
+        pdf.addLineSeparator(thickness: 0.1, color: UIColor.lightGray)
         pdf.addSpace(space: 12.0)
         
         pdf.addImage(image: UIImage(named: "Image.jpg")!)
         
         pdf.addSpace(space: 12.0)
-        pdf.addLineSeparator(thickness: 0.1, color: UIColor.lightGrayColor())
+        pdf.addLineSeparator(thickness: 0.1, color: UIColor.lightGray)
         
         pdf.addSpace(space: 12.0)
         
@@ -51,8 +51,8 @@ class ViewController: UIViewController {
             ["Portions:",   "14",       "Cook\nTime:",   "16 Minutes",   ]
         ]
         let tableAlignment: [[TableCellAlignment]] = [
-            [.Left, .Center, .Left, .Center],
-            [.Left, .Center, .Left, .Center]
+            [.left, .center, .left, .center],
+            [.left, .center, .left, .center]
         ]
         let tableWidth: [CGFloat] = [
             0.3, 0.2, 0.3, 0.2
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         
         let ingridients = NSMutableAttributedString(string: "Ingridients")
         ingridients.addAttributes([
-            NSFontAttributeName : UIFont.systemFontOfSize(20.0),
+            NSFontAttributeName : UIFont.systemFont(ofSize: 20.0),
             NSForegroundColorAttributeName : UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0,
                 alpha: 1.0)
             ], range: NSMakeRange(0, ingridients.length))
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
         
         let descriptionHeader = NSMutableAttributedString(string: "Description")
         descriptionHeader.addAttributes([
-            NSFontAttributeName : UIFont.systemFontOfSize(20.0),
+            NSFontAttributeName : UIFont.systemFont(ofSize: 20.0),
             NSForegroundColorAttributeName : UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0,
                 
                 alpha: 1.0)
@@ -95,19 +95,20 @@ class ViewController: UIViewController {
         
         pdf.addText(text: "Explain how to prep and cook this recipe here.\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et ")
         pdf.setIndentation(indent: 50)
-        pdf.addText(text: "dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,")
+        pdf.addText(text: "dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.")
+        pdf.setAbsoluteOffset(offset: 450)
+        pdf.addText(text: "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,")
         
         
-        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let url = NSURL(fileURLWithPath: path).URLByAppendingPathComponent("temp.pdf")
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let url = URL(fileURLWithPath: path).appendingPathComponent("temp.pdf")
         let data = pdf.generatePDFdata()
         do {
-            try data.writeToURL(url, options: .AtomicWrite)
+            try data.write(to: url, options: .atomicWrite)
         } catch {
             print(error)
         }
-        
-        (self.view as? UIWebView)?.loadData(data, MIMEType: "application/pdf", textEncodingName: "utf-8", baseURL: NSURL())
-        
+    
+        (self.view as? UIWebView)?.load(data, mimeType: "application/pdf", textEncodingName: "utf-8", baseURL: URL(fileURLWithPath: ""))
     }
 }
