@@ -383,7 +383,7 @@ public class PDFGenerator  {
         
         // Begin drawing grid
         
-        let context = UIGraphicsGetCurrentContext()
+        let context = UIGraphicsGetCurrentContext()!
         CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 0.0)
         CGContextSetStrokeColorWithColor(context, lineColor.CGColor)
         CGContextSetLineWidth(context, lineWidth)

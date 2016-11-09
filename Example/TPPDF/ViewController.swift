@@ -99,7 +99,7 @@ class ViewController: UIViewController {
         
         
         let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let url = NSURL(fileURLWithPath: path).URLByAppendingPathComponent("temp.pdf")
+        let url = NSURL(fileURLWithPath: path).URLByAppendingPathComponent("temp.pdf")!
         let data = pdf.generatePDFdata()
         do {
             try data.writeToURL(url, options: .AtomicWrite)

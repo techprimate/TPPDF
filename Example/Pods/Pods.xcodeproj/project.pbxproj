@@ -7,28 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E3CA655BE7DD54E8169B66E4B176989 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A6FF208CEC4C2861F1E9D42D651453 /* Foundation.framework */; };
-		1FAC15BF24CC0395CE6CBEE0E5C250DD /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2865CB5A3834B1ADC2AB60689C21D4FC /* Container.swift */; };
-		2CA06688108FF2C9FFFE906DF16C1273 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FC611D529F27B4DDF7470DA13491C2 /* Command.swift */; };
-		517D1DDAAA1E1498F1D099112AA24713 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A6FF208CEC4C2861F1E9D42D651453 /* Foundation.framework */; };
-		63E0E706FD61A7B67A25306EDDD36859 /* PageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38E9B01C01FC449684A66EFCA8EDA32 /* PageFormat.swift */; };
-		7884B8F61A782BC4F3DFBAA0B399940A /* Pods-TPPDF_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5618E9464F0B85C78C826D6552B2F7 /* Pods-TPPDF_Tests-dummy.m */; };
-		88FDBE3A26C8F8C677E2446F3DAC5133 /* Pods-TPPDF_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5823F7923A03A8F51F473D60FF4B14DE /* Pods-TPPDF_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		97CE3EE71525A976B9A7C5C1D4730BFC /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A82AE9367BDB098AFFDE82A429858F /* PDFGenerator.swift */; };
-		A8CF5325AB2914D62C90525AF71A983F /* TPPDF-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CA4E35BFF7E493BFBD9E39E1D2F3C97F /* TPPDF-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BA75982968EE2CC398544E5F9A14C137 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E86668F20F252C440D1015B816BE59C5 /* UIKit.framework */; };
-		C3FDDC60D0A4141A33A1676A8B688856 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A6FF208CEC4C2861F1E9D42D651453 /* Foundation.framework */; };
-		CDDF8456A8AF83F7BA4CE68F7D500418 /* Pods-TPPDF_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 347C5AE9C83C04B369C778ED3A10F68B /* Pods-TPPDF_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DCA4238055792486C2678C2EDA5FD7E0 /* Pods-TPPDF_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC652FF540FEA54EE65C9222344EB11 /* Pods-TPPDF_Example-dummy.m */; };
-		EF2873DD0DA2C49AEFD165F8308DC651 /* TPPDF-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229E57EB7804657849C5D6EB7F8A7AC /* TPPDF-dummy.m */; };
+		1023DEBBA8045EF066B422620384A5DC /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A82AE9367BDB098AFFDE82A429858F /* PDFGenerator.swift */; };
+		2140F2D15846CFE413CB5C332F826747 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616BEB51ECCAD129BDBCB7A956B56CC6 /* Foundation.framework */; };
+		2FA388C2B87EADFEBED0ECE626D8AFA1 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FC611D529F27B4DDF7470DA13491C2 /* Command.swift */; };
+		52549B1928C026BD8F82D7751A15DF88 /* TPPDF-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229E57EB7804657849C5D6EB7F8A7AC /* TPPDF-dummy.m */; };
+		5B6A4D08B0CCD52CCDC819EEEAAE10B7 /* Pods-TPPDF_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC652FF540FEA54EE65C9222344EB11 /* Pods-TPPDF_Example-dummy.m */; };
+		7568959D764E950264DA88286EE2CE6B /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2865CB5A3834B1ADC2AB60689C21D4FC /* Container.swift */; };
+		8D01B502BA0D3721AD3066732EA99CBD /* Pods-TPPDF_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5618E9464F0B85C78C826D6552B2F7 /* Pods-TPPDF_Tests-dummy.m */; };
+		AA4E407425645BEB30C5168BC47E93F2 /* TPPDF-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CA4E35BFF7E493BFBD9E39E1D2F3C97F /* TPPDF-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B78CC2DBE4FA29DC5B4C38579A86222E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616BEB51ECCAD129BDBCB7A956B56CC6 /* Foundation.framework */; };
+		BDEFDA3A304F2C1082D390ABC8D1A9D0 /* Pods-TPPDF_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5823F7923A03A8F51F473D60FF4B14DE /* Pods-TPPDF_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC677853D9129B98C0A8760998F39B93 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC994CDC2D681BA26389F78A7E4B325 /* UIKit.framework */; };
+		EDA61C6AE6FFEE15DAFC44CCFB20921F /* Pods-TPPDF_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 347C5AE9C83C04B369C778ED3A10F68B /* Pods-TPPDF_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F12BE1ACD46C1F489D7DFEFD06E4CBC2 /* PageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38E9B01C01FC449684A66EFCA8EDA32 /* PageFormat.swift */; };
+		F6EA2CB67C8F281D384DBD72BFAAB5DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616BEB51ECCAD129BDBCB7A956B56CC6 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		90EEA66E65979861AFB1235B70911FAB /* PBXContainerItemProxy */ = {
+		5F32EF41D2EBE020D7EE495C4594DC2B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 7732C1372F91DC445AE1B26FCFBB857E;
+			remoteGlobalIDString = 86CCFAB9CDC793F358CD40629A6FE6EB;
 			remoteInfo = TPPDF;
 		};
 /* End PBXContainerItemProxy section */
@@ -43,58 +43,58 @@
 		347C5AE9C83C04B369C778ED3A10F68B /* Pods-TPPDF_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TPPDF_Example-umbrella.h"; sourceTree = "<group>"; };
 		37E2B33283EF5AFC186C0F67ED4E118C /* TPPDF-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TPPDF-prefix.pch"; sourceTree = "<group>"; };
 		3E90765E7BDDF36F697BD7084A5A3707 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		46878EFEDCDEFC93C61745954BCA0A17 /* Pods-TPPDF_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TPPDF_Example.modulemap"; sourceTree = "<group>"; };
+		46878EFEDCDEFC93C61745954BCA0A17 /* Pods-TPPDF_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TPPDF_Example.modulemap"; sourceTree = "<group>"; };
 		484A3428761B4B695A15302ECEE6FAD0 /* Pods-TPPDF_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TPPDF_Tests-resources.sh"; sourceTree = "<group>"; };
 		5229E57EB7804657849C5D6EB7F8A7AC /* TPPDF-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TPPDF-dummy.m"; sourceTree = "<group>"; };
 		5823F7923A03A8F51F473D60FF4B14DE /* Pods-TPPDF_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TPPDF_Tests-umbrella.h"; sourceTree = "<group>"; };
+		616BEB51ECCAD129BDBCB7A956B56CC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		75319B4750A1D4F87DA04721D9C33366 /* Pods-TPPDF_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TPPDF_Example-resources.sh"; sourceTree = "<group>"; };
-		8024FE3270E884F9FD724089CBA9172F /* Pods_TPPDF_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EC994CDC2D681BA26389F78A7E4B325 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		8024FE3270E884F9FD724089CBA9172F /* Pods_TPPDF_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TPPDF_Tests.framework; path = "Pods-TPPDF_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8515A60A596F397A6B737DB3222DED70 /* Pods-TPPDF_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TPPDF_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		8BB5A32ADC99AA8A828511C346B4A90B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9CA6BAC2B3DC48E96A8C742B071EE55A /* Pods-TPPDF_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TPPDF_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A0FC611D529F27B4DDF7470DA13491C2 /* Command.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
-		A15173E078C75C48E506A11D2072FBFB /* Pods-TPPDF_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TPPDF_Tests.modulemap"; sourceTree = "<group>"; };
-		A2A6FF208CEC4C2861F1E9D42D651453 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A15173E078C75C48E506A11D2072FBFB /* Pods-TPPDF_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TPPDF_Tests.modulemap"; sourceTree = "<group>"; };
 		A876863E91E4A5D5FBBE3218533ADCDF /* TPPDF.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TPPDF.xcconfig; sourceTree = "<group>"; };
-		B8459F70B34893C050E1A4FFB015D41F /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8459F70B34893C050E1A4FFB015D41F /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TPPDF_Example.framework; path = "Pods-TPPDF_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B868EFD8FCB073799C299D886D3F93C6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BCF9AB68E819DFAC82C187B6F8EEA801 /* TPPDF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TPPDF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCF9AB68E819DFAC82C187B6F8EEA801 /* TPPDF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TPPDF.framework; path = TPPDF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A82AE9367BDB098AFFDE82A429858F /* PDFGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFGenerator.swift; sourceTree = "<group>"; };
 		CA4E35BFF7E493BFBD9E39E1D2F3C97F /* TPPDF-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TPPDF-umbrella.h"; sourceTree = "<group>"; };
-		E86668F20F252C440D1015B816BE59C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		E954B7FFD4B8E56AD27E0D81809ADBF5 /* Pods-TPPDF_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TPPDF_Example.release.xcconfig"; sourceTree = "<group>"; };
 		EA2B3EA1FF310A9E3A4655CD147A1BF9 /* Pods-TPPDF_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TPPDF_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		EC5618E9464F0B85C78C826D6552B2F7 /* Pods-TPPDF_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TPPDF_Tests-dummy.m"; sourceTree = "<group>"; };
-		F09895405AE93850E6CC620AA371ED37 /* TPPDF.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TPPDF.modulemap; sourceTree = "<group>"; };
+		F09895405AE93850E6CC620AA371ED37 /* TPPDF.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TPPDF.modulemap; sourceTree = "<group>"; };
 		F38E9B01C01FC449684A66EFCA8EDA32 /* PageFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PageFormat.swift; sourceTree = "<group>"; };
 		F394645AD30A616BBD19EBF1215DCF4B /* Pods-TPPDF_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TPPDF_Example-frameworks.sh"; sourceTree = "<group>"; };
 		FBC652FF540FEA54EE65C9222344EB11 /* Pods-TPPDF_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TPPDF_Example-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		20BC2DEA4E811EE3DCAF08D7232711E4 /* Frameworks */ = {
+		11A80242C18603E9B5DF7B5A961C808F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				517D1DDAAA1E1498F1D099112AA24713 /* Foundation.framework in Frameworks */,
+				B78CC2DBE4FA29DC5B4C38579A86222E /* Foundation.framework in Frameworks */,
+				EC677853D9129B98C0A8760998F39B93 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		39977E92911467CE3BDA30CE1B1EFDB1 /* Frameworks */ = {
+		BF93E4769CA782DF82BD9F8A83585F07 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E3CA655BE7DD54E8169B66E4B176989 /* Foundation.framework in Frameworks */,
+				F6EA2CB67C8F281D384DBD72BFAAB5DD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB8CEB19E0D2823367196BA0B01A26A1 /* Frameworks */ = {
+		D60D7AE2C54E75654DCD81CE10AB2219 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3FDDC60D0A4141A33A1676A8B688856 /* Foundation.framework in Frameworks */,
-				BA75982968EE2CC398544E5F9A14C137 /* UIKit.framework in Frameworks */,
+				2140F2D15846CFE413CB5C332F826747 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +118,7 @@
 		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F302CD3B306AF1ED96B9AF31FCDBC26C /* iOS */,
+				E6EE98446B568159EE277B68FD442AF0 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,6 +159,7 @@
 			children = (
 				C450CDAA79E40B35E100392609194FFB /* Classes */,
 			);
+			name = TPPDF;
 			path = TPPDF;
 			sourceTree = "<group>";
 		};
@@ -187,7 +188,17 @@
 				F38E9B01C01FC449684A66EFCA8EDA32 /* PageFormat.swift */,
 				C4A82AE9367BDB098AFFDE82A429858F /* PDFGenerator.swift */,
 			);
+			name = Classes;
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		E6EE98446B568159EE277B68FD442AF0 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				616BEB51ECCAD129BDBCB7A956B56CC6 /* Foundation.framework */,
+				7EC994CDC2D681BA26389F78A7E4B325 /* UIKit.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		EE659DA9E6C55B2343EE57A905CFFA75 /* Pods-TPPDF_Tests */ = {
@@ -206,15 +217,6 @@
 			);
 			name = "Pods-TPPDF_Tests";
 			path = "Target Support Files/Pods-TPPDF_Tests";
-			sourceTree = "<group>";
-		};
-		F302CD3B306AF1ED96B9AF31FCDBC26C /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				A2A6FF208CEC4C2861F1E9D42D651453 /* Foundation.framework */,
-				E86668F20F252C440D1015B816BE59C5 /* UIKit.framework */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 		FB99308C36CBB21E98BA2DB57BB1B795 /* Pods-TPPDF_Example */ = {
@@ -238,40 +240,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1FFDA55DBC13DC4DC33285C70F3D1B32 /* Headers */ = {
+		0076ECC129175B8C68D2A42ED7B1DFB3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88FDBE3A26C8F8C677E2446F3DAC5133 /* Pods-TPPDF_Tests-umbrella.h in Headers */,
+				BDEFDA3A304F2C1082D390ABC8D1A9D0 /* Pods-TPPDF_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7D2491D9B5AC738CB46F1B8858AC1383 /* Headers */ = {
+		6E46FEAA52B82575BDA904221EF5BA27 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDDF8456A8AF83F7BA4CE68F7D500418 /* Pods-TPPDF_Example-umbrella.h in Headers */,
+				EDA61C6AE6FFEE15DAFC44CCFB20921F /* Pods-TPPDF_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		925B6CDB52B07B8B8C68F9D71AF14A97 /* Headers */ = {
+		E5CEA08382E58329409BFC42A47F67AF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8CF5325AB2914D62C90525AF71A983F /* TPPDF-umbrella.h in Headers */,
+				AA4E407425645BEB30C5168BC47E93F2 /* TPPDF-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		640B446205307294E277ACD07C1CF025 /* Pods-TPPDF_Tests */ = {
+		1E395659E5D8B63A4DBB7258FAD3D966 /* Pods-TPPDF_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0E17AB1CD0E61BF15F6BA6742D64CBCD /* Build configuration list for PBXNativeTarget "Pods-TPPDF_Tests" */;
+			buildConfigurationList = D99FFAE38517966A4BA113C878557409 /* Build configuration list for PBXNativeTarget "Pods-TPPDF_Tests" */;
 			buildPhases = (
-				649A1A771FF06AD5552B1C614DD91F04 /* Sources */,
-				39977E92911467CE3BDA30CE1B1EFDB1 /* Frameworks */,
-				1FFDA55DBC13DC4DC33285C70F3D1B32 /* Headers */,
+				4034BE8F77975B0DDD9048AA7197E611 /* Sources */,
+				D60D7AE2C54E75654DCD81CE10AB2219 /* Frameworks */,
+				0076ECC129175B8C68D2A42ED7B1DFB3 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -282,13 +284,13 @@
 			productReference = 8024FE3270E884F9FD724089CBA9172F /* Pods_TPPDF_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7732C1372F91DC445AE1B26FCFBB857E /* TPPDF */ = {
+		86CCFAB9CDC793F358CD40629A6FE6EB /* TPPDF */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27E1D221B0404AD1377099C6A95C7322 /* Build configuration list for PBXNativeTarget "TPPDF" */;
+			buildConfigurationList = 90C0F02D8CB744EA840D0182C2445188 /* Build configuration list for PBXNativeTarget "TPPDF" */;
 			buildPhases = (
-				B410A8AC52A4CD5738C7C7618007C898 /* Sources */,
-				DB8CEB19E0D2823367196BA0B01A26A1 /* Frameworks */,
-				925B6CDB52B07B8B8C68F9D71AF14A97 /* Headers */,
+				6BAE85CEC526DB97ECEBEEB9E1647086 /* Sources */,
+				11A80242C18603E9B5DF7B5A961C808F /* Frameworks */,
+				E5CEA08382E58329409BFC42A47F67AF /* Headers */,
 			);
 			buildRules = (
 			);
@@ -299,18 +301,18 @@
 			productReference = BCF9AB68E819DFAC82C187B6F8EEA801 /* TPPDF.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E6D03DA809CFCF49A0A7658D450A6128 /* Pods-TPPDF_Example */ = {
+		FC6EBB3398BB217B61C97F01013F56B4 /* Pods-TPPDF_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C5E505A9292D59BB0EE2C32FF80054D5 /* Build configuration list for PBXNativeTarget "Pods-TPPDF_Example" */;
+			buildConfigurationList = 24E852FD2EBDC4D2EF7589FEA988E974 /* Build configuration list for PBXNativeTarget "Pods-TPPDF_Example" */;
 			buildPhases = (
-				9FA253E9E7F0F2CF57BB0AD3F6A0E549 /* Sources */,
-				20BC2DEA4E811EE3DCAF08D7232711E4 /* Frameworks */,
-				7D2491D9B5AC738CB46F1B8858AC1383 /* Headers */,
+				241E83B45AE3E969EC84C03B33A09BC3 /* Sources */,
+				BF93E4769CA782DF82BD9F8A83585F07 /* Frameworks */,
+				6E46FEAA52B82575BDA904221EF5BA27 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7C62F7A20B43BF94E505567977056BD3 /* PBXTargetDependency */,
+				FBFAE9D64AC68580170D82911061681A /* PBXTargetDependency */,
 			);
 			name = "Pods-TPPDF_Example";
 			productName = "Pods-TPPDF_Example";
@@ -338,55 +340,160 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E6D03DA809CFCF49A0A7658D450A6128 /* Pods-TPPDF_Example */,
-				640B446205307294E277ACD07C1CF025 /* Pods-TPPDF_Tests */,
-				7732C1372F91DC445AE1B26FCFBB857E /* TPPDF */,
+				FC6EBB3398BB217B61C97F01013F56B4 /* Pods-TPPDF_Example */,
+				1E395659E5D8B63A4DBB7258FAD3D966 /* Pods-TPPDF_Tests */,
+				86CCFAB9CDC793F358CD40629A6FE6EB /* TPPDF */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		649A1A771FF06AD5552B1C614DD91F04 /* Sources */ = {
+		241E83B45AE3E969EC84C03B33A09BC3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7884B8F61A782BC4F3DFBAA0B399940A /* Pods-TPPDF_Tests-dummy.m in Sources */,
+				5B6A4D08B0CCD52CCDC819EEEAAE10B7 /* Pods-TPPDF_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FA253E9E7F0F2CF57BB0AD3F6A0E549 /* Sources */ = {
+		4034BE8F77975B0DDD9048AA7197E611 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCA4238055792486C2678C2EDA5FD7E0 /* Pods-TPPDF_Example-dummy.m in Sources */,
+				8D01B502BA0D3721AD3066732EA99CBD /* Pods-TPPDF_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B410A8AC52A4CD5738C7C7618007C898 /* Sources */ = {
+		6BAE85CEC526DB97ECEBEEB9E1647086 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CA06688108FF2C9FFFE906DF16C1273 /* Command.swift in Sources */,
-				1FAC15BF24CC0395CE6CBEE0E5C250DD /* Container.swift in Sources */,
-				63E0E706FD61A7B67A25306EDDD36859 /* PageFormat.swift in Sources */,
-				97CE3EE71525A976B9A7C5C1D4730BFC /* PDFGenerator.swift in Sources */,
-				EF2873DD0DA2C49AEFD165F8308DC651 /* TPPDF-dummy.m in Sources */,
+				2FA388C2B87EADFEBED0ECE626D8AFA1 /* Command.swift in Sources */,
+				7568959D764E950264DA88286EE2CE6B /* Container.swift in Sources */,
+				F12BE1ACD46C1F489D7DFEFD06E4CBC2 /* PageFormat.swift in Sources */,
+				1023DEBBA8045EF066B422620384A5DC /* PDFGenerator.swift in Sources */,
+				52549B1928C026BD8F82D7751A15DF88 /* TPPDF-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7C62F7A20B43BF94E505567977056BD3 /* PBXTargetDependency */ = {
+		FBFAE9D64AC68580170D82911061681A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TPPDF;
-			target = 7732C1372F91DC445AE1B26FCFBB857E /* TPPDF */;
-			targetProxy = 90EEA66E65979861AFB1235B70911FAB /* PBXContainerItemProxy */;
+			target = 86CCFAB9CDC793F358CD40629A6FE6EB /* TPPDF */;
+			targetProxy = 5F32EF41D2EBE020D7EE495C4594DC2B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0ACDCBCB0B6796575F46FFA2F5410C6B /* Release */ = {
+		32CC0300776460E9481C48A0936BADF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8515A60A596F397A6B737DB3222DED70 /* Pods-TPPDF_Example.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-TPPDF_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_TPPDF_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4173498244BB854020E075E91427C582 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CA6BAC2B3DC48E96A8C742B071EE55A /* Pods-TPPDF_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-TPPDF_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_TPPDF_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		46E588CEF8508F7B0059BF211167009E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A876863E91E4A5D5FBBE3218533ADCDF /* TPPDF.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TPPDF/TPPDF-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TPPDF/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TPPDF/TPPDF.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TPPDF;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8DED8AD26D381A6ACFF202E5217EC498 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -404,6 +511,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -418,205 +526,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		2B96C458FA8BE7466FCF28FDD739A3A8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8515A60A596F397A6B737DB3222DED70 /* Pods-TPPDF_Example.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-TPPDF_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_TPPDF_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		471286FF1D713B9F2D81840617353718 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25CC4DED201A3D0DBC73DBBCEEDFFE03 /* Pods-TPPDF_Tests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-TPPDF_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_TPPDF_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		6F1D0CA4ED38804E4EB69CF64158481F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E954B7FFD4B8E56AD27E0D81809ADBF5 /* Pods-TPPDF_Example.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-TPPDF_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_TPPDF_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		80D5A07C402DFE64DD35C1DF18783BCF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A876863E91E4A5D5FBBE3218533ADCDF /* TPPDF.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/TPPDF/TPPDF-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TPPDF/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TPPDF/TPPDF.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = TPPDF;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		920B3328DDC37B818E89B7E60910EB14 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CA6BAC2B3DC48E96A8C742B071EE55A /* Pods-TPPDF_Tests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-TPPDF_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_TPPDF_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A73B4D9D5CB137C251F0777054F9C138 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A876863E91E4A5D5FBBE3218533ADCDF /* TPPDF.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/TPPDF/TPPDF-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TPPDF/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TPPDF/TPPDF.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = TPPDF;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D3E3D092A3FF7311A98E44BBA36FFD12 /* Debug */ = {
+		9E1E4E48AF2EAB23169E611BF694090A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -634,6 +551,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -653,28 +571,125 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
+		AF01046428DDF1A7BD300744E3331027 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A876863E91E4A5D5FBBE3218533ADCDF /* TPPDF.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TPPDF/TPPDF-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TPPDF/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TPPDF/TPPDF.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TPPDF;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E27F97D9720347E6C1A2B5B988445BBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25CC4DED201A3D0DBC73DBBCEEDFFE03 /* Pods-TPPDF_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-TPPDF_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_TPPDF_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FBB7EF991CA580E61921C629A97EB7D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E954B7FFD4B8E56AD27E0D81809ADBF5 /* Pods-TPPDF_Example.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-TPPDF_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_TPPDF_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0E17AB1CD0E61BF15F6BA6742D64CBCD /* Build configuration list for PBXNativeTarget "Pods-TPPDF_Tests" */ = {
+		24E852FD2EBDC4D2EF7589FEA988E974 /* Build configuration list for PBXNativeTarget "Pods-TPPDF_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				920B3328DDC37B818E89B7E60910EB14 /* Debug */,
-				471286FF1D713B9F2D81840617353718 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		27E1D221B0404AD1377099C6A95C7322 /* Build configuration list for PBXNativeTarget "TPPDF" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				80D5A07C402DFE64DD35C1DF18783BCF /* Debug */,
-				A73B4D9D5CB137C251F0777054F9C138 /* Release */,
+				32CC0300776460E9481C48A0936BADF4 /* Debug */,
+				FBB7EF991CA580E61921C629A97EB7D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -682,17 +697,26 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D3E3D092A3FF7311A98E44BBA36FFD12 /* Debug */,
-				0ACDCBCB0B6796575F46FFA2F5410C6B /* Release */,
+				9E1E4E48AF2EAB23169E611BF694090A /* Debug */,
+				8DED8AD26D381A6ACFF202E5217EC498 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C5E505A9292D59BB0EE2C32FF80054D5 /* Build configuration list for PBXNativeTarget "Pods-TPPDF_Example" */ = {
+		90C0F02D8CB744EA840D0182C2445188 /* Build configuration list for PBXNativeTarget "TPPDF" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2B96C458FA8BE7466FCF28FDD739A3A8 /* Debug */,
-				6F1D0CA4ED38804E4EB69CF64158481F /* Release */,
+				AF01046428DDF1A7BD300744E3331027 /* Debug */,
+				46E588CEF8508F7B0059BF211167009E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D99FFAE38517966A4BA113C878557409 /* Build configuration list for PBXNativeTarget "Pods-TPPDF_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4173498244BB854020E075E91427C582 /* Debug */,
+				E27F97D9720347E6C1A2B5B988445BBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
