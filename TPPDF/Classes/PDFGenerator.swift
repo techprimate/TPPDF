@@ -36,6 +36,14 @@ open class PDFGenerator  {
     fileprivate var pagination = false
     fileprivate var page = 1
     
+    fileprivate var imageQuality: CGFloat = 0.8 {
+        didSet {
+            if imageQuality > 1 {
+                imageQuality = 1
+            }
+        }
+    }
+    
     fileprivate var headerFooterCommands: [(Container, Command)] = []
     fileprivate let font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
     
@@ -47,7 +55,7 @@ open class PDFGenerator  {
     
     // MARK: - Initializing
     
-    public init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8, pagination: Bool = false) {
+    public init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8, pagination: Bool = false, imageQuality: CGFloat = 0.8) {
         pageBounds = CGRect(origin: CGPoint.zero, size: pageSize)
         self.pageMargin = pageMargin
         
@@ -58,11 +66,12 @@ open class PDFGenerator  {
         self.footerSpace = footerSpace
         
         self.pagination = pagination
+        self.imageQuality = imageQuality
         
         resetHeaderFooterHeight()
     }
     
-    public init(format: PageFormat, pagination: Bool = false) {
+    public init(format: PageFormat, pagination: Bool = false, imageQuality: CGFloat = 0.8) {
         pageBounds = CGRect(origin: CGPoint.zero, size: format.size)
         pageMargin = format.margin
         
@@ -73,6 +82,7 @@ open class PDFGenerator  {
         footerSpace = format.footerSpace
         
         self.pagination = pagination
+        self.imageQuality = imageQuality
         
         resetHeaderFooterHeight()
     }
@@ -260,9 +270,26 @@ open class PDFGenerator  {
             y = contentHeight + maxHeaderHeight() + headerSpace
         }
         
-        let frame = CGRect(x: x, y: y, width: aspectWidth, height: aspectHeight)
+        // resize
+        let resizeFactor = (3 * imageQuality > 1) ? 3 * imageQuality : 1
+        let resizeImageSize = CGSize(width: aspectWidth * resizeFactor, height: aspectHeight * resizeFactor)
+        UIGraphicsBeginImageContext(resizeImageSize)
+        image.draw(in: CGRect(x:0, y:0, width: resizeImageSize.width, height: resizeImageSize.height))
+        var compressedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         
-        image.draw(in: frame)
+        // compression
+        if let image = compressedImage, let jpegData = UIImageJPEGRepresentation(image, imageQuality) {
+            compressedImage = UIImage(data: jpegData)
+        }
+        
+        let frame = CGRect(x: x, y: y, width: aspectWidth, height: aspectHeight)
+        if let resultImage = compressedImage {
+            resultImage.draw(in: frame)
+        }
+        else {
+            image.draw(in: frame)
+        }
         
         contentHeight += frame.height
         
