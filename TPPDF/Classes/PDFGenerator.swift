@@ -175,13 +175,14 @@ open class PDFGenerator  {
         drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes))
     }
     
-    fileprivate func drawAttributedText(_ container: Container, text: NSAttributedString, repeated: Bool = false) {
+    fileprivate func drawAttributedText(_ container: Container, text: NSAttributedString, repeated: Bool = false, textMaxWidth: CGFloat = 0) {
         let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
         let framesetter = CTFramesetterCreateWithAttributedString(currentText!)
         var currentRange = CFRange(location: 0, length: 0)
         var done = false
         
         repeat {
+            let (frameRef, drawnSize) = calculateOneLineTextFrameAndDrawnSize(container, framesetter: framesetter, currentRange: currentRange, textMaxWidth: textMaxWidth)
             // Get the graphics context.
             let currentContext = UIGraphicsGetCurrentContext()!
             
@@ -191,34 +192,6 @@ open class PDFGenerator  {
             // Put the text matrix into a known state. This ensures
             // that no old scaling factors are left in place.
             currentContext.textMatrix = CGAffineTransform.identity
-            
-            let textMaxWidth = pageBounds.width - 2 * pageMargin - indentation[container.normalize]!
-            let textMaxHeight: CGFloat = {
-                if container.isHeader {
-                    return pageBounds.height - headerHeight[container]!
-                } else if container.isFooter {
-                    return footerMargin
-                } else {
-                    return pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace - contentHeight
-                }
-            }()
-            
-            // Create a path object to enclose the text.
-            let frame: CGRect = {
-                if container.isHeader {
-                    return CGRect(x: pageMargin + indentation[container.normalize]!, y: 0, width: textMaxWidth, height: textMaxHeight)
-                } else if container.isFooter {
-                    return CGRect(x: pageMargin + indentation[container.normalize]!, y: footerHeight[container]!, width: textMaxWidth, height: textMaxHeight)
-                } else {
-                    return CGRect(x: pageMargin + indentation[container.normalize]!, y: maxFooterHeight() + footerSpace, width: textMaxWidth, height: textMaxHeight)
-                }
-            }()
-            let framePath = UIBezierPath(rect: frame).cgPath
-            
-            // Get the frame that will do the rendering.
-            // The currentRange variable specifies only the starting point. The framesetter
-            // lays out as much text as will fit into the frame.
-            let frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, nil)
             
             // Core Text draws from the bottom-left corner up, so flip
             // the current transform prior to drawing.
@@ -234,10 +207,6 @@ open class PDFGenerator  {
             // Update the current range based on what was drawn.
             let visibleRange = CTFrameGetVisibleStringRange(frameRef)
             currentRange = CFRange(location: visibleRange.location + visibleRange.length , length: 0)
-            
-            // Update last drawn frame
-            let constraintSize = CGSize(width: textMaxWidth, height: textMaxHeight)
-            let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, constraintSize, nil)
             
             if container.isHeader {
                 headerHeight[container] = headerHeight[container]! + drawnSize.height
@@ -459,6 +428,45 @@ open class PDFGenerator  {
             }
         }()
         return CGRect(origin: CGPoint(x: x, y: origin.y), size: size)
+    }
+    
+    fileprivate func calculateOneLineTextFrameAndDrawnSize(_ container: Container, framesetter: CTFramesetter, currentRange: CFRange, textMaxWidth: CGFloat) -> (CTFrame, CGSize) {
+        let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : pageBounds.width - 2 * pageMargin - indentation[container.normalize]!
+        let textMaxHeight: CGFloat = {
+            if container.isHeader {
+                return pageBounds.height - headerHeight[container]!
+            } else if container.isFooter {
+                return footerMargin
+            } else {
+                return pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace - contentHeight
+            }
+        }()
+        
+        // Create a path object to enclose the text.
+        let frame: CGRect = {
+            if container.isHeader {
+                return CGRect(x: pageMargin + indentation[container.normalize]!, y: 0, width: textMaxWidth, height: textMaxHeight)
+            } else if container.isFooter {
+                return CGRect(x: pageMargin + indentation[container.normalize]!, y: footerHeight[container]!, width: textMaxWidth, height: textMaxHeight)
+            } else {
+                return CGRect(x: pageMargin + indentation[container.normalize]!, y: maxFooterHeight() + footerSpace, width: textMaxWidth, height: textMaxHeight)
+            }
+        }()
+        let framePath = UIBezierPath(rect: frame).cgPath
+        
+        // Get the frame that will do the rendering.
+        // The currentRange variable specifies only the starting point. The framesetter
+        // lays out as much text as will fit into the frame.
+        let frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, nil)
+        
+        // Update the current range based on what was drawn.
+        let visibleRange = CTFrameGetVisibleStringRange(frameRef)
+        
+        // Update last drawn frame
+        let constraintSize = CGSize(width: textMaxWidth, height: textMaxHeight)
+        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, constraintSize, nil)
+        
+        return (frameRef, drawnSize)
     }
     
     // MARK: - Tools
