@@ -256,7 +256,14 @@ open class PDFGenerator  {
             }
         }()
         
-        let frame = CGRect(x: x, y: contentHeight + maxHeaderHeight() + headerSpace, width: aspectWidth, height: aspectHeight)
+        var y = contentHeight + maxHeaderHeight() + headerSpace
+        if (y + aspectHeight > contentSize.height) {
+            generateNewPage()
+            
+            y = contentHeight + maxHeaderHeight() + headerSpace
+        }
+        
+        let frame = CGRect(x: x, y: y, width: aspectWidth, height: aspectHeight)
         
         image.draw(in: frame)
         
