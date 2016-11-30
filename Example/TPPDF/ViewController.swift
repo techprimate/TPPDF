@@ -40,8 +40,6 @@ class ViewController: UIViewController {
         pdf.addSpace(space: 12.0)
         
         pdf.addImage(image: UIImage(named: "Image.jpg")!)
-        pdf.addImage(image: UIImage(named: "Image.jpg")!)
-        pdf.addImage(image: UIImage(named: "Image.jpg")!)
         
         pdf.addSpace(space: 12.0)
         pdf.addLineSeparator(thickness: 0.1, color: UIColor.lightGray)
@@ -62,6 +60,9 @@ class ViewController: UIViewController {
         pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 5, margin: 5, lineWidth: 0)
         
         pdf.addSpace(space: 12.0)
+        
+        pdf.addImage(image: UIImage(named: "Image.jpg")!)
+        pdf.addImage(image: UIImage(named: "Image.jpg")!, size: CGSize.zero, caption: "Pasta with tomato sauce")
         
         let ingridients = NSMutableAttributedString(string: "Ingridients")
         ingridients.addAttributes([

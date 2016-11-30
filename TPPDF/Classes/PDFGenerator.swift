@@ -80,8 +80,8 @@ open class PDFGenerator  {
         commands += [(container, .addAttributedText(text: text)) ]
     }
     
-    open func addImage(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero) {
-        commands += [(container, .addImage(image: image, size: size))]
+    open func addImage(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero, caption: String = "") {
+        commands += [(container, .addImage(image: image, size: size, caption: caption))]
     }
     
     open func addSpace(_ container: Container = Container.contentLeft, space: CGFloat) {
@@ -153,24 +153,7 @@ open class PDFGenerator  {
     // MARK: - Rendering
     
     fileprivate func drawText(_ container: Container, text: String, font: UIFont, spacing: CGFloat, repeated: Bool = false) {
-        let paragraphStyle = NSMutableParagraphStyle()
-        switch container {
-        case .headerLeft, .contentLeft, .footerLeft:
-            paragraphStyle.alignment = .left
-        case .headerCenter, .contentCenter, .footerCenter:
-            paragraphStyle.alignment = .center
-        case .headerRight, .contentRight, .footerRight:
-            paragraphStyle.alignment = .right
-        default:
-            paragraphStyle.alignment = .left
-        }
-        
-        paragraphStyle.lineSpacing = spacing
-        
-        let attributes: [String:NSObject] = [
-            NSFontAttributeName: font,
-            NSParagraphStyleAttributeName: paragraphStyle
-        ]
+        let attributes = generateDefaultTextAttributes(container, font: font, spacing: spacing)
         
         drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes))
     }
@@ -223,7 +206,7 @@ open class PDFGenerator  {
         } while(!done)
     }
     
-    fileprivate func drawImage(_ container: Container, image: UIImage, size: CGSize) {
+    fileprivate func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: String) {
         var maxWidth: CGFloat = 0
         var maxHeight: CGFloat = 0
         
@@ -256,8 +239,15 @@ open class PDFGenerator  {
             }
         }()
         
+        var (captionText, captionHeight) = (NSAttributedString(), CGFloat(0))
+        if (!caption.isEmpty) {
+            let attributes = generateDefaultTextAttributes(container, font: font, spacing: 1)
+            captionText = NSAttributedString(string: caption, attributes: attributes)
+            captionHeight = calculateAttributedTextHeight(container, text: captionText, textMaxWidth: aspectWidth)
+        }
+        
         var y = contentHeight + maxHeaderHeight() + headerSpace
-        if (y + aspectHeight > contentSize.height) {
+        if (y + aspectHeight + captionHeight > contentSize.height) {
             generateNewPage()
             
             y = contentHeight + maxHeaderHeight() + headerSpace
@@ -268,6 +258,10 @@ open class PDFGenerator  {
         image.draw(in: frame)
         
         contentHeight += frame.height
+        
+        if (captionText.length > 0) {
+            drawAttributedText(container, text: captionText)
+        }
     }
     
     fileprivate func drawLineSeparator(_ container: Container, thickness: CGFloat, color: UIColor) {
@@ -517,6 +511,27 @@ open class PDFGenerator  {
         return max(pageMargin, max(footerHeight[.footerLeft]!, max(footerHeight[.footerCenter]!, footerHeight[.footerRight]!)))
     }
     
+    fileprivate func generateDefaultTextAttributes(_ container: Container, font: UIFont, spacing: CGFloat) -> [String: NSObject] {
+        let paragraphStyle = NSMutableParagraphStyle()
+        switch container {
+        case .headerLeft, .contentLeft, .footerLeft:
+            paragraphStyle.alignment = .left
+        case .headerCenter, .contentCenter, .footerCenter:
+            paragraphStyle.alignment = .center
+        case .headerRight, .contentRight, .footerRight:
+            paragraphStyle.alignment = .right
+        default:
+            paragraphStyle.alignment = .left
+        }
+        
+        paragraphStyle.lineSpacing = spacing
+        
+        return [
+            NSFontAttributeName: font,
+            NSParagraphStyleAttributeName: paragraphStyle
+        ]
+    }
+    
     fileprivate func renderHeaderFooter(_ repeated: Bool = false) {
         resetHeaderFooterHeight()
         
@@ -540,8 +555,8 @@ open class PDFGenerator  {
         case let .addAttributedText(text):
             drawAttributedText(container, text: text)
             break
-        case let .addImage(image, size):
-            drawImage(container, image: image, size: size)
+        case let .addImage(image, size, caption):
+            drawImage(container, image: image, size: size, caption: caption)
             break
         case let .addSpace(space):
             if container.isHeader {
