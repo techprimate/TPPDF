@@ -218,10 +218,7 @@ open class PDFGenerator  {
             if currentRange.location == CFAttributedStringGetLength(currentText){
                 done = true
             } else {
-                UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
-                contentHeight = 0
-                
-                renderHeaderFooter()
+                generateNewPage()
             }
         } while(!done)
     }
@@ -519,6 +516,13 @@ open class PDFGenerator  {
         for (container, command) in headerFooterCommands {
             renderCommand(container, command: command)
         }
+    }
+    
+    fileprivate func generateNewPage() {
+        UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
+        contentHeight = 0
+        
+        renderHeaderFooter()
     }
     
     fileprivate func renderCommand(_ container: Container, command: Command) {
