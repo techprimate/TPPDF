@@ -33,6 +33,9 @@ open class PDFGenerator  {
         return CGSize(width: pageBounds.width - 2 * pageMargin, height: pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace)
     }
     
+    fileprivate var pagination = false
+    fileprivate var page = 1
+    
     fileprivate var headerFooterCommands: [(Container, Command)] = []
     fileprivate let font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
     
@@ -44,7 +47,7 @@ open class PDFGenerator  {
     
     // MARK: - Initializing
     
-    public init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8) {
+    public init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8, pagination: Bool = false) {
         pageBounds = CGRect(origin: CGPoint.zero, size: pageSize)
         self.pageMargin = pageMargin
         
@@ -54,10 +57,12 @@ open class PDFGenerator  {
         self.headerSpace = headerSpace
         self.footerSpace = footerSpace
         
+        self.pagination = pagination
+        
         resetHeaderFooterHeight()
     }
     
-    public init(format: PageFormat) {
+    public init(format: PageFormat, pagination: Bool = false) {
         pageBounds = CGRect(origin: CGPoint.zero, size: format.size)
         pageMargin = format.margin
         
@@ -66,6 +71,8 @@ open class PDFGenerator  {
         
         headerSpace = format.headerSpace
         footerSpace = format.footerSpace
+        
+        self.pagination = pagination
         
         resetHeaderFooterHeight()
     }
@@ -535,6 +542,10 @@ open class PDFGenerator  {
     fileprivate func renderHeaderFooter(_ repeated: Bool = false) {
         resetHeaderFooterHeight()
         
+        if pagination {
+            renderCommand(.footerCenter, command: .addText(text: String(page), lineSpacing: 1.0))
+        }
+        
         for (container, command) in headerFooterCommands {
             renderCommand(container, command: command)
         }
@@ -543,6 +554,7 @@ open class PDFGenerator  {
     fileprivate func generateNewPage() {
         UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
         contentHeight = 0
+        page += 1
         
         renderHeaderFooter()
     }
