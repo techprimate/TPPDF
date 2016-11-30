@@ -477,7 +477,7 @@ open class PDFGenerator  {
         var height: CGFloat = 0
         
         repeat {
-            let (frameRef, drawnSize) = calculateAttributedTextFrameAndDrawSize(container, framesetter: framesetter, currentRange: currentRange, textMaxWidth: textMaxWidth)
+            let (frameRef, drawnSize) = calculateOneLineTextFrameAndDrawnSize(container, framesetter: framesetter, currentRange: currentRange, textMaxWidth: textMaxWidth)
             
             // Update the current range based on what was drawn.
             let visibleRange = CTFrameGetVisibleStringRange(frameRef)
