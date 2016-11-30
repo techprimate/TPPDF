@@ -469,6 +469,30 @@ open class PDFGenerator  {
         return (frameRef, drawnSize)
     }
     
+    fileprivate func calculateAttributedTextHeight(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat) -> CGFloat {
+        let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
+        let framesetter = CTFramesetterCreateWithAttributedString(currentText!)
+        var currentRange = CFRange(location: 0, length: 0)
+        var done = false
+        var height: CGFloat = 0
+        
+        repeat {
+            let (frameRef, drawnSize) = calculateAttributedTextFrameAndDrawSize(container, framesetter: framesetter, currentRange: currentRange, textMaxWidth: textMaxWidth)
+            
+            // Update the current range based on what was drawn.
+            let visibleRange = CTFrameGetVisibleStringRange(frameRef)
+            currentRange = CFRange(location: visibleRange.location + visibleRange.length , length: 0)
+            
+            height += drawnSize.height
+            
+            if currentRange.location == CFAttributedStringGetLength(currentText){
+                done = true
+            }
+        } while(!done)
+        
+        return height
+    }
+    
     // MARK: - Tools
     
     fileprivate func resetHeaderFooterHeight() {
