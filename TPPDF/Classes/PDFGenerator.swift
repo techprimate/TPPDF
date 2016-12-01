@@ -101,6 +101,10 @@ open class PDFGenerator  {
         commands += [(container, .addImage(image: image, size: size, caption: caption))]
     }
     
+    open func addImagesInRow(_ container: Container = Container.contentLeft, images: [UIImage], captions: [String] = [], spacing: CGFloat = 5.0) {
+        commands += [(container, .addImagesInRow(images: images, captions: captions, spacing: spacing))]
+    }
+    
     open func addSpace(_ container: Container = Container.contentLeft, space: CGFloat) {
         commands += [(container, .addSpace(space: space))]
     }
@@ -169,10 +173,10 @@ open class PDFGenerator  {
     
     // MARK: - Rendering
     
-    fileprivate func drawText(_ container: Container, text: String, font: UIFont, spacing: CGFloat, repeated: Bool = false) {
+    fileprivate func drawText(_ container: Container, text: String, font: UIFont, spacing: CGFloat, repeated: Bool = false, textMaxWidth: CGFloat = 0) {
         let attributes = generateDefaultTextAttributes(container, font: font, spacing: spacing)
         
-        drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes))
+        drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), repeated: repeated, textMaxWidth: textMaxWidth)
     }
     
     fileprivate func drawAttributedText(_ container: Container, text: NSAttributedString, repeated: Bool = false, textMaxWidth: CGFloat = 0) {
@@ -223,56 +227,10 @@ open class PDFGenerator  {
         } while(!done)
     }
     
-    fileprivate func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: String) {
-        var maxWidth: CGFloat = 0
-        var maxHeight: CGFloat = 0
-        
-        /* calculate the aspect size of image */
-        if size == CGSize.zero {
-            maxWidth = min(image.size.width, contentSize.width - indentation[container.normalize]!)
-            maxHeight = min(image.size.height, contentSize.height)
-        } else {
-            maxWidth = min(size.width, contentSize.width - indentation[container.normalize]!)
-            maxHeight = min(size.width, contentSize.height - contentHeight)
-        }
-        let wFactor = image.size.width / maxWidth
-        let hFactor = image.size.height / maxHeight
-        
-        let factor = max(wFactor, hFactor)
-        
-        let aspectWidth = image.size.width / factor
-        let aspectHeight = image.size.height / factor
-        
-        let x: CGFloat = {
-            switch container {
-            case .contentLeft:
-                return pageMargin + indentation[container.normalize]!
-            case .contentCenter:
-                return pageBounds.midX - aspectWidth / 2
-            case .contentRight:
-                return pageBounds.width - pageMargin - aspectWidth
-            default:
-                return 0
-            }
-        }()
-        
-        var (captionText, captionHeight) = (NSAttributedString(), CGFloat(0))
-        if (!caption.isEmpty) {
-            let attributes = generateDefaultTextAttributes(container, font: font, spacing: 1)
-            captionText = NSAttributedString(string: caption, attributes: attributes)
-            captionHeight = calculateAttributedTextHeight(container, text: captionText, textMaxWidth: aspectWidth)
-        }
-        
-        var y = contentHeight + maxHeaderHeight() + headerSpace
-        if (y + aspectHeight + captionHeight > contentSize.height) {
-            generateNewPage()
-            
-            y = contentHeight + maxHeaderHeight() + headerSpace
-        }
-        
+    fileprivate func drawImage(_ container: Container, image: UIImage, frame: CGRect, caption: String) {
         // resize
         let resizeFactor = (3 * imageQuality > 1) ? 3 * imageQuality : 1
-        let resizeImageSize = CGSize(width: aspectWidth * resizeFactor, height: aspectHeight * resizeFactor)
+        let resizeImageSize = CGSize(width: frame.size.width * resizeFactor, height: frame.size.height * resizeFactor)
         UIGraphicsBeginImageContext(resizeImageSize)
         image.draw(in: CGRect(x:0, y:0, width: resizeImageSize.width, height: resizeImageSize.height))
         var compressedImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -282,8 +240,7 @@ open class PDFGenerator  {
         if let image = compressedImage, let jpegData = UIImageJPEGRepresentation(image, imageQuality) {
             compressedImage = UIImage(data: jpegData)
         }
-        
-        let frame = CGRect(x: x, y: y, width: aspectWidth, height: aspectHeight)
+     
         if let resultImage = compressedImage {
             resultImage.draw(in: frame)
         }
@@ -293,9 +250,79 @@ open class PDFGenerator  {
         
         contentHeight += frame.height
         
-        if (captionText.length > 0) {
-            drawAttributedText(container, text: captionText)
+        if !caption.isEmpty {
+            drawText(container, text: caption, font: font, spacing: 1, repeated: false, textMaxWidth: frame.size.width)
         }
+    }
+    
+    fileprivate func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: String) {
+        var (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption)
+        
+        let x: CGFloat = {
+            switch container {
+            case .contentLeft:
+                return pageMargin + indentation[container.normalize]!
+            case .contentCenter:
+                return pageBounds.midX - imageSize.width / 2
+            case .contentRight:
+                return pageBounds.width - pageMargin - imageSize.width
+            default:
+                return 0
+            }
+        }()
+        
+        var y = contentHeight + maxHeaderHeight() + headerSpace
+        if (y + imageSize.height + captionSize.height > contentSize.height) {
+            generateNewPage()
+            
+            y = contentHeight + maxHeaderHeight() + headerSpace
+        }
+        
+        let frame = CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height)
+        drawImage(container, image: image, frame: frame, caption: caption)
+    }
+    
+    fileprivate func drawImagesInRow(_ container: Container, images: [UIImage], captions: [String], spacing: CGFloat) {
+        if (images.count <= 0) {
+            return
+        }
+        
+        let totalimagesWidth = contentSize.width - indentation[container.normalize]! - (CGFloat(images.count) - 1) * spacing
+        var imageSizes: [CGSize] = []
+        var maxHeight: CGFloat = 0
+        let imageWidth = totalimagesWidth / CGFloat(images.count)
+        for (index, image) in images.enumerated() {
+            let caption = (captions.count > index) ? captions[index] : ""
+            let (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: CGSize(width: imageWidth, height: image.size.height), caption: caption)
+            imageSizes.append(imageSize)
+            
+            if maxHeight < imageSize.height + captionSize.height {
+                maxHeight = imageSize.height + captionSize.height
+            }
+        }
+        
+        var y = contentHeight + maxHeaderHeight() + headerSpace
+        if (y + maxHeight > contentSize.height) {
+            generateNewPage()
+            
+            y = contentHeight + maxHeaderHeight() + headerSpace
+        }
+        
+        var x: CGFloat = pageMargin + indentation[container.normalize]!
+        
+        let (nowContentHeight, nowIndentation) = (contentHeight, indentation[container.normalize]!)
+        for (index, image) in images.enumerated() {
+            let imageSize = imageSizes[index]
+            let caption = (captions.count > index) ? captions[index] : ""
+            drawImage(container, image: image, frame: CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height), caption: caption)
+            
+            x += imageSize.width + spacing
+            indentation[container.normalize] = indentation[container.normalize]! + imageSize.width + spacing
+            contentHeight = nowContentHeight
+        }
+        
+        indentation[container.normalize] = nowIndentation
+        contentHeight += maxHeight
     }
     
     fileprivate func drawLineSeparator(_ container: Container, thickness: CGFloat, color: UIColor) {
@@ -525,6 +552,35 @@ open class PDFGenerator  {
         return height
     }
     
+    fileprivate func calculateImageCaptionSize(_ container: Container, image: UIImage, size: CGSize, caption: String) -> (CGSize, CGSize) {
+        var maxWidth: CGFloat = 0
+        var maxHeight: CGFloat = 0
+        
+        /* calculate the aspect size of image */
+        if size == CGSize.zero {
+            maxWidth = min(image.size.width, contentSize.width - indentation[container.normalize]!)
+            maxHeight = min(image.size.height, contentSize.height)
+        } else {
+            maxWidth = min(size.width, contentSize.width - indentation[container.normalize]!)
+            maxHeight = min(size.width, contentSize.height - contentHeight)
+        }
+        let wFactor = image.size.width / maxWidth
+        let hFactor = image.size.height / maxHeight
+        
+        let factor = max(wFactor, hFactor)
+        
+        let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
+        
+        var (captionText, captionHeight) = (NSAttributedString(), CGFloat(0))
+        if (!caption.isEmpty) {
+            let attributes = generateDefaultTextAttributes(container, font: font, spacing: 1)
+            captionText = NSAttributedString(string: caption, attributes: attributes)
+            captionHeight = calculateAttributedTextHeight(container, text: captionText, textMaxWidth: imageSize.width)
+        }
+        
+        return (imageSize, CGSize(width: imageSize.width, height: captionHeight))
+    }
+    
     // MARK: - Tools
     
     fileprivate func resetHeaderFooterHeight() {
@@ -596,6 +652,9 @@ open class PDFGenerator  {
             break
         case let .addImage(image, size, caption):
             drawImage(container, image: image, size: size, caption: caption)
+            break
+        case let .addImagesInRow(images, captions, spacing):
+            drawImagesInRow(container, images: images, captions: captions, spacing: spacing)
             break
         case let .addSpace(space):
             if container.isHeader {
