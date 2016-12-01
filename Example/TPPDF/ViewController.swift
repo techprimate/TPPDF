@@ -19,8 +19,12 @@ class ViewController: UIViewController {
     func generatePDF() {
         let pdf = PDFGenerator(format: .a4, paginationContainer: .footerRight)
         
+        let image = UIImage(named: "image.jpg")!
+        let portraitImage = UIImage(named: "PortraitImage.jpg")!
+        
         pdf.addText(.footerCenter, text: "Created using TPPDF for iOS.")
         pdf.addText(.headerLeft, text: "Recipe: Pasta with tomato sauce")
+        pdf.addImage(.headerRight, image: image)
         
         let title = NSMutableAttributedString(string: "Pasta with tomato sauce", attributes: [
             NSFontAttributeName : UIFont.systemFont(ofSize: 28.0),
@@ -38,9 +42,6 @@ class ViewController: UIViewController {
         
         pdf.addLineSeparator(thickness: 0.1, color: UIColor.lightGray)
         pdf.addSpace(space: 12.0)
-        
-        let image = UIImage(named: "image.jpg")!
-        let portraitImage = UIImage(named: "PortraitImage.jpg")!
         
         pdf.addImage(image: image)
         

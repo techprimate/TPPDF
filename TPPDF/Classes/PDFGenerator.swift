@@ -12,6 +12,8 @@ open class PDFGenerator  {
     
     // MARK: - Public Variables
     
+    static let headerImageHeight: CGFloat = 32
+    
     open var pageBounds: CGRect = CGRect.zero
     open var pageMargin: CGFloat = 0
     
@@ -248,7 +250,13 @@ open class PDFGenerator  {
             image.draw(in: frame)
         }
         
-        contentHeight += frame.height
+        if container.isHeader {
+            headerHeight[container] = headerHeight[container]! + frame.height
+        } else if container.isFooter {
+            footerHeight[container] = footerHeight[container]! + frame.height
+        } else {
+            contentHeight += frame.height
+        }
         
         if !caption.isEmpty {
             drawText(container, text: caption, font: font, spacing: 1, repeated: false, textMaxWidth: frame.size.width)
@@ -258,21 +266,33 @@ open class PDFGenerator  {
     fileprivate func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: String) {
         var (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption)
     
-        var y = contentHeight + maxHeaderHeight() + headerSpace
-        if (y + imageSize.height + captionSize.height > contentSize.height) {
-            generateNewPage()
-            
-            (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption)
-            y = contentHeight + maxHeaderHeight() + headerSpace
-        }
+        var y: CGFloat = {
+            switch container.normalize {
+            case .headerLeft:
+                return headerHeight[container]!
+            case .contentLeft:
+                var y = contentHeight + maxHeaderHeight() + headerSpace
+                if (y + imageSize.height + captionSize.height > contentSize.height) {
+                    generateNewPage()
+                    
+                    (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption)
+                    y = contentHeight + maxHeaderHeight() + headerSpace
+                }
+                return y
+            case .footerLeft:
+                return contentSize.height + maxHeaderHeight() + footerHeight[container]!
+            default:
+                return 0
+            }
+        }()
         
         let x: CGFloat = {
             switch container {
-            case .contentLeft:
+            case .headerLeft, .contentLeft, .footerLeft:
                 return pageMargin + indentation[container.normalize]!
-            case .contentCenter:
+            case .headerCenter, .contentCenter, .footerCenter:
                 return pageBounds.midX - imageSize.width / 2
-            case .contentRight:
+            case .headerRight, .contentRight, .footerRight:
                 return pageBounds.width - pageMargin - imageSize.width
             default:
                 return 0
@@ -578,9 +598,9 @@ open class PDFGenerator  {
     
     fileprivate func calculateImageCaptionSize(_ container: Container, image: UIImage, size: CGSize, caption: String) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
-        var size = size
-        if size == CGSize.zero {
-            size = image.size
+        var size = (size == CGSize.zero) ? image.size : size
+        if container.isHeader || container.isFooter {
+            size = CGSize(width: PDFGenerator.headerImageHeight, height: PDFGenerator.headerImageHeight)
         }
         
         let maxWidth = min(size.width, contentSize.width - indentation[container.normalize]!)
