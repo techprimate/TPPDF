@@ -13,6 +13,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		AAF20D711DEFCA6100948166 /* PortraitImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AAF20D701DEFCA6100948166 /* PortraitImage.jpg */; };
 		D4032E8C1D629AF700F1C14A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4032E8A1D629AF700F1C14A /* LaunchScreen.storyboard */; };
 		D4032E901D629B5D00F1C14A /* Image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4032E8F1D629B5D00F1C14A /* Image.jpg */; };
 		FE72AAD5840A908C7220B22D /* Pods_TPPDF_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BAEA99CE7B3E2607E018AB /* Pods_TPPDF_Example.framework */; };
@@ -43,6 +44,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		81E2E4032A07FFB898A01D27 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		AAF20D701DEFCA6100948166 /* PortraitImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PortraitImage.jpg; sourceTree = "<group>"; };
 		BED306E4A2B7E0694D47D195 /* Pods-TPPDF_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D17FC7694F2FC04588A6AD27 /* Pods-TPPDF_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D4032E8B1D629AF700F1C14A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				D4032E8A1D629AF700F1C14A /* LaunchScreen.storyboard */,
 				D4032E8F1D629B5D00F1C14A /* Image.jpg */,
+				AAF20D701DEFCA6100948166 /* PortraitImage.jpg */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -258,6 +261,7 @@
 				D4032E8C1D629AF700F1C14A /* LaunchScreen.storyboard in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				AAF20D711DEFCA6100948166 /* PortraitImage.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

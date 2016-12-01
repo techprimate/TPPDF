@@ -257,6 +257,14 @@ open class PDFGenerator  {
     
     fileprivate func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: String) {
         var (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption)
+    
+        var y = contentHeight + maxHeaderHeight() + headerSpace
+        if (y + imageSize.height + captionSize.height > contentSize.height) {
+            generateNewPage()
+            
+            (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption)
+            y = contentHeight + maxHeaderHeight() + headerSpace
+        }
         
         let x: CGFloat = {
             switch container {
@@ -271,13 +279,6 @@ open class PDFGenerator  {
             }
         }()
         
-        var y = contentHeight + maxHeaderHeight() + headerSpace
-        if (y + imageSize.height + captionSize.height > contentSize.height) {
-            generateNewPage()
-            
-            y = contentHeight + maxHeaderHeight() + headerSpace
-        }
-        
         let frame = CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height)
         drawImage(container, image: image, frame: frame, caption: caption)
     }
@@ -288,24 +289,34 @@ open class PDFGenerator  {
         }
         
         let totalimagesWidth = contentSize.width - indentation[container.normalize]! - (CGFloat(images.count) - 1) * spacing
-        var imageSizes: [CGSize] = []
-        var maxHeight: CGFloat = 0
+        
         let imageWidth = totalimagesWidth / CGFloat(images.count)
-        for (index, image) in images.enumerated() {
-            let caption = (captions.count > index) ? captions[index] : ""
-            let (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: CGSize(width: imageWidth, height: image.size.height), caption: caption)
-            imageSizes.append(imageSize)
+        
+        let calculateImageCaptionSizes: ([UIImage], [String]) -> ([CGSize], CGFloat) = {
+            (images: [UIImage], captions: [String]) -> ([CGSize], CGFloat) in
             
-            if maxHeight < imageSize.height + captionSize.height {
-                maxHeight = imageSize.height + captionSize.height
+            var (imageSizes, maxHeight): ([CGSize], CGFloat) = ([], 0)
+            for (index, image) in images.enumerated() {
+                let caption = (captions.count > index) ? captions[index] : ""
+                let (imageSize, captionSize) = self.calculateImageCaptionSize(container, image: image, size: CGSize(width: imageWidth, height: image.size.height), caption: caption)
+                imageSizes.append(imageSize)
+                
+                if maxHeight < imageSize.height + captionSize.height {
+                    maxHeight = imageSize.height + captionSize.height
+                }
             }
+            
+            return (imageSizes, maxHeight)
         }
         
+        var (imageSizes, maxHeight) = calculateImageCaptionSizes(images, captions)
+
         var y = contentHeight + maxHeaderHeight() + headerSpace
         if (y + maxHeight > contentSize.height) {
             generateNewPage()
             
             y = contentHeight + maxHeaderHeight() + headerSpace
+            (imageSizes, maxHeight) = calculateImageCaptionSizes(images, captions)
         }
         
         var x: CGFloat = pageMargin + indentation[container.normalize]!
@@ -553,20 +564,17 @@ open class PDFGenerator  {
     }
     
     fileprivate func calculateImageCaptionSize(_ container: Container, image: UIImage, size: CGSize, caption: String) -> (CGSize, CGSize) {
-        var maxWidth: CGFloat = 0
-        var maxHeight: CGFloat = 0
-        
         /* calculate the aspect size of image */
+        var size = size
         if size == CGSize.zero {
-            maxWidth = min(image.size.width, contentSize.width - indentation[container.normalize]!)
-            maxHeight = min(image.size.height, contentSize.height)
-        } else {
-            maxWidth = min(size.width, contentSize.width - indentation[container.normalize]!)
-            maxHeight = min(size.width, contentSize.height - contentHeight)
+            size = image.size
         }
+        
+        let maxWidth = min(size.width, contentSize.width - indentation[container.normalize]!)
+        let maxHeight = min(size.height, contentSize.height - contentHeight)
+        
         let wFactor = image.size.width / maxWidth
         let hFactor = image.size.height / maxHeight
-        
         let factor = max(wFactor, hFactor)
         
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
