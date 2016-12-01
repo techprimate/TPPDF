@@ -33,7 +33,7 @@ open class PDFGenerator  {
         return CGSize(width: pageBounds.width - 2 * pageMargin, height: pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace)
     }
     
-    fileprivate var pagination = false
+    fileprivate var paginationContainer = Container.none
     fileprivate var page = 1
     
     fileprivate var imageQuality: CGFloat = 0.8 {
@@ -55,7 +55,7 @@ open class PDFGenerator  {
     
     // MARK: - Initializing
     
-    public init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8, pagination: Bool = false, imageQuality: CGFloat = 0.8) {
+    public init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8, paginationContainer: Container = .none, imageQuality: CGFloat = 0.8) {
         pageBounds = CGRect(origin: CGPoint.zero, size: pageSize)
         self.pageMargin = pageMargin
         
@@ -65,13 +65,13 @@ open class PDFGenerator  {
         self.headerSpace = headerSpace
         self.footerSpace = footerSpace
         
-        self.pagination = pagination
+        self.paginationContainer = paginationContainer
         self.imageQuality = imageQuality
         
         resetHeaderFooterHeight()
     }
     
-    public init(format: PageFormat, pagination: Bool = false, imageQuality: CGFloat = 0.8) {
+    public init(format: PageFormat, paginationContainer: Container = .none, imageQuality: CGFloat = 0.8) {
         pageBounds = CGRect(origin: CGPoint.zero, size: format.size)
         pageMargin = format.margin
         
@@ -81,7 +81,7 @@ open class PDFGenerator  {
         headerSpace = format.headerSpace
         footerSpace = format.footerSpace
         
-        self.pagination = pagination
+        self.paginationContainer = paginationContainer
         self.imageQuality = imageQuality
         
         resetHeaderFooterHeight()
@@ -646,8 +646,8 @@ open class PDFGenerator  {
     fileprivate func renderHeaderFooter(_ repeated: Bool = false) {
         resetHeaderFooterHeight()
         
-        if pagination {
-            renderCommand(.footerCenter, command: .addText(text: String(page), lineSpacing: 1.0))
+        if paginationContainer != .none {
+            renderCommand(paginationContainer, command: .addText(text: String(page), lineSpacing: 1.0))
         }
         
         for (container, command) in headerFooterCommands {

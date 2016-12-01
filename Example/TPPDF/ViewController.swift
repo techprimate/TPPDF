@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     }
     
     func generatePDF() {
-        let pdf = PDFGenerator(format: .a4, pagination: true)
+        let pdf = PDFGenerator(format: .a4, paginationContainer: .footerRight)
         
         pdf.addText(.footerCenter, text: "Created using TPPDF for iOS.")
         pdf.addText(.headerLeft, text: "Recipe: Pasta with tomato sauce")
