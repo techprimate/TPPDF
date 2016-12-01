@@ -513,13 +513,26 @@ open class PDFGenerator  {
         }()
         
         // Create a path object to enclose the text.
+        let x: CGFloat = {
+            switch container {
+            case .headerLeft, .contentLeft, .footerLeft:
+                return pageMargin + indentation[container.normalize]!
+            case .headerCenter, .contentCenter, .footerCenter:
+                return pageBounds.midX - textMaxWidth / 2
+            case .headerRight, .contentRight, .footerRight:
+                return pageBounds.width - pageMargin - textMaxWidth
+            default:
+                return 0
+            }
+        }()
+        
         let frame: CGRect = {
             if container.isHeader {
-                return CGRect(x: pageMargin + indentation[container.normalize]!, y: 0, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: 0, width: textMaxWidth, height: textMaxHeight)
             } else if container.isFooter {
-                return CGRect(x: pageMargin + indentation[container.normalize]!, y: footerHeight[container]!, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: footerHeight[container]!, width: textMaxWidth, height: textMaxHeight)
             } else {
-                return CGRect(x: pageMargin + indentation[container.normalize]!, y: maxFooterHeight() + footerSpace, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: maxFooterHeight() + footerSpace, width: textMaxWidth, height: textMaxHeight)
             }
         }()
         let framePath = UIBezierPath(rect: frame).cgPath
