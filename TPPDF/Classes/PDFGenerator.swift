@@ -357,7 +357,20 @@ open class PDFGenerator  {
     }
     
     fileprivate func drawLineSeparator(_ container: Container, thickness: CGFloat, color: UIColor) {
-        let drawRect = CGRect(x: pageMargin + indentation[container.normalize]!, y: contentHeight + maxHeaderHeight() + headerSpace, width: contentSize.width -  indentation[container.normalize]!, height: thickness)
+        let y: CGFloat = {
+            switch container.normalize {
+            case .headerLeft:
+                return maxHeaderHeight()
+            case .contentLeft:
+                return contentHeight + maxHeaderHeight() + headerSpace
+            case .footerLeft:
+                return contentSize.height + maxHeaderHeight() + headerSpace
+            default:
+                return 0
+            }
+        }()
+        
+        let drawRect = CGRect(x: pageMargin + indentation[container.normalize]!, y: y, width: contentSize.width -  indentation[container.normalize]!, height: thickness)
         let path = UIBezierPath(rect: drawRect).cgPath
         
         // Get the graphics context.

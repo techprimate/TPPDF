@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         pdf.addText(.footerCenter, text: "Created using TPPDF for iOS.")
         pdf.addText(.headerLeft, text: "Recipe: Pasta with tomato sauce")
         pdf.addImage(.headerRight, image: image)
+        pdf.addLineSeparator(.headerCenter, thickness: 1.0)
+        pdf.addLineSeparator(.footerCenter, thickness: 0.1)
         
         let title = NSMutableAttributedString(string: "Pasta with tomato sauce", attributes: [
             NSFontAttributeName : UIFont.systemFont(ofSize: 28.0),
