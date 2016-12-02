@@ -364,11 +364,11 @@ open class PDFGenerator  {
         let y: CGFloat = {
             switch container.normalize {
             case .headerLeft:
-                return maxHeaderHeight() + headerSpace / 2
+                return maxHeaderHeight() + 4
             case .contentLeft:
                 return contentHeight + maxHeaderHeight() + headerSpace
             case .footerLeft:
-                return contentSize.height + maxHeaderHeight() + headerSpace
+                return contentSize.height + maxHeaderHeight() + headerSpace + footerSpace - 4
             default:
                 return 0
             }
