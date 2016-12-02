@@ -69,9 +69,9 @@ class ViewController: UIViewController {
         
         pdf.addSpace(space: 12.0)
         
-        pdf.addImagesInRow(images: [image, portraitImage], captions: ["Pasta with tomato sauce", "Pasta with tomato sauce"])
-        pdf.addImage(.contentCenter, image: portraitImage, size: CGSize(width: portraitImage.size.width, height: portraitImage.size.height / 4), caption: "Pasta with tomato sauce")
-        pdf.addImage(.contentCenter, image: image, size: CGSize.zero, caption: "Pasta with tomato sauce")
+        pdf.addImagesInRow(images: [image, portraitImage], captions: [NSAttributedString(string: "Pasta with tomato sauce"), NSAttributedString(string: "Pasta with tomato sauce")])
+        pdf.addImage(.contentCenter, image: portraitImage, size: CGSize(width: portraitImage.size.width, height: portraitImage.size.height / 4), caption: NSAttributedString(string: "Pasta with tomato sauce"))
+        pdf.addImage(.contentCenter, image: image, size: CGSize.zero, caption: NSAttributedString(string: "Pasta with tomato sauce"))
         
         let ingridients = NSMutableAttributedString(string: "Ingridients")
         ingridients.addAttributes([

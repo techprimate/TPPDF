@@ -12,8 +12,8 @@ enum Command {
     
     case addText(text: String, lineSpacing: CGFloat)
     case addAttributedText(text: NSAttributedString)
-    case addImage(image: UIImage, size: CGSize, caption: String)
-    case addImagesInRow(images: [UIImage], captions: [String], spacing: CGFloat)
+    case addImage(image: UIImage, size: CGSize, caption: NSAttributedString)
+    case addImagesInRow(images: [UIImage], captions: [NSAttributedString], spacing: CGFloat)
     case addSpace(space: CGFloat)
     case addLineSeparator(thickness: CGFloat, color: UIColor)
     case addTable(data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool)

@@ -99,11 +99,11 @@ open class PDFGenerator  {
         commands += [(container, .addAttributedText(text: text)) ]
     }
     
-    open func addImage(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero, caption: String = "") {
+    open func addImage(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero, caption: NSAttributedString = NSAttributedString()) {
         commands += [(container, .addImage(image: image, size: size, caption: caption))]
     }
     
-    open func addImagesInRow(_ container: Container = Container.contentLeft, images: [UIImage], captions: [String] = [], spacing: CGFloat = 5.0) {
+    open func addImagesInRow(_ container: Container = Container.contentLeft, images: [UIImage], captions: [NSAttributedString] = [], spacing: CGFloat = 5.0) {
         commands += [(container, .addImagesInRow(images: images, captions: captions, spacing: spacing))]
     }
     
@@ -233,7 +233,7 @@ open class PDFGenerator  {
         } while(!done)
     }
     
-    fileprivate func drawImage(_ container: Container, image: UIImage, frame: CGRect, caption: String) {
+    fileprivate func drawImage(_ container: Container, image: UIImage, frame: CGRect, caption: NSAttributedString) {
         // resize
         let resizeFactor = (3 * imageQuality > 1) ? 3 * imageQuality : 1
         let resizeImageSize = CGSize(width: frame.size.width * resizeFactor, height: frame.size.height * resizeFactor)
@@ -262,12 +262,12 @@ open class PDFGenerator  {
             contentHeight += frame.height
         }
         
-        if !caption.isEmpty {
-            drawText(container, text: caption, font: font, spacing: 1, repeated: false, textMaxWidth: frame.size.width)
+        if caption.length > 0 {
+            drawAttributedText(container, text: caption, textMaxWidth: frame.size.width)
         }
     }
     
-    fileprivate func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: String) {
+    fileprivate func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: NSAttributedString) {
         var (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption)
     
         var y: CGFloat = {
@@ -307,7 +307,7 @@ open class PDFGenerator  {
         drawImage(container, image: image, frame: frame, caption: caption)
     }
     
-    fileprivate func drawImagesInRow(_ container: Container, images: [UIImage], captions: [String], spacing: CGFloat) {
+    fileprivate func drawImagesInRow(_ container: Container, images: [UIImage], captions: [NSAttributedString], spacing: CGFloat) {
         if (images.count <= 0) {
             return
         }
@@ -316,12 +316,12 @@ open class PDFGenerator  {
         
         let imageWidth = totalimagesWidth / CGFloat(images.count)
         
-        let calculateImageCaptionSizes: ([UIImage], [String]) -> ([CGSize], CGFloat) = {
-            (images: [UIImage], captions: [String]) -> ([CGSize], CGFloat) in
+        let calculateImageCaptionSizes: ([UIImage], [NSAttributedString]) -> ([CGSize], CGFloat) = {
+            images, captions in
             
             var (imageSizes, maxHeight): ([CGSize], CGFloat) = ([], 0)
             for (index, image) in images.enumerated() {
-                let caption = (captions.count > index) ? captions[index] : ""
+                let caption = (captions.count > index) ? captions[index] : NSAttributedString()
                 let (imageSize, captionSize) = self.calculateImageCaptionSize(container, image: image, size: CGSize(width: imageWidth, height: image.size.height), caption: caption)
                 imageSizes.append(imageSize)
                 
@@ -348,7 +348,7 @@ open class PDFGenerator  {
         let (nowContentHeight, nowIndentation) = (contentHeight, indentation[container.normalize]!)
         for (index, image) in images.enumerated() {
             let imageSize = imageSizes[index]
-            let caption = (captions.count > index) ? captions[index] : ""
+            let caption = (captions.count > index) ? captions[index] : NSAttributedString()
             drawImage(container, image: image, frame: CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height), caption: caption)
             
             x += imageSize.width + spacing
@@ -613,7 +613,7 @@ open class PDFGenerator  {
         return height
     }
     
-    fileprivate func calculateImageCaptionSize(_ container: Container, image: UIImage, size: CGSize, caption: String) -> (CGSize, CGSize) {
+    fileprivate func calculateImageCaptionSize(_ container: Container, image: UIImage, size: CGSize, caption: NSAttributedString) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         var size = (size == CGSize.zero) ? image.size : size
         if container.isHeader || container.isFooter {
@@ -630,10 +630,8 @@ open class PDFGenerator  {
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
         
         var (captionText, captionHeight) = (NSAttributedString(), CGFloat(0))
-        if (!caption.isEmpty) {
-            let attributes = generateDefaultTextAttributes(container, font: font, spacing: 1)
-            captionText = NSAttributedString(string: caption, attributes: attributes)
-            captionHeight = calculateAttributedTextHeight(container, text: captionText, textMaxWidth: imageSize.width)
+        if caption.length > 0 {
+            captionHeight = calculateAttributedTextHeight(container, text: caption, textMaxWidth: imageSize.width)
         }
         
         return (imageSize, CGSize(width: imageSize.width, height: captionHeight))
