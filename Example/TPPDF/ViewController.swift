@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     
     func generatePDF() {
         let pdf = PDFGenerator(format: .a4, paginationContainer: .footerRight)
+        pdf.headerSpace = 50
+        pdf.footerSpace = 25
         
         let image = UIImage(named: "image.jpg")!
         let portraitImage = UIImage(named: "PortraitImage.jpg")!
@@ -71,8 +73,6 @@ class ViewController: UIViewController {
         pdf.addImage(.contentCenter, image: portraitImage, size: CGSize(width: portraitImage.size.width, height: portraitImage.size.height / 4), caption: "Pasta with tomato sauce")
         pdf.addImage(.contentCenter, image: image, size: CGSize.zero, caption: "Pasta with tomato sauce")
         
-        pdf.createNewPage()
-        
         let ingridients = NSMutableAttributedString(string: "Ingridients")
         ingridients.addAttributes([
             NSFontAttributeName : UIFont.systemFont(ofSize: 20.0),
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         
         let ingridientsString: String = {
             var result = ""
-            for i in 1...10 {
+            for i in 1...5 {
                 result = result + "Ingridient \(i)\n"
             }
             return result
@@ -109,6 +109,9 @@ class ViewController: UIViewController {
         pdf.setIndentation(indent: 50)
         pdf.addText(text: "dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.")
         pdf.setAbsoluteOffset(offset: 450)
+        pdf.addText(text: "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,")
+        
+        pdf.createNewPage()
         pdf.addText(text: "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,")
         
         
