@@ -71,6 +71,8 @@ class ViewController: UIViewController {
         pdf.addImage(.contentCenter, image: portraitImage, size: CGSize(width: portraitImage.size.width, height: portraitImage.size.height / 4), caption: "Pasta with tomato sauce")
         pdf.addImage(.contentCenter, image: image, size: CGSize.zero, caption: "Pasta with tomato sauce")
         
+        pdf.createNewPage()
+        
         let ingridients = NSMutableAttributedString(string: "Ingridients")
         ingridients.addAttributes([
             NSFontAttributeName : UIFont.systemFont(ofSize: 20.0),

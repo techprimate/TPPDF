@@ -134,6 +134,10 @@ open class PDFGenerator  {
         commands += [(container, .setOffset(points: offset))]
     }
     
+    open func createNewPage() {
+        commands += [(.contentLeft, .createNewPage())]
+    }
+    
     // MARK: - Generation
     
     open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil) -> Data {
@@ -734,6 +738,8 @@ open class PDFGenerator  {
                 contentHeight = value
             }
             break
+        case let .createNewPage():
+            generateNewPage()
         }
     }
 }
