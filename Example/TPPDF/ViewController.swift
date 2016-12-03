@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         let tableData: [[String]] = [
             ["Rating",     "4.5 / 5",  "Prep\nTime:",   "14 Hours"      ],
             ["Portions:",   "14",       "Cook\nTime:",   "16 Minutes",   ],
-            ["Portions:",   "14",       "Explain how to prep and cook this recipe here.\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua",   "16 Minutes",   ],
+            ["Portions:",   "14",       "Explain how to prep and cook this recipe here.\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",   "16 Minutes",   ],
             ["Portions:",   "14",       "Cook\nTime:",   "16 Minutes",   ],
             ["Portions:",   "14",       "Cook\nTime:",   "16 Minutes",   ],
             ["Portions:",   "14",       "Cook\nTime:",   "16 Minutes",   ]
