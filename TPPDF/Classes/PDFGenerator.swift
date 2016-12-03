@@ -187,12 +187,11 @@ open class PDFGenerator  {
     
     fileprivate func drawAttributedText(_ container: Container, text: NSAttributedString, repeated: Bool = false, textMaxWidth: CGFloat = 0) {
         let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
-        let framesetter = CTFramesetterCreateWithAttributedString(currentText!)
         var currentRange = CFRange(location: 0, length: 0)
         var done = false
         
         repeat {
-            let (frameRef, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(container, framesetter: framesetter, currentRange: currentRange, textMaxWidth: textMaxWidth)
+            let (frameRef, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(container, text: currentText!, currentRange: currentRange, textMaxWidth: textMaxWidth)
             // Get the graphics context.
             let currentContext = UIGraphicsGetCurrentContext()!
             
@@ -410,6 +409,8 @@ open class PDFGenerator  {
             NSFontAttributeName: textFont
         ]
         
+        var (dataInThisPage, alignmentsInThisPage): ([[String]], [[TableCellAlignment]]) = ([], [])
+        var (dataInNewPage, alignmentsInNewPage): ([[String]], [[TableCellAlignment]]) = ([], [])
         for (rowIdx, row) in data.enumerated() {
             frames.append([])
             
@@ -420,8 +421,9 @@ open class PDFGenerator  {
             
             // Calcuate X position and size
             for (colIdx, column) in row.enumerated() {
+                let text = NSAttributedString(string: column, attributes: attributes)
                 let width = relativeColumnWidth[colIdx] * totalWidth
-                let result = calculateCellFrame(CGPoint(x: x, y: y + maxHeaderHeight() + headerSpace), width: width - 2 * margin - 2 * padding, text: column as NSString, alignment: alignments[rowIdx][colIdx], attributes: attributes)
+                let result = calculateCellFrame(CGPoint(x: x, y: y + maxHeaderHeight() + headerSpace), width: width - 2 * margin - 2 * padding, text: text, alignment: alignments[rowIdx][colIdx])
                 x += width
                 maxHeight = max(maxHeight, result.height)
                 frames[rowIdx].append(result)
@@ -448,12 +450,26 @@ open class PDFGenerator  {
             y += maxHeight + margin + padding
         }
         
+        // Divide tables according to contentSize
+        for (rowIdx, row) in data.enumerated() {
+            let maxHeight = frames[rowIdx].reduce(0) { max($0, $1.height) }
+            if (frames[rowIdx][0].origin.y + maxHeight > contentSize.height) {
+                dataInNewPage.append(row)
+                alignmentsInNewPage.append(alignments[rowIdx])
+            }
+            else {
+                dataInThisPage.append(row)
+                alignmentsInThisPage.append(alignments[rowIdx])
+            }
+        }
+        
         // Draw text
         
-        for (rowIdx, row) in data.enumerated() {
+        for (rowIdx, row) in dataInThisPage.enumerated() {
             for (colIdx, text) in row.enumerated() {
                 let frame = frames[rowIdx][colIdx]
-                text.draw(at: frame.origin, withAttributes: attributes)
+                let attributedText = NSAttributedString(string: text, attributes: attributes)
+                attributedText.draw(in: frame)
             }
         }
         
@@ -467,7 +483,7 @@ open class PDFGenerator  {
         // Draw cell bounding box
         
         if drawCellBounds {
-            for (rowIdx, row) in data.enumerated() {
+            for (rowIdx, row) in dataInThisPage.enumerated() {
                 for (colIdx, _) in row.enumerated() {
                     let frame = frames[rowIdx][colIdx]
                     let borderFrame = CGRect(x: frame.minX - padding, y: frame.minY - padding, width: frame.width + 2 * padding, height: frame.height + 2 * padding)
@@ -517,13 +533,19 @@ open class PDFGenerator  {
             context?.drawPath(using: .fill)
         }
         
-        contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
+        if !dataInNewPage.isEmpty {
+            generateNewPage()
+            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, textFont: textFont)
+        }
+        else {
+            contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
+        }
     }
     
-    fileprivate func calculateCellFrame(_ origin: CGPoint, width: CGFloat, text: NSString, alignment: TableCellAlignment, attributes: [String: AnyObject]) -> CGRect {
+    fileprivate func calculateCellFrame(_ origin: CGPoint, width: CGFloat, text: NSAttributedString, alignment: TableCellAlignment) -> CGRect {
         let rect = CGRect(origin: origin, size: CGSize(width: width, height: 0))
         
-        let size = text.size(attributes: attributes)
+        let size = text.size()
         let x: CGFloat = {
             switch alignment.normalizeHorizontal {
             case .center:
@@ -534,10 +556,36 @@ open class PDFGenerator  {
                 return rect.minX
             }
         }()
-        return CGRect(origin: CGPoint(x: x, y: origin.y), size: size)
+        let textMaxHeight = pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace - contentHeight
+        let frame: CGRect = CGRect(x: x, y: origin.y, width: width, height: pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace - contentHeight)
+        
+        let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
+        let (_, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: currentText!, currentRange: CFRange(location: 0, length: 0))
+        
+        return CGRect(origin: frame.origin, size: drawnSize)
     }
     
-    fileprivate func calculateTextFrameAndDrawnSizeInOnePage(_ container: Container, framesetter: CTFramesetter, currentRange: CFRange, textMaxWidth: CGFloat) -> (CTFrame, CGSize) {
+    fileprivate func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect, text: CFAttributedString, currentRange: CFRange) -> (CTFrame, CGSize) {
+        
+        let framesetter = CTFramesetterCreateWithAttributedString(text)
+        let framePath = UIBezierPath(rect: frame).cgPath
+        
+        // Get the frame that will do the rendering.
+        // The currentRange variable specifies only the starting point. The framesetter
+        // lays out as much text as will fit into the frame.
+        let frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, nil)
+        
+        // Update the current range based on what was drawn.
+        let visibleRange = CTFrameGetVisibleStringRange(frameRef)
+        
+        // Update last drawn frame
+        let constraintSize = frame.size
+        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, constraintSize, nil)
+        
+        return (frameRef, drawnSize)
+    }
+    
+    fileprivate func calculateTextFrameAndDrawnSizeInOnePage(_ container: Container, text: CFAttributedString, currentRange: CFRange, textMaxWidth: CGFloat) -> (CTFrame, CGSize) {
         let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : pageBounds.width - 2 * pageMargin - indentation[container.normalize]!
         let textMaxHeight: CGFloat = {
             if container.isHeader {
@@ -572,32 +620,18 @@ open class PDFGenerator  {
                 return CGRect(x: x, y: maxFooterHeight() + footerSpace, width: textMaxWidth, height: textMaxHeight)
             }
         }()
-        let framePath = UIBezierPath(rect: frame).cgPath
         
-        // Get the frame that will do the rendering.
-        // The currentRange variable specifies only the starting point. The framesetter
-        // lays out as much text as will fit into the frame.
-        let frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, nil)
-        
-        // Update the current range based on what was drawn.
-        let visibleRange = CTFrameGetVisibleStringRange(frameRef)
-        
-        // Update last drawn frame
-        let constraintSize = CGSize(width: textMaxWidth, height: textMaxHeight)
-        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, constraintSize, nil)
-        
-        return (frameRef, drawnSize)
+        return calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
     }
     
     fileprivate func calculateAttributedTextHeight(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat) -> CGFloat {
         let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
-        let framesetter = CTFramesetterCreateWithAttributedString(currentText!)
         var currentRange = CFRange(location: 0, length: 0)
         var done = false
         var height: CGFloat = 0
         
         repeat {
-            let (frameRef, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(container, framesetter: framesetter, currentRange: currentRange, textMaxWidth: textMaxWidth)
+            let (frameRef, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(container, text: currentText!, currentRange: currentRange, textMaxWidth: textMaxWidth)
             
             // Update the current range based on what was drawn.
             let visibleRange = CTFrameGetVisibleStringRange(frameRef)

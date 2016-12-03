@@ -56,9 +56,17 @@ class ViewController: UIViewController {
         
         let tableData: [[String]] = [
             ["Rating",     "4.5 / 5",  "Prep\nTime:",   "14 Hours"      ],
+            ["Portions:",   "14",       "Cook\nTime:",   "16 Minutes",   ],
+            ["Portions:",   "14",       "Explain how to prep and cook this recipe here.\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua",   "16 Minutes",   ],
+            ["Portions:",   "14",       "Cook\nTime:",   "16 Minutes",   ],
+            ["Portions:",   "14",       "Cook\nTime:",   "16 Minutes",   ],
             ["Portions:",   "14",       "Cook\nTime:",   "16 Minutes",   ]
         ]
         let tableAlignment: [[TableCellAlignment]] = [
+            [.left, .center, .left, .center],
+            [.left, .center, .left, .center],
+            [.left, .center, .left, .center],
+            [.left, .center, .left, .center],
             [.left, .center, .left, .center],
             [.left, .center, .left, .center]
         ]
@@ -66,6 +74,7 @@ class ViewController: UIViewController {
             0.3, 0.2, 0.3, 0.2
         ]
         pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 5, margin: 5, lineWidth: 0)
+        pdf.addText(text: "Explain how to prep and cook this recipe here.\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et ")
         
         pdf.addSpace(space: 12.0)
         
