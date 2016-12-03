@@ -192,7 +192,7 @@ open class PDFGenerator  {
         var done = false
         
         repeat {
-            let (frameRef, drawnSize) = calculateOneLineTextFrameAndDrawnSize(container, framesetter: framesetter, currentRange: currentRange, textMaxWidth: textMaxWidth)
+            let (frameRef, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(container, framesetter: framesetter, currentRange: currentRange, textMaxWidth: textMaxWidth)
             // Get the graphics context.
             let currentContext = UIGraphicsGetCurrentContext()!
             
@@ -225,7 +225,7 @@ open class PDFGenerator  {
             } else {
                 contentHeight += drawnSize.height
             }
-            if currentRange.location == CFAttributedStringGetLength(currentText){
+            if currentRange.location == CFAttributedStringGetLength(currentText) {
                 done = true
             } else {
                 generateNewPage()
@@ -537,7 +537,7 @@ open class PDFGenerator  {
         return CGRect(origin: CGPoint(x: x, y: origin.y), size: size)
     }
     
-    fileprivate func calculateOneLineTextFrameAndDrawnSize(_ container: Container, framesetter: CTFramesetter, currentRange: CFRange, textMaxWidth: CGFloat) -> (CTFrame, CGSize) {
+    fileprivate func calculateTextFrameAndDrawnSizeInOnePage(_ container: Container, framesetter: CTFramesetter, currentRange: CFRange, textMaxWidth: CGFloat) -> (CTFrame, CGSize) {
         let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : pageBounds.width - 2 * pageMargin - indentation[container.normalize]!
         let textMaxHeight: CGFloat = {
             if container.isHeader {
@@ -597,7 +597,7 @@ open class PDFGenerator  {
         var height: CGFloat = 0
         
         repeat {
-            let (frameRef, drawnSize) = calculateOneLineTextFrameAndDrawnSize(container, framesetter: framesetter, currentRange: currentRange, textMaxWidth: textMaxWidth)
+            let (frameRef, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(container, framesetter: framesetter, currentRange: currentRange, textMaxWidth: textMaxWidth)
             
             // Update the current range based on what was drawn.
             let visibleRange = CTFrameGetVisibleStringRange(frameRef)
