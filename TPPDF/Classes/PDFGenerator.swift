@@ -547,6 +547,10 @@ open class PDFGenerator  {
     
     fileprivate func calculateCellFrame(_ origin: CGPoint, width: CGFloat, text: NSAttributedString, alignment: TableCellAlignment) -> CGRect {
         let textMaxHeight = pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace - contentHeight
+        // The height is not enough
+        if (textMaxHeight <= 0) {
+            return CGRect.infinite
+        }
         let frame: CGRect = CGRect(x: origin.x, y: origin.y, width: width, height: textMaxHeight)
 
         let drawnSize = calculateAttributedTextSize(frame: frame, text: text)
@@ -579,7 +583,7 @@ open class PDFGenerator  {
         
         // Update last drawn frame
         let constraintSize = frame.size
-        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude), nil)
+        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, constraintSize, nil)
         
         return (frameRef, drawnSize)
     }
