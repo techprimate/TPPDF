@@ -12,7 +12,7 @@ enum Command {
     
     case addText(text: String, lineSpacing: CGFloat)
     case addAttributedText(text: NSAttributedString)
-    case addImage(image: UIImage, size: CGSize, caption: NSAttributedString)
+    case addImage(image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit)
     case addImagesInRow(images: [UIImage], captions: [NSAttributedString], spacing: CGFloat)
     case addSpace(space: CGFloat)
     case addLineSeparator(thickness: CGFloat, color: UIColor)
