@@ -553,8 +553,9 @@ open class PDFGenerator  {
             return CGRect.infinite
         }
         let frame: CGRect = CGRect(x: origin.x, y: origin.y, width: width, height: textMaxHeight)
-
-        let drawnSize = calculateAttributedTextSize(frame: frame, text: text)
+        
+        var currentRange = CFRange(location: 0, length: 0)
+        let (_, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
         let x: CGFloat = {
             switch alignment.normalizeHorizontal {
             case .center:
@@ -628,60 +629,6 @@ open class PDFGenerator  {
         return calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
     }
     
-    fileprivate func calculateAttributedTextSize(frame: CGRect, text: NSAttributedString) -> CGSize {
-        let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
-        var currentRange = CFRange(location: 0, length: 0)
-        var done = false
-        var size = CGSize.zero
-        
-        var widths: [CGFloat] = []
-        repeat {
-            let (frameRef, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: currentText!, currentRange: currentRange)
-            
-            // Update the current range based on what was drawn.
-            let visibleRange = CTFrameGetVisibleStringRange(frameRef)
-            currentRange = CFRange(location: visibleRange.location + visibleRange.length , length: 0)
-            
-            widths.append(drawnSize.width)
-            size.height += drawnSize.height
-            
-            if currentRange.location == CFAttributedStringGetLength(currentText){
-                done = true
-            }
-        } while(!done)
-        
-        size.width = widths.max()!
-        
-        return size
-    }
-    
-    fileprivate func calculateAttributedTextSize(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat) -> CGSize {
-        let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
-        var currentRange = CFRange(location: 0, length: 0)
-        var done = false
-        var size = CGSize.zero
-        
-        var widths: [CGFloat] = []
-        repeat {
-            let (frameRef, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(container, text: currentText!, currentRange: currentRange, textMaxWidth: textMaxWidth)
-            
-            // Update the current range based on what was drawn.
-            let visibleRange = CTFrameGetVisibleStringRange(frameRef)
-            currentRange = CFRange(location: visibleRange.location + visibleRange.length , length: 0)
-            
-            widths.append(drawnSize.width)
-            size.height += drawnSize.height
-            
-            if currentRange.location == CFAttributedStringGetLength(currentText){
-                done = true
-            }
-        } while(!done)
-        
-        size.width = widths.max()!
-        
-        return size
-    }
-    
     fileprivate func calculateImageCaptionSize(_ container: Container, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         var size = (size == CGSize.zero) ? image.size : size
@@ -711,7 +658,9 @@ open class PDFGenerator  {
         
         var (captionText, captionSize) = (NSAttributedString(), CGSize.zero)
         if caption.length > 0 {
-            captionSize = calculateAttributedTextSize(container, text: caption, textMaxWidth: imageSize.width)
+            let currentText = CFAttributedStringCreateCopy(nil, caption as CFAttributedString)
+            var currentRange = CFRange(location: 0, length: 0)
+            (_, captionSize) = calculateTextFrameAndDrawnSizeInOnePage(container, text: currentText!, currentRange: currentRange, textMaxWidth: imageSize.width)
         }
         
         return (imageSize, CGSize(width: imageSize.width, height: captionSize.height))
