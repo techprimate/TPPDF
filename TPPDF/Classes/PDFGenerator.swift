@@ -275,7 +275,8 @@ open class PDFGenerator  {
                 return headerHeight[container]!
             case .contentLeft:
                 var y = contentHeight + maxHeaderHeight() + headerSpace
-                if (contentHeight + imageSize.height + captionSize.height > contentSize.height) {
+                if (contentHeight + imageSize.height + captionSize.height > contentSize.height ||
+                    (sizeFit == .height && imageSize.height < size.height)) {
                     generateNewPage()
                     
                     (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
