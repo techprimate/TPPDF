@@ -140,10 +140,10 @@ open class PDFGenerator  {
     
     // MARK: - Generation
     
-    open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil) -> Data {
+    open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil, title: String = "kf99916/TPPDF", author: String = "kf99916/TPPDF", subject: String = "https://github.com/kf99916/TPPDF") -> Data {
         let pdfData = NSMutableData()
         
-        UIGraphicsBeginPDFContextToData(pdfData, pageBounds, nil)
+        UIGraphicsBeginPDFContextToData(pdfData, pageBounds, generateDocumentInfo(title: title, author: author, subject: subject))
         UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
         
         headerFooterCommands = commands.filter { return $0.0.isFooter || $0.0.isHeader }
@@ -768,5 +768,26 @@ open class PDFGenerator  {
         case let .createNewPage():
             generateNewPage()
         }
+    }
+    
+    fileprivate func generateDocumentInfo(title: String, author: String, subject: String) -> [String:String] {
+        var documentInfo = [
+            kCGPDFContextTitle as String: title,
+            kCGPDFContextAuthor as String: author,
+            kCGPDFContextSubject as String: subject]
+        
+        var creator = ""
+        if let bundleName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
+            creator += bundleName
+            
+            if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                creator += " v" + version
+            }
+        }
+        if !creator.isEmpty {
+            documentInfo[kCGPDFContextCreator as String] = creator
+        }
+        
+        return documentInfo
     }
 }

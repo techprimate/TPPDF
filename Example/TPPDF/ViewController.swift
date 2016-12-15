@@ -125,14 +125,14 @@ class ViewController: UIViewController {
         
         
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let url = URL(fileURLWithPath: path).appendingPathComponent("temp.pdf")
+        let url = URL(fileURLWithPath: path).appendingPathComponent("Pasta with tomato sauce.pdf")
         let data = pdf.generatePDFdata()
         do {
             try data.write(to: url, options: .atomicWrite)
         } catch {
             print(error)
         }
-    
-        (self.view as? UIWebView)?.load(data, mimeType: "application/pdf", textEncodingName: "utf-8", baseURL: URL(fileURLWithPath: ""))
+        
+        (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
     }
 }
