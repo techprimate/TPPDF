@@ -124,15 +124,7 @@ class ViewController: UIViewController {
         pdf.addText(text: "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,")
         
         
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let url = URL(fileURLWithPath: path).appendingPathComponent("Pasta with tomato sauce.pdf")
-        let data = pdf.generatePDFdata()
-        do {
-            try data.write(to: url, options: .atomicWrite)
-        } catch {
-            print(error)
-        }
-        
+        let url = pdf.generatePDFfile("Pasta with tomato sauce", title: "Pasta with tomato sauce", subject: "Recipe")
         (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
     }
 }

@@ -144,6 +144,24 @@ open class PDFGenerator  {
         let pdfData = NSMutableData()
         
         UIGraphicsBeginPDFContextToData(pdfData, pageBounds, generateDocumentInfo(title: title, author: author, subject: subject))
+        generatePDFContext(progress: progress)
+        UIGraphicsEndPDFContext()
+        
+        return pdfData as Data
+    }
+    
+    open func generatePDFfile(_ fileName: String, progress: ((CGFloat) -> ())? = nil, title: String = "kf99916/TPPDF", author: String = "kf99916/TPPDF", subject: String = "https://github.com/kf99916/TPPDF") -> URL {
+        let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName).appendingPathExtension("pdf")
+        
+        
+        UIGraphicsBeginPDFContextToFile(url.path, pageBounds, generateDocumentInfo(title: title, author: author, subject: subject))
+        generatePDFContext(progress: progress)
+        UIGraphicsEndPDFContext()
+        
+        return url;
+    }
+    
+    fileprivate func generatePDFContext(progress: ((CGFloat) -> ())?) {
         UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
         
         headerFooterCommands = commands.filter { return $0.0.isFooter || $0.0.isHeader }
@@ -171,10 +189,6 @@ open class PDFGenerator  {
             renderCommand(container, command: command)
             progress?(CGFloat(idx + 1) / count)
         }
-        
-        UIGraphicsEndPDFContext()
-        
-        return pdfData as Data
     }
     
     // MARK: - Rendering
