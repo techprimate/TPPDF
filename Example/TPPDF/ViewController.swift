@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     
     func generatePDF() {
         let pdf = PDFGenerator(format: .a4, paginationContainer: .footerRight)
+        pdf.info.title = "Pasta with tomato sauce"
+        pdf.info.subject = "Recipe"
         pdf.headerSpace = 50
         pdf.footerSpace = 25
         
@@ -124,7 +126,7 @@ class ViewController: UIViewController {
         pdf.addText(text: "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,")
         
         
-        let url = pdf.generatePDFfile("Pasta with tomato sauce", title: "Pasta with tomato sauce", subject: "Recipe")
+        let url = pdf.generatePDFfile("Pasta with tomato sauce")
         (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
     }
 }

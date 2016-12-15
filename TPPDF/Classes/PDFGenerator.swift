@@ -23,6 +23,8 @@ open class PDFGenerator  {
     open var headerSpace: CGFloat = 0
     open var footerSpace: CGFloat = 0
     
+    open var info: PDFInfo = PDFInfo()
+    
     // MARK: - Private Variables
     
     fileprivate var commands: [(Container, Command)] = []
@@ -57,7 +59,7 @@ open class PDFGenerator  {
     
     // MARK: - Initializing
     
-    public init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8, paginationContainer: Container = .none, imageQuality: CGFloat = 0.8) {
+    public init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8, paginationContainer: Container = .none, imageQuality: CGFloat = 0.8, info: PDFInfo = PDFInfo()) {
         pageBounds = CGRect(origin: CGPoint.zero, size: pageSize)
         self.pageMargin = pageMargin
         
@@ -70,10 +72,12 @@ open class PDFGenerator  {
         self.paginationContainer = paginationContainer
         self.imageQuality = imageQuality
         
+        self.info = info
+        
         resetHeaderFooterHeight()
     }
     
-    public init(format: PageFormat, paginationContainer: Container = .none, imageQuality: CGFloat = 0.8) {
+    public init(format: PageFormat, paginationContainer: Container = .none, imageQuality: CGFloat = 0.8, info: PDFInfo = PDFInfo()) {
         pageBounds = CGRect(origin: CGPoint.zero, size: format.size)
         pageMargin = format.margin
         
@@ -85,6 +89,8 @@ open class PDFGenerator  {
         
         self.paginationContainer = paginationContainer
         self.imageQuality = imageQuality
+        
+        self.info = info
         
         resetHeaderFooterHeight()
     }
@@ -140,21 +146,21 @@ open class PDFGenerator  {
     
     // MARK: - Generation
     
-    open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil, title: String = "kf99916/TPPDF", author: String = "kf99916/TPPDF", subject: String = "https://github.com/kf99916/TPPDF") -> Data {
+    open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil) -> Data {
         let pdfData = NSMutableData()
         
-        UIGraphicsBeginPDFContextToData(pdfData, pageBounds, generateDocumentInfo(title: title, author: author, subject: subject))
+        UIGraphicsBeginPDFContextToData(pdfData, pageBounds, generateDocumentInfo())
         generatePDFContext(progress: progress)
         UIGraphicsEndPDFContext()
         
         return pdfData as Data
     }
     
-    open func generatePDFfile(_ fileName: String, progress: ((CGFloat) -> ())? = nil, title: String = "kf99916/TPPDF", author: String = "kf99916/TPPDF", subject: String = "https://github.com/kf99916/TPPDF") -> URL {
+    open func generatePDFfile(_ fileName: String, progress: ((CGFloat) -> ())? = nil) -> URL {
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName).appendingPathExtension("pdf")
         
         
-        UIGraphicsBeginPDFContextToFile(url.path, pageBounds, generateDocumentInfo(title: title, author: author, subject: subject))
+        UIGraphicsBeginPDFContextToFile(url.path, pageBounds, generateDocumentInfo())
         generatePDFContext(progress: progress)
         UIGraphicsEndPDFContext()
         
@@ -784,11 +790,14 @@ open class PDFGenerator  {
         }
     }
     
-    fileprivate func generateDocumentInfo(title: String, author: String, subject: String) -> [String:String] {
-        var documentInfo = [
-            kCGPDFContextTitle as String: title,
-            kCGPDFContextAuthor as String: author,
-            kCGPDFContextSubject as String: subject]
+    fileprivate func generateDocumentInfo() -> [AnyHashable : Any] {
+        var documentInfo: [AnyHashable : Any] = [
+            kCGPDFContextTitle as String: info.title,
+            kCGPDFContextAuthor as String: info.author,
+            kCGPDFContextSubject as String: info.subject,
+            kCGPDFContextKeywords as String: info.keywords,
+            kCGPDFContextAllowsPrinting as String: info.allowsPrinting,
+            kCGPDFContextAllowsCopying as String: info.allowsCopying]
         
         var creator = ""
         if let bundleName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
@@ -800,6 +809,14 @@ open class PDFGenerator  {
         }
         if !creator.isEmpty {
             documentInfo[kCGPDFContextCreator as String] = creator
+        }
+        
+        if let ownerPassword = info.ownerPassword {
+            documentInfo[kCGPDFContextOwnerPassword as String] = ownerPassword
+        }
+        
+        if let userPassword = info.userPassword {
+            documentInfo[kCGPDFContextUserPassword as String] = userPassword
         }
         
         return documentInfo
