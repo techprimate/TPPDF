@@ -27,6 +27,8 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 - [x] Custom image size fit
 - [x] Image in the header and footer
 - [x] Horizontal line separators in the header and footer
+- [x] Generate PDF files directly to handle large PDF files ([Details](http://stackoverflow.com/questions/14691264/how-can-i-lower-memory-climb-when-generating-large-pdfs))
+- [x] PDF metadata
 - You need more features? Checkout #Contribute
 
 ## Requirements
@@ -132,6 +134,22 @@ Currently the following commands exist:
 - SetAbsoluteOffset
 - AddImagesInRow
 - createNewPage
+
+### PDFInfo
+
+Configure PDF metadata, including `title`, `author`, `subject`, `keywords`, `owner password`, `user password`, `allows printing`, and `allows copying`.
+
+The default PDF metadata is
+```swift
+title = "kf99916/TPPDF"
+author = "kf99916/TPPDF"
+subject = "https://github.com/kf99916/TPPDF"
+keywords = "tppdf,pdf,kf99916"
+ownerPassword = nil
+userPassword = nil
+allowsPrinting = true
+allowsCopying = true
+```
 
 ### Container
 
