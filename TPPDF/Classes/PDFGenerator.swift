@@ -192,8 +192,10 @@ open class PDFGenerator  {
         let count: CGFloat = CGFloat(contentCommands.count)
         
         for (idx, (container, command)) in contentCommands.enumerated() {
-            renderCommand(container, command: command)
-            progress?(CGFloat(idx + 1) / count)
+            autoreleasepool {
+                renderCommand(container, command: command)
+                progress?(CGFloat(idx + 1) / count)
+            }
         }
     }
     
