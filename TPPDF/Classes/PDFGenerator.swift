@@ -12,7 +12,7 @@ open class PDFGenerator  {
     
     // MARK: - Public Variables
     
-    static let headerImageHeight: CGFloat = 32
+    open var headerImageHeight: CGFloat = 32
     
     open var pageBounds: CGRect = CGRect.zero
     open var pageMargin: CGFloat = 0
@@ -655,7 +655,7 @@ open class PDFGenerator  {
         /* calculate the aspect size of image */
         var size = (size == CGSize.zero) ? image.size : size
         if container.isHeader || container.isFooter {
-            size = CGSize(width: PDFGenerator.headerImageHeight, height: PDFGenerator.headerImageHeight)
+            size = CGSize(width: headerImageHeight, height: headerImageHeight)
         }
         
         let maxWidth = min(size.width, contentSize.width - indentation[container.normalize]!)
