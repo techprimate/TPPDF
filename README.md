@@ -21,6 +21,14 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 - [x] Horizontal line separators
 - [x] Custom indentation
 - [x] Custom top offset (good for layered rendering)
+- [x] Pagination
+- [x] Image caption
+- [x] Compress images
+- [x] Custom image size fit
+- [x] Image in the header and footer
+- [x] Horizontal line separators in the header and footer
+- [x] Generate PDF files directly to handle large PDF files ([Details](http://stackoverflow.com/questions/14691264/how-can-i-lower-memory-climb-when-generating-large-pdfs))
+- [x] PDF metadata
 - You need more features? Checkout #Contribute
 
 ## Requirements
@@ -124,6 +132,24 @@ Currently the following commands exist:
 - AddTable
 - SetIndentation
 - SetAbsoluteOffset
+- AddImagesInRow
+- createNewPage
+
+### PDFInfo
+
+Configure PDF metadata, including `title`, `author`, `subject`, `keywords`, `owner password`, `user password`, `allows printing`, and `allows copying`.
+
+The default PDF metadata is
+```swift
+title = "kf99916/TPPDF"
+author = "kf99916/TPPDF"
+subject = "https://github.com/kf99916/TPPDF"
+keywords = "tppdf,pdf,kf99916"
+ownerPassword = nil
+userPassword = nil
+allowsPrinting = true
+allowsCopying = true
+```
 
 ### Container
 
@@ -173,9 +199,9 @@ let title = NSMutableAttributedString(string: "Awesome attributed title!", attri
 pdf.addAttributedText(text: title)
 ```
 
-### AddImage(container, image, size)
+### AddImage(container, image, size, caption, sizeFit)
 
-Draws an image in the given container. If the given size is not zero size, it will draw it using that size, proportionally scaling. The size of an image is limited by the page bounds.
+Draws an image in the given container. If the given size is not zero size, it will draw it using that size, proportionally scaling. The size of an image is scaled according to sizeFit. If the height of an image and its caption is beyond the page bounds, then a new page is created.
 
 **Example:**
 
@@ -203,7 +229,7 @@ Draws a horizontal line using the given line thickness and color in the given co
 pdf.addLineSeparator(thickness: 0.1, color: UIColor.lightGrayColor())
 ```
 
-### AddTable(container, data, alignment, relativeColumnWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds)
+### AddTable(container, data, alignment, relativeColumnWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds, textFont)
 
 Draws a table in the given container.
 
@@ -251,6 +277,15 @@ The cell bounds are not the row/column grid of the table, but the lines between 
 pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 5, margin: 5, textColor: UIColor.blackColor(), lineColor: UIColor.darkGrayColor(), lineWidth: 1.5, drawCellBounds: false)
 ```        
 
+### AddImagesInRow(container, images, captions, spacing)
+
+Draws images with captions in the row using the given spacing in the given container.
+
+**Example:**
+
+```swift
+pdf.addImagesInRow(images: [UIImage(named: "image.jpg")!, UIImage(named: "PortraitImage.jpg")!], captions: [NSAttributedString(string: "Caption 1"), NSAttributedString(string: "Caption 2")])
+```
 
 ### SetIndentation(container, points)
 
@@ -278,6 +313,17 @@ pdf.setOffset(offset: 250.0)
 One possible use case are layered PDF files.
 Simply call `pdf.setOffset(offset: 0.0)` and you can add content which is placed on top of the previously set content.
 
+### createNewPage()
+
+Create a new page.
+
+
+**Example:**
+
+```swift
+pdf.createNewPage()
+```
+
 ### Header & Footer
 
 If you want to add a text to the header or footer you simply need to choose the correct container.
@@ -285,7 +331,7 @@ If you want to add a text to the header or footer you simply need to choose the 
 But there are some limitations:
 
 - Only one line. If you want multiple lines, add multiple commands
-- Currently only `AddText` and `AddAttributedText` are supported as header or footer command
+- Currently only `AddText`, `AddAttributedText`, and `AddImage` are supported as header or footer command
 
 ## Communication
 
@@ -341,6 +387,10 @@ Then, when calling the command, it changes the correct font variable, depending 
 ## Apps using TPPDF
 
 If you are using TPPDF in your app and want to be listed here, simply create a pull request or let me know on twitter or via github. I am always curious who is using my projects :)
+
+[Hikingbook](https://itunes.apple.com/app/id1067838748) - by Zheng-Xiang Ke
+
+![Hikingbook](apps/Hikingbook.png)
 
 [Mama's Cookbook (future release)](https://itunes.apple.com/us/app/mamas-cookbook/id1019090528) - by Philip Niedertscheider
 

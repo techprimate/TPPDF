@@ -90,3 +90,7 @@ public enum TableCellAlignment {
         }
     }
 }
+
+public enum ImageSizeFit {
+    case width, height, widthHeight
+}
