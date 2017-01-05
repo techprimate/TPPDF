@@ -98,11 +98,11 @@ open class PDFGenerator  {
     // MARK: - Preparation
     
     open func addText(_ container: Container = Container.contentLeft, text: String, lineSpacing: CGFloat = 1.0) {
-        commands += [(container, .addText(text: text, lineSpacing: lineSpacing)) ]
+        commands += [(container, .addText(text: text, lineSpacing: lineSpacing))]
     }
     
     open func addAttributedText(_ container: Container = Container.contentLeft, text: NSAttributedString) {
-        commands += [(container, .addAttributedText(text: text)) ]
+        commands += [(container, .addAttributedText(text: text))]
     }
     
     open func addImage(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero, caption: NSAttributedString = NSAttributedString(), sizeFit: ImageSizeFit = .widthHeight) {
@@ -187,7 +187,6 @@ open class PDFGenerator  {
         if contentCommands.count > 0 {
             renderHeaderFooter()
         }
-        
         
         let count: CGFloat = CGFloat(contentCommands.count)
         
@@ -291,20 +290,19 @@ open class PDFGenerator  {
     fileprivate func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit) {
         var (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
     
-        var y: CGFloat = {
+        let y: CGFloat = {
             switch container.normalize {
             case .headerLeft:
                 return headerHeight[container]!
             case .contentLeft:
-                var y = contentHeight + maxHeaderHeight() + headerSpace
-                if (contentHeight + imageSize.height + captionSize.height > contentSize.height ||
-                    (sizeFit == .height && imageSize.height < size.height)) {
+                if (contentHeight + imageSize.height + captionSize.height > contentSize.height || (sizeFit == .height && imageSize.height < size.height)) {
                     generateNewPage()
                     
                     (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
-                    y = contentHeight + maxHeaderHeight() + headerSpace
+                    
+                    return contentHeight + maxHeaderHeight() + headerSpace
                 }
-                return y
+                return contentHeight + maxHeaderHeight() + headerSpace
             case .footerLeft:
                 return contentSize.height + maxHeaderHeight() + footerHeight[container]!
             default:
@@ -334,9 +332,8 @@ open class PDFGenerator  {
             return
         }
         
-        let totalimagesWidth = contentSize.width - indentation[container.normalize]! - (CGFloat(images.count) - 1) * spacing
-        
-        let imageWidth = totalimagesWidth / CGFloat(images.count)
+        let totalImagesWidth = contentSize.width - indentation[container.normalize]! - (CGFloat(images.count) - 1) * spacing
+        let imageWidth = totalImagesWidth / CGFloat(images.count)
         
         let calculateImageCaptionSizes: ([UIImage], [NSAttributedString]) -> ([CGSize], CGFloat) = {
             images, captions in
@@ -774,10 +771,13 @@ open class PDFGenerator  {
             break
         case let .addLineSeparator(width, color):
             drawLineSeparator(container, thickness: width, color: color)
+            break
         case let .addTable(data, alignment, relativeWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds, textFont):
             drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, textFont: textFont)
+            break
         case let .setIndentation(value):
             indentation[container.normalize] = value
+            break
         case let .setOffset(value):
             if container.isHeader {
                 headerHeight[container] = value
@@ -789,6 +789,7 @@ open class PDFGenerator  {
             break
         case let .createNewPage():
             generateNewPage()
+            break
         }
     }
     
