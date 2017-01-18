@@ -1,6 +1,6 @@
 //
 //  PDFInfo.swift
-//  Pods
+//  TPPDF
 //
 //  Created by Zheng-Xiang Ke on 2016/12/15.
 //

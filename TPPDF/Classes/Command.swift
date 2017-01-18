@@ -1,9 +1,9 @@
 //
 //  Command.swift
-//  PDFGenerator
+//  TPPDF
 //
 //  Created by Philip Niedertscheider on 12/08/16.
-//  Copyright © 2016 Techprimate. All rights reserved.
+//
 //
 
 import UIKit
