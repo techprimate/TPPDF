@@ -15,7 +15,7 @@ public struct TableStyleDefaults {
         columnHeaderCount: 1,
         footerCount: 1,
         
-        outline: TableLineStyle(
+        outline: LineStyle(
             type: .full,
             color: UIColor.lightGray,
             width: 0.25
@@ -35,6 +35,37 @@ public struct TableStyleDefaults {
             fillColor: UIColor.darkGray,
             textColor: UIColor.red,
             font: UIFont.italicSystemFont(ofSize: 20)
+        ),
+        contentStyle: TableCellStyle(
+            fillColor: UIColor.red,
+            textColor: UIColor.green,
+            font: UIFont.systemFont(ofSize: 16),
+            
+            borderLeft: LineStyle(
+                type: .full,
+                color: UIColor.purple,
+                width: 1.0
+            ),
+            borderTop: LineStyle(
+                type: .full,
+                color: UIColor.purple,
+                width: 1.0
+            ),
+            borderRight: LineStyle(
+                type: .full,
+                color: UIColor.purple,
+                width: 1.0
+            ),
+            borderBottom: LineStyle(
+                type: .full,
+                color: UIColor.purple,
+                width: 1.0
+            )
+        ),
+        alternatingContentStyle: TableCellStyle(
+            fillColor: UIColor.green,
+            textColor: UIColor.red,
+            font: UIFont.systemFont(ofSize: 20)
         )
     )
 }

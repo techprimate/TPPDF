@@ -14,15 +14,9 @@ public struct TableStyle {
     public var columnHeaderCount: Int
     public var footerCount: Int
  
-    public var outline: TableLineStyle
+    public var outline: LineStyle
     
-    public var showHorizontalGridLines: Bool
-    public var showVerticalGridLines: Bool
-    
-    public var showRowHeaderGridLines: Bool
-    public var showColumnHeaderGridLines: Bool
-    public var showFooterGridLines: Bool
-    
+    /// The cell style of row headers. Horizontal border lines are ignored, as these are defined in
     public var rowHeaderStyle: TableCellStyle
     public var columnHeaderStyle: TableCellStyle
     public var footerStyle: TableCellStyle
@@ -48,20 +42,13 @@ public struct TableStyle {
     ///   - columnHeaderStyle: The cell style of row header cells, defaults to `TableLineStyle.init`
     ///   - footerStyle: The cell style of row header cells, defaults to `TableLineStyle.init`
     ///   - cellStyles: Custom cell styles. Their position is set using a `TableCellPosition`, holding the row and column index
-    public init(rowHeaderCount: Int = 1, columnHeaderCount: Int = 1, footerCount: Int = 1, outline: TableLineStyle = TableLineStyle(), showHorizontalGridLines: Bool = true, showVerticalGridLines: Bool = true, showRowHeaderGridLines: Bool = true, showColumnHeaderGridLines: Bool = true, showFooterGridLines: Bool = true, rowHeaderStyle: TableCellStyle = TableCellStyle(), columnHeaderStyle: TableCellStyle = TableCellStyle(), footerStyle: TableCellStyle = TableCellStyle(), contentStyle: TableCellStyle = TableCellStyle(), alternatingContentStyle: TableCellStyle? = nil, cellStyles: [TableCellPosition : TableCellStyle] = [:]) {
+    public init(rowHeaderCount: Int = 1, columnHeaderCount: Int = 1, footerCount: Int = 1, outline: LineStyle = LineStyle(), rowHeaderStyle: TableCellStyle = TableCellStyle(), columnHeaderStyle: TableCellStyle = TableCellStyle(), footerStyle: TableCellStyle = TableCellStyle(), contentStyle: TableCellStyle = TableCellStyle(), alternatingContentStyle: TableCellStyle? = nil, cellStyles: [TableCellPosition : TableCellStyle] = [:]) {
         
         self.rowHeaderCount = rowHeaderCount
         self.columnHeaderCount = columnHeaderCount
         self.footerCount = footerCount
         
         self.outline = outline
-        
-        self.showHorizontalGridLines = showHorizontalGridLines
-        self.showVerticalGridLines = showVerticalGridLines
-        
-        self.showRowHeaderGridLines = showRowHeaderGridLines
-        self.showColumnHeaderGridLines = showColumnHeaderGridLines
-        self.showFooterGridLines = showFooterGridLines
         
         self.rowHeaderStyle = rowHeaderStyle
         self.columnHeaderStyle = columnHeaderStyle
@@ -107,12 +94,12 @@ public struct TableCellStyle {
     
     public var font: UIFont
     
-    public var borderLeft: TableLineStyle
-    public var borderTop: TableLineStyle
-    public var borderRight: TableLineStyle
-    public var borderBottom: TableLineStyle
+    public var borderLeft: LineStyle
+    public var borderTop: LineStyle
+    public var borderRight: LineStyle
+    public var borderBottom: LineStyle
     
-    public init(fillColor: UIColor = UIColor.clear, textColor: UIColor = UIColor.black, font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize), borderLeft: TableLineStyle = TableLineStyle(), borderTop: TableLineStyle = TableLineStyle(), borderRight: TableLineStyle = TableLineStyle(), borderBottom: TableLineStyle = TableLineStyle()) {
+    public init(fillColor: UIColor = UIColor.clear, textColor: UIColor = UIColor.black, font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize), borderLeft: LineStyle = LineStyle(), borderTop: LineStyle = LineStyle(), borderRight: LineStyle = LineStyle(), borderBottom: LineStyle = LineStyle()) {
         self.fillColor = fillColor
         self.textColor = textColor
         self.font = font
@@ -125,7 +112,7 @@ public struct TableCellStyle {
 }
 
 /// This struct defines how a line or border of a table is drawn.
-public struct TableLineStyle {
+public struct LineStyle {
     
     /// These types of lines are available for rendering. Used in `TableStyle` and `TableCellStyle`
     ///

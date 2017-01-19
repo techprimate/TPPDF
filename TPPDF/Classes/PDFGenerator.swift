@@ -407,20 +407,25 @@ open class PDFGenerator  {
         
         let drawRect = CGRect(x: pageMargin + indentation[container.normalize]!, y: y, width: contentSize.width -  indentation[container.normalize]!, height: thickness)
         let path = UIBezierPath(rect: drawRect).cgPath
+    }
+    
+    fileprivate func drawLine(start: CGPoint, end: CGPoint, style: LineStyle) {
+        let path = UIBezierPath()
+        path.move(to: start)
+        path.addLine(to: end)
         
         // Get the graphics context.
         let currentContext = UIGraphicsGetCurrentContext()!
         
         // Set color
-        color.setStroke()
-        color.setFill()
+        style.color.setStroke()
         
         // Draw path
-        currentContext.addPath(path)
+        currentContext.addPath(path.cgPath)
         currentContext.drawPath(using: .fillStroke)
     }
     
-    fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle) {
+    fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, newPageBreak: Bool = false) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignments.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -448,7 +453,7 @@ open class PDFGenerator  {
         
             // Calcuate X position and size
             for (colIdx, column) in row.enumerated() {
-                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx)
+                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
                 let attributes: [String: AnyObject] = [
                     NSForegroundColorAttributeName: cellStyle.textColor,
                     NSFontAttributeName: cellStyle.font
@@ -456,12 +461,12 @@ open class PDFGenerator  {
                 
                 let text = NSAttributedString(string: column, attributes: attributes)
                 let width = relativeColumnWidth[colIdx] * totalWidth
-                let result = calculateCellFrame(CGPoint(x: x, y: y + maxHeaderHeight() + headerSpace), width: width - 2 * margin - 2 * padding, text: text, alignment: alignments[rowIdx][colIdx])
+                let result = calculateCellFrame(CGPoint(x: x + margin + padding, y: y + maxHeaderHeight() + headerSpace + margin + padding), width: width - 2 * margin - 2 * padding, text: text, alignment: alignments[rowIdx][colIdx])
                 
                 maxHeight = max(maxHeight, result.height)
                 frames[rowIdx].append(result)
                 
-                let cellFrame = CGRect(x: x - padding, y: y + maxHeaderHeight() + headerSpace - padding, width: width, height: result.height + 2 * padding);
+                let cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: result.height + 2 * padding);
                 cellFrames[rowIdx].append(cellFrame)
                 
                 x += width
@@ -513,14 +518,15 @@ open class PDFGenerator  {
             }
         }
         
+        totalHeight += margin
+        
         // Draw background
         
         for (rowIdx, row) in dataInThisPage.enumerated() {
             for (colIdx, text) in row.enumerated() {
-                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx)
+                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
                 
                 let frame = cellFrames[rowIdx][colIdx]
-                print(frame)
                 let path = UIBezierPath(rect: frame).cgPath
                 
                 // Get the graphics context.
@@ -541,7 +547,7 @@ open class PDFGenerator  {
         
         for (rowIdx, row) in dataInThisPage.enumerated() {
             for (colIdx, text) in row.enumerated() {
-                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx)
+                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
                 let attributes: [String: AnyObject] = [
                     NSForegroundColorAttributeName: cellStyle.textColor,
                     NSFontAttributeName: cellStyle.font
@@ -554,80 +560,77 @@ open class PDFGenerator  {
             }
         }
         
-        // Begin drawing grid
+        // Draw grid lines
         
-        let context = UIGraphicsGetCurrentContext()
-        context?.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
-//        context?.setStrokeColor(lineColor.cgColor)
-//        context?.setLineWidth(lineWidth)
+        for (rowIdx, row) in dataInThisPage.enumerated() {
+            for (colIdx, text) in row.enumerated() {
+                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                
+                let frame = cellFrames[rowIdx][colIdx]
+                
+                // Get the graphics context.
+                let currentContext = UIGraphicsGetCurrentContext()!
+                
+                drawLine(start: CGPoint(x: frame.minX, y: frame.minY), end: CGPoint(x: frame.maxX, y: frame.minY), style: cellStyle.borderTop)
+                drawLine(start: CGPoint(x: frame.minX, y: frame.maxY), end: CGPoint(x: frame.maxX, y: frame.maxY), style: cellStyle.borderBottom)
+                drawLine(start: CGPoint(x: frame.minX, y: frame.minY), end: CGPoint(x: frame.minX, y: frame.maxY), style: cellStyle.borderLeft)
+                drawLine(start: CGPoint(x: frame.maxX, y: frame.minY), end: CGPoint(x: frame.maxX, y: frame.maxY), style: cellStyle.borderRight)
+            }
+        }
         
-        // Draw cell bounding box
         
-//        if drawCellBounds {
-//            for (rowIdx, row) in dataInThisPage.enumerated() {
-//                for (colIdx, _) in row.enumerated() {
-//                    let frame = framesInThisPage[rowIdx][colIdx]
-//                    let borderFrame = CGRect(x: frame.minX - padding, y: frame.minY - padding, width: frame.width + 2 * padding, height: frame.height + 2 * padding)
-//                    
-//                    let path = UIBezierPath(rect: borderFrame).cgPath
-//                    context?.addPath(path)
-//                    context?.drawPath(using: .stroke)
-//                }
-//            }
-//        }
+        // Debug draw cells
         
-        // Draw grid
+        for (rowIdx, row) in dataInThisPage.enumerated() {
+            for (colIdx, text) in row.enumerated() {
+                let frame = frames[rowIdx][colIdx]
+                let path = UIBezierPath(rect: frame).cgPath
+                
+                // Get the graphics context.
+                let currentContext = UIGraphicsGetCurrentContext()!
+                
+                // Set color
+                UIColor.clear.setFill()
+                UIColor.purple.setStroke()
+                
+                // Draw path
+                currentContext.addPath(path)
+                currentContext.drawPath(using: .fillStroke)
+            }
+        }
         
         let tableFrame = CGRect(x: x, y: contentHeight + maxHeaderHeight() + headerSpace, width: totalWidth, height: totalHeight)
-        context?.stroke(tableFrame)
         
-        // Change colors to draw fill instead of stroke
+        let path = UIBezierPath(rect: tableFrame).cgPath
         
-        context?.setStrokeColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
-//        context?.setFillColor(lineColor.cgColor)
+        // Get the graphics context.
+        let currentContext = UIGraphicsGetCurrentContext()!
         
-        // Draw vertical lines
-        var lineX: CGFloat = 0
-        for width in relativeColumnWidth.dropLast() {
-            lineX += width
-//            let drawRect = CGRect(x: tableFrame.minX + lineX * totalWidth, y: tableFrame.minY, width: lineWidth, height: tableFrame.height)
-//            let path = UIBezierPath(rect: drawRect).cgPath
-            
-//            context?.addPath(path)
-//            context?.drawPath(using: .fill)
-        }
+        // Set color
+        UIColor.clear.setFill()
+        UIColor.purple.setStroke()
         
-        // Draw horizontal lines
-        var lineY: CGFloat = 0
-        for (_, frame) in framesInThisPage.dropLast().enumerated() {
-            let maxHeight: CGFloat = frame.reduce(0) { max($0, $1.height) }
-            
-            lineY += maxHeight + 2 * margin + 2 * padding
-            
-//            let drawRect = CGRect(x: tableFrame.minX, y: tableFrame.minY + lineY, width: tableFrame.width, height: lineWidth)
-//            let path = UIBezierPath(rect: drawRect).cgPath
-            
-//            context?.addPath(path)
-//            context?.drawPath(using: .fill)
-        }
+        // Draw path
+        currentContext.addPath(path)
+        currentContext.drawPath(using: .fillStroke)
         
         if !dataInNewPage.isEmpty {
             generateNewPage()
-            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style)
+            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, newPageBreak: true)
         }
         else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
         }
     }
     
-    fileprivate func getCellStyle(data: [[String]], style: TableStyle, row: Int, column: Int) -> TableCellStyle {
+    fileprivate func getCellStyle(data: [[String]], style: TableStyle, row: Int, column: Int, newPageBreak: Bool) -> TableCellStyle {
         let tableSize = (width: data[0].count, height: data.count)
         let position = TableCellPosition(row: row, column: column)
         
         if let cellStyle = style.cellStyles[position] {
             return cellStyle
         }
-        if row < style.rowHeaderCount {
+        if row < style.rowHeaderCount && !newPageBreak{
             return style.columnHeaderStyle
         }
         if row >= tableSize.height - style.footerCount {
