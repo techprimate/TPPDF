@@ -446,9 +446,6 @@ open class PDFGenerator  {
             frames.append([])
             cellFrames.append([])
             
-            x += margin + padding
-            y += margin + padding
-            
             var maxHeight: CGFloat = 0
         
             // Calcuate X position and size
@@ -466,7 +463,7 @@ open class PDFGenerator  {
                 maxHeight = max(maxHeight, result.height)
                 frames[rowIdx].append(result)
                 
-                let cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: result.height + 2 * padding);
+                let cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: result.height);
                 cellFrames[rowIdx].append(cellFrame)
                 
                 x += width
@@ -490,7 +487,7 @@ open class PDFGenerator  {
             }
             
             x = pageMargin
-            y += maxHeight + margin + padding
+            y += maxHeight + 2 * margin + 2 * padding
         }
         
         // Divide tables according to contentSize
@@ -499,7 +496,7 @@ open class PDFGenerator  {
         var totalHeight: CGFloat = 0
         for (rowIdx, row) in data.enumerated() {
             let maxHeight = frames[rowIdx].reduce(0) { max($0, $1.height) }
-            let cellHeight = maxHeight + 2 * margin + 2 * padding
+            let cellHeight = maxHeight + 2 * padding
             
             if (frames[rowIdx][0].origin.y + cellHeight > contentSize.height + maxHeaderHeight() + headerSpace) {
                 dataInNewPage.append(row)
@@ -509,7 +506,7 @@ open class PDFGenerator  {
                 alignmentsInThisPage.append(alignments[rowIdx])
                 framesInThisPage.append(frames[rowIdx])
                 
-                totalHeight += cellHeight
+                totalHeight += cellHeight + 2 * margin
             }
             for (idx, frame) in cellFrames[rowIdx].enumerated() {
                 var newFrame = frame
@@ -518,107 +515,59 @@ open class PDFGenerator  {
             }
         }
         
-        totalHeight += margin
-        
         // Draw background
         
         for (rowIdx, row) in dataInThisPage.enumerated() {
             for (colIdx, text) in row.enumerated() {
                 let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                let cellFrame = cellFrames[rowIdx][colIdx]
                 
-                let frame = cellFrames[rowIdx][colIdx]
-                let path = UIBezierPath(rect: frame).cgPath
+                let path = UIBezierPath(rect: cellFrame).cgPath
                 
-                // Get the graphics context.
                 let currentContext = UIGraphicsGetCurrentContext()!
                 
-                // Set color
-                UIColor.clear.setStroke()
                 cellStyle.fillColor.setFill()
-                
-                // Draw path
                 currentContext.addPath(path)
-                currentContext.drawPath(using: .fillStroke)
-                
-            }
-        }
+                currentContext.drawPath(using: .fill)
         
-        // Draw text
+                // Draw text
         
-        for (rowIdx, row) in dataInThisPage.enumerated() {
-            for (colIdx, text) in row.enumerated() {
-                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
                 let attributes: [String: AnyObject] = [
                     NSForegroundColorAttributeName: cellStyle.textColor,
                     NSFontAttributeName: cellStyle.font
                 ]
                 
-                let frame = framesInThisPage[rowIdx][colIdx]
+                let textFrame = framesInThisPage[rowIdx][colIdx]
                 let attributedText = NSAttributedString(string: text, attributes: attributes)
                 // the last line of text is hidden if 30 is not added
-                attributedText.draw(in: CGRect(origin: frame.origin, size: CGSize(width: frame.width, height:frame.height + 20)))
+                attributedText.draw(in: CGRect(origin: textFrame.origin, size: CGSize(width: textFrame.width, height: textFrame.height + 20)))
+            
+                // Draw grid lines
+        
+                drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borderTop)
+                drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borderBottom)
+                drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), style: cellStyle.borderLeft)
+                drawLine(start: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borderRight)
             }
         }
         
-        // Draw grid lines
-        
-        for (rowIdx, row) in dataInThisPage.enumerated() {
-            for (colIdx, text) in row.enumerated() {
-                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
-                
-                let frame = cellFrames[rowIdx][colIdx]
-                
-                // Get the graphics context.
-                let currentContext = UIGraphicsGetCurrentContext()!
-                
-                drawLine(start: CGPoint(x: frame.minX, y: frame.minY), end: CGPoint(x: frame.maxX, y: frame.minY), style: cellStyle.borderTop)
-                drawLine(start: CGPoint(x: frame.minX, y: frame.maxY), end: CGPoint(x: frame.maxX, y: frame.maxY), style: cellStyle.borderBottom)
-                drawLine(start: CGPoint(x: frame.minX, y: frame.minY), end: CGPoint(x: frame.minX, y: frame.maxY), style: cellStyle.borderLeft)
-                drawLine(start: CGPoint(x: frame.maxX, y: frame.minY), end: CGPoint(x: frame.maxX, y: frame.maxY), style: cellStyle.borderRight)
-            }
-        }
-        
-        
-        // Debug draw cells
-        
-        for (rowIdx, row) in dataInThisPage.enumerated() {
-            for (colIdx, text) in row.enumerated() {
-                let frame = frames[rowIdx][colIdx]
-                let path = UIBezierPath(rect: frame).cgPath
-                
-                // Get the graphics context.
-                let currentContext = UIGraphicsGetCurrentContext()!
-                
-                // Set color
-                UIColor.clear.setFill()
-                UIColor.purple.setStroke()
-                
-                // Draw path
-                currentContext.addPath(path)
-                currentContext.drawPath(using: .fillStroke)
-            }
-        }
+        // Draw table outline
         
         let tableFrame = CGRect(x: x, y: contentHeight + maxHeaderHeight() + headerSpace, width: totalWidth, height: totalHeight)
-        
         let path = UIBezierPath(rect: tableFrame).cgPath
-        
-        // Get the graphics context.
         let currentContext = UIGraphicsGetCurrentContext()!
         
-        // Set color
         UIColor.clear.setFill()
-        UIColor.purple.setStroke()
-        
-        // Draw path
+        style.outline.color.setStroke()
         currentContext.addPath(path)
-        currentContext.drawPath(using: .fillStroke)
+        currentContext.drawPath(using: .stroke)
+        
+        // Continue with table on next page
         
         if !dataInNewPage.isEmpty {
             generateNewPage()
             drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, newPageBreak: true)
-        }
-        else {
+        } else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
         }
     }
