@@ -49,7 +49,14 @@ open class PDFGenerator  {
     }
     
     fileprivate var headerFooterCommands: [(Container, Command)] = []
-    fileprivate let font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+    
+    fileprivate lazy var fonts: [Container: UIFont] = {
+        var defaults = [Container: UIFont]()
+        for container in Container.all + [Container.none] {
+            defaults[container] = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        }
+        return defaults
+    }()
     
     fileprivate var indentation: [Container: CGFloat] = [
         .headerLeft : 0,
@@ -121,7 +128,7 @@ open class PDFGenerator  {
         commands += [(container, .addLineSeparator(thickness: thickness, color: color))]
     }
     
-    open func addTable(_ container: Container = Container.contentLeft, data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat = 0, margin: CGFloat = 0, textColor: UIColor = UIColor.black, lineColor: UIColor = UIColor.darkGray, lineWidth: CGFloat = 1.0, drawCellBounds: Bool = false, textFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)) {
+    open func addTable(_ container: Container = Container.contentLeft, data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat = 0, margin: CGFloat = 0, textColor: UIColor = UIColor.black, lineColor: UIColor = UIColor.darkGray, lineWidth: CGFloat = 1.0, drawCellBounds: Bool = false) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignment.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -129,7 +136,7 @@ open class PDFGenerator  {
             assert(row.count == relativeColumnWidth.count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
         }
         
-        commands += [(container, .addTable(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, textFont: textFont))]
+        commands += [(container, .addTable(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds))]
     }
     
     open func setIndentation(_ container: Container = Container.contentLeft, indent: CGFloat) {
@@ -138,6 +145,14 @@ open class PDFGenerator  {
     
     open func setAbsoluteOffset(_ container: Container = Container.contentLeft, offset: CGFloat) {
         commands += [(container, .setOffset(points: offset))]
+    }
+    
+    open func setFont(_ container: Container = Container.contentLeft, font: UIFont) {
+        commands += [(container, .setFont(font: font))]
+    }
+    
+    open func resetFont(_ container: Container = Container.contentLeft) {
+        commands += [(container, .setFont(font: UIFont.systemFont(ofSize: UIFont.systemFontSize)))]
     }
     
     open func createNewPage() {
@@ -199,8 +214,8 @@ open class PDFGenerator  {
     
     // MARK: - Rendering
     
-    fileprivate func drawText(_ container: Container, text: String, font: UIFont, spacing: CGFloat, textMaxWidth: CGFloat = 0) {
-        let attributes = generateDefaultTextAttributes(container, font: font, spacing: spacing)
+    fileprivate func drawText(_ container: Container, text: String, spacing: CGFloat, textMaxWidth: CGFloat = 0) {
+        let attributes = generateDefaultTextAttributes(container, spacing: spacing)
         
         drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), textMaxWidth: textMaxWidth)
     }
@@ -405,7 +420,7 @@ open class PDFGenerator  {
         currentContext.drawPath(using: .fillStroke)
     }
     
-    fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool, textFont: UIFont) {
+    fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignments.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -423,7 +438,7 @@ open class PDFGenerator  {
         
         let attributes: [String: AnyObject] = [
             NSForegroundColorAttributeName: textColor,
-            NSFontAttributeName: textFont
+            NSFontAttributeName: fonts[container]!
         ]
         
         for (rowIdx, row) in data.enumerated() {
@@ -555,7 +570,7 @@ open class PDFGenerator  {
         
         if !dataInNewPage.isEmpty {
             generateNewPage()
-            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, textFont: textFont)
+            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds)
         }
         else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
@@ -701,7 +716,7 @@ open class PDFGenerator  {
         return max(pageMargin, max(footerHeight[.footerLeft]!, max(footerHeight[.footerCenter]!, footerHeight[.footerRight]!)))
     }
     
-    fileprivate func generateDefaultTextAttributes(_ container: Container, font: UIFont, spacing: CGFloat) -> [String: NSObject] {
+    fileprivate func generateDefaultTextAttributes(_ container: Container, spacing: CGFloat) -> [String: NSObject] {
         let paragraphStyle = NSMutableParagraphStyle()
         switch container {
         case .headerLeft, .contentLeft, .footerLeft:
@@ -717,7 +732,7 @@ open class PDFGenerator  {
         paragraphStyle.lineSpacing = spacing
         
         return [
-            NSFontAttributeName: font,
+            NSFontAttributeName: fonts[container]!,
             NSParagraphStyleAttributeName: paragraphStyle
         ]
     }
@@ -745,7 +760,7 @@ open class PDFGenerator  {
     fileprivate func renderCommand(_ container: Container, command: Command) {
         switch command {
         case let .addText(text, spacing):
-            drawText(container, text: text, font: font, spacing: spacing)
+            drawText(container, text: text, spacing: spacing)
             break
         case let .addAttributedText(text):
             drawAttributedText(container, text: text)
@@ -768,8 +783,8 @@ open class PDFGenerator  {
         case let .addLineSeparator(width, color):
             drawLineSeparator(container, thickness: width, color: color)
             break
-        case let .addTable(data, alignment, relativeWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds, textFont):
-            drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, textFont: textFont)
+        case let .addTable(data, alignment, relativeWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds):
+            drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds)
             break
         case let .setIndentation(value):
             indentation[container.normalize] = value
@@ -782,6 +797,9 @@ open class PDFGenerator  {
             } else {
                 contentHeight = value
             }
+            break
+        case let .setFont(font):
+            fonts[container] = font
             break
         case let .createNewPage():
             generateNewPage()

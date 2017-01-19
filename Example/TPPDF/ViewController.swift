@@ -75,8 +75,12 @@ class ViewController: UIViewController {
         let tableWidth: [CGFloat] = [
             0.3, 0.2, 0.3, 0.2
         ]
+        
+        pdf.setFont(font: UIFont.boldSystemFont(ofSize: 14))
         pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 5, margin: 5, lineWidth: 0)
+        pdf.setFont(font: UIFont.italicSystemFont(ofSize: 19))
         pdf.addText(text: "Explain how to prep and cook this recipe here.\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et ")
+        pdf.resetFont()
         
         pdf.addSpace(space: 12.0)
         

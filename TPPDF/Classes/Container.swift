@@ -61,6 +61,14 @@ public enum Container {
             return .none
         }
     }
+    
+    static var all: [Container] {
+        return [
+            .headerLeft, .headerCenter, .headerRight,
+            .contentLeft, .contentCenter, .contentRight,
+            .footerLeft, .footerCenter, .footerRight
+        ]
+    }
 }
 
 public enum TableCellAlignment {
