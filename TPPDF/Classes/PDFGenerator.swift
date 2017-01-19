@@ -141,7 +141,7 @@ open class PDFGenerator  {
     }
     
     open func createNewPage() {
-        commands += [(.contentLeft, .createNewPage())]
+        commands += [(.none, .createNewPage())]
     }
     
     // MARK: - Generation
@@ -158,7 +158,6 @@ open class PDFGenerator  {
     
     open func generatePDFfile(_ fileName: String, progress: ((CGFloat) -> ())? = nil) -> URL {
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName).appendingPathExtension("pdf")
-        
         
         UIGraphicsBeginPDFContextToFile(url.path, pageBounds, generateDocumentInfo())
         generatePDFContext(progress: progress)
@@ -200,13 +199,13 @@ open class PDFGenerator  {
     
     // MARK: - Rendering
     
-    fileprivate func drawText(_ container: Container, text: String, font: UIFont, spacing: CGFloat, repeated: Bool = false, textMaxWidth: CGFloat = 0) {
+    fileprivate func drawText(_ container: Container, text: String, font: UIFont, spacing: CGFloat, textMaxWidth: CGFloat = 0) {
         let attributes = generateDefaultTextAttributes(container, font: font, spacing: spacing)
         
-        drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), repeated: repeated, textMaxWidth: textMaxWidth)
+        drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), textMaxWidth: textMaxWidth)
     }
     
-    fileprivate func drawAttributedText(_ container: Container, text: NSAttributedString, repeated: Bool = false, textMaxWidth: CGFloat = 0) {
+    fileprivate func drawAttributedText(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat = 0) {
         let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
         var currentRange = CFRange(location: 0, length: 0)
         var done = false
@@ -257,6 +256,7 @@ open class PDFGenerator  {
         // resize
         let resizeFactor = (3 * imageQuality > 1) ? 3 * imageQuality : 1
         let resizeImageSize = CGSize(width: frame.size.width * resizeFactor, height: frame.size.height * resizeFactor)
+        
         UIGraphicsBeginImageContext(resizeImageSize)
         image.draw(in: CGRect(x:0, y:0, width: resizeImageSize.width, height: resizeImageSize.height))
         var compressedImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -269,8 +269,7 @@ open class PDFGenerator  {
      
         if let resultImage = compressedImage {
             resultImage.draw(in: frame)
-        }
-        else {
+        } else {
             image.draw(in: frame)
         }
         
@@ -328,9 +327,7 @@ open class PDFGenerator  {
     }
     
     fileprivate func drawImagesInRow(_ container: Container, images: [UIImage], captions: [NSAttributedString], spacing: CGFloat) {
-        if (images.count <= 0) {
-            return
-        }
+        assert(images.count > 0, "You need to provide at least one image!")
         
         let totalImagesWidth = contentSize.width - indentation[container.normalize]! - (CGFloat(images.count) - 1) * spacing
         let imageWidth = totalImagesWidth / CGFloat(images.count)
@@ -590,7 +587,6 @@ open class PDFGenerator  {
     }
     
     fileprivate func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect, text: CFAttributedString, currentRange: CFRange) -> (CTFrame, CGSize) {
-        
         let framesetter = CTFramesetterCreateWithAttributedString(text)
         let framePath = UIBezierPath(rect: frame).cgPath
         
@@ -726,7 +722,7 @@ open class PDFGenerator  {
         ]
     }
     
-    fileprivate func renderHeaderFooter(_ repeated: Bool = false) {
+    fileprivate func renderHeaderFooter() {
         resetHeaderFooterHeight()
         
         if paginationContainer != .none {
