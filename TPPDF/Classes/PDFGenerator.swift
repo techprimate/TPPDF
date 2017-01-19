@@ -141,7 +141,7 @@ open class PDFGenerator  {
     }
     
     open func createNewPage() {
-        commands += [(.none, .createNewPage())]
+        commands += [(.contentLeft, .createNewPage())]
     }
     
     // MARK: - Generation
