@@ -12,23 +12,23 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 
 ## Features
 
-- [x] Page header and footer
-- [x] Dynamic content layout with page alignment
-- [x] Support for tables and cell alignment
-- [x] Attributed strings
-- [x] Custom spacing
-- [x] Image support
-- [x] Horizontal line separators
-- [x] Custom indentation
-- [x] Custom top offset (good for layered rendering)
-- [x] Pagination
-- [x] Image caption
-- [x] Compress images
-- [x] Custom image size fit
-- [x] Image in the header and footer
-- [x] Horizontal line separators in the header and footer
-- [x] Generate PDF files directly to handle large PDF files ([Details](http://stackoverflow.com/questions/14691264/how-can-i-lower-memory-climb-when-generating-large-pdfs))
-- [x] PDF metadata
+- :white_check_mark: Page header and footer
+- :white_check_mark: Dynamic content layout with page alignment
+- :white_check_mark: Support for tables and cell alignment
+- :white_check_mark: Attributed strings
+- :white_check_mark: Custom spacing
+- :white_check_mark: Image support
+- :white_check_mark: Horizontal line separators
+- :white_check_mark: Custom indentation
+- :white_check_mark: Custom top offset (good for layered rendering)
+- :white_check_mark: Pagination
+- :white_check_mark: Image caption
+- :white_check_mark: Compress images
+- :white_check_mark: Custom image size fit
+- :white_check_mark: Image in the header and footer
+- :white_check_mark: Horizontal line separators in the header and footer
+- :white_check_mark: Generate PDF files directly to handle large PDF files ([Details](http://stackoverflow.com/questions/14691264/how-can-i-lower-memory-climb-when-generating-large-pdfs))
+- :white_check_mark: PDF metadata
 - You need more features? Checkout #Contribute
 
 ## Requirements
@@ -38,83 +38,12 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 | Language  | Branch | Pod version | Xcode version |
 | --------- | ------ | ----------- | ------------- |
 | Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 or greater|
-| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.x | Xcode 8, Xcode 7.3.x |
+| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x |
+| Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x |
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Installation
-
-### CocoaPods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-To integrate TPPDF into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
-use_frameworks!
-
-target '<Your Target Name>' do
-    pod 'TPPDF'
-end
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
-
-### Carthage
-
-Not supported yet. Please check [Issue #2](https://github.com/Techprimate/TPPDF/issues/2)
-
-### Manually
-
-If you prefer not to use either of the aforementioned dependency managers, you can integrate TPPDF into your project manually.
-
-#### Embedded Framework
-
-- Open up Terminal, `cd` into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
-
-```bash
-$ git init
-```
-
-- Add TPPDF as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
-
-```bash
-$ git submodule add https://github.com/Techprimate/TPPDF.git
-```
-
-- Open the new `TPPDF` folder, and drag the `TPPDF.xcodeproj` into the Project Navigator of your application's Xcode project.
-
-    > It should appear nested underneath your application's blue project icon. Whether it is above or below all the other Xcode groups does not matter.
-
-- Select the `TPPDF.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
-- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
-- In the tab bar at the top of that window, open the "General" panel.
-- Click on the `+` button under the "Embedded Binaries" section.
-- You will see two different `TPPDF.xcodeproj` folders each with two different versions of the `TPPDF.framework` nested inside a `Products` folder.
-
-    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `TPPDF.framework`. 
-    
-- Select the top `TPPDF.framework` for iOS and the bottom one for OS X.
-
-    > You can verify which one you selected by inspecting the build log for your project. The build target for `TPPDF` will be listed as either `TPPDF iOS` or `TPPDF OSX`.
-
-- And that's it!
-
-> The `TPPDF.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
-
----
 
 ## Usage
 
@@ -166,26 +95,46 @@ pdf.addText(.footerCenter, text: "Created using TPPDF for iOS.")
 
 This command adds the text *"Created using TPPDF for iOS"* to the footer of all pages.
 
-### Pageformat
+### Pageformats
 
-You can set page sizes, header margin, footer margin, page margin, header spacing, footer spacing by hand, but you can also used the predefined **PageFormats**
+The following values can be set to format the page:
 
-| Format | Page Size (width, height) | Page Margin | Header Margin | Footer Margin | Header Space | Footer Space |
-| --- | --- | --- | --- | --- | --- | --- |
-| US Letter | 612, 762 | 36 | 30 | 30 | 15 | 15|
-| A4 | 592, 842 | 60 | 30 | 30 | 15 | 15 |
+- `pageBounds`
+- `pageMargin`
+- `headerMargin`
+- `footerMargin`
+- `headerSpace`
+- `footerSpace`
 
-### AddText(container, text, linespacing)
+All values are in dots and are rendered using 72 DPI (dots per inch), as this is the default screen DPI.
 
-Draws a text in the given container. It creates a attributed string and sets the linespacing
+You can also used the predefined formats. For details please refer to the source file [PageFormat.swift](https://github.com/Techprimate/TPPDF/blob/master/TPPDF/Classes/PageFormat.swift)
+
+### Header & Footer
+
+If you want to add a text to the header or footer you simply need to choose the correct container.
+
+If you want to render an image in one of these containers, it will use the square size `headerImageHeight`.
+
+But there are some limitations:
+
+- Only one line. If you want multiple lines, add multiple commands
+
+### Commands
+
+The following commands are the ones available to you for creating your document. Most of these take a container as a parameter, defaulting to page content with left alignment. For the sake of readability, there is only a container in the example of `addText(...)`.
+
+#### addText(container, text, linespacing)
+
+Draws a text in the given container. It creates a attributed string and sets the linespacing.
 
 **Example:**
 
 ```swift
-pdf.addText(.ContentCenter, text: "Created using TPPDF for iOS.")
+pdf.addText(.ContentCenter, text: "Created using TPPDF for iOS.", lineSpacing: 5)
 ```
 
-### AddAttributedText(container, attributedText)
+#### addAttributedText(container, attributedText)
 
 Draws a NSAttributedString in the given container.
 
@@ -199,9 +148,9 @@ let title = NSMutableAttributedString(string: "Awesome attributed title!", attri
 pdf.addAttributedText(text: title)
 ```
 
-### AddImage(container, image, size, caption, sizeFit)
+#### addImage(image, size, caption, sizeFit)
 
-Draws an image in the given container. If the given size is not zero size, it will draw it using that size, proportionally scaling. The size of an image is scaled according to sizeFit. If the height of an image and its caption is beyond the page bounds, then a new page is created.
+Draws an image in the given container. If the given size is not zero size, it will draw it using that size, proportionally scaling. The size of an image is scaled according to sizeFit. If the height of an image and its caption is beyond the page bounds, then a new page is created. The caption is an attributed string and can be styled (refer to `addAttributedText(...)` for an example).
 
 **Example:**
 
@@ -209,7 +158,7 @@ Draws an image in the given container. If the given size is not zero size, it wi
 pdf.addImage(image: UIImage(named: "Image.jpg")!)
 ```
 
-### AddSpace(container, space)
+#### addSpace(container, space)
 
 Adds the given value to the content height, resulting in a space between the previous and the next command element.
 
@@ -219,7 +168,7 @@ Adds the given value to the content height, resulting in a space between the pre
 pdf.addSpace(space: 12.0)
 ```
 
-### AddLineSeparator(container, thickness, color)
+#### addLineSeparator(container, thickness, color)
 
 Draws a horizontal line using the given line thickness and color in the given container.
 
@@ -229,7 +178,7 @@ Draws a horizontal line using the given line thickness and color in the given co
 pdf.addLineSeparator(thickness: 0.1, color: UIColor.lightGrayColor())
 ```
 
-### AddTable(container, data, alignment, relativeColumnWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds, textFont)
+#### addTable(container, data, alignment, relativeColumnWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds, textFont)
 
 Draws a table in the given container.
 
@@ -251,7 +200,7 @@ let alignments: [[TableCellAlignment]] = [
 ]
 ```
 
-The parameter relativeColumnWidth is an array of CGFloat smaller or equal than 1.0
+The parameter `relativeColumnWidth` is an array of CGFloat smaller or equal than 1.0
 These are relative widths in percentage to the full page content width (= page width - 2 * page margin). It defines the width of each column.
 
 ```swift
@@ -266,10 +215,10 @@ Additional parameters are cell margin and cell padding. Margin is the spacing be
 
 This works the same way as HTML/CSS margin and padding works. Checkout w3schools.com [margin](http://www.w3schools.com/css/css_margin.asp) and [padding](http://www.w3schools.com/css/css_padding.asp)
 
-Next to the text color, you can also set the line color and the line width, whose use are obvious by their name.
+Next to the text color, you can also set the line color and the line width.
 
 The parameter drawCellBounds is a Boolean parameter, deciding if the cell bounds are drawn. 
-The cell bounds are not the row/column grid of the table, but the lines between cell margin and cell padding. [w3Schools.com explains it](http://www.w3schools.com/css/css_boxmodel.asp)
+The cell bounds are not the row/column grid of the table, but the lines between cell margin and cell padding. [w3schools.com explains it](http://www.w3schools.com/css/css_boxmodel.asp)
 
 **Example:**
 
@@ -277,7 +226,7 @@ The cell bounds are not the row/column grid of the table, but the lines between 
 pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 5, margin: 5, textColor: UIColor.blackColor(), lineColor: UIColor.darkGrayColor(), lineWidth: 1.5, drawCellBounds: false)
 ```        
 
-### AddImagesInRow(container, images, captions, spacing)
+#### addImagesInRow(container, images, captions, spacing)
 
 Draws images with captions in the row using the given spacing in the given container.
 
@@ -287,9 +236,11 @@ Draws images with captions in the row using the given spacing in the given conta
 pdf.addImagesInRow(images: [UIImage(named: "image.jpg")!, UIImage(named: "PortraitImage.jpg")!], captions: [NSAttributedString(string: "Caption 1"), NSAttributedString(string: "Caption 2")])
 ```
 
-### SetIndentation(container, points)
+#### setIndentation(container, points)
 
 If you need to indent your content you can simply call this method.
+
+**Example:**
 
 ```swift
 pdf.setIndentation(indent: 50.0)
@@ -298,40 +249,52 @@ pdf.setIndentation(indent: 50.0)
 Now add more commands which are indented.
 If you need to reset the indentation simply call the function with `0.0` as parameter
 
+**Example:**
+
 ```swift
 pdf.setIndentation(indent: 0.0)
 ```
 
-### SetAbsoluteOffset(container, points)
+#### setAbsoluteOffset(container, points)
 
 If you do not want to add a space between two elements, you can also set a absolut offset form the top border.
+
+One possible use case are layered PDF files.
+Simply call `pdf.setOffset(offset: 0.0)` and you can add content which is placed on top of the previously set content.
+
+**Example:**
 
 ```swift
 pdf.setOffset(offset: 250.0)
 ```
 
-One possible use case are layered PDF files.
-Simply call `pdf.setOffset(offset: 0.0)` and you can add content which is placed on top of the previously set content.
+#### setFont(container, font)
 
-### createNewPage()
-
-Create a new page.
-
+Sets the font of a container. This font will be used in the next commands in the given container, if there is not a different font specified.
 
 **Example:**
 
 ```swift
-pdf.createNewPage()
+pdf.setFont(UIFont.systemFont(ofSize: 20.0))
 ```
 
-### Header & Footer
+#### resetFont(container)
 
-If you want to add a text to the header or footer you simply need to choose the correct container.
+This resets the font to the default font, which is `UIFont.systemFont(ofSize: UIFont.systemFontSize)`
 
-But there are some limitations:
+**Example:**
 
-- Only one line. If you want multiple lines, add multiple commands
-- Currently only `AddText`, `AddAttributedText`, and `AddImage` are supported as header or footer command
+```swift
+pdf.resetFont(.contentLeft)
+```
+
+#### createNewPage()
+
+Create a new page.
+
+```swift
+pdf.createNewPage()
+```
 
 ## Communication
 
@@ -384,6 +347,74 @@ public func setFont(container: Container = Container.ContentLeft, font: UIFont =
 The previous example does not handle different `Containers`. The correct way of doing this, would be three instance variables of type `UIFont`. One for the header, one for the content and one for the footer.
 Then, when calling the command, it changes the correct font variable, depending on the Container provided.
 
+## Installation
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate TPPDF into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+target '<Your Target Name>' do
+    pod 'TPPDF'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+### Carthage
+
+Not supported yet. Please refer to [Issue #2](https://github.com/Techprimate/TPPDF/issues/2)
+
+### Manually
+
+If you prefer not to use either of the aforementioned dependency managers, you can integrate TPPDF into your project manually.
+
+#### Embedded Framework
+
+- Open up Terminal, `cd` into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
+
+```bash
+$ git init
+```
+
+- Add TPPDF as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
+
+```bash
+$ git submodule add https://github.com/Techprimate/TPPDF.git
+```
+
+- Open the new `TPPDF` folder, and drag the `TPPDF.xcodeproj` into the Project Navigator of your application's Xcode project.
+
+    > It should appear nested underneath your application's blue project icon. Whether it is above or below all the other Xcode groups does not matter.
+
+- Select the `TPPDF.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
+- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
+- In the tab bar at the top of that window, open the "General" panel.
+- Click on the `+` button under the "Embedded Binaries" section.
+- You will see two different `TPPDF.xcodeproj` folders each with two different versions of the `TPPDF.framework` nested inside a `Products` folder.
+
+    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `TPPDF.framework`. 
+    
+- Select the top `TPPDF.framework` for iOS and the bottom one for OS X.
+
+    > You can verify which one you selected by inspecting the build log for your project. The build target for `TPPDF` will be listed as either `TPPDF iOS` or `TPPDF OSX`.
+
+- And that's it!
+
+> The `TPPDF.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
+
+---
+
 ## Apps using TPPDF
 
 If you are using TPPDF in your app and want to be listed here, simply create a pull request or let me know on twitter or via github. I am always curious who is using my projects :)
@@ -399,13 +430,14 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 ## Credits
 
-TPPDF is owned and created by Philip Niedertscheider. 
+TPPDF is created by Philip Niedertscheider.
 
-Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://github.com/nRewik/SimplePDF) for the inspiration and code base, and to [TPPDF](https://github.com/nRewik/TPPDF) for their great [README.md](https://github.com/TPPDF/TPPDF/blob/master/README.md) which was used as a template to create this file.
+Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://github.com/nRewik/SimplePDF) for the inspiration and code base.
 
-## Author
+## Contributors
 
-Philip Niedertscheider, philip.niedertscheider@techprimate.com
+- Philip Niedertscheider, [techprimate](https://www.github.com/techprimate)
+- Zheng-Xiang Ke, [kf99916](https://www.github.com/kf99916)
 
 ## License
 
