@@ -557,8 +557,8 @@ open class PDFGenerator  {
         
         // Draw horizontal lines
         var lineY: CGFloat = 0
-        for (rowIdx, frame) in framesInThisPage.dropLast().enumerated() {
-            var maxHeight: CGFloat = frame.reduce(0) { max($0, $1.height) }
+        for (_, frame) in framesInThisPage.dropLast().enumerated() {
+            let maxHeight: CGFloat = frame.reduce(0) { max($0, $1.height) }
             
             lineY += maxHeight + 2 * margin + 2 * padding
             
@@ -586,7 +586,7 @@ open class PDFGenerator  {
         }
         let frame: CGRect = CGRect(x: origin.x, y: origin.y, width: width, height: textMaxHeight)
         
-        var currentRange = CFRange(location: 0, length: 0)
+        let currentRange = CFRange(location: 0, length: 0)
         let (_, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
         let x: CGFloat = {
             switch alignment.normalizeHorizontal {
@@ -680,17 +680,15 @@ open class PDFGenerator  {
                 return hFactor
             case .widthHeight:
                 return max(wFactor, hFactor)
-            default:
-                return max(wFactor, hFactor)
             }
         }()
         
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
         
-        var (captionText, captionSize) = (NSAttributedString(), CGSize.zero)
+        var (_, captionSize) = (NSAttributedString(), CGSize.zero)
         if caption.length > 0 {
             let currentText = CFAttributedStringCreateCopy(nil, caption as CFAttributedString)
-            var currentRange = CFRange(location: 0, length: 0)
+            let currentRange = CFRange(location: 0, length: 0)
             (_, captionSize) = calculateTextFrameAndDrawnSizeInOnePage(container, text: currentText!, currentRange: currentRange, textMaxWidth: imageSize.width)
         }
         
@@ -802,7 +800,7 @@ open class PDFGenerator  {
         case let .setFont(font):
             fonts[container] = font
             break
-        case let .createNewPage():
+        case .createNewPage():
             generateNewPage()
             break
         }
