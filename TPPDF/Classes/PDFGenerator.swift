@@ -410,19 +410,37 @@ open class PDFGenerator  {
     }
     
     fileprivate func drawLine(start: CGPoint, end: CGPoint, style: LineStyle) {
+        if style.type == .none {
+            return
+        }
+        
         let path = UIBezierPath()
         path.move(to: start)
         path.addLine(to: end)
         
-        // Get the graphics context.
-        let currentContext = UIGraphicsGetCurrentContext()!
+        path.lineWidth = CGFloat(style.width)
+        
+        var dashes: [CGFloat] = []
+        
+        switch style.type {
+        case .dashed:
+            dashes = [path.lineWidth * 3, path.lineWidth * 3]
+            path.lineCapStyle = .butt
+            break
+        case .dotted:
+            dashes = [0, path.lineWidth * 2]
+            path.lineCapStyle = .round
+            break
+        default:
+            break
+        }
+        
+        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
         
         // Set color
         style.color.setStroke()
         
-        // Draw path
-        currentContext.addPath(path.cgPath)
-        currentContext.drawPath(using: .fillStroke)
+        path.stroke()
     }
     
     fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, newPageBreak: Bool = false) {
@@ -529,9 +547,15 @@ open class PDFGenerator  {
                 cellStyle.fillColor.setFill()
                 currentContext.addPath(path)
                 currentContext.drawPath(using: .fill)
+            }
+        }
         
-                // Draw text
+        // Draw text
         
+        for (rowIdx, row) in dataInThisPage.enumerated() {
+            for (colIdx, text) in row.enumerated() {
+                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                
                 let attributes: [String: AnyObject] = [
                     NSForegroundColorAttributeName: cellStyle.textColor,
                     NSFontAttributeName: cellStyle.font
@@ -541,9 +565,16 @@ open class PDFGenerator  {
                 let attributedText = NSAttributedString(string: text, attributes: attributes)
                 // the last line of text is hidden if 30 is not added
                 attributedText.draw(in: CGRect(origin: textFrame.origin, size: CGSize(width: textFrame.width, height: textFrame.height + 20)))
-            
-                // Draw grid lines
+            }
+        }
         
+        // Draw grid lines
+        
+        for (rowIdx, row) in dataInThisPage.enumerated() {
+            for (colIdx, text) in row.enumerated() {
+                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                let cellFrame = cellFrames[rowIdx][colIdx]
+                
                 drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borderTop)
                 drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borderBottom)
                 drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), style: cellStyle.borderLeft)
@@ -554,13 +585,10 @@ open class PDFGenerator  {
         // Draw table outline
         
         let tableFrame = CGRect(x: x, y: contentHeight + maxHeaderHeight() + headerSpace, width: totalWidth, height: totalHeight)
-        let path = UIBezierPath(rect: tableFrame).cgPath
-        let currentContext = UIGraphicsGetCurrentContext()!
-        
-        UIColor.clear.setFill()
-        style.outline.color.setStroke()
-        currentContext.addPath(path)
-        currentContext.drawPath(using: .stroke)
+        drawLine(start: CGPoint(x: tableFrame.minX, y: tableFrame.minY), end: CGPoint(x: tableFrame.maxX, y: tableFrame.minY), style: style.outline)
+        drawLine(start: CGPoint(x: tableFrame.minX, y: tableFrame.maxY), end: CGPoint(x: tableFrame.maxX, y: tableFrame.maxY), style: style.outline)
+        drawLine(start: CGPoint(x: tableFrame.minX, y: tableFrame.minY), end: CGPoint(x: tableFrame.minX, y: tableFrame.maxY), style: style.outline)
+        drawLine(start: CGPoint(x: tableFrame.maxX, y: tableFrame.minY), end: CGPoint(x: tableFrame.maxX, y: tableFrame.maxY), style: style.outline)
         
         // Continue with table on next page
         
@@ -579,13 +607,13 @@ open class PDFGenerator  {
         if let cellStyle = style.cellStyles[position] {
             return cellStyle
         }
-        if row < style.rowHeaderCount && !newPageBreak{
+        if row < style.columnHeaderCount && !newPageBreak{
             return style.columnHeaderStyle
         }
         if row >= tableSize.height - style.footerCount {
             return style.footerStyle
         }
-        if column < style.columnHeaderCount {
+        if column < style.rowHeaderCount {
             return style.rowHeaderStyle
         }
         if (row - style.rowHeaderCount) % 2 == 1 {

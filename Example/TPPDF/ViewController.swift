@@ -17,62 +17,63 @@ class ViewController: UIViewController {
     }
     
     func generatePDF() {
-        let pdf = PDFGenerator(format: .a4, paginationContainer: .footerRight)
+        let pdf = PDFGenerator(format: .a4)
         
         let tableData: [[String]] = [
-            ["Company",                     "Contact",              "Country"],
-            ["Alfreds Futterkiste",         "Maria Anders",         "Germany"],
-            ["Berglunds snabbköp",          "Christina Berglund",   "Sweden"],
-            ["Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
-            ["Ernst Handel",                "Roland Mendel",        "Austria"],
-            ["Island Trading",              "Helen Bennett",        "UK"],
-            ["Königlich Essen",             "Philip Cramer",        "Germany"],
-            ["Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
-            ["Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
-            ["Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
-            ["Ernst Handel",                "Roland Mendel",        "Austria"],
-            ["Island Trading",              "Helen Bennett",        "UK"],
-            ["Königlich Essen",             "Philip Cramer",        "Germany"],
-            ["Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
-            ["Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
-            ["Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
-            ["Ernst Handel",                "Roland Mendel",        "Austria"],
-            ["Island Trading",              "Helen Bennett",        "UK"],
-            ["Königlich Essen",             "Philip Cramer",        "Germany"],
-            ["Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
-            ["Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
-            ["Company",                     "Contact",              "Country"]
+            ["",    "Company",                     "Contact",              "Country"],
+            ["1",    "Alfreds Futterkiste",         "Maria Anders",         "Germany"],
+            ["2",    "Berglunds snabbköp",          "Christina Berglund",   "Sweden"],
+            ["3",    "Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
+            ["4",    "Ernst Handel",                "Roland Mendel",        "Austria"],
+            ["5",    "Island Trading",              "Helen Bennett",        "UK"],
+            ["6",    "Königlich Essen",             "Philip Cramer",        "Germany"],
+            ["7",    "Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
+            ["8",    "Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
+            ["9",    "Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
+            ["10",    "Ernst Handel",                "Roland Mendel",        "Austria"],
+            ["11",    "Island Trading",              "Helen Bennett",        "UK"],
+            ["12",    "Königlich Essen",             "Philip Cramer",        "Germany"],
+            ["13",    "Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
+            ["14",    "Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
+            ["15",    "Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
+            ["16",    "Ernst Handel",                "Roland Mendel",        "Austria"],
+            ["17",    "Island Trading",              "Helen Bennett",        "UK"],
+            ["18",    "Königlich Essen",             "Philip Cramer",        "Germany"],
+            ["19",    "Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
+            ["20",    "Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
+            ["21",    "Company",                     "Contact",              "Country"]
         ]
         let tableAlignment: [[TableCellAlignment]] = [
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left],
-            [.left, .center, .left]
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left],
+            [.center, .left, .center, .left]
         ]
         let tableWidth: [CGFloat] = [
-            0.4, 0.3, 0.3
+            0.08, 0.4, 0.251, 0.251
         ]
+        
         let tableStyle = TableStyleDefaults.simple
         
-        pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 10, margin: 0, style: tableStyle)
+        pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 8, margin: 0, style: tableStyle)
         
         let url = pdf.generatePDFfile("Pasta with tomato sauce")
         (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
