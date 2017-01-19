@@ -16,6 +16,8 @@
 		B78CC2DBE4FA29DC5B4C38579A86222E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616BEB51ECCAD129BDBCB7A956B56CC6 /* Foundation.framework */; };
 		BDEFDA3A304F2C1082D390ABC8D1A9D0 /* Pods-TPPDF_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5823F7923A03A8F51F473D60FF4B14DE /* Pods-TPPDF_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0820CB5053F708C617F90BB756CA1AB /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDACB6AC77162E2BB0F2775E851DBA /* Container.swift */; };
+		D42274101E30F08500DF94E8 /* TableStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D422740E1E30EF1A00DF94E8 /* TableStyle.swift */; };
+		D42274121E30FAFD00DF94E8 /* TableStyle+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42274111E30FAFD00DF94E8 /* TableStyle+Defaults.swift */; };
 		D7E35E06EDEE74F5C286E41FC9E68231 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC3A795B0216E961DAC69F10292168C /* Command.swift */; };
 		DB9050CF3ABDDF0B638F01C5E0310A9E /* TPPDF-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229E57EB7804657849C5D6EB7F8A7AC /* TPPDF-dummy.m */; };
 		EC677853D9129B98C0A8760998F39B93 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC994CDC2D681BA26389F78A7E4B325 /* UIKit.framework */; };
@@ -44,31 +46,33 @@
 		347C5AE9C83C04B369C778ED3A10F68B /* Pods-TPPDF_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TPPDF_Example-umbrella.h"; sourceTree = "<group>"; };
 		37E2B33283EF5AFC186C0F67ED4E118C /* TPPDF-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TPPDF-prefix.pch"; sourceTree = "<group>"; };
 		3E90765E7BDDF36F697BD7084A5A3707 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		46878EFEDCDEFC93C61745954BCA0A17 /* Pods-TPPDF_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TPPDF_Example.modulemap"; sourceTree = "<group>"; };
+		46878EFEDCDEFC93C61745954BCA0A17 /* Pods-TPPDF_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TPPDF_Example.modulemap"; sourceTree = "<group>"; };
 		484A3428761B4B695A15302ECEE6FAD0 /* Pods-TPPDF_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TPPDF_Tests-resources.sh"; sourceTree = "<group>"; };
 		5229E57EB7804657849C5D6EB7F8A7AC /* TPPDF-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TPPDF-dummy.m"; sourceTree = "<group>"; };
 		5823F7923A03A8F51F473D60FF4B14DE /* Pods-TPPDF_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TPPDF_Tests-umbrella.h"; sourceTree = "<group>"; };
 		616BEB51ECCAD129BDBCB7A956B56CC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		75319B4750A1D4F87DA04721D9C33366 /* Pods-TPPDF_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TPPDF_Example-resources.sh"; sourceTree = "<group>"; };
 		7EC994CDC2D681BA26389F78A7E4B325 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		8024FE3270E884F9FD724089CBA9172F /* Pods_TPPDF_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TPPDF_Tests.framework; path = "Pods-TPPDF_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8024FE3270E884F9FD724089CBA9172F /* Pods_TPPDF_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8515A60A596F397A6B737DB3222DED70 /* Pods-TPPDF_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TPPDF_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		8BB5A32ADC99AA8A828511C346B4A90B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92FDE5C540484B3C5FB55279A73D7B1A /* PDFGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFGenerator.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9CA6BAC2B3DC48E96A8C742B071EE55A /* Pods-TPPDF_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TPPDF_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		A15173E078C75C48E506A11D2072FBFB /* Pods-TPPDF_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TPPDF_Tests.modulemap"; sourceTree = "<group>"; };
+		A15173E078C75C48E506A11D2072FBFB /* Pods-TPPDF_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TPPDF_Tests.modulemap"; sourceTree = "<group>"; };
 		A876863E91E4A5D5FBBE3218533ADCDF /* TPPDF.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TPPDF.xcconfig; sourceTree = "<group>"; };
-		B8459F70B34893C050E1A4FFB015D41F /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TPPDF_Example.framework; path = "Pods-TPPDF_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8459F70B34893C050E1A4FFB015D41F /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B868EFD8FCB073799C299D886D3F93C6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BCF9AB68E819DFAC82C187B6F8EEA801 /* TPPDF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TPPDF.framework; path = TPPDF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCF9AB68E819DFAC82C187B6F8EEA801 /* TPPDF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TPPDF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C730E89D5FBA5B9E5DECEBBE5C8D7C72 /* PageFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PageFormat.swift; sourceTree = "<group>"; };
 		CA4E35BFF7E493BFBD9E39E1D2F3C97F /* TPPDF-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TPPDF-umbrella.h"; sourceTree = "<group>"; };
+		D422740E1E30EF1A00DF94E8 /* TableStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableStyle.swift; sourceTree = "<group>"; };
+		D42274111E30FAFD00DF94E8 /* TableStyle+Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableStyle+Defaults.swift"; sourceTree = "<group>"; };
 		E954B7FFD4B8E56AD27E0D81809ADBF5 /* Pods-TPPDF_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TPPDF_Example.release.xcconfig"; sourceTree = "<group>"; };
 		EA2B3EA1FF310A9E3A4655CD147A1BF9 /* Pods-TPPDF_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TPPDF_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		EB82EDD27652EC45EC1B506A0F00E2B9 /* PDFInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFInfo.swift; sourceTree = "<group>"; };
 		EC5618E9464F0B85C78C826D6552B2F7 /* Pods-TPPDF_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TPPDF_Tests-dummy.m"; sourceTree = "<group>"; };
-		F09895405AE93850E6CC620AA371ED37 /* TPPDF.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TPPDF.modulemap; sourceTree = "<group>"; };
+		F09895405AE93850E6CC620AA371ED37 /* TPPDF.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TPPDF.modulemap; sourceTree = "<group>"; };
 		F394645AD30A616BBD19EBF1215DCF4B /* Pods-TPPDF_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TPPDF_Example-frameworks.sh"; sourceTree = "<group>"; };
 		FBC652FF540FEA54EE65C9222344EB11 /* Pods-TPPDF_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TPPDF_Example-dummy.m"; sourceTree = "<group>"; };
 		FCC3A795B0216E961DAC69F10292168C /* Command.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
@@ -140,7 +144,6 @@
 			children = (
 				BB917AD6EDA29C6B70D629EEA6032B14 /* Classes */,
 			);
-			name = TPPDF;
 			path = TPPDF;
 			sourceTree = "<group>";
 		};
@@ -190,8 +193,9 @@
 				C730E89D5FBA5B9E5DECEBBE5C8D7C72 /* PageFormat.swift */,
 				92FDE5C540484B3C5FB55279A73D7B1A /* PDFGenerator.swift */,
 				EB82EDD27652EC45EC1B506A0F00E2B9 /* PDFInfo.swift */,
+				D422740E1E30EF1A00DF94E8 /* TableStyle.swift */,
+				D42274111E30FAFD00DF94E8 /* TableStyle+Defaults.swift */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -330,6 +334,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					FC6EBB3398BB217B61C97F01013F56B4 = {
+						LastSwiftMigration = 0820;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -355,10 +364,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D42274121E30FAFD00DF94E8 /* TableStyle+Defaults.swift in Sources */,
 				D7E35E06EDEE74F5C286E41FC9E68231 /* Command.swift in Sources */,
 				C0820CB5053F708C617F90BB756CA1AB /* Container.swift in Sources */,
 				F40A4E0B94302371B90ABF327B71C086 /* PageFormat.swift in Sources */,
 				38F79BEBF336F4654112F2356DE36C63 /* PDFGenerator.swift in Sources */,
+				D42274101E30F08500DF94E8 /* TableStyle.swift in Sources */,
 				31ACB386FB76B0AF7270BA0D1A3C7A33 /* PDFInfo.swift in Sources */,
 				DB9050CF3ABDDF0B638F01C5E0310A9E /* TPPDF-dummy.m in Sources */,
 			);
@@ -429,6 +440,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8515A60A596F397A6B737DB3222DED70 /* Pods-TPPDF_Example.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -455,6 +467,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -651,6 +664,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E954B7FFD4B8E56AD27E0D81809ADBF5 /* Pods-TPPDF_Example.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -676,6 +690,7 @@
 				PRODUCT_NAME = Pods_TPPDF_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

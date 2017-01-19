@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Command {
+public enum Command {
     
     case addText(text: String, lineSpacing: CGFloat)
     case addAttributedText(text: NSAttributedString)
@@ -16,7 +16,7 @@ enum Command {
     case addImagesInRow(images: [UIImage], captions: [NSAttributedString], spacing: CGFloat)
     case addSpace(space: CGFloat)
     case addLineSeparator(thickness: CGFloat, color: UIColor)
-    case addTable(data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool)
+    case addTable(data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle)
     
     case setIndentation(points: CGFloat)
     case setOffset(points: CGFloat)
