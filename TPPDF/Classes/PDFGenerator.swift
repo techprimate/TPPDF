@@ -25,6 +25,16 @@ open class PDFGenerator  {
     
     open var info: PDFInfo = PDFInfo()
     
+    open var paginationContainer = Container.none
+    
+    open var imageQuality: CGFloat = 0.8 {
+        didSet {
+            if imageQuality > 1 {
+                imageQuality = 1
+            }
+        }
+    }
+    
     // MARK: - Private Variables
     
     fileprivate var commands: [(Container, Command)] = []
@@ -37,16 +47,7 @@ open class PDFGenerator  {
         return CGSize(width: pageBounds.width - 2 * pageMargin, height: pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace)
     }
     
-    fileprivate var paginationContainer = Container.none
     fileprivate var page = 1
-    
-    fileprivate var imageQuality: CGFloat = 0.8 {
-        didSet {
-            if imageQuality > 1 {
-                imageQuality = 1
-            }
-        }
-    }
     
     fileprivate var headerFooterCommands: [(Container, Command)] = []
     

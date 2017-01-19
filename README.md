@@ -1,11 +1,12 @@
 # TPPDF
 
-[![CI Status](http://img.shields.io/travis/Philip Niedertscheider/TPPDF.svg?style=flat)](https://travis-ci.org/Techprimate/TPPDF.svg?branch=master)
+[![CI Status](http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat)](https://travis-ci.org/Techprimate/TPPDF.svg?branch=master)
 [![Version](https://img.shields.io/cocoapods/v/TPPDF.svg?style=flat)](http://cocoapods.org/pods/TPPDF)
 [![License](https://img.shields.io/cocoapods/l/TPPDF.svg?style=flat)](http://cocoapods.org/pods/TPPDF)
 [![Language](https://img.shields.io/badge/language-Swift-orange.svg)](https://developer.apple.com/swift/)
 [![Platform](https://img.shields.io/cocoapods/p/TPPDF.svg?style=flat)](http://cocoapods.org/pods/TPPDF)
 [![Twitter](https://img.shields.io/badge/twitter-@Techprimate-blue.svg?style=flat)](http://twitter.com/techprimate)
+[![Facebook](https://img.shields.io/badge/facebook-@Techprimate-blue.svg?style=flat)](http://facebook.com/techprimate)
 [![Website](https://img.shields.io/badge/www-techprimate.com-blue.svg?style=flat)](http://www.techprimate.com)
 
 TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/wiki/Builder_pattern) pattern using simple commands. 
@@ -33,13 +34,11 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 
 ## Requirements
 
-+ iOS 8.0+
-
-| Language  | Branch | Pod version | Xcode version |
-| --------- | ------ | ----------- | ------------- |
-| Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 or greater|
-| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x |
-| Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x |
+| Language  | Branch | Pod version | Xcode version | iOS version |
+| --------- | ------ | ----------- | ------------- | ----------- |
+| Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 or greater| iOS 8.0+ |
+| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x | iOS 8.0+ |
+| Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x | iOS 8.0+ |
 
 ## Example
 
@@ -53,32 +52,17 @@ TPPDF creates a PDF based on commands. When the generator starts to build the PD
 
 Currently the following commands exist:
 
-- AddText
-- AddAttributedText
-- AddImage
-- AddSpace
-- AddLineSeparator
-- AddTable
-- SetIndentation
-- SetAbsoluteOffset
-- AddImagesInRow
-- createNewPage
-
-### PDFInfo
-
-Configure PDF metadata, including `title`, `author`, `subject`, `keywords`, `owner password`, `user password`, `allows printing`, and `allows copying`.
-
-The default PDF metadata is
-```swift
-title = "kf99916/TPPDF"
-author = "kf99916/TPPDF"
-subject = "https://github.com/kf99916/TPPDF"
-keywords = "tppdf,pdf,kf99916"
-ownerPassword = nil
-userPassword = nil
-allowsPrinting = true
-allowsCopying = true
-```
+- `addText(...)`
+- `addAttributedText(...)`
+- `addImage(...)`
+- `addSpace(...)`
+- `addLineSeparator(...)`
+- `addTable(...)`
+- `addImagesInRow(...)`
+- `setIndentation(...)`
+- `setAbsoluteOffset(...)`
+- `resetFont(...)`
+- `createNewPage()`
 
 ### Container
 
@@ -120,6 +104,18 @@ But there are some limitations:
 
 - Only one line. If you want multiple lines, add multiple commands
 
+### Pagination
+
+To enable pagination, set a `Container` on the variable `paginationContainer`.
+
+### Image Quality
+
+To reduce the amount of data and the resulting file size, you can reduce the image quality by setting a value between 0 and 1 on the variable `imageQuality`.
+
+### PDF Info
+
+Configure PDF metadata, including `title`, `author`, `subject`, `keywords`, `owner password`, `user password`, `allows printing`, and `allows copying`.
+
 ### Commands
 
 The following commands are the ones available to you for creating your document. Most of these take a container as a parameter, defaulting to page content with left alignment. For the sake of readability, there is only a container in the example of `addText(...)`.
@@ -148,7 +144,7 @@ let title = NSMutableAttributedString(string: "Awesome attributed title!", attri
 pdf.addAttributedText(text: title)
 ```
 
-#### addImage(image, size, caption, sizeFit)
+#### addImage(container, image, size, caption, sizeFit)
 
 Draws an image in the given container. If the given size is not zero size, it will draw it using that size, proportionally scaling. The size of an image is scaled according to sizeFit. If the height of an image and its caption is beyond the page bounds, then a new page is created. The caption is an attributed string and can be styled (refer to `addAttributedText(...)` for an example).
 
