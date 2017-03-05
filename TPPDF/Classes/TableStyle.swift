@@ -65,6 +65,10 @@ public struct TableCellPosition : Hashable {
     public var row = -1
     public var column = -1
     
+    public init(row: Int, column: Int) {
+        self.row = row
+        self.column = column
+    }
     /// The hash value.
     ///
     /// Hash values are not guaranteed to be equal across different executions of

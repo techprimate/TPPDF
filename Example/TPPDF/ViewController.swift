@@ -71,8 +71,8 @@ class ViewController: UIViewController {
             0.08, 0.4, 0.251, 0.251
         ]
         
-        let tableStyle = TableStyleDefaults.simple
-        
+        var tableStyle = TableStyleDefaults.simple
+        tableStyle.cellStyles[TableCellPosition(row: 2, column: 3)] = TableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18))
         pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 8, margin: 0, style: tableStyle)
         
         let url = pdf.generatePDFfile("Pasta with tomato sauce")
