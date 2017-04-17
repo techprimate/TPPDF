@@ -129,7 +129,7 @@ open class PDFGenerator  {
         commands += [(container, .addLineSeparator(thickness: thickness, color: color))]
     }
     
-    open func addTable(_ container: Container = Container.contentLeft, data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat = 0, margin: CGFloat = 0, textColor: UIColor = UIColor.black, lineColor: UIColor = UIColor.darkGray, lineWidth: CGFloat = 1.0, drawCellBounds: Bool = false) {
+    open func addTable(_ container: Container = Container.contentLeft, data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat = 0, margin: CGFloat = 0, textColor: UIColor = UIColor.black, lineColor: UIColor = UIColor.darkGray, lineWidth: CGFloat = 1.0, drawCellBounds: Bool = false, verticalLineWidth: CGFloat? = nil, horizontalLineWidth: CGFloat? = nil, dropColumnLineIndexes: [Int] = [Int]()) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignment.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -137,7 +137,7 @@ open class PDFGenerator  {
             assert(row.count == relativeColumnWidth.count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
         }
         
-        commands += [(container, .addTable(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds))]
+        commands += [(container, .addTable(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, verticalLineWidth: verticalLineWidth ?? lineWidth, horizontalLineWidth: horizontalLineWidth ?? lineWidth, dropColumnLineIndexes: dropColumnLineIndexes))]
     }
     
     open func setIndentation(_ container: Container = Container.contentLeft, indent: CGFloat) {
@@ -421,7 +421,7 @@ open class PDFGenerator  {
         currentContext.drawPath(using: .fillStroke)
     }
     
-    fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool) {
+    fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool, verticalLineWidth: CGFloat, horizontalLineWidth: CGFloat, dropColumnLineIndexes: [Int]) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignments.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -548,7 +548,7 @@ open class PDFGenerator  {
         var lineX: CGFloat = 0
         for width in relativeColumnWidth.dropLast() {
             lineX += width
-            let drawRect = CGRect(x: tableFrame.minX + lineX * totalWidth, y: tableFrame.minY, width: lineWidth, height: tableFrame.height)
+            let drawRect = CGRect(x: tableFrame.minX + lineX * totalWidth, y: tableFrame.minY, width: verticalLineWidth, height: tableFrame.height)
             let path = UIBezierPath(rect: drawRect).cgPath
             
             context?.addPath(path)
@@ -562,16 +562,22 @@ open class PDFGenerator  {
             
             lineY += maxHeight + 2 * margin + 2 * padding
             
-            let drawRect = CGRect(x: tableFrame.minX, y: tableFrame.minY + lineY, width: tableFrame.width, height: lineWidth)
-            let path = UIBezierPath(rect: drawRect).cgPath
-            
-            context?.addPath(path)
-            context?.drawPath(using: .fill)
+            var lineX: CGFloat = 0
+            for (index, width) in relativeColumnWidth.enumerated() {
+                let drawRect = CGRect(x: tableFrame.minX + lineX * tableFrame.width, y: tableFrame.minY + lineY, width: tableFrame.width * width, height: horizontalLineWidth)
+                let path = UIBezierPath(rect: drawRect).cgPath
+                
+                if !dropColumnLineIndexes.contains(index) {
+                    context?.addPath(path)
+                    context?.drawPath(using: .fill)
+                }
+                lineX += width
+            }
         }
         
         if !dataInNewPage.isEmpty {
             generateNewPage()
-            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds)
+            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, verticalLineWidth: verticalLineWidth, horizontalLineWidth: horizontalLineWidth, dropColumnLineIndexes: dropColumnLineIndexes)
         }
         else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
@@ -782,8 +788,8 @@ open class PDFGenerator  {
         case let .addLineSeparator(width, color):
             drawLineSeparator(container, thickness: width, color: color)
             break
-        case let .addTable(data, alignment, relativeWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds):
-            drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds)
+        case let .addTable(data, alignment, relativeWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds, verticalLineWidth, horizontalLineWidth, dropColumnLineIndexes):
+            drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, verticalLineWidth: verticalLineWidth, horizontalLineWidth: horizontalLineWidth, dropColumnLineIndexes: dropColumnLineIndexes)
             break
         case let .setIndentation(value):
             indentation[container.normalize] = value
