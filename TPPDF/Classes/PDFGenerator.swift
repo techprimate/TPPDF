@@ -129,7 +129,7 @@ open class PDFGenerator  {
         commands += [(container, .addLineSeparator(thickness: thickness, color: color))]
     }
     
-    open func addTable(_ container: Container = Container.contentLeft, data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat = 0, margin: CGFloat = 0, textColor: UIColor = UIColor.black, lineColor: UIColor = UIColor.darkGray, lineWidth: CGFloat = 1.0, drawCellBounds: Bool = false, verticalLineWidth: CGFloat? = nil, horizontalLineWidth: CGFloat? = nil, dropColumnLineIndexes: [Int] = [Int]()) {
+    open func addTable(_ container: Container = Container.contentLeft, data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat = 0, margin: CGFloat = 0, textColor: UIColor = UIColor.black, lineColor: UIColor = UIColor.darkGray, lineWidth: CGFloat = 1.0, drawCellBounds: Bool = false, verticalLineWidth: CGFloat? = nil, horizontalLineWidth: CGFloat? = nil, dropColumnLineIndexes: [Int] = [Int](), fillColors: [[UIColor?]] = [[UIColor?]]()) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignment.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -137,7 +137,7 @@ open class PDFGenerator  {
             assert(row.count == relativeColumnWidth.count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
         }
         
-        commands += [(container, .addTable(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, verticalLineWidth: verticalLineWidth ?? lineWidth, horizontalLineWidth: horizontalLineWidth ?? lineWidth, dropColumnLineIndexes: dropColumnLineIndexes))]
+        commands += [(container, .addTable(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, verticalLineWidth: verticalLineWidth ?? lineWidth, horizontalLineWidth: horizontalLineWidth ?? lineWidth, dropColumnLineIndexes: dropColumnLineIndexes, fillColors: fillColors))]
     }
     
     open func setIndentation(_ container: Container = Container.contentLeft, indent: CGFloat) {
@@ -421,7 +421,7 @@ open class PDFGenerator  {
         currentContext.drawPath(using: .fillStroke)
     }
     
-    fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool, verticalLineWidth: CGFloat, horizontalLineWidth: CGFloat, dropColumnLineIndexes: [Int]) {
+    fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, textColor: UIColor, lineColor: UIColor, lineWidth: CGFloat, drawCellBounds: Bool, verticalLineWidth: CGFloat, horizontalLineWidth: CGFloat, dropColumnLineIndexes: [Int], fillColors: [[UIColor?]]) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignments.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -501,6 +501,34 @@ open class PDFGenerator  {
             }
         }
         
+        //Draw cell fills
+        let context = UIGraphicsGetCurrentContext()
+        let tableFrame = CGRect(x: x, y: contentHeight + maxHeaderHeight() + headerSpace, width: totalWidth, height: totalHeight)
+        
+        var fillY: CGFloat = 0
+        var fillColorsInNewPage = fillColors
+        for (rowIdx, frame) in framesInThisPage.enumerated() {
+            let maxHeight: CGFloat = frame.reduce(0) { max($0, $1.height) }
+            let rowHeight = maxHeight + 2 * margin + 2 * padding
+            if fillColorsInNewPage.count > 0 {_ = fillColorsInNewPage.removeFirst()}
+            
+            var lineX: CGFloat = 0
+            for (colIdx, width) in relativeColumnWidth.enumerated() {
+                if rowIdx < fillColors.count, colIdx < fillColors[rowIdx].count, let fillColor = fillColors[rowIdx][colIdx] {
+                    let drawRect = CGRect(x: tableFrame.minX + lineX * tableFrame.width + margin,
+                                          y: tableFrame.minY + fillY,
+                                          width: tableFrame.width * width - 2 * margin,
+                                          height: rowHeight)
+                    let path = UIBezierPath(rect: drawRect).cgPath
+                    context?.setFillColor(fillColor.cgColor)
+                    context?.addPath(path)
+                    context?.drawPath(using: .fill)
+                }
+                lineX += width
+            }
+            fillY += rowHeight
+        }
+        
         // Draw text
         
         for (rowIdx, row) in dataInThisPage.enumerated() {
@@ -513,8 +541,6 @@ open class PDFGenerator  {
         }
         
         // Begin drawing grid
-        
-        let context = UIGraphicsGetCurrentContext()
         context?.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
         context?.setStrokeColor(lineColor.cgColor)
         context?.setLineWidth(lineWidth)
@@ -535,8 +561,6 @@ open class PDFGenerator  {
         }
         
         // Draw grid
-        
-        let tableFrame = CGRect(x: x, y: contentHeight + maxHeaderHeight() + headerSpace, width: totalWidth, height: totalHeight)
         context?.stroke(tableFrame)
         
         // Change colors to draw fill instead of stroke
@@ -577,7 +601,7 @@ open class PDFGenerator  {
         
         if !dataInNewPage.isEmpty {
             generateNewPage()
-            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, verticalLineWidth: verticalLineWidth, horizontalLineWidth: horizontalLineWidth, dropColumnLineIndexes: dropColumnLineIndexes)
+            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, verticalLineWidth: verticalLineWidth, horizontalLineWidth: horizontalLineWidth, dropColumnLineIndexes: dropColumnLineIndexes, fillColors: fillColorsInNewPage)
         }
         else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
@@ -788,8 +812,8 @@ open class PDFGenerator  {
         case let .addLineSeparator(width, color):
             drawLineSeparator(container, thickness: width, color: color)
             break
-        case let .addTable(data, alignment, relativeWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds, verticalLineWidth, horizontalLineWidth, dropColumnLineIndexes):
-            drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, verticalLineWidth: verticalLineWidth, horizontalLineWidth: horizontalLineWidth, dropColumnLineIndexes: dropColumnLineIndexes)
+        case let .addTable(data, alignment, relativeWidth, padding, margin, textColor, lineColor, lineWidth, drawCellBounds, verticalLineWidth, horizontalLineWidth, dropColumnLineIndexes, fillColors):
+            drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, textColor: textColor, lineColor: lineColor, lineWidth: lineWidth, drawCellBounds: drawCellBounds, verticalLineWidth: verticalLineWidth, horizontalLineWidth: horizontalLineWidth, dropColumnLineIndexes: dropColumnLineIndexes, fillColors: fillColors)
             break
         case let .setIndentation(value):
             indentation[container.normalize] = value
