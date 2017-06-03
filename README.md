@@ -419,6 +419,10 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 ![Hikingbook](apps/Hikingbook.png)
 
+[Bug Journal](https://itunes.apple.com/us/app/bug-journal/id1232077952) - by David Johnson
+
+![Bug Journal](apps/Bug Journal.jpg)
+
 [Mama's Cookbook (future release)](https://itunes.apple.com/us/app/mamas-cookbook/id1019090528) - by Philip Niedertscheider
 
 ![Mama's Cookbook](apps/MCB.png)
