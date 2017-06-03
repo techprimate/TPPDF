@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct TableStyle {
+public class TableStyle {
     
     public var rowHeaderCount: Int
     public var columnHeaderCount: Int
@@ -57,6 +57,10 @@ public struct TableStyle {
         self.alternatingContentStyle = alternatingContentStyle
         
         self.cellStyles = cellStyles
+    }
+    
+    public func setCellStyle(row: Int, column: Int, style: TableCellStyle) {
+        self.cellStyles[TableCellPosition(row: row, column: column)] = style
     }
 }
 
