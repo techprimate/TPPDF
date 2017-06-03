@@ -116,6 +116,10 @@ public enum PageFormat {
         }
     }
     
+    var landscapeSize: CGSize {
+        return CGSize(width: self.size.height, height: self.size.width)
+    }
+    
     var headerMargin: CGFloat {
         switch self {
         case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger:

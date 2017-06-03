@@ -5,6 +5,8 @@
 
 **Implemented enhancements:**
 
+- Added property `landscapeSize` to `PageFormat` which returns the size as landscape
+
 **Fixed bugs:**
 
 **Closed issues:**
