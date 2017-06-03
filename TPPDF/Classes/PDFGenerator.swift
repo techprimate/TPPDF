@@ -406,7 +406,7 @@ open class PDFGenerator  {
         }()
         
         let drawRect = CGRect(x: pageMargin + indentation[container.normalize]!, y: y, width: contentSize.width -  indentation[container.normalize]!, height: thickness)
-        let path = UIBezierPath(rect: drawRect).cgPath
+        _ = UIBezierPath(rect: drawRect).cgPath
     }
     
     fileprivate func drawLine(start: CGPoint, end: CGPoint, style: LineStyle) {
@@ -536,7 +536,7 @@ open class PDFGenerator  {
         // Draw background
         
         for (rowIdx, row) in dataInThisPage.enumerated() {
-            for (colIdx, text) in row.enumerated() {
+            for (colIdx, _) in row.enumerated() {
                 let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
                 let cellFrame = cellFrames[rowIdx][colIdx]
                 
@@ -571,7 +571,7 @@ open class PDFGenerator  {
         // Draw grid lines
         
         for (rowIdx, row) in dataInThisPage.enumerated() {
-            for (colIdx, text) in row.enumerated() {
+            for (colIdx, _) in row.enumerated() {
                 let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
                 let cellFrame = cellFrames[rowIdx][colIdx]
                 

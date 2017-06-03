@@ -7,6 +7,7 @@
 //
 
 public struct PDFInfo {
+    
     public var title = "Title"
     public var author = "Author"
     public var subject = "Subject"
@@ -15,4 +16,5 @@ public struct PDFInfo {
     public var userPassword: String?
     public var allowsPrinting = true
     public var allowsCopying = true
+    
 }
