@@ -443,7 +443,7 @@ open class PDFGenerator  {
         path.stroke()
     }
     
-    fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, newPageBreak: Bool = false) {
+    fileprivate func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, newPageBreak: Bool = false, styleIndexOffset: Int = 0) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignments.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -468,7 +468,7 @@ open class PDFGenerator  {
         
             // Calcuate X position and size
             for (colIdx, column) in row.enumerated() {
-                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
                 let attributes: [String: AnyObject] = [
                     NSForegroundColorAttributeName: cellStyle.textColor,
                     NSFontAttributeName: cellStyle.font
@@ -512,6 +512,7 @@ open class PDFGenerator  {
         var (dataInThisPage, alignmentsInThisPage, framesInThisPage): ([[String]], [[TableCellAlignment]], [[CGRect]]) = ([], [], [])
         var (dataInNewPage, alignmentsInNewPage): ([[String]], [[TableCellAlignment]]) = ([], [])
         var totalHeight: CGFloat = 0
+        
         for (rowIdx, row) in data.enumerated() {
             let maxHeight = frames[rowIdx].reduce(0) { max($0, $1.height) }
             let cellHeight = maxHeight + 2 * padding
@@ -537,7 +538,7 @@ open class PDFGenerator  {
         
         for (rowIdx, row) in dataInThisPage.enumerated() {
             for (colIdx, _) in row.enumerated() {
-                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
                 let cellFrame = cellFrames[rowIdx][colIdx]
                 
                 let path = UIBezierPath(rect: cellFrame).cgPath
@@ -554,7 +555,7 @@ open class PDFGenerator  {
         
         for (rowIdx, row) in dataInThisPage.enumerated() {
             for (colIdx, text) in row.enumerated() {
-                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
                 
                 let attributes: [String: AnyObject] = [
                     NSForegroundColorAttributeName: cellStyle.textColor,
@@ -572,7 +573,7 @@ open class PDFGenerator  {
         
         for (rowIdx, row) in dataInThisPage.enumerated() {
             for (colIdx, _) in row.enumerated() {
-                let cellStyle = getCellStyle(data: data, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
                 let cellFrame = cellFrames[rowIdx][colIdx]
                 
                 drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borderTop)
@@ -594,14 +595,13 @@ open class PDFGenerator  {
         
         if !dataInNewPage.isEmpty {
             generateNewPage()
-            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, newPageBreak: true)
+            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, newPageBreak: true, styleIndexOffset: dataInThisPage.count)
         } else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
         }
     }
     
-    fileprivate func getCellStyle(data: [[String]], style: TableStyle, row: Int, column: Int, newPageBreak: Bool) -> TableCellStyle {
-        let tableSize = (width: data[0].count, height: data.count)
+    fileprivate func getCellStyle(tableHeight: Int, style: TableStyle, row: Int, column: Int, newPageBreak: Bool) -> TableCellStyle {
         let position = TableCellPosition(row: row, column: column)
         
         if let cellStyle = style.cellStyles[position] {
@@ -610,7 +610,7 @@ open class PDFGenerator  {
         if row < style.columnHeaderCount && !newPageBreak{
             return style.columnHeaderStyle
         }
-        if row >= tableSize.height - style.footerCount {
+        if row >= tableHeight - style.footerCount {
             return style.footerStyle
         }
         if column < style.rowHeaderCount {
