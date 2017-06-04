@@ -6,7 +6,6 @@
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-blue.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/TPPDF.svg?style=flat-square)](http://cocoapods.org/pods/TPPDF)
 [![License](https://img.shields.io/cocoapods/l/TPPDF.svg?style=flat-square)](http://cocoapods.org/pods/TPPDF)
-[![Documentation](https://img.shields.io/cocoapods/metrics/doc-percent/TPPDF.svg?style=flat-square)]()
 [![Downloads](https://img.shields.io/cocoapods/dt/TPPDF.svg?style=flat-square)](http://cocoapods.org/pods/TPPDF)
 
 [![Website](https://img.shields.io/badge/www-techprimate.com-blue.svg?style=flat-square)](http://www.techprimate.com)
@@ -441,7 +440,7 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 [Bug Journal](https://itunes.apple.com/us/app/bug-journal/id1232077952) - by David Johnson
 
-![Bug Journal](apps/Bug Journal.jpg)
+![Bug Journal](apps/Bug_Journal.png)
 
 [Mama's Cookbook (future release)](https://itunes.apple.com/us/app/mamas-cookbook/id1019090528) - by Philip Niedertscheider
 
