@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## TPPDF
 
-Copyright (c) 2016 Philip Niedertscheider <pn@systemplan.at>
+Copyright (c) 2016 Philip Niedertscheider <phil@techprimate.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
