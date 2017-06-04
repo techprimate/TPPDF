@@ -1,11 +1,9 @@
 # Change Log
 
 ## [Unreleased](https://github.com/Techprimate/TPPDF/tree/HEAD)
-[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.4...HEAD)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.4.0...HEAD)
 
 **Implemented enhancements:**
-
-- Added property `landscapeSize` to `PageFormat` which returns the size as landscape
 
 **Fixed bugs:**
 
@@ -13,8 +11,26 @@
 
 **Merged pull requests:**
 
-## [0.3.0](https://github.com/Techprimate/TPPDF/tree/HEAD)
-[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.4...HEAD)
+## [0.4.0](https://github.com/Techprimate/TPPDF/tree/0.4.0) (2017-06-05)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.3.0...0.4.0)
+
+**Implemented enhancements:**
+
+- Added property `landscapeSize` to `PageFormat` which returns the size as landscape
+- Split `PDFGenerator` into multiple files
+- Added Carthage support
+- 
+**Fixed bugs:**
+
+**Closed issues:**
+
+- Issue #2
+- Issue #4
+
+**Merged pull requests:**
+
+## [0.3.0](https://github.com/Techprimate/TPPDF/tree/0.3.0) (2017-01-19)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.2.0...0.3.0)
 
 **Implemented enhancements:**
 
@@ -42,7 +58,7 @@
 - [#3](https://github.com/Techprimate/TPPDF/pull/3) from kf99916/master
 
 
-## [0.2.0](https://github.com/Techprimate/TPPDF/tree/HEAD)
+## [0.2.0](https://github.com/Techprimate/TPPDF/tree/0.2.0) (2016-11-07)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.4...0.2.0)
 
 **Implemented enhancements:**
@@ -55,6 +71,16 @@
 
 **Merged pull requests:**
 
+## [0.1.5](https://github.com/Techprimate/TPPDF/tree/0.1.4) (2016-11-09)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.3...0.1.4)
+
+**Implemented enhancements:**
+
+**Fixed bugs:**
+
+**Closed issues:**
+
+**Merged pull requests:**
 
 ## [0.1.4](https://github.com/Techprimate/TPPDF/tree/0.1.4) (2016-08-24)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.3...0.1.4)
