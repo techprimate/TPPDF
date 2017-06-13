@@ -1,6 +1,6 @@
 //
 //  PDFGenerator+Table.swift
-//  Pods
+//  TPPDF
 //
 //  Created by Philip Niedertscheider on 05/06/2017.
 //
@@ -8,12 +8,26 @@
 
 extension PDFGenerator {
     
-    func drawTable(_ container: Container, data: [[TableContent?]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) {
-        assert(data.count != 0, "You can't draw an table without rows!")
-        assert(data.count == alignments.count, "Data and alignment array must be equal size!")
+    func drawTable(_ container: Container, data: [[TableContent?]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) throws {
+        // Throw error when empty. Signalizes developer he tries to render an empty table. Might cause format errors
+        if data.count == 0 {
+            throw TPPDFError.tableIsEmpty
+        }
+        // Throw error when data row count does not equal alignment row count
+        if data.count != alignments.count {
+            throw TPPDFError.tableStructureInvalid(message: "Data and alignment must be equal size!")
+        }
+        
+        // Compare each data row
         for (rowIdx, row) in data.enumerated() {
-            assert(row.count == alignments[rowIdx].count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
-            assert(row.count == relativeColumnWidth.count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
+            // Throw error when columns count does not equal alignment columns count
+            if row.count != alignments[rowIdx].count {
+                throw TPPDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
+            }
+            // Throw error when columns row count does not equal relativeColumnWidth count
+            if row.count != relativeColumnWidth.count {
+                throw TPPDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
+            }
         }
         
         let totalWidth = pageBounds.width - 2 * pageMargin - indentation[container.normalize]!
@@ -36,30 +50,33 @@ extension PDFGenerator {
                 let width = relativeColumnWidth[colIdx] * totalWidth
                 let position = CGPoint(x: x + margin + padding, y: y + maxHeaderHeight() + headerSpace + margin + padding)
                 
+                var frame = CGRect(origin: position, size: CGSize.zero)
+                var cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: 0)
+                
                 if let content = content {
                     let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: data.count, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
                     let attributes: [String: AnyObject] = [
                         NSForegroundColorAttributeName: cellStyle.textColor,
                         NSFontAttributeName: cellStyle.font
                     ]
-                    if let text = content.stringValue {
-                        let text = NSAttributedString(string: text, attributes: attributes)
-                        let result = calculateCellFrame(position, width: width - 2 * margin - 2 * padding, text: text, alignment: alignments[rowIdx][colIdx])
-                        
-                        maxHeight = max(maxHeight, result.height)
-                        frames[rowIdx].append(result)
-                        
-                        let cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: result.height);
-                        cellFrames[rowIdx].append(cellFrame)
-                    } else if let _ = content.imageValue {
-                        fatalError("Not implemented!")
-                    } else {
-                        fatalError("Content type is unknown!")
+                    var result = CGRect.zero
+                    
+                    if (content.stringValue != nil) || (content.attributedStringValue != nil) {
+                        let text: NSAttributedString = (content.attributedStringValue != nil) ? content.attributedStringValue! : NSAttributedString(string: content.stringValue!, attributes: attributes)
+                        result = calculateCellFrame(position, width: width - 2 * margin - 2 * padding, text: text, alignment: alignments[rowIdx][colIdx])
+                    } else if let image = content.imageValue {
+                        result = calculateCellFrame(position, width: width - 2 * margin - 2 * padding, image: image)
+                        let compressedImage = resizeAndCompressImage(image: image, frame: result)
+                        content.content = compressedImage
                     }
-                } else {
-                    frames[rowIdx].append(CGRect(origin: position, size: CGSize.zero))
-                    cellFrames[rowIdx].append(CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: 0))
+                    maxHeight = max(maxHeight, result.height)
+                    frame = result
+                    
+                    cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: result.height)
                 }
+                
+                frames[rowIdx].append(frame)
+                cellFrames[rowIdx].append(cellFrame)
                 
                 x += width
             }
@@ -132,27 +149,32 @@ extension PDFGenerator {
                 }
             }
             
-            // Draw text
+            // Draw content
             
             for (rowIdx, row) in dataInThisPage.enumerated() {
                 for (colIdx, content) in row.enumerated() {
                     if let content = content {
-                        if let text = content.stringValue {
+                        let frame = framesInThisPage[rowIdx][colIdx]
+                        
+                        if (content.stringValue != nil) || (content.attributedStringValue != nil) {
                             let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: data.count, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
                             
-                            let attributes: [String: AnyObject] = [
-                                NSForegroundColorAttributeName: cellStyle.textColor,
-                                NSFontAttributeName: cellStyle.font
-                            ]
-                            
-                            let textFrame = framesInThisPage[rowIdx][colIdx]
-                            let attributedText = NSAttributedString(string: text, attributes: attributes)
+                            let attributedText: NSAttributedString = {
+                                // If
+                                if let text = content.stringValue {
+                                    let attributes: [String: AnyObject] = [
+                                        NSForegroundColorAttributeName: cellStyle.textColor,
+                                        NSFontAttributeName: cellStyle.font
+                                    ]
+                                    return NSAttributedString(string: text, attributes: attributes)
+                                } else {
+                                    return content.attributedStringValue!
+                                }
+                            }()
                             // the last line of text is hidden if 30 is not added
-                            attributedText.draw(in: CGRect(origin: textFrame.origin, size: CGSize(width: textFrame.width, height: textFrame.height + 20)))
-                        } else if let _ = content.imageValue {
-                            fatalError("Not implemented yet!")
-                        } else {
-                            fatalError("Content type is unknown!")
+                            attributedText.draw(in: CGRect(origin: frame.origin, size: CGSize(width: frame.width, height: frame.height + 20)))
+                        } else if let image = content.imageValue {
+                            image.draw(in: frame)
                         }
                     }
                 }
@@ -191,8 +213,8 @@ extension PDFGenerator {
         // Continue with table on next page
         
         if !dataInNewPage.isEmpty {
-            generateNewPage(calculatingMetrics: calculatingMetrics)
-            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, showHeadersOnEveryPage: showHeadersOnEveryPage, newPageBreak: true, styleIndexOffset: dataInThisPage.count, calculatingMetrics: calculatingMetrics)
+            try generateNewPage(calculatingMetrics: calculatingMetrics)
+            try drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, showHeadersOnEveryPage: showHeadersOnEveryPage, newPageBreak: true, styleIndexOffset: dataInThisPage.count, calculatingMetrics: calculatingMetrics)
         } else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
         }

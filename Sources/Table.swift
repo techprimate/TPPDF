@@ -20,6 +20,19 @@ open class Table {
     
     public init() { }
     
+    public func setData(data: [[Any?]]) throws {
+        self.data = [];
+        
+        for row in data {
+            var contentRow = [TableContent]()
+            for col in row {
+                let content = try TableContent(content: col)
+                contentRow.append(content)
+            }
+            self.data.append(contentRow)
+        }
+    }
+    
     public func setCellStyle(row: Int, column: Int, style cellStyle: TableCellStyle) {
         style.setCellStyle(row: row, column: column, style: cellStyle)
     }

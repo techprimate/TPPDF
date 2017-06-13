@@ -10,19 +10,19 @@ extension PDFGenerator {
     
     /// MARK: - Command Rendering
     
-    func renderCommand(_ container: Container, command: Command, calculatingMetrics: Bool) {
+    func renderCommand(_ container: Container, command: Command, calculatingMetrics: Bool) throws {
         switch command {
         case let .addText(text, spacing):
-            drawText(container, text: text, spacing: spacing, calculatingMetrics: calculatingMetrics)
+            try drawText(container, text: text, spacing: spacing, calculatingMetrics: calculatingMetrics)
             break
         case let .addAttributedText(text):
-            drawAttributedText(container, text: text, calculatingMetrics: calculatingMetrics)
+            try drawAttributedText(container, text: text, calculatingMetrics: calculatingMetrics)
             break
         case let .addImage(image, size, caption, sizeFit):
-            drawImage(container, image: image, size: size, caption: caption, sizeFit: sizeFit, calculatingMetrics: calculatingMetrics)
+            try drawImage(container, image: image, size: size, caption: caption, sizeFit: sizeFit, calculatingMetrics: calculatingMetrics)
             break
         case let .addImagesInRow(images, captions, spacing):
-            drawImagesInRow(container, images: images, captions: captions, spacing: spacing, calculatingMetrics: calculatingMetrics)
+            try drawImagesInRow(container, images: images, captions: captions, spacing: spacing, calculatingMetrics: calculatingMetrics)
             break
         case let .addSpace(space):
             if container.isHeader {
@@ -37,7 +37,7 @@ extension PDFGenerator {
             drawLineSeparator(container, style: style, calculatingMetrics: calculatingMetrics)
             break
         case let .addTable(table):
-            drawTable(container, data: table.data, alignments: table.alignments, relativeColumnWidth: table.widths, padding: CGFloat(table.padding), margin: CGFloat(table.margin), style: table.style, showHeadersOnEveryPage: table.showHeadersOnEveryPage, calculatingMetrics: calculatingMetrics)
+            try drawTable(container, data: table.data, alignments: table.alignments, relativeColumnWidth: table.widths, padding: CGFloat(table.padding), margin: CGFloat(table.margin), style: table.style, showHeadersOnEveryPage: table.showHeadersOnEveryPage, calculatingMetrics: calculatingMetrics)
             break
         case let .setIndentation(value):
             indentation[container.normalize] = value
@@ -55,46 +55,46 @@ extension PDFGenerator {
             fonts[container] = font
             break
         case .createNewPage():
-            generateNewPage(calculatingMetrics: calculatingMetrics)
+            try generateNewPage(calculatingMetrics: calculatingMetrics)
             break
         }
     }
     
-    func renderHeaderFooter(calculatingMetrics: Bool) {
+    func renderHeaderFooter(calculatingMetrics: Bool) throws {
         resetHeaderFooterHeight()
         
         if paginationContainer != .none {
-            renderCommand(paginationContainer, command: .addText(text: paginationStyle.format(page: currentPage, total: totalPages), lineSpacing: 1.0), calculatingMetrics: calculatingMetrics)
+            try renderCommand(paginationContainer, command: .addText(text: paginationStyle.format(page: currentPage, total: totalPages), lineSpacing: 1.0), calculatingMetrics: calculatingMetrics)
         }
         
         for (container, command) in headerFooterCommands {
-            renderCommand(container, command: command, calculatingMetrics: calculatingMetrics)
+            try renderCommand(container, command: command, calculatingMetrics: calculatingMetrics)
         }
     }
     
     // MARK: - PDF Data Generation
     
-    open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil) -> Data {
+    open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil) throws -> Data {
         let pdfData = NSMutableData()
         
         UIGraphicsBeginPDFContextToData(pdfData, pageBounds, generateDocumentInfo())
-        generatePDFContext(progress: progress)
+        try generatePDFContext(progress: progress)
         UIGraphicsEndPDFContext()
         
         return pdfData as Data
     }
     
-    open func generatePDFfile(_ fileName: String, progress: ((CGFloat) -> ())? = nil) -> URL {
+    open func generatePDFfile(_ fileName: String, progress: ((CGFloat) -> ())? = nil) throws -> URL {
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName).appendingPathExtension("pdf")
         
         UIGraphicsBeginPDFContextToFile(url.path, pageBounds, generateDocumentInfo())
-        generatePDFContext(progress: progress)
+        try generatePDFContext(progress: progress)
         UIGraphicsEndPDFContext()
         
         return url;
     }
     
-    fileprivate func generatePDFContext(progress: ((CGFloat) -> ())?) {
+    fileprivate func generatePDFContext(progress: ((CGFloat) -> ())?) throws {
         UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
         
         // Extract header & footer commands
@@ -123,12 +123,12 @@ extension PDFGenerator {
         //
         // Only calculate render header & footer if page has content.
         if contentCommands.count > 0 {
-            renderHeaderFooter(calculatingMetrics: true)
+            try renderHeaderFooter(calculatingMetrics: true)
         }
         
         for (container, command) in contentCommands {
-            autoreleasepool {
-                renderCommand(container, command: command, calculatingMetrics: true)
+            try autoreleasepool {
+                try renderCommand(container, command: command, calculatingMetrics: true)
                 progressIndex = progressIndex + 1;
                 progress?(progressIndex / progressMax)
             }
@@ -141,13 +141,13 @@ extension PDFGenerator {
         
         // Only render header & footer if page has content.
         if contentCommands.count > 0 {
-            renderHeaderFooter(calculatingMetrics: false)
+            try renderHeaderFooter(calculatingMetrics: false)
         }
         
         // Render each command
         for (container, command) in contentCommands {
-            autoreleasepool {
-                renderCommand(container, command: command, calculatingMetrics: false)
+            try autoreleasepool {
+                try renderCommand(container, command: command, calculatingMetrics: false)
                 progressIndex = progressIndex + 1;
                 progress?(progressIndex / progressMax)
             }

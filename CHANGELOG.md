@@ -5,9 +5,19 @@
 
 **Implemented enhancements:**
 
+- Pagination styling using formats and closures
+- Created class `Table` to manage tables.
+- Added extension `toTableContent` to class `String`, `NSAttributedString` and `UIImage`.
+- Created Error enum `TPPDFError` for error handling.
+- Added image rendering inside table
+
 **Fixed bugs:**
 
 **Closed issues:**
+
+- Issue #5
+- Issue #15
+- Issue #16
 
 **Merged pull requests:**
 
@@ -19,13 +29,15 @@
 - Added property `landscapeSize` to `PageFormat` which returns the size as landscape
 - Split `PDFGenerator` into multiple files
 - Added Carthage support
-- 
+- Added table styling
+
 **Fixed bugs:**
 
 **Closed issues:**
 
 - Issue #2
 - Issue #4
+- Isseu #7
 
 **Merged pull requests:**
 

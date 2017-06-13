@@ -50,6 +50,20 @@ extension PDFGenerator {
         return CGRect(origin: CGPoint(x: x, y: origin.y), size: CGSize(width: drawnSize.width, height: drawnSize.height))
     }
     
+    func calculateCellFrame(_ origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
+        let imageMaxHeight = pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace - contentHeight
+        // The height is not enough
+        if (imageMaxHeight <= 0) {
+            return CGRect.infinite
+        }
+        
+        let imageSize = image.size
+        let height = imageSize.height / imageSize.width * width
+        
+        let frame: CGRect = CGRect(x: origin.x, y: origin.y, width: width, height: height)
+        return frame
+    }
+    
     func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect, text: CFAttributedString, currentRange: CFRange) -> (CTFrame, CGSize) {
         let framesetter = CTFramesetterCreateWithAttributedString(text)
         let framePath = UIBezierPath(rect: frame).cgPath

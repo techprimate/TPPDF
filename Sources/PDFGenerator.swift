@@ -70,7 +70,7 @@ open class PDFGenerator  {
     
     // MARK: - Tools
     
-    func generateNewPage(calculatingMetrics: Bool) {
+    func generateNewPage(calculatingMetrics: Bool) throws {
         // Don't render if calculating metrics
         if !calculatingMetrics {
             UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
@@ -78,7 +78,7 @@ open class PDFGenerator  {
         contentHeight = 0
         currentPage += 1
         
-        renderHeaderFooter(calculatingMetrics: calculatingMetrics)
+        try renderHeaderFooter(calculatingMetrics: calculatingMetrics)
     }
     
     func resetGenerator() {

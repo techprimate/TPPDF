@@ -26,30 +26,37 @@ class ViewController: UIViewController {
         pdf.setPageNumbering(.footerCenter, style: PaginationStyle.Roman(template: "%@"), from: 1, to: 4, hiddenPages: [4])
         
         let table = Table()
-        table.data = [
-            [nil,                            TableContent(content: "Company"),                     TableContent(content: "Contact"),              TableContent(content: "Country")],
-            [TableContent(content: "1"),     TableContent(content: "Alfreds Futterkiste"),         TableContent(content: "Maria Anders"),         TableContent(content: "Germany")],
-            [TableContent(content: "2"),     TableContent(content: "Berglunds snabbköp"),          TableContent(content: "Christina Berglund"),   TableContent(content: "Sweden")],
-            [TableContent(content: "3"),     TableContent(content: "Centro comercialMoctezuma"),   TableContent(content: "Francisco Chang"),      TableContent(content: "Mexico")],
-            [TableContent(content: "4"),     TableContent(content: "Ernst Handel"),                TableContent(content: "Roland Mendel"),        TableContent(content: "Austria")],
-            [TableContent(content: "5"),     TableContent(content: "Island Trading"),              TableContent(content: "Helen Bennett"),        TableContent(content: "UK")],
-            [TableContent(content: "6"),     TableContent(content: "Königlich Essen"),             TableContent(content: "Philip Cramer"),        TableContent(content: "Germany")],
-            [TableContent(content: "7"),     TableContent(content: "Laughing Bacchus"),            TableContent(content: "Yoshi Tannamuri"),      TableContent(content: "Canada")],
-            [TableContent(content: "8"),     TableContent(content: "Magazzini Alimentari"),        TableContent(content: "Giovanni Rovelli"),     TableContent(content: "Italy")],
-            [TableContent(content: "9"),     TableContent(content: "Centro comercialMoctezuma"),   TableContent(content: "Francisco Chang"),      TableContent(content: "Mexico")],
-            [TableContent(content: "10"),    TableContent(content: "Ernst Handel"),                TableContent(content: "Roland Mendel"),        TableContent(content: "Austria")],
-            [TableContent(content: "11"),    TableContent(content: "Island Trading"),              TableContent(content: "Helen Bennett"),        TableContent(content: "UK")],
-            [TableContent(content: "12"),    TableContent(content: "Königlich Essen"),             TableContent(content: "Philip Cramer"),        TableContent(content: "Germany")],
-            [TableContent(content: "13"),    TableContent(content: "Laughing Bacchus"),            TableContent(content: "Yoshi Tannamuri"),      TableContent(content: "Canada")],
-            [TableContent(content: "14"),    TableContent(content: "Magazzini Alimentari"),        TableContent(content: "Giovanni Rovelli"),     TableContent(content: "Italy")],
-            [TableContent(content: "15"),    TableContent(content: "Centro comercialMoctezuma"),   TableContent(content: "Francisco Chang"),      TableContent(content: "Mexico")],
-            [TableContent(content: "16"),    TableContent(content: "Ernst Handel"),                TableContent(content: "Roland Mendel"),        TableContent(content: "Austria")],
-            [TableContent(content: "17"),    TableContent(content: "Island Trading"),              TableContent(content: "Helen Bennett"),        TableContent(content: "UK")],
-            [TableContent(content: "18"),    TableContent(content: "Königlich Essen"),             TableContent(content: "Philip Cramer"),        TableContent(content: "Germany")],
-            [TableContent(content: "19"),    TableContent(content: "Laughing Bacchus"),            TableContent(content: "Yoshi Tannamuri"),      TableContent(content: "Canada")],
-            [TableContent(content: "20"),    TableContent(content: "Magazzini Alimentari"),        TableContent(content: "Giovanni Rovelli"),     TableContent(content: "Italy")],
-            [nil,                            TableContent(content: "Footer Company"),              TableContent(content: "Footer Contact"),       TableContent(content: "Footer Country")]
-        ]
+        do {
+            try table.setData(data: [
+                [nil,    "Company",                     "Contact",              "Country"],
+                ["1",    UIImage(named: "Image.jpg"),         "Maria Anders",         "Germany"],
+                ["2",    "Berglunds snabbköp",          "Christina Berglund",   "Sweden"],
+                ["3",    "Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
+                ["4",    "Ernst Handel",                "Roland Mendel",        "Austria"],
+                ["5",    "Island Trading",              "Helen Bennett",        "UK"],
+                ["6",    "Königlich Essen",             "Philip Cramer",        "Germany"],
+                ["7",    "Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
+                ["8",    "Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
+                ["9",    "Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
+                ["10",    "Ernst Handel",                "Roland Mendel",        "Austria"],
+                ["11",    "Island Trading",              "Helen Bennett",        "UK"],
+                ["12",    "Königlich Essen",             "Philip Cramer",        "Germany"],
+                ["13",    "Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
+                ["14",    "Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
+                ["15",    "Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
+                ["16",    "Ernst Handel",                "Roland Mendel",        "Austria"],
+                ["17",    "Island Trading",              "Helen Bennett",        "UK"],
+                ["18",    "Königlich Essen",             "Philip Cramer",        "Germany"],
+                ["19",    "Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
+                ["20",    "Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
+                [nil,    "Footer 1",                     "Footer 2",              "Footer 3"]
+                ])
+        } catch TPPDFError.tableContentInvalid(let value) {
+            print("This type of object is not supported as table content: " + String(describing: (type(of: value))))
+        } catch {
+            print("Error while creating table: " + error.localizedDescription)
+        }
+        
         table.alignments = [
             [.center, .left, .center, .left],
             [.center, .left, .center, .left],
@@ -103,14 +110,18 @@ class ViewController: UIViewController {
         startTime = Date()
         /* Execution Metrics */
         
-        let url = pdf.generatePDFfile("Pasta with tomato sauce")
+        do {
+            let url = try pdf.generatePDFfile("Pasta with tomato sauce")
+            
+            (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
+        } catch {
+            print("Error while generating PDF: " + error.localizedDescription)
+        }
         
         /* Execution Metrics */
         print("Generation: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
         startTime = Date()
         /* Execution Metrics */
-        
-        (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
     }
     
     /**

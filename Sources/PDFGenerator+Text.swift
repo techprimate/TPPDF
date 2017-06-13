@@ -8,13 +8,13 @@
 
 extension PDFGenerator {
     
-    func drawText(_ container: Container, text: String, spacing: CGFloat, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) {
+    func drawText(_ container: Container, text: String, spacing: CGFloat, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) throws {
         let attributes = generateDefaultTextAttributes(container, spacing: spacing)
         
-        drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), textMaxWidth: textMaxWidth, calculatingMetrics: calculatingMetrics)
+        try drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), textMaxWidth: textMaxWidth, calculatingMetrics: calculatingMetrics)
     }
     
-    func drawAttributedText(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) {
+    func drawAttributedText(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) throws {
         let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
         var currentRange = CFRange(location: 0, length: 0)
         var done = false
@@ -59,7 +59,7 @@ extension PDFGenerator {
             if currentRange.location == CFAttributedStringGetLength(currentText) {
                 done = true
             } else {
-                generateNewPage(calculatingMetrics: calculatingMetrics)
+                try generateNewPage(calculatingMetrics: calculatingMetrics)
             }
         } while(!done)
     }
