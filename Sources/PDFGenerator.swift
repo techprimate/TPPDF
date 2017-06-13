@@ -68,6 +68,8 @@ open class PDFGenerator  {
         return defaults
     }()
     
+    var textColor: UIColor = UIColor.black
+    
     // MARK: - Tools
     
     func generateNewPage(calculatingMetrics: Bool) throws {

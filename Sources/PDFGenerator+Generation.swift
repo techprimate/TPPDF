@@ -39,20 +39,20 @@ extension PDFGenerator {
         case let .addTable(table):
             try drawTable(container, data: table.data, alignments: table.alignments, relativeColumnWidth: table.widths, padding: CGFloat(table.padding), margin: CGFloat(table.margin), style: table.style, showHeadersOnEveryPage: table.showHeadersOnEveryPage, calculatingMetrics: calculatingMetrics)
             break
+        case let .addList(list):
+            try drawList(container, list: list, calculatingMetrics: calculatingMetrics)
+            break
         case let .setIndentation(value):
             indentation[container.normalize] = value
             break
         case let .setOffset(value):
-            if container.isHeader {
-                headerHeight[container] = value
-            } else if container.isFooter {
-                footerHeight[container] = value
-            } else {
-                contentHeight = value
-            }
+            setContentOffset(container, value: value)
             break
         case let .setFont(font):
             fonts[container] = font
+            break
+        case let .setTextColor(color):
+            textColor = color
             break
         case .createNewPage():
             try generateNewPage(calculatingMetrics: calculatingMetrics)
@@ -76,6 +76,15 @@ extension PDFGenerator {
     
     // MARK: - PDF Data Generation
     
+    /**
+     Generates PDF data and returns it
+     
+     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
+     - returns:             PDF Data
+     
+     - throws:              TPPDFError
+
+     */
     open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil) throws -> Data {
         let pdfData = NSMutableData()
         
@@ -86,6 +95,15 @@ extension PDFGenerator {
         return pdfData as Data
     }
     
+    /**
+     Generates PDF data and writes it to a temporary file.
+     
+     - parameter fileName:  Name of temporary file.
+     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
+     - returns:             URL to temporary file.
+     
+     - throws:              TPPDFError
+     */
     open func generatePDFfile(_ fileName: String, progress: ((CGFloat) -> ())? = nil) throws -> URL {
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName).appendingPathExtension("pdf")
         
@@ -96,6 +114,13 @@ extension PDFGenerator {
         return url;
     }
     
+    /**
+     Generate PDF Context from commands
+     
+     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
+     
+     - throws: TPPDFError
+     */
     fileprivate func generatePDFContext(progress: ((CGFloat) -> ())?) throws {
         UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
         
@@ -121,13 +146,12 @@ extension PDFGenerator {
         var progressIndex: CGFloat = 0.0;
         let progressMax: CGFloat = CGFloat(contentCommands.count * 2)
         
-        // Calculate metrics
-        //
-        // Only calculate render header & footer if page has content.
+        // Only calculate render header & footer metrics if page has content.
         if contentCommands.count > 0 {
             try renderHeaderFooter(calculatingMetrics: true)
         }
         
+        // Dry run all commands. This won't render anything but instad calculate all the frames.
         for (container, command) in contentCommands {
             try autoreleasepool {
                 try renderCommand(container, command: command, calculatingMetrics: true)

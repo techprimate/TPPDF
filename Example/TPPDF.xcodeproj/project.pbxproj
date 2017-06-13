@@ -12,10 +12,11 @@
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		AAF20D711DEFCA6100948166 /* PortraitImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AAF20D701DEFCA6100948166 /* PortraitImage.jpg */; };
 		D4032E8C1D629AF700F1C14A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4032E8A1D629AF700F1C14A /* LaunchScreen.storyboard */; };
 		D4032E901D629B5D00F1C14A /* Image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4032E8F1D629B5D00F1C14A /* Image.jpg */; };
+		D445F20C1EF02AC900817246 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D445F20B1EF02AC900817246 /* Icon.png */; };
+		D445F2141EF0381000817246 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D445F2131EF0381000817246 /* ListTests.swift */; };
 		FE72AAD5840A908C7220B22D /* Pods_TPPDF_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BAEA99CE7B3E2607E018AB /* Pods_TPPDF_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,13 +43,14 @@
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* TPPDF_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TPPDF_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		81E2E4032A07FFB898A01D27 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AAF20D701DEFCA6100948166 /* PortraitImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PortraitImage.jpg; sourceTree = "<group>"; };
 		BED306E4A2B7E0694D47D195 /* Pods-TPPDF_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D17FC7694F2FC04588A6AD27 /* Pods-TPPDF_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D4032E8B1D629AF700F1C14A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4032E8F1D629B5D00F1C14A /* Image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Image.jpg; sourceTree = "<group>"; };
+		D445F20B1EF02AC900817246 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		D445F2131EF0381000817246 /* ListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
 		D4520D851D6A4F1B00316BE3 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		DC41BDBFA33F0A39A5AEA582 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E3BAEA99CE7B3E2607E018AB /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,7 @@
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				D4032E8A1D629AF700F1C14A /* LaunchScreen.storyboard */,
+				D445F20B1EF02AC900817246 /* Icon.png */,
 				D4032E8F1D629B5D00F1C14A /* Image.jpg */,
 				AAF20D701DEFCA6100948166 /* PortraitImage.jpg */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -122,7 +125,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				D445F2131EF0381000817246 /* ListTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -257,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D445F20C1EF02AC900817246 /* Icon.png in Resources */,
 				D4032E901D629B5D00F1C14A /* Image.jpg in Resources */,
 				D4032E8C1D629AF700F1C14A /* LaunchScreen.storyboard in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
@@ -381,7 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				D445F2141EF0381000817246 /* ListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +542,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 13474A0CCA02688789744BB1 /* Pods-TPPDF_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -548,6 +553,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TPPDF_Example.app/TPPDF_Example";
 			};
 			name = Debug;
 		};
@@ -555,12 +561,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D17FC7694F2FC04588A6AD27 /* Pods-TPPDF_Tests.release.xcconfig */;
 			buildSettings = {
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TPPDF_Example.app/TPPDF_Example";
 			};
 			name = Release;
 		};

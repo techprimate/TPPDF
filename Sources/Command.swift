@@ -17,10 +17,12 @@ public enum Command {
     case addSpace(space: CGFloat)
     case addLineSeparator(style: LineStyle)
     case addTable(table: Table)
+    case addList(list: List)
     
     case setIndentation(points: CGFloat)
     case setOffset(points: CGFloat)
     case setFont(font: UIFont)
+    case setTextColor(color: UIColor)
     
     case createNewPage()
 }

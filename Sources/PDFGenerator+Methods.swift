@@ -32,6 +32,15 @@ extension PDFGenerator {
         commands += [(container, .setFont(font: UIFont.systemFont(ofSize: UIFont.systemFontSize)))]
     }
     
+    open func setTextColor(_ container: Container = Container.contentLeft, color: UIColor) {
+        commands += [(container, .setTextColor(color: color))]
+    }
+    
+    open func resetTextColor(_ container: Container = Container.contentLeft) {
+        commands += [(container, .setTextColor(color: UIColor.black))]
+    }
+    
+    
     // MARK: - Image
     
     open func addImage(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero, caption: NSAttributedString = NSAttributedString(), sizeFit: ImageSizeFit = .widthHeight) {
@@ -45,13 +54,13 @@ extension PDFGenerator {
     // MARK: - Table
     
     open func addTable(_ container: Container = Container.contentLeft, table: Table) {
-        assert(table.data.count != 0, "You can't draw an table without rows!")
-        assert(table.data.count == table.alignments.count, "Data and alignment array must be equal size!")
-        for (rowIdx, row) in table.data.enumerated() {
-            assert(row.count == table.alignments[rowIdx].count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
-            assert(row.count == table.widths.count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
-        }
         commands += [(container, .addTable(table: table))]
+    }
+    
+    // MARK: - List
+    
+    open func addList(_ container: Container = Container.contentLeft, list: List) {
+        commands += [(container, .addList(list: list))]
     }
 
     // MARK: - Container

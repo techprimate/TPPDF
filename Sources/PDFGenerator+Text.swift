@@ -81,7 +81,8 @@ extension PDFGenerator {
         
         return [
             NSFontAttributeName: fonts[container]!,
-            NSParagraphStyleAttributeName: paragraphStyle
+            NSParagraphStyleAttributeName: paragraphStyle,
+            NSForegroundColorAttributeName: textColor
         ]
     }
 }
