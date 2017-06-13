@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, newPageBreak: Bool = false, styleIndexOffset: Int = 0) {
+    func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignments.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -99,68 +99,72 @@ extension PDFGenerator {
             }
         }
         
-        // Draw background
-        
-        for (rowIdx, row) in dataInThisPage.enumerated() {
-            for (colIdx, _) in row.enumerated() {
-                let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
-                let cellFrame = cellFrames[rowIdx][colIdx]
-                
-                let path = UIBezierPath(rect: cellFrame).cgPath
-                
-                let currentContext = UIGraphicsGetCurrentContext()!
-                
-                cellStyle.fillColor.setFill()
-                currentContext.addPath(path)
-                currentContext.drawPath(using: .fill)
-            }
-        }
-        
-        // Draw text
-        
-        for (rowIdx, row) in dataInThisPage.enumerated() {
-            for (colIdx, text) in row.enumerated() {
-                let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
-                
-                let attributes: [String: AnyObject] = [
-                    NSForegroundColorAttributeName: cellStyle.textColor,
-                    NSFontAttributeName: cellStyle.font
-                ]
-                
-                let textFrame = framesInThisPage[rowIdx][colIdx]
-                let attributedText = NSAttributedString(string: text, attributes: attributes)
-                // the last line of text is hidden if 30 is not added
-                attributedText.draw(in: CGRect(origin: textFrame.origin, size: CGSize(width: textFrame.width, height: textFrame.height + 20)))
-            }
-        }
-        
-        // Draw grid lines
-        
-        for (rowIdx, row) in dataInThisPage.enumerated() {
-            for (colIdx, _) in row.enumerated() {
-                let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
-                let cellFrame = cellFrames[rowIdx][colIdx]
-                
-                drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borderTop)
-                drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borderBottom)
-                drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), style: cellStyle.borderLeft)
-                drawLine(start: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borderRight)
-            }
-        }
-        
-        // Draw table outline
-        
         let tableFrame = CGRect(x: x, y: contentHeight + maxHeaderHeight() + headerSpace, width: totalWidth, height: totalHeight)
-        drawLine(start: CGPoint(x: tableFrame.minX, y: tableFrame.minY), end: CGPoint(x: tableFrame.maxX, y: tableFrame.minY), style: style.outline)
-        drawLine(start: CGPoint(x: tableFrame.minX, y: tableFrame.maxY), end: CGPoint(x: tableFrame.maxX, y: tableFrame.maxY), style: style.outline)
-        drawLine(start: CGPoint(x: tableFrame.minX, y: tableFrame.minY), end: CGPoint(x: tableFrame.minX, y: tableFrame.maxY), style: style.outline)
-        drawLine(start: CGPoint(x: tableFrame.maxX, y: tableFrame.minY), end: CGPoint(x: tableFrame.maxX, y: tableFrame.maxY), style: style.outline)
+        
+        // Dont' render if calculating metrics
+        if !calculatingMetrics {
+            // Draw background
+            
+            for (rowIdx, row) in dataInThisPage.enumerated() {
+                for (colIdx, _) in row.enumerated() {
+                    let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                    let cellFrame = cellFrames[rowIdx][colIdx]
+                    
+                    let path = UIBezierPath(rect: cellFrame).cgPath
+                    
+                    let currentContext = UIGraphicsGetCurrentContext()!
+                    
+                    cellStyle.fillColor.setFill()
+                    currentContext.addPath(path)
+                    currentContext.drawPath(using: .fill)
+                }
+            }
+            
+            // Draw text
+            
+            for (rowIdx, row) in dataInThisPage.enumerated() {
+                for (colIdx, text) in row.enumerated() {
+                    let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                    
+                    let attributes: [String: AnyObject] = [
+                        NSForegroundColorAttributeName: cellStyle.textColor,
+                        NSFontAttributeName: cellStyle.font
+                    ]
+                    
+                    let textFrame = framesInThisPage[rowIdx][colIdx]
+                    let attributedText = NSAttributedString(string: text, attributes: attributes)
+                    // the last line of text is hidden if 30 is not added
+                    attributedText.draw(in: CGRect(origin: textFrame.origin, size: CGSize(width: textFrame.width, height: textFrame.height + 20)))
+                }
+            }
+            
+            // Draw grid lines
+            
+            for (rowIdx, row) in dataInThisPage.enumerated() {
+                for (colIdx, _) in row.enumerated() {
+                    let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                    let cellFrame = cellFrames[rowIdx][colIdx]
+                    
+                    drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borderTop)
+                    drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borderBottom)
+                    drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), style: cellStyle.borderLeft)
+                    drawLine(start: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borderRight)
+                }
+            }
+            
+            // Draw table outline
+            
+            drawLine(start: CGPoint(x: tableFrame.minX, y: tableFrame.minY), end: CGPoint(x: tableFrame.maxX, y: tableFrame.minY), style: style.outline)
+            drawLine(start: CGPoint(x: tableFrame.minX, y: tableFrame.maxY), end: CGPoint(x: tableFrame.maxX, y: tableFrame.maxY), style: style.outline)
+            drawLine(start: CGPoint(x: tableFrame.minX, y: tableFrame.minY), end: CGPoint(x: tableFrame.minX, y: tableFrame.maxY), style: style.outline)
+            drawLine(start: CGPoint(x: tableFrame.maxX, y: tableFrame.minY), end: CGPoint(x: tableFrame.maxX, y: tableFrame.maxY), style: style.outline)
+        }
         
         // Continue with table on next page
         
         if !dataInNewPage.isEmpty {
-            generateNewPage()
-            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, newPageBreak: true, styleIndexOffset: dataInThisPage.count)
+            generateNewPage(calculatingMetrics: calculatingMetrics)
+            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, newPageBreak: true, styleIndexOffset: dataInThisPage.count, calculatingMetrics: calculatingMetrics)
         } else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
         }

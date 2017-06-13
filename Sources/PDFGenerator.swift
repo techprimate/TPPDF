@@ -25,8 +25,6 @@ open class PDFGenerator  {
     
     open var info: PDFInfo = PDFInfo()
     
-    open var paginationContainer = Container.none
-    
     open var imageQuality: CGFloat = 0.8 {
         didSet {
             if imageQuality > 1 {
@@ -47,13 +45,20 @@ open class PDFGenerator  {
     var contentSize: CGSize {
         return CGSize(width: pageBounds.width - 2 * pageMargin, height: pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace)
     }
-
+    
     var indentation: [Container: CGFloat] = [
         .headerLeft : 0,
         .contentLeft : 0,
         .footerLeft : 0
     ]
-    var page = 1
+    
+    var currentPage: Int = 1
+    var totalPages: Int = 0
+    var paginationContainer = Container.none
+    var paginationStyle = PaginationStyle.Default
+    var paginationStart: Int = 1
+    var paginationEnd: Int = Int.max
+    var paginationExcludes: [Int] = []
     
     lazy var fonts: [Container: UIFont] = {
         var defaults = [Container: UIFont]()
@@ -65,11 +70,26 @@ open class PDFGenerator  {
     
     // MARK: - Tools
     
-    func generateNewPage() {
-        UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
+    func generateNewPage(calculatingMetrics: Bool) {
+        // Don't render if calculating metrics
+        if !calculatingMetrics {
+            UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
+        }
         contentHeight = 0
-        page += 1
+        currentPage += 1
         
-        renderHeaderFooter()
+        renderHeaderFooter(calculatingMetrics: calculatingMetrics)
+    }
+    
+    func resetGenerator() {
+        headerHeight = [:]
+        footerHeight = [:]
+        contentHeight = 0
+        indentation = [
+            .headerLeft : 0,
+            .contentLeft : 0,
+            .footerLeft : 0
+        ]
+        currentPage = 1
     }
 }

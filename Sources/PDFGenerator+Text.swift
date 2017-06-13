@@ -8,19 +8,20 @@
 
 extension PDFGenerator {
     
-    func drawText(_ container: Container, text: String, spacing: CGFloat, textMaxWidth: CGFloat = 0) {
+    func drawText(_ container: Container, text: String, spacing: CGFloat, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) {
         let attributes = generateDefaultTextAttributes(container, spacing: spacing)
         
-        drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), textMaxWidth: textMaxWidth)
+        drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), textMaxWidth: textMaxWidth, calculatingMetrics: calculatingMetrics)
     }
     
-    func drawAttributedText(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat = 0) {
+    func drawAttributedText(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) {
         let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
         var currentRange = CFRange(location: 0, length: 0)
         var done = false
         
         repeat {
             let (frameRef, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(container, text: currentText!, currentRange: currentRange, textMaxWidth: textMaxWidth)
+            
             // Get the graphics context.
             let currentContext = UIGraphicsGetCurrentContext()!
             
@@ -36,9 +37,11 @@ extension PDFGenerator {
             currentContext.translateBy(x: 0, y: pageBounds.height)
             currentContext.scaleBy(x: 1.0, y: -1.0)
             
-            // Draw the frame.
-            CTFrameDraw(frameRef, currentContext)
-            
+            // Don't render when calculating metrics
+            if !calculatingMetrics {
+                // Draw the frame.
+                CTFrameDraw(frameRef, currentContext)
+            }
             // Pop state
             currentContext.restoreGState()
             
@@ -56,7 +59,7 @@ extension PDFGenerator {
             if currentRange.location == CFAttributedStringGetLength(currentText) {
                 done = true
             } else {
-                generateNewPage()
+                generateNewPage(calculatingMetrics: calculatingMetrics)
             }
         } while(!done)
     }
