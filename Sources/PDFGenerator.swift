@@ -25,8 +25,6 @@ open class PDFGenerator  {
     
     open var info: PDFInfo = PDFInfo()
     
-    open var paginationContainer = Container.none
-    
     open var imageQuality: CGFloat = 0.8 {
         didSet {
             if imageQuality > 1 {
@@ -53,7 +51,14 @@ open class PDFGenerator  {
         .contentLeft : 0,
         .footerLeft : 0
     ]
-    var page = 1
+    
+    var currentPage: Int = 1
+    var totalPages: Int = Int.max
+    var paginationContainer = Container.none
+    var paginationStyle = PaginationStyle.Default
+    var paginationStart: Int = 1
+    var paginationEnd: Int = Int.max
+    var paginationExcludes: [Int] = []
     
     lazy var fonts: [Container: UIFont] = {
         var defaults = [Container: UIFont]()
@@ -68,7 +73,7 @@ open class PDFGenerator  {
     func generateNewPage() {
         UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
         contentHeight = 0
-        page += 1
+        currentPage += 1
         
         renderHeaderFooter()
     }

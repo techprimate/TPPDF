@@ -64,7 +64,7 @@ extension PDFGenerator {
         resetHeaderFooterHeight()
         
         if paginationContainer != .none {
-            renderCommand(paginationContainer, command: .addText(text: String(page), lineSpacing: 1.0))
+            renderCommand(paginationContainer, command: .addText(text: paginationStyle.format(page: currentPage, total: totalPages), lineSpacing: 1.0))
         }
         
         for (container, command) in headerFooterCommands {
