@@ -5,11 +5,14 @@
 
 **Implemented enhancements:**
 
-- Pagination styling using formats and closures
+- Pagination styling using formats or closures.
+- First and last pagination page can be set.
+- Pages can be excluded from pagination.
 - Created class `Table` to manage tables.
 - Added extension `toTableContent` to class `String`, `NSAttributedString` and `UIImage`.
 - Created Error enum `TPPDFError` for error handling.
 - Added image rendering inside table
+- Moved all error handling outside of framework
 
 **Fixed bugs:**
 
