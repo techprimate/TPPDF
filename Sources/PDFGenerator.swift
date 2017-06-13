@@ -77,4 +77,16 @@ open class PDFGenerator  {
         
         renderHeaderFooter()
     }
+    
+    func resetGenerator() {
+        headerHeight = [:]
+        footerHeight = [:]
+        contentHeight = 0
+        indentation = [
+            .headerLeft : 0,
+            .contentLeft : 0,
+            .footerLeft : 0
+        ]
+        currentPage = 0
+    }
 }
