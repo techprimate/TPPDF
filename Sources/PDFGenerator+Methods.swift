@@ -44,14 +44,14 @@ extension PDFGenerator {
     
     // MARK: - Table
     
-    open func addTable(_ container: Container = Container.contentLeft, data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat = 0, margin: CGFloat = 0, style: TableStyle = TableStyle()) {
-        assert(data.count != 0, "You can't draw an table without rows!")
-        assert(data.count == alignment.count, "Data and alignment array must be equal size!")
-        for (rowIdx, row) in data.enumerated() {
-            assert(row.count == alignment[rowIdx].count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
-            assert(row.count == relativeColumnWidth.count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
+    open func addTable(_ container: Container = Container.contentLeft, table: Table) {
+        assert(table.data.count != 0, "You can't draw an table without rows!")
+        assert(table.data.count == table.alignments.count, "Data and alignment array must be equal size!")
+        for (rowIdx, row) in table.data.enumerated() {
+            assert(row.count == table.alignments[rowIdx].count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
+            assert(row.count == table.widths.count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
         }
-        commands += [(container, .addTable(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style))]
+        commands += [(container, .addTable(table: table))]
     }
 
     // MARK: - Container

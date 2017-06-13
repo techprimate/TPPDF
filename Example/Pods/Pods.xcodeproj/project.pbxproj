@@ -29,6 +29,8 @@
 		D4022A471EE4C72300AAA9A3 /* PDFGenerator+Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4022A461EE4C72300AAA9A3 /* PDFGenerator+Text.swift */; };
 		D4B77EDD1EEFA11600AB6EE1 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B77EDC1EEFA11600AB6EE1 /* Pagination.swift */; };
 		D4B77EDF1EEFA27600AB6EE1 /* PDFGenerator+Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B77EDE1EEFA27600AB6EE1 /* PDFGenerator+Pagination.swift */; };
+		D4B77EE21EEFC6B000AB6EE1 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B77EE01EEFC6A000AB6EE1 /* Table.swift */; };
+		D4B77EE51EEFC77A00AB6EE1 /* TableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B77EE31EEFC73600AB6EE1 /* TableContent.swift */; };
 		D66BE21621BC6A40C0532BA0D50BD91B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
 		D7A60E7AA757EA3CA97841AEFD50E178 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6DD0462D81EADE1344E63B131F9D58 /* Container.swift */; };
 		ED4E10ABAA4705744851F2A01B5B1D76 /* TPPDF-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFA625D3DDA04569596431F5AFDA79 /* TPPDF-dummy.m */; };
@@ -91,6 +93,8 @@
 		D4022A461EE4C72300AAA9A3 /* PDFGenerator+Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+Text.swift"; sourceTree = "<group>"; };
 		D4B77EDC1EEFA11600AB6EE1 /* Pagination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		D4B77EDE1EEFA27600AB6EE1 /* PDFGenerator+Pagination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+Pagination.swift"; sourceTree = "<group>"; };
+		D4B77EE01EEFC6A000AB6EE1 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		D4B77EE31EEFC73600AB6EE1 /* TableContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableContent.swift; sourceTree = "<group>"; };
 		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E954B7FFD4B8E56AD27E0D81809ADBF5 /* Pods-TPPDF_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TPPDF_Example.release.xcconfig"; sourceTree = "<group>"; };
 		EA2B3EA1FF310A9E3A4655CD147A1BF9 /* Pods-TPPDF_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TPPDF_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				72E3B00ACF1B798F9A1B188EB719A429 /* TableStyle.swift */,
 				90151C87B7D8EEAE6B4329BFBFCF8484 /* TableStyle+Defaults.swift */,
 				D4B77EDC1EEFA11600AB6EE1 /* Pagination.swift */,
+				D4B77EE01EEFC6A000AB6EE1 /* Table.swift */,
+				D4B77EE31EEFC73600AB6EE1 /* TableContent.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -359,6 +365,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					FC6EBB3398BB217B61C97F01013F56B4 = {
+						LastSwiftMigration = 0830;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -406,8 +417,10 @@
 				D4022A471EE4C72300AAA9A3 /* PDFGenerator+Text.swift in Sources */,
 				ADBAFADA671E3DC3AF8AD5215D910BA6 /* PageFormat.swift in Sources */,
 				D4022A3F1EE4C43200AAA9A3 /* PDFGenerator+Generation.swift in Sources */,
+				D4B77EE21EEFC6B000AB6EE1 /* Table.swift in Sources */,
 				D4B77EDF1EEFA27600AB6EE1 /* PDFGenerator+Pagination.swift in Sources */,
 				D4022A3D1EE4C3F100AAA9A3 /* PDFGenerator+Methods.swift in Sources */,
+				D4B77EE51EEFC77A00AB6EE1 /* TableContent.swift in Sources */,
 				A25970F20E0E42829396544F7FF47B1D /* PDFGenerator.swift in Sources */,
 				3703960108494AC861B4FE4F0DD532BA /* PDFInfo.swift in Sources */,
 				B0820DEEB3BE9C7B592515F80FA3E56C /* TableStyle+Defaults.swift in Sources */,
@@ -671,6 +684,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8515A60A596F397A6B737DB3222DED70 /* Pods-TPPDF_Example.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -710,6 +724,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E954B7FFD4B8E56AD27E0D81809ADBF5 /* Pods-TPPDF_Example.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

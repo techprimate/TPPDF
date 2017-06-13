@@ -36,8 +36,8 @@ extension PDFGenerator {
         case let .addLineSeparator(style):
             drawLineSeparator(container, style: style, calculatingMetrics: calculatingMetrics)
             break
-        case let .addTable(data, alignment, relativeWidth, padding, margin, style):
-            drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, style: style, calculatingMetrics: calculatingMetrics)
+        case let .addTable(table):
+            drawTable(container, data: table.data, alignments: table.alignments, relativeColumnWidth: table.widths, padding: CGFloat(table.padding), margin: CGFloat(table.margin), style: table.style, showHeadersOnEveryPage: table.showHeadersOnEveryPage, calculatingMetrics: calculatingMetrics)
             break
         case let .setIndentation(value):
             indentation[container.normalize] = value

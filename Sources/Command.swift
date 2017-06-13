@@ -16,7 +16,7 @@ public enum Command {
     case addImagesInRow(images: [UIImage], captions: [NSAttributedString], spacing: CGFloat)
     case addSpace(space: CGFloat)
     case addLineSeparator(style: LineStyle)
-    case addTable(data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle)
+    case addTable(table: Table)
     
     case setIndentation(points: CGFloat)
     case setOffset(points: CGFloat)

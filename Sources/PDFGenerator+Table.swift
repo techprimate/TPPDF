@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) {
+    func drawTable(_ container: Container, data: [[TableContent?]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignments.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -32,22 +32,34 @@ extension PDFGenerator {
             var maxHeight: CGFloat = 0
             
             // Calcuate X position and size
-            for (colIdx, column) in row.enumerated() {
-                let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
-                let attributes: [String: AnyObject] = [
-                    NSForegroundColorAttributeName: cellStyle.textColor,
-                    NSFontAttributeName: cellStyle.font
-                ]
-                
-                let text = NSAttributedString(string: column, attributes: attributes)
+            for (colIdx, content) in row.enumerated() {
                 let width = relativeColumnWidth[colIdx] * totalWidth
-                let result = calculateCellFrame(CGPoint(x: x + margin + padding, y: y + maxHeaderHeight() + headerSpace + margin + padding), width: width - 2 * margin - 2 * padding, text: text, alignment: alignments[rowIdx][colIdx])
+                let position = CGPoint(x: x + margin + padding, y: y + maxHeaderHeight() + headerSpace + margin + padding)
                 
-                maxHeight = max(maxHeight, result.height)
-                frames[rowIdx].append(result)
-                
-                let cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: result.height);
-                cellFrames[rowIdx].append(cellFrame)
+                if let content = content {
+                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: data.count, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
+                    let attributes: [String: AnyObject] = [
+                        NSForegroundColorAttributeName: cellStyle.textColor,
+                        NSFontAttributeName: cellStyle.font
+                    ]
+                    if let text = content.stringValue {
+                        let text = NSAttributedString(string: text, attributes: attributes)
+                        let result = calculateCellFrame(position, width: width - 2 * margin - 2 * padding, text: text, alignment: alignments[rowIdx][colIdx])
+                        
+                        maxHeight = max(maxHeight, result.height)
+                        frames[rowIdx].append(result)
+                        
+                        let cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: result.height);
+                        cellFrames[rowIdx].append(cellFrame)
+                    } else if let _ = content.imageValue {
+                        fatalError("Not implemented!")
+                    } else {
+                        fatalError("Content type is unknown!")
+                    }
+                } else {
+                    frames[rowIdx].append(CGRect(origin: position, size: CGSize.zero))
+                    cellFrames[rowIdx].append(CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: 0))
+                }
                 
                 x += width
             }
@@ -74,8 +86,8 @@ extension PDFGenerator {
         }
         
         // Divide tables according to contentSize
-        var (dataInThisPage, alignmentsInThisPage, framesInThisPage): ([[String]], [[TableCellAlignment]], [[CGRect]]) = ([], [], [])
-        var (dataInNewPage, alignmentsInNewPage): ([[String]], [[TableCellAlignment]]) = ([], [])
+        var (dataInThisPage, alignmentsInThisPage, framesInThisPage): ([[TableContent?]], [[TableCellAlignment]], [[CGRect]]) = ([], [], [])
+        var (dataInNewPage, alignmentsInNewPage): ([[TableContent?]], [[TableCellAlignment]]) = ([], [])
         var totalHeight: CGFloat = 0
         
         for (rowIdx, row) in data.enumerated() {
@@ -107,7 +119,7 @@ extension PDFGenerator {
             
             for (rowIdx, row) in dataInThisPage.enumerated() {
                 for (colIdx, _) in row.enumerated() {
-                    let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: data.count, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
                     let cellFrame = cellFrames[rowIdx][colIdx]
                     
                     let path = UIBezierPath(rect: cellFrame).cgPath
@@ -123,18 +135,26 @@ extension PDFGenerator {
             // Draw text
             
             for (rowIdx, row) in dataInThisPage.enumerated() {
-                for (colIdx, text) in row.enumerated() {
-                    let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
-                    
-                    let attributes: [String: AnyObject] = [
-                        NSForegroundColorAttributeName: cellStyle.textColor,
-                        NSFontAttributeName: cellStyle.font
-                    ]
-                    
-                    let textFrame = framesInThisPage[rowIdx][colIdx]
-                    let attributedText = NSAttributedString(string: text, attributes: attributes)
-                    // the last line of text is hidden if 30 is not added
-                    attributedText.draw(in: CGRect(origin: textFrame.origin, size: CGSize(width: textFrame.width, height: textFrame.height + 20)))
+                for (colIdx, content) in row.enumerated() {
+                    if let content = content {
+                        if let text = content.stringValue {
+                            let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: data.count, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
+                            
+                            let attributes: [String: AnyObject] = [
+                                NSForegroundColorAttributeName: cellStyle.textColor,
+                                NSFontAttributeName: cellStyle.font
+                            ]
+                            
+                            let textFrame = framesInThisPage[rowIdx][colIdx]
+                            let attributedText = NSAttributedString(string: text, attributes: attributes)
+                            // the last line of text is hidden if 30 is not added
+                            attributedText.draw(in: CGRect(origin: textFrame.origin, size: CGSize(width: textFrame.width, height: textFrame.height + 20)))
+                        } else if let _ = content.imageValue {
+                            fatalError("Not implemented yet!")
+                        } else {
+                            fatalError("Content type is unknown!")
+                        }
+                    }
                 }
             }
             
@@ -142,7 +162,7 @@ extension PDFGenerator {
             
             for (rowIdx, row) in dataInThisPage.enumerated() {
                 for (colIdx, _) in row.enumerated() {
-                    let cellStyle = getCellStyle(tableHeight: data.count + styleIndexOffset, style: style, row: styleIndexOffset + rowIdx, column: colIdx, newPageBreak: newPageBreak)
+                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: data.count, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
                     let cellFrame = cellFrames[rowIdx][colIdx]
                     
                     drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borderTop)
@@ -160,32 +180,40 @@ extension PDFGenerator {
             drawLine(start: CGPoint(x: tableFrame.maxX, y: tableFrame.minY), end: CGPoint(x: tableFrame.maxX, y: tableFrame.maxY), style: style.outline)
         }
         
+        // If headers are shown on every page add header rows at beginning
+        if showHeadersOnEveryPage && dataInNewPage.count > 0 {
+            for i in 0..<style.rowHeaderCount {
+                dataInNewPage.insert(data[i], at: i)
+                alignmentsInNewPage.insert(alignments[i], at: i)
+            }
+        }
+        
         // Continue with table on next page
         
         if !dataInNewPage.isEmpty {
             generateNewPage(calculatingMetrics: calculatingMetrics)
-            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, newPageBreak: true, styleIndexOffset: dataInThisPage.count, calculatingMetrics: calculatingMetrics)
+            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, showHeadersOnEveryPage: showHeadersOnEveryPage, newPageBreak: true, styleIndexOffset: dataInThisPage.count, calculatingMetrics: calculatingMetrics)
         } else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
         }
     }
     
-    func getCellStyle(tableHeight: Int, style: TableStyle, row: Int, column: Int, newPageBreak: Bool) -> TableCellStyle {
-        let position = TableCellPosition(row: row, column: column)
+    func getCellStyle(offset: Int, tableHeight: Int, style: TableStyle, row: Int, column: Int, newPageBreak: Bool, showHeadersOnEveryPage: Bool) -> TableCellStyle {
+        let position = TableCellPosition(row: (row + offset), column: column)
         
         if let cellStyle = style.cellStyles[position] {
             return cellStyle
         }
-        if row < style.columnHeaderCount && !newPageBreak{
+        if position.row < style.columnHeaderCount && !newPageBreak || (position.row - offset < style.columnHeaderCount){
             return style.columnHeaderStyle
         }
-        if row >= tableHeight - style.footerCount {
+        if position.row > tableHeight + offset - style.footerCount {
             return style.footerStyle
         }
         if column < style.rowHeaderCount {
             return style.rowHeaderStyle
         }
-        if (row - style.rowHeaderCount) % 2 == 1 {
+        if (position.row - style.rowHeaderCount) % 2 == 1 {
             return style.alternatingContentStyle ?? style.contentStyle
         } else {
             return style.contentStyle
