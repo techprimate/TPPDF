@@ -17,11 +17,17 @@ class ViewController: UIViewController {
     }
     
     func generatePDF() {
+        /* Execution Metrics */
+        var startTime = Date()
+        /* Execution Metrics */
+        
         let pdf = PDFGenerator(format: .a4)
         
-        pdf.setPageNumbering(.footerCenter, style: PaginationStyle.CustomClosure({(index: Int, max: Int) -> String in
-            return String(format: "%d/%d", index, max)
-        }), from: 1, to: 4, hiddenPages: [4])
+        //        pdf.setPageNumbering(.footerCenter, style: PaginationStyle.CustomClosure({(page: Int, max: Int) -> String in
+        //            return String(format: "%d ~ %d", page, max)
+        //        }), from: 1, to: 4, hiddenPages: [4])
+        
+        pdf.setPageNumbering(.footerCenter, style: PaginationStyle.Roman(template: "%@"), from: 1, to: 4, hiddenPages: [4])
         
         let tableData: [[String]] = [
             ["",    "Company",                     "Contact",              "Country"],
@@ -81,7 +87,48 @@ class ViewController: UIViewController {
         
         pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 8, margin: 0, style: tableStyle)
         
+        /* Execution Metrics */
+        print("Preparation: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
+        startTime = Date()
+        /* Execution Metrics */
+        
         let url = pdf.generatePDFfile("Pasta with tomato sauce")
+        
+        /* Execution Metrics */
+        print("Generation: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
+        startTime = Date()
+        /* Execution Metrics */
+        
         (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
+    }
+    
+    /**
+     Used for debugging execution time.
+     Converts time interval in seconds to String.
+     */
+    func stringFromTimeInterval(interval: TimeInterval) -> String {
+        let ns = (interval * 10e8).truncatingRemainder(dividingBy: 10e5)
+        let ms = (interval * 10e2).rounded(.towardZero)
+        let seconds = interval.rounded(.towardZero)
+        let minutes = (interval / 60).rounded(.towardZero)
+        let hours = (interval / 3600).rounded(.towardZero)
+        
+        var result = [String]()
+        if (hours > 1) {
+            result.append(String(format: "%.0f", hours) + "h")
+        }
+        if (minutes > 1) {
+            result.append(String(format: "%.0f", minutes) + "m")
+        }
+        if (seconds > 1) {
+            result.append(String(format: "%.0f", seconds) + "s")
+        }
+        if (ms > 1) {
+            result.append(String(format: "%.0f", ms) + "ms")
+        }
+        if (ns > 0.001) {
+            result.append(String(format: "%.3f", ns) + "ns")
+        }
+        return result.joined(separator: " ")
     }
 }
