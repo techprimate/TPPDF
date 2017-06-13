@@ -31,7 +31,7 @@ class ListSpec: QuickSpec {
             }
             
             it("should have one item") {
-                list.addItem(ListItem(content: "Item 1", symbol: .dash))
+                list.addItem(ListItem(symbol: .dash, content: "Item 1"))
                 
                 expect(list.count).to(equal(1))
                 expect(list.items[0].content).to(equal("Item 1"))
@@ -43,31 +43,31 @@ class ListSpec: QuickSpec {
                 
                 list.addItems(
                     [
-                        ListItem(content: "Base 1", symbol: .dot)
+                        ListItem(symbol: .dot, content: "Base 1")
                             .addItems(
                                 [
                                     ListItem(symbol: .numbered(value: nil))
                                         .addItems(
                                             [
                                                 ListItem(content: "Child 2.1"),
-                                                ListItem(content: "Child 2.2", symbol: .none),
+                                                ListItem(symbol: .none, content: "Child 2.2"),
                                                 ListItem(content: "Child 2.3"),
                                             ]
                                     )
                                 ]
                         ),
-                        ListItem(content: "Base 2", symbol: .dash)
+                        ListItem(symbol: .dash, content: "Base 2")
                             .addItems(
                                 [
                                     ListItem(content: "Child 2.1")
                                         .addItems(
                                             [
-                                                ListItem(content: "Child 2.1.1", symbol: .dot)
+                                                ListItem(symbol: .dot, content: "Child 2.1.1")
                                             ]),
                                     ListItem(content: "Child 2.2")
                                         .addItems(
                                             [
-                                                ListItem(content: "Child 2.2.1", symbol: .dash)
+                                                ListItem(symbol: .dash, content: "Child 2.2.1")
                                             ]
                                     )
                                 ]

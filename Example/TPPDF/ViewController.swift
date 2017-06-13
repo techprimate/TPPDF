@@ -22,7 +22,6 @@ class ViewController: UIViewController {
         /* Execution Metrics */
         
         let pdf = PDFGenerator(format: .a4)
-        pdf.setPageNumbering(.footerRight, style: PaginationStyle.Roman(template: "%@"), from: 1, to: 4, hiddenPages: [4])
         
         // Set document meta data
         pdf.info.title = "TPPDF Example"
@@ -31,6 +30,11 @@ class ViewController: UIViewController {
         // Set spacing of header and footer
         pdf.headerSpace = 50
         pdf.footerSpace = 25
+        
+        // Add custom pagination, starting at page 1 and excluding page 3
+        pdf.setPageNumbering(.footerRight, style: PaginationStyle.CustomClosure({ (page, total) -> String in
+            return "\(page) / \(total)"
+        }), from: 1, to: 10, hiddenPages: [3])
         
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         pdf.addImage(.contentCenter, image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150))
@@ -60,12 +64,11 @@ class ViewController: UIViewController {
         
         // Create a list with level indentations
         let list = List(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
-        // Two multiple types of list items exist
         
         list.addItems([
             ListItem(symbol: .numbered(value: nil))
                 .addItems([
-                    ListItem(content: "Drawing Text")
+                    ListItem(content: "Introduction")
                         .addItems([
                             ListItem(symbol: .numbered(value: nil))
                                 .addItems([
@@ -78,161 +81,185 @@ class ViewController: UIViewController {
         
         pdf.addList(list: list)
         
+        // Set Font for headline
         
-        //        let portraitImage = UIImage(named: "PortraitImage.jpg")!
+        pdf.setFont(font: UIFont.systemFont(ofSize: 20.0))
         
-        //        pdf.addText(.footerCenter, text: "Created using TPPDF for iOS.")
-        //        pdf.addText(.headerLeft, text: "Recipe: Pasta with tomato sauce")
-        //        pdf.addLineSeparator(.headerCenter, style: LineStyle(type: .full, color: UIColor.darkGray, width: 1.0))
-        //        pdf.addLineSeparator(.headerCenter, style: LineStyle(type: .full, color: UIColor.lightGray, width: 0.5))
-        //
-        //        let category =  NSAttributedString(string: "Category: Meal", attributes: [
-        //            NSFontAttributeName : UIFont.systemFont(ofSize: 16.0),
-        //            NSForegroundColorAttributeName : UIColor.darkGray
-        //            ])
-        //        pdf.addAttributedText(text: category)
-        //
-        //        pdf.addSpace(space: 12.0)
-        //
-        //        pdf.addLineSeparator(.headerCenter, style: LineStyle(type: .dashed, color: UIColor.darkGray, width: 1.0))
-        //        pdf.addSpace(space: 12.0)
-        //        pdf.addSpace(space: 12.0)
-        //        pdf.addLineSeparator(.headerCenter, style: LineStyle(type: .dashed, color: UIColor.lightGray, width: 1.0))
-        //
-        //        pdf.addSpace(space: 12.0)
-        //
-        //        pdf.setFont(font: UIFont.italicSystemFont(ofSize: 19))
-        //        pdf.addText(text: "Explain how to prep and cook this recipe here.\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et ")
-        //        pdf.resetFont()
-        //
-        //        pdf.addSpace(space: 12.0)
+        // Add headline with extra spacing
         
-        //        pdf.addImagesInRow(images: [image, portraitImage], captions: [NSAttributedString(string: "Pasta with tomato sauce"), NSAttributedString(string: "Pasta with tomato sauce")])
-        //        pdf.addImage(.contentCenter, image: portraitImage, size: CGSize(width: portraitImage.size.width, height: portraitImage.size.height / 4), caption: NSAttributedString(string: "Pasta with tomato sauce"))
-        //        pdf.addImage(.contentCenter, image: image, sizeFit: .width)
+        pdf.addSpace(space: 30)
+        pdf.addText(text: "1. Introduction")
+        pdf.addSpace(space: 10)
         
-        //        let ingridients = NSMutableAttributedString(string: "Ingridients")
-        //        ingridients.addAttributes([
-        //            NSFontAttributeName : UIFont.systemFont(ofSize: 20.0),
-        //            NSForegroundColorAttributeName : UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0,
-        //                                                     alpha: 1.0)
-        //            ], range: NSMakeRange(0, ingridients.length))
-        //        pdf.addAttributedText(text: ingridients)
-        //
-        //        pdf.addSpace(space: 6.0)
-        //
-        //        let ingridientsString: String = {
-        //            var result = ""
-        //            for i in 1...5 {
-        //                result = result + "Ingridient \(i)\n"
-        //            }
-        //            return result
-        //        }()
-        //        pdf.addText(text: ingridientsString, lineSpacing: 4.0)
-        //
-        //        pdf.addSpace(space: 12.0)
-        //
-        //        let descriptionHeader = NSMutableAttributedString(string: "Description")
-        //        descriptionHeader.addAttributes([
-        //            NSFontAttributeName : UIFont.systemFont(ofSize: 20.0),
-        //            NSForegroundColorAttributeName : UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0,
-        //
-        //                                                     alpha: 1.0)
-        //            ], range: NSMakeRange(0, descriptionHeader.length))
-        //        pdf.addAttributedText(text: descriptionHeader)
-        //
-        //        pdf.addSpace(space: 6.0)
-        //        pdf.addText(text: "Explain how to prep and cook this recipe here.\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et ")
-        //        pdf.setIndentation(indent: 50)
-        //        pdf.addText(text: "dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.")
-        //        pdf.setAbsoluteOffset(offset: 450)
-        //        pdf.addText(text: "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,")
-        //
-        //        pdf.createNewPage()
-        //        pdf.addText(text: "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,")
-        //
-        //
-        //
-        //
-        //        let table = Table()
-        //        do {
-        //            try table.setData(data: [
-        //                [nil,    "Company",                     "Contact",              "Country"],
-        //                ["1",    UIImage(named: "Image.jpg"),         "Maria Anders",         "Germany"],
-        //                ["2",    "Berglunds snabbköp",          "Christina Berglund",   "Sweden"],
-        //                ["3",    "Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
-        //                ["4",    "Ernst Handel",                "Roland Mendel",        "Austria"],
-        //                ["5",    "Island Trading",              "Helen Bennett",        "UK"],
-        //                ["6",    "Königlich Essen",             "Philip Cramer",        "Germany"],
-        //                ["7",    "Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
-        //                ["8",    "Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
-        //                ["9",    "Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
-        //                ["10",    "Ernst Handel",                "Roland Mendel",        "Austria"],
-        //                ["11",    "Island Trading",              "Helen Bennett",        "UK"],
-        //                ["12",    "Königlich Essen",             "Philip Cramer",        "Germany"],
-        //                ["13",    "Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
-        //                ["14",    "Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
-        //                ["15",    "Centro comercialMoctezuma",   "Francisco Chang",      "Mexico"],
-        //                ["16",    "Ernst Handel",                "Roland Mendel",        "Austria"],
-        //                ["17",    "Island Trading",              "Helen Bennett",        "UK"],
-        //                ["18",    "Königlich Essen",             "Philip Cramer",        "Germany"],
-        //                ["19",    "Laughing Bacchus",            "Yoshi Tannamuri",      "Canada"],
-        //                ["20",    "Magazzini Alimentari",        "Giovanni Rovelli",     "Italy"],
-        //                [nil,    "Footer 1",                     "Footer 2",              "Footer 3"]
-        //                ])
-        //        } catch TPPDFError.tableContentInvalid(let value) {
-        //            print("This type of object is not supported as table content: " + String(describing: (type(of: value))))
-        //        } catch {
-        //            print("Error while creating table: " + error.localizedDescription)
-        //        }
-        //
-        //        table.alignments = [
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left],
-        //            [.center, .left, .center, .left]
-        //        ]
-        //        table.widths = [
-        //            0.08, 0.4, 0.251, 0.251
-        //        ]
-        //        table.setCellStyle(row: 2, column: 3, style: TableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
-        //        table.setCellStyle(row: 20, column: 1, style: TableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
-        //        table.style.footerStyle = TableCellStyle(
-        //            fillColor: UIColor(colorLiteralRed: 0.171875,
-        //                               green: 0.2421875,
-        //                               blue: 0.3125,
-        //                               alpha: 1.0),
-        //            textColor: UIColor.white,
-        //            font: UIFont.systemFont(ofSize: 10),
-        //            borderLeft: LineStyle(),
-        //            borderTop: LineStyle(),
-        //            borderRight: LineStyle(),
-        //            borderBottom: LineStyle())
-        //        table.style.footerCount = 2;
-        //
-        //        table.padding = 8
-        //        table.margin = 0
-        //        table.showHeadersOnEveryPage = true
-        //
-        //        pdf.addTable(table: table)
+        // Set font for text
+        
+        pdf.setFont(font: UIFont.systemFont(ofSize: 13.0))
+        
+        // Add long simple text. This will automatically word wrap if content width is not enough.
+        
+        pdf.addText(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
+        pdf.addSpace(space: 10)
+        pdf.addText(text: "TPPDF includes many different features:")
+        
+        pdf.addSpace(space: 10)
+        
+        // Simple bullet point list
+        
+        let featureList = List(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
+        
+        featureList.addItem(ListItem(symbol: .dot).addItems([
+            ListItem(content: "Simple text drawing"),
+            ListItem(content: "Advanced text drawing using AttributedString"),
+            ListItem(content: "Multi-layer rendering by simply setting the offset"),
+            ListItem(content: "Fully calculated content sizing"),
+            ListItem(content: "Automatic page wrapping"),
+            ListItem(content: "Customizable pagination"),
+            ListItem(content: "Fully editable header and footer"),
+            ListItem(content: "Simple image positioning and rendering"),
+            ListItem(content: "Image captions")
+            ]))
+        pdf.addList(list: featureList)
+        
+        // Insert page break
+        
+        pdf.createNewPage()
+        
+        // Create a line separator
+        
+        pdf.addSpace(space: 10)
+        pdf.addLineSeparator(style: LineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
+        pdf.addSpace(space: 10)
+        
+        // Create an image collage with captions
+        
+        let images = [
+            [
+                UIImage(named: "Image-1.jpg")!,
+                UIImage(named: "Image-2.jpg")!
+            ],
+            [
+                UIImage(named: "Image-3.jpg")!,
+                UIImage(named: "Image-4.jpg")!
+            ]
+        ]
+        
+        // Create attributes for captions
+        
+        let captionAttributes = [
+            NSFontAttributeName: UIFont.italicSystemFont(ofSize: 15.0),
+            NSParagraphStyleAttributeName: {
+                let style = NSMutableParagraphStyle()
+                style.alignment = .center
+                return style
+            }(),
+            NSForegroundColorAttributeName: UIColor(colorLiteralRed: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0),
+            
+            ]
+        
+        // Add first row of images
+        
+        pdf.addImagesInRow(images: images[0], captions: [
+            NSAttributedString(string: "Waterfall", attributes: captionAttributes),
+            NSAttributedString(string: "Forrest", attributes: captionAttributes)
+            ], spacing: 10)
+        
+        // Add spacing between image rows
+        
+        pdf.addSpace(space: 10)
+        
+        // Add second row of images
+        
+        pdf.addImagesInRow(images: images[1], captions: [
+            NSAttributedString(string: "Fireworks", attributes: captionAttributes),
+            NSAttributedString(string: "Field", attributes: captionAttributes)
+            ], spacing: 10)
+        
+        // Finish image collage with another line separator
+        
+        pdf.addSpace(space: 10)
+        pdf.addLineSeparator(style: LineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
+        pdf.addSpace(space: 10)
+        
+        // Create a table
+        
+        let table = Table()
+        
+        // Tables can contain Strings, Numbers, Images or nil, in case you need an empty cell. If you add a unknown content type, an error will be thrown and the rendering will stop.
+        
+        do {
+            try table.setData(data: [
+                [nil, "Name", "Image", "Description"],
+                [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
+                [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
+                [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
+                [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
+                [nil, nil, nil, "Many beautiful places"]
+                ])
+        } catch TPPDFError.tableContentInvalid(let value) {
+            // In case invalid input is provided, this error will be thrown.
+            
+            print("This type of object is not supported as table content: " + String(describing: (type(of: value))))
+        } catch {
+            // Generall error handling in case something goes wrong.
+            
+            print("Error while creating table: " + error.localizedDescription)
+        }
+        
+        // Now set the alignment of each cell.
+        
+        table.alignments = [
+            [.center, .center, .center, .left],
+            [.center, .center, .center, .left],
+            [.center, .center, .center, .left],
+            [.center, .center, .center, .left],
+            [.center, .center, .center, .left],
+            [.left, .left, .left, .left]
+        ]
+        
+        // The widths of each column is proportional to the total width, set by a value between 0.0 and 1.0, representing percentage.
+        
+        table.widths = [
+            0.1, 0.25, 0.35, 0.3
+        ]
+        
+        // To speed up table styling, use a default and change it
+        
+        let style = TableStyleDefaults.simple
+        
+        // Style each cell individually
+        
+        style.setCellStyle(row: 1, column: 1, style: TableCellStyle(fillColor: UIColor.yellow))
+        
+        // Change standardized styles
+        table.style.footerStyle = TableCellStyle(
+            fillColor: UIColor(colorLiteralRed: 0.171875,
+                               green: 0.2421875,
+                               blue: 0.3125,
+                               alpha: 1.0),
+            textColor: UIColor.white,
+            font: UIFont.systemFont(ofSize: 10),
+            borderLeft: LineStyle(),
+            borderTop: LineStyle(),
+            borderRight: LineStyle(),
+            borderBottom: LineStyle())
+        
+        // Simply set the amount of footer and header rows
+        
+        table.style.columnHeaderCount = 1
+        table.style.footerCount = 1
+        
+        // Set table padding and margin
+        
+        table.padding = 4
+        table.margin = 0
+        
+        // In case of a linebreak during rendering we want to have table headers on each page.
+        
+        table.showHeadersOnEveryPage = true
+        
+        pdf.addTable(table: table)
+        
+        
         
         /* Execution Metrics */
         print("Preparation: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))

@@ -15,9 +15,9 @@ open class ListItem: CustomStringConvertible {
     open var children: [ListItem]?
     open var symbol: Symbol
     
-    public init(content: String? = nil, symbol: Symbol = Symbol.inherit) {
-        self.content = content
+    public init(symbol: Symbol = Symbol.inherit, content: String? = nil) {
         self.symbol = symbol
+        self.content = content
     }
     
     public func addItem(_ item: ListItem) -> ListItem {

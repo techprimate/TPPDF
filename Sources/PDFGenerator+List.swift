@@ -38,6 +38,7 @@ extension PDFGenerator {
             indentation[container.normalize] = originalIndent + indent.pre + indent.past
             
             try drawText(container, text: item.text, spacing: 12, calculatingMetrics: calculatingMetrics)
+            indentation[container.normalize] = originalIndent
         }
     }
 }
