@@ -10,7 +10,7 @@ import Foundation
 
 extension PDFGenerator {
     
-    open func setPageNumbering(_ container: Container = Container.footerRight, style: PaginationStyle = PaginationStyle.Default, from fromPage: Int = 0, to toPage: Int = Int.max, hiddenPages: [Int] = []) {
+    open func setPageNumbering(_ container: Container = Container.none, style: PaginationStyle = PaginationStyle.Default, from fromPage: Int = 0, to toPage: Int = Int.max, hiddenPages: [Int] = []) {
         self.paginationContainer = container
         self.paginationStyle = style
         self.paginationStart = fromPage

@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit, calculation: Bool = false) {
+    func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit, calculatingMetrics: Bool) {
         var (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
         
         let y: CGFloat = {
@@ -17,7 +17,7 @@ extension PDFGenerator {
                 return headerHeight[container]!
             case .contentLeft:
                 if (contentHeight + imageSize.height + captionSize.height > contentSize.height || (sizeFit == .height && imageSize.height < size.height)) {
-                    generateNewPage()
+                    generateNewPage(calculatingMetrics: calculatingMetrics)
                     
                     (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
                     
@@ -45,10 +45,10 @@ extension PDFGenerator {
         }()
         
         let frame = CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height)
-        drawImage(container, image: image, frame: frame, caption: caption, calculation: calculation)
+        drawImage(container, image: image, frame: frame, caption: caption, calculatingMetrics: calculatingMetrics)
     }
     
-    func drawImagesInRow(_ container: Container, images: [UIImage], captions: [NSAttributedString], spacing: CGFloat, calculation: Bool = false) {
+    func drawImagesInRow(_ container: Container, images: [UIImage], captions: [NSAttributedString], spacing: CGFloat, calculatingMetrics: Bool) {
         assert(images.count > 0, "You need to provide at least one image!")
         
         let totalImagesWidth = contentSize.width - indentation[container.normalize]! - (CGFloat(images.count) - 1) * spacing
@@ -75,7 +75,7 @@ extension PDFGenerator {
         
         var y = contentHeight + maxHeaderHeight() + headerSpace
         if (contentHeight + maxHeight > contentSize.height) {
-            generateNewPage()
+            generateNewPage(calculatingMetrics: calculatingMetrics)
             
             y = contentHeight + maxHeaderHeight() + headerSpace
             (imageSizes, maxHeight) = calculateImageCaptionSizes(images, captions)
@@ -87,7 +87,7 @@ extension PDFGenerator {
         for (index, image) in images.enumerated() {
             let imageSize = imageSizes[index]
             let caption = (captions.count > index) ? captions[index] : NSAttributedString()
-            drawImage(container, image: image, frame: CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height), caption: caption, calculation: calculation)
+            drawImage(container, image: image, frame: CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height), caption: caption, calculatingMetrics: calculatingMetrics)
             
             x += imageSize.width + spacing
             indentation[container.normalize] = indentation[container.normalize]! + imageSize.width + spacing
@@ -98,7 +98,7 @@ extension PDFGenerator {
         contentHeight += maxHeight
     }
     
-    func drawImage(_ container: Container, image: UIImage, frame: CGRect, caption: NSAttributedString, calculation: Bool = false) {
+    func drawImage(_ container: Container, image: UIImage, frame: CGRect, caption: NSAttributedString, calculatingMetrics: Bool) {
         // resize
         let resizeFactor = (3 * imageQuality > 1) ? 3 * imageQuality : 1
         let resizeImageSize = CGSize(width: frame.size.width * resizeFactor, height: frame.size.height * resizeFactor)
@@ -115,7 +115,7 @@ extension PDFGenerator {
         
         if let resultImage = compressedImage {
             // Don't render when calculating metrics
-            if (!calculation) {
+            if !calculatingMetrics {
                 resultImage.draw(in: frame)
             }
         } else {
@@ -131,7 +131,7 @@ extension PDFGenerator {
         }
         
         if caption.length > 0 {
-            drawAttributedText(container, text: caption, textMaxWidth: frame.size.width, calculation: calculation)
+            drawAttributedText(container, text: caption, textMaxWidth: frame.size.width, calculatingMetrics: calculatingMetrics)
         }
     }
 }

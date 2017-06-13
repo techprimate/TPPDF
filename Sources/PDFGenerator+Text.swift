@@ -8,13 +8,13 @@
 
 extension PDFGenerator {
     
-    func drawText(_ container: Container, text: String, spacing: CGFloat, textMaxWidth: CGFloat = 0, calculation: Bool = false) {
+    func drawText(_ container: Container, text: String, spacing: CGFloat, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) {
         let attributes = generateDefaultTextAttributes(container, spacing: spacing)
         
-        drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), textMaxWidth: textMaxWidth, calculation: calculation)
+        drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), textMaxWidth: textMaxWidth, calculatingMetrics: calculatingMetrics)
     }
     
-    func drawAttributedText(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat = 0, calculation: Bool = false) {
+    func drawAttributedText(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) {
         let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
         var currentRange = CFRange(location: 0, length: 0)
         var done = false
@@ -22,33 +22,32 @@ extension PDFGenerator {
         repeat {
             let (frameRef, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(container, text: currentText!, currentRange: currentRange, textMaxWidth: textMaxWidth)
             
+            // Get the graphics context.
+            let currentContext = UIGraphicsGetCurrentContext()!
+            
+            // Push state
+            currentContext.saveGState()
+            
+            // Put the text matrix into a known state. This ensures
+            // that no old scaling factors are left in place.
+            currentContext.textMatrix = CGAffineTransform.identity
+            
+            // Core Text draws from the bottom-left corner up, so flip
+            // the current transform prior to drawing.
+            currentContext.translateBy(x: 0, y: pageBounds.height)
+            currentContext.scaleBy(x: 1.0, y: -1.0)
+            
             // Don't render when calculating metrics
-            if (!calculation) {
-                // Get the graphics context.
-                let currentContext = UIGraphicsGetCurrentContext()!
-                
-                // Push state
-                currentContext.saveGState()
-                
-                // Put the text matrix into a known state. This ensures
-                // that no old scaling factors are left in place.
-                currentContext.textMatrix = CGAffineTransform.identity
-                
-                // Core Text draws from the bottom-left corner up, so flip
-                // the current transform prior to drawing.
-                currentContext.translateBy(x: 0, y: pageBounds.height)
-                currentContext.scaleBy(x: 1.0, y: -1.0)
-                
+            if !calculatingMetrics {
                 // Draw the frame.
                 CTFrameDraw(frameRef, currentContext)
-                
-                // Pop state
-                currentContext.restoreGState()
-                
-                // Update the current range based on what was drawn.
-                let visibleRange = CTFrameGetVisibleStringRange(frameRef)
-                currentRange = CFRange(location: visibleRange.location + visibleRange.length , length: 0)
             }
+            // Pop state
+            currentContext.restoreGState()
+            
+            // Update the current range based on what was drawn.
+            let visibleRange = CTFrameGetVisibleStringRange(frameRef)
+            currentRange = CFRange(location: visibleRange.location + visibleRange.length , length: 0)
             
             if container.isHeader {
                 headerHeight[container] = headerHeight[container]! + drawnSize.height
@@ -60,7 +59,7 @@ extension PDFGenerator {
             if currentRange.location == CFAttributedStringGetLength(currentText) {
                 done = true
             } else {
-                generateNewPage()
+                generateNewPage(calculatingMetrics: calculatingMetrics)
             }
         } while(!done)
     }

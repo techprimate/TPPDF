@@ -45,7 +45,7 @@ open class PDFGenerator  {
     var contentSize: CGSize {
         return CGSize(width: pageBounds.width - 2 * pageMargin, height: pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace)
     }
-
+    
     var indentation: [Container: CGFloat] = [
         .headerLeft : 0,
         .contentLeft : 0,
@@ -53,7 +53,7 @@ open class PDFGenerator  {
     ]
     
     var currentPage: Int = 1
-    var totalPages: Int = Int.max
+    var totalPages: Int = 0
     var paginationContainer = Container.none
     var paginationStyle = PaginationStyle.Default
     var paginationStart: Int = 1
@@ -70,12 +70,15 @@ open class PDFGenerator  {
     
     // MARK: - Tools
     
-    func generateNewPage() {
-        UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
+    func generateNewPage(calculatingMetrics: Bool) {
+        // Don't render if calculating metrics
+        if !calculatingMetrics {
+            UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
+        }
         contentHeight = 0
         currentPage += 1
         
-        renderHeaderFooter()
+        renderHeaderFooter(calculatingMetrics: calculatingMetrics)
     }
     
     func resetGenerator() {
@@ -87,6 +90,6 @@ open class PDFGenerator  {
             .contentLeft : 0,
             .footerLeft : 0
         ]
-        currentPage = 0
+        currentPage = 1
     }
 }

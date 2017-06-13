@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculation: Bool = false) {
+    func drawTable(_ container: Container, data: [[String]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) {
         assert(data.count != 0, "You can't draw an table without rows!")
         assert(data.count == alignments.count, "Data and alignment array must be equal size!")
         for (rowIdx, row) in data.enumerated() {
@@ -101,7 +101,8 @@ extension PDFGenerator {
         
         let tableFrame = CGRect(x: x, y: contentHeight + maxHeaderHeight() + headerSpace, width: totalWidth, height: totalHeight)
         
-        if (!calculation) {
+        // Dont' render if calculating metrics
+        if !calculatingMetrics {
             // Draw background
             
             for (rowIdx, row) in dataInThisPage.enumerated() {
@@ -162,8 +163,8 @@ extension PDFGenerator {
         // Continue with table on next page
         
         if !dataInNewPage.isEmpty {
-            generateNewPage()
-            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, newPageBreak: true, styleIndexOffset: dataInThisPage.count)
+            generateNewPage(calculatingMetrics: calculatingMetrics)
+            drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, newPageBreak: true, styleIndexOffset: dataInThisPage.count, calculatingMetrics: calculatingMetrics)
         } else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
         }
