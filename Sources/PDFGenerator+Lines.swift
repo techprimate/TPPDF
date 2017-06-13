@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawLineSeparator(_ container: Container, style: LineStyle) {
+    func drawLineSeparator(_ container: Container, style: LineStyle, calculation: Bool = false) {
         let y: CGFloat = {
             switch container.normalize {
             case .headerLeft:
@@ -22,7 +22,10 @@ extension PDFGenerator {
             }
         }()
         
-        drawLine(start: CGPoint(x: pageMargin + indentation[container.normalize]!, y: y), end: CGPoint(x: contentSize.width - indentation[container.normalize]!, y: y), style: style)
+        // Dont' render when calculating metrics
+        if (!calculation) {
+            drawLine(start: CGPoint(x: pageMargin + indentation[container.normalize]!, y: y), end: CGPoint(x: contentSize.width - indentation[container.normalize]!, y: y), style: style)
+        }
     }
     
     func drawLine(start: CGPoint, end: CGPoint, style: LineStyle) {
@@ -53,7 +56,7 @@ extension PDFGenerator {
         
         path.setLineDash(dashes, count: dashes.count, phase: 0.0)
         
-        // Set color
+        // Set color to line
         style.color.setStroke()
         
         path.stroke()

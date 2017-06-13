@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit) {
+    func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit, calculation: Bool = false) {
         var (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
         
         let y: CGFloat = {
@@ -45,10 +45,10 @@ extension PDFGenerator {
         }()
         
         let frame = CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height)
-        drawImage(container, image: image, frame: frame, caption: caption)
+        drawImage(container, image: image, frame: frame, caption: caption, calculation: calculation)
     }
     
-    func drawImagesInRow(_ container: Container, images: [UIImage], captions: [NSAttributedString], spacing: CGFloat) {
+    func drawImagesInRow(_ container: Container, images: [UIImage], captions: [NSAttributedString], spacing: CGFloat, calculation: Bool = false) {
         assert(images.count > 0, "You need to provide at least one image!")
         
         let totalImagesWidth = contentSize.width - indentation[container.normalize]! - (CGFloat(images.count) - 1) * spacing
@@ -87,7 +87,7 @@ extension PDFGenerator {
         for (index, image) in images.enumerated() {
             let imageSize = imageSizes[index]
             let caption = (captions.count > index) ? captions[index] : NSAttributedString()
-            drawImage(container, image: image, frame: CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height), caption: caption)
+            drawImage(container, image: image, frame: CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height), caption: caption, calculation: calculation)
             
             x += imageSize.width + spacing
             indentation[container.normalize] = indentation[container.normalize]! + imageSize.width + spacing
@@ -98,7 +98,7 @@ extension PDFGenerator {
         contentHeight += maxHeight
     }
     
-    func drawImage(_ container: Container, image: UIImage, frame: CGRect, caption: NSAttributedString) {
+    func drawImage(_ container: Container, image: UIImage, frame: CGRect, caption: NSAttributedString, calculation: Bool = false) {
         // resize
         let resizeFactor = (3 * imageQuality > 1) ? 3 * imageQuality : 1
         let resizeImageSize = CGSize(width: frame.size.width * resizeFactor, height: frame.size.height * resizeFactor)
@@ -114,7 +114,10 @@ extension PDFGenerator {
         }
         
         if let resultImage = compressedImage {
-            resultImage.draw(in: frame)
+            // Don't render when calculating metrics
+            if (!calculation) {
+                resultImage.draw(in: frame)
+            }
         } else {
             image.draw(in: frame)
         }
@@ -128,7 +131,7 @@ extension PDFGenerator {
         }
         
         if caption.length > 0 {
-            drawAttributedText(container, text: caption, textMaxWidth: frame.size.width)
+            drawAttributedText(container, text: caption, textMaxWidth: frame.size.width, calculation: calculation)
         }
     }
 }
