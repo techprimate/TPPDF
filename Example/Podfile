@@ -1,17 +1,16 @@
+inhibit_all_warnings!
+platform :ios, '8.3'
 use_frameworks!
 
-platform :ios, '8.3'
-inhibit_all_warnings!
-
 target 'TPPDF_Example' do
-  pod 'TPPDF', :path => '../'
+    pod 'TPPDF', :path => '../'
+end
 
-  target 'TPPDF_Tests' do
-    inherit! :search_paths
-
+target 'TPPDF_Tests' do
+    pod 'TPPDF', :path => '../'
+    
     pod 'Quick'
     pod 'Nimble'
-  end
 end
 
 post_install do |installer|
