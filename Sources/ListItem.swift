@@ -28,7 +28,7 @@ open class ListItem: CustomStringConvertible {
     
     public func addItems(_ items: [ListItem]) -> ListItem {
         for item in items {
-            addItem(item)
+            let _ = addItem(item)
         }
         return self
     }
@@ -39,6 +39,6 @@ open class ListItem: CustomStringConvertible {
     }
     
     public var description: String {
-        return "[ListItem]<content: \(content), symbol: \(symbol.rawValue)>"
+        return "<ListItem>[content: " + (content ?? "nil") + ", symbol: \(symbol.rawValue)]"
     }
 }

@@ -1,5 +1,5 @@
 PODS:
-  - Nimble (7.0.0)
+  - Nimble (7.0.1)
   - Quick (1.1.0)
   - TPPDF (0.4.0)
 
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Nimble: 874982b605d4d752fcac6be695d13c502de84b1b
+  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   TPPDF: 3832316091fdb2cbb9b5ef4093bfcdf4b03fd7cb
 

@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import XCTest
-
 import Quick
 import Nimble
 

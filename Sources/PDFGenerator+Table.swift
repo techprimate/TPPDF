@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawTable(_ container: Container, data: [[TableContent?]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) throws {
+    public static func validateTableData(data: [[TableContent?]], alignments: [[TableCellAlignment]], columnWidths: [CGFloat]) throws {
         // Throw error when empty. Signalizes developer he tries to render an empty table. Might cause format errors
         if data.count == 0 {
             throw TPPDFError.tableIsEmpty
@@ -25,10 +25,15 @@ extension PDFGenerator {
                 throw TPPDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
             }
             // Throw error when columns row count does not equal relativeColumnWidth count
-            if row.count != relativeColumnWidth.count {
+            if row.count != columnWidths.count {
                 throw TPPDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
             }
         }
+    }
+    
+    func drawTable(_ container: Container, data: [[TableContent?]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) throws {
+        
+        try PDFGenerator.validateTableData(data: data, alignments: alignments, columnWidths: relativeColumnWidth)
         
         let totalWidth = pageBounds.width - 2 * pageMargin - indentation[container.normalize]!
         var x: CGFloat = pageMargin + indentation[container.normalize]!
@@ -106,21 +111,24 @@ extension PDFGenerator {
         var (dataInThisPage, alignmentsInThisPage, framesInThisPage): ([[TableContent?]], [[TableCellAlignment]], [[CGRect]]) = ([], [], [])
         var (dataInNewPage, alignmentsInNewPage): ([[TableContent?]], [[TableCellAlignment]]) = ([], [])
         var totalHeight: CGFloat = 0
+        var nextPage = false
         
         for (rowIdx, row) in data.enumerated() {
             let maxHeight = frames[rowIdx].reduce(0) { max($0, $1.height) }
             let cellHeight = maxHeight + 2 * padding
             
-            if (frames[rowIdx][0].origin.y + cellHeight > contentSize.height + maxHeaderHeight() + headerSpace) {
+            if ((frames[rowIdx][0].origin.y + totalHeight + cellHeight > contentSize.height + maxHeaderHeight() + headerSpace) || nextPage) {
+                nextPage = true
                 dataInNewPage.append(row)
                 alignmentsInNewPage.append(alignments[rowIdx])
             } else {
                 dataInThisPage.append(row)
                 alignmentsInThisPage.append(alignments[rowIdx])
                 framesInThisPage.append(frames[rowIdx])
-                
-                totalHeight += cellHeight + 2 * margin
             }
+            
+            totalHeight += cellHeight + 2 * margin
+            
             for (idx, frame) in cellFrames[rowIdx].enumerated() {
                 var newFrame = frame
                 newFrame.size.height = cellHeight
@@ -132,6 +140,7 @@ extension PDFGenerator {
         
         // Dont' render if calculating metrics
         if !calculatingMetrics {
+            
             // Draw background
             
             for (rowIdx, row) in dataInThisPage.enumerated() {

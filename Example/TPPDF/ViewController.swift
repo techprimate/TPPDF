@@ -4,7 +4,6 @@
 //
 //  Created by Philip Niedertscheider on 11/08/16.
 //
-//
 
 import UIKit
 import TPPDF

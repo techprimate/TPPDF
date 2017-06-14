@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A6D7958C503E25BBE00AFAF /* Pods_TPPDF_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F8EF7CFB648D3F0EA0651B2 /* Pods_TPPDF_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
-		AAF20D711DEFCA6100948166 /* PortraitImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AAF20D701DEFCA6100948166 /* PortraitImage.jpg */; };
-		D4032E8C1D629AF700F1C14A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4032E8A1D629AF700F1C14A /* LaunchScreen.storyboard */; };
-		D4032E901D629B5D00F1C14A /* Image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4032E8F1D629B5D00F1C14A /* Image.jpg */; };
-		D445F20C1EF02AC900817246 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D445F20B1EF02AC900817246 /* Icon.png */; };
-		D445F2141EF0381000817246 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D445F2131EF0381000817246 /* ListTests.swift */; };
-		D4AD82FA1EF08D9C007F73B7 /* Image-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4AD82F61EF08D9C007F73B7 /* Image-1.jpg */; };
-		D4AD82FB1EF08D9C007F73B7 /* Image-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4AD82F71EF08D9C007F73B7 /* Image-2.jpg */; };
-		D4AD82FC1EF08D9C007F73B7 /* Image-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4AD82F81EF08D9C007F73B7 /* Image-3.jpg */; };
-		D4AD82FD1EF08D9C007F73B7 /* Image-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4AD82F91EF08D9C007F73B7 /* Image-4.jpg */; };
-		FE72AAD5840A908C7220B22D /* Pods_TPPDF_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BAEA99CE7B3E2607E018AB /* Pods_TPPDF_Example.framework */; };
+		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		CED0642F90E8CB3EE24E6CE1 /* Pods_TPPDF_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51225CE8D6A4D87EA755A365 /* Pods_TPPDF_Tests.framework */; };
+		D4F8C11F1EF14C5000188F42 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C1181EF14C5000188F42 /* Icon.png */; };
+		D4F8C1201EF14C5000188F42 /* Image-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C1191EF14C5000188F42 /* Image-1.jpg */; };
+		D4F8C1211EF14C5000188F42 /* Image-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C11A1EF14C5000188F42 /* Image-2.jpg */; };
+		D4F8C1221EF14C5000188F42 /* Image-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C11B1EF14C5000188F42 /* Image-3.jpg */; };
+		D4F8C1231EF14C5000188F42 /* Image-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C11C1EF14C5000188F42 /* Image-4.jpg */; };
+		D4F8C1241EF14C5000188F42 /* Image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C11D1EF14C5000188F42 /* Image.jpg */; };
+		D4F8C1251EF14C5000188F42 /* PortraitImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C11E1EF14C5000188F42 /* PortraitImage.jpg */; };
+		FAF10F60BB7ABF90600706CB /* Pods_TPPDF_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77E6E5DDDF148C3B7DE6726 /* Pods_TPPDF_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,33 +35,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		13474A0CCA02688789744BB1 /* Pods-TPPDF_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		16E8BB4E005608E8F07148C8 /* Pods-TPPDF_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		3CE8F82DF1608DB936565179 /* TPPDF.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TPPDF.podspec; path = ../TPPDF.podspec; sourceTree = "<group>"; };
-		5F8EF7CFB648D3F0EA0651B2 /* Pods_TPPDF_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2271880B44F36A292EC5F14F /* Pods-TPPDF_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		51225CE8D6A4D87EA755A365 /* Pods_TPPDF_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B0B4ED60E5101E03D78D22A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		5B33C61EC58DBAB629433DE7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TPPDF_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPPDF_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* TPPDF_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TPPDF_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81E2E4032A07FFB898A01D27 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		AAF20D701DEFCA6100948166 /* PortraitImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PortraitImage.jpg; sourceTree = "<group>"; };
-		BED306E4A2B7E0694D47D195 /* Pods-TPPDF_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D17FC7694F2FC04588A6AD27 /* Pods-TPPDF_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		D4032E8B1D629AF700F1C14A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D4032E8F1D629B5D00F1C14A /* Image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Image.jpg; sourceTree = "<group>"; };
-		D445F20B1EF02AC900817246 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		D445F2131EF0381000817246 /* ListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
-		D4520D851D6A4F1B00316BE3 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
-		D4AD82F61EF08D9C007F73B7 /* Image-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-1.jpg"; sourceTree = "<group>"; };
-		D4AD82F71EF08D9C007F73B7 /* Image-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-2.jpg"; sourceTree = "<group>"; };
-		D4AD82F81EF08D9C007F73B7 /* Image-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-3.jpg"; sourceTree = "<group>"; };
-		D4AD82F91EF08D9C007F73B7 /* Image-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-4.jpg"; sourceTree = "<group>"; };
-		DC41BDBFA33F0A39A5AEA582 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		E3BAEA99CE7B3E2607E018AB /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		64DEC289FE292E4935737720 /* Pods-TPPDF_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		AA3ABE5E8B71837B45C4119F /* TPPDF.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TPPDF.podspec; path = ../TPPDF.podspec; sourceTree = "<group>"; };
+		B38E0DB3BD1F73F458075DE3 /* Pods-TPPDF_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		BE9D450F00F17DF55EE0EB56 /* Pods-TPPDF_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.release.xcconfig"; sourceTree = "<group>"; };
+		D4F8C1181EF14C5000188F42 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		D4F8C1191EF14C5000188F42 /* Image-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-1.jpg"; sourceTree = "<group>"; };
+		D4F8C11A1EF14C5000188F42 /* Image-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-2.jpg"; sourceTree = "<group>"; };
+		D4F8C11B1EF14C5000188F42 /* Image-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-3.jpg"; sourceTree = "<group>"; };
+		D4F8C11C1EF14C5000188F42 /* Image-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-4.jpg"; sourceTree = "<group>"; };
+		D4F8C11D1EF14C5000188F42 /* Image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Image.jpg; sourceTree = "<group>"; };
+		D4F8C11E1EF14C5000188F42 /* PortraitImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PortraitImage.jpg; sourceTree = "<group>"; };
+		E77E6E5DDDF148C3B7DE6726 /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE72AAD5840A908C7220B22D /* Pods_TPPDF_Example.framework in Frameworks */,
+				FAF10F60BB7ABF90600706CB /* Pods_TPPDF_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A6D7958C503E25BBE00AFAF /* Pods_TPPDF_Tests.framework in Frameworks */,
+				CED0642F90E8CB3EE24E6CE1 /* Pods_TPPDF_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,8 +90,8 @@
 				607FACD21AFB9204008FA782 /* Example for TPPDF */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
-				BFAEC246C079CEE9B70FDE2F /* Pods */,
-				86A06520E38FCC8A2BC9F2A1 /* Frameworks */,
+				A0D1B427B4B9A0733428412E /* Pods */,
+				8A42E3A5299A092B308A7C46 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,15 +110,9 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				D4032E8A1D629AF700F1C14A /* LaunchScreen.storyboard */,
-				D445F20B1EF02AC900817246 /* Icon.png */,
-				D4032E8F1D629B5D00F1C14A /* Image.jpg */,
-				AAF20D701DEFCA6100948166 /* PortraitImage.jpg */,
-				D4AD82F61EF08D9C007F73B7 /* Image-1.jpg */,
-				D4AD82F71EF08D9C007F73B7 /* Image-2.jpg */,
-				D4AD82F81EF08D9C007F73B7 /* Image-3.jpg */,
-				D4AD82F91EF08D9C007F73B7 /* Image-4.jpg */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				D4F8C1171EF14C5000188F42 /* Images */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for TPPDF";
@@ -137,7 +130,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D445F2131EF0381000817246 /* ListTests.swift */,
+				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -154,32 +147,45 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				3CE8F82DF1608DB936565179 /* TPPDF.podspec */,
-				81E2E4032A07FFB898A01D27 /* README.md */,
-				D4520D851D6A4F1B00316BE3 /* CHANGELOG.md */,
-				DC41BDBFA33F0A39A5AEA582 /* LICENSE */,
+				AA3ABE5E8B71837B45C4119F /* TPPDF.podspec */,
+				5B0B4ED60E5101E03D78D22A /* README.md */,
+				5B33C61EC58DBAB629433DE7 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		86A06520E38FCC8A2BC9F2A1 /* Frameworks */ = {
+		8A42E3A5299A092B308A7C46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E3BAEA99CE7B3E2607E018AB /* Pods_TPPDF_Example.framework */,
-				5F8EF7CFB648D3F0EA0651B2 /* Pods_TPPDF_Tests.framework */,
+				E77E6E5DDDF148C3B7DE6726 /* Pods_TPPDF_Example.framework */,
+				51225CE8D6A4D87EA755A365 /* Pods_TPPDF_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BFAEC246C079CEE9B70FDE2F /* Pods */ = {
+		A0D1B427B4B9A0733428412E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				16E8BB4E005608E8F07148C8 /* Pods-TPPDF_Example.debug.xcconfig */,
-				BED306E4A2B7E0694D47D195 /* Pods-TPPDF_Example.release.xcconfig */,
-				13474A0CCA02688789744BB1 /* Pods-TPPDF_Tests.debug.xcconfig */,
-				D17FC7694F2FC04588A6AD27 /* Pods-TPPDF_Tests.release.xcconfig */,
+				B38E0DB3BD1F73F458075DE3 /* Pods-TPPDF_Example.debug.xcconfig */,
+				BE9D450F00F17DF55EE0EB56 /* Pods-TPPDF_Example.release.xcconfig */,
+				2271880B44F36A292EC5F14F /* Pods-TPPDF_Tests.debug.xcconfig */,
+				64DEC289FE292E4935737720 /* Pods-TPPDF_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D4F8C1171EF14C5000188F42 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8C1181EF14C5000188F42 /* Icon.png */,
+				D4F8C1191EF14C5000188F42 /* Image-1.jpg */,
+				D4F8C11A1EF14C5000188F42 /* Image-2.jpg */,
+				D4F8C11B1EF14C5000188F42 /* Image-3.jpg */,
+				D4F8C11C1EF14C5000188F42 /* Image-4.jpg */,
+				D4F8C11D1EF14C5000188F42 /* Image.jpg */,
+				D4F8C11E1EF14C5000188F42 /* PortraitImage.jpg */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,12 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "TPPDF_Example" */;
 			buildPhases = (
-				23DB6553866010F33176AEF3 /* [CP] Check Pods Manifest.lock */,
+				214BD80A81DD18696FEE872F /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				D844DE0DB5AFE8BA28DC65F5 /* [CP] Embed Pods Frameworks */,
-				36EA2E4592693DCBFA8F866F /* [CP] Copy Pods Resources */,
+				90635F88E5D66BEBF603687D /* [CP] Embed Pods Frameworks */,
+				58BAD3D5A613C0FD7CCE1DC8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -209,12 +215,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "TPPDF_Tests" */;
 			buildPhases = (
-				8EC973C9D37ACE5D293780E2 /* [CP] Check Pods Manifest.lock */,
+				9CCBC2EB71420417CE0CAA63 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				1C221A8EEAAA109138C7B0BE /* [CP] Embed Pods Frameworks */,
-				D4084A838CD02BFFFC4370FB /* [CP] Copy Pods Resources */,
+				6060D66309C5289A1435A83C /* [CP] Embed Pods Frameworks */,
+				C858A983AA4F7656B6F65F25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -233,17 +239,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0810;
-						ProvisioningStyle = Manual;
+						LastSwiftMigration = 0820;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0820;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -272,16 +277,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4AD82FA1EF08D9C007F73B7 /* Image-1.jpg in Resources */,
-				D4AD82FC1EF08D9C007F73B7 /* Image-3.jpg in Resources */,
-				D4AD82FD1EF08D9C007F73B7 /* Image-4.jpg in Resources */,
-				D445F20C1EF02AC900817246 /* Icon.png in Resources */,
-				D4032E901D629B5D00F1C14A /* Image.jpg in Resources */,
-				D4032E8C1D629AF700F1C14A /* LaunchScreen.storyboard in Resources */,
-				D4AD82FB1EF08D9C007F73B7 /* Image-2.jpg in Resources */,
+				D4F8C1211EF14C5000188F42 /* Image-2.jpg in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				D4F8C1231EF14C5000188F42 /* Image-4.jpg in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				AAF20D711DEFCA6100948166 /* PortraitImage.jpg in Resources */,
+				D4F8C1201EF14C5000188F42 /* Image-1.jpg in Resources */,
+				D4F8C1251EF14C5000188F42 /* PortraitImage.jpg in Resources */,
+				D4F8C1241EF14C5000188F42 /* Image.jpg in Resources */,
+				D4F8C11F1EF14C5000188F42 /* Icon.png in Resources */,
+				D4F8C1221EF14C5000188F42 /* Image-3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,22 +300,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1C221A8EEAAA109138C7B0BE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		23DB6553866010F33176AEF3 /* [CP] Check Pods Manifest.lock */ = {
+		214BD80A81DD18696FEE872F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -325,7 +315,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		36EA2E4592693DCBFA8F866F /* [CP] Copy Pods Resources */ = {
+		58BAD3D5A613C0FD7CCE1DC8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -340,7 +330,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8EC973C9D37ACE5D293780E2 /* [CP] Check Pods Manifest.lock */ = {
+		6060D66309C5289A1435A83C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90635F88E5D66BEBF603687D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CCBC2EB71420417CE0CAA63 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -355,7 +375,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D4084A838CD02BFFFC4370FB /* [CP] Copy Pods Resources */ = {
+		C858A983AA4F7656B6F65F25 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -368,21 +388,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D844DE0DB5AFE8BA28DC65F5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -401,7 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D445F2141EF0381000817246 /* ListTests.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,12 +429,12 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		D4032E8A1D629AF700F1C14A /* LaunchScreen.storyboard */ = {
+		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D4032E8B1D629AF700F1C14A /* Base */,
+				607FACDF1AFB9204008FA782 /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -524,11 +529,9 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16E8BB4E005608E8F07148C8 /* Pods-TPPDF_Example.debug.xcconfig */;
+			baseConfigurationReference = B38E0DB3BD1F73F458075DE3 /* Pods-TPPDF_Example.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TPPDF/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -540,11 +543,9 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BED306E4A2B7E0694D47D195 /* Pods-TPPDF_Example.release.xcconfig */;
+			baseConfigurationReference = BE9D450F00F17DF55EE0EB56 /* Pods-TPPDF_Example.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TPPDF/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -556,10 +557,12 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13474A0CCA02688789744BB1 /* Pods-TPPDF_Tests.debug.xcconfig */;
+			baseConfigurationReference = 2271880B44F36A292EC5F14F /* Pods-TPPDF_Tests.debug.xcconfig */;
 			buildSettings = {
-				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -569,22 +572,22 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TPPDF_Example.app/TPPDF_Example";
 			};
 			name = Debug;
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D17FC7694F2FC04588A6AD27 /* Pods-TPPDF_Tests.release.xcconfig */;
+			baseConfigurationReference = 64DEC289FE292E4935737720 /* Pods-TPPDF_Tests.release.xcconfig */;
 			buildSettings = {
-				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TPPDF_Example.app/TPPDF_Example";
 			};
 			name = Release;
 		};

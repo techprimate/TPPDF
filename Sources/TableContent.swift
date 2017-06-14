@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-open class TableContent {
+open class TableContent: CustomStringConvertible {
     
     enum ContentType {
         case none
@@ -65,8 +65,13 @@ open class TableContent {
     var attributedStringValue: NSAttributedString? {
         return type == .attributedString ? content as? NSAttributedString : nil
     }
+    
     var imageValue: UIImage? {
         return type == .image ? content as? UIImage : nil
+    }
+    
+    public var description: String {
+        return "<TableContent>[content: " + (self.content.debugDescription) + "]"
     }
 }
 
