@@ -12,6 +12,8 @@
 [![Twitter](https://img.shields.io/badge/twitter-@Techprimate-blue.svg?style=flat-square)](http://twitter.com/techprimate)
 [![Facebook](https://img.shields.io/badge/facebook-@Techprimate-blue.svg?style=flat-square)](http://facebook.com/techprimate)
 
+[![codebeat badge](https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de)](https://codebeat.co/projects/github-com-techprimate-tppdf-develop)
+
 TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/wiki/Builder_pattern) pattern using simple commands. 
 
 - [Features](#features)

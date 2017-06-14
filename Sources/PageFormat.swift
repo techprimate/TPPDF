@@ -67,7 +67,7 @@ public enum PageFormat {
             return CGSize(width: 105, height: 147)   // 37   x 52   mm | 1.5  x 2.0  in
         case .a10:
             return CGSize(width: 74, height: 105)    // 26   x 37   mm | 1.0  x 1.5  in
-          
+            
         case .b0:
             return CGSize(width: 2834, height: 4008) // 1000 x 1414 mm | 39.4 x 66.7 in
         case .b1:
@@ -122,75 +122,55 @@ public enum PageFormat {
     
     var headerMargin: CGFloat {
         switch self {
-        case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger:
-            return 30.0
-        case .ansiA, .ansiB, .ansiC, .ansiD, .ansiE:
-            return 30.0
-        case .a0, .a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10:
-            return 30.0
-        case .b0, .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10:
-            return 30.0
-        case .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10:
+        case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger,
+             .ansiA, .ansiB, .ansiC, .ansiD, .ansiE,
+             .a0, .a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10,
+             .b0, .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10,
+             .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10:
             return 30.0
         }
     }
     
     var footerMargin: CGFloat {
         switch self {
-        case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger:
-            return 30.0
-        case .ansiA, .ansiB, .ansiC, .ansiD, .ansiE:
-            return 30.0
-        case .a0, .a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10:
-            return 30.0
-        case .b0, .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10:
-            return 30.0
-        case .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10:
+        case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger,
+             .ansiA, .ansiB, .ansiC, .ansiD, .ansiE,
+             .a0, .a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10,
+             .b0, .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10,
+             .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10:
             return 30.0
         }
     }
     
     var margin: CGFloat {
         switch self {
-        case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger:
-            return 36
-        case .ansiA, .ansiB, .ansiC, .ansiD, .ansiE:
-            return 36
-        case .a0, .a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10:
-            return 60
-        case .b0, .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10:
-            return 60
-        case .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10:
+        case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger,
+             .ansiA, .ansiB, .ansiC, .ansiD, .ansiE,
+             .a0, .a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10,
+             .b0, .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10,
+             .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10:
             return 60
         }
     }
     
     var headerSpace: CGFloat {
         switch self {
-        case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger:
-            return 15.0
-        case .ansiA, .ansiB, .ansiC, .ansiD, .ansiE:
-            return 15.0
-        case .a0, .a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10:
-            return 15.0
-        case .b0, .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10:
-            return 15.0
-        case .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10:
+        case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger,
+             .ansiA, .ansiB, .ansiC, .ansiD, .ansiE,
+             .a0, .a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10,
+             .b0, .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10,
+             .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10:
             return 15.0
         }
     }
     
     var footerSpace: CGFloat {
         switch self {
-        case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger:
-            return 15
-        case .ansiA, .ansiB, .ansiC, .ansiD, .ansiE:
-            return 15
-        case .a0, .a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10:
-            return 15
-        case .b0, .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10:
-            return 15
-        case .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10:
+        case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger,
+             .ansiA, .ansiB, .ansiC, .ansiD, .ansiE,
+             .a0, .a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10,
+             .b0, .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10,
+             .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10:
             return 15
         }
     }
