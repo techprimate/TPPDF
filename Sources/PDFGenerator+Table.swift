@@ -116,8 +116,9 @@ extension PDFGenerator {
         for (rowIdx, row) in data.enumerated() {
             let maxHeight = frames[rowIdx].reduce(0) { max($0, $1.height) }
             let cellHeight = maxHeight + 2 * padding
+            let allHeight = cellHeight + 2 * margin
             
-            if ((frames[rowIdx][0].origin.y + totalHeight + cellHeight > contentSize.height + maxHeaderHeight() + headerSpace) || nextPage) {
+            if ((frames[rowIdx][0].origin.y + allHeight > contentSize.height + maxHeaderHeight() + headerSpace) || nextPage) {
                 nextPage = true
                 dataInNewPage.append(row)
                 alignmentsInNewPage.append(alignments[rowIdx])
@@ -127,7 +128,7 @@ extension PDFGenerator {
                 framesInThisPage.append(frames[rowIdx])
             }
             
-            totalHeight += cellHeight + 2 * margin
+            totalHeight += allHeight
             
             for (idx, frame) in cellFrames[rowIdx].enumerated() {
                 var newFrame = frame
