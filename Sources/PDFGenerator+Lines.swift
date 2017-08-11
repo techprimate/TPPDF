@@ -25,8 +25,8 @@ extension PDFGenerator {
         // Dont' render when calculating metrics
         if !calculatingMetrics {
             drawLine(
-                start: CGPoint(x: layout.pageMargin + indentation[container.normalize]!, y: y),
-                end: CGPoint(x: layout.pageBounds.width - layout.pageMargin, y: y),
+                start: CGPoint(x: layout.margin.side + indentation[container.normalize]!, y: y),
+                end: CGPoint(x: layout.pageBounds.width - layout.margin.side, y: y),
                 style: style
             )
         }

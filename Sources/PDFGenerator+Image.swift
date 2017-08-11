@@ -34,11 +34,11 @@ extension PDFGenerator {
         let x: CGFloat = {
             switch container {
             case .headerLeft, .contentLeft, .footerLeft:
-                return layout.pageMargin + indentation[container.normalize]!
+                return layout.margin.side + indentation[container.normalize]!
             case .headerCenter, .contentCenter, .footerCenter:
                 return layout.pageBounds.midX - imageSize.width / 2
             case .headerRight, .contentRight, .footerRight:
-                return layout.pageBounds.width - layout.pageMargin - imageSize.width
+                return layout.pageBounds.width - layout.margin.side - imageSize.width
             default:
                 return 0
             }
@@ -81,7 +81,7 @@ extension PDFGenerator {
             (imageSizes, maxHeight) = calculateImageCaptionSizes(images, captions)
         }
         
-        var x: CGFloat = layout.pageMargin + indentation[container.normalize]!
+        var x: CGFloat = layout.margin.side + indentation[container.normalize]!
         
         let (nowContentHeight, nowIndentation) = (contentHeight, indentation[container.normalize]!)
         for (index, image) in images.enumerated() {

@@ -200,7 +200,7 @@ If you need your page in landscape format, use the `landscapeSize` variable.
 
 If you want to add a text to the header or footer you simply need to choose the correct container.
 
-If you want to render an image in one of these containers, it will use the square size `headerImageHeight`.
+If you want to render an image in one of these containers, set the size in the `PDFImage` object.
 
 But there are some limitations:
 

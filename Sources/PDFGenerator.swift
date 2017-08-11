@@ -12,13 +12,9 @@ open class PDFGenerator  {
     
     // MARK: - Public Variables
     
-    // TODO: remove this
-    
     open var layout: PDFLayout = PDFLayout()
     open var info: PDFInfo = PDFInfo()
     open var pagination: PDFPagination = PDFPagination()
-    
-    open var headerImageHeight: CGFloat = 32
     
     open var imageQuality: CGFloat = 0.8 {
         didSet {
@@ -39,7 +35,7 @@ open class PDFGenerator  {
     
     var contentSize: CGSize {
         return CGSize(
-            width: layout.pageBounds.width - 2 * layout.pageMargin,
+            width: layout.pageBounds.width - 2 * layout.margin.side,
             height: layout.pageBounds.height - maxHeaderHeight() - layout.space.header - maxFooterHeight() - layout.space.footer
         )
     }

@@ -12,7 +12,7 @@ extension PDFGenerator {
         self.init()
         
         self.layout.pageBounds = CGRect(origin: CGPoint.zero, size: pageSize)
-        self.layout.pageMargin = pageMargin
+        self.layout.margin.side = pageMargin
         
         self.layout.margin.footer = footerMargin
         self.layout.margin.header = headerMargin
@@ -32,7 +32,7 @@ extension PDFGenerator {
         self.init()
         
         self.layout.pageBounds = CGRect(origin: CGPoint.zero, size: format.size)
-        self.layout.pageMargin = format.margin
+        self.layout.margin.side = format.margin
         
         self.layout.margin.footer = format.footerMargin
         self.layout.margin.header = format.headerMargin

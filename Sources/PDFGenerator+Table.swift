@@ -12,8 +12,8 @@ extension PDFGenerator {
         
         try PDFTableValidator.validateCells(cells: cells, columnWidths: relativeColumnWidth)
         
-        let totalWidth = layout.pageBounds.width - 2 * layout.pageMargin - indentation[container.normalize]!
-        var x: CGFloat = layout.pageMargin + indentation[container.normalize]!
+        let totalWidth = layout.pageBounds.width - 2 * layout.margin.side - indentation[container.normalize]!
+        var x: CGFloat = layout.margin.side + indentation[container.normalize]!
         var y: CGFloat = contentHeight
         
         // Calculate cells
@@ -80,7 +80,7 @@ extension PDFGenerator {
                 frames[rowIdx][colIdx].origin.y = y
             }
             
-            x = layout.pageMargin
+            x = layout.margin.side
             y += maxHeight + 2 * margin + 2 * padding
         }
         

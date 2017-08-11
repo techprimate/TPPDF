@@ -19,11 +19,11 @@ extension PDFGenerator {
     }
     
     func maxHeaderHeight() -> CGFloat {
-        return max(layout.pageMargin, max(headerHeight[.headerLeft]!, max(headerHeight[.headerCenter]!, headerHeight[.headerRight]!)))
+        return max(layout.margin.side, max(headerHeight[.headerLeft]!, max(headerHeight[.headerCenter]!, headerHeight[.headerRight]!)))
     }
     
     func maxFooterHeight() -> CGFloat {
-        return max(layout.pageMargin, max(footerHeight[.footerLeft]!, max(footerHeight[.footerCenter]!, footerHeight[.footerRight]!)))
+        return max(layout.margin.side, max(footerHeight[.footerLeft]!, max(footerHeight[.footerCenter]!, footerHeight[.footerRight]!)))
     }
     
     func calculateCellFrame(_ origin: CGPoint, width: CGFloat, text: NSAttributedString, alignment: PDFTableCellAlignment) -> CGRect {
@@ -84,7 +84,7 @@ extension PDFGenerator {
     }
     
     func calculateTextFrameAndDrawnSizeInOnePage(_ container: PDFContainer, text: CFAttributedString, currentRange: CFRange, textMaxWidth: CGFloat) -> (CTFrame, CGSize) {
-        let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : layout.pageBounds.width - 2 * layout.pageMargin - indentation[container.normalize]!
+        let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : layout.pageBounds.width - 2 * layout.margin.side - indentation[container.normalize]!
         let textMaxHeight: CGFloat = {
             if container.isHeader {
                 return layout.pageBounds.height - headerHeight[container]!
@@ -99,11 +99,11 @@ extension PDFGenerator {
         let x: CGFloat = {
             switch container {
             case .headerLeft, .contentLeft, .footerLeft:
-                return layout.pageMargin + indentation[container.normalize]!
+                return layout.margin.side + indentation[container.normalize]!
             case .headerCenter, .contentCenter, .footerCenter:
                 return layout.pageBounds.midX - textMaxWidth / 2
             case .headerRight, .contentRight, .footerRight:
-                return layout.pageBounds.width - layout.pageMargin - textMaxWidth
+                return layout.pageBounds.width - layout.margin.side - textMaxWidth
             default:
                 return 0
             }
@@ -125,9 +125,6 @@ extension PDFGenerator {
     func calculateImageCaptionSize(_ container: PDFContainer, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         var size = (size == CGSize.zero) ? image.size : size
-        if container.isHeader || container.isFooter {
-            size = CGSize(width: headerImageHeight, height: headerImageHeight)
-        }
         
         let maxWidth = min(size.width, contentSize.width - indentation[container.normalize]!)
         let maxHeight = min(size.height, contentSize.height - contentHeight)
