@@ -56,7 +56,7 @@ extension PDFGenerator {
     
     // MARK: - Table
     
-    open func addTable(_ container: Container = Container.contentLeft, table: Table) {
+    open func addTable(_ container: Container = Container.contentLeft, table: PDFTable) {
         commands += [(container, .addTable(table: table))]
     }
     

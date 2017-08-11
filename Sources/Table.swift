@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class Table {
+open class PDFTable {
     
     open var style: TableStyle = TableStyleDefaults.simple
     open var data: [[TableContent?]] = []

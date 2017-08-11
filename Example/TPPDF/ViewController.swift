@@ -178,7 +178,7 @@ class ViewController: UIViewController {
         
         // Create a table
         
-        let table = Table()
+        let table = PDFTable()
         
         // Tables can contain Strings, Numbers, Images or nil, in case you need an empty cell. If you add a unknown content type, an error will be thrown and the rendering will stop.
         
