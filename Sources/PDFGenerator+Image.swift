@@ -21,9 +21,9 @@ extension PDFGenerator {
                     
                     (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
                     
-                    return contentHeight + maxHeaderHeight() + headerSpace
+                    return contentHeight + maxHeaderHeight() + layout.headerSpace
                 }
-                return contentHeight + maxHeaderHeight() + headerSpace
+                return contentHeight + maxHeaderHeight() + layout.headerSpace
             case .footerLeft:
                 return contentSize.height + maxHeaderHeight() + footerHeight[container]!
             default:
@@ -34,11 +34,11 @@ extension PDFGenerator {
         let x: CGFloat = {
             switch container {
             case .headerLeft, .contentLeft, .footerLeft:
-                return pageMargin + indentation[container.normalize]!
+                return layout.pageMargin + indentation[container.normalize]!
             case .headerCenter, .contentCenter, .footerCenter:
-                return pageBounds.midX - imageSize.width / 2
+                return layout.pageBounds.midX - imageSize.width / 2
             case .headerRight, .contentRight, .footerRight:
-                return pageBounds.width - pageMargin - imageSize.width
+                return layout.pageBounds.width - layout.pageMargin - imageSize.width
             default:
                 return 0
             }
@@ -73,15 +73,15 @@ extension PDFGenerator {
         
         var (imageSizes, maxHeight) = calculateImageCaptionSizes(images, captions)
         
-        var y = contentHeight + maxHeaderHeight() + headerSpace
+        var y = contentHeight + maxHeaderHeight() + layout.headerSpace
         if (contentHeight + maxHeight > contentSize.height) {
             try generateNewPage(calculatingMetrics: calculatingMetrics)
             
-            y = contentHeight + maxHeaderHeight() + headerSpace
+            y = contentHeight + maxHeaderHeight() + layout.headerSpace
             (imageSizes, maxHeight) = calculateImageCaptionSizes(images, captions)
         }
         
-        var x: CGFloat = pageMargin + indentation[container.normalize]!
+        var x: CGFloat = layout.pageMargin + indentation[container.normalize]!
         
         let (nowContentHeight, nowIndentation) = (contentHeight, indentation[container.normalize]!)
         for (index, image) in images.enumerated() {

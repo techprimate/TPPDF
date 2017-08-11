@@ -34,7 +34,7 @@ extension PDFGenerator {
             
             // Core Text draws from the bottom-left corner up, so flip
             // the current transform prior to drawing.
-            currentContext.translateBy(x: 0, y: pageBounds.height)
+            currentContext.translateBy(x: 0, y: layout.pageBounds.height)
             currentContext.scaleBy(x: 1.0, y: -1.0)
             
             // Don't render when calculating metrics

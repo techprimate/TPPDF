@@ -14,9 +14,9 @@ extension PDFGenerator {
             case .headerLeft:
                 return maxHeaderHeight() + 4
             case .contentLeft:
-                return contentHeight + maxHeaderHeight() + headerSpace
+                return contentHeight + maxHeaderHeight() + layout.headerSpace
             case .footerLeft:
-                return contentSize.height + maxHeaderHeight() + headerSpace + footerSpace - 4
+                return contentSize.height + maxHeaderHeight() + layout.headerSpace + layout.footerSpace - 4
             default:
                 return 0
             }
@@ -24,7 +24,11 @@ extension PDFGenerator {
         
         // Dont' render when calculating metrics
         if !calculatingMetrics {
-            drawLine(start: CGPoint(x: pageMargin + indentation[container.normalize]!, y: y), end: CGPoint(x: pageBounds.width - pageMargin, y: y), style: style)
+            drawLine(
+                start: CGPoint(x: layout.pageMargin + indentation[container.normalize]!, y: y),
+                end: CGPoint(x: layout.pageBounds.width - layout.pageMargin, y: y),
+                style: style
+            )
         }
     }
     

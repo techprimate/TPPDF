@@ -11,14 +11,14 @@ extension PDFGenerator {
     public convenience init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8, paginationContainer: PDFContainer = .none, imageQuality: CGFloat = 0.8, info: PDFInfo = PDFInfo()) {
         self.init()
         
-        self.pageBounds = CGRect(origin: CGPoint.zero, size: pageSize)
-        self.pageMargin = pageMargin
+        self.layout.pageBounds = CGRect(origin: CGPoint.zero, size: pageSize)
+        self.layout.pageMargin = pageMargin
         
-        self.footerMargin = footerMargin
-        self.headerMargin = headerMargin
+        self.layout.footerMargin = footerMargin
+        self.layout.headerMargin = headerMargin
         
-        self.headerSpace = headerSpace
-        self.footerSpace = footerSpace
+        self.layout.headerSpace = headerSpace
+        self.layout.footerSpace = footerSpace
         
         self.pagination.container = paginationContainer
         self.imageQuality = imageQuality
@@ -31,14 +31,14 @@ extension PDFGenerator {
     public convenience init(format: PDFPageFormat, paginationContainer: PDFContainer = .none, imageQuality: CGFloat = 0.8, info: PDFInfo = PDFInfo()) {
         self.init()
         
-        pageBounds = CGRect(origin: CGPoint.zero, size: format.size)
-        pageMargin = format.margin
+        self.layout.pageBounds = CGRect(origin: CGPoint.zero, size: format.size)
+        self.layout.pageMargin = format.margin
         
-        footerMargin = format.footerMargin
-        headerMargin = format.headerMargin
+        self.layout.footerMargin = format.footerMargin
+        self.layout.headerMargin = format.headerMargin
         
-        headerSpace = format.headerSpace
-        footerSpace = format.footerSpace
+        self.layout.headerSpace = format.headerSpace
+        self.layout.footerSpace = format.footerSpace
         
         self.pagination.container = paginationContainer
         self.imageQuality = imageQuality

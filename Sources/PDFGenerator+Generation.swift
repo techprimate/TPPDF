@@ -88,7 +88,7 @@ extension PDFGenerator {
     open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil) throws -> Data {
         let pdfData = NSMutableData()
         
-        UIGraphicsBeginPDFContextToData(pdfData, pageBounds, generateDocumentInfo())
+        UIGraphicsBeginPDFContextToData(pdfData, layout.pageBounds, generateDocumentInfo())
         try generatePDFContext(progress: progress)
         UIGraphicsEndPDFContext()
         
@@ -107,7 +107,7 @@ extension PDFGenerator {
     open func generatePDFfile(_ fileName: String, progress: ((CGFloat) -> ())? = nil) throws -> URL {
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName).appendingPathExtension("pdf")
         
-        UIGraphicsBeginPDFContextToFile(url.path, pageBounds, generateDocumentInfo())
+        UIGraphicsBeginPDFContextToFile(url.path, layout.pageBounds, generateDocumentInfo())
         try generatePDFContext(progress: progress)
         UIGraphicsEndPDFContext()
         
@@ -122,7 +122,7 @@ extension PDFGenerator {
      - throws: PDFError
      */
     fileprivate func generatePDFContext(progress: ((CGFloat) -> ())?) throws {
-        UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
+        UIGraphicsBeginPDFPageWithInfo(layout.pageBounds, nil)
         
         // Extract header & footer PDFCommands
         headerFooterCommands = commands.filter { return $0.0.isFooter || $0.0.isHeader }
@@ -134,12 +134,12 @@ extension PDFGenerator {
         
         // Only add space between content and footer if footer PDFCommands exist.
         if footers.count == 0 {
-            footerSpace = 0
+            layout.footerSpace = 0
         }
         
         // Only add space between content and header if header PDFCommands exist.
         if headers.count == 0 {
-            headerSpace = 0
+            layout.headerSpace = 0
         }
         
         // Progress equals the number of PDFCommands run. Each PDFCommand is called once for calculations and second for rendering.
