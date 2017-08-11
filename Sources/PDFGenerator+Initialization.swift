@@ -28,7 +28,7 @@ extension PDFGenerator {
         resetHeaderFooterHeight()
     }
     
-    public convenience init(format: PageFormat, paginationContainer: Container = .none, imageQuality: CGFloat = 0.8, info: PDFInfo = PDFInfo()) {
+    public convenience init(format: PDFPageFormat, paginationContainer: Container = .none, imageQuality: CGFloat = 0.8, info: PDFInfo = PDFInfo()) {
         self.init()
         
         pageBounds = CGRect(origin: CGPoint.zero, size: format.size)

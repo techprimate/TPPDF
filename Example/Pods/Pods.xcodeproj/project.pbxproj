@@ -50,7 +50,7 @@
 		448D1D493854C78AC2A9ADFEB44831BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF04AEFCC4B011565BFFBFFF52B2FCE /* UIKit.framework */; };
 		44E036A42705BB33016BE025B1F671F5 /* PDFGenerator+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAAD0393AE8D95978055306D05F9E04 /* PDFGenerator+Table.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		4551BA04EE17C450BFA740BD358D67F5 /* BeGreaterThanOrEqualTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DF6A41A23211ABF3E7175FBB706E9 /* BeGreaterThanOrEqualTo.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		4685ABF7FDC0D53A0A6E9BA2F97213B2 /* PageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B769BFB4BF1A0528AD04CC601604A9E /* PageFormat.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4685ABF7FDC0D53A0A6E9BA2F97213B2 /* PDFPageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B769BFB4BF1A0528AD04CC601604A9E /* PDFPageFormat.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		48B871E46E66C17C7BF13BC256AABE89 /* PDFGenerator+Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CEFCF6B5D41BBE1874A17E10252B03 /* PDFGenerator+Generation.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		499EF2F53452B6D2A5B7AA77EE20E826 /* AllPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB9B5CEB03F1CE85FCE7B33364D29B /* AllPass.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		4A2C6DB8D1D534F7291BB6E1945D5BE0 /* QCKDSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CDAD7B653F081ED21DC1E2A728030F9 /* QCKDSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -254,7 +254,7 @@
 		65DA87A21755F8FBD1AF7D1724A2E060 /* DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DSL.swift; path = Sources/Quick/DSL/DSL.swift; sourceTree = "<group>"; };
 		69B485EF1997FA7DAACBA44FCDCFD682 /* CwlCatchException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CwlCatchException.m; path = Sources/Lib/CwlPreconditionTesting/CwlCatchExceptionSupport/CwlCatchException.m; sourceTree = "<group>"; };
 		6A9865EC8CF738CC7B6D199BBA4F2CF9 /* AdapterProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdapterProtocols.swift; path = Sources/Nimble/Adapters/AdapterProtocols.swift; sourceTree = "<group>"; };
-		6B769BFB4BF1A0528AD04CC601604A9E /* PageFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PageFormat.swift; sourceTree = "<group>"; };
+		6B769BFB4BF1A0528AD04CC601604A9E /* PDFPageFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFPageFormat.swift; sourceTree = "<group>"; };
 		6CCF337DAC9F6C4832FDBC9E24335110 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D23D935503C604F4F95F4D5B971F048 /* ToSucceed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToSucceed.swift; path = Sources/Nimble/Matchers/ToSucceed.swift; sourceTree = "<group>"; };
 		6E8FC8501178788ADCC84A3736A1DCCE /* Expectation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Expectation.swift; path = Sources/Nimble/Expectation.swift; sourceTree = "<group>"; };
@@ -675,9 +675,7 @@
 				19E6D70D86E3F65967BBD8292FF72E38 /* List.swift */,
 				2076A049362A4E65BAE967D7144CEE2A /* ListItem.swift */,
 				5B35A1913A76621B55A6B42E43C8F110 /* ListItemSymbol.swift */,
-				6B769BFB4BF1A0528AD04CC601604A9E /* PageFormat.swift */,
-				D4666DC71F3DE603004A11D2 /* PDFPageFormat+SizeConstants.swift */,
-				D4666DC51F3DE5B9004A11D2 /* PDFPageFormat+MarginConstants.swift */,
+				6B769BFB4BF1A0528AD04CC601604A9E /* PDFPageFormat.swift */,
 				A135CBB7DCA633EDE246699C15BCBC0C /* Pagination.swift */,
 				93DF9E3F73E617F8A1395E5624B08CF3 /* PDFGenerator.swift */,
 				D9BFA6BB9BF8C2F3F46C727771DB0A6F /* PDFGenerator+Calculations.swift */,
@@ -692,14 +690,16 @@
 				F1E95D96DBA09B878BDFB6B8C4998FF5 /* PDFGenerator+Pagination.swift */,
 				8DAAD0393AE8D95978055306D05F9E04 /* PDFGenerator+Table.swift */,
 				954BEFBBDBEB74FCE70B71233363FE91 /* PDFGenerator+Text.swift */,
+				D4666DBF1F3DD506004A11D2 /* PDFImage.swift */,
 				128E82A16272433395B2EE6FA7A7F04D /* PDFInfo.swift */,
-				0FF8E6D1409C1A35D8A318B77A9CA955 /* Table.swift */,
+				D4666DC51F3DE5B9004A11D2 /* PDFPageFormat+MarginConstants.swift */,
+				D4666DC71F3DE603004A11D2 /* PDFPageFormat+SizeConstants.swift */,
 				D4666DC31F3DDEB6004A11D2 /* PDFTableValidator.swift */,
+				0FF8E6D1409C1A35D8A318B77A9CA955 /* Table.swift */,
 				E3092A6515992350D87C58D2CACC2B56 /* TableContent.swift */,
 				BA8D281CD7FFA4D455EBBB5398E1657A /* TableStyle.swift */,
 				D30C972E4EA2A37D043BA4822A7F936A /* TableStyle+Defaults.swift */,
 				93A2EF8301CFB4EC612E3AC48A342195 /* TPPDFError.swift */,
-				D4666DBF1F3DD506004A11D2 /* PDFImage.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1029,7 +1029,7 @@
 				E36B2A205F6A361A70E9144BE596B623 /* List.swift in Sources */,
 				F825A289F50AF9F36C2AA44F75C90019 /* ListItem.swift in Sources */,
 				D3BA57E9861F2ADAF844A839CCBF1D62 /* ListItemSymbol.swift in Sources */,
-				4685ABF7FDC0D53A0A6E9BA2F97213B2 /* PageFormat.swift in Sources */,
+				4685ABF7FDC0D53A0A6E9BA2F97213B2 /* PDFPageFormat.swift in Sources */,
 				D4666DC01F3DD506004A11D2 /* PDFImage.swift in Sources */,
 				A20192B5CF72DBF5B396EB17C34379C0 /* Pagination.swift in Sources */,
 				5611B15AEF0D3E45B53DE2B54A3D170E /* PDFGenerator+Calculations.swift in Sources */,

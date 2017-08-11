@@ -192,7 +192,7 @@ The following values can be set to format the page:
 
 All values are in dots and are rendered using 72 DPI (dots per inch), as this is the default screen DPI.
 
-You can also used the predefined formats. For details please refer to the source file [PageFormat.swift](https://github.com/Techprimate/TPPDF/blob/master/Source/PageFormat.swift)
+You can also used the predefined formats. For details please refer to the source file [PDFPageFormat.swift](https://github.com/Techprimate/TPPDF/blob/master/Source/PDFPageFormat.swift)
 
 If you need your page in landscape format, use the `landscapeSize` variable.
 

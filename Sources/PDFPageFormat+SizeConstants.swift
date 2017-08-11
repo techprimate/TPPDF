@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension PageFormat {
+public extension PDFPageFormat {
     
     var usSize: CGSize {
         switch self {

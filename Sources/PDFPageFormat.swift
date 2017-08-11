@@ -12,7 +12,7 @@ import UIKit
  * Source for page sizes: https://www.papersizes.org
  * All sizes are calculated using 72 points/inch
  */
-public enum PageFormat {
+public enum PDFPageFormat {
     
     case usHalfLetter, usLetter, usLegal, usJuniorLegal, usLedger
     case ansiA, ansiB, ansiC, ansiD, ansiE
