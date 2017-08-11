@@ -82,7 +82,7 @@ extension PDFGenerator {
      - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
      - returns:             PDF Data
      
-     - throws:              TPPDFError
+     - throws:              PDFError
 
      */
     open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil) throws -> Data {
@@ -102,7 +102,7 @@ extension PDFGenerator {
      - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
      - returns:             URL to temporary file.
      
-     - throws:              TPPDFError
+     - throws:              PDFError
      */
     open func generatePDFfile(_ fileName: String, progress: ((CGFloat) -> ())? = nil) throws -> URL {
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName).appendingPathExtension("pdf")
@@ -119,7 +119,7 @@ extension PDFGenerator {
      
      - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
      
-     - throws: TPPDFError
+     - throws: PDFError
      */
     fileprivate func generatePDFContext(progress: ((CGFloat) -> ())?) throws {
         UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)

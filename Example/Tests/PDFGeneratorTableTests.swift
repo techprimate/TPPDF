@@ -16,7 +16,7 @@ class PDFGeneratorTableSpec: QuickSpec {
     override func spec() {
         describe("PDFGenerator table rendering") {
             it("should fail because of empty data") {
-//                expect(try PDFGenerator.validateTableData(data: [], alignments: [], columnWidths: [])).to(throwError(TPPDFError.tableIsEmpty))
+//                expect(try PDFGenerator.validateTableData(data: [], alignments: [], columnWidths: [])).to(throwError(PDFError.tableIsEmpty))
             }
         }
     }

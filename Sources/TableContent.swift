@@ -42,7 +42,7 @@ open class TableContent: CustomStringConvertible {
             self.type = .string
             self.content = String(describing: content)
         } else {
-            throw TPPDFError.tableContentInvalid(value: content)
+            throw PDFError.tableContentInvalid(value: content)
         }
     }
     

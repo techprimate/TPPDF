@@ -191,7 +191,7 @@ class ViewController: UIViewController {
                 [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
                 [nil, nil, nil, "Many beautiful places"]
                 ])
-        } catch TPPDFError.tableContentInvalid(let value) {
+        } catch PDFError.tableContentInvalid(let value) {
             // In case invalid input is provided, this error will be thrown.
             
             print("This type of object is not supported as table content: " + String(describing: (type(of: value))))
