@@ -1,5 +1,5 @@
 //
-//  PDFTableCellPosition.swift
+//  PDFPDFTableCellPosition.swift
 //  Pods
 //
 //  Created by Philip Niedertscheider on 11/08/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TableCellPosition : Hashable {
+public struct PDFTableCellPosition : Hashable {
     
     public var row = -1
     public var column = -1
@@ -34,6 +34,6 @@ public struct TableCellPosition : Hashable {
 /// - Parameters:
 ///   - lhs: A value to compare.
 ///   - rhs: Another value to compare.
-public func ==(lhs: TableCellPosition, rhs: TableCellPosition) -> Bool {
+public func ==(lhs: PDFTableCellPosition, rhs: PDFTableCellPosition) -> Bool {
     return lhs.row == rhs.row && lhs.column == rhs.column
 }

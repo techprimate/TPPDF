@@ -208,7 +208,7 @@ extension PDFGenerator {
     }
     
     func getCellStyle(offset: Int, tableHeight: Int, style: TableStyle, row: Int, column: Int, newPageBreak: Bool, showHeadersOnEveryPage: Bool) -> PDFTableCellStyle {
-        let position = TableCellPosition(row: (row + offset), column: column)
+        let position = PDFTableCellPosition(row: (row + offset), column: column)
         
         if let cellStyle = style.cellStyles[position] {
             return cellStyle
