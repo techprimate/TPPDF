@@ -1,6 +1,6 @@
 //
-//  Pagination.swift
-//  Pods
+//  PDFPagination.swift
+//  TPPDF
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
@@ -13,7 +13,7 @@ import Foundation
  
   Enums using a template String as parameter will replace the first instance of `%@` with the index and the second one with the total amount of pages.
  */
-public enum PaginationStyle {
+public enum PDFPaginationStyle {
     
     /**
      Default format, concats current page and total pages with a dash.
@@ -21,6 +21,7 @@ public enum PaginationStyle {
      e.g. Converts page 1 of 3 to **"1 - 3"**
      */
     case Default
+    
     /**
       Returns pagination in roman numerals.
      
@@ -29,7 +30,7 @@ public enum PaginationStyle {
     case Roman(template: String)
     
     case CustomNumberFormat(template: String, formatter: NumberFormatter)
-    case CustomClosure(PaginationClosure)
+    case CustomClosure(PDFPaginationClosure)
     
     /**
      Creates formatted pagination string.
@@ -67,7 +68,7 @@ public enum PaginationStyle {
  
  - returns: Formatted pagination string
  */
-public typealias PaginationClosure = (_ page: Int, _ total: Int) -> String
+public typealias PDFPaginationClosure = (_ page: Int, _ total: Int) -> String
 
 /**
   Converts given number to a string of roman numerals.
