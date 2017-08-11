@@ -11,7 +11,7 @@ import Foundation
 open class PDFTable {
     
     open var style: TableStyle = TableStyleDefaults.simple
-    open var data: [[TableContent?]] = []
+    open var data: [[PDFTableContent?]] = []
     open var alignments: [[TableCellAlignment]] = []
     open var widths: [CGFloat] = []
     open var padding: Int = 0
@@ -24,9 +24,9 @@ open class PDFTable {
         self.data = []
         
         for row in data {
-            var contentRow = [TableContent]()
+            var contentRow = [PDFTableContent]()
             for col in row {
-                let content = try TableContent(content: col)
+                let content = try PDFTableContent(content: col)
                 contentRow.append(content)
             }
             self.data.append(contentRow)

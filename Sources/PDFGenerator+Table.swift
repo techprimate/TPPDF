@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawTable(_ container: Container, data: [[TableContent?]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) throws {
+    func drawTable(_ container: Container, data: [[PDFTableContent?]], alignments: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) throws {
         
         try PDFTableValidator.validateTableData(data: data, alignments: alignments, columnWidths: relativeColumnWidth)
         
@@ -85,8 +85,8 @@ extension PDFGenerator {
         }
         
         // Divide tables according to contentSize
-        var (dataInThisPage, alignmentsInThisPage, framesInThisPage): ([[TableContent?]], [[TableCellAlignment]], [[CGRect]]) = ([], [], [])
-        var (dataInNewPage, alignmentsInNewPage): ([[TableContent?]], [[TableCellAlignment]]) = ([], [])
+        var (dataInThisPage, alignmentsInThisPage, framesInThisPage): ([[PDFTableContent?]], [[TableCellAlignment]], [[CGRect]]) = ([], [], [])
+        var (dataInNewPage, alignmentsInNewPage): ([[PDFTableContent?]], [[TableCellAlignment]]) = ([], [])
         var totalHeight: CGFloat = 0
         var nextPage = false
         

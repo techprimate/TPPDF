@@ -10,7 +10,7 @@ import Foundation
 
 class PDFTableValidator {
     
-    public static func validateTableData(data: [[TableContent?]], alignments: [[TableCellAlignment]], columnWidths: [CGFloat]) throws {
+    public static func validateTableData(data: [[PDFTableContent?]], alignments: [[TableCellAlignment]], columnWidths: [CGFloat]) throws {
         // Throw error when empty. Signalizes developer he tries to render an empty table. Might cause format errors
         if data.count == 0 {
             throw PDFError.tableIsEmpty

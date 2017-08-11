@@ -1,5 +1,5 @@
 //
-//  TableContent.swift
+//  PDFTableContent.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-open class TableContent: CustomStringConvertible {
+open class PDFTableContent: CustomStringConvertible {
     
     enum ContentType {
         case none
@@ -71,27 +71,27 @@ open class TableContent: CustomStringConvertible {
     }
     
     public var description: String {
-        return "<TableContent>[content: " + (self.content.debugDescription) + "]"
+        return "<PDFTableContent>[content: " + (self.content.debugDescription) + "]"
     }
 }
 
 public extension String {
     
-    func toTableContent() -> TableContent {
-        return try! TableContent(content: self)
+    func toPDFTableContent() -> PDFTableContent {
+        return try! PDFTableContent(content: self)
     }
 }
 
 public extension NSAttributedString {
     
-    func toTableContent() -> TableContent {
-        return try! TableContent(content: self)
+    func toPDFTableContent() -> PDFTableContent {
+        return try! PDFTableContent(content: self)
     }
 }
 
 public extension UIImage {
     
-    func toTableContent() -> TableContent {
-        return try! TableContent(content: self)
+    func toPDFTableContent() -> PDFTableContent {
+        return try! PDFTableContent(content: self)
     }
 }
