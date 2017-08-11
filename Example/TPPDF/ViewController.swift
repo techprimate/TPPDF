@@ -128,7 +128,7 @@ class ViewController: UIViewController {
         // Create a line separator
         
         pdf.addSpace(space: 10)
-        pdf.addLineSeparator(style: LineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
+        pdf.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
         pdf.addSpace(space: 10)
 
         
@@ -173,7 +173,7 @@ class ViewController: UIViewController {
         // Finish image collage with another line separator
         
         pdf.addSpace(space: 10)
-        pdf.addLineSeparator(style: LineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
+        pdf.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
         pdf.addSpace(space: 10)
         
         // Create a table
@@ -234,10 +234,10 @@ class ViewController: UIViewController {
                                alpha: 1.0),
             textColor: UIColor.white,
             font: UIFont.systemFont(ofSize: 10),
-            borderLeft: LineStyle(),
-            borderTop: LineStyle(),
-            borderRight: LineStyle(),
-            borderBottom: LineStyle())
+            borderLeft: PDFLineStyle(),
+            borderTop: PDFLineStyle(),
+            borderRight: PDFLineStyle(),
+            borderBottom: PDFLineStyle())
         
         // Simply set the amount of footer and header rows
         

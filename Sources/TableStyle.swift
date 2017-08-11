@@ -14,7 +14,7 @@ public class TableStyle {
     public var columnHeaderCount: Int
     public var footerCount: Int
  
-    public var outline: LineStyle
+    public var outline: PDFLineStyle
     
     /// The cell style of row headers. Horizontal border lines are ignored, as these are defined in
     public var rowHeaderStyle: TableCellStyle
@@ -32,17 +32,17 @@ public class TableStyle {
     ///   - rowHeaderCount: Number of top rows which have header style, defaults to `1`
     ///   - columnHeaderCount: Number of left columns with header style, defaults to `1`
     ///   - footerCount: Number of footer rows with header style, defaults to `1`
-    ///   - outline: Line style of the outer borderlines, defaults to `TableLineStyle.init`
+    ///   - outline: Line style of the outer borderlines, defaults to `TablePDFLineStyle.init`
     ///   - showHorizontalGridLines: Render horizontal grid lines, defaults to `true`
     ///   - showVerticalGridLines: Render vertical grid lines, defaults to `true`
     ///   - showRowHeaderGridLines: Render row header grid lines, defaults to `true`
     ///   - showColumnHeaderGridLines: Render column header grid lines, defaults to `true`
     ///   - showFooterGridLines: Render footer grid lines, defaults to `true`
-    ///   - rowHeaderStyle: The cell style of row header cells, defaults to `TableLineStyle.init`
-    ///   - columnHeaderStyle: The cell style of row header cells, defaults to `TableLineStyle.init`
-    ///   - footerStyle: The cell style of row header cells, defaults to `TableLineStyle.init`
+    ///   - rowHeaderStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
+    ///   - columnHeaderStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
+    ///   - footerStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
     ///   - cellStyles: Custom cell styles. Their position is set using a `TableCellPosition`, holding the row and column index
-    public init(rowHeaderCount: Int = 1, columnHeaderCount: Int = 1, footerCount: Int = 1, outline: LineStyle = LineStyle(), rowHeaderStyle: TableCellStyle = TableCellStyle(), columnHeaderStyle: TableCellStyle = TableCellStyle(), footerStyle: TableCellStyle = TableCellStyle(), contentStyle: TableCellStyle = TableCellStyle(), alternatingContentStyle: TableCellStyle? = nil, cellStyles: [TableCellPosition : TableCellStyle] = [:]) {
+    public init(rowHeaderCount: Int = 1, columnHeaderCount: Int = 1, footerCount: Int = 1, outline: PDFLineStyle = PDFLineStyle(), rowHeaderStyle: TableCellStyle = TableCellStyle(), columnHeaderStyle: TableCellStyle = TableCellStyle(), footerStyle: TableCellStyle = TableCellStyle(), contentStyle: TableCellStyle = TableCellStyle(), alternatingContentStyle: TableCellStyle? = nil, cellStyles: [TableCellPosition : TableCellStyle] = [:]) {
         
         self.rowHeaderCount = rowHeaderCount
         self.columnHeaderCount = columnHeaderCount

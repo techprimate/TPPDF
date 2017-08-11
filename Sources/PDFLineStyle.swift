@@ -1,5 +1,5 @@
 //
-//  PDFLineStyle.swift
+//  PDFPDFLineStyle.swift
 //  Pods
 //
 //  Created by Philip Niedertscheider on 11/08/2017.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// This struct defines how a line or border of a table is drawn.
-public struct LineStyle {
+public struct PDFLineStyle {
     
     /// These types of lines are available for rendering. Used in `TableStyle` and `TableCellStyle`
     ///

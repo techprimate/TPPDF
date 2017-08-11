@@ -15,7 +15,7 @@ public enum Command {
     case addImage(image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit)
     case addImagesInRow(images: [UIImage], captions: [NSAttributedString], spacing: CGFloat)
     case addSpace(space: CGFloat)
-    case addLineSeparator(style: LineStyle)
+    case addLineSeparator(style: PDFLineStyle)
     case addTable(table: PDFTable)
     case addList(list: List)
     

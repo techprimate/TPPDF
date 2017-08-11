@@ -15,7 +15,7 @@ public struct PDFTableStyleDefaults {
         columnHeaderCount: 1,
         footerCount: 0,
         
-        outline: LineStyle(
+        outline: PDFLineStyle(
             type: .none
         ),
         rowHeaderStyle: TableCellStyle(
@@ -23,16 +23,16 @@ public struct PDFTableStyleDefaults {
             textColor: UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0),
             font: UIFont.boldSystemFont(ofSize: 12.0),
             
-            borderLeft: LineStyle(
+            borderLeft: PDFLineStyle(
                 type: .none
             ),
-            borderTop: LineStyle(
+            borderTop: PDFLineStyle(
                 type: .none
             ),
-            borderRight: LineStyle(
+            borderRight: PDFLineStyle(
                 type: .none
             ),
-            borderBottom: LineStyle(
+            borderBottom: PDFLineStyle(
                 type: .full,
                 color: UIColor.lightGray,
                 width: 0.5
@@ -43,16 +43,16 @@ public struct PDFTableStyleDefaults {
             textColor: UIColor.white,
             font: UIFont.boldSystemFont(ofSize: 14),
             
-            borderLeft: LineStyle(
+            borderLeft: PDFLineStyle(
                 type: .none
             ),
-            borderTop: LineStyle(
+            borderTop: PDFLineStyle(
                 type: .none
             ),
-            borderRight: LineStyle(
+            borderRight: PDFLineStyle(
                 type: .none
             ),
-            borderBottom: LineStyle(
+            borderBottom: PDFLineStyle(
                 type: .none
             )
         ),
@@ -61,16 +61,16 @@ public struct PDFTableStyleDefaults {
             textColor: UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0),
             font: UIFont.systemFont(ofSize: 14),
             
-            borderLeft: LineStyle(
+            borderLeft: PDFLineStyle(
                 type: .none
             ),
-            borderTop: LineStyle(
+            borderTop: PDFLineStyle(
                 type: .none
             ),
-            borderRight: LineStyle(
+            borderRight: PDFLineStyle(
                 type: .none
             ),
-            borderBottom: LineStyle(
+            borderBottom: PDFLineStyle(
                 type: .none
             )
         ),
@@ -79,16 +79,16 @@ public struct PDFTableStyleDefaults {
             textColor: UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0),
             font: UIFont.systemFont(ofSize: 14),
             
-            borderLeft: LineStyle(
+            borderLeft: PDFLineStyle(
                 type: .none
             ),
-            borderTop: LineStyle(
+            borderTop: PDFLineStyle(
                 type: .none
             ),
-            borderRight: LineStyle(
+            borderRight: PDFLineStyle(
                 type: .none
             ),
-            borderBottom: LineStyle(
+            borderBottom: PDFLineStyle(
                 type: .none
             )
         )

@@ -10,7 +10,7 @@ extension PDFGenerator {
     
     // MARK: - Lines
     
-    open func addLineSeparator(_ container: Container = Container.contentLeft, style: LineStyle) {
+    open func addLineSeparator(_ container: Container = Container.contentLeft, style: PDFLineStyle) {
         commands += [(container, .addLineSeparator(style: style))]
     }
    

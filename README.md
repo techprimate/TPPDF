@@ -229,7 +229,7 @@ The following commands are the ones available to you for creating your document.
 Draws a horizontal line using the given line style in the given container.
 
 ```swift
-pdf.addLineSeparator(thickness: 0.1, style: LineStyle(type: .dashed, color: UIColor.green, width: 1.0))
+pdf.addLineSeparator(thickness: 0.1, style: PDFLineStyle(type: .dashed, color: UIColor.green, width: 1.0))
 ```
 
 #### Text

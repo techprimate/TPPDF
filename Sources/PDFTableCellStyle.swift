@@ -15,12 +15,12 @@ public struct TableCellStyle {
     
     public var font: UIFont
     
-    public var borderLeft: LineStyle
-    public var borderTop: LineStyle
-    public var borderRight: LineStyle
-    public var borderBottom: LineStyle
+    public var borderLeft: PDFLineStyle
+    public var borderTop: PDFLineStyle
+    public var borderRight: PDFLineStyle
+    public var borderBottom: PDFLineStyle
     
-    public init(fillColor: UIColor = UIColor.clear, textColor: UIColor = UIColor.black, font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize), borderLeft: LineStyle = LineStyle(), borderTop: LineStyle = LineStyle(), borderRight: LineStyle = LineStyle(), borderBottom: LineStyle = LineStyle()) {
+    public init(fillColor: UIColor = UIColor.clear, textColor: UIColor = UIColor.black, font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize), borderLeft: PDFLineStyle = PDFLineStyle(), borderTop: PDFLineStyle = PDFLineStyle(), borderRight: PDFLineStyle = PDFLineStyle(), borderBottom: PDFLineStyle = PDFLineStyle()) {
         self.fillColor = fillColor
         self.textColor = textColor
         self.font = font
