@@ -26,7 +26,7 @@ extension PDFGenerator {
         return max(pageMargin, max(footerHeight[.footerLeft]!, max(footerHeight[.footerCenter]!, footerHeight[.footerRight]!)))
     }
     
-    func calculateCellFrame(_ origin: CGPoint, width: CGFloat, text: NSAttributedString, alignment: TableCellAlignment) -> CGRect {
+    func calculateCellFrame(_ origin: CGPoint, width: CGFloat, text: NSAttributedString, alignment: PDFTableCellAlignment) -> CGRect {
         let textMaxHeight = pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace - contentHeight
         // The height is not enough
         if (textMaxHeight <= 0) {

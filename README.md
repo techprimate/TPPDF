@@ -303,10 +303,10 @@ let data: [[String]] = [
 ]
 ```
 
-The parameter alignment is a two-dimensional array with `TableCellAlignment` values.
+The parameter alignment is a two-dimensional array with `PDFTableCellAlignment` values.
 
 ```swift
-let alignments: [[TableCellAlignment]] = [
+let alignments: [[PDFTableCellAlignment]] = [
 	[.Left, .Center, .Left, .Center],
 	[.Left, .Center, .Left, .Center]
 ]

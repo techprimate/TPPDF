@@ -71,34 +71,6 @@ public enum PDFContainer {
     }
 }
 
-public enum TableCellAlignment {
-    case topLeft, top, topRight
-    case left, center, right
-    case bottomLeft, bottom, bottomRight
-    
-    var normalizeVertical: TableCellAlignment {
-        switch self {
-        case .topLeft, .top, .topRight:
-            return .top
-        case .left, .center, .right:
-            return .center
-        case .bottomLeft, .bottom, .bottomRight:
-            return .bottom
-        }
-    }
-    
-    var normalizeHorizontal: TableCellAlignment {
-        switch self {
-        case .topLeft, .left, .bottomLeft:
-            return .left
-        case .top, .center, .bottom:
-            return .center
-        case .topRight, .right, .bottomRight:
-            return .right
-        }
-    }
-}
-
 public enum ImageSizeFit {
     case width, height, widthHeight
 }
