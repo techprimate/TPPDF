@@ -6,95 +6,93 @@
 //
 //
 
-import UIKit
-
 public struct PDFTableStyleDefaults {
     
     public static var simple: PDFTableStyle {
-        return PDFTableStyleDefaults._simple.copy()
-    }
-    
-    private static let _simple = PDFTableStyle(
-        rowHeaderCount: 1,
-        columnHeaderCount: 1,
-        footerCount: 0,
+        let darkGray = UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
         
-        outline: PDFLineStyle(
-            type: .none
-        ),
-        rowHeaderStyle: PDFTableCellStyle(
-            fillColor: UIColor.white,
-            textColor: UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0),
-            font: UIFont.boldSystemFont(ofSize: 12.0),
+        return PDFTableStyle(
+            rowHeaderCount: 1,
+            columnHeaderCount: 1,
+            footerCount: 0,
             
-            borderLeft: PDFLineStyle(
+            outline: PDFLineStyle(
                 type: .none
             ),
-            borderTop: PDFLineStyle(
-                type: .none
+            rowHeaderStyle: PDFTableCellStyle(
+                fillColor: UIColor.white,
+                textColor: darkGray,
+                font: UIFont.boldSystemFont(ofSize: 12.0),
+                
+                borderLeft: PDFLineStyle(
+                    type: .none
+                ),
+                borderTop: PDFLineStyle(
+                    type: .none
+                ),
+                borderRight: PDFLineStyle(
+                    type: .none
+                ),
+                borderBottom: PDFLineStyle(
+                    type: .full,
+                    color: UIColor.lightGray,
+                    width: 0.5
+                )
             ),
-            borderRight: PDFLineStyle(
-                type: .none
+            columnHeaderStyle: PDFTableCellStyle(
+                fillColor: UIColor(colorLiteralRed: 83.0 / 255.0, green: 171.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0),
+                textColor: UIColor.white,
+                font: UIFont.boldSystemFont(ofSize: 14),
+                
+                borderLeft: PDFLineStyle(
+                    type: .none
+                ),
+                borderTop: PDFLineStyle(
+                    type: .none
+                ),
+                borderRight: PDFLineStyle(
+                    type: .none
+                ),
+                borderBottom: PDFLineStyle(
+                    type: .none
+                )
             ),
-            borderBottom: PDFLineStyle(
-                type: .full,
-                color: UIColor.lightGray,
-                width: 0.5
-            )
-        ),
-        columnHeaderStyle: PDFTableCellStyle(
-            fillColor: UIColor(colorLiteralRed: 83.0 / 255.0, green: 171.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0),
-            textColor: UIColor.white,
-            font: UIFont.boldSystemFont(ofSize: 14),
-            
-            borderLeft: PDFLineStyle(
-                type: .none
+            contentStyle: PDFTableCellStyle(
+                fillColor: UIColor(colorLiteralRed: 246.0 / 255.0, green: 246.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0),
+                textColor: darkGray,
+                font: UIFont.systemFont(ofSize: 14),
+                
+                borderLeft: PDFLineStyle(
+                    type: .none
+                ),
+                borderTop: PDFLineStyle(
+                    type: .none
+                ),
+                borderRight: PDFLineStyle(
+                    type: .none
+                ),
+                borderBottom: PDFLineStyle(
+                    type: .none
+                )
             ),
-            borderTop: PDFLineStyle(
-                type: .none
-            ),
-            borderRight: PDFLineStyle(
-                type: .none
-            ),
-            borderBottom: PDFLineStyle(
-                type: .none
-            )
-        ),
-        contentStyle: PDFTableCellStyle(
-            fillColor: UIColor(colorLiteralRed: 246.0 / 255.0, green: 246.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0),
-            textColor: UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0),
-            font: UIFont.systemFont(ofSize: 14),
-            
-            borderLeft: PDFLineStyle(
-                type: .none
-            ),
-            borderTop: PDFLineStyle(
-                type: .none
-            ),
-            borderRight: PDFLineStyle(
-                type: .none
-            ),
-            borderBottom: PDFLineStyle(
-                type: .none
-            )
-        ),
-        alternatingContentStyle: PDFTableCellStyle(
-            fillColor: UIColor(colorLiteralRed: 233.0 / 255.0, green: 233.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0),
-            textColor: UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0),
-            font: UIFont.systemFont(ofSize: 14),
-            
-            borderLeft: PDFLineStyle(
-                type: .none
-            ),
-            borderTop: PDFLineStyle(
-                type: .none
-            ),
-            borderRight: PDFLineStyle(
-                type: .none
-            ),
-            borderBottom: PDFLineStyle(
-                type: .none
+            alternatingContentStyle: PDFTableCellStyle(
+                fillColor: UIColor(colorLiteralRed: 233.0 / 255.0, green: 233.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0),
+                textColor: darkGray,
+                font: UIFont.systemFont(ofSize: 14),
+                
+                borderLeft: PDFLineStyle(
+                    type: .none
+                ),
+                borderTop: PDFLineStyle(
+                    type: .none
+                ),
+                borderRight: PDFLineStyle(
+                    type: .none
+                ),
+                borderBottom: PDFLineStyle(
+                    type: .none
+                )
             )
         )
-    )
+    }
 }
