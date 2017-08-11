@@ -1,5 +1,5 @@
 //
-//  TableStyle+Defaults.swift
+//  PDFTableStyle+Defaults.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 19/01/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct TableStyleDefaults {
+public struct PDFTableStyleDefaults {
     
     public static let simple = TableStyle(
         rowHeaderCount: 1,

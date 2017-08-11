@@ -220,7 +220,7 @@ class ViewController: UIViewController {
         
         // To speed up table styling, use a default and change it
         
-        let style = TableStyleDefaults.simple
+        let style = PDFTableStyleDefaults.simple
         
         // Style each cell individually
         
