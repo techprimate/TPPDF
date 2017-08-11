@@ -1,6 +1,6 @@
 //
 //  PDFGenerator+Initialization.swift
-//  Pods
+//  TPPDF
 //
 //  Created by Philip Niedertscheider on 05/06/2017.
 //
