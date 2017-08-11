@@ -33,7 +33,7 @@ open class PDFTable {
         }
     }
     
-    public func setCellStyle(row: Int, column: Int, style cellStyle: TableCellStyle) {
+    public func setCellStyle(row: Int, column: Int, style cellStyle: PDFTableCellStyle) {
         style.setCellStyle(row: row, column: column, style: cellStyle)
     }
 }

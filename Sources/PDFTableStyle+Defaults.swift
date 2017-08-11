@@ -18,7 +18,7 @@ public struct PDFTableStyleDefaults {
         outline: PDFLineStyle(
             type: .none
         ),
-        rowHeaderStyle: TableCellStyle(
+        rowHeaderStyle: PDFTableCellStyle(
             fillColor: UIColor.white,
             textColor: UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0),
             font: UIFont.boldSystemFont(ofSize: 12.0),
@@ -38,7 +38,7 @@ public struct PDFTableStyleDefaults {
                 width: 0.5
             )
         ),
-        columnHeaderStyle: TableCellStyle(
+        columnHeaderStyle: PDFTableCellStyle(
             fillColor: UIColor(colorLiteralRed: 83.0 / 255.0, green: 171.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0),
             textColor: UIColor.white,
             font: UIFont.boldSystemFont(ofSize: 14),
@@ -56,7 +56,7 @@ public struct PDFTableStyleDefaults {
                 type: .none
             )
         ),
-        contentStyle: TableCellStyle(
+        contentStyle: PDFTableCellStyle(
             fillColor: UIColor(colorLiteralRed: 246.0 / 255.0, green: 246.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0),
             textColor: UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0),
             font: UIFont.systemFont(ofSize: 14),
@@ -74,7 +74,7 @@ public struct PDFTableStyleDefaults {
                 type: .none
             )
         ),
-        alternatingContentStyle: TableCellStyle(
+        alternatingContentStyle: PDFTableCellStyle(
             fillColor: UIColor(colorLiteralRed: 233.0 / 255.0, green: 233.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0),
             textColor: UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0),
             font: UIFont.systemFont(ofSize: 14),

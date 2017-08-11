@@ -224,10 +224,10 @@ class ViewController: UIViewController {
         
         // Style each cell individually
         
-        style.setCellStyle(row: 1, column: 1, style: TableCellStyle(fillColor: UIColor.yellow))
+        style.setCellStyle(row: 1, column: 1, style: PDFTableCellStyle(fillColor: UIColor.yellow))
         
         // Change standardized styles
-        table.style.footerStyle = TableCellStyle(
+        table.style.footerStyle = PDFTableCellStyle(
             fillColor: UIColor(colorLiteralRed: 0.171875,
                                green: 0.2421875,
                                blue: 0.3125,

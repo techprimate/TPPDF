@@ -17,13 +17,13 @@ public class TableStyle {
     public var outline: PDFLineStyle
     
     /// The cell style of row headers. Horizontal border lines are ignored, as these are defined in
-    public var rowHeaderStyle: TableCellStyle
-    public var columnHeaderStyle: TableCellStyle
-    public var footerStyle: TableCellStyle
-    public var contentStyle: TableCellStyle
-    public var alternatingContentStyle: TableCellStyle?
+    public var rowHeaderStyle: PDFTableCellStyle
+    public var columnHeaderStyle: PDFTableCellStyle
+    public var footerStyle: PDFTableCellStyle
+    public var contentStyle: PDFTableCellStyle
+    public var alternatingContentStyle: PDFTableCellStyle?
     
-    public var cellStyles: [TableCellPosition : TableCellStyle]
+    public var cellStyles: [TableCellPosition : PDFTableCellStyle]
     
     
     /// Create a table style. All parameters are optional
@@ -42,7 +42,7 @@ public class TableStyle {
     ///   - columnHeaderStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
     ///   - footerStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
     ///   - cellStyles: Custom cell styles. Their position is set using a `TableCellPosition`, holding the row and column index
-    public init(rowHeaderCount: Int = 1, columnHeaderCount: Int = 1, footerCount: Int = 1, outline: PDFLineStyle = PDFLineStyle(), rowHeaderStyle: TableCellStyle = TableCellStyle(), columnHeaderStyle: TableCellStyle = TableCellStyle(), footerStyle: TableCellStyle = TableCellStyle(), contentStyle: TableCellStyle = TableCellStyle(), alternatingContentStyle: TableCellStyle? = nil, cellStyles: [TableCellPosition : TableCellStyle] = [:]) {
+    public init(rowHeaderCount: Int = 1, columnHeaderCount: Int = 1, footerCount: Int = 1, outline: PDFLineStyle = PDFLineStyle(), rowHeaderStyle: PDFTableCellStyle = PDFTableCellStyle(), columnHeaderStyle: PDFTableCellStyle = PDFTableCellStyle(), footerStyle: PDFTableCellStyle = PDFTableCellStyle(), contentStyle: PDFTableCellStyle = PDFTableCellStyle(), alternatingContentStyle: PDFTableCellStyle? = nil, cellStyles: [TableCellPosition : PDFTableCellStyle] = [:]) {
         
         self.rowHeaderCount = rowHeaderCount
         self.columnHeaderCount = columnHeaderCount
@@ -59,7 +59,7 @@ public class TableStyle {
         self.cellStyles = cellStyles
     }
     
-    public func setCellStyle(row: Int, column: Int, style: TableCellStyle) {
+    public func setCellStyle(row: Int, column: Int, style: PDFTableCellStyle) {
         self.cellStyles[TableCellPosition(row: row, column: column)] = style
     }
 }

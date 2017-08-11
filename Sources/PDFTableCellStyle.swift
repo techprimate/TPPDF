@@ -1,5 +1,5 @@
 //
-//  PDFTableCellStyle.swift
+//  PDFPDFTableCellStyle.swift
 //  Pods
 //
 //  Created by Philip Niedertscheider on 11/08/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TableCellStyle {
+public struct PDFTableCellStyle {
     
     public var fillColor: UIColor
     public var textColor: UIColor
