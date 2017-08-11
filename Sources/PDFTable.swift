@@ -1,5 +1,5 @@
 //
-//  Table.swift
+//  PDFTable.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
@@ -11,8 +11,7 @@ import Foundation
 open class PDFTable {
     
     open var style: PDFTableStyle = PDFTableStyleDefaults.simple
-    open var data: [[PDFTableContent?]] = []
-    open var alignments: [[PDFTableCellAlignment]] = []
+    open var cells: [[PDFTableCell]] = []
     open var widths: [CGFloat] = []
     open var padding: Int = 0
     open var margin: Int = 0
@@ -20,20 +19,33 @@ open class PDFTable {
     
     public init() { }
     
-    public func setData(data: [[Any?]]) throws {
-        self.data = []
+    public func generateCells(data: [[Any?]], alignments: [[PDFTableCellAlignment]]) throws {
+        try PDFTableValidator.validateTableData(data: data, alignments: alignments)
         
-        for row in data {
-            var contentRow = [PDFTableContent]()
-            for col in row {
+        self.cells = []
+        
+        for (rowIndex, row) in data.enumerated() {
+            var contentRow = [PDFTableCell]()
+            for (colIndex, col) in row.enumerated() {
                 let content = try PDFTableContent(content: col)
-                contentRow.append(content)
+                let alignment = alignments[rowIndex][colIndex]
+                
+                let cell = PDFTableCell(content: content, alignment: alignment)
+                contentRow.append(cell)
             }
-            self.data.append(contentRow)
+            self.cells.append(contentRow)
         }
     }
     
-    public func setCellStyle(row: Int, column: Int, style cellStyle: PDFTableCellStyle) {
-        style.setCellStyle(row: row, column: column, style: cellStyle)
+    public func setCellStyle(row rowIndex: Int, column columnIndex: Int, style cellStyle: PDFTableCellStyle?) throws {
+        if rowIndex < 0 || rowIndex >= cells.count {
+            throw PDFError.tableIndexOutOfBounds(index: rowIndex, length: cells.count)
+        }
+        if columnIndex < 0 || columnIndex >= cells[rowIndex].count {
+            throw PDFError.tableIndexOutOfBounds(index: columnIndex, length: cells[rowIndex].count)
+        }
+        
+        let cell = cells[rowIndex][columnIndex]
+        cell.style = cellStyle
     }
 }

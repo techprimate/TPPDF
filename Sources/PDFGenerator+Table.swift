@@ -8,9 +8,9 @@
 
 extension PDFGenerator {
     
-    func drawTable(_ container: PDFContainer, data: [[PDFTableContent?]], alignments: [[PDFTableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: PDFTableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) throws {
+    func drawTable(_ container: PDFContainer, cells: [[PDFTableCell]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: PDFTableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) throws {
         
-        try PDFTableValidator.validateTableData(data: data, alignments: alignments, columnWidths: relativeColumnWidth)
+        try PDFTableValidator.validateCells(cells: cells, columnWidths: relativeColumnWidth)
         
         let totalWidth = pageBounds.width - 2 * pageMargin - indentation[container.normalize]!
         var x: CGFloat = pageMargin + indentation[container.normalize]!
@@ -21,22 +21,22 @@ extension PDFGenerator {
         var cellFrames: [[CGRect]] = []
         var frames: [[CGRect]] = []
         
-        for (rowIdx, row) in data.enumerated() {
+        for (rowIdx, row) in cells.enumerated() {
             frames.append([])
             cellFrames.append([])
             
             var maxHeight: CGFloat = 0
             
             // Calcuate X position and size
-            for (colIdx, content) in row.enumerated() {
+            for (colIdx, cell) in row.enumerated() {
                 let width = relativeColumnWidth[colIdx] * totalWidth
                 let position = CGPoint(x: x + margin + padding, y: y + maxHeaderHeight() + headerSpace + margin + padding)
                 
                 var frame = CGRect(origin: position, size: CGSize.zero)
                 var cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + headerSpace + margin, width: width - 2 * margin, height: 0)
                 
-                if let content = content {
-                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: data.count, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
+                if let content = cell.content {
+                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: cells.count, style: style, row: rowIdx, column: colIdx, cell: cell, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
                     let attributes: [String: AnyObject] = [
                         NSForegroundColorAttributeName: cellStyle.textColor,
                         NSFontAttributeName: cellStyle.font
@@ -45,7 +45,7 @@ extension PDFGenerator {
                     
                     if (content.stringValue != nil) || (content.attributedStringValue != nil) {
                         let text: NSAttributedString = (content.attributedStringValue != nil) ? content.attributedStringValue! : NSAttributedString(string: content.stringValue!, attributes: attributes)
-                        result = calculateCellFrame(position, width: width - 2 * margin - 2 * padding, text: text, alignment: alignments[rowIdx][colIdx])
+                        result = calculateCellFrame(position, width: width - 2 * margin - 2 * padding, text: text, alignment: cell.alignment)
                     } else if let image = content.imageValue {
                         result = calculateCellFrame(position, width: width - 2 * margin - 2 * padding, image: image)
                         let compressedImage = resizeAndCompressImage(image: image, frame: result)
@@ -64,8 +64,8 @@ extension PDFGenerator {
             }
             
             // Reposition in Y-Axis
-            for (colIdx, _) in row.enumerated() {
-                let alignment = alignments[rowIdx][colIdx]
+            for (colIdx, cell) in row.enumerated() {
+                let alignment = cell.alignment
                 let frame = frames[rowIdx][colIdx]
                 let y: CGFloat = {
                     switch alignment.normalizeVertical {
@@ -85,23 +85,21 @@ extension PDFGenerator {
         }
         
         // Divide tables according to contentSize
-        var (dataInThisPage, alignmentsInThisPage, framesInThisPage): ([[PDFTableContent?]], [[PDFTableCellAlignment]], [[CGRect]]) = ([], [], [])
-        var (dataInNewPage, alignmentsInNewPage): ([[PDFTableContent?]], [[PDFTableCellAlignment]]) = ([], [])
+        var (cellsInThisPage, framesInThisPage): ([[PDFTableCell]], [[CGRect]]) = ([], [])
+        var (cellsInNewPage): ([[PDFTableCell]]) = ([])
         var totalHeight: CGFloat = 0
         var nextPage = false
         
-        for (rowIdx, row) in data.enumerated() {
+        for (rowIdx, row) in cells.enumerated() {
             let maxHeight = frames[rowIdx].reduce(0) { max($0, $1.height) }
             let cellHeight = maxHeight + 2 * padding
             let allHeight = cellHeight + 2 * margin
             
             if ((frames[rowIdx][0].origin.y + allHeight > contentSize.height + maxHeaderHeight() + headerSpace) || nextPage) {
                 nextPage = true
-                dataInNewPage.append(row)
-                alignmentsInNewPage.append(alignments[rowIdx])
+                cellsInNewPage.append(row)
             } else {
-                dataInThisPage.append(row)
-                alignmentsInThisPage.append(alignments[rowIdx])
+                cellsInThisPage.append(row)
                 framesInThisPage.append(frames[rowIdx])
             }
             
@@ -121,9 +119,9 @@ extension PDFGenerator {
             
             // Draw background
             
-            for (rowIdx, row) in dataInThisPage.enumerated() {
-                for (colIdx, _) in row.enumerated() {
-                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: data.count, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
+            for (rowIdx, row) in cellsInThisPage.enumerated() {
+                for (colIdx, cell) in row.enumerated() {
+                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: cells.count, style: style, row: rowIdx, column: colIdx, cell: cell, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
                     let cellFrame = cellFrames[rowIdx][colIdx]
                     
                     let path = UIBezierPath(rect: cellFrame).cgPath
@@ -138,13 +136,13 @@ extension PDFGenerator {
             
             // Draw content
             
-            for (rowIdx, row) in dataInThisPage.enumerated() {
-                for (colIdx, content) in row.enumerated() {
-                    if let content = content {
+            for (rowIdx, row) in cellsInThisPage.enumerated() {
+                for (colIdx, cell) in row.enumerated() {
+                    if let content = cell.content {
                         let frame = framesInThisPage[rowIdx][colIdx]
                         
                         if (content.stringValue != nil) || (content.attributedStringValue != nil) {
-                            let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: data.count, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
+                            let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: cells.count, style: style, row: rowIdx, column: colIdx, cell: cell, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
                             
                             let attributedText: NSAttributedString = {
                                 // If
@@ -169,9 +167,9 @@ extension PDFGenerator {
             
             // Draw grid lines
             
-            for (rowIdx, row) in dataInThisPage.enumerated() {
-                for (colIdx, _) in row.enumerated() {
-                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: data.count, style: style, row: rowIdx, column: colIdx, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
+            for (rowIdx, row) in cellsInThisPage.enumerated() {
+                for (colIdx, cell) in row.enumerated() {
+                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: cells.count, style: style, row: rowIdx, column: colIdx, cell: cell, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
                     let cellFrame = cellFrames[rowIdx][colIdx]
                     
                     drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borderTop)
@@ -190,27 +188,26 @@ extension PDFGenerator {
         }
         
         // If headers are shown on every page add header rows at beginning
-        if showHeadersOnEveryPage && dataInNewPage.count > 0 {
+        if showHeadersOnEveryPage && cellsInNewPage.count > 0 {
             for i in 0..<style.rowHeaderCount {
-                dataInNewPage.insert(data[i], at: i)
-                alignmentsInNewPage.insert(alignments[i], at: i)
+                cellsInNewPage.insert(cells[i], at: i)
             }
         }
         
         // Continue with table on next page
         
-        if !dataInNewPage.isEmpty {
+        if !cellsInNewPage.isEmpty {
             try generateNewPage(calculatingMetrics: calculatingMetrics)
-            try drawTable(container, data: dataInNewPage, alignments: alignmentsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, showHeadersOnEveryPage: showHeadersOnEveryPage, newPageBreak: true, styleIndexOffset: dataInThisPage.count, calculatingMetrics: calculatingMetrics)
+            try drawTable(container, cells: cellsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, showHeadersOnEveryPage: showHeadersOnEveryPage, newPageBreak: true, styleIndexOffset: cellsInThisPage.count, calculatingMetrics: calculatingMetrics)
         } else {
             contentHeight = tableFrame.maxY - maxHeaderHeight() - headerSpace
         }
     }
     
-    func getCellStyle(offset: Int, tableHeight: Int, style: PDFTableStyle, row: Int, column: Int, newPageBreak: Bool, showHeadersOnEveryPage: Bool) -> PDFTableCellStyle {
+    func getCellStyle(offset: Int, tableHeight: Int, style: PDFTableStyle, row: Int, column: Int, cell: PDFTableCell, newPageBreak: Bool, showHeadersOnEveryPage: Bool) -> PDFTableCellStyle {
         let position = PDFTableCellPosition(row: (row + offset), column: column)
         
-        if let cellStyle = style.cellStyles[position] {
+        if let cellStyle = cell.style {
             return cellStyle
         }
         if position.row < style.columnHeaderCount && !newPageBreak || (position.row - offset < style.columnHeaderCount){

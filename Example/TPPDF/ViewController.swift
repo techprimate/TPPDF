@@ -130,7 +130,7 @@ class ViewController: UIViewController {
         pdf.addSpace(space: 10)
         pdf.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
         pdf.addSpace(space: 10)
-
+        
         
         // Create attributes for captions
         
@@ -183,34 +183,33 @@ class ViewController: UIViewController {
         // Tables can contain Strings, Numbers, Images or nil, in case you need an empty cell. If you add a unknown content type, an error will be thrown and the rendering will stop.
         
         do {
-            try table.setData(data: [
-                [nil, "Name", "Image", "Description"],
-                [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
-                [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
-                [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
-                [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
-                [nil, nil, nil, "Many beautiful places"]
+            try table.generateCells(data:
+                [
+                    [nil, "Name", "Image", "Description"],
+                    [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
+                    [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
+                    [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
+                    [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
+                    [nil, nil, nil, "Many beautiful places"]
+                ],
+                                    alignments:
+                [
+                    [.center, .center, .center, .left],
+                    [.center, .center, .center, .left],
+                    [.center, .center, .center, .left],
+                    [.center, .center, .center, .left],
+                    [.center, .center, .center, .left],
+                    [.left, .left, .left, .left]
                 ])
         } catch PDFError.tableContentInvalid(let value) {
             // In case invalid input is provided, this error will be thrown.
             
             print("This type of object is not supported as table content: " + String(describing: (type(of: value))))
         } catch {
-            // Generall error handling in case something goes wrong.
+            // General error handling in case something goes wrong.
             
             print("Error while creating table: " + error.localizedDescription)
         }
-        
-        // Now set the alignment of each cell.
-        
-        table.alignments = [
-            [.center, .center, .center, .left],
-            [.center, .center, .center, .left],
-            [.center, .center, .center, .left],
-            [.center, .center, .center, .left],
-            [.center, .center, .center, .left],
-            [.left, .left, .left, .left]
-        ]
         
         // The widths of each column is proportional to the total width, set by a value between 0.0 and 1.0, representing percentage.
         
@@ -222,12 +221,8 @@ class ViewController: UIViewController {
         
         let style = PDFTableStyleDefaults.simple
         
-        // Style each cell individually
-        
-        style.setCellStyle(row: 1, column: 1, style: PDFTableCellStyle(fillColor: UIColor.yellow))
-        
         // Change standardized styles
-        table.style.footerStyle = PDFTableCellStyle(
+        style.footerStyle = PDFTableCellStyle(
             fillColor: UIColor(colorLiteralRed: 0.171875,
                                green: 0.2421875,
                                blue: 0.3125,
@@ -241,8 +236,23 @@ class ViewController: UIViewController {
         
         // Simply set the amount of footer and header rows
         
-        table.style.columnHeaderCount = 1
-        table.style.footerCount = 1
+        style.columnHeaderCount = 1
+        style.footerCount = 1
+        
+        table.style = style
+        
+        do {
+            // Style each cell individually
+            try table.setCellStyle(row: 1, column: 1, style: PDFTableCellStyle(fillColor: UIColor.yellow))
+        } catch PDFError.tableIndexOutOfBounds(let index, let length){
+            // In case the index is out of bounds
+            
+           print("Requested cell is out of bounds! \(index) / \(length)")
+        } catch {
+            // General error handling in case something goes wrong.
+            
+            print("Error while setting cell style: " + error.localizedDescription)
+        }
         
         // Set table padding and margin
         
@@ -254,7 +264,6 @@ class ViewController: UIViewController {
         table.showHeadersOnEveryPage = true
         
         pdf.addTable(table: table)
-        
         
         
         /* Execution Metrics */

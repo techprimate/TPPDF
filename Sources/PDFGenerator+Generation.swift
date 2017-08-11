@@ -37,7 +37,7 @@ extension PDFGenerator {
             drawLineSeparator(container, style: style, calculatingMetrics: calculatingMetrics)
             break
         case let .addTable(table):
-            try drawTable(container, data: table.data, alignments: table.alignments, relativeColumnWidth: table.widths, padding: CGFloat(table.padding), margin: CGFloat(table.margin), style: table.style, showHeadersOnEveryPage: table.showHeadersOnEveryPage, calculatingMetrics: calculatingMetrics)
+            try drawTable(container, cells: table.cells, relativeColumnWidth: table.widths, padding: CGFloat(table.padding), margin: CGFloat(table.margin), style: table.style, showHeadersOnEveryPage: table.showHeadersOnEveryPage, calculatingMetrics: calculatingMetrics)
             break
         case let .addList(list):
             try drawList(container, list: list, calculatingMetrics: calculatingMetrics)
