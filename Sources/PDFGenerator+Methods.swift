@@ -62,7 +62,7 @@ extension PDFGenerator {
     
     // MARK: - List
     
-    open func addList(_ container: PDFContainer = PDFContainer.contentLeft, list: List) {
+    open func addList(_ container: PDFContainer = PDFContainer.contentLeft, list: PDFList) {
         commands += [(container, .addList(list: list))]
     }
 

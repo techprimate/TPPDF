@@ -13,7 +13,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* ListTests.swift */; };
+		607FACEC1AFB9204008FA782 /* PDFListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* PDFListTests.swift */; };
 		775D4DA6721B1FFE31B9CE76 /* Pods_TPPDF_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DA00DDB7DB8E91282BF890 /* Pods_TPPDF_Example.framework */; };
 		D4F8C11F1EF14C5000188F42 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C1181EF14C5000188F42 /* Icon.png */; };
 		D4F8C1201EF14C5000188F42 /* Image-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C1191EF14C5000188F42 /* Image-1.jpg */; };
@@ -50,7 +50,7 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* TPPDF_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TPPDF_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* PDFListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListTests.swift; sourceTree = "<group>"; };
 		97F6FA9EF52B4AA99A5B51DE /* Pods_TPPDF_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA3ABE5E8B71837B45C4119F /* TPPDF.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TPPDF.podspec; path = ../TPPDF.podspec; sourceTree = "<group>"; };
 		C4DA00DDB7DB8E91282BF890 /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				D4F8C12C1EF153F600188F42 /* PDFGeneratorTableTests.swift */,
-				607FACEB1AFB9204008FA782 /* ListTests.swift */,
+				607FACEB1AFB9204008FA782 /* PDFListTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -413,7 +413,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* ListTests.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* PDFListTests.swift in Sources */,
 				D4F8C12D1EF153F600188F42 /* PDFGeneratorTableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,7 +17,7 @@ public enum PDFCommand {
     case addSpace(space: CGFloat)
     case addLineSeparator(style: PDFLineStyle)
     case addTable(table: PDFTable)
-    case addList(list: List)
+    case addList(list: PDFList)
     
     case setIndentation(points: CGFloat)
     case setOffset(points: CGFloat)

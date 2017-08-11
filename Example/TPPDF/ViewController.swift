@@ -64,17 +64,17 @@ class ViewController: UIViewController {
         pdf.resetTextColor()
         
         // Create a list with level indentations
-        let list = List(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
+        let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
         
         list.addItems([
-            ListItem(symbol: .numbered(value: nil))
+            PDFListItem(symbol: .numbered(value: nil))
                 .addItems([
-                    ListItem(content: "Introduction")
+                    PDFListItem(content: "Introduction")
                         .addItems([
-                            ListItem(symbol: .numbered(value: nil))
+                            PDFListItem(symbol: .numbered(value: nil))
                                 .addItems([
-                                    ListItem(content: "Text"),
-                                    ListItem(content: "Attributed Text"),
+                                    PDFListItem(content: "Text"),
+                                    PDFListItem(content: "Attributed Text"),
                                     ])
                             ])
                     ])
@@ -106,18 +106,18 @@ class ViewController: UIViewController {
         
         // Simple bullet point list
         
-        let featureList = List(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
+        let featureList = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
         
-        featureList.addItem(ListItem(symbol: .dot).addItems([
-            ListItem(content: "Simple text drawing"),
-            ListItem(content: "Advanced text drawing using AttributedString"),
-            ListItem(content: "Multi-layer rendering by simply setting the offset"),
-            ListItem(content: "Fully calculated content sizing"),
-            ListItem(content: "Automatic page wrapping"),
-            ListItem(content: "Customizable pagination"),
-            ListItem(content: "Fully editable header and footer"),
-            ListItem(content: "Simple image positioning and rendering"),
-            ListItem(content: "Image captions")
+        featureList.addItem(PDFListItem(symbol: .dot).addItems([
+            PDFListItem(content: "Simple text drawing"),
+            PDFListItem(content: "Advanced text drawing using AttributedString"),
+            PDFListItem(content: "Multi-layer rendering by simply setting the offset"),
+            PDFListItem(content: "Fully calculated content sizing"),
+            PDFListItem(content: "Automatic page wrapping"),
+            PDFListItem(content: "Customizable pagination"),
+            PDFListItem(content: "Fully editable header and footer"),
+            PDFListItem(content: "Simple image positioning and rendering"),
+            PDFListItem(content: "Image captions")
             ]))
         pdf.addList(list: featureList)
         

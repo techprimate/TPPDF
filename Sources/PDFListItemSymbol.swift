@@ -1,5 +1,5 @@
 //
-//  ListItemSymbol.swift
+//  PDFListItemSymbol.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension ListItem {
+extension PDFListItem {
     
     public enum Symbol: RawRepresentable {
         case none

@@ -8,20 +8,20 @@
 
 import Foundation
 
-open class List {
+open class PDFList {
     
-    var items: [ListItem] = []
+    var items: [PDFListItem] = []
     var levelIndentations: [(pre: CGFloat, past: CGFloat)] = []
     
     public init(indentations: [(pre: CGFloat, past: CGFloat)]) {
         self.levelIndentations = indentations
     }
     
-    public func addItem(_ item: ListItem) {
+    public func addItem(_ item: PDFListItem) {
         self.items.append(item)
     }
     
-    public func addItems(_ items: [ListItem]) {
+    public func addItems(_ items: [PDFListItem]) {
         self.items = self.items + items
     }
     
@@ -29,18 +29,18 @@ open class List {
         return items.count
     }
     
-    public func flatted() -> [(level: Int, text: String, symbol: ListItem.Symbol)] {
-        var result: [(level: Int, text: String, symbol: ListItem.Symbol)] = []
+    public func flatted() -> [(level: Int, text: String, symbol: PDFListItem.Symbol)] {
+        var result: [(level: Int, text: String, symbol: PDFListItem.Symbol)] = []
         for (idx, item) in self.items.enumerated() {
             result = result + flatItem(item: item, level: 0, index: idx)
         }
         return result
     }
     
-    private func flatItem(item: ListItem, level: Int, index: Int) -> [(level: Int, text: String, symbol: ListItem.Symbol)] {
-        var result: [(level: Int, text: String, symbol: ListItem.Symbol)] = []
+    private func flatItem(item: PDFListItem, level: Int, index: Int) -> [(level: Int, text: String, symbol: PDFListItem.Symbol)] {
+        var result: [(level: Int, text: String, symbol: PDFListItem.Symbol)] = []
         if let content = item.content {
-            var symbol: ListItem.Symbol = .inherit
+            var symbol: PDFListItem.Symbol = .inherit
             if item.symbol == .inherit {
                 if let parent = item.parent {
                     if parent.symbol == .numbered(value: nil) {
