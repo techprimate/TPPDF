@@ -10,7 +10,7 @@ import UIKit
 
 public struct PDFTableStyleDefaults {
     
-    public static let simple = TableStyle(
+    public static let simple = PDFTableStyle(
         rowHeaderCount: 1,
         columnHeaderCount: 1,
         footerCount: 0,

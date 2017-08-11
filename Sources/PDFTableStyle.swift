@@ -1,5 +1,5 @@
 //
-//  TableStyle.swift
+//  PDFTableStyle.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 19/01/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TableStyle {
+public class PDFTableStyle {
     
     public var rowHeaderCount: Int
     public var columnHeaderCount: Int

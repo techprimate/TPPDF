@@ -1,5 +1,5 @@
 //
-//  PDFPDFTableCellPosition.swift
+//  PDFTableCellPosition.swift
 //  Pods
 //
 //  Created by Philip Niedertscheider on 11/08/2017.

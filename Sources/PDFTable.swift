@@ -10,7 +10,7 @@ import Foundation
 
 open class PDFTable {
     
-    open var style: TableStyle = PDFTableStyleDefaults.simple
+    open var style: PDFTableStyle = PDFTableStyleDefaults.simple
     open var data: [[PDFTableContent?]] = []
     open var alignments: [[PDFTableCellAlignment]] = []
     open var widths: [CGFloat] = []

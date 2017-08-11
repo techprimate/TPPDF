@@ -327,7 +327,7 @@ Additional parameters are cell margin and cell padding. Margin is the spacing be
 
 This works the same way as HTML/CSS margin and padding works. Checkout w3schools.com [margin](http://www.w3schools.com/css/css_margin.asp) and [padding](http://www.w3schools.com/css/css_padding.asp)
 
-Table styling is done with a `TableStyle` object. `TableStyleDefaults` contain a couple of predefined table styles, which can be modified.
+Table styling is done with a `PDFTableStyle` object. `PDFTableStyleDefaults` contain a couple of predefined table styles, which can be modified.
 A table style consists out of five different styles, for the row header, column header, footer, content and for alternating rows. It is also possible to set custom cell styling using the method `setCellStyle(row, column, style)`.
 
 Cell styling includes background fill color, text color, font and the line style for each border.
@@ -335,7 +335,7 @@ Cell styling includes background fill color, text color, font and the line style
 Line styling includes line color, line width and line type, which can be either non, full, dashed or dotted.
 
 ```swift
-let tableStyle = TableStyleDefaults.simple
+let tableStyle = PDFTableStyleDefaults.simple
 
 tableStyle.setCellStyle(row: 2, column: 3, style: PDFTableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
 tableStyle.setCellStyle(row: 20, column: 1, style: PDFTableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))

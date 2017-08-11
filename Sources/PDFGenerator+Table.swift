@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawTable(_ container: PDFContainer, data: [[PDFTableContent?]], alignments: [[PDFTableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) throws {
+    func drawTable(_ container: PDFContainer, data: [[PDFTableContent?]], alignments: [[PDFTableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: PDFTableStyle, showHeadersOnEveryPage: Bool, newPageBreak: Bool = false, styleIndexOffset: Int = 0, calculatingMetrics: Bool) throws {
         
         try PDFTableValidator.validateTableData(data: data, alignments: alignments, columnWidths: relativeColumnWidth)
         
@@ -207,7 +207,7 @@ extension PDFGenerator {
         }
     }
     
-    func getCellStyle(offset: Int, tableHeight: Int, style: TableStyle, row: Int, column: Int, newPageBreak: Bool, showHeadersOnEveryPage: Bool) -> PDFTableCellStyle {
+    func getCellStyle(offset: Int, tableHeight: Int, style: PDFTableStyle, row: Int, column: Int, newPageBreak: Bool, showHeadersOnEveryPage: Bool) -> PDFTableCellStyle {
         let position = PDFTableCellPosition(row: (row + offset), column: column)
         
         if let cellStyle = style.cellStyles[position] {
