@@ -10,8 +10,8 @@ extension PDFGenerator {
     
     /// MARK: - Command Rendering
     
-    func renderCommand(_ container: Container, command: Command, calculatingMetrics: Bool) throws {
-        switch command {
+    func renderPDFCommand(_ container: Container, PDFCommand: PDFCommand, calculatingMetrics: Bool) throws {
+        switch PDFCommand {
         case let .addText(text, spacing):
             try drawText(container, text: text, spacing: spacing, calculatingMetrics: calculatingMetrics)
             break
@@ -65,12 +65,12 @@ extension PDFGenerator {
         
         if paginationContainer != .none {
             if !paginationExcludes.contains(currentPage) && currentPage >= paginationStart && currentPage <= paginationEnd {
-                try renderCommand(paginationContainer, command: .addText(text: paginationStyle.format(page: currentPage, total: totalPages), lineSpacing: 1.0), calculatingMetrics: calculatingMetrics)
+                try renderPDFCommand(paginationContainer, PDFCommand: .addText(text: paginationStyle.format(page: currentPage, total: totalPages), lineSpacing: 1.0), calculatingMetrics: calculatingMetrics)
             }
         }
         
-        for (container, command) in headerFooterCommands {
-            try renderCommand(container, command: command, calculatingMetrics: calculatingMetrics)
+        for (container, PDFCommand) in headerFooterCommands {
+            try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: calculatingMetrics)
         }
     }
     
@@ -115,7 +115,7 @@ extension PDFGenerator {
     }
     
     /**
-     Generate PDF Context from commands
+     Generate PDF Context from PDFCommands
      
      - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
      
@@ -124,25 +124,25 @@ extension PDFGenerator {
     fileprivate func generatePDFContext(progress: ((CGFloat) -> ())?) throws {
         UIGraphicsBeginPDFPageWithInfo(pageBounds, nil)
         
-        // Extract header & footer commands
+        // Extract header & footer PDFCommands
         headerFooterCommands = commands.filter { return $0.0.isFooter || $0.0.isHeader }
         let contentCommands = commands.filter { return !$0.0.isFooter && !$0.0.isHeader }
         
-        // Split header & footer commands
+        // Split header & footer PDFCommands
         let footers = commands.filter { return $0.0.isFooter }
         let headers = commands.filter { return $0.0.isHeader }
         
-        // Only add space between content and footer if footer commands exist.
+        // Only add space between content and footer if footer PDFCommands exist.
         if footers.count == 0 {
             footerSpace = 0
         }
         
-        // Only add space between content and header if header commands exist.
+        // Only add space between content and header if header PDFCommands exist.
         if headers.count == 0 {
             headerSpace = 0
         }
         
-        // Progress equals the number of commands run. Each command is called once for calculations and second for rendering.
+        // Progress equals the number of PDFCommands run. Each PDFCommand is called once for calculations and second for rendering.
         var progressIndex: CGFloat = 0.0;
         let progressMax: CGFloat = CGFloat(contentCommands.count * 2)
         
@@ -151,10 +151,10 @@ extension PDFGenerator {
             try renderHeaderFooter(calculatingMetrics: true)
         }
         
-        // Dry run all commands. This won't render anything but instad calculate all the frames.
-        for (container, command) in contentCommands {
+        // Dry run all PDFCommands. This won't render anything but instad calculate all the frames.
+        for (container, PDFCommand) in contentCommands {
             try autoreleasepool {
-                try renderCommand(container, command: command, calculatingMetrics: true)
+                try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: true)
                 progressIndex = progressIndex + 1;
                 progress?(progressIndex / progressMax)
             }
@@ -170,10 +170,10 @@ extension PDFGenerator {
             try renderHeaderFooter(calculatingMetrics: false)
         }
         
-        // Render each command
-        for (container, command) in contentCommands {
+        // Render each PDFCommand
+        for (container, PDFCommand) in contentCommands {
             try autoreleasepool {
-                try renderCommand(container, command: command, calculatingMetrics: false)
+                try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: false)
                 progressIndex = progressIndex + 1;
                 progress?(progressIndex / progressMax)
             }

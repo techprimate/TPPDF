@@ -35,8 +35,8 @@ open class PDFGenerator  {
     
     // MARK: - Private Variables
     
-    var commands: [(Container, Command)] = []
-    var headerFooterCommands: [(Container, Command)] = []
+    var commands: [(Container, PDFCommand)] = []
+    var headerFooterCommands: [(Container, PDFCommand)] = []
     
     var headerHeight: [Container : CGFloat] = [:]
     var footerHeight: [Container : CGFloat] = [:]

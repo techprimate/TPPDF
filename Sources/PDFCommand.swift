@@ -1,5 +1,5 @@
 //
-//  Command.swift
+//  PDFCommand.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 12/08/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum Command {
+public enum PDFCommand {
     
     case addText(text: String, lineSpacing: CGFloat)
     case addAttributedText(text: NSAttributedString)

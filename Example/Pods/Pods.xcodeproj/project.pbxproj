@@ -83,7 +83,7 @@
 		7D603AE508ED82DC0243987FF2B26D9E /* PDFGenerator+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91EA41D35F2D9578E92146BB64D1A9F /* PDFGenerator+Image.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7F271234368DDF9F3061A9E9CF32394C /* PDFTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3092A6515992350D87C58D2CACC2B56 /* PDFTableContent.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		82A8CF86C54998C21A2838B9C7791D04 /* ToSucceed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D23D935503C604F4F95F4D5B971F048 /* ToSucceed.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		853B86B3FE6780E05364949944613D34 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6DF48BACE798273FDB82B8D5B6C8A5 /* Command.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		853B86B3FE6780E05364949944613D34 /* PDFCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6DF48BACE798273FDB82B8D5B6C8A5 /* PDFCommand.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8547E4E42CAA00207BF695CFE6BC9A70 /* Quick-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BABCBFF6CF6B19A6CA641247F799BE7 /* Quick-dummy.m */; };
 		8645217D664695DC279B20E02093ADE4 /* CwlDarwinDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC56B034AE55DF4CEF39F4E172F143D /* CwlDarwinDefinitions.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8B293115670A9C71C45B1869D816CCA9 /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C16DA7DA0A3FAA1F62CA436EDD5C95 /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -334,7 +334,7 @@
 		D77B70C258CB74061EE304CBEDE20AB2 /* PDFGenerator+Offset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+Offset.swift"; sourceTree = "<group>"; };
 		D8866B4CD21F646848FD735A2A781232 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/Quick/Configuration/Configuration.swift; sourceTree = "<group>"; };
 		D9BFA6BB9BF8C2F3F46C727771DB0A6F /* PDFGenerator+Calculations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PDFGenerator+Calculations.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		DA6DF48BACE798273FDB82B8D5B6C8A5 /* Command.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		DA6DF48BACE798273FDB82B8D5B6C8A5 /* PDFCommand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFCommand.swift; sourceTree = "<group>"; };
 		DB4BF2CABA8979E1B709066E3334F192 /* PDFGenerator+Lines.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PDFGenerator+Lines.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		DDF04AEFCC4B011565BFFBFFF52B2FCE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		DE147446A1225BA68EA82615B1436CC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -676,7 +676,7 @@
 		FB1F302488DAC2A50EC57F415DCABF28 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				DA6DF48BACE798273FDB82B8D5B6C8A5 /* Command.swift */,
+				DA6DF48BACE798273FDB82B8D5B6C8A5 /* PDFCommand.swift */,
 				EB0A8A717826E853A9B19AEEBFEB0D6C /* Container.swift */,
 				19E6D70D86E3F65967BBD8292FF72E38 /* List.swift */,
 				2076A049362A4E65BAE967D7144CEE2A /* ListItem.swift */,
@@ -1034,7 +1034,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4666DCA1F3DEC66004A11D2 /* PDFLineStyle.swift in Sources */,
-				853B86B3FE6780E05364949944613D34 /* Command.swift in Sources */,
+				853B86B3FE6780E05364949944613D34 /* PDFCommand.swift in Sources */,
 				1B69196EF62F323B5A7953DD614925D3 /* Container.swift in Sources */,
 				E36B2A205F6A361A70E9144BE596B623 /* List.swift in Sources */,
 				F825A289F50AF9F36C2AA44F75C90019 /* ListItem.swift in Sources */,
