@@ -21,7 +21,7 @@ open class Table {
     public init() { }
     
     public func setData(data: [[Any?]]) throws {
-        self.data = [];
+        self.data = []
         
         for row in data {
             var contentRow = [TableContent]()

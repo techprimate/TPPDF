@@ -43,12 +43,15 @@ extension PDFGenerator {
     
     // MARK: - Image
     
-    open func addImage(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero, caption: NSAttributedString = NSAttributedString(), sizeFit: ImageSizeFit = .widthHeight) {
-        commands += [(container, .addImage(image: image, size: size, caption: caption, sizeFit: sizeFit))]
+    open func addImage(_ container: Container = Container.contentLeft, image: PDFImage) {
+        commands += [(container, .addImage(image: image.image, size: image.size, caption: image.caption, sizeFit: image.sizeFit))]
     }
     
-    open func addImagesInRow(_ container: Container = Container.contentLeft, images: [UIImage], captions: [NSAttributedString] = [], spacing: CGFloat = 5.0) {
-        commands += [(container, .addImagesInRow(images: images, captions: captions, spacing: spacing))]
+    open func addImagesInRow(_ container: Container = Container.contentLeft, images: [PDFImage], spacing: CGFloat = 5.0) {
+        let imagesArray = images.map { return $0.image }
+        let captionsArray = images.map { return $0.caption }
+        
+        commands += [(container, .addImagesInRow(images: imagesArray, captions: captionsArray, spacing: spacing))]
     }
     
     // MARK: - Table

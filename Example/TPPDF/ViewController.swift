@@ -36,7 +36,9 @@ class ViewController: UIViewController {
         }), from: 1, to: 10, hiddenPages: [3])
         
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
-        pdf.addImage(.contentCenter, image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150))
+        let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150))
+        pdf.addImage(image: image)
+        
         // Add some spacing below image
         pdf.addSpace(space: 15.0)
         
@@ -128,19 +130,7 @@ class ViewController: UIViewController {
         pdf.addSpace(space: 10)
         pdf.addLineSeparator(style: LineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
         pdf.addSpace(space: 10)
-        
-        // Create an image collage with captions
-        
-        let images = [
-            [
-                UIImage(named: "Image-1.jpg")!,
-                UIImage(named: "Image-2.jpg")!
-            ],
-            [
-                UIImage(named: "Image-3.jpg")!,
-                UIImage(named: "Image-4.jpg")!
-            ]
-        ]
+
         
         // Create attributes for captions
         
@@ -155,12 +145,22 @@ class ViewController: UIViewController {
             
             ]
         
+        // Create an image collage with captions
+        
+        let images = [
+            [
+                PDFImage(image: UIImage(named: "Image-1.jpg")!, caption: NSAttributedString(string: "Waterfall", attributes: captionAttributes)),
+                PDFImage(image: UIImage(named: "Image-2.jpg")!, caption: NSAttributedString(string: "Forrest", attributes: captionAttributes)),
+                ],
+            [
+                PDFImage(image: UIImage(named: "Image-3.jpg")!, caption: NSAttributedString(string: "Fireworks", attributes: captionAttributes)),
+                PDFImage(image: UIImage(named: "Image-4.jpg")!, caption: NSAttributedString(string: "Field", attributes: captionAttributes)),
+                ]
+        ]
+        
         // Add first row of images
         
-        pdf.addImagesInRow(images: images[0], captions: [
-            NSAttributedString(string: "Waterfall", attributes: captionAttributes),
-            NSAttributedString(string: "Forrest", attributes: captionAttributes)
-            ], spacing: 10)
+        pdf.addImagesInRow(images: images[0], spacing: 10)
         
         // Add spacing between image rows
         
@@ -168,10 +168,7 @@ class ViewController: UIViewController {
         
         // Add second row of images
         
-        pdf.addImagesInRow(images: images[1], captions: [
-            NSAttributedString(string: "Fireworks", attributes: captionAttributes),
-            NSAttributedString(string: "Field", attributes: captionAttributes)
-            ], spacing: 10)
+        pdf.addImagesInRow(images: images[1], spacing: 10)
         
         // Finish image collage with another line separator
         
