@@ -643,6 +643,96 @@
 			path = "Example/Pods/Target Support Files/TPPDF";
 			sourceTree = "<group>";
 		};
+		D4666DD11F3DF2BB004A11D2 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				19E6D70D86E3F65967BBD8292FF72E38 /* PDFList.swift */,
+				2076A049362A4E65BAE967D7144CEE2A /* PDFListItem.swift */,
+				5B35A1913A76621B55A6B42E43C8F110 /* PDFListItemSymbol.swift */,
+			);
+			name = List;
+			sourceTree = "<group>";
+		};
+		D4666DD21F3DF2C7004A11D2 /* Page Formats */ = {
+			isa = PBXGroup;
+			children = (
+				6B769BFB4BF1A0528AD04CC601604A9E /* PDFPageFormat.swift */,
+				D4666DC51F3DE5B9004A11D2 /* PDFPageFormat+MarginConstants.swift */,
+				D4666DC71F3DE603004A11D2 /* PDFPageFormat+SizeConstants.swift */,
+			);
+			name = "Page Formats";
+			sourceTree = "<group>";
+		};
+		D4666DD31F3DF2D9004A11D2 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				0FF8E6D1409C1A35D8A318B77A9CA955 /* PDFTable.swift */,
+				D4666DCF1F3DF090004A11D2 /* PDFTableCellAlignment.swift */,
+				D4666DCD1F3DECA8004A11D2 /* PDFTableCellPosition.swift */,
+				D4666DCB1F3DEC84004A11D2 /* PDFTableCellStyle.swift */,
+				E3092A6515992350D87C58D2CACC2B56 /* PDFTableContent.swift */,
+				BA8D281CD7FFA4D455EBBB5398E1657A /* PDFTableStyle.swift */,
+				D30C972E4EA2A37D043BA4822A7F936A /* PDFTableStyle+Defaults.swift */,
+				D4666DC31F3DDEB6004A11D2 /* PDFTableValidator.swift */,
+			);
+			name = Table;
+			sourceTree = "<group>";
+		};
+		D4666DD41F3DF2DE004A11D2 /* Pagination */ = {
+			isa = PBXGroup;
+			children = (
+				A135CBB7DCA633EDE246699C15BCBC0C /* PDFPaginationStyle.swift */,
+			);
+			name = Pagination;
+			sourceTree = "<group>";
+		};
+		D4666DD51F3DF2E3004A11D2 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				D4666DBF1F3DD506004A11D2 /* PDFImage.swift */,
+				D4666DC91F3DEC66004A11D2 /* PDFLineStyle.swift */,
+			);
+			name = Drawing;
+			sourceTree = "<group>";
+		};
+		D4666DD61F3DF2FD004A11D2 /* Generator */ = {
+			isa = PBXGroup;
+			children = (
+				DA6DF48BACE798273FDB82B8D5B6C8A5 /* PDFCommand.swift */,
+				93A2EF8301CFB4EC612E3AC48A342195 /* PDFError.swift */,
+				93DF9E3F73E617F8A1395E5624B08CF3 /* PDFGenerator.swift */,
+				D9BFA6BB9BF8C2F3F46C727771DB0A6F /* PDFGenerator+Calculations.swift */,
+				B1ED5AA7FAA5E740FB3579B899DCA706 /* PDFGenerator+DocumentInfo.swift */,
+				F4CEFCF6B5D41BBE1874A17E10252B03 /* PDFGenerator+Generation.swift */,
+				B91EA41D35F2D9578E92146BB64D1A9F /* PDFGenerator+Image.swift */,
+				95524891E504073A813D72705683AE2C /* PDFGenerator+Initialization.swift */,
+				DB4BF2CABA8979E1B709066E3334F192 /* PDFGenerator+Lines.swift */,
+				3DA938CC605B5BC2FEDAE88E18898CE4 /* PDFGenerator+List.swift */,
+				C067B011AAFEA1E3F5498FAD205E88AD /* PDFGenerator+Methods.swift */,
+				D77B70C258CB74061EE304CBEDE20AB2 /* PDFGenerator+Offset.swift */,
+				F1E95D96DBA09B878BDFB6B8C4998FF5 /* PDFGenerator+Pagination.swift */,
+				8DAAD0393AE8D95978055306D05F9E04 /* PDFGenerator+Table.swift */,
+				954BEFBBDBEB74FCE70B71233363FE91 /* PDFGenerator+Text.swift */,
+			);
+			name = Generator;
+			sourceTree = "<group>";
+		};
+		D4666DD71F3DF31E004A11D2 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				EB0A8A717826E853A9B19AEEBFEB0D6C /* PDFContainer.swift */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
+		D4666DD81F3DF328004A11D2 /* Informations */ = {
+			isa = PBXGroup;
+			children = (
+				128E82A16272433395B2EE6FA7A7F04D /* PDFInfo.swift */,
+			);
+			name = Informations;
+			sourceTree = "<group>";
+		};
 		EE659DA9E6C55B2343EE57A905CFFA75 /* Pods-TPPDF_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,40 +768,14 @@
 		FB1F302488DAC2A50EC57F415DCABF28 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				19E6D70D86E3F65967BBD8292FF72E38 /* PDFList.swift */,
-				2076A049362A4E65BAE967D7144CEE2A /* PDFListItem.swift */,
-				5B35A1913A76621B55A6B42E43C8F110 /* PDFListItemSymbol.swift */,
-				DA6DF48BACE798273FDB82B8D5B6C8A5 /* PDFCommand.swift */,
-				EB0A8A717826E853A9B19AEEBFEB0D6C /* PDFContainer.swift */,
-				93A2EF8301CFB4EC612E3AC48A342195 /* PDFError.swift */,
-				93DF9E3F73E617F8A1395E5624B08CF3 /* PDFGenerator.swift */,
-				D9BFA6BB9BF8C2F3F46C727771DB0A6F /* PDFGenerator+Calculations.swift */,
-				B1ED5AA7FAA5E740FB3579B899DCA706 /* PDFGenerator+DocumentInfo.swift */,
-				F4CEFCF6B5D41BBE1874A17E10252B03 /* PDFGenerator+Generation.swift */,
-				B91EA41D35F2D9578E92146BB64D1A9F /* PDFGenerator+Image.swift */,
-				95524891E504073A813D72705683AE2C /* PDFGenerator+Initialization.swift */,
-				DB4BF2CABA8979E1B709066E3334F192 /* PDFGenerator+Lines.swift */,
-				3DA938CC605B5BC2FEDAE88E18898CE4 /* PDFGenerator+List.swift */,
-				C067B011AAFEA1E3F5498FAD205E88AD /* PDFGenerator+Methods.swift */,
-				D77B70C258CB74061EE304CBEDE20AB2 /* PDFGenerator+Offset.swift */,
-				F1E95D96DBA09B878BDFB6B8C4998FF5 /* PDFGenerator+Pagination.swift */,
-				8DAAD0393AE8D95978055306D05F9E04 /* PDFGenerator+Table.swift */,
-				954BEFBBDBEB74FCE70B71233363FE91 /* PDFGenerator+Text.swift */,
-				D4666DBF1F3DD506004A11D2 /* PDFImage.swift */,
-				128E82A16272433395B2EE6FA7A7F04D /* PDFInfo.swift */,
-				D4666DC91F3DEC66004A11D2 /* PDFLineStyle.swift */,
-				6B769BFB4BF1A0528AD04CC601604A9E /* PDFPageFormat.swift */,
-				D4666DC51F3DE5B9004A11D2 /* PDFPageFormat+MarginConstants.swift */,
-				D4666DC71F3DE603004A11D2 /* PDFPageFormat+SizeConstants.swift */,
-				A135CBB7DCA633EDE246699C15BCBC0C /* PDFPaginationStyle.swift */,
-				0FF8E6D1409C1A35D8A318B77A9CA955 /* PDFTable.swift */,
-				D4666DCF1F3DF090004A11D2 /* PDFTableCellAlignment.swift */,
-				D4666DCD1F3DECA8004A11D2 /* PDFTableCellPosition.swift */,
-				D4666DCB1F3DEC84004A11D2 /* PDFTableCellStyle.swift */,
-				E3092A6515992350D87C58D2CACC2B56 /* PDFTableContent.swift */,
-				BA8D281CD7FFA4D455EBBB5398E1657A /* PDFTableStyle.swift */,
-				D30C972E4EA2A37D043BA4822A7F936A /* PDFTableStyle+Defaults.swift */,
-				D4666DC31F3DDEB6004A11D2 /* PDFTableValidator.swift */,
+				D4666DD51F3DF2E3004A11D2 /* Drawing */,
+				D4666DD61F3DF2FD004A11D2 /* Generator */,
+				D4666DD81F3DF328004A11D2 /* Informations */,
+				D4666DD71F3DF31E004A11D2 /* Layout */,
+				D4666DD11F3DF2BB004A11D2 /* List */,
+				D4666DD21F3DF2C7004A11D2 /* Page Formats */,
+				D4666DD41F3DF2DE004A11D2 /* Pagination */,
+				D4666DD31F3DF2D9004A11D2 /* Table */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
