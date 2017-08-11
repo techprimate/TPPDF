@@ -83,7 +83,7 @@ extension PDFGenerator {
         return (frameRef, drawnSize)
     }
     
-    func calculateTextFrameAndDrawnSizeInOnePage(_ container: Container, text: CFAttributedString, currentRange: CFRange, textMaxWidth: CGFloat) -> (CTFrame, CGSize) {
+    func calculateTextFrameAndDrawnSizeInOnePage(_ container: PDFContainer, text: CFAttributedString, currentRange: CFRange, textMaxWidth: CGFloat) -> (CTFrame, CGSize) {
         let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : pageBounds.width - 2 * pageMargin - indentation[container.normalize]!
         let textMaxHeight: CGFloat = {
             if container.isHeader {
@@ -122,7 +122,7 @@ extension PDFGenerator {
         return calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
     }
     
-    func calculateImageCaptionSize(_ container: Container, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit) -> (CGSize, CGSize) {
+    func calculateImageCaptionSize(_ container: PDFContainer, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         var size = (size == CGSize.zero) ? image.size : size
         if container.isHeader || container.isFooter {

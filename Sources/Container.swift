@@ -1,18 +1,18 @@
 //
-//  Container.swift
+//  PDFContainer.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 12/08/16.
 //
 //
 
-public enum Container {
+public enum PDFContainer {
     case none
     case headerLeft, headerCenter, headerRight
     case contentLeft, contentCenter, contentRight
     case footerLeft, footerCenter, footerRight
     
-    var opposite: Container {
+    var opposite: PDFContainer {
         switch self {
         case .headerLeft:
             return .footerLeft
@@ -49,7 +49,7 @@ public enum Container {
         }
     }
     
-    var normalize: Container {
+    var normalize: PDFContainer {
         switch self {
         case .headerLeft, .headerCenter, .headerRight:
             return .headerLeft

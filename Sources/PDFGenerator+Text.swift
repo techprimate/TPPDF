@@ -8,13 +8,13 @@
 
 extension PDFGenerator {
     
-    func drawText(_ container: Container, text: String, spacing: CGFloat, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) throws {
+    func drawText(_ container: PDFContainer, text: String, spacing: CGFloat, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) throws {
         let attributes = generateDefaultTextAttributes(container, spacing: spacing)
         
         try drawAttributedText(container, text: NSAttributedString(string: text, attributes: attributes), textMaxWidth: textMaxWidth, calculatingMetrics: calculatingMetrics)
     }
     
-    func drawAttributedText(_ container: Container, text: NSAttributedString, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) throws {
+    func drawAttributedText(_ container: PDFContainer, text: NSAttributedString, textMaxWidth: CGFloat = 0, calculatingMetrics: Bool) throws {
         let currentText = CFAttributedStringCreateCopy(nil, text as CFAttributedString)
         var currentRange = CFRange(location: 0, length: 0)
         var done = false
@@ -64,7 +64,7 @@ extension PDFGenerator {
         } while(!done)
     }
     
-    func generateDefaultTextAttributes(_ container: Container, spacing: CGFloat) -> [String: NSObject] {
+    func generateDefaultTextAttributes(_ container: PDFContainer, spacing: CGFloat) -> [String: NSObject] {
         let paragraphStyle = NSMutableParagraphStyle()
         switch container {
         case .headerLeft, .contentLeft, .footerLeft:

@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawImage(_ container: Container, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit, calculatingMetrics: Bool) throws {
+    func drawImage(_ container: PDFContainer, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit, calculatingMetrics: Bool) throws {
         var (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
         
         let y: CGFloat = try {
@@ -48,7 +48,7 @@ extension PDFGenerator {
         try drawImage(container, image: image, frame: frame, caption: caption, calculatingMetrics: calculatingMetrics)
     }
     
-    func drawImagesInRow(_ container: Container, images: [UIImage], captions: [NSAttributedString], spacing: CGFloat, calculatingMetrics: Bool) throws {
+    func drawImagesInRow(_ container: PDFContainer, images: [UIImage], captions: [NSAttributedString], spacing: CGFloat, calculatingMetrics: Bool) throws {
         assert(images.count > 0, "You need to provide at least one image!")
         
         let totalImagesWidth = contentSize.width - indentation[container.normalize]! - (CGFloat(images.count) - 1) * spacing
@@ -98,7 +98,7 @@ extension PDFGenerator {
         contentHeight += maxHeight
     }
     
-    func drawImage(_ container: Container, image: UIImage, frame: CGRect, caption: NSAttributedString, calculatingMetrics: Bool) throws {
+    func drawImage(_ container: PDFContainer, image: UIImage, frame: CGRect, caption: NSAttributedString, calculatingMetrics: Bool) throws {
         let compressedImage = resizeAndCompressImage(image: image, frame: frame)
         
         // Don't render when calculating metrics

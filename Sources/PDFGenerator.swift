@@ -54,7 +54,7 @@ open class PDFGenerator  {
     
     var currentPage: Int = 1
     var totalPages: Int = 0
-    var paginationContainer = Container.none
+    var paginationContainer = PDFContainer.none
     var paginationStyle = PDFPaginationStyle.Default
     var paginationStart: Int = 1
     var paginationEnd: Int = Int.max
@@ -62,7 +62,7 @@ open class PDFGenerator  {
     
     lazy var fonts: [Container: UIFont] = {
         var defaults = [Container: UIFont]()
-        for container in Container.all + [Container.none] {
+        for container in PDFContainer.all + [Container.none] {
             defaults[container] = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         }
         return defaults

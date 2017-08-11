@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    func drawLineSeparator(_ container: Container, style: PDFLineStyle, calculatingMetrics: Bool) {
+    func drawLineSeparator(_ container: PDFContainer, style: PDFLineStyle, calculatingMetrics: Bool) {
         let y: CGFloat = {
             switch container.normalize {
             case .headerLeft:

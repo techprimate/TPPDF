@@ -420,7 +420,7 @@ switch command {
 - Add a public method `setFont` which adds a command to the command chain. 
 
 ```swift
-public func setFont(container: Container = Container.ContentLeft, font: UIFont = UIFont.systemFontOfSize(14)) {
+public func setFont(container: PDFContainer = PDFContainer.ContentLeft, font: UIFont = UIFont.systemFontOfSize(14)) {
 	commands += [(container, .SetFont(font: font))]
 }
 ```
@@ -430,7 +430,7 @@ public func setFont(container: Container = Container.ContentLeft, font: UIFont =
 ### Aspects to consider!!
 
 The previous example does not handle different `Containers`. The correct way of doing this, would be three instance variables of type `UIFont`. One for the header, one for the content and one for the footer.
-Then, when calling the command, it changes the correct font variable, depending on the Container provided.
+Then, when calling the command, it changes the correct font variable, depending on the PDFContainer provided.
 
 ## Apps using TPPDF
 

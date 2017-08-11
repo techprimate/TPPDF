@@ -10,7 +10,7 @@ extension PDFGenerator {
     
     /// MARK: - Command Rendering
     
-    func renderPDFCommand(_ container: Container, PDFCommand: PDFCommand, calculatingMetrics: Bool) throws {
+    func renderPDFCommand(_ container: PDFContainer, PDFCommand: PDFCommand, calculatingMetrics: Bool) throws {
         switch PDFCommand {
         case let .addText(text, spacing):
             try drawText(container, text: text, spacing: spacing, calculatingMetrics: calculatingMetrics)

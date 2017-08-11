@@ -10,7 +10,7 @@ import Foundation
 
 extension PDFGenerator {
     
-    func drawList(_ container: Container, list: List, calculatingMetrics: Bool) throws {
+    func drawList(_ container: PDFContainer, list: List, calculatingMetrics: Bool) throws {
         let originalIndent = indentation[container.normalize]!
         
         for item in list.flatted() {

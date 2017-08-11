@@ -8,7 +8,7 @@
 
 extension PDFGenerator {
     
-    public convenience init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8, paginationContainer: Container = .none, imageQuality: CGFloat = 0.8, info: PDFInfo = PDFInfo()) {
+    public convenience init(pageSize: CGSize, pageMargin: CGFloat = 36.0, headerMargin: CGFloat = 20.0, footerMargin: CGFloat = 20.0, headerSpace: CGFloat = 8, footerSpace: CGFloat = 8, paginationContainer: PDFContainer = .none, imageQuality: CGFloat = 0.8, info: PDFInfo = PDFInfo()) {
         self.init()
         
         self.pageBounds = CGRect(origin: CGPoint.zero, size: pageSize)
@@ -28,7 +28,7 @@ extension PDFGenerator {
         resetHeaderFooterHeight()
     }
     
-    public convenience init(format: PDFPageFormat, paginationContainer: Container = .none, imageQuality: CGFloat = 0.8, info: PDFInfo = PDFInfo()) {
+    public convenience init(format: PDFPageFormat, paginationContainer: PDFContainer = .none, imageQuality: CGFloat = 0.8, info: PDFInfo = PDFInfo()) {
         self.init()
         
         pageBounds = CGRect(origin: CGPoint.zero, size: format.size)
