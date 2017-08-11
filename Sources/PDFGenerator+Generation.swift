@@ -63,9 +63,9 @@ extension PDFGenerator {
     func renderHeaderFooter(calculatingMetrics: Bool) throws {
         resetHeaderFooterHeight()
         
-        if paginationContainer != .none {
-            if !paginationExcludes.contains(currentPage) && currentPage >= paginationStart && currentPage <= paginationEnd {
-                try renderPDFCommand(paginationContainer, PDFCommand: .addText(text: paginationStyle.format(page: currentPage, total: totalPages), lineSpacing: 1.0), calculatingMetrics: calculatingMetrics)
+        if pagination.container != .none {
+            if !pagination.hiddenPages.contains(currentPage) && currentPage >= pagination.start && currentPage <= pagination.end {
+                try renderPDFCommand(pagination.container, PDFCommand: .addText(text: pagination.style.format(page: currentPage, total: totalPages), lineSpacing: 1.0), calculatingMetrics: calculatingMetrics)
             }
         }
         

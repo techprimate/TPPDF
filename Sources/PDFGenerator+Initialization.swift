@@ -20,7 +20,7 @@ extension PDFGenerator {
         self.headerSpace = headerSpace
         self.footerSpace = footerSpace
         
-        self.paginationContainer = paginationContainer
+        self.pagination.container = paginationContainer
         self.imageQuality = imageQuality
         
         self.info = info
@@ -40,7 +40,7 @@ extension PDFGenerator {
         headerSpace = format.headerSpace
         footerSpace = format.footerSpace
         
-        self.paginationContainer = paginationContainer
+        self.pagination.container = paginationContainer
         self.imageQuality = imageQuality
         
         self.info = info

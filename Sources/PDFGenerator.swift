@@ -54,11 +54,7 @@ open class PDFGenerator  {
     
     var currentPage: Int = 1
     var totalPages: Int = 0
-    var paginationContainer = PDFContainer.none
-    var paginationStyle = PDFPaginationStyle.Default
-    var paginationStart: Int = 1
-    var paginationEnd: Int = Int.max
-    var paginationExcludes: [Int] = []
+    var pagination: PDFPagination = PDFPagination()
     
     lazy var fonts: [PDFContainer: UIFont] = {
         var defaults = [PDFContainer: UIFont]()

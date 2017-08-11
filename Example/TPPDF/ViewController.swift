@@ -31,9 +31,11 @@ class ViewController: UIViewController {
         pdf.footerSpace = 25
         
         // Add custom pagination, starting at page 1 and excluding page 3
-        pdf.setPageNumbering(.footerRight, style: PDFPaginationStyle.CustomClosure({ (page, total) -> String in
-            return "\(page) / \(total)"
-        }), from: 1, to: 10, hiddenPages: [3])
+        pdf.setPagination(
+            pagination: PDFPagination(container: .footerRight, style: PDFPaginationStyle.CustomClosure({ (page, total) -> String in
+                return "\(page) / \(total)"
+            }), from: 1, to: 10, hiddenPages: [3])
+        )
         
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150))
@@ -247,7 +249,7 @@ class ViewController: UIViewController {
         } catch PDFError.tableIndexOutOfBounds(let index, let length){
             // In case the index is out of bounds
             
-           print("Requested cell is out of bounds! \(index) / \(length)")
+            print("Requested cell is out of bounds! \(index) / \(length)")
         } catch {
             // General error handling in case something goes wrong.
             
