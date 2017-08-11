@@ -35,18 +35,18 @@ open class PDFGenerator  {
     
     // MARK: - Private Variables
     
-    var commands: [(Container, PDFCommand)] = []
-    var headerFooterCommands: [(Container, PDFCommand)] = []
+    var commands: [(PDFContainer, PDFCommand)] = []
+    var headerFooterCommands: [(PDFContainer, PDFCommand)] = []
     
-    var headerHeight: [Container : CGFloat] = [:]
-    var footerHeight: [Container : CGFloat] = [:]
+    var headerHeight: [PDFContainer : CGFloat] = [:]
+    var footerHeight: [PDFContainer : CGFloat] = [:]
     var contentHeight: CGFloat = 0
     
     var contentSize: CGSize {
         return CGSize(width: pageBounds.width - 2 * pageMargin, height: pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace)
     }
     
-    var indentation: [Container: CGFloat] = [
+    var indentation: [PDFContainer: CGFloat] = [
         .headerLeft : 0,
         .contentLeft : 0,
         .footerLeft : 0
@@ -60,9 +60,9 @@ open class PDFGenerator  {
     var paginationEnd: Int = Int.max
     var paginationExcludes: [Int] = []
     
-    lazy var fonts: [Container: UIFont] = {
-        var defaults = [Container: UIFont]()
-        for container in PDFContainer.all + [Container.none] {
+    lazy var fonts: [PDFContainer: UIFont] = {
+        var defaults = [PDFContainer: UIFont]()
+        for container in PDFContainer.all + [PDFContainer.none] {
             defaults[container] = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         }
         return defaults

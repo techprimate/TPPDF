@@ -12,7 +12,7 @@ open class PDFTable {
     
     open var style: TableStyle = PDFTableStyleDefaults.simple
     open var data: [[PDFTableContent?]] = []
-    open var alignments: [[TableCellAlignment]] = []
+    open var alignments: [[PDFTableCellAlignment]] = []
     open var widths: [CGFloat] = []
     open var padding: Int = 0
     open var margin: Int = 0

@@ -62,7 +62,7 @@ public enum PDFContainer {
         }
     }
     
-    static var all: [Container] {
+    static var all: [PDFContainer] {
         return [
             .headerLeft, .headerCenter, .headerRight,
             .contentLeft, .contentCenter, .contentRight,
