@@ -14,11 +14,11 @@ extension PDFGenerator {
         self.layout.pageBounds = CGRect(origin: CGPoint.zero, size: pageSize)
         self.layout.pageMargin = pageMargin
         
-        self.layout.footerMargin = footerMargin
-        self.layout.headerMargin = headerMargin
+        self.layout.margin.footer = footerMargin
+        self.layout.margin.header = headerMargin
         
-        self.layout.headerSpace = headerSpace
-        self.layout.footerSpace = footerSpace
+        self.layout.space.header = headerSpace
+        self.layout.space.footer = footerSpace
         
         self.pagination.container = paginationContainer
         self.imageQuality = imageQuality
@@ -34,11 +34,11 @@ extension PDFGenerator {
         self.layout.pageBounds = CGRect(origin: CGPoint.zero, size: format.size)
         self.layout.pageMargin = format.margin
         
-        self.layout.footerMargin = format.footerMargin
-        self.layout.headerMargin = format.headerMargin
+        self.layout.margin.footer = format.footerMargin
+        self.layout.margin.header = format.headerMargin
         
-        self.layout.headerSpace = format.headerSpace
-        self.layout.footerSpace = format.footerSpace
+        self.layout.space.header = format.headerSpace
+        self.layout.space.footer = format.footerSpace
         
         self.pagination.container = paginationContainer
         self.imageQuality = imageQuality

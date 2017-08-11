@@ -13,20 +13,14 @@ public struct PDFLayout {
     public var pageBounds: CGRect
     public var pageMargin: CGFloat
     
-    public var headerMargin: CGFloat
-    public var footerMargin: CGFloat
-    
-    public var headerSpace: CGFloat
-    public var footerSpace: CGFloat
+    public var margin: (header: CGFloat, footer: CGFloat)
+    public var space: (header: CGFloat, footer: CGFloat)
     
     public init(pageBounds: CGRect = .zero, pageMargin: CGFloat = 0, headerMargin: CGFloat = 0, footerMargin: CGFloat = 0, headerSpace: CGFloat = 0, footerSpace: CGFloat = 0) {
         self.pageBounds = pageBounds
         self.pageMargin = pageMargin
         
-        self.headerMargin = headerMargin
-        self.footerMargin = footerMargin
-        
-        self.headerSpace = headerSpace
-        self.footerSpace = footerSpace
+        self.margin = (headerMargin, footerMargin)
+        self.space = (headerSpace, footerSpace)
     }
 }

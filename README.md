@@ -185,10 +185,10 @@ The following values can be set to format the page:
 
 - `size`
 - `margin`
-- `headerMargin`
-- `footerMargin`
-- `headerSpace`
-- `footerSpace`
+- `margin.header`
+- `margin.footer`
+- `space.header`
+- `space.footer`
 
 All values are in dots and are rendered using 72 DPI (dots per inch), as this is the default screen DPI.
 

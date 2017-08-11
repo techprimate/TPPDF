@@ -64,7 +64,7 @@ extension PDFGenerator {
         resetHeaderFooterHeight()
         
         if pagination.container != .none {
-            if !pagination.hiddenPages.contains(currentPage) && currentPage >= pagination.start && currentPage <= pagination.end {
+            if !pagination.hiddenPages.contains(currentPage) && currentPage >= pagination.range.start && currentPage <= pagination.range.end {
                 try renderPDFCommand(pagination.container, PDFCommand: .addText(text: pagination.style.format(page: currentPage, total: totalPages), lineSpacing: 1.0), calculatingMetrics: calculatingMetrics)
             }
         }
@@ -134,12 +134,12 @@ extension PDFGenerator {
         
         // Only add space between content and footer if footer PDFCommands exist.
         if footers.count == 0 {
-            layout.footerSpace = 0
+            layout.space.footer = 0
         }
         
         // Only add space between content and header if header PDFCommands exist.
         if headers.count == 0 {
-            layout.headerSpace = 0
+            layout.space.header = 0
         }
         
         // Progress equals the number of PDFCommands run. Each PDFCommand is called once for calculations and second for rendering.

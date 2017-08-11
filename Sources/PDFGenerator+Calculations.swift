@@ -9,13 +9,13 @@
 extension PDFGenerator {
     
     func resetHeaderFooterHeight() {
-        headerHeight[.headerLeft] = layout.headerMargin
-        headerHeight[.headerCenter] = layout.headerMargin
-        headerHeight[.headerRight] = layout.headerMargin
+        headerHeight[.headerLeft] = layout.margin.header
+        headerHeight[.headerCenter] = layout.margin.header
+        headerHeight[.headerRight] = layout.margin.header
         
-        footerHeight[.footerLeft] = layout.footerMargin
-        footerHeight[.footerCenter] = layout.footerMargin
-        footerHeight[.footerRight] = layout.footerMargin
+        footerHeight[.footerLeft] = layout.margin.footer
+        footerHeight[.footerCenter] = layout.margin.footer
+        footerHeight[.footerRight] = layout.margin.footer
     }
     
     func maxHeaderHeight() -> CGFloat {
@@ -27,7 +27,7 @@ extension PDFGenerator {
     }
     
     func calculateCellFrame(_ origin: CGPoint, width: CGFloat, text: NSAttributedString, alignment: PDFTableCellAlignment) -> CGRect {
-        let textMaxHeight = layout.pageBounds.height - maxHeaderHeight() - layout.headerSpace - maxFooterHeight() - layout.footerSpace - contentHeight
+        let textMaxHeight = layout.pageBounds.height - maxHeaderHeight() - layout.space.header - maxFooterHeight() - layout.space.footer - contentHeight
         // The height is not enough
         if (textMaxHeight <= 0) {
             return CGRect.infinite
@@ -51,7 +51,7 @@ extension PDFGenerator {
     }
     
     func calculateCellFrame(_ origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
-        let imageMaxHeight = layout.pageBounds.height - maxHeaderHeight() - layout.headerSpace - maxFooterHeight() - layout.footerSpace - contentHeight
+        let imageMaxHeight = layout.pageBounds.height - maxHeaderHeight() - layout.space.header - maxFooterHeight() - layout.space.footer - contentHeight
         // The height is not enough
         if (imageMaxHeight <= 0) {
             return CGRect.infinite
@@ -89,9 +89,9 @@ extension PDFGenerator {
             if container.isHeader {
                 return layout.pageBounds.height - headerHeight[container]!
             } else if container.isFooter {
-                return layout.footerMargin
+                return layout.margin.footer
             } else {
-                return layout.pageBounds.height - maxHeaderHeight() - layout.headerSpace - maxFooterHeight() - layout.footerSpace - contentHeight
+                return layout.pageBounds.height - maxHeaderHeight() - layout.space.header - maxFooterHeight() - layout.space.footer - contentHeight
             }
         }()
         
@@ -115,7 +115,7 @@ extension PDFGenerator {
             } else if container.isFooter {
                 return CGRect(x: x, y: footerHeight[container]!, width: textMaxWidth, height: textMaxHeight)
             } else {
-                return CGRect(x: x, y: maxFooterHeight() + layout.footerSpace, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: maxFooterHeight() + layout.space.footer, width: textMaxWidth, height: textMaxHeight)
             }
         }()
         

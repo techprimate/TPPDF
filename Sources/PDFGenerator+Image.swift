@@ -21,9 +21,9 @@ extension PDFGenerator {
                     
                     (imageSize, captionSize) = calculateImageCaptionSize(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
                     
-                    return contentHeight + maxHeaderHeight() + layout.headerSpace
+                    return contentHeight + maxHeaderHeight() + layout.space.header
                 }
-                return contentHeight + maxHeaderHeight() + layout.headerSpace
+                return contentHeight + maxHeaderHeight() + layout.space.header
             case .footerLeft:
                 return contentSize.height + maxHeaderHeight() + footerHeight[container]!
             default:
@@ -73,11 +73,11 @@ extension PDFGenerator {
         
         var (imageSizes, maxHeight) = calculateImageCaptionSizes(images, captions)
         
-        var y = contentHeight + maxHeaderHeight() + layout.headerSpace
+        var y = contentHeight + maxHeaderHeight() + layout.space.header
         if (contentHeight + maxHeight > contentSize.height) {
             try generateNewPage(calculatingMetrics: calculatingMetrics)
             
-            y = contentHeight + maxHeaderHeight() + layout.headerSpace
+            y = contentHeight + maxHeaderHeight() + layout.space.header
             (imageSizes, maxHeight) = calculateImageCaptionSizes(images, captions)
         }
         

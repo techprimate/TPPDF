@@ -40,7 +40,7 @@ open class PDFGenerator  {
     var contentSize: CGSize {
         return CGSize(
             width: layout.pageBounds.width - 2 * layout.pageMargin,
-            height: layout.pageBounds.height - maxHeaderHeight() - layout.headerSpace - maxFooterHeight() - layout.footerSpace
+            height: layout.pageBounds.height - maxHeaderHeight() - layout.space.header - maxFooterHeight() - layout.space.footer
         )
     }
     

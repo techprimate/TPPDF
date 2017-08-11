@@ -27,13 +27,13 @@ class ViewController: UIViewController {
         pdf.info.subject = "Building a PDF easily"
         
         // Set spacing of header and footer
-        pdf.layout.headerSpace = 50
-        pdf.layout.footerSpace = 25
+        pdf.layout.space.header = 50
+        pdf.layout.space.footer = 25
         
         // Add custom pagination, starting at page 1 and excluding page 3
         pdf.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.CustomClosure({ (page, total) -> String in
                 return "\(page) / \(total)"
-            }), from: 1, to: 10, hiddenPages: [3])
+        }), range: (1, 10), hiddenPages: [3])
         
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150))

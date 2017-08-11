@@ -12,15 +12,13 @@ public struct PDFPagination {
     
     public var container: PDFContainer
     public var style: PDFPaginationStyle
-    public var start: Int
-    public var end: Int
+    public var range: (start: Int, end: Int)
     public var hiddenPages: [Int]
     
-    public init(container: PDFContainer = .none, style: PDFPaginationStyle = .Default, from start: Int = 0, to end: Int = Int.max, hiddenPages: [Int] = []) {
+    public init(container: PDFContainer = .none, style: PDFPaginationStyle = .Default, range: (start: Int, end: Int) = (0, Int.max), hiddenPages: [Int] = []) {
         self.container = container
         self.style = style
-        self.start = start
-        self.end = end
+        self.range = range
         self.hiddenPages = hiddenPages
     }
 }

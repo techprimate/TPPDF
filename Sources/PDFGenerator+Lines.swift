@@ -14,9 +14,9 @@ extension PDFGenerator {
             case .headerLeft:
                 return maxHeaderHeight() + 4
             case .contentLeft:
-                return contentHeight + maxHeaderHeight() + layout.headerSpace
+                return contentHeight + maxHeaderHeight() + layout.space.header
             case .footerLeft:
-                return contentSize.height + maxHeaderHeight() + layout.headerSpace + layout.footerSpace - 4
+                return contentSize.height + maxHeaderHeight() + layout.space.header + layout.space.footer - 4
             default:
                 return 0
             }
