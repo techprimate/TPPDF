@@ -12,6 +12,7 @@ public struct PDFInfo {
     public var author = "Author"
     public var subject = "Subject"
     public var keywords = ["tppdf", "pdf", "generator"]
+    
     public var ownerPassword: String?
     public var userPassword: String?
     public var allowsPrinting = true

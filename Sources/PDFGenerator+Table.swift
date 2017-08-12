@@ -38,7 +38,7 @@ extension PDFGenerator {
                 if let content = cell.content {
                     let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: cells.count, style: style, row: rowIdx, column: colIdx, cell: cell, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
                     let attributes: [String: AnyObject] = [
-                        NSForegroundColorAttributeName: cellStyle.textColor,
+                        NSForegroundColorAttributeName: cellStyle.colors.text,
                         NSFontAttributeName: cellStyle.font
                     ]
                     var result = CGRect.zero
@@ -128,7 +128,7 @@ extension PDFGenerator {
                     
                     let currentContext = UIGraphicsGetCurrentContext()!
                     
-                    cellStyle.fillColor.setFill()
+                    cellStyle.colors.fill.setFill()
                     currentContext.addPath(path)
                     currentContext.drawPath(using: .fill)
                 }
@@ -148,7 +148,7 @@ extension PDFGenerator {
                                 // If
                                 if let text = content.stringValue {
                                     let attributes: [String: AnyObject] = [
-                                        NSForegroundColorAttributeName: cellStyle.textColor,
+                                        NSForegroundColorAttributeName: cellStyle.colors.text,
                                         NSFontAttributeName: cellStyle.font
                                     ]
                                     return NSAttributedString(string: text, attributes: attributes)
@@ -172,10 +172,10 @@ extension PDFGenerator {
                     let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: cells.count, style: style, row: rowIdx, column: colIdx, cell: cell, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
                     let cellFrame = cellFrames[rowIdx][colIdx]
                     
-                    drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borderTop)
-                    drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borderBottom)
-                    drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), style: cellStyle.borderLeft)
-                    drawLine(start: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borderRight)
+                    drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borders.top)
+                    drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borders.bottom)
+                    drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), style: cellStyle.borders.left)
+                    drawLine(start: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borders.right)
                 }
             }
             
