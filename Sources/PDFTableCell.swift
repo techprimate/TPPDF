@@ -6,11 +6,11 @@
 //
 //
 
-open class PDFTableCell {
+public class PDFTableCell : TPJSONSerializable {
     
-    open var content: PDFTableContent?
-    open var alignment: PDFTableCellAlignment
-    open var style: PDFTableCellStyle?
+    public var content: PDFTableContent?
+    public var alignment: PDFTableCellAlignment
+    public var style: PDFTableCellStyle?
     
     init(content: PDFTableContent? = nil, alignment: PDFTableCellAlignment = .center, style: PDFTableCellStyle? = nil) {
         self.content = content

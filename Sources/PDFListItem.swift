@@ -6,12 +6,12 @@
 //
 //
 
-open class PDFListItem: CustomStringConvertible {
+public class PDFListItem : TPJSONSerializable {
     
-    open var parent: PDFListItem?
-    open var content: String?
-    open var children: [PDFListItem]?
-    open var symbol: Symbol
+    public var parent: PDFListItem?
+    public var content: String?
+    public var children: [PDFListItem]?
+    public var symbol: Symbol
     
     public init(symbol: Symbol = Symbol.inherit, content: String? = nil) {
         self.symbol = symbol
@@ -36,7 +36,7 @@ open class PDFListItem: CustomStringConvertible {
         return self
     }
     
-    public var description: String {
-        return "<PDFListItem>[content: " + (content ?? "nil") + ", symbol: \(symbol.rawValue)]"
+    public var JSONRepresentation: AnyObject {
+        return "LISTITEM" as NSString
     }
 }

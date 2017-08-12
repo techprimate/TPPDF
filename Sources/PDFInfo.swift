@@ -6,7 +6,7 @@
 //
 //
 
-public class PDFInfo {
+public class PDFInfo : TPJSONSerializable {
     
     public var title = "Title"
     public var author = "Author"

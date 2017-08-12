@@ -6,6 +6,4 @@
 //
 //
 
-public protocol PDFObject {
-    
-}
+public protocol PDFObject : TPJSONSerializable { }

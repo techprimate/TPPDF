@@ -59,7 +59,7 @@ public extension PDFDocument {
     
     // MARK: - Table
     
-    open func addTable(_ container: PDFContainer = PDFContainer.contentLeft, table: PDFTable) {
+    public func addTable(_ container: PDFContainer = PDFContainer.contentLeft, table: PDFTable) {
         objects += [(container, PDFTableObject(table: table))]
     }
     
@@ -69,15 +69,15 @@ public extension PDFDocument {
         objects += [(container, PDFListObject(list: list))]
     }
     
-    open func setIndentation(_ container: PDFContainer = PDFContainer.contentLeft, indent: CGFloat) {
+    public func setIndentation(_ container: PDFContainer = PDFContainer.contentLeft, indent: CGFloat) {
         objects += [(container, PDFIndentationObject(indentation: indent))]
     }
     
-    open func setAbsoluteOffset(_ container: PDFContainer = PDFContainer.contentLeft, offset: CGFloat) {
+    public func setAbsoluteOffset(_ container: PDFContainer = PDFContainer.contentLeft, offset: CGFloat) {
         objects += [(container, PDFOffsetObject(offset: offset))]
     }
     
-    open func createNewPage() {
+    public func createNewPage() {
         objects += [(.contentLeft, PDFPageBreakObject())]
     }
 }

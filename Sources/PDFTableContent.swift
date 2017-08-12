@@ -6,13 +6,17 @@
 //
 //
 
-open class PDFTableContent: CustomStringConvertible {
+public class PDFTableContent : TPJSONSerializable {
     
-    enum ContentType {
+    enum ContentType : TPJSONSerializable {
         case none
         case string
         case attributedString
         case image
+        
+        var JSONRepresentation: AnyObject {
+            return self.hashValue as AnyObject
+        }
     }
     
     var type: ContentType = ContentType.none
@@ -67,8 +71,8 @@ open class PDFTableContent: CustomStringConvertible {
         return type == .image ? content as? UIImage : nil
     }
     
-    public var description: String {
-        return "<PDFTableContent>[content: " + (self.content.debugDescription) + "]"
+    public var JSONRepresentation: AnyObject {
+        return "CONTENT" as AnyObject
     }
 }
 

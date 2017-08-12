@@ -6,7 +6,7 @@
 //
 //
 
-public class PDFTableStyle {
+public class PDFTableStyle : TPJSONSerializable {
     
     public var rowHeaderCount: Int
     public var columnHeaderCount: Int

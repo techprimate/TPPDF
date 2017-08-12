@@ -6,7 +6,7 @@
 //
 //
 
-public struct PDFPagination {
+public struct PDFPagination : TPJSONSerializable {
     
     public var container: PDFContainer
     public var style: PDFPaginationStyle

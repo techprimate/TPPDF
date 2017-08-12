@@ -8,7 +8,7 @@
 
 extension PDFListItem {
     
-    public enum Symbol: RawRepresentable {
+    public enum Symbol: RawRepresentable, TPJSONSerializable {
         case none
         case inherit
         case dot
@@ -75,6 +75,10 @@ extension PDFListItem {
                     self = .none
                 }
             }
+        }
+        
+        public var JSONRepresentation: AnyObject {
+            return self.rawValue as AnyObject
         }
     }
 }

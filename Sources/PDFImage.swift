@@ -6,7 +6,7 @@
 //
 //
 
-open class PDFImage {
+public class PDFImage : TPJSONSerializable {
     
     var image: UIImage
     var caption: NSAttributedString
@@ -21,6 +21,13 @@ open class PDFImage {
     }
 }
 
-public enum ImageSizeFit {
+public enum ImageSizeFit : TPJSONSerializable {
+    
     case width, height, widthHeight
+    
+    // MARK: - JSON Serialization
+    
+    public var JSONRepresentation: AnyObject {
+        return self.hashValue as AnyObject
+    }
 }

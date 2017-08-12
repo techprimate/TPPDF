@@ -6,16 +6,16 @@
 //
 //
 
-open class PDFTable {
+public class PDFTable : TPJSONSerializable {
     
-    open var style: PDFTableStyle = PDFTableStyleDefaults.simple
-    open var cells: [[PDFTableCell]] = []
-    open var widths: [CGFloat] = []
+    public var style: PDFTableStyle = PDFTableStyleDefaults.simple
+    public var cells: [[PDFTableCell]] = []
+    public var widths: [CGFloat] = []
     
-    open var padding: Int = 0
-    open var margin: Int = 0
+    public var padding: Int = 0
+    public var margin: Int = 0
     
-    open var showHeadersOnEveryPage: Bool = false
+    public var showHeadersOnEveryPage: Bool = false
     
     public init() {}
     

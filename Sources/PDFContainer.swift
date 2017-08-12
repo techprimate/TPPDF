@@ -6,7 +6,8 @@
 //
 //
 
-public enum PDFContainer {
+public enum PDFContainer : TPJSONSerializable {
+    
     case none
     case headerLeft, headerCenter, headerRight
     case contentLeft, contentCenter, contentRight
@@ -68,5 +69,11 @@ public enum PDFContainer {
             .contentLeft, .contentCenter, .contentRight,
             .footerLeft, .footerCenter, .footerRight
         ]
+    }
+    
+    // MARK: - JSON Serialization
+    
+    public var JSONRepresentation: AnyObject {
+        return self.hashValue as AnyObject
     }
 }

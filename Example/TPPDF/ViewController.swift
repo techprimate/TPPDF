@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         // Set document meta data
         pdf.info.title = "TPPDF Example"
         pdf.info.subject = "Building a PDF easily"
-        
+        pdf.info.ownerPassword = "asdf"
 
         // Set spacing of header and footer
         pdf.layout.space.header = 50
@@ -276,10 +276,12 @@ class ViewController: UIViewController {
         startTime = Date()
         /* Execution Metrics */
         
+        // Convert document to JSON String for debugging
+        let json = pdf.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
+        print(json)
+        
         do {
-            let url = try PDFGenerator.generateURL(document: pdf, filename: "Example.pdf", progress: { (value) in
-                print(String(format: "Progress: %0.2d", value))
-            })
+            let url = try PDFGenerator.generateURL(document: pdf, filename: "Example.pdf", progress: nil)
             
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
         } catch {

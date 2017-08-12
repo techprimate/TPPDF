@@ -11,7 +11,7 @@
  
   Enums using a template String as parameter will replace the first instance of `%@` with the index and the second one with the total amount of pages.
  */
-public enum PDFPaginationStyle {
+public enum PDFPaginationStyle : TPJSONSerializable {
     
     /**
      Default format, concats current page and total pages with a dash.
@@ -55,6 +55,12 @@ public enum PDFPaginationStyle {
         case .CustomClosure(let closure):
             return closure(page, total)
         }
+    }
+    
+    // MARK: - JSON Serialization
+    
+    public var JSONRepresentation: AnyObject {
+        return "\(self)" as AnyObject
     }
 }
 

@@ -6,7 +6,7 @@
 //
 //
 
-public struct PDFTableCellPosition : Hashable {
+public struct PDFTableCellPosition : Hashable, TPJSONSerializable {
     
     public var row = -1
     public var column = -1
@@ -15,6 +15,7 @@ public struct PDFTableCellPosition : Hashable {
         self.row = row
         self.column = column
     }
+    
     /// The hash value.
     ///
     /// Hash values are not guaranteed to be equal across different executions of

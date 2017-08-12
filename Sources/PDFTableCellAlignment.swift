@@ -6,7 +6,7 @@
 //
 //
 
-public enum PDFTableCellAlignment {
+public enum PDFTableCellAlignment : TPJSONSerializable {
     case topLeft, top, topRight
     case left, center, right
     case bottomLeft, bottom, bottomRight
@@ -31,5 +31,11 @@ public enum PDFTableCellAlignment {
         case .topRight, .right, .bottomRight:
             return .right
         }
+    }
+    
+    // MARK: - JSON Serialization
+    
+    public var JSONRepresentation: AnyObject {
+        return self.hashValue as AnyObject
     }
 }

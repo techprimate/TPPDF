@@ -6,7 +6,7 @@
 //
 //
 
-open class PDFList {
+public class PDFList : TPJSONSerializable {
     
     var items: [PDFListItem] = []
     var levelIndentations: [(pre: CGFloat, past: CGFloat)] = []

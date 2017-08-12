@@ -8,7 +8,7 @@
 
 public typealias PDFTableCellBorders = (left: PDFLineStyle, top: PDFLineStyle, right: PDFLineStyle, bottom: PDFLineStyle)
 
-public struct PDFTableCellStyle {
+public struct PDFTableCellStyle : TPJSONSerializable {
     
     public var colors: (fill: UIColor, text: UIColor)
     public var borders: PDFTableCellBorders
@@ -18,5 +18,9 @@ public struct PDFTableCellStyle {
         self.colors = colors
         self.borders = borders
         self.font = font
+    }
+    
+    public var JSONRepresentation: AnyObject {
+        return "STYLE" as AnyObject
     }
 }

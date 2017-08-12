@@ -6,7 +6,7 @@
 //
 //
 
-public struct PDFLayout {
+public struct PDFLayout: TPJSONSerializable {
     
     public var pageBounds: CGRect = CGRect.zero
     public var margin: (header: CGFloat, footer: CGFloat, side: CGFloat) = (0, 0, 0)
