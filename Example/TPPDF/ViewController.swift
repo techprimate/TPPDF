@@ -20,25 +20,26 @@ class ViewController: UIViewController {
         var startTime = Date()
         /* Execution Metrics */
         
-        let pdf = PDFGenerator(format: .a4)
+        let pdf = PDFDocument(format: .a4)
         
         // Set document meta data
         pdf.info.title = "TPPDF Example"
         pdf.info.subject = "Building a PDF easily"
         
+
         // Set spacing of header and footer
         pdf.layout.space.header = 50
         pdf.layout.space.footer = 25
-        
+
         // Add custom pagination, starting at page 1 and excluding page 3
         pdf.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.CustomClosure({ (page, total) -> String in
                 return "\(page) / \(total)"
         }), range: (1, 10), hiddenPages: [3])
-        
+
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150))
         pdf.addImage(image: image)
-        
+
         // Add some spacing below image
         pdf.addSpace(space: 15.0)
         
@@ -53,16 +54,16 @@ class ViewController: UIViewController {
             NSForegroundColorAttributeName: UIColor(colorLiteralRed: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
             ])
         pdf.addAttributedText(.contentCenter, text: title)
-        
-        // Set document font and document color. This will be used for simple text until it is reset.
+
+        // Set document font and document color. This will be used only for simple text until it is reset.
         pdf.setFont(font: UIFont.systemFont(ofSize: 18.0))
         pdf.setTextColor(color: UIColor.lightGray)
         pdf.addText(.contentCenter, text: "Create PDF documents easily.")
-        
+
         // Reset font and text color
         pdf.resetFont()
         pdf.resetTextColor()
-        
+
         // Create a list with level indentations
         let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
         
@@ -79,19 +80,19 @@ class ViewController: UIViewController {
                             ])
                     ])
             ])
-        
+
         pdf.addList(list: list)
-        
+
         // Set Font for headline
-        
+
         pdf.setFont(font: UIFont.systemFont(ofSize: 20.0))
-        
+
         // Add headline with extra spacing
         
         pdf.addSpace(space: 30)
         pdf.addText(text: "1. Introduction")
         pdf.addSpace(space: 10)
-        
+
         // Set font for text
         
         pdf.setFont(font: UIFont.systemFont(ofSize: 13.0))
@@ -276,7 +277,7 @@ class ViewController: UIViewController {
         /* Execution Metrics */
         
         do {
-            let url = try pdf.generatePDFfile("Pasta with tomato sauce")
+            let url = try PDFGenerator.generate(document: pdf, filename: "Example.pdf")
             
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
         } catch {

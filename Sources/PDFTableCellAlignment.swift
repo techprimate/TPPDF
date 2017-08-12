@@ -1,6 +1,6 @@
 //
 //  PDFTableCellAlignment.swift
-//  Pods
+//  TPPDF
 //
 //  Created by Philip Niedertscheider on 11/08/2017.
 //

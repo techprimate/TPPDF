@@ -1,6 +1,6 @@
 //
 //  PDFLineStyle.swift
-//  Pods
+//  TPPDF
 //
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
@@ -37,6 +37,7 @@ public struct PDFLineStyle {
         self.width = width
     }
     
+    /// Shorthand method for creating an invisible line
     public static var none: PDFLineStyle {
         return PDFLineStyle(type: .none)
     }

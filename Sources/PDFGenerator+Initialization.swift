@@ -32,13 +32,13 @@ extension PDFGenerator {
         self.init()
         
         self.layout.pageBounds = CGRect(origin: CGPoint.zero, size: format.size)
-        self.layout.margin.side = format.margin
+//        self.layout.margin.side = format.margin
         
-        self.layout.margin.footer = format.footerMargin
-        self.layout.margin.header = format.headerMargin
+//        self.layout.margin.footer = format.footerMargin
+//        self.layout.margin.header = format.headerMargin
         
-        self.layout.space.header = format.headerSpace
-        self.layout.space.footer = format.footerSpace
+//        self.layout.space.header = format.headerSpace
+//        self.layout.space.footer = format.footerSpace
         
         self.pagination.container = paginationContainer
         self.imageQuality = imageQuality
