@@ -36,4 +36,8 @@ public struct PDFLineStyle {
         self.color = color
         self.width = width
     }
+    
+    public static var none: PDFLineStyle {
+        return PDFLineStyle(type: .none)
+    }
 }

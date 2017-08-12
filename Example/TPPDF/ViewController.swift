@@ -223,19 +223,19 @@ class ViewController: UIViewController {
         
         // Change standardized styles
         style.footerStyle = PDFTableCellStyle(
-            color: (
+            colors: (
                 fill: UIColor(colorLiteralRed: 0.171875,
                                green: 0.2421875,
                                blue: 0.3125,
                                alpha: 1.0),
                 text: UIColor.white
             ),
-            font: UIFont.systemFont(ofSize: 10),
-            
-            border: (left: PDFLineStyle(),
+            borders: (left: PDFLineStyle(),
                      top: PDFLineStyle(),
                      right: PDFLineStyle(),
-                     bottom: PDFLineStyle())
+                     bottom: PDFLineStyle()),
+            
+            font: UIFont.systemFont(ofSize: 10)
             )
         
         // Simply set the amount of footer and header rows
@@ -247,7 +247,7 @@ class ViewController: UIViewController {
         
         do {
             // Style each cell individually
-            try table.setCellStyle(row: 1, column: 1, style: PDFTableCellStyle(color: (fill: UIColor.yellow, text: UIColor.black)))
+            try table.setCellStyle(row: 1, column: 1, style: PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black)))
         } catch PDFError.tableIndexOutOfBounds(let index, let length){
             // In case the index is out of bounds
             
