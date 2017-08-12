@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 public extension PDFPageFormat {
     
     var headerMargin: CGFloat {

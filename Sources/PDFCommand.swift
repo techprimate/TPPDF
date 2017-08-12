@@ -6,8 +6,6 @@
 //
 //
 
-import UIKit
-
 public enum PDFCommand {
     
     case addText(text: String, lineSpacing: CGFloat)

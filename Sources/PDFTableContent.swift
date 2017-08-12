@@ -6,9 +6,6 @@
 //
 //
 
-import Foundation
-import UIKit
-
 open class PDFTableContent: CustomStringConvertible {
     
     enum ContentType {

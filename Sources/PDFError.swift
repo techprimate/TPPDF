@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 public enum PDFError: Error {
     
     case tableContentInvalid(value: Any?)

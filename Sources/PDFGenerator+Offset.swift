@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 extension PDFGenerator {
     
     func setContentOffset(_ container: PDFContainer = PDFContainer.contentLeft, value: CGFloat) {

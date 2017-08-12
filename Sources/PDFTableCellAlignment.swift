@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 public enum PDFTableCellAlignment {
     case topLeft, top, topRight
     case left, center, right

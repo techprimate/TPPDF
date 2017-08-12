@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 /**
   Use predefined pagination styles or create a custom one, using `.CustomNumberFormat` or `.CustomClosure`.
  

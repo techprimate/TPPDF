@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 extension PDFListItem {
     
     public enum Symbol: RawRepresentable {

@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 class PDFTableValidator {
     
     public static func validateCells(cells: [[PDFTableCell]], columnWidths: [CGFloat]) throws {

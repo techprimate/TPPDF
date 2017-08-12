@@ -6,8 +6,6 @@
 //
 //
 
-import UIKit
-
 /**
  * Source for page sizes: https://www.papersizes.org
  * All sizes are calculated using 72 points/inch

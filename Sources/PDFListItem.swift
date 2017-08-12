@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 open class PDFListItem: CustomStringConvertible {
     
     open var parent: PDFListItem?

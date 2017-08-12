@@ -6,8 +6,6 @@
 //
 //
 
-import UIKit
-
 open class PDFGenerator  {
     
     // MARK: - Public Variables

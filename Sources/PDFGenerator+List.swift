@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 extension PDFGenerator {
     
     func drawList(_ container: PDFContainer, list: PDFList, calculatingMetrics: Bool) throws {

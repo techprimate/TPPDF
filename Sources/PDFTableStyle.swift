@@ -6,8 +6,6 @@
 //
 //
 
-import UIKit
-
 public class PDFTableStyle {
     
     public var rowHeaderCount: Int

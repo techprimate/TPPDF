@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 open class PDFTableCell {
     
     open var content: PDFTableContent?

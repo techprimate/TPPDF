@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 open class PDFList {
     
     var items: [PDFListItem] = []

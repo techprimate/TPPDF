@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 public struct PDFTableCellPosition : Hashable {
     
     public var row = -1

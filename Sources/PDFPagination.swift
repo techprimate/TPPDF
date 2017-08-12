@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 public struct PDFPagination {
     
     public var container: PDFContainer

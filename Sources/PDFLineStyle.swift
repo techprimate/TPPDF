@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 /// This struct defines how a line or border of a table is drawn.
 public struct PDFLineStyle {
     

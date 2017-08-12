@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 public struct PDFTableCellStyle {
     
     public var fillColor: UIColor

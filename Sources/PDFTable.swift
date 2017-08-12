@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 open class PDFTable {
     
     open var style: PDFTableStyle = PDFTableStyleDefaults.simple

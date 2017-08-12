@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 open class PDFImage {
     
     var image: UIImage
