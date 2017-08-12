@@ -20,3 +20,7 @@ open class PDFImage {
         self.sizeFit = sizeFit
     }
 }
+
+public enum ImageSizeFit {
+    case width, height, widthHeight
+}

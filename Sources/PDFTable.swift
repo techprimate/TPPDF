@@ -11,11 +11,13 @@ open class PDFTable {
     open var style: PDFTableStyle = PDFTableStyleDefaults.simple
     open var cells: [[PDFTableCell]] = []
     open var widths: [CGFloat] = []
+    
     open var padding: Int = 0
     open var margin: Int = 0
+    
     open var showHeadersOnEveryPage: Bool = false
     
-    public init() { }
+    public init() {}
     
     public func generateCells(data: [[Any?]], alignments: [[PDFTableCellAlignment]]) throws {
         try PDFTableValidator.validateTableData(data: data, alignments: alignments)

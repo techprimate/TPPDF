@@ -70,7 +70,3 @@ public enum PDFContainer {
         ]
     }
 }
-
-public enum ImageSizeFit {
-    case width, height, widthHeight
-}
