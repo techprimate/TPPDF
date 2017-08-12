@@ -30,27 +30,21 @@ class PDFTableValidator {
             throw PDFError.tableIsEmpty
         }
         
-        if let alignments = alignments {
-            // Throw error when data row count does not equal alignment row count
-            if data.count != alignments.count {
-                throw PDFError.tableStructureInvalid(message: "Data and alignment must be equal size!")
-            }
+        // Throw error when data row count does not equal alignment row count
+        if alignments != nil && data.count != alignments!.count {
+            throw PDFError.tableStructureInvalid(message: "Data and alignment must be equal size!")
         }
         
         // Compare each data row
         for (rowIdx, row) in data.enumerated() {
-            if let alignments = alignments {
-                // Throw error when columns count does not equal alignment columns count
-                if row.count != alignments[rowIdx].count {
-                    throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
-                }
+            // Throw error when columns count does not equal alignment columns count
+            if alignments != nil && row.count != alignments![rowIdx].count {
+                throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
             }
             
-            if let columnWidths = columnWidths {
-                // Throw error when columns row count does not equal relativeColumnWidth count
-                if row.count != columnWidths.count {
-                    throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
-                }
+            // Throw error when columns row count does not equal relativeColumnWidth count
+            if columnWidths != nil && row.count != columnWidths!.count {
+                throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
             }
         }
     }
