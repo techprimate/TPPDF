@@ -124,7 +124,7 @@ extension PDFGenerator {
     
     func calculateImageCaptionSize(_ container: PDFContainer, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
-        var size = (size == CGSize.zero) ? image.size : size
+        let size = (size == CGSize.zero) ? image.size : size
         
         let maxWidth = min(size.width, contentSize.width - indentation[container.normalize]!)
         let maxHeight = min(size.height, contentSize.height - contentHeight)
