@@ -70,10 +70,6 @@ public class PDFTableContent : TPJSONSerializable {
     var imageValue: UIImage? {
         return type == .image ? content as? UIImage : nil
     }
-    
-    public var JSONRepresentation: AnyObject {
-        return "CONTENT" as AnyObject
-    }
 }
 
 public extension String {

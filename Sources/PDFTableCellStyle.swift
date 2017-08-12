@@ -19,8 +19,4 @@ public struct PDFTableCellStyle : TPJSONSerializable {
         self.borders = borders
         self.font = font
     }
-    
-    public var JSONRepresentation: AnyObject {
-        return "STYLE" as AnyObject
-    }
 }
