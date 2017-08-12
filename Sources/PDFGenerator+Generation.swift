@@ -8,110 +8,47 @@
 
 extension PDFGenerator {
     
-    /// MARK: - Command Rendering
-    
-    func renderPDFCommand(_ container: PDFContainer, PDFCommand: PDFCommand, calculatingMetrics: Bool) throws {
-        switch PDFCommand {
-        case let .addText(text, spacing):
-            try drawText(container, text: text, spacing: spacing, calculatingMetrics: calculatingMetrics)
-            break
-        case let .addAttributedText(text):
-            try drawAttributedText(container, text: text, calculatingMetrics: calculatingMetrics)
-            break
-        case let .addImage(image, size, caption, sizeFit):
-            try drawImage(container, image: image, size: size, caption: caption, sizeFit: sizeFit, calculatingMetrics: calculatingMetrics)
-            break
-        case let .addImagesInRow(images, captions, spacing):
-            try drawImagesInRow(container, images: images, captions: captions, spacing: spacing, calculatingMetrics: calculatingMetrics)
-            break
-        case let .addSpace(space):
-            if container.isHeader {
-                headerHeight[container] = headerHeight[container]! + space
-            } else if container.isFooter {
-                footerHeight[container] = footerHeight[container]! + space
-            } else {
-                contentHeight += space
-            }
-            break
-        case let .addLineSeparator(style):
-            drawLineSeparator(container, style: style, calculatingMetrics: calculatingMetrics)
-            break
-        case let .addTable(table):
-            try drawTable(container, cells: table.cells, relativeColumnWidth: table.widths, padding: CGFloat(table.padding), margin: CGFloat(table.margin), style: table.style, showHeadersOnEveryPage: table.showHeadersOnEveryPage, calculatingMetrics: calculatingMetrics)
-            break
-        case let .addList(list):
-            try drawList(container, list: list, calculatingMetrics: calculatingMetrics)
-            break
-        case let .setIndentation(value):
-            indentation[container.normalize] = value
-            break
-        case let .setOffset(value):
-            setContentOffset(container, value: value)
-            break
-        case let .setFont(font):
-            fonts[container] = font
-            break
-        case let .setTextColor(color):
-            textColor = color
-            break
-        case .createNewPage():
-            try generateNewPage(calculatingMetrics: calculatingMetrics)
-            break
-        }
-    }
-    
-    func renderHeaderFooter(calculatingMetrics: Bool) throws {
-        resetHeaderFooterHeight()
-        
-        if pagination.container != .none {
-            if !pagination.hiddenPages.contains(currentPage) && currentPage >= pagination.range.start && currentPage <= pagination.range.end {
-                try renderPDFCommand(pagination.container, PDFCommand: .addText(text: pagination.style.format(page: currentPage, total: totalPages), lineSpacing: 1.0), calculatingMetrics: calculatingMetrics)
-            }
-        }
-        
-        for (container, PDFCommand) in headerFooterCommands {
-            try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: calculatingMetrics)
-        }
-    }
-    
-    // MARK: - PDF Data Generation
-    
-    /**
-     Generates PDF data and returns it
-     
-     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
-     - returns:             PDF Data
-     
-     - throws:              PDFError
-
-     */
-    open func generatePDFdata(_ progress: ((CGFloat) -> ())? = nil) throws -> Data {
-        let pdfData = NSMutableData()
-        
-        UIGraphicsBeginPDFContextToData(pdfData, layout.pageBounds, generateDocumentInfo())
-        try generatePDFContext(progress: progress)
-        UIGraphicsEndPDFContext()
-        
-        return pdfData as Data
-    }
-    
     /**
      Generates PDF data and writes it to a temporary file.
      
-     - parameter fileName:  Name of temporary file.
+     - parameter document:  PDFDocument which should be converted into a PDF file.
+     - parameter filename:  Name of temporary file.
      - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
      - returns:             URL to temporary file.
      
      - throws:              PDFError
      */
-    open func generatePDFfile(_ fileName: String, progress: ((CGFloat) -> ())? = nil) throws -> URL {
-        let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName).appendingPathExtension("pdf")
+    public static func generateURL(document: PDFDocument, filename: String, progress: ((CGFloat) -> ())? = nil) throws -> URL {
+        let name = filename.hasSuffix(".pdf") ? filename : (filename + ".pdf")
+        let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(name)
+        let generator = PDFGenerator(document: document)
         
-        UIGraphicsBeginPDFContextToFile(url.path, layout.pageBounds, generateDocumentInfo())
-        try generatePDFContext(progress: progress)
+        UIGraphicsBeginPDFContextToFile(url.path, document.layout.pageBounds, document.info.generate())
+        try generator.generatePDFContext(progress: progress)
         UIGraphicsEndPDFContext()
         
         return url;
+    }
+    
+    /**
+     Generates PDF data and returns it
+     
+     - parameter document:  PDFDocument which should be converted into a PDF file.
+     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
+     - returns:             PDF Data
+     
+     - throws:              PDFError
+     
+     */
+    public static func generateData(document: PDFDocument, progress: ((CGFloat) -> ())? = nil) throws -> Data {
+        let data = NSMutableData()
+        let generator = PDFGenerator(document: document)
+        
+        UIGraphicsBeginPDFContextToData(data, document.layout.pageBounds, document.info.generate())
+        try generator.generatePDFContext(progress: progress)
+        UIGraphicsEndPDFContext()
+        
+        return data as Data
     }
     
     /**
@@ -121,40 +58,40 @@ extension PDFGenerator {
      
      - throws: PDFError
      */
-    fileprivate func generatePDFContext(progress: ((CGFloat) -> ())?) throws {
-        UIGraphicsBeginPDFPageWithInfo(layout.pageBounds, nil)
+    func generatePDFContext(progress: ((CGFloat) -> ())?) throws {
+        UIGraphicsBeginPDFPageWithInfo(document.layout.pageBounds, nil)
         
         // Extract header & footer PDFCommands
-        headerFooterCommands = commands.filter { return $0.0.isFooter || $0.0.isHeader }
-        let contentCommands = commands.filter { return !$0.0.isFooter && !$0.0.isHeader }
+        headerFooterObjects = document.objects.filter { return $0.0.isFooter || $0.0.isHeader }
+        let contentObjects = document.objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
         
         // Split header & footer PDFCommands
-        let footers = commands.filter { return $0.0.isFooter }
-        let headers = commands.filter { return $0.0.isHeader }
+        let footers = document.objects.filter { return $0.0.isFooter }
+        let headers = document.objects.filter { return $0.0.isHeader }
         
         // Only add space between content and footer if footer PDFCommands exist.
         if footers.count == 0 {
-            layout.space.footer = 0
+            document.layout.space.footer = 0
         }
         
         // Only add space between content and header if header PDFCommands exist.
         if headers.count == 0 {
-            layout.space.header = 0
+            document.layout.space.header = 0
         }
         
         // Progress equals the number of PDFCommands run. Each PDFCommand is called once for calculations and second for rendering.
         var progressIndex: CGFloat = 0.0;
-        let progressMax: CGFloat = CGFloat(contentCommands.count * 2)
+        let progressMax: CGFloat = CGFloat(contentObjects.count * 2)
         
         // Only calculate render header & footer metrics if page has content.
-        if contentCommands.count > 0 {
-            try renderHeaderFooter(calculatingMetrics: true)
+        if contentObjects.count > 0 {
+//            try renderHeaderFooter(calculatingMetrics: true)
         }
         
         // Dry run all PDFCommands. This won't render anything but instad calculate all the frames.
-        for (container, PDFCommand) in contentCommands {
+        for (container, PDFObject) in contentObjects {
             try autoreleasepool {
-                try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: true)
+//                try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: true)
                 progressIndex = progressIndex + 1;
                 progress?(progressIndex / progressMax)
             }
@@ -166,17 +103,99 @@ extension PDFGenerator {
         resetGenerator()
         
         // Only render header & footer if page has content.
-        if contentCommands.count > 0 {
-            try renderHeaderFooter(calculatingMetrics: false)
+        if contentObjects.count > 0 {
+//            try renderHeaderFooter(calculatingMetrics: false)
         }
         
         // Render each PDFCommand
-        for (container, PDFCommand) in contentCommands {
+        for (container, PDFCommand) in contentObjects {
             try autoreleasepool {
-                try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: false)
+//                try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: false)
                 progressIndex = progressIndex + 1;
                 progress?(progressIndex / progressMax)
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /// MARK: - Command Rendering
+    
+//    func renderPDFCommand(_ container: PDFContainer, PDFCommand: PDFCommand, calculatingMetrics: Bool) throws {
+//        switch PDFCommand {
+//        case let .addText(text, spacing):
+//            try drawText(container, text: text, spacing: spacing, calculatingMetrics: calculatingMetrics)
+//            break
+//        case let .addAttributedText(text):
+//            try drawAttributedText(container, text: text, calculatingMetrics: calculatingMetrics)
+//            break
+//        case let .addImage(image, size, caption, sizeFit):
+//            try drawImage(container, image: image, size: size, caption: caption, sizeFit: sizeFit, calculatingMetrics: calculatingMetrics)
+//            break
+//        case let .addImagesInRow(images, captions, spacing):
+//            try drawImagesInRow(container, images: images, captions: captions, spacing: spacing, calculatingMetrics: calculatingMetrics)
+//            break
+//        case let .addSpace(space):
+//            if container.isHeader {
+//                headerHeight[container] = headerHeight[container]! + space
+//            } else if container.isFooter {
+//                footerHeight[container] = footerHeight[container]! + space
+//            } else {
+//                contentHeight += space
+//            }
+//            break
+//        case let .addLineSeparator(style):
+//            drawLineSeparator(container, style: style, calculatingMetrics: calculatingMetrics)
+//            break
+//        case let .addTable(table):
+//            try drawTable(container, cells: table.cells, relativeColumnWidth: table.widths, padding: CGFloat(table.padding), margin: CGFloat(table.margin), style: table.style, showHeadersOnEveryPage: table.showHeadersOnEveryPage, calculatingMetrics: calculatingMetrics)
+//            break
+//        case let .addList(list):
+//            try drawList(container, list: list, calculatingMetrics: calculatingMetrics)
+//            break
+//        case let .setIndentation(value):
+//            indentation[container.normalize] = value
+//            break
+//        case let .setOffset(value):
+//            setContentOffset(container, value: value)
+//            break
+//        case let .setFont(font):
+//            fonts[container] = font
+//            break
+//        case let .setTextColor(color):
+//            textColor = color
+//            break
+//        case .createNewPage():
+//            try generateNewPage(calculatingMetrics: calculatingMetrics)
+//            break
+//        }
+//    }
+//    
+    func renderHeaderFooter(calculatingMetrics: Bool) throws {
+        resetHeaderFooterHeight()
+        
+        let pagination = document.pagination
+        
+        if pagination.container != .none {
+            if !pagination.hiddenPages.contains(currentPage) && currentPage >= pagination.range.start && currentPage <= pagination.range.end {
+//                try renderPDFCommand(pagination.container, PDFCommand: .addText(text: pagination.style.format(page: currentPage, total: totalPages), lineSpacing: 1.0), calculatingMetrics: calculatingMetrics)
+            }
+        }
+        
+        for (container, PDFCommand) in headerFooterObjects {
+//            try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: calculatingMetrics)
+        }
+    }
+    
+    // MARK: - PDF Data Generation
+    
 }

@@ -10,22 +10,22 @@ extension PDFGenerator {
     
     func setContentOffset(_ container: PDFContainer = PDFContainer.contentLeft, value: CGFloat) {
         if container.isHeader {
-            headerHeight[container] = value
+            heights.header[container] = value
         } else if container.isFooter {
-            footerHeight[container] = value
+            heights.footer[container] = value
         } else {
-            contentHeight = value
+            heights.content = value
         }
     }
     
     func getContentOffset(_ container: PDFContainer) -> CGFloat {
         switch container.normalize {
         case .headerLeft:
-            return headerHeight[container]!
+            return heights.header[container]!
         case .contentLeft:
-            return contentHeight
+            return heights.content
         case .footerLeft:
-            return footerHeight[container]!
+            return heights.footer[container]!
         default:
             return 0
         }

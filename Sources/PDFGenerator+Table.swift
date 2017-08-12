@@ -12,9 +12,9 @@ extension PDFGenerator {
         
         try PDFTableValidator.validateCells(cells: cells, columnWidths: relativeColumnWidth)
         
-        let totalWidth = layout.pageBounds.width - 2 * layout.margin.side - indentation[container.normalize]!
-        var x: CGFloat = layout.margin.side + indentation[container.normalize]!
-        var y: CGFloat = contentHeight
+        let totalWidth = document.layout.pageBounds.width - 2 * document.layout.margin.side - indentation[container.normalize]!
+        var x: CGFloat = document.layout.margin.side + indentation[container.normalize]!
+        var y: CGFloat = heights.content
         
         // Calculate cells
         
@@ -30,10 +30,10 @@ extension PDFGenerator {
             // Calcuate X position and size
             for (colIdx, cell) in row.enumerated() {
                 let width = relativeColumnWidth[colIdx] * totalWidth
-                let position = CGPoint(x: x + margin + padding, y: y + maxHeaderHeight() + layout.space.header + margin + padding)
+                let position = CGPoint(x: x + margin + padding, y: y + maxHeaderHeight() + document.layout.space.header + margin + padding)
                 
                 var frame = CGRect(origin: position, size: CGSize.zero)
-                var cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + layout.space.header + margin, width: width - 2 * margin, height: 0)
+                var cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + document.layout.space.header + margin, width: width - 2 * margin, height: 0)
                 
                 if let content = cell.content {
                     let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: cells.count, style: style, row: rowIdx, column: colIdx, cell: cell, newPageBreak: newPageBreak, showHeadersOnEveryPage: showHeadersOnEveryPage)
@@ -48,13 +48,13 @@ extension PDFGenerator {
                         result = calculateCellFrame(position, width: width - 2 * margin - 2 * padding, text: text, alignment: cell.alignment)
                     } else if let image = content.imageValue {
                         result = calculateCellFrame(position, width: width - 2 * margin - 2 * padding, image: image)
-                        let compressedImage = resizeAndCompressImage(image: image, frame: result)
-                        content.content = compressedImage
+//                        let compressedImage = resizeAndCompressImage(image: image, frame: result)
+//                        content.content = compressedImage
                     }
                     maxHeight = max(maxHeight, result.height)
                     frame = result
                     
-                    cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + layout.space.header + margin, width: width - 2 * margin, height: result.height)
+                    cellFrame = CGRect(x: x + margin, y: y + maxHeaderHeight() + document.layout.space.header + margin, width: width - 2 * margin, height: result.height)
                 }
                 
                 frames[rowIdx].append(frame)
@@ -80,7 +80,7 @@ extension PDFGenerator {
                 frames[rowIdx][colIdx].origin.y = y
             }
             
-            x = layout.margin.side
+            x = document.layout.margin.side
             y += maxHeight + 2 * margin + 2 * padding
         }
         
@@ -95,7 +95,7 @@ extension PDFGenerator {
             let cellHeight = maxHeight + 2 * padding
             let allHeight = cellHeight + 2 * margin
             
-            if ((frames[rowIdx][0].origin.y + allHeight > contentSize.height + maxHeaderHeight() + layout.space.header) || nextPage) {
+            if ((frames[rowIdx][0].origin.y + allHeight > contentSize.height + maxHeaderHeight() + document.layout.space.header) || nextPage) {
                 nextPage = true
                 cellsInNewPage.append(row)
             } else {
@@ -112,7 +112,7 @@ extension PDFGenerator {
             }
         }
         
-        let tableFrame = CGRect(x: x, y: contentHeight + maxHeaderHeight() + layout.space.header, width: totalWidth, height: totalHeight)
+        let tableFrame = CGRect(x: x, y: heights.content + maxHeaderHeight() + document.layout.space.header, width: totalWidth, height: totalHeight)
         
         // Dont' render if calculating metrics
         if !calculatingMetrics {
@@ -200,7 +200,7 @@ extension PDFGenerator {
             try generateNewPage(calculatingMetrics: calculatingMetrics)
             try drawTable(container, cells: cellsInNewPage, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style, showHeadersOnEveryPage: showHeadersOnEveryPage, newPageBreak: true, styleIndexOffset: cellsInThisPage.count, calculatingMetrics: calculatingMetrics)
         } else {
-            contentHeight = tableFrame.maxY - maxHeaderHeight() - layout.space.header
+            heights.content = tableFrame.maxY - maxHeaderHeight() - document.layout.space.header
         }
     }
     

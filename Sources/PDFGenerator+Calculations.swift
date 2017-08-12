@@ -9,25 +9,29 @@
 extension PDFGenerator {
     
     func resetHeaderFooterHeight() {
-        headerHeight[.headerLeft] = layout.margin.header
-        headerHeight[.headerCenter] = layout.margin.header
-        headerHeight[.headerRight] = layout.margin.header
+        let margin = document.layout.margin
         
-        footerHeight[.footerLeft] = layout.margin.footer
-        footerHeight[.footerCenter] = layout.margin.footer
-        footerHeight[.footerRight] = layout.margin.footer
+        heights.header[.headerLeft] = margin.header
+        heights.header[.headerCenter] = margin.header
+        heights.header[.headerRight] = margin.header
+        
+        heights.footer[.footerLeft] = margin.footer
+        heights.footer[.footerCenter] = margin.footer
+        heights.footer[.footerRight] = margin.footer
     }
     
     func maxHeaderHeight() -> CGFloat {
-        return max(layout.margin.side, max(headerHeight[.headerLeft]!, max(headerHeight[.headerCenter]!, headerHeight[.headerRight]!)))
+        return max(document.layout.margin.side, heights.header.values.max() ?? 0)
     }
     
     func maxFooterHeight() -> CGFloat {
-        return max(layout.margin.side, max(footerHeight[.footerLeft]!, max(footerHeight[.footerCenter]!, footerHeight[.footerRight]!)))
+        return max(document.layout.margin.side, heights.footer.values.max() ?? 0)
     }
     
     func calculateCellFrame(_ origin: CGPoint, width: CGFloat, text: NSAttributedString, alignment: PDFTableCellAlignment) -> CGRect {
-        let textMaxHeight = layout.pageBounds.height - maxHeaderHeight() - layout.space.header - maxFooterHeight() - layout.space.footer - contentHeight
+        let layout = document.layout
+        
+        let textMaxHeight = layout.pageBounds.height - maxHeaderHeight() - layout.space.header - maxFooterHeight() - layout.space.footer - heights.content
         // The height is not enough
         if (textMaxHeight <= 0) {
             return CGRect.infinite
@@ -51,7 +55,7 @@ extension PDFGenerator {
     }
     
     func calculateCellFrame(_ origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
-        let imageMaxHeight = layout.pageBounds.height - maxHeaderHeight() - layout.space.header - maxFooterHeight() - layout.space.footer - contentHeight
+        let imageMaxHeight = document.layout.pageBounds.height - maxHeaderHeight() - document.layout.space.header - maxFooterHeight() - document.layout.space.footer - heights.content
         // The height is not enough
         if (imageMaxHeight <= 0) {
             return CGRect.infinite
@@ -84,14 +88,14 @@ extension PDFGenerator {
     }
     
     func calculateTextFrameAndDrawnSizeInOnePage(_ container: PDFContainer, text: CFAttributedString, currentRange: CFRange, textMaxWidth: CGFloat) -> (CTFrame, CGSize) {
-        let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : layout.pageBounds.width - 2 * layout.margin.side - indentation[container.normalize]!
+        let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : document.layout.pageBounds.width - 2 * document.layout.margin.side - indentation[container.normalize]!
         let textMaxHeight: CGFloat = {
             if container.isHeader {
-                return layout.pageBounds.height - headerHeight[container]!
+                return document.layout.pageBounds.height - heights.header[container]!
             } else if container.isFooter {
-                return layout.margin.footer
+                return document.layout.margin.footer
             } else {
-                return layout.pageBounds.height - maxHeaderHeight() - layout.space.header - maxFooterHeight() - layout.space.footer - contentHeight
+                return document.layout.pageBounds.height - maxHeaderHeight() - document.layout.space.header - maxFooterHeight() - document.layout.space.footer - heights.content
             }
         }()
         
@@ -99,11 +103,11 @@ extension PDFGenerator {
         let x: CGFloat = {
             switch container {
             case .headerLeft, .contentLeft, .footerLeft:
-                return layout.margin.side + indentation[container.normalize]!
+                return document.layout.margin.side + indentation[container.normalize]!
             case .headerCenter, .contentCenter, .footerCenter:
-                return layout.pageBounds.midX - textMaxWidth / 2
+                return document.layout.pageBounds.midX - textMaxWidth / 2
             case .headerRight, .contentRight, .footerRight:
-                return layout.pageBounds.width - layout.margin.side - textMaxWidth
+                return document.layout.pageBounds.width - document.layout.margin.side - textMaxWidth
             default:
                 return 0
             }
@@ -113,9 +117,9 @@ extension PDFGenerator {
             if container.isHeader {
                 return CGRect(x: x, y: 0, width: textMaxWidth, height: textMaxHeight)
             } else if container.isFooter {
-                return CGRect(x: x, y: footerHeight[container]!, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: heights.footer[container]!, width: textMaxWidth, height: textMaxHeight)
             } else {
-                return CGRect(x: x, y: maxFooterHeight() + layout.space.footer, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: maxFooterHeight() + document.layout.space.footer, width: textMaxWidth, height: textMaxHeight)
             }
         }()
         
@@ -127,7 +131,7 @@ extension PDFGenerator {
         let size = (size == CGSize.zero) ? image.size : size
         
         let maxWidth = min(size.width, contentSize.width - indentation[container.normalize]!)
-        let maxHeight = min(size.height, contentSize.height - contentHeight)
+        let maxHeight = min(size.height, contentSize.height - heights.content)
         
         let wFactor = image.size.width / maxWidth
         let hFactor = image.size.height / maxHeight

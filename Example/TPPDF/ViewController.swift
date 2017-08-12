@@ -277,7 +277,9 @@ class ViewController: UIViewController {
         /* Execution Metrics */
         
         do {
-            let url = try PDFGenerator.generate(document: pdf, filename: "Example.pdf")
+            let url = try PDFGenerator.generateURL(document: pdf, filename: "Example.pdf", progress: { (value) in
+                print(String(format: "Progress: %0.2d", value))
+            })
             
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
         } catch {

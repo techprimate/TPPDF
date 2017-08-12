@@ -20,13 +20,13 @@ extension PDFGenerator {
             
             switch item.symbol {
             case .dash, .dot:
-                try drawText(container, text: item.symbol.stringValue, spacing: 12, calculatingMetrics: calculatingMetrics)
+//                try drawText(container, text: item.symbol.stringValue, spacing: 12, calculatingMetrics: calculatingMetrics)
                 break
             case let .numbered(value):
-                try drawText(container, text: (value ?? "?") + ".", spacing: 12, calculatingMetrics: calculatingMetrics)
+//                try drawText(container, text: (value ?? "?") + ".", spacing: 12, calculatingMetrics: calculatingMetrics)
                 break
             case let .custom(value):
-                try drawText(container, text: value, spacing: 12, calculatingMetrics: calculatingMetrics)
+//                try drawText(container, text: value, spacing: 12, calculatingMetrics: calculatingMetrics)
                 break
             case .none, .inherit:
                 break
@@ -35,7 +35,7 @@ extension PDFGenerator {
             setContentOffset(value: offset)
             indentation[container.normalize] = originalIndent + indent.pre + indent.past
             
-            try drawText(container, text: item.text, spacing: 12, calculatingMetrics: calculatingMetrics)
+//            try drawText(container, text: item.text, spacing: 12, calculatingMetrics: calculatingMetrics)
             indentation[container.normalize] = originalIndent
         }
     }

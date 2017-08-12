@@ -6,37 +6,21 @@
 //
 //
 
-open class PDFGenerator  {
+public class PDFGenerator  {
     
     // MARK: - Public Variables
     
-    open var layout: PDFLayout = PDFLayout()
-    open var info: PDFInfo = PDFInfo()
-    open var pagination: PDFPagination = PDFPagination()
-    
-    open var imageQuality: CGFloat = 0.8 {
-        didSet {
-            if imageQuality > 1 {
-                imageQuality = 1
-            }
+    public var imageQuality: CGFloat = 0.8 {
+        willSet {
+            imageQuality = min(1.0, max(0.0, newValue))
         }
     }
     
     // MARK: - Private Variables
     
-    var commands: [(PDFContainer, PDFCommand)] = []
-    var headerFooterCommands: [(PDFContainer, PDFCommand)] = []
-    
-    var headerHeight: [PDFContainer : CGFloat] = [:]
-    var footerHeight: [PDFContainer : CGFloat] = [:]
-    var contentHeight: CGFloat = 0
-    
-    var contentSize: CGSize {
-        return CGSize(
-            width: layout.pageBounds.width - 2 * layout.margin.side,
-            height: layout.pageBounds.height - maxHeaderHeight() - layout.space.header - maxFooterHeight() - layout.space.footer
-        )
-    }
+    var document: PDFDocument
+    var headerFooterObjects: [(PDFContainer, PDFObject)] = []
+    var heights: (header: [PDFContainer : CGFloat], footer: [PDFContainer : CGFloat], content: CGFloat) = ([:], [:], 0)
     
     var indentation: [PDFContainer: CGFloat] = [
         .headerLeft : 0,
@@ -47,6 +31,17 @@ open class PDFGenerator  {
     var currentPage: Int = 1
     var totalPages: Int = 0
     
+    var textColor: UIColor = UIColor.black
+    
+    // MARK: - Computed Variables
+    
+    var contentSize: CGSize {
+        return CGSize(
+            width: document.layout.pageBounds.width - 2 * document.layout.margin.side,
+            height: document.layout.pageBounds.height - maxHeaderHeight() - document.layout.space.header - maxFooterHeight() - document.layout.space.footer
+        )
+    }
+    
     lazy var fonts: [PDFContainer: UIFont] = {
         var defaults = [PDFContainer: UIFont]()
         for container in PDFContainer.all + [PDFContainer.none] {
@@ -55,47 +50,27 @@ open class PDFGenerator  {
         return defaults
     }()
     
-    var textColor: UIColor = UIColor.black
+    // MARK: - Initialization
     
-    // MARK: - Tools
-    
-    /**
-     Generates PDF data and writes it to a temporary file.
-     
-     - parameter document:  PDFDocument which should be converted into a PDF file.
-     - parameter filename:  Name of temporary file.
-     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
-     - returns:             URL to temporary file.
-     
-     - throws:              PDFError
-     */
-    public static func generate(_ document: PDFDocument, filename: String, progress: ((CGFloat) -> ())? = nil) throws -> URL {
-        let name = filename.hasSuffix(".pdf") ? filename : (filename + ".pdf")
-        let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(name)
-        let generator = PDFGenerator()
+    init(document: PDFDocument) {
+        self.document = document
         
-        UIGraphicsBeginPDFContextToFile(url.path, document.layout.pageBounds, document.info.generate())
-//        try generator.generatePDFContext(progress: progress)
-        UIGraphicsEndPDFContext()
-        
-        return url;
+        resetHeaderFooterHeight()
     }
     
     func generateNewPage(calculatingMetrics: Bool) throws {
         // Don't render if calculating metrics
         if !calculatingMetrics {
-            UIGraphicsBeginPDFPageWithInfo(layout.pageBounds, nil)
+            UIGraphicsBeginPDFPageWithInfo(document.layout.pageBounds, nil)
         }
-        contentHeight = 0
+        heights.content = 0
         currentPage += 1
         
         try renderHeaderFooter(calculatingMetrics: calculatingMetrics)
     }
     
     func resetGenerator() {
-        headerHeight = [:]
-        footerHeight = [:]
-        contentHeight = 0
+        heights = ([:], [:], 0)
         indentation = [
             .headerLeft : 0,
             .contentLeft : 0,
