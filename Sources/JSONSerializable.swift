@@ -35,29 +35,32 @@ extension TPJSONSerializable {
         var representation = [String: AnyObject]()
         
         for case let (label?, value) in Mirror(reflecting: self).children {
-            switch value {
-            case let value as TPJSONRepresentable:
-                representation[label] = value.JSONRepresentation
-                break
-            case let value as NSObject:
-                representation[label] = value
-                break
-            default:
-                if isTuple(value: value) {
-                    representation[label] = serializeTuple(value)
-                } else if Mirror(reflecting: value).displayStyle == .optional {
-                    representation[label] = NSNull()
-                } else {
-                    representation[label] = "UNKNOWN" as NSString
-                }
-                break
-            }
+            representation[label] = convertValue(value)
         }
+        
         return representation as AnyObject
     }
 }
 
 extension TPJSONSerializable {
+    
+    func convertValue(_ value: Any) -> AnyObject {
+        if let value = value as? TPJSONSerializable {
+            return value.JSONRepresentation
+        } else if let value = value as? NSObject {
+            return value
+        } else  if isTuple(value: value) {
+            return serializeTuple(value)
+        } else if Mirror(reflecting: value).displayStyle == .optional {
+            return NSNull()
+        } else {
+            return "UNKNOWN" as NSString
+        }
+    }
+    
+    func isTuple(value: Any) -> Bool {
+        return Mirror(reflecting: value).displayStyle == .tuple
+    }
     
     func serializeTuple(_ value: Any) -> AnyObject {
         let mirror = Mirror(reflecting: value)
@@ -70,12 +73,7 @@ extension TPJSONSerializable {
         }
         return result.JSONRepresentation
     }
-    
-    func isTuple(value: Any) -> Bool {
-        return Mirror(reflecting: value).displayStyle == .tuple
-    }
 }
-
 
 extension Array : TPJSONSerializable {
     
@@ -83,23 +81,7 @@ extension Array : TPJSONSerializable {
         var representation: [Any] = []
         
         for (value) in self {
-            switch value {
-            case let value as TPJSONSerializable:
-                representation.append(value.JSONRepresentation)
-                break
-            case let value as NSObject:
-                representation.append(value)
-                break
-            default:
-                if isTuple(value: value) {
-                    representation.append(serializeTuple(value))
-                } else if Mirror(reflecting: value).displayStyle == .optional {
-                    representation.append(NSNull())
-                } else {
-                    representation.append("UNKNOWN")
-                }
-                break
-            }
+            representation.append(convertValue(value))
         }
         
         return representation as NSArray
@@ -112,24 +94,7 @@ extension Dictionary : TPJSONSerializable {
         let representation: NSMutableDictionary = [:]
         
         for (key, value) in self {
-            switch value {
-            case let value as TPJSONSerializable:
-                representation[key] = value.JSONRepresentation
-                break
-            case let value as NSObject:
-                representation[key] = value
-                break
-            default:
-                if isTuple(value: value) {
-                    representation[key] = serializeTuple(value)
-                } else if Mirror(reflecting: value).displayStyle == .optional {
-                    representation[key] = NSNull()
-                } else {
-                    representation[key] = "UNKNOWN" as NSString
-                }
-                break
-            }
-            
+            representation[key] = convertValue(value)
         }
         
         return representation as NSDictionary
@@ -147,7 +112,7 @@ extension UIImage : TPJSONSerializable {
     
     public var JSONRepresentation: AnyObject {
         return "IMAGE" as NSString
-//        return (UIImageJPEGRepresentation(self, 1.0)?.base64EncodedString() as? NSString) ?? NSNull()
+        //        return (UIImageJPEGRepresentation(self, 1.0)?.base64EncodedString() as? NSString) ?? NSNull()
     }
 }
 
