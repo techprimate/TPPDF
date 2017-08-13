@@ -63,7 +63,6 @@ class PDFTableObject : PDFObject {
         // Calculate cells
         
         let cells = table.cells
-        var newPageBreak = false
         
         for (rowIdx, row) in cells.enumerated() {
             contentFrames.append([])
@@ -99,7 +98,6 @@ class PDFTableObject : PDFObject {
                         row: rowIdx,
                         column: colIdx,
                         cell: cell,
-                        newPageBreak: newPageBreak,
                         showHeadersOnEveryPage: table.showHeadersOnEveryPage
                     )
                     var result = CGRect.zero
@@ -148,7 +146,7 @@ class PDFTableObject : PDFObject {
             
             // Reposition in Y-Axis. This is for vertical alignment
             
-            var maxCellHeight: CGFloat = cellFrames[rowIdx].map { return $0.height }.max() ?? 0
+            let maxCellHeight: CGFloat = cellFrames[rowIdx].map { return $0.height }.max() ?? 0
             
             for (colIdx, cell) in row.enumerated() {
                 let alignment = cell.alignment
@@ -223,7 +221,7 @@ class PDFTableObject : PDFObject {
             
             difference = cellsPerPage.map { return $0.frame.height }.reduce(0, +)
             
-            for (idx, cell) in cellDataRow.enumerated() {
+            for idx in 0..<cellDataRow.count {
                 cellDataRow[idx].cellFrame.origin.y -= difference
                 cellDataRow[idx].contentFrame.origin.y -= difference
             }
@@ -239,7 +237,6 @@ class PDFTableObject : PDFObject {
     }
     
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        var newPageBreak = false
         let style = table.style
         
         // Draw background
@@ -250,7 +247,7 @@ class PDFTableObject : PDFObject {
                     guard let pdfCell = cell.cell else {
                         throw PDFError.tableCellWeakReferenceBroken
                     }
-                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: table.style, row: rowIdx, column: colIdx, cell: pdfCell, newPageBreak: newPageBreak, showHeadersOnEveryPage: table.showHeadersOnEveryPage)
+                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: table.style, row: rowIdx, column: colIdx, cell: pdfCell, showHeadersOnEveryPage: table.showHeadersOnEveryPage)
                     
                     PDFGraphics.drawRect(rect: cell.cellFrame, outline: PDFLineStyle.none, fill: cellStyle.colors.fill)
                 }
@@ -266,7 +263,7 @@ class PDFTableObject : PDFObject {
                     guard let content = pdfCell.content else { return }
                     
                     if (content.stringValue != nil) || (content.attributedStringValue != nil) {
-                        let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: style, row: rowIdx, column: colIdx, cell: pdfCell, newPageBreak: newPageBreak, showHeadersOnEveryPage: table.showHeadersOnEveryPage)
+                        let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: style, row: rowIdx, column: colIdx, cell: pdfCell, showHeadersOnEveryPage: table.showHeadersOnEveryPage)
                         
                         let attributedText: NSAttributedString = {
                             if let text = content.stringValue {
@@ -303,7 +300,6 @@ class PDFTableObject : PDFObject {
                         row: rowIdx,
                         column: colIdx,
                         cell: pdfCell,
-                        newPageBreak: newPageBreak,
                         showHeadersOnEveryPage: table.showHeadersOnEveryPage
                     )
                     let cellFrame = cell.cellFrame
@@ -355,13 +351,13 @@ class PDFTableObject : PDFObject {
         }
     }
     
-    func getCellStyle(offset: Int, tableHeight: Int, style: PDFTableStyle, row: Int, column: Int, cell: PDFTableCell, newPageBreak: Bool, showHeadersOnEveryPage: Bool) -> PDFTableCellStyle {
+    func getCellStyle(offset: Int, tableHeight: Int, style: PDFTableStyle, row: Int, column: Int, cell: PDFTableCell, showHeadersOnEveryPage: Bool) -> PDFTableCellStyle {
         let position = PDFTableCellPosition(row: (row + offset), column: column)
         
         if let cellStyle = cell.style {
             return cellStyle
         }
-        if position.row < style.columnHeaderCount && !newPageBreak || (position.row - offset < style.columnHeaderCount){
+        if position.row < style.columnHeaderCount || (position.row - offset < style.columnHeaderCount){
             return style.columnHeaderStyle
         }
         if position.row > tableHeight + offset - style.footerCount {

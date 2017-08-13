@@ -45,7 +45,7 @@ extension TPJSONSerializable {
             default:
                 if isTuple(value: value) {
                     representation[label] = serializeTuple(value)
-                } else if value == nil || Mirror(reflecting: value).displayStyle == .optional {
+                } else if Mirror(reflecting: value).displayStyle == .optional {
                     representation[label] = NSNull()
                 } else {
                     representation[label] = "UNKNOWN" as NSString
@@ -93,7 +93,7 @@ extension Array : TPJSONSerializable {
             default:
                 if isTuple(value: value) {
                     representation.append(serializeTuple(value))
-                } else if value == nil {
+                } else if Mirror(reflecting: value).displayStyle == .optional {
                     representation.append(NSNull())
                 } else {
                     representation.append("UNKNOWN")
@@ -109,7 +109,7 @@ extension Array : TPJSONSerializable {
 extension Dictionary : TPJSONSerializable {
     
     public var JSONRepresentation: AnyObject {
-        var representation: NSMutableDictionary = [:]
+        let representation: NSMutableDictionary = [:]
         
         for (key, value) in self {
             switch value {
@@ -122,7 +122,7 @@ extension Dictionary : TPJSONSerializable {
             default:
                 if isTuple(value: value) {
                     representation[key] = serializeTuple(value)
-                } else if value == nil {
+                } else if Mirror(reflecting: value).displayStyle == .optional {
                     representation[key] = NSNull()
                 } else {
                     representation[key] = "UNKNOWN" as NSString

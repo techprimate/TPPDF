@@ -13,8 +13,10 @@ public class PDFGenerator  {
     public static var debug: Bool = false
     
     public var imageQuality: CGFloat = 0.8 {
-        willSet {
-            imageQuality = min(1.0, max(0.0, newValue))
+        didSet {
+            if imageQuality < 0 || imageQuality > 0 {
+                imageQuality = min(1.0, max(0.0, imageQuality))
+            }
         }
     }
     
