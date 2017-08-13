@@ -49,9 +49,10 @@ extension TPJSONSerializable {
             return value.JSONRepresentation
         } else if let value = value as? NSObject {
             return value
-        } else  if isTuple(value: value) {
+        } else if isTuple(value: value) {
             return serializeTuple(value)
         } else if Mirror(reflecting: value).displayStyle == .optional {
+            // TODO: Do not return NSNull if optional has content
             return NSNull()
         } else {
             return "UNKNOWN" as NSString
