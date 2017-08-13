@@ -700,15 +700,15 @@
 			isa = PBXGroup;
 			children = (
 				0FF8E6D1409C1A35D8A318B77A9CA955 /* PDFTable.swift */,
+				D4666DD91F3DF413004A11D2 /* PDFTableCell.swift */,
 				D4666DCF1F3DF090004A11D2 /* PDFTableCellAlignment.swift */,
 				D4666DCD1F3DECA8004A11D2 /* PDFTableCellPosition.swift */,
 				D4666DCB1F3DEC84004A11D2 /* PDFTableCellStyle.swift */,
 				E3092A6515992350D87C58D2CACC2B56 /* PDFTableContent.swift */,
+				D4B566981F3F37CB009F40F9 /* PDFTableObject.swift */,
 				BA8D281CD7FFA4D455EBBB5398E1657A /* PDFTableStyle.swift */,
 				D30C972E4EA2A37D043BA4822A7F936A /* PDFTableStyle+Defaults.swift */,
 				D4666DC31F3DDEB6004A11D2 /* PDFTableValidator.swift */,
-				D4666DD91F3DF413004A11D2 /* PDFTableCell.swift */,
-				D4B566981F3F37CB009F40F9 /* PDFTableObject.swift */,
 			);
 			name = Table;
 			sourceTree = "<group>";

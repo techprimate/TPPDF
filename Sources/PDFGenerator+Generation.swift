@@ -172,6 +172,9 @@ extension PDFGenerator {
     }
     
     func renderPDFObject(container: PDFContainer, object: PDFObject, calculate: Bool = false) throws {
+        if !(object is PDFTableObject) {
+            return
+        }
         if calculate {
             try object.calculate(generator: self, container: container)
         } else {

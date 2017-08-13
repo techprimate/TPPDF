@@ -42,6 +42,36 @@ class PDFGraphics {
         path.stroke()
     }
     
+    static func drawRect(rect: CGRect, outline: PDFLineStyle, fill: UIColor = UIColor.clear) {
+        let path = UIBezierPath(rect: rect)
+        
+        path.lineWidth = CGFloat(outline.width)
+        
+        var dashes: [CGFloat] = []
+        
+        switch outline.type {
+        case .dashed:
+            dashes = [path.lineWidth * 3, path.lineWidth * 3]
+            path.lineCapStyle = .butt
+            break
+        case .dotted:
+            dashes = [0, path.lineWidth * 2]
+            path.lineCapStyle = .round
+            break
+        default:
+            break
+        }
+        
+        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
+        
+        // Set color to line
+        outline.color.setStroke()
+        fill.setFill()
+        
+        path.fill()
+        path.stroke()
+    }
+    
     static func resizeAndCompressImage(image: UIImage, frame: CGRect, quality: CGFloat) -> UIImage? {
         // resize
         let resizeFactor = (3 * quality > 1) ? 3 * quality : 1

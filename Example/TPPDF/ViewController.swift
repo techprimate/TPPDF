@@ -26,20 +26,20 @@ class ViewController: UIViewController {
         pdf.info.title = "TPPDF Example"
         pdf.info.subject = "Building a PDF easily"
         pdf.info.ownerPassword = "asdf"
-
+        
         // Set spacing of header and footer
         pdf.layout.space.header = 50
         pdf.layout.space.footer = 25
-
+        
         // Add custom pagination, starting at page 1 and excluding page 3
         pdf.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.CustomClosure({ (page, total) -> String in
-                return "\(page) / \(total)"
+            return "\(page) / \(total)"
         }), range: (1, 10), hiddenPages: [3])
-
+        
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150))
         pdf.addImage(image: image)
-
+        
         // Add some spacing below image
         pdf.addSpace(space: 15.0)
         
@@ -54,16 +54,16 @@ class ViewController: UIViewController {
             NSForegroundColorAttributeName: UIColor(colorLiteralRed: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
             ])
         pdf.addAttributedText(.contentCenter, text: title)
-
+        
         // Set document font and document color. This will be used only for simple text until it is reset.
         pdf.setFont(font: UIFont.systemFont(ofSize: 18.0))
         pdf.setTextColor(color: UIColor.lightGray)
         pdf.addText(.contentCenter, text: "Create PDF documents easily.")
-
+        
         // Reset font and text color
         pdf.resetFont()
         pdf.resetTextColor()
-
+        
         // Create a list with level indentations
         let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
         
@@ -80,19 +80,19 @@ class ViewController: UIViewController {
                             ])
                     ])
             ])
-
+        
         pdf.addList(list: list)
-
+        
         // Set Font for headline
-
+        
         pdf.setFont(font: UIFont.systemFont(ofSize: 20.0))
-
+        
         // Add headline with extra spacing
         
         pdf.addSpace(space: 30)
         pdf.addText(text: "1. Introduction")
         pdf.addSpace(space: 10)
-
+        
         // Set font for text
         
         pdf.setFont(font: UIFont.systemFont(ofSize: 13.0))
@@ -184,17 +184,26 @@ class ViewController: UIViewController {
         // Tables can contain Strings, Numbers, Images or nil, in case you need an empty cell. If you add a unknown content type, an error will be thrown and the rendering will stop.
         
         do {
-            try table.generateCells(data:
+            try table.generateCells(
+                data:
                 [
                     [nil, "Name", "Image", "Description"],
                     [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
                     [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
                     [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
                     [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
+                    [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
+                    [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
+                    [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
+                    [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
                     [nil, nil, nil, "Many beautiful places"]
                 ],
-                                    alignments:
+                alignments:
                 [
+                    [.center, .center, .center, .left],
+                    [.center, .center, .center, .left],
+                    [.center, .center, .center, .left],
+                    [.center, .center, .center, .left],
                     [.center, .center, .center, .left],
                     [.center, .center, .center, .left],
                     [.center, .center, .center, .left],
@@ -226,18 +235,18 @@ class ViewController: UIViewController {
         style.footerStyle = PDFTableCellStyle(
             colors: (
                 fill: UIColor(colorLiteralRed: 0.171875,
-                               green: 0.2421875,
-                               blue: 0.3125,
-                               alpha: 1.0),
+                              green: 0.2421875,
+                              blue: 0.3125,
+                              alpha: 1.0),
                 text: UIColor.white
             ),
             borders: (left: PDFLineStyle(),
-                     top: PDFLineStyle(),
-                     right: PDFLineStyle(),
-                     bottom: PDFLineStyle()),
+                      top: PDFLineStyle(),
+                      right: PDFLineStyle(),
+                      bottom: PDFLineStyle()),
             
             font: UIFont.systemFont(ofSize: 10)
-            )
+        )
         
         // Simply set the amount of footer and header rows
         
@@ -251,6 +260,8 @@ class ViewController: UIViewController {
         
         style.rowHeaderStyle = style.contentStyle
         style.columnHeaderStyle = style.contentStyle
+        
+        style.outline = PDFLineStyle()
         
         table.style = style
         
@@ -269,15 +280,14 @@ class ViewController: UIViewController {
         
         // Set table padding and margin
         
-        table.padding = 4
-        table.margin = 0
+        table.padding = 5.0
+        table.margin = 10.0
         
         // In case of a linebreak during rendering we want to have table headers on each page.
         
         table.showHeadersOnEveryPage = true
         
         pdf.addTable(table: table)
-        
         
         /* Execution Metrics */
         print("Preparation: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
@@ -289,6 +299,9 @@ class ViewController: UIViewController {
         print(json)
         
         do {
+            // Enable debug mode if necessary
+            PDFGenerator.debug = true
+            
             let url = try PDFGenerator.generateURL(document: pdf, filename: "Example.pdf", progress: nil)
             
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
