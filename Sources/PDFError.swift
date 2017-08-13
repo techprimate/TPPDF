@@ -12,5 +12,6 @@ public enum PDFError: Error {
     case tableIsEmpty
     case tableStructureInvalid(message: String)
     case tableIndexOutOfBounds(index: Int, length: Int)
+    case tableCellWeakReferenceBroken
     
 }

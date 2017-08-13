@@ -244,6 +244,14 @@ class ViewController: UIViewController {
         style.columnHeaderCount = 1
         style.footerCount = 1
         
+        style.contentStyle.borders.left = PDFLineStyle()
+        style.contentStyle.borders.right = PDFLineStyle()
+        style.contentStyle.borders.top = PDFLineStyle()
+        style.contentStyle.borders.bottom = PDFLineStyle()
+        
+        style.rowHeaderStyle = style.contentStyle
+        style.columnHeaderStyle = style.contentStyle
+        
         table.style = style
         
         do {

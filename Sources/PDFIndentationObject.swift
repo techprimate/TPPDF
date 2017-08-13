@@ -13,4 +13,8 @@ class PDFIndentationObject : PDFObject {
     init(indentation: CGFloat) {
         self.indentation = indentation
     }
+    
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+        generator.indentation[container.normalize] = indentation
+    }
 }

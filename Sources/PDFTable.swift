@@ -12,8 +12,8 @@ public class PDFTable : TPJSONSerializable {
     public var cells: [[PDFTableCell]] = []
     public var widths: [CGFloat] = []
     
-    public var padding: Int = 0
-    public var margin: Int = 0
+    public var padding: CGFloat = 0
+    public var margin: CGFloat = 0
     
     public var showHeadersOnEveryPage: Bool = false
     

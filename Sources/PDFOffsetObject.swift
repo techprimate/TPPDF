@@ -13,4 +13,8 @@ class PDFOffsetObject : PDFObject {
     init(offset: CGFloat) {
         self.offset = offset
     }
+    
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+        generator.setContentOffset(container, value: offset)
+    }
 }

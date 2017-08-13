@@ -66,7 +66,7 @@ public class PDFGenerator  {
         heights.content = 0
         currentPage += 1
         
-        try renderHeaderFooter(calculatingMetrics: calculatingMetrics)
+        try renderHeaderFooter(calculate: calculatingMetrics)
     }
     
     func resetGenerator() {

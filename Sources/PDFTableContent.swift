@@ -41,7 +41,7 @@ public class PDFTableContent : TPJSONSerializable {
             self.content = content
         } else if content is Int || content is Double || content is Float {
             self.type = .string
-            self.content = String(describing: content)
+            self.content = String(describing: content!)
         } else {
             throw PDFError.tableContentInvalid(value: content)
         }

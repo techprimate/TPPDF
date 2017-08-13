@@ -6,4 +6,11 @@
 //
 //
 
-public protocol PDFObject : TPJSONSerializable { }
+public class PDFObject : TPJSONSerializable {
+
+    var frame: CGRect = .zero
+    
+    func calculate(generator: PDFGenerator, container: PDFContainer) throws {}
+    func draw(generator: PDFGenerator, container: PDFContainer) throws {}
+    
+}

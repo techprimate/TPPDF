@@ -85,14 +85,14 @@ extension PDFGenerator {
         
         // Only calculate render header & footer metrics if page has content.
         if contentObjects.count > 0 {
-//            try renderHeaderFooter(calculatingMetrics: true)
+            try renderHeaderFooter(calculate: true)
         }
         
-        // Dry run all PDFCommands. This won't render anything but instad calculate all the frames.
-        for (container, PDFObject) in contentObjects {
+        // Dry run all PDFObjects. This won't render anything but instad calculate all the frames.
+        for (container, pdfObject) in contentObjects {
             try autoreleasepool {
-//                try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: true)
-                progressIndex = progressIndex + 1;
+                try renderPDFObject(container: container, object: pdfObject, calculate: true)
+                progressIndex = progressIndex + 1
                 progress?(progressIndex / progressMax)
             }
         }
@@ -104,13 +104,13 @@ extension PDFGenerator {
         
         // Only render header & footer if page has content.
         if contentObjects.count > 0 {
-//            try renderHeaderFooter(calculatingMetrics: false)
+            try renderHeaderFooter(calculate: false)
         }
         
         // Render each PDFCommand
-        for (container, PDFCommand) in contentObjects {
+        for (container, pdfObject) in contentObjects {
             try autoreleasepool {
-//                try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: false)
+                try renderPDFObject(container: container, object: pdfObject, calculate: false)
                 progressIndex = progressIndex + 1;
                 progress?(progressIndex / progressMax)
             }
@@ -144,15 +144,6 @@ extension PDFGenerator {
 //        case let .addImagesInRow(images, captions, spacing):
 //            try drawImagesInRow(container, images: images, captions: captions, spacing: spacing, calculatingMetrics: calculatingMetrics)
 //            break
-//        case let .addSpace(space):
-//            if container.isHeader {
-//                headerHeight[container] = headerHeight[container]! + space
-//            } else if container.isFooter {
-//                footerHeight[container] = footerHeight[container]! + space
-//            } else {
-//                contentHeight += space
-//            }
-//            break
 //        case let .addLineSeparator(style):
 //            drawLineSeparator(container, style: style, calculatingMetrics: calculatingMetrics)
 //            break
@@ -162,40 +153,31 @@ extension PDFGenerator {
 //        case let .addList(list):
 //            try drawList(container, list: list, calculatingMetrics: calculatingMetrics)
 //            break
-//        case let .setIndentation(value):
-//            indentation[container.normalize] = value
-//            break
-//        case let .setOffset(value):
-//            setContentOffset(container, value: value)
-//            break
-//        case let .setFont(font):
-//            fonts[container] = font
-//            break
-//        case let .setTextColor(color):
-//            textColor = color
-//            break
-//        case .createNewPage():
-//            try generateNewPage(calculatingMetrics: calculatingMetrics)
-//            break
-//        }
-//    }
-//    
-    func renderHeaderFooter(calculatingMetrics: Bool) throws {
+    
+    func renderHeaderFooter(calculate: Bool) throws {
         resetHeaderFooterHeight()
         
         let pagination = document.pagination
         
         if pagination.container != .none {
             if !pagination.hiddenPages.contains(currentPage) && currentPage >= pagination.range.start && currentPage <= pagination.range.end {
-//                try renderPDFCommand(pagination.container, PDFCommand: .addText(text: pagination.style.format(page: currentPage, total: totalPages), lineSpacing: 1.0), calculatingMetrics: calculatingMetrics)
+                let textObject = PDFTextObject(text: pagination.style.format(page: currentPage, total: totalPages))
+                try renderPDFObject(container: pagination.container, object: textObject, calculate: calculate)
             }
         }
         
-        for (container, PDFCommand) in headerFooterObjects {
-//            try renderPDFCommand(container, PDFCommand: PDFCommand, calculatingMetrics: calculatingMetrics)
+        for (container, pdfObject) in headerFooterObjects {
+            try renderPDFObject(container: container, object: pdfObject, calculate: calculate)
         }
     }
     
-    // MARK: - PDF Data Generation
+    func renderPDFObject(container: PDFContainer, object: PDFObject, calculate: Bool = false) throws {
+        if calculate {
+            try object.calculate(generator: self, container: container)
+        } else {
+            try object.calculate(generator: self, container: container)
+            try object.draw(generator: self, container: container)
+        }
+    }
     
 }

@@ -21,11 +21,11 @@ extension PDFGenerator {
     }
     
     func maxHeaderHeight() -> CGFloat {
-        return max(document.layout.margin.side, heights.header.values.max() ?? 0)
+        return heights.header.values.max() ?? 0
     }
     
     func maxFooterHeight() -> CGFloat {
-        return max(document.layout.margin.side, heights.footer.values.max() ?? 0)
+        return heights.footer.values.max() ?? 0
     }
     
     func calculateCellFrame(_ origin: CGPoint, width: CGFloat, text: NSAttributedString, alignment: PDFTableCellAlignment) -> CGRect {

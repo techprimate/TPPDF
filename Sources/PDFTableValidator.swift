@@ -8,17 +8,17 @@
 
 class PDFTableValidator {
     
-    public static func validateCells(cells: [[PDFTableCell]], columnWidths: [CGFloat]) throws {
+    public static func validateTable(table: PDFTable) throws {
         // Throw error when empty. Signalizes developer he tries to render an empty table. Might cause format errors
-        if cells.count == 0 {
+        if table.cells.count == 0 {
             throw PDFError.tableIsEmpty
         }
         
         // Compare each data row
-        for (rowIdx, row) in cells.enumerated() {
+        for (rowIdx, row) in table.cells.enumerated() {
             
             // Throw error when columns row count does not equal relativeColumnWidth count
-            if row.count != columnWidths.count {
+            if row.count != table.widths.count {
                 throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
             }
         }

@@ -122,21 +122,5 @@ extension PDFGenerator {
 //            try drawAttributedText(container, text: caption, textMaxWidth: frame.size.width, calculatingMetrics: calculatingMetrics)
 //        }
 //    }
-//    
-//    func resizeAndCompressImage(image: UIImage, frame: CGRect) -> UIImage? {
-//        // resize
-//        let resizeFactor = (3 * imageQuality > 1) ? 3 * imageQuality : 1
-//        let resizeImageSize = CGSize(width: frame.size.width * resizeFactor, height: frame.size.height * resizeFactor)
-//        
-//        UIGraphicsBeginImageContext(resizeImageSize)
-//        image.draw(in: CGRect(x: 0, y: 0, width: resizeImageSize.width, height: resizeImageSize.height))
-//        var compressedImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        
-//        // compression
-//        if let image = compressedImage, let jpegData = UIImageJPEGRepresentation(image, imageQuality) {
-//            compressedImage = UIImage(data: jpegData)
-//        }
-//        return compressedImage
-//    }
+//
 }

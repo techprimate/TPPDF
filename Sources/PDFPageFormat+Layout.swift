@@ -9,26 +9,6 @@
 public extension PDFPageFormat {
     
     public var layout: PDFLayout {
-        return PDFLayout()
+        return PDFLayout(size: self.size, margin: (header: 30.0, footer: 30.0, side: 60.0), space: (header: 15.0, footer: 15.0))
     }
-//    
-//    var headerMargin: CGFloat {
-//        return 30.0
-//    }
-//    
-//    var footerMargin: CGFloat {
-//        return 30.0
-//    }
-//    
-//    var margin: CGFloat {
-//        return 60.0
-//    }
-//    
-//    var headerSpace: CGFloat {
-//        return 15.0
-//    }
-//    
-//    var footerSpace: CGFloat {
-//        return 15.0
-//    }
 }
