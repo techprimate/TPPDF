@@ -19,6 +19,16 @@ class PDFTableObject : PDFObject {
         var frame: CGRect
         var rows: [PDFTableRowObject]
         
+        func enumerateCells(_ closure: (Int, Int, PDFTableRowObject, PDFTableCellObject, PDFTableCell) -> ()) throws {
+            for (rowIdx, row) in rows.enumerated() {
+                for (colIdx, cell) in row.cells.enumerated() {
+                    guard let pdfCell = cell.cell else {
+                        throw PDFError.tableCellWeakReferenceBroken
+                    }
+                    closure(rowIdx, colIdx, row, cell, pdfCell)
+                }
+            }
+        }
     }
     
     struct PDFTableRowObject {
@@ -237,116 +247,107 @@ class PDFTableObject : PDFObject {
     }
     
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        let style = table.style
-        
-        // Draw background
-        
         for (pageIdx, page) in cellsPerPage.enumerated() {
-            for (rowIdx, row) in page.rows.enumerated() {
-                for (colIdx, cell) in row.cells.enumerated() {
-                    guard let pdfCell = cell.cell else {
-                        throw PDFError.tableCellWeakReferenceBroken
-                    }
-                    let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: table.style, row: rowIdx, column: colIdx, cell: pdfCell, showHeadersOnEveryPage: table.showHeadersOnEveryPage)
-                    
-                    PDFGraphics.drawRect(rect: cell.cellFrame, outline: PDFLineStyle.none, fill: cellStyle.colors.fill)
-                }
-            }
+            // Draw background
+            try drawBackground(page: page)
             
             // Draw content
-            
-            for (rowIdx, row) in page.rows.enumerated() {
-                for (colIdx, cell) in row.cells.enumerated() {
-                    guard let pdfCell = cell.cell else {
-                        throw PDFError.tableCellWeakReferenceBroken
-                    }
-                    guard let content = pdfCell.content else { return }
-                    
-                    if (content.stringValue != nil) || (content.attributedStringValue != nil) {
-                        let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: style, row: rowIdx, column: colIdx, cell: pdfCell, showHeadersOnEveryPage: table.showHeadersOnEveryPage)
-                        
-                        let attributedText: NSAttributedString = {
-                            if let text = content.stringValue {
-                                let attributes: [String: AnyObject] = [
-                                    NSForegroundColorAttributeName: cellStyle.colors.text,
-                                    NSFontAttributeName: cellStyle.font
-                                ]
-                                return NSAttributedString(string: text, attributes: attributes)
-                            } else {
-                                return content.attributedStringValue!
-                            }
-                        }()
-                        // the last line of text is hidden if 20 is not added
-                        attributedText.draw(in: CGRect(origin: cell.contentFrame.origin, size: CGSize(width: cell.contentFrame.width, height: cell.contentFrame.height + 20)))
-                    } else if let image = content.imageValue {
-                        let compressedImage = PDFGraphics.resizeAndCompressImage(image: image, frame: cell.contentFrame, quality: generator.imageQuality) ?? image
-                        compressedImage.draw(in: cell.contentFrame)
-                    }
-                }
-            }
+            try drawContent(page: page, imageQuality: generator.imageQuality)
             
             // Draw grid lines
-            
-            for (rowIdx, row) in page.rows.enumerated() {
-                for (colIdx, cell) in row.cells.enumerated() {
-                    guard let pdfCell = cell.cell else {
-                        throw PDFError.tableCellWeakReferenceBroken
-                    }
-
-                    let cellStyle = getCellStyle(
-                        offset: styleIndexOffset,
-                        tableHeight: table.cells.count,
-                        style: table.style,
-                        row: rowIdx,
-                        column: colIdx,
-                        cell: pdfCell,
-                        showHeadersOnEveryPage: table.showHeadersOnEveryPage
-                    )
-                    let cellFrame = cell.cellFrame
-                    
-                    PDFGraphics.drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borders.top)
-                    PDFGraphics.drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borders.bottom)
-                    PDFGraphics.drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), style: cellStyle.borders.left)
-                    PDFGraphics.drawLine(start: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borders.right)
-                }
-            }
+            try drawGridLines(page: page)
             
             // Draw table outline
+            PDFGraphics.drawRect(rect: page.frame, outline: table.style.outline)
             
-            let frame = page.frame
+            // Debug drawing
+            debugDraw(page: page)
             
-            PDFGraphics.drawLine(start: CGPoint(x: frame.minX, y: frame.minY), end: CGPoint(x: frame.maxX, y: frame.minY), style: style.outline)
-            PDFGraphics.drawLine(start: CGPoint(x: frame.minX, y: frame.maxY), end: CGPoint(x: frame.maxX, y: frame.maxY), style: style.outline)
-            PDFGraphics.drawLine(start: CGPoint(x: frame.minX, y: frame.minY), end: CGPoint(x: frame.minX, y: frame.maxY), style: style.outline)
-            PDFGraphics.drawLine(start: CGPoint(x: frame.maxX, y: frame.minY), end: CGPoint(x: frame.maxX, y: frame.maxY), style: style.outline)
-            
-            if PDFGenerator.debug {
-                let debugGridStyle = PDFLineStyle(type: .full, color: UIColor.red, width: 1.0)
-                let debugCellStyle = PDFLineStyle(type: .full, color: UIColor.green, width: 1.0)
-                let debugCellContentStyle = PDFLineStyle(type: .full, color: UIColor.blue, width: 1.0)
-                
-                var x: CGFloat = frame.minX
-                for width in [0] + table.widths {
-                    x += width * frame.width
-                    PDFGraphics.drawLine(start: CGPoint(x: x, y: frame.minY), end: CGPoint(x: x, y: frame.maxY), style: debugGridStyle)
-                }
-                
-                var y: CGFloat = frame.minY
-                for height in [0] + page.rows.map { return $0.height } {
-                    y += height
-                    PDFGraphics.drawLine(start: CGPoint(x: frame.minX, y: y), end: CGPoint(x: frame.maxX, y: y), style: debugGridStyle)
-                }
-                
-                for row in page.rows {
-                    for cell in row.cells {
-                        PDFGraphics.drawRect(rect: cell.cellFrame, outline: debugCellStyle)
-                        PDFGraphics.drawRect(rect: cell.contentFrame, outline: debugCellContentStyle)
-                    }
-                }
-            }
-            
+            // Page break between tables
             if pageIdx != cellsPerPage.count - 1 {
                 try generator.generateNewPage(calculatingMetrics: false)
+            }
+        }
+    }
+    
+    func drawBackground(page: PDFTablePageObject) throws {
+        try page.enumerateCells { (rowIndex, colIndex, row, cell, pdfCell) in
+            let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: table.style, row: rowIndex, column: colIndex, cell: pdfCell, showHeadersOnEveryPage: table.showHeadersOnEveryPage)
+            
+            PDFGraphics.drawRect(rect: cell.cellFrame, outline: PDFLineStyle.none, fill: cellStyle.colors.fill)
+        }
+    }
+    
+    func drawContent(page: PDFTablePageObject, imageQuality: CGFloat) throws {
+        try page.enumerateCells { (rowIndex, colIndex, row, cell, pdfCell) in
+            guard let content = pdfCell.content else { return }
+            
+            if (content.stringValue != nil) || (content.attributedStringValue != nil) {
+                let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: table.style, row: rowIndex, column: colIndex, cell: pdfCell, showHeadersOnEveryPage: table.showHeadersOnEveryPage)
+                
+                let attributedText: NSAttributedString = {
+                    if let text = content.stringValue {
+                        let attributes: [String: AnyObject] = [
+                            NSForegroundColorAttributeName: cellStyle.colors.text,
+                            NSFontAttributeName: cellStyle.font
+                        ]
+                        return NSAttributedString(string: text, attributes: attributes)
+                    } else {
+                        return content.attributedStringValue!
+                    }
+                }()
+                // the last line of text is hidden if 20 is not added
+                attributedText.draw(in: CGRect(origin: cell.contentFrame.origin, size: CGSize(width: cell.contentFrame.width, height: cell.contentFrame.height + 20)))
+            } else if let image = content.imageValue {
+                let compressedImage = PDFGraphics.resizeAndCompressImage(image: image, frame: cell.contentFrame, quality: imageQuality) ?? image
+                compressedImage.draw(in: cell.contentFrame)
+            }
+        }
+    }
+    
+    func drawGridLines(page: PDFTablePageObject) throws {
+        try page.enumerateCells { (rowIndex, colIndex, row, cell, pdfCell) in
+            let cellStyle = getCellStyle(
+                offset: styleIndexOffset,
+                tableHeight: table.cells.count,
+                style: table.style,
+                row: rowIndex,
+                column: colIndex,
+                cell: pdfCell,
+                showHeadersOnEveryPage: table.showHeadersOnEveryPage
+            )
+            let cellFrame = cell.cellFrame
+            
+            PDFGraphics.drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), style: cellStyle.borders.top)
+            PDFGraphics.drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borders.bottom)
+            PDFGraphics.drawLine(start: CGPoint(x: cellFrame.minX, y: cellFrame.minY), end: CGPoint(x: cellFrame.minX, y: cellFrame.maxY), style: cellStyle.borders.left)
+            PDFGraphics.drawLine(start: CGPoint(x: cellFrame.maxX, y: cellFrame.minY), end: CGPoint(x: cellFrame.maxX, y: cellFrame.maxY), style: cellStyle.borders.right)
+        }
+    }
+    
+    func debugDraw(page: PDFTablePageObject) {
+        guard PDFGenerator.debug else { return }
+        
+        let debugGridStyle = PDFLineStyle(type: .full, color: UIColor.red, width: 1.0)
+        let debugCellStyle = PDFLineStyle(type: .full, color: UIColor.green, width: 1.0)
+        let debugCellContentStyle = PDFLineStyle(type: .full, color: UIColor.blue, width: 1.0)
+        
+        var x: CGFloat = frame.minX
+        for width in [0] + table.widths {
+            x += width * frame.width
+            PDFGraphics.drawLine(start: CGPoint(x: x, y: frame.minY), end: CGPoint(x: x, y: frame.maxY), style: debugGridStyle)
+        }
+        
+        var y: CGFloat = frame.minY
+        for height in [0] + page.rows.map { return $0.height } {
+            y += height
+            PDFGraphics.drawLine(start: CGPoint(x: frame.minX, y: y), end: CGPoint(x: frame.maxX, y: y), style: debugGridStyle)
+        }
+        
+        for row in page.rows {
+            for cell in row.cells {
+                PDFGraphics.drawRect(rect: cell.cellFrame, outline: debugCellStyle)
+                PDFGraphics.drawRect(rect: cell.contentFrame, outline: debugCellContentStyle)
             }
         }
     }
