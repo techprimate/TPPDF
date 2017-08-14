@@ -26,6 +26,7 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 - [Contributors](#contributors)
 - [License](#license)
 
+# This project is currently under heavy changes. I am changing the project design architecture, therefore rendering of most elements is either wrong or not working. After the change, this library will be faster, more versatile, offering more calculation possibilities, have better testability and maintainability.
 
 ## Features
 
