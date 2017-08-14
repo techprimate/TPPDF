@@ -6,6 +6,8 @@
 //
 //
 
+typealias PDFGeneratorHeights = (header: [PDFContainer : CGFloat], footer: [PDFContainer : CGFloat], content: CGFloat)
+
 public class PDFGenerator  {
     
     // MARK: - Public Variables
@@ -24,7 +26,7 @@ public class PDFGenerator  {
     
     var document: PDFDocument
     var headerFooterObjects: [(PDFContainer, PDFObject)] = []
-    var heights: (header: [PDFContainer : CGFloat], footer: [PDFContainer : CGFloat], content: CGFloat) = ([:], [:], 0)
+    var heights: PDFGeneratorHeights = ([:], [:], 0)
     
     var indentation: [PDFContainer: CGFloat] = [
         .headerLeft : 0,
@@ -81,5 +83,6 @@ public class PDFGenerator  {
             .footerLeft : 0
         ]
         currentPage = 1
+        textColor = .black
     }
 }

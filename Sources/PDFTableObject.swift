@@ -270,6 +270,12 @@ class PDFTableObject : PDFObject {
         }
     }
     
+    override func updateHeights(generator: PDFGenerator, container: PDFContainer, heights: inout PDFGeneratorHeights) {
+        if let lastPage = cellsPerPage.last {
+            heights.content = (lastPage.frame.maxY - generator.maxHeaderHeight() - generator.document.layout.space.header)
+        }
+    }
+    
     func drawBackground(page: PDFTablePageObject) throws {
         try page.enumerateCells { (rowIndex, colIndex, row, cell, pdfCell) in
             let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: table.style, row: rowIndex, column: colIndex, cell: pdfCell, showHeadersOnEveryPage: table.showHeadersOnEveryPage)

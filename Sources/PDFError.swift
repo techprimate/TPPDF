@@ -14,4 +14,5 @@ public enum PDFError: Error {
     case tableIndexOutOfBounds(index: Int, length: Int)
     case tableCellWeakReferenceBroken
     
+    case textObjectIsNil
 }

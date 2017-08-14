@@ -11,6 +11,7 @@ public class PDFObject : TPJSONSerializable {
     var frame: CGRect = .zero
     
     func calculate(generator: PDFGenerator, container: PDFContainer) throws {}
+    func updateHeights(generator: PDFGenerator, container: PDFContainer, heights: inout PDFGeneratorHeights)  { }
     func draw(generator: PDFGenerator, container: PDFContainer) throws {}
     
 }

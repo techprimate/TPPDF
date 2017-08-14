@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150))
-        pdf.addImage(image: image)
+        pdf.addImage(.contentCenter, image: image)
         
         // Add some spacing below image
         pdf.addSpace(space: 15.0)
@@ -253,16 +253,6 @@ class ViewController: UIViewController {
         style.columnHeaderCount = 1
         style.footerCount = 1
         
-        style.contentStyle.borders.left = PDFLineStyle()
-        style.contentStyle.borders.right = PDFLineStyle()
-        style.contentStyle.borders.top = PDFLineStyle()
-        style.contentStyle.borders.bottom = PDFLineStyle()
-        
-        style.rowHeaderStyle = style.contentStyle
-        style.columnHeaderStyle = style.contentStyle
-        
-        style.outline = PDFLineStyle()
-        
         table.style = style
         
         do {
@@ -288,6 +278,10 @@ class ViewController: UIViewController {
         table.showHeadersOnEveryPage = true
         
         pdf.addTable(table: table)
+        
+        // Add more text after the table
+        
+        pdf.addText(text: "Just adding more text here...")
         
         /* Execution Metrics */
         print("Preparation: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))

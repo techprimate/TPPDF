@@ -72,7 +72,7 @@ class PDFGraphics {
         path.stroke()
     }
     
-    static func resizeAndCompressImage(image: UIImage, frame: CGRect, quality: CGFloat) -> UIImage? {
+    static func resizeAndCompressImage(image: UIImage, frame: CGRect, quality: CGFloat) -> UIImage {
         // resize
         let resizeFactor = (3 * quality > 1) ? 3 * quality : 1
         let resizeImageSize = CGSize(width: frame.size.width * resizeFactor, height: frame.size.height * resizeFactor)
@@ -86,6 +86,6 @@ class PDFGraphics {
         if let image = compressedImage, let jpegData = UIImageJPEGRepresentation(image, quality) {
             compressedImage = UIImage(data: jpegData)
         }
-        return compressedImage
+        return compressedImage ?? image
     }
 }

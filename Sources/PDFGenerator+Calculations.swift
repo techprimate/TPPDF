@@ -39,7 +39,7 @@ extension PDFGenerator {
         let frame: CGRect = CGRect(x: origin.x, y: origin.y, width: width, height: textMaxHeight)
         
         let currentRange = CFRange(location: 0, length: 0)
-        let (_, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
+        let (_, _, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
         let x: CGFloat = {
             switch alignment.normalizeHorizontal {
             case .center:
@@ -64,30 +64,10 @@ extension PDFGenerator {
         let imageSize = image.size
         let height = imageSize.height / imageSize.width * width
         
-        let frame: CGRect = CGRect(x: origin.x, y: origin.y, width: width, height: height)
-        return frame
+        return CGRect(x: origin.x, y: origin.y, width: width, height: height)
     }
     
-    func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect, text: CFAttributedString, currentRange: CFRange) -> (CTFrame, CGSize) {
-        let framesetter = CTFramesetterCreateWithAttributedString(text)
-        let framePath = UIBezierPath(rect: frame).cgPath
-        
-        // Get the frame that will do the rendering.
-        // The currentRange variable specifies only the starting point. The framesetter
-        // lays out as much text as will fit into the frame.
-        let frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, nil)
-        
-        // Update the current range based on what was drawn.
-        let visibleRange = CTFrameGetVisibleStringRange(frameRef)
-        
-        // Update last drawn frame
-        let constraintSize = frame.size
-        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, constraintSize, nil)
-        
-        return (frameRef, drawnSize)
-    }
-    
-    func calculateTextFrameAndDrawnSizeInOnePage(_ container: PDFContainer, text: CFAttributedString, currentRange: CFRange, textMaxWidth: CGFloat) -> (CTFrame, CGSize) {
+    func calculateTextFrameAndDrawnSizeInOnePage(_ container: PDFContainer, text: CFAttributedString, currentRange: CFRange, textMaxWidth: CGFloat) -> (CGRect, CTFrame, CGSize) {
         let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : document.layout.pageBounds.width - 2 * document.layout.margin.side - indentation[container.normalize]!
         let textMaxHeight: CGFloat = {
             if container.isHeader {
@@ -119,11 +99,30 @@ extension PDFGenerator {
             } else if container.isFooter {
                 return CGRect(x: x, y: heights.footer[container]!, width: textMaxWidth, height: textMaxHeight)
             } else {
-                return CGRect(x: x, y: maxFooterHeight() + document.layout.space.footer, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: maxHeaderHeight() + document.layout.space.header, width: textMaxWidth, height: textMaxHeight)
             }
         }()
         
         return calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
+    }
+    
+    func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect, text: CFAttributedString, currentRange: CFRange) -> (CGRect, CTFrame, CGSize) {
+        let framesetter = CTFramesetterCreateWithAttributedString(text)
+        let framePath = UIBezierPath(rect: frame).cgPath
+        
+        // Get the frame that will do the rendering.
+        // The currentRange variable specifies only the starting point. The framesetter
+        // lays out as much text as will fit into the frame.
+        let frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, nil)
+        
+        // Update the current range based on what was drawn.
+        let visibleRange = CTFrameGetVisibleStringRange(frameRef)
+        
+        // Update last drawn frame
+        let constraintSize = frame.size
+        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, constraintSize, nil)
+
+        return (frame, frameRef, drawnSize)
     }
     
     func calculateImageCaptionSize(_ container: PDFContainer, image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit) -> (CGSize, CGSize) {
@@ -152,7 +151,7 @@ extension PDFGenerator {
         if caption.length > 0 {
             let currentText = CFAttributedStringCreateCopy(nil, caption as CFAttributedString)
             let currentRange = CFRange(location: 0, length: 0)
-            (_, captionSize) = calculateTextFrameAndDrawnSizeInOnePage(container, text: currentText!, currentRange: currentRange, textMaxWidth: imageSize.width)
+            (_, _, captionSize) = calculateTextFrameAndDrawnSizeInOnePage(container, text: currentText!, currentRange: currentRange, textMaxWidth: imageSize.width)
         }
         
         return (imageSize, CGSize(width: imageSize.width, height: captionSize.height))

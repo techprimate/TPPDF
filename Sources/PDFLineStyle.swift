@@ -30,7 +30,7 @@ public struct PDFLineStyle : TPJSONSerializable {
     /// Defines the color of this line
     public var color: UIColor
     /// Defines the width of this line
-    public var width: Double
+    public var width: CGFloat
     
     /// Initialize a table line style
     ///
@@ -38,7 +38,7 @@ public struct PDFLineStyle : TPJSONSerializable {
     ///   - type: of Line
     ///   - color: of Line
     ///   - width: of Line
-    public init(type: LineType = .full, color: UIColor = UIColor.black, width: Double = 0.25) {
+    public init(type: LineType = .full, color: UIColor = UIColor.black, width: CGFloat = 0.25) {
         self.type = type
         self.color = color
         self.width = width

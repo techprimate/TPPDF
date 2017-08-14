@@ -15,10 +15,6 @@ public extension TPJSONSerializable {
     public func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
         let representation = JSONRepresentation
         
-        guard JSONSerialization.isValidJSONObject(representation) else {
-            return nil
-        }
-        
         do {
             let data = try JSONSerialization.data(withJSONObject: representation, options: options)
             return String(data: data, encoding: .utf8)
@@ -47,7 +43,9 @@ extension TPJSONSerializable {
     func convertValue(_ value: Any) -> AnyObject {
         if let value = value as? TPJSONSerializable {
             return value.JSONRepresentation
-        } else if let value = value as? NSObject {
+        } else if let value = value as? NSString {
+            return value
+        } else if let value = value as? NSNumber {
             return value
         } else if isTuple(value: value) {
             return serializeTuple(value)
