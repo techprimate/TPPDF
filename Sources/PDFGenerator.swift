@@ -68,6 +68,7 @@ public class PDFGenerator  {
         // Don't render if calculating metrics
         if !calculatingMetrics {
             UIGraphicsBeginPDFPageWithInfo(document.layout.pageBounds, nil)
+            drawDebugPageOverlay()
         }
         heights.content = 0
         currentPage += 1

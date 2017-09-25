@@ -101,6 +101,12 @@ class ViewController: UIViewController {
         
         pdf.addText(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
         pdf.addSpace(space: 10)
+        var array = [String]()
+        for i in 0...1000 {
+            array += ["\(i)"]
+        }
+        pdf.addText(text: array.joined(separator: ", "))
+        pdf.addSpace(space: 10)
         pdf.addText(text: "TPPDF includes many different features:")
         
         pdf.addSpace(space: 10)

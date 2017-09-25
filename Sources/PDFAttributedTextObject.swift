@@ -8,8 +8,23 @@
 
 class PDFAttributedTextObject : PDFObject {
     
-    var simple: (text: String, spacing: CGFloat)?
-    var attributedText: NSAttributedString?
+    var simple: (text: String, spacing: CGFloat)? {
+        didSet {
+            subTextObjects = []
+        }
+    }
+    var attributedText: NSAttributedString? {
+        didSet {
+            subTextObjects = []
+        }
+    }
+    
+    struct SubTextObject {
+        var text: NSAttributedString
+        var frame: CGRect
+    }
+    
+    private var subTextObjects: [SubTextObject] = []
     
     init(attributedText: NSAttributedString) {
         self.attributedText = attributedText
@@ -53,6 +68,7 @@ class PDFAttributedTextObject : PDFObject {
             let visibleRange = CTFrameGetVisibleStringRange(frameRef)
             currentRange = CFRange(location: visibleRange.location + visibleRange.length , length: 0)
             
+            let subObject = SubTextObject(text: NSAttributedString(), frame: calcFrame) // TODO: Insert correct attributed substring
             self.frame = calcFrame
             
             if container.isHeader {

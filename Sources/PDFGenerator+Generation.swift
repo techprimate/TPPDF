@@ -61,6 +61,8 @@ extension PDFGenerator {
     func generatePDFContext(progress: ((CGFloat) -> ())?) throws {
         UIGraphicsBeginPDFPageWithInfo(document.layout.pageBounds, nil)
         
+        drawDebugPageOverlay()
+        
         // Extract header & footer PDFCommands
         headerFooterObjects = document.objects.filter { return $0.0.isFooter || $0.0.isHeader }
         let contentObjects = document.objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
