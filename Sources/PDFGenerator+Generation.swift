@@ -92,11 +92,9 @@ extension PDFGenerator {
         
         // Dry run all PDFObjects. This won't render anything but instad calculate all the frames.
         for (container, pdfObject) in contentObjects {
-            try autoreleasepool {
-                try renderPDFObject(container: container, object: pdfObject, calculate: true)
-                progressIndex = progressIndex + 1
-                progress?(progressIndex / progressMax)
-            }
+            try renderPDFObject(container: container, object: pdfObject, calculate: true)
+            progressIndex = progressIndex + 1
+            progress?(progressIndex / progressMax)
         }
         // Save calculated page count from reseting
         totalPages = currentPage
@@ -111,11 +109,9 @@ extension PDFGenerator {
         
         // Render each PDFCommand
         for (container, pdfObject) in contentObjects {
-            try autoreleasepool {
-                try renderPDFObject(container: container, object: pdfObject, calculate: false)
-                progressIndex = progressIndex + 1;
-                progress?(progressIndex / progressMax)
-            }
+            try renderPDFObject(container: container, object: pdfObject, calculate: false)
+            progressIndex = progressIndex + 1;
+            progress?(progressIndex / progressMax)
         }
     }
     
