@@ -126,10 +126,10 @@ class PDFTableObject : PDFObject {
                             }
                         }()
                         
-                        let attributes: [String: AnyObject] = [
-                            NSForegroundColorAttributeName: cellStyle.colors.text,
-                            NSFontAttributeName: cellStyle.font,
-                            NSParagraphStyleAttributeName: paragraph
+                        let attributes: [NSAttributedStringKey: AnyObject] = [
+                            NSAttributedStringKey.foregroundColor: cellStyle.colors.text,
+                            NSAttributedStringKey.font: cellStyle.font,
+                            NSAttributedStringKey.paragraphStyle: paragraph
                         ]
                         let attributedText = NSAttributedString(string: text, attributes: attributes)
                         result = generator.calculateCellFrame(contentPosition, width: contentWidth, text: attributedText, alignment: cell.alignment)
@@ -293,9 +293,9 @@ class PDFTableObject : PDFObject {
                 
                 let attributedText: NSAttributedString = {
                     if let text = content.stringValue {
-                        let attributes: [String: AnyObject] = [
-                            NSForegroundColorAttributeName: cellStyle.colors.text,
-                            NSFontAttributeName: cellStyle.font
+                        let attributes: [NSAttributedStringKey: AnyObject] = [
+                            NSAttributedStringKey.foregroundColor: cellStyle.colors.text,
+                            NSAttributedStringKey.font: cellStyle.font
                         ]
                         return NSAttributedString(string: text, attributes: attributes)
                     } else {
