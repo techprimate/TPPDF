@@ -305,7 +305,7 @@ class PDFTableObject : PDFObject {
                 // the last line of text is hidden if 20 is not added
                 attributedText.draw(in: CGRect(origin: cell.contentFrame.origin, size: CGSize(width: cell.contentFrame.width, height: cell.contentFrame.height + 20)))
             } else if let image = content.imageValue {
-                let compressedImage = PDFGraphics.resizeAndCompressImage(image: image, frame: cell.contentFrame, quality: imageQuality) ?? image
+                let compressedImage = PDFGraphics.resizeAndCompressImage(image: image, frame: cell.contentFrame, quality: imageQuality) 
                 compressedImage.draw(in: cell.contentFrame)
             }
         }
