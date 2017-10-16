@@ -30,7 +30,7 @@ class PDFSpaceObject : PDFObject {
         }
     }
     
-    override func updateHeights(generator: PDFGenerator, container: PDFContainer, heights: inout PDFGeneratorHeights) {
+    override func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         if container.isHeader {
             generator.heights.header[container] = generator.heights.header[container]! + space
         } else if container.isFooter {

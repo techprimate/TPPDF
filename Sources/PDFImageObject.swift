@@ -60,13 +60,13 @@ class PDFImageObject : PDFObject {
         }
     }
     
-    override func updateHeights(generator: PDFGenerator, container: PDFContainer, heights: inout PDFGeneratorHeights) {
+    override func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         if container.isHeader {
-            heights.header[container] = heights.header[container]! + image.size.height
+            generator.heights.header[container] = generator.heights.header[container]! + image.size.height
         } else if container.isFooter {
-            heights.footer[container] = heights.footer[container]! + image.size.height
+            generator.heights.footer[container] = generator.heights.footer[container]! + image.size.height
         } else {
-            heights.content += image.size.height
+            generator.heights.content += image.size.height
         }
     }
 }

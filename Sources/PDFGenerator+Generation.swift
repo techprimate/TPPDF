@@ -134,7 +134,7 @@ extension PDFGenerator {
     
     func renderPDFObject(container: PDFContainer, object: PDFObject, calculate: Bool = false) throws {
         try object.calculate(generator: self, container: container)
-        object.updateHeights(generator: self, container: container, heights: &heights)
+        object.updateHeights(generator: self, container: container)
         
         if !calculate {
             try object.draw(generator: self, container: container)
