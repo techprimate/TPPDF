@@ -97,9 +97,9 @@ extension PDFGenerator {
             if container.isHeader {
                 return CGRect(x: x, y: 0, width: textMaxWidth, height: textMaxHeight)
             } else if container.isFooter {
-                return CGRect(x: x, y: heights.footer[container]!, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: document.layout.pageBounds.height - heights.footer[container]!, width: textMaxWidth, height: textMaxHeight)
             } else {
-                return CGRect(x: x, y: maxHeaderHeight() + document.layout.space.header, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: heights.content + maxHeaderHeight() + document.layout.space.header, width: textMaxWidth, height: textMaxHeight)
             }
         }()
         

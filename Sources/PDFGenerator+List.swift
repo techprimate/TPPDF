@@ -18,19 +18,19 @@ extension PDFGenerator {
             
             let offset = getContentOffset(container)
             
-//            switch item.symbol {
-//            case .dash, .dot:
+            switch item.symbol {
+            case .dash, .dot:
 //                try drawText(container, text: item.symbol.stringValue, spacing: 12, calculatingMetrics: calculatingMetrics)
-//                break
-//            case let .numbered(value):
+                break
+            case let .numbered(value):
 //                try drawText(container, text: (value ?? "?") + ".", spacing: 12, calculatingMetrics: calculatingMetrics)
-//                break
-//            case let .custom(value):
+                break
+            case let .custom(value):
 //                try drawText(container, text: value, spacing: 12, calculatingMetrics: calculatingMetrics)
-//                break
-//            case .none, .inherit:
-//                break
-//            }
+                break
+            case .none, .inherit:
+                break
+            }
             
             setContentOffset(value: offset)
             indentation[container.normalize] = originalIndent + indent.pre + indent.past

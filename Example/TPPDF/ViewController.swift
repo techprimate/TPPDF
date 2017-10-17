@@ -45,13 +45,13 @@ class ViewController: UIViewController {
         
         // Create and add an title as an attributed string for more customization possibilities
         let title = NSMutableAttributedString(string: "TPPDF", attributes: [
-            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 50.0),
-            NSParagraphStyleAttributeName: {
+            .font: UIFont.boldSystemFont(ofSize: 50.0),
+            .paragraphStyle: {
                 let style = NSMutableParagraphStyle()
                 style.alignment = .center
                 return style
             }(),
-            NSForegroundColorAttributeName: UIColor(colorLiteralRed: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
+            .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
             ])
         pdf.addAttributedText(.contentCenter, text: title)
         
@@ -101,6 +101,12 @@ class ViewController: UIViewController {
         
         pdf.addText(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
         pdf.addSpace(space: 10)
+        var array = [String]()
+        for i in 0...1000 {
+            array += ["\(i)"]
+        }
+        pdf.addText(text: array.joined(separator: ", "))
+        pdf.addSpace(space: 10)
         pdf.addText(text: "TPPDF includes many different features:")
         
         pdf.addSpace(space: 10)
@@ -135,16 +141,15 @@ class ViewController: UIViewController {
         
         // Create attributes for captions
         
-        let captionAttributes = [
-            NSFontAttributeName: UIFont.italicSystemFont(ofSize: 15.0),
-            NSParagraphStyleAttributeName: {
+        let captionAttributes: [NSAttributedStringKey: AnyObject] = [
+            .font: UIFont.italicSystemFont(ofSize: 15.0),
+            .paragraphStyle: { () -> NSMutableParagraphStyle in
                 let style = NSMutableParagraphStyle()
                 style.alignment = .center
                 return style
             }(),
-            NSForegroundColorAttributeName: UIColor(colorLiteralRed: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0),
-            
-            ]
+            .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0),
+        ]
         
         // Create an image collage with captions
         
@@ -234,7 +239,7 @@ class ViewController: UIViewController {
         // Change standardized styles
         style.footerStyle = PDFTableCellStyle(
             colors: (
-                fill: UIColor(colorLiteralRed: 0.171875,
+                fill: UIColor(red: 0.171875,
                               green: 0.2421875,
                               blue: 0.3125,
                               alpha: 1.0),

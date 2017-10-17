@@ -12,7 +12,6 @@ env:
      - DESTINATION="OS=8.4,name=iPhone 6 Plus"
      - DESTINATION="OS=9.3,name=iPhone 6s Plus"
      - DESTINATION="OS=11.0.1,name=iPhone 7 Plus"
-
 script:
   - set -o pipefail
   - xcodebuild -version
