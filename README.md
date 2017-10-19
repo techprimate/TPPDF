@@ -1,7 +1,8 @@
 # TPPDF
 
-[![CI Status](http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square)](https://travis-ci.org/Techprimate/TPPDF.svg?branch=master)
+[![CI Status](http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square)](https://travis-ci.org/Techprimate/TPPDF.svg?branch=develop)
 [![Language](https://img.shields.io/badge/language-Swift-orange.svg?style=flat-square)](https://developer.apple.com/swift/)
+
 [![Cocoapods](https://img.shields.io/cocoapods/v/TPPDF.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Alamofire.svg)
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-blue.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/TPPDF.svg?style=flat-square)](http://cocoapods.org/pods/TPPDF)
@@ -13,6 +14,7 @@
 [![Facebook](https://img.shields.io/badge/facebook-@Techprimate-blue.svg?style=flat-square)](http://facebook.com/techprimate)
 
 [![codebeat badge](https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de)](https://codebeat.co/projects/github-com-techprimate-tppdf-develop)
+[![BCH compliance](https://bettercodehub.com/edge/badge/Techprimate/TPPDF)](https://bettercodehub.com/results/Techprimate/TPPDF)
 
 TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/wiki/Builder_pattern) pattern using simple commands. 
 
@@ -54,6 +56,7 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 
 | Language  | Branch | Pod version | Xcode version | iOS version |
 | --------- | ------ | ----------- | ------------- | ----------- |
+| Swift 4.0 | [develop](https://github.com/techprimate/TPPDF/tree/develop) | >= 1.0.x | Xcode 9 or greater| iOS 8.0+ |
 | Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 or greater| iOS 8.0+ |
 | Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x | iOS 8.0+ |
 | Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x | iOS 8.0+ |
@@ -460,6 +463,10 @@ Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://
 
 - Philip Niedertscheider, [techprimate](https://www.github.com/techprimate)
 - Zheng-Xiang Ke, [kf99916](https://www.github.com/kf99916)
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/q5M1Ak8aUERquKQrLZh7JQTB/Techprimate/TPPDF'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/q5M1Ak8aUERquKQrLZh7JQTB/Techprimate/TPPDF.svg' />
+</a>
 
 ## License
 
