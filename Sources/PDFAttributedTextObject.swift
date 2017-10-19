@@ -106,7 +106,7 @@ class PDFAttributedTextObject : PDFObject {
         return attributedText
     }
     
-    static func generateDefaultTextAttributes(container: PDFContainer, fonts: inout [PDFContainer: UIFont], textColor: UIColor, spacing: CGFloat) -> [String: NSObject] {
+    static func generateDefaultTextAttributes(container: PDFContainer, fonts: inout [PDFContainer: UIFont], textColor: UIColor, spacing: CGFloat) -> [NSAttributedStringKey: NSObject] {
         let paragraphStyle = NSMutableParagraphStyle()
         switch container {
         case .headerLeft, .contentLeft, .footerLeft:
@@ -122,9 +122,9 @@ class PDFAttributedTextObject : PDFObject {
         paragraphStyle.lineSpacing = spacing
         
         return [
-            NSFontAttributeName: fonts[container]!,
-            NSParagraphStyleAttributeName: paragraphStyle,
-            NSForegroundColorAttributeName: textColor
+            NSAttributedStringKey.font: fonts[container]!,
+            NSAttributedStringKey.paragraphStyle: paragraphStyle,
+            NSAttributedStringKey.foregroundColor: textColor
         ]
     }
 }

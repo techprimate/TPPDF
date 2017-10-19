@@ -9,7 +9,7 @@
 public struct PDFTableStyleDefaults {
     
     public static var simple: PDFTableStyle {
-        let darkGray = UIColor(colorLiteralRed: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+        let darkGray = UIColor(red: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
         let invisibleBorders = (left: PDFLineStyle.none,
                                 top: PDFLineStyle.none,
                                 right: PDFLineStyle.none,
@@ -37,7 +37,7 @@ public struct PDFTableStyleDefaults {
             ),
             columnHeaderStyle: PDFTableCellStyle(
                 colors: (
-                    fill: UIColor(colorLiteralRed: 83.0 / 255.0, green: 171.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0),
+                    fill: UIColor(red: 83.0 / 255.0, green: 171.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0),
                     text: UIColor.white
                 ),
                 borders: invisibleBorders,
@@ -45,7 +45,7 @@ public struct PDFTableStyleDefaults {
             ),
             contentStyle: PDFTableCellStyle(
                 colors: (
-                    fill: UIColor(colorLiteralRed: 246.0 / 255.0, green: 246.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0),
+                    fill: UIColor(red: 246.0 / 255.0, green: 246.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0),
                     text: darkGray
                 ),
                 borders: invisibleBorders,
@@ -53,7 +53,7 @@ public struct PDFTableStyleDefaults {
             ),
             alternatingContentStyle: PDFTableCellStyle(
                 colors: (
-                    fill: UIColor(colorLiteralRed: 233.0 / 255.0, green: 233.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0),
+                    fill: UIColor(red: 233.0 / 255.0, green: 233.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0),
                     text: darkGray
                 ),
                 borders: invisibleBorders,
