@@ -16,9 +16,9 @@ class ViewController: UIViewController {
     }
     
     func generatePDF() {
-        /* Execution Metrics */
+        /* ---- Execution Metrics ---- */
         var startTime = Date()
-        /* Execution Metrics */
+        /* ---- Execution Metrics ---- */
         
         let document = PDFDocument(format: .a4)
         
@@ -34,14 +34,15 @@ class ViewController: UIViewController {
         // Add custom pagination, starting at page 1 and excluding page 3
         document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure({ (page, total) -> String in
             return "\(page) / \(total)"
-        }), range: (1, 10), hiddenPages: [3])
+        }), range: (1, 10), hiddenPages: [3, 7])
         
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
-        let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150))
-        document.addImage(.contentCenter, image: image)
+        // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality.
+        let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150), quality: 0.9)
+//        document.addImage(.contentCenter, image: image)
         
         // Add some spacing below image
-        document.addSpace(space: 15.0)
+//        document.addSpace(space: 15.0)
         
         // Create and add an title as an attributed string for more customization possibilities
         let title = NSMutableAttributedString(string: "TPPDF", attributes: [
@@ -53,36 +54,36 @@ class ViewController: UIViewController {
             }(),
             .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
             ])
-        document.addAttributedText(.contentCenter, text: title)
+//        document.addAttributedText(.contentCenter, text: title)
         
         // Set document font and document color. This will be used only for simple text until it is reset.
-        document.setFont(font: UIFont.systemFont(ofSize: 18.0))
-        document.setTextColor(color: UIColor.lightGray)
+//        document.setFont(font: UIFont.systemFont(ofSize: 18.0))
+//        document.setTextColor(color: UIColor.lightGray)
         
-        document.addText(.contentCenter, text: "Create PDF documents easily.")
+//        document.addText(.contentCenter, text: "Create PDF documents easily.")
         
         // Reset font and text color
-        document.resetFont()
-        document.resetTextColor()
+//        document.resetFont()
+//        document.resetTextColor()
         
         // Create a list with level indentations
-        let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
+//        let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
         
-        list.addItems([
-            PDFListItem(symbol: .numbered(value: nil))
-                .addItems([
-                    PDFListItem(content: "Introduction")
-                        .addItems([
-                            PDFListItem(symbol: .numbered(value: nil))
-                                .addItems([
-                                    PDFListItem(content: "Text"),
-                                    PDFListItem(content: "Attributed Text"),
-                                    ])
-                            ])
-                    ])
-            ])
+//        list.addItems([
+//            PDFListItem(symbol: .numbered(value: nil))
+//                .addItems([
+//                    PDFListItem(content: "Introduction")
+//                        .addItems([
+//                            PDFListItem(symbol: .numbered(value: nil))
+//                                .addItems([
+//                                    PDFListItem(content: "Text"),
+//                                    PDFListItem(content: "Attributed Text"),
+//                                    ])
+//                            ])
+//                    ])
+//            ])
         
-        document.addList(list: list)
+//        document.addList(list: list)
         
         /*
         // Set Font for headline
@@ -290,10 +291,11 @@ class ViewController: UIViewController {
         
         pdf.addText(text: "Just adding more text here...")
         */
-        /* Execution Metrics */
-        print("Preparation: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
+        
+        /* ---- Execution Metrics ---- */
+        print("Preparation took: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
         startTime = Date()
-        /* Execution Metrics */
+        /* ---- Execution Metrics ---- */
         
         // Convert document to JSON String for debugging
         let json = document.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
@@ -303,17 +305,19 @@ class ViewController: UIViewController {
             // Enable debug mode if necessary
             PDFGenerator.debug = true
             
+            // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
             let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: nil)
             
+            // Load PDF into a webview from the temporary file
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
         } catch {
             print("Error while generating PDF: " + error.localizedDescription)
         }
         
-        /* Execution Metrics */
-        print("Generation: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
+        /* ---- Execution Metrics ---- */
+        print("Generation took: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
         startTime = Date()
-        /* Execution Metrics */
+        /* ---- Execution Metrics ---- */
     }
     
     /**

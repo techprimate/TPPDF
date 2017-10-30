@@ -4,7 +4,6 @@
 //
 //  Created by Philip Niedertscheider on 05/06/2017.
 //
-//
 
 extension PDFGenerator {
     
@@ -19,7 +18,7 @@ extension PDFGenerator {
      - throws:              PDFError
      */
     public static func generateURL(document: PDFDocument, filename: String, progress: ((CGFloat) -> Void)? = nil) throws -> URL {
-        let name = filename.hasSuffix(".pdf") ? filename : (filename + ".pdf")
+        let name = filename.lowercased().hasSuffix(".pdf") ? filename : (filename + ".pdf")
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(name)
         let generator = PDFGenerator(document: document)
         

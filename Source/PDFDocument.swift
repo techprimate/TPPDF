@@ -6,6 +6,12 @@
 //
 //
 
+/**
+ The main class users interact with.
+ This object holds the information about the document and also all PDF objects.
+ 
+ It is possible to create a JSON representation using the `TPJSONSerializable` protocol.
+ */
 public class PDFDocument: TPJSONSerializable {
     
     // MARK: - PUBLIC VARS

@@ -56,6 +56,6 @@ public struct PDFLayout: TPJSONSerializable {
      Shorthand access to layout height
      */
     var height: CGFloat {
-        return size.width
+        return size.height
     }
 }
