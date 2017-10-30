@@ -14,7 +14,7 @@ class PDFListObject: PDFObject {
         self.list = list
     }
     
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
 //        let originalIndent = generator.indentation[container.normalize]!
 //        
 //        for item in list.flatted() {

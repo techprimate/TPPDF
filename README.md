@@ -462,7 +462,7 @@ Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://
 
 ## Contributors
 
-- Philip Niedertscheider, [techprimate](https://www.github.com/techprimate)
+- Philip Niedertscheider, [techprimate-phil](https://www.github.com/techprimate-phil) - Techprimate [techprimate](https://www.github.com/techprimate)
 - Zheng-Xiang Ke, [kf99916](https://www.github.com/kf99916)
 
 ## Sponsoring

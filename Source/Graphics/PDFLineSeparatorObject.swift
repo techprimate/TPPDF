@@ -14,7 +14,7 @@ class PDFLineSeparatorObject: PDFObject {
         self.style = style
     }
     
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
         let document = generator.document
         
         let x: CGFloat = document.layout.margin.left + generator.indentation.leftIn(container: container)

@@ -51,7 +51,7 @@ class PDFTableObject: PDFObject {
     var cellsPerPage: [PDFTablePageObject] = []
     var styleIndexOffset: Int = 0
     
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
         
         /// All outer cell frame
         var cellFrames: [[CGRect]] = []
@@ -218,7 +218,7 @@ class PDFTableObject: PDFObject {
             
             var difference = cellsPerPage.map { return $0.frame.height }.reduce(0, +)
             
-            if allHeight + rowHeight - difference > generator.contentSize.height + generator.maxHeaderHeight() + document.layout.space.header {
+            if allHeight + rowHeight - difference > document.layout.contentSize.height + generator.maxHeaderHeight() + document.layout.space.header {
                 currentTablePage.rows = rowsOnThisPage
                 cellsPerPage.append(currentTablePage)
                 
@@ -266,7 +266,7 @@ class PDFTableObject: PDFObject {
             
             // Page break between tables
             if pageIdx != cellsPerPage.count - 1 {
-                try generator.generateNewPage(calculatingMetrics: false)
+//                try generator.generateNewPage(calculatingMetrics: false)
             }
         }
     }

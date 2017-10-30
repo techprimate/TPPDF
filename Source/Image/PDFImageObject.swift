@@ -14,7 +14,7 @@ class PDFImageObject: PDFObject {
         self.image = image
     }
     
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
         var (imageSize, captionSize) = generator.calculateImageCaptionSize(container,
                                                                            image: image.image,
                                                                            size: image.size,
@@ -26,9 +26,9 @@ class PDFImageObject: PDFObject {
             case .headerLeft:
                 return generator.heights.header[container]!
             case .contentLeft:
-                if generator.heights.content + imageSize.height + captionSize.height > generator.contentSize.height ||
+                if generator.heights.content + imageSize.height + captionSize.height > generator.document.layout.contentSize.height ||
                     (image.sizeFit == .height && imageSize.height < image.size.height) {
-                    try generator.generateNewPage(calculatingMetrics: true)
+//                    try generator.generateNewPage(calculatingMetrics: true)
                     
                     (imageSize, captionSize) = generator.calculateImageCaptionSize(container,
                                                                                    image: image.image,
@@ -38,7 +38,7 @@ class PDFImageObject: PDFObject {
                 }
                 return generator.maxHeaderHeight() + generator.document.layout.space.header + generator.heights.content
             case .footerLeft:
-                return generator.contentSize.height + generator.maxHeaderHeight() + generator.heights.header[container]!
+                return generator.document.layout.contentSize.height + generator.maxHeaderHeight() + generator.heights.header[container]!
             default:
                 return 0
             }

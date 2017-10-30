@@ -9,9 +9,13 @@
 public class PDFObject: TPJSONSerializable {
 
     var frame: CGRect = .zero
+    var pagebreak = false
     
-    func calculate(generator: PDFGenerator, container: PDFContainer) throws {}
-    func updateHeights(generator: PDFGenerator, container: PDFContainer) { }
+    func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+        return []
+    }
+    
+    func updateHeights(generator: PDFGenerator, container: PDFContainer) {}
     func draw(generator: PDFGenerator, container: PDFContainer) throws {}
     
 }

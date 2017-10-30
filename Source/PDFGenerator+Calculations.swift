@@ -157,8 +157,8 @@ extension PDFGenerator {
         /* calculate the aspect size of image */
         let size = (size == CGSize.zero) ? image.size : size
         
-        let maxWidth = min(size.width, contentSize.width - indentation.leftIn(container: container))
-        let maxHeight = min(size.height, contentSize.height - heights.content)
+        let maxWidth = min(size.width, document.layout.contentSize.width - indentation.leftIn(container: container))
+        let maxHeight = min(size.height, document.layout.contentSize.height - heights.content)
         
         let wFactor = image.size.width / maxWidth
         let hFactor = image.size.height / maxHeight

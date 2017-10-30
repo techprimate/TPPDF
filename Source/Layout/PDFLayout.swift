@@ -36,12 +36,12 @@ public struct PDFLayout: TPJSONSerializable {
      */
     public var space: (header: CGFloat, footer: CGFloat) = (0, 0)
     
-    // MARK: - PUBLIC COMPUTED VARS
+    // MARK: - INTERNAL COMPUTED VARS
     
     /**
      Returns a `CGRect` with a origin at zero and the `size` of the layout.
      */
-    public var bounds: CGRect {
+    var bounds: CGRect {
         return CGRect(origin: .zero, size: size)
     }
 
@@ -57,5 +57,20 @@ public struct PDFLayout: TPJSONSerializable {
      */
     var height: CGFloat {
         return size.height
+    }
+    
+    /**
+     */
+    var contentSize: CGSize {
+        return CGSize(
+            width: size.width
+                - margin.left
+                - margin.right,
+            height: size.height
+                - margin.header
+                - space.header
+                - space.footer
+                - margin.footer
+        )
     }
 }

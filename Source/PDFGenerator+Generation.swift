@@ -23,7 +23,7 @@ extension PDFGenerator {
         let generator = PDFGenerator(document: document)
         
         UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, document.info.generate())
-        try generator.generatePDFContext(progress: progress)
+        try generator.generatePDFContext()
         UIGraphicsEndPDFContext()
         
         return url
@@ -44,7 +44,7 @@ extension PDFGenerator {
         let generator = PDFGenerator(document: document)
         
         UIGraphicsBeginPDFContextToData(data, document.layout.bounds, document.info.generate())
-        try generator.generatePDFContext(progress: progress)
+        try generator.generatePDFContext()
         UIGraphicsEndPDFContext()
         
         return data as Data
@@ -57,64 +57,68 @@ extension PDFGenerator {
      
      - throws: PDFError
      */
-    func generatePDFContext(progress: ((CGFloat) -> Void)?) throws {
-        UIGraphicsBeginPDFPageWithInfo(document.layout.bounds, nil)
-        
-        drawDebugPageOverlay()
-        
-        // Extract header & footer PDFCommands
-        headerFooterObjects = document.objects.filter { return $0.0.isFooter || $0.0.isHeader }
-        let contentObjects = document.objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
+    func generatePDFContext() throws {
+        let renderObjects = try createRenderObjects()
+        try render(objects: renderObjects)
+    }
+    
+    func createRenderObjects() throws -> [(PDFContainer, PDFObject)] {
+        // Extract content PDFCommands
+        let contentObjects = extractContentObjects()
         
         // Split header & footer PDFCommands
         let footers = document.objects.filter { return $0.0.isFooter }
         let headers = document.objects.filter { return $0.0.isHeader }
         
-        // Only add space between content and footer if footer PDFCommands exist.
+        // Extract header & footer PDFCommands
+        headerFooterObjects = headers + footers
+        
+        // Only add space between content and footer if there are objects in footer.
         if footers.count == 0 {
             document.layout.space.footer = 0
         }
         
-        // Only add space between content and header if header PDFCommands exist.
+        // Only add space between content and header if there are objects in header.
         if headers.count == 0 {
             document.layout.space.header = 0
         }
         
-        // Progress equals the number of PDFCommands run. Each PDFCommand is called once for calculations and second for rendering.
-        var progressIndex: CGFloat = 0.0
-        let progressMax: CGFloat = CGFloat(contentObjects.count * 2)
+        var allObjects: [(PDFContainer, PDFObject)] = []
         
         // Only calculate render header & footer metrics if page has content.
         if contentObjects.count > 0 {
-            try renderHeaderFooter(calculate: true)
+            allObjects += try addHeaderFooterObjects()
         }
         
-        // Dry run all PDFObjects. This won't render anything but instad calculate all the frames.
+        // Iterate all objects and let them calculate the required rendering
         for (container, pdfObject) in contentObjects {
-            try renderPDFObject(container: container, object: pdfObject, calculate: true)
-            progressIndex += 1
-            progress?(progressIndex / progressMax)
+            allObjects += try pdfObject.calculate(generator: self, container: container)
         }
+        
         // Save calculated page count from reseting
         totalPages = currentPage
         
         // Reset all changes made by metrics calculation to generator
         resetGenerator()
         
-        // Only render header & footer if page has content.
-        if contentObjects.count > 0 {
-            try renderHeaderFooter(calculate: false)
-        }
-        
-        // Render each PDFCommand
-        for (container, pdfObject) in contentObjects {
-            try renderPDFObject(container: container, object: pdfObject, calculate: false)
-            progressIndex += 1
-            progress?(progressIndex / progressMax)
-        }
+        return allObjects
     }
     
-    func renderHeaderFooter(calculate: Bool) throws {
+    func extractHeaderObjects() -> [(PDFContainer, PDFObject)] {
+        return document.objects.filter { return $0.0.isHeader }
+    }
+    
+    func extractFooterObjects() -> [(PDFContainer, PDFObject)] {
+        return document.objects.filter { return $0.0.isFooter }
+    }
+    
+    func extractContentObjects() -> [(PDFContainer, PDFObject)] {
+        return document.objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
+    }
+    
+    func addHeaderFooterObjects() throws -> [(PDFContainer, PDFObject)] {
+        var result: [(PDFContainer, PDFObject)] = []
+        
         resetHeaderFooterHeight()
         
         let pagination = document.pagination
@@ -122,21 +126,26 @@ extension PDFGenerator {
         if pagination.container != .none {
             if !pagination.hiddenPages.contains(currentPage) && currentPage >= pagination.range.start && currentPage <= pagination.range.end {
                 let textObject = PDFAttributedTextObject(text: pagination.style.format(page: currentPage, total: totalPages))
-                try renderPDFObject(container: pagination.container, object: textObject, calculate: calculate)
+                result += try textObject.calculate(generator: self, container: pagination.container)
             }
         }
+        result += headerFooterObjects
         
-        for (container, pdfObject) in headerFooterObjects {
-            try renderPDFObject(container: container, object: pdfObject, calculate: calculate)
+        return result
+    }
+    
+    func render(objects: [(PDFContainer, PDFObject)]) throws {
+        UIGraphicsBeginPDFPageWithInfo(document.layout.bounds, nil)
+        
+        drawDebugPageOverlay()
+        
+        for (container, object) in objects {
+            try render(object: object, in: container)
         }
     }
     
-    func renderPDFObject(container: PDFContainer, object: PDFObject, calculate: Bool = false) throws {
-        try object.calculate(generator: self, container: container)
-        object.updateHeights(generator: self, container: container)
-        
-        if !calculate {
-            try object.draw(generator: self, container: container)
-        }
+    func render(object: PDFObject, in container: PDFContainer) throws {
+        try object.draw(generator: self, container: container)
     }
 }
+

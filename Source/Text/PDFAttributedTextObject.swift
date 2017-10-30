@@ -35,14 +35,14 @@ class PDFAttributedTextObject : PDFObject {
         self.simple = (text: text, spacing: spacing)
     }
     
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
         let attributedText = try generateAttributedText(generator: generator, container: container)
         
         let currentText = CFAttributedStringCreateCopy(nil, attributedText as CFAttributedString)
         var currentRange = CFRange(location: 0, length: 0)
         var done = false
         
-        let textMaxWidth = generator.contentSize.width - generator.indentation.leftIn(container: container) - generator.indentation.rightIn(container: container)
+        let textMaxWidth = generator.document.layout.contentSize.width - generator.indentation.leftIn(container: container) - generator.indentation.rightIn(container: container)
         
         repeat {
             let (calcFrame, frameRef, drawnSize) = generator.calculateTextFrameAndDrawnSizeInOnePage(container,
@@ -88,7 +88,7 @@ class PDFAttributedTextObject : PDFObject {
             if currentRange.location == CFAttributedStringGetLength(currentText) {
                 done = true
             } else {
-                try generator.generateNewPage(calculatingMetrics: true)
+//                try generator.generateNewPage(calculatingMetrics: true)
             }
         } while !done
     }

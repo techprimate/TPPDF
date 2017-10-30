@@ -27,16 +27,14 @@ public class PDFGenerator {
     
     // MARK: - INTERNAL COMPUTED VARS
     
-    var contentSize: CGSize {
+    var leftOverContentSize: CGSize {
         return CGSize(
-            width: document.layout.width
-                - document.layout.margin.left
-                - document.layout.margin.right,
-            height: document.layout.height
+            width: document.layout.contentSize.width
+                - indentation.content.left
+                - indentation.content.right,
+            height: document.layout.contentSize.height
                 - maxHeaderHeight()
-                - document.layout.space.header
                 - maxFooterHeight()
-                - document.layout.space.footer
         )
     }
     
@@ -57,18 +55,6 @@ public class PDFGenerator {
     }
     
     // MARK: - INTERNAL FUNCS
-    
-    func generateNewPage(calculatingMetrics: Bool) throws {
-        // Don't render if calculating metrics
-        if !calculatingMetrics {
-            UIGraphicsBeginPDFPageWithInfo(document.layout.bounds, nil)
-            drawDebugPageOverlay()
-        }
-        heights.content = 0
-        currentPage += 1
-        
-        try renderHeaderFooter(calculate: calculatingMetrics)
-    }
     
     func resetGenerator() {
         heights = PDFLayoutHeights()

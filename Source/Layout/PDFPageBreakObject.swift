@@ -8,12 +8,16 @@
 
 class PDFPageBreakObject: PDFObject {
     
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
-        try generator.generateNewPage(calculatingMetrics: true)
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+        generator.heights.content = 0
+        generator.currentPage += 1
+        self.pagebreak = true
+        return [(container, self)]
     }
 
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        try generator.generateNewPage(calculatingMetrics: false)
+        generator.heights.content = 0
+        generator.currentPage += 1
     }
     
 }

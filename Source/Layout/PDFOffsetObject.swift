@@ -14,7 +14,7 @@ class PDFOffsetObject: PDFObject {
         self.offset = offset
     }
     
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
         generator.setContentOffset(container, value: offset)
     }
 }
