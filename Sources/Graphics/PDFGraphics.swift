@@ -25,11 +25,9 @@ class PDFGraphics {
         case .dashed:
             dashes = [path.lineWidth * 3, path.lineWidth * 3]
             path.lineCapStyle = .butt
-            break
         case .dotted:
             dashes = [0, path.lineWidth * 2]
             path.lineCapStyle = .round
-            break
         default:
             break
         }
@@ -53,11 +51,9 @@ class PDFGraphics {
         case .dashed:
             dashes = [path.lineWidth * 3, path.lineWidth * 3]
             path.lineCapStyle = .butt
-            break
         case .dotted:
             dashes = [0, path.lineWidth * 2]
             path.lineCapStyle = .round
-            break
         default:
             break
         }

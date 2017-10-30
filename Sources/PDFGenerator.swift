@@ -6,9 +6,13 @@
 //
 //
 
-typealias PDFGeneratorHeights = (header: [PDFContainer : CGFloat], footer: [PDFContainer : CGFloat], content: CGFloat)
+typealias PDFGeneratorHeights = (
+    header: [PDFContainer: CGFloat],
+    footer: [PDFContainer: CGFloat],
+    content: CGFloat
+)
 
-public class PDFGenerator  {
+public class PDFGenerator {
     
     // MARK: - Public Variables
     
@@ -29,9 +33,9 @@ public class PDFGenerator  {
     var heights: PDFGeneratorHeights = ([:], [:], 0)
     
     var indentation: [PDFContainer: CGFloat] = [
-        .headerLeft : 0,
-        .contentLeft : 0,
-        .footerLeft : 0
+        .headerLeft: 0,
+        .contentLeft: 0,
+        .footerLeft: 0
     ]
     
     var currentPage: Int = 1
@@ -44,7 +48,11 @@ public class PDFGenerator  {
     var contentSize: CGSize {
         return CGSize(
             width: document.layout.pageBounds.width - 2 * document.layout.margin.side,
-            height: document.layout.pageBounds.height - maxHeaderHeight() - document.layout.space.header - maxFooterHeight() - document.layout.space.footer
+            height: document.layout.pageBounds.height
+                - maxHeaderHeight()
+                - document.layout.space.header
+                - maxFooterHeight()
+                - document.layout.space.footer
         )
     }
     
@@ -79,9 +87,9 @@ public class PDFGenerator  {
     func resetGenerator() {
         heights = ([:], [:], 0)
         indentation = [
-            .headerLeft : 0,
-            .contentLeft : 0,
-            .footerLeft : 0
+            .headerLeft: 0,
+            .contentLeft: 0,
+            .footerLeft: 0
         ]
         currentPage = 1
         textColor = .black

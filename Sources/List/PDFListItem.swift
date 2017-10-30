@@ -6,7 +6,7 @@
 //
 //
 
-public class PDFListItem : TPJSONSerializable {
+public class PDFListItem: TPJSONSerializable {
     
     public var parent: PDFListItem?
     public var content: String?
@@ -18,16 +18,16 @@ public class PDFListItem : TPJSONSerializable {
         self.content = content
     }
     
-    public func addItem(_ item: PDFListItem) -> PDFListItem {
-        item.parent = self
-        self.children = (self.children ?? []) + [item]
+    public func addItems(_ items: [PDFListItem]) -> PDFListItem {
+        for item in items {
+            _ = addItem(item)
+        }
         return self
     }
     
-    public func addItems(_ items: [PDFListItem]) -> PDFListItem {
-        for item in items {
-            let _ = addItem(item)
-        }
+    public func addItem(_ item: PDFListItem) -> PDFListItem {
+        item.parent = self
+        self.children = (self.children ?? []) + [item]
         return self
     }
     
@@ -42,9 +42,13 @@ public class PDFListItem : TPJSONSerializable {
             representation["content"] = content as AnyObject
         }
         if let children = children {
-            representation["children"] = children.map({ child -> AnyObject in
+            if let result = children.map({ child -> AnyObject in
                 return child.JSONRepresentation
-            }) as! AnyObject
+            }) as? AnyObject {
+                representation["children"] = result
+            } else {
+                print("Could not convert array mapping to AnyObject")
+            }
         }
         return representation as AnyObject
     }

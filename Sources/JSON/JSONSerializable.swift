@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol TPJSONSerializable : TPJSONRepresentable { }
+public protocol TPJSONSerializable: TPJSONRepresentable { }
 
 public extension TPJSONSerializable {
     
@@ -64,7 +64,7 @@ extension TPJSONSerializable {
     func serializeTuple(_ value: Any) -> AnyObject {
         let mirror = Mirror(reflecting: value)
         var i = 0
-        var result: [String : Any] = [:]
+        var result: [String: Any] = [:]
         
         for (label, value) in mirror.children {
             result[label ?? "\(i)"] = value
@@ -74,7 +74,7 @@ extension TPJSONSerializable {
     }
 }
 
-extension Array : TPJSONSerializable {
+extension Array: TPJSONSerializable {
     
     public var JSONRepresentation: AnyObject {
         var representation: [Any] = []
@@ -87,7 +87,7 @@ extension Array : TPJSONSerializable {
     }
 }
 
-extension Dictionary : TPJSONSerializable {
+extension Dictionary: TPJSONSerializable {
     
     public var JSONRepresentation: AnyObject {
         let representation: NSMutableDictionary = [:]
@@ -100,21 +100,21 @@ extension Dictionary : TPJSONSerializable {
     }
 }
 
-extension CGRect  : TPJSONSerializable { }
-extension CGPoint : TPJSONSerializable { }
-extension CGSize  : TPJSONSerializable { }
+extension CGRect: TPJSONSerializable { }
+extension CGPoint: TPJSONSerializable { }
+extension CGSize: TPJSONSerializable { }
 
-extension NSAttributedString : TPJSONSerializable { }
+extension NSAttributedString: TPJSONSerializable { }
 extension UIFont: TPJSONSerializable { }
 
-extension UIImage : TPJSONSerializable {
+extension UIImage: TPJSONSerializable {
     
     public var JSONRepresentation: AnyObject {
         return (UIImageJPEGRepresentation(self, 1.0)?.base64EncodedString() as? NSString) ?? NSNull()
     }
 }
 
-extension UIColor : TPJSONSerializable {
+extension UIColor: TPJSONSerializable {
     
     func toHexString() -> String {
         var r: CGFloat = 0
@@ -126,11 +126,10 @@ extension UIColor : TPJSONSerializable {
         
         let rgb: Int = (Int)(r*255) << 16 | (Int)(g*255) << 8 | (Int)(b*255) << 0
         
-        return String(format:"#%06x", rgb)
+        return String(format: "#%06x", rgb)
     }
     
     public var JSONRepresentation: AnyObject {
         return self.toHexString() as NSString
     }
 }
-

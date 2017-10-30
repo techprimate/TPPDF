@@ -7,14 +7,14 @@
 //
 
 /// This struct defines how a line or border of a table is drawn.
-public struct PDFLineStyle : TPJSONSerializable {
+public struct PDFLineStyle: TPJSONSerializable {
     
     /// These types of lines are available for rendering. Used in `PDFTableStyle` and `PDFTableCellStyle`
     ///
     /// - full: Line without any breaks
     /// - dashed: Line consists out of short dashes
     /// - dotted: Lines consists out of dots
-    public enum LineType : TPJSONSerializable {
+    public enum LineType: TPJSONSerializable {
         
         case none, full, dashed, dotted
         

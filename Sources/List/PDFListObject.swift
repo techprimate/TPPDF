@@ -6,7 +6,7 @@
 //
 //
 
-class PDFListObject : PDFObject {
+class PDFListObject: PDFObject {
     
     var list: PDFList
     

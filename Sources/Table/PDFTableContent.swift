@@ -8,7 +8,8 @@
 
 public class PDFTableContent : TPJSONSerializable {
     
-    enum ContentType : TPJSONSerializable {
+    enum ContentType: TPJSONSerializable {
+        
         case none
         case string
         case attributedString
@@ -24,6 +25,11 @@ public class PDFTableContent : TPJSONSerializable {
     
     public init(content: Any?) throws {
         try self.setContent(content: content)
+    }
+    
+    internal init(type: ContentType, content: Any?) {
+        self.type = type
+        self.content = content
     }
     
     func setContent(content: Any?) throws {
@@ -75,20 +81,20 @@ public class PDFTableContent : TPJSONSerializable {
 public extension String {
     
     func toPDFTableContent() -> PDFTableContent {
-        return try! PDFTableContent(content: self)
+        return PDFTableContent(type: .string, content: self)
     }
 }
 
 public extension NSAttributedString {
     
     func toPDFTableContent() -> PDFTableContent {
-        return try! PDFTableContent(content: self)
+        return PDFTableContent(type: .attributedString, content: self)
     }
 }
 
 public extension UIImage {
     
     func toPDFTableContent() -> PDFTableContent {
-        return try! PDFTableContent(content: self)
+        return PDFTableContent(type: .image, content: self)
     }
 }

@@ -6,7 +6,7 @@
 //
 //
 
-class PDFLineSeparatorObject : PDFObject {
+class PDFLineSeparatorObject: PDFObject {
     
     var style: PDFLineStyle
     
@@ -36,5 +36,3 @@ class PDFLineSeparatorObject : PDFObject {
         }
     }
 }
-
-

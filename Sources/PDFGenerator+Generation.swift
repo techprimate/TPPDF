@@ -18,7 +18,7 @@ extension PDFGenerator {
      
      - throws:              PDFError
      */
-    public static func generateURL(document: PDFDocument, filename: String, progress: ((CGFloat) -> ())? = nil) throws -> URL {
+    public static func generateURL(document: PDFDocument, filename: String, progress: ((CGFloat) -> Void)? = nil) throws -> URL {
         let name = filename.hasSuffix(".pdf") ? filename : (filename + ".pdf")
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(name)
         let generator = PDFGenerator(document: document)
@@ -27,7 +27,7 @@ extension PDFGenerator {
         try generator.generatePDFContext(progress: progress)
         UIGraphicsEndPDFContext()
         
-        return url;
+        return url
     }
     
     /**
@@ -40,7 +40,7 @@ extension PDFGenerator {
      - throws:              PDFError
      
      */
-    public static func generateData(document: PDFDocument, progress: ((CGFloat) -> ())? = nil) throws -> Data {
+    public static func generateData(document: PDFDocument, progress: ((CGFloat) -> Void)? = nil) throws -> Data {
         let data = NSMutableData()
         let generator = PDFGenerator(document: document)
         
@@ -58,7 +58,7 @@ extension PDFGenerator {
      
      - throws: PDFError
      */
-    func generatePDFContext(progress: ((CGFloat) -> ())?) throws {
+    func generatePDFContext(progress: ((CGFloat) -> Void)?) throws {
         UIGraphicsBeginPDFPageWithInfo(document.layout.pageBounds, nil)
         
         drawDebugPageOverlay()
@@ -82,7 +82,7 @@ extension PDFGenerator {
         }
         
         // Progress equals the number of PDFCommands run. Each PDFCommand is called once for calculations and second for rendering.
-        var progressIndex: CGFloat = 0.0;
+        var progressIndex: CGFloat = 0.0
         let progressMax: CGFloat = CGFloat(contentObjects.count * 2)
         
         // Only calculate render header & footer metrics if page has content.
@@ -110,7 +110,7 @@ extension PDFGenerator {
         // Render each PDFCommand
         for (container, pdfObject) in contentObjects {
             try renderPDFObject(container: container, object: pdfObject, calculate: false)
-            progressIndex += 1;
+            progressIndex += 1
             progress?(progressIndex / progressMax)
         }
     }

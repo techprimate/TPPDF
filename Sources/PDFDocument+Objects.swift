@@ -80,4 +80,3 @@ public extension PDFDocument {
         objects += [(.contentLeft, PDFPageBreakObject())]
     }
 }
-

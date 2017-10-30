@@ -6,7 +6,7 @@
 //
 //
 
-public class PDFDocument : TPJSONSerializable {
+public class PDFDocument: TPJSONSerializable {
     
     public var layout: PDFLayout
     public var info: PDFInfo = PDFInfo()

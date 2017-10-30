@@ -33,6 +33,6 @@ public struct PDFTableCellPosition : Hashable, TPJSONSerializable {
 /// - Parameters:
 ///   - lhs: A value to compare.
 ///   - rhs: Another value to compare.
-public func ==(lhs: PDFTableCellPosition, rhs: PDFTableCellPosition) -> Bool {
+public func == (lhs: PDFTableCellPosition, rhs: PDFTableCellPosition) -> Bool {
     return lhs.row == rhs.row && lhs.column == rhs.column
 }

@@ -12,7 +12,9 @@ extension PDFGenerator {
         let originalIndent = indentation[container.normalize]!
         
         for item in list.flatted() {
-            let indent = (item.level < list.levelIndentations.count ? list.levelIndentations[item.level] : list.levelIndentations.last ?? (pre: 0, past: 0))
+            let indent = (item.level < list.levelIndentations.count ?
+                list.levelIndentations[item.level] :
+                list.levelIndentations.last ?? (pre: 0, past: 0))
             
             indentation[container.normalize] = originalIndent + indent.pre
             

@@ -6,7 +6,7 @@
 //
 //
 
-class PDFSpaceObject : PDFObject {
+class PDFSpaceObject: PDFObject {
     
     var space: CGFloat
 

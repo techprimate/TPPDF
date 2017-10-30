@@ -6,14 +6,15 @@
 //
 //
 
-public class PDFImage : TPJSONSerializable {
+public class PDFImage: TPJSONSerializable {
     
     var image: UIImage
     var caption: NSAttributedString
     var size: CGSize
     var sizeFit: ImageSizeFit
     
-    public init(image: UIImage, caption: NSAttributedString = NSAttributedString(string: ""), size: CGSize = .zero, sizeFit: ImageSizeFit = .widthHeight) {
+    public init(image: UIImage, caption: NSAttributedString = NSAttributedString(string: ""),
+                size: CGSize = .zero, sizeFit: ImageSizeFit = .widthHeight) {
         self.image = image
         self.caption = caption
         self.size = size
@@ -21,7 +22,7 @@ public class PDFImage : TPJSONSerializable {
     }
 }
 
-public enum ImageSizeFit : TPJSONSerializable {
+public enum ImageSizeFit: TPJSONSerializable {
     
     case width, height, widthHeight
     

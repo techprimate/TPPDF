@@ -8,7 +8,7 @@
 
 // swiftlint:disable cyclomatic_complexity function_body_length
 
-class PDFTableObject : PDFObject {
+class PDFTableObject: PDFObject {
     
     var table: PDFTable
     
@@ -21,7 +21,7 @@ class PDFTableObject : PDFObject {
         var frame: CGRect
         var rows: [PDFTableRowObject]
         
-        func enumerateCells(_ closure: (Int, Int, PDFTableRowObject, PDFTableCellObject, PDFTableCell) -> ()) throws {
+        func enumerateCells(_ closure: (Int, Int, PDFTableRowObject, PDFTableCellObject, PDFTableCell) -> Void) throws {
             for (rowIdx, row) in rows.enumerated() {
                 for (colIdx, cell) in row.cells.enumerated() {
                     guard let pdfCell = cell.cell else {
@@ -135,13 +135,10 @@ class PDFTableObject : PDFObject {
                         ]
                         let attributedText = NSAttributedString(string: text, attributes: attributes)
                         result = generator.calculateCellFrame(contentPosition, width: contentWidth, text: attributedText, alignment: cell.alignment)
-                        break
                     case let text as NSAttributedString:
                         result = generator.calculateCellFrame(contentPosition, width: contentWidth, text: text, alignment: cell.alignment)
-                        break
                     case let image as UIImage:
                         result = generator.calculateCellFrame(contentPosition, width: contentWidth, image: image)
-                        break
                     default:
                         break
                     }
@@ -225,7 +222,9 @@ class PDFTableObject : PDFObject {
                 currentTablePage.rows = rowsOnThisPage
                 cellsPerPage.append(currentTablePage)
                 
-                currentTablePage = PDFTablePageObject(frame: CGRect(origin: self.frame.origin, size: CGSize(width: self.frame.width, height: 0)), rows: [])
+                currentTablePage = PDFTablePageObject(frame: CGRect(origin: self.frame.origin,
+                                                                    size: CGSize(width: self.frame.width, height: 0)),
+                                                      rows: [])
                 
                 rowsOnThisPage = []
                 allHeight = 0
@@ -280,7 +279,13 @@ class PDFTableObject : PDFObject {
     
     func drawBackground(page: PDFTablePageObject) throws {
         try page.enumerateCells { (rowIndex, colIndex, row, cell, pdfCell) in
-            let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: table.style, row: rowIndex, column: colIndex, cell: pdfCell, showHeadersOnEveryPage: table.showHeadersOnEveryPage)
+            let cellStyle = getCellStyle(offset: styleIndexOffset,
+                                         tableHeight: page.rows.count,
+                                         style: table.style,
+                                         row: rowIndex,
+                                         column: colIndex,
+                                         cell: pdfCell,
+                                         showHeadersOnEveryPage: table.showHeadersOnEveryPage)
             
             PDFGraphics.drawRect(rect: cell.cellFrame, outline: PDFLineStyle.none, fill: cellStyle.colors.fill)
         }
@@ -291,7 +296,13 @@ class PDFTableObject : PDFObject {
             guard let content = pdfCell.content else { return }
             
             if (content.stringValue != nil) || (content.attributedStringValue != nil) {
-                let cellStyle = getCellStyle(offset: styleIndexOffset, tableHeight: page.rows.count, style: table.style, row: rowIndex, column: colIndex, cell: pdfCell, showHeadersOnEveryPage: table.showHeadersOnEveryPage)
+                let cellStyle = getCellStyle(offset: styleIndexOffset,
+                                             tableHeight: page.rows.count,
+                                             style: table.style,
+                                             row: rowIndex,
+                                             column: colIndex,
+                                             cell: pdfCell,
+                                             showHeadersOnEveryPage: table.showHeadersOnEveryPage)
                 
                 let attributedText: NSAttributedString = {
                     if let text = content.stringValue {
@@ -305,7 +316,9 @@ class PDFTableObject : PDFObject {
                     }
                 }()
                 // the last line of text is hidden if 20 is not added
-                attributedText.draw(in: CGRect(origin: cell.contentFrame.origin, size: CGSize(width: cell.contentFrame.width, height: cell.contentFrame.height + 20)))
+                attributedText.draw(in: CGRect(origin: cell.contentFrame.origin,
+                                               size: CGSize(width: cell.contentFrame.width,
+                                                            height: cell.contentFrame.height + 20)))
             } else if let image = content.imageValue {
                 let compressedImage = PDFGraphics.resizeAndCompressImage(image: image, frame: cell.contentFrame, quality: imageQuality) ?? image
                 compressedImage.draw(in: cell.contentFrame)
@@ -360,13 +373,19 @@ class PDFTableObject : PDFObject {
         }
     }
     
-    func getCellStyle(offset: Int, tableHeight: Int, style: PDFTableStyle, row: Int, column: Int, cell: PDFTableCell, showHeadersOnEveryPage: Bool) -> PDFTableCellStyle {
+    func getCellStyle(offset: Int,
+                      tableHeight: Int,
+                      style: PDFTableStyle,
+                      row: Int,
+                      column: Int,
+                      cell: PDFTableCell,
+                      showHeadersOnEveryPage: Bool) -> PDFTableCellStyle {
         let position = PDFTableCellPosition(row: (row + offset), column: column)
         
         if let cellStyle = cell.style {
             return cellStyle
         }
-        if position.row < style.columnHeaderCount || (position.row - offset < style.columnHeaderCount){
+        if position.row < style.columnHeaderCount || (position.row - offset < style.columnHeaderCount) {
             return style.columnHeaderStyle
         }
         if position.row > tableHeight + offset - style.footerCount {

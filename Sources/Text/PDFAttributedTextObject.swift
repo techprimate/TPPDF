@@ -45,7 +45,10 @@ class PDFAttributedTextObject : PDFObject {
         let textMaxWidth = generator.contentSize.width - generator.indentation[container.normalize]!
         
         repeat {
-            let (calcFrame, frameRef, drawnSize) = generator.calculateTextFrameAndDrawnSizeInOnePage(container, text: currentText!, currentRange: currentRange, textMaxWidth: textMaxWidth)
+            let (calcFrame, frameRef, drawnSize) = generator.calculateTextFrameAndDrawnSizeInOnePage(container,
+                                                                                                     text: currentText!,
+                                                                                                     currentRange: currentRange,
+                                                                                                     textMaxWidth: textMaxWidth)
             
             // Get the graphics context.
             let currentContext = UIGraphicsGetCurrentContext()!
@@ -67,7 +70,7 @@ class PDFAttributedTextObject : PDFObject {
             
             // Update the current range based on what was drawn.
             let visibleRange = CTFrameGetVisibleStringRange(frameRef)
-            currentRange = CFRange(location: visibleRange.location + visibleRange.length , length: 0)
+            currentRange = CFRange(location: visibleRange.location + visibleRange.length, length: 0)
             
             let substring = (currentText as! NSAttributedString).attributedSubstring(
                 from: NSRange(location: visibleRange.location, length: visibleRange.length))

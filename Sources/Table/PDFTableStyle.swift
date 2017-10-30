@@ -6,7 +6,7 @@
 //
 //
 
-public class PDFTableStyle : TPJSONSerializable {
+public class PDFTableStyle: TPJSONSerializable {
     
     public var rowHeaderCount: Int
     public var columnHeaderCount: Int
@@ -20,7 +20,6 @@ public class PDFTableStyle : TPJSONSerializable {
     public var footerStyle: PDFTableCellStyle
     public var contentStyle: PDFTableCellStyle
     public var alternatingContentStyle: PDFTableCellStyle?
-    
     
     /// Create a table style. All parameters are optional
     ///
@@ -37,7 +36,15 @@ public class PDFTableStyle : TPJSONSerializable {
     ///   - rowHeaderStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
     ///   - columnHeaderStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
     ///   - footerStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
-    public init(rowHeaderCount: Int = 1, columnHeaderCount: Int = 1, footerCount: Int = 1, outline: PDFLineStyle = PDFLineStyle(), rowHeaderStyle: PDFTableCellStyle = PDFTableCellStyle(), columnHeaderStyle: PDFTableCellStyle = PDFTableCellStyle(), footerStyle: PDFTableCellStyle = PDFTableCellStyle(), contentStyle: PDFTableCellStyle = PDFTableCellStyle(), alternatingContentStyle: PDFTableCellStyle? = nil) {
+    public init(rowHeaderCount: Int = 1,
+                columnHeaderCount: Int = 1,
+                footerCount: Int = 1,
+                outline: PDFLineStyle = PDFLineStyle(),
+                rowHeaderStyle: PDFTableCellStyle = PDFTableCellStyle(),
+                columnHeaderStyle: PDFTableCellStyle = PDFTableCellStyle(),
+                footerStyle: PDFTableCellStyle = PDFTableCellStyle(),
+                contentStyle: PDFTableCellStyle = PDFTableCellStyle(),
+                alternatingContentStyle: PDFTableCellStyle? = nil) {
         
         self.rowHeaderCount = rowHeaderCount
         self.columnHeaderCount = columnHeaderCount

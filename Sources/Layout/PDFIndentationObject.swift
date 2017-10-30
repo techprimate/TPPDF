@@ -6,7 +6,7 @@
 //
 //
 
-class PDFIndentationObject : PDFObject {
+class PDFIndentationObject: PDFObject {
     
     var indentation: CGFloat
     

@@ -6,7 +6,7 @@
 //
 //
 
-public class PDFInfo : TPJSONSerializable {
+public class PDFInfo: TPJSONSerializable {
     
     public var title = "Title"
     public var author = "Author"
@@ -20,8 +20,8 @@ public class PDFInfo : TPJSONSerializable {
     
     public init() {}
     
-    func generate() -> [AnyHashable : Any] {
-        var documentInfo: [AnyHashable : Any] = [
+    func generate() -> [AnyHashable: Any] {
+        var documentInfo: [AnyHashable: Any] = [
             kCGPDFContextTitle as String: title,
             kCGPDFContextAuthor as String: author,
             kCGPDFContextSubject as String: subject,

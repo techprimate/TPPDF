@@ -14,13 +14,9 @@ class PDFTableValidator {
             throw PDFError.tableIsEmpty
         }
         
-        // Compare each data row
-        for (rowIdx, row) in table.cells.enumerated() {
-            
-            // Throw error when columns row count does not equal relativeColumnWidth count
-            if row.count != table.widths.count {
-                throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
-            }
+        // Compare each data row, throw error when columns row count does not equal relativeColumnWidth count
+        for (rowIdx, row) in table.cells.enumerated() where row.count != table.widths.count {
+            throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
         }
     }
     

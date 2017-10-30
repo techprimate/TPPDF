@@ -6,7 +6,7 @@
 //
 //
 
-public enum PDFTableCellAlignment : TPJSONSerializable {
+public enum PDFTableCellAlignment: TPJSONSerializable {
     case topLeft, top, topRight
     case left, center, right
     case bottomLeft, bottom, bottomRight

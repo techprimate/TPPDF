@@ -6,7 +6,7 @@
 //
 //
 
-class PDFOffsetObject : PDFObject {
+class PDFOffsetObject: PDFObject {
     
     var offset: CGFloat
     

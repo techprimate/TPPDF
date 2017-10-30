@@ -6,7 +6,7 @@
 //
 //
 
-class PDFImageRowObject : PDFObject {
+class PDFImageRowObject: PDFObject {
     
     var images: [PDFImage]
     var spacing: CGFloat

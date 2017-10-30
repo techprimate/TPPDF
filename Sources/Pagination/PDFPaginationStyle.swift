@@ -11,7 +11,7 @@
  
   Enums using a template String as parameter will replace the first instance of `%@` with the index and the second one with the total amount of pages.
  */
-public enum PDFPaginationStyle : TPJSONSerializable {
+public enum PDFPaginationStyle: TPJSONSerializable {
     
     /**
      Default format, concats current page and total pages with a dash.
@@ -48,8 +48,8 @@ public enum PDFPaginationStyle : TPJSONSerializable {
             
             return String(format: template, romanIndex, romanMax)
         case .customNumberFormat(let template, let formatter):
-            let indexString = formatter.string(from: NSNumber(integerLiteral: page)) ?? "Formatting error!"
-            let maxString = formatter.string(from: NSNumber(integerLiteral: total)) ?? "Formatting error!"
+            let indexString = formatter.string(from: page as NSNumber) ?? "Formatting error!"
+            let maxString = formatter.string(from: total as NSNumber) ?? "Formatting error!"
             
             return String(format: template, indexString, maxString)
         case .customClosure(let closure):
@@ -91,7 +91,7 @@ func toRomanNumerals(number: Int) -> String {
         let arabicValue = arabicValues[index]
         let div = startingValue / arabicValue
         
-        if (div > 0) {
+        if div > 0 {
             for _ in 0..<div {
                 romanValue += romanChar
             }

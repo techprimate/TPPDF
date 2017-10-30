@@ -50,16 +50,12 @@ extension PDFListItem {
             switch rawValue {
             case "none":
                 self = .none
-                break
             case "inherit":
                 self = .inherit
-                break
             case "dot":
                 self = .dot
-                break
             case "dash":
                 self = .dash
-                break
             default:
                 let comps = rawValue.components(separatedBy: "|")
                 if comps.count == 2 {

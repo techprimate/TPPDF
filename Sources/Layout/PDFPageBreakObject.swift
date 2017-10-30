@@ -6,7 +6,7 @@
 //
 //
 
-class PDFPageBreakObject : PDFObject {
+class PDFPageBreakObject: PDFObject {
     
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
         try generator.generateNewPage(calculatingMetrics: true)

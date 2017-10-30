@@ -20,28 +20,28 @@ class ViewController: UIViewController {
         var startTime = Date()
         /* Execution Metrics */
         
-        let pdf = PDFDocument(format: .a4)
+        let document = PDFDocument(format: .a4)
         
         // Set document meta data
-        pdf.info.title = "TPPDF Example"
-        pdf.info.subject = "Building a PDF easily"
-        pdf.info.ownerPassword = "asdf"
+        document.info.title = "TPPDF Example"
+        document.info.subject = "Building a PDF easily"
+        document.info.ownerPassword = "Password123"
         
         // Set spacing of header and footer
-        pdf.layout.space.header = 50
-        pdf.layout.space.footer = 25
+        document.layout.space.header = 50
+        document.layout.space.footer = 25
         
         // Add custom pagination, starting at page 1 and excluding page 3
-        pdf.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure({ (page, total) -> String in
+        document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure({ (page, total) -> String in
             return "\(page) / \(total)"
         }), range: (1, 10), hiddenPages: [3])
         
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150))
-        pdf.addImage(.contentCenter, image: image)
+        document.addImage(.contentCenter, image: image)
         
         // Add some spacing below image
-        pdf.addSpace(space: 15.0)
+        document.addSpace(space: 15.0)
         
         // Create and add an title as an attributed string for more customization possibilities
         let title = NSMutableAttributedString(string: "TPPDF", attributes: [
@@ -53,16 +53,17 @@ class ViewController: UIViewController {
             }(),
             .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
             ])
-        pdf.addAttributedText(.contentCenter, text: title)
+        document.addAttributedText(.contentCenter, text: title)
         
         // Set document font and document color. This will be used only for simple text until it is reset.
-        pdf.setFont(font: UIFont.systemFont(ofSize: 18.0))
-        pdf.setTextColor(color: UIColor.lightGray)
-        pdf.addText(.contentCenter, text: "Create PDF documents easily.")
+        document.setFont(font: UIFont.systemFont(ofSize: 18.0))
+        document.setTextColor(color: UIColor.lightGray)
+        
+        document.addText(.contentCenter, text: "Create PDF documents easily.")
         
         // Reset font and text color
-        pdf.resetFont()
-        pdf.resetTextColor()
+        document.resetFont()
+        document.resetTextColor()
         
         // Create a list with level indentations
         let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
@@ -81,7 +82,7 @@ class ViewController: UIViewController {
                     ])
             ])
         
-        pdf.addList(list: list)
+        document.addList(list: list)
         
         /*
         // Set Font for headline
@@ -295,14 +296,14 @@ class ViewController: UIViewController {
         /* Execution Metrics */
         
         // Convert document to JSON String for debugging
-        let json = pdf.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
+        let json = document.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
         print(json)
         
         do {
             // Enable debug mode if necessary
             PDFGenerator.debug = true
             
-            let url = try PDFGenerator.generateURL(document: pdf, filename: "Example.pdf", progress: nil)
+            let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: nil)
             
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
         } catch {

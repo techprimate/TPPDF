@@ -6,7 +6,7 @@
 //
 //
 
-public class PDFTableCell : TPJSONSerializable {
+public class PDFTableCell: TPJSONSerializable {
     
     public var content: PDFTableContent?
     public var alignment: PDFTableCellAlignment

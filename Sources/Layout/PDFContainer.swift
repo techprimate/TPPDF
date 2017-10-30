@@ -6,7 +6,7 @@
 //
 //
 
-public enum PDFContainer : TPJSONSerializable {
+public enum PDFContainer: TPJSONSerializable {
     
     case none
     case headerLeft, headerCenter, headerRight

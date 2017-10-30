@@ -6,7 +6,7 @@
 //
 //
 
-public class PDFTable : TPJSONSerializable {
+public class PDFTable: TPJSONSerializable {
     
     public var style: PDFTableStyle = PDFTableStyleDefaults.simple
     public var cells: [[PDFTableCell]] = []

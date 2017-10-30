@@ -6,7 +6,7 @@
 //
 //
 
-class PDFImageObject : PDFObject {
+class PDFImageObject: PDFObject {
     
     var image: PDFImage
     
@@ -15,17 +15,26 @@ class PDFImageObject : PDFObject {
     }
     
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws {
-        var (imageSize, captionSize) = generator.calculateImageCaptionSize(container, image: image.image, size: image.size, caption: image.caption, sizeFit: image.sizeFit)
+        var (imageSize, captionSize) = generator.calculateImageCaptionSize(container,
+                                                                           image: image.image,
+                                                                           size: image.size,
+                                                                           caption: image.caption,
+                                                                           sizeFit: image.sizeFit)
         
         let y: CGFloat = try {
             switch container.normalize {
             case .headerLeft:
                 return generator.heights.header[container]!
             case .contentLeft:
-                if (generator.heights.content + imageSize.height + captionSize.height > generator.contentSize.height || (image.sizeFit == .height && imageSize.height < image.size.height)) {
+                if generator.heights.content + imageSize.height + captionSize.height > generator.contentSize.height ||
+                    (image.sizeFit == .height && imageSize.height < image.size.height) {
                     try generator.generateNewPage(calculatingMetrics: true)
                     
-                    (imageSize, captionSize) = generator.calculateImageCaptionSize(container, image: image.image, size: image.size, caption: image.caption, sizeFit: image.sizeFit)
+                    (imageSize, captionSize) = generator.calculateImageCaptionSize(container,
+                                                                                   image: image.image,
+                                                                                   size: image.size,
+                                                                                   caption: image.caption,
+                                                                                   sizeFit: image.sizeFit)
                 }
                 return generator.maxHeaderHeight() + generator.document.layout.space.header + generator.heights.content
             case .footerLeft:
