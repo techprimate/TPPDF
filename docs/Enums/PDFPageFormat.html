@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PDFPageFormat Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Enum/PDFPageFormat" class="dashAnchor"></a>
+
+    <a title="PDFPageFormat Enumeration Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          TPPDF Docs
+        </a>
+         (15% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://www.github.com/Techprimate/TPPDF">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Ftechprimate%2Egithub%2Eio%2FTPPDF%2Fdocsets%2FTPPDF%2Exml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">TPPDF Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      PDFPageFormat Enumeration Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFDocument.html">PDFDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFGenerator.html">PDFGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFImage.html">PDFImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFInfo.html">PDFInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFList.html">PDFList</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFListItem.html">PDFListItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFListItem/Symbol.html">– Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:5TPPDF9PDFObjectC">PDFObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTable.html">PDFTable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableCell.html">PDFTableCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableContent.html">PDFTableContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableStyle.html">PDFTableStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ImageSizeFit.html">ImageSizeFit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFContainer.html">PDFContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFPageFormat.html">PDFPageFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFPaginationStyle.html">PDFPaginationStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFTableCellAlignment.html">PDFTableCellAlignment</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Dictionary.html">Dictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/NSAttributedString.html">NSAttributedString</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UIColor.html">UIColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UIImage.html">UIImage</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:5TPPDF2eeoiSbAA20PDFTableCellPositionV_ADtF">==(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TPJSONRepresentable.html">TPJSONRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TPJSONSerializable.html">TPJSONSerializable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFLayout.html">PDFLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFLineStyle.html">PDFLineStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFLineStyle/LineType.html">– LineType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFPagination.html">PDFPagination</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFTableCellPosition.html">PDFTableCellPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFTableStyleDefaults.html">PDFTableStyleDefaults</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:5TPPDF20PDFPaginationClosurea">PDFPaginationClosure</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>PDFPageFormat</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFPageFormat</span></code></pre>
+
+                </div>
+              </div>
+            <p>Source for page sizes: <a href="https://www.papersizes.org">https://www.papersizes.org</a>
+All sizes are calculated using 72 points/inch</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO12usHalfLetterA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/usHalfLetter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO12usHalfLetterA2CmF">usHalfLetter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">usHalfLetter</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO8usLetterA2CmF">usLetter</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO7usLegalA2CmF">usLegal</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO13usJuniorLegalA2CmF">usJuniorLegal</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO8usLedgerA2CmF">usLedger</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO8usLetterA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/usLetter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO8usLetterA2CmF">usLetter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO12usHalfLetterA2CmF">usHalfLetter</a></span><span class="p">,</span> <span class="n">usLetter</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO7usLegalA2CmF">usLegal</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO13usJuniorLegalA2CmF">usJuniorLegal</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO8usLedgerA2CmF">usLedger</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO7usLegalA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/usLegal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO7usLegalA2CmF">usLegal</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO12usHalfLetterA2CmF">usHalfLetter</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO8usLetterA2CmF">usLetter</a></span><span class="p">,</span> <span class="n">usLegal</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO13usJuniorLegalA2CmF">usJuniorLegal</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO8usLedgerA2CmF">usLedger</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO13usJuniorLegalA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/usJuniorLegal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO13usJuniorLegalA2CmF">usJuniorLegal</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO12usHalfLetterA2CmF">usHalfLetter</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO8usLetterA2CmF">usLetter</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO7usLegalA2CmF">usLegal</a></span><span class="p">,</span> <span class="n">usJuniorLegal</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO8usLedgerA2CmF">usLedger</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO8usLedgerA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/usLedger" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO8usLedgerA2CmF">usLedger</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO12usHalfLetterA2CmF">usHalfLetter</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO8usLetterA2CmF">usLetter</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO7usLegalA2CmF">usLegal</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO13usJuniorLegalA2CmF">usJuniorLegal</a></span><span class="p">,</span> <span class="n">usLedger</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO5ansiAA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/ansiA" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO5ansiAA2CmF">ansiA</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">ansiA</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiBA2CmF">ansiB</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiCA2CmF">ansiC</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiDA2CmF">ansiD</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiEA2CmF">ansiE</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO5ansiBA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/ansiB" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO5ansiBA2CmF">ansiB</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiAA2CmF">ansiA</a></span><span class="p">,</span> <span class="n">ansiB</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiCA2CmF">ansiC</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiDA2CmF">ansiD</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiEA2CmF">ansiE</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO5ansiCA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/ansiC" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO5ansiCA2CmF">ansiC</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiAA2CmF">ansiA</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiBA2CmF">ansiB</a></span><span class="p">,</span> <span class="n">ansiC</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiDA2CmF">ansiD</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiEA2CmF">ansiE</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO5ansiDA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/ansiD" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO5ansiDA2CmF">ansiD</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiAA2CmF">ansiA</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiBA2CmF">ansiB</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiCA2CmF">ansiC</a></span><span class="p">,</span> <span class="n">ansiD</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiEA2CmF">ansiE</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO5ansiEA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/ansiE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO5ansiEA2CmF">ansiE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiAA2CmF">ansiA</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiBA2CmF">ansiB</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiCA2CmF">ansiC</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO5ansiDA2CmF">ansiD</a></span><span class="p">,</span> <span class="n">ansiE</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2a0A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a0" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">a0</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2a1A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a1" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a></span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2a2A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a2" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a></span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2a3A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a3" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a></span><span class="p">,</span> <span class="n">a3</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2a4A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a4" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a></span><span class="p">,</span> <span class="n">a4</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2a5A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a5" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a></span><span class="p">,</span> <span class="n">a5</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2a6A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a6" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a></span><span class="p">,</span> <span class="n">a6</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2a7A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a7" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a></span><span class="p">,</span> <span class="n">a7</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2a8A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a8" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a></span><span class="p">,</span> <span class="n">a8</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2a9A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a9" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a></span><span class="p">,</span> <span class="n">a9</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO3a10A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/a10" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO3a10A2CmF">a10</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a0A2CmF">a0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a1A2CmF">a1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a2A2CmF">a2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a3A2CmF">a3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a4A2CmF">a4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a5A2CmF">a5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a6A2CmF">a6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a7A2CmF">a7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a8A2CmF">a8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2a9A2CmF">a9</a></span><span class="p">,</span> <span class="n">a10</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2b0A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b0" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">b0</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2b1A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b1" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a></span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2b2A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b2" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a></span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2b3A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b3" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a></span><span class="p">,</span> <span class="n">b3</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2b4A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b4" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a></span><span class="p">,</span> <span class="n">b4</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2b5A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b5" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a></span><span class="p">,</span> <span class="n">b5</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2b6A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b6" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a></span><span class="p">,</span> <span class="n">b6</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2b7A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b7" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a></span><span class="p">,</span> <span class="n">b7</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2b8A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b8" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a></span><span class="p">,</span> <span class="n">b8</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2b9A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b9" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a></span><span class="p">,</span> <span class="n">b9</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO3b10A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/b10" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO3b10A2CmF">b10</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b0A2CmF">b0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b1A2CmF">b1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b2A2CmF">b2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b3A2CmF">b3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b4A2CmF">b4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b5A2CmF">b5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b6A2CmF">b6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b7A2CmF">b7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b8A2CmF">b8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2b9A2CmF">b9</a></span><span class="p">,</span> <span class="n">b10</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2c0A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c0" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">c0</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2c1A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c1" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a></span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2c2A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c2" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a></span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2c3A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c3" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a></span><span class="p">,</span> <span class="n">c3</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2c4A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c4" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a></span><span class="p">,</span> <span class="n">c4</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2c5A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c5" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a></span><span class="p">,</span> <span class="n">c5</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2c6A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c6" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a></span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2c7A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c7" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a></span><span class="p">,</span> <span class="n">c7</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2c8A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c8" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a></span><span class="p">,</span> <span class="n">c8</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO2c9A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c9" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a></span><span class="p">,</span> <span class="n">c9</span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO3c10A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/c10" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO3c10A2CmF">c10</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c0A2CmF">c0</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c1A2CmF">c1</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c2A2CmF">c2</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c3A2CmF">c3</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c4A2CmF">c4</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c5A2CmF">c5</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c6A2CmF">c6</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c7A2CmF">c7</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c8A2CmF">c8</a></span><span class="p">,</span> <span class="n"><a href="../Enums/PDFPageFormat.html#/s:5TPPDF13PDFPageFormatO2c9A2CmF">c9</a></span><span class="p">,</span> <span class="n">c10</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO6layoutAA9PDFLayoutVv"></a>
+                    <a name="//apple_ref/swift/Property/layout" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO6layoutAA9PDFLayoutVv">layout</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">layout</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFLayout.html">PDFLayout</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO6usSizeSC6CGSizeVv"></a>
+                    <a name="//apple_ref/swift/Property/usSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO6usSizeSC6CGSizeVv">usSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">usSize</span><span class="p">:</span> <span class="kt">CGSize</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO8ansiSizeSC6CGSizeVv"></a>
+                    <a name="//apple_ref/swift/Property/ansiSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO8ansiSizeSC6CGSizeVv">ansiSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">ansiSize</span><span class="p">:</span> <span class="kt">CGSize</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO5aSizeSC6CGSizeVv"></a>
+                    <a name="//apple_ref/swift/Property/aSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO5aSizeSC6CGSizeVv">aSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">aSize</span><span class="p">:</span> <span class="kt">CGSize</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO5bSizeSC6CGSizeVv"></a>
+                    <a name="//apple_ref/swift/Property/bSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO5bSizeSC6CGSizeVv">bSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">bSize</span><span class="p">:</span> <span class="kt">CGSize</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFPageFormatO5cSizeSC6CGSizeVv"></a>
+                    <a name="//apple_ref/swift/Property/cSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFPageFormatO5cSizeSC6CGSizeVv">cSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">cSize</span><span class="p">:</span> <span class="kt">CGSize</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2017-10-30)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

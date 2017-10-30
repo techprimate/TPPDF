@@ -59,6 +59,9 @@
 		D4B97A2A1F94B8BC00F83D1F /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".swift-version"; path = "../.swift-version"; sourceTree = "<group>"; };
 		D4B97A2B1F94B8BC00F83D1F /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		D4E6F9A51FA7331A0049890F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		D4E6F9AA1FA7633D0049890F /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .jazzy.yaml; path = ../.jazzy.yaml; sourceTree = "<group>"; };
+		D4E6F9AC1FA765080049890F /* Gemfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; };
+		D4E6F9AE1FA76CBE0049890F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		D4F8C1181EF14C5000188F42 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D4F8C1191EF14C5000188F42 /* Image-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-1.jpg"; sourceTree = "<group>"; };
 		D4F8C11A1EF14C5000188F42 /* Image-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-2.jpg"; sourceTree = "<group>"; };
@@ -176,12 +179,15 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				D4B97A2A1F94B8BC00F83D1F /* .swift-version */,
+				D4E6F9AC1FA765080049890F /* Gemfile */,
 				5B33C61EC58DBAB629433DE7 /* LICENSE */,
 				D418D71E1EF16FA4009FAF56 /* CHANGELOG.md */,
 				D418D71F1EF16FA4009FAF56 /* CODE_OF_CONDUCT.md */,
 				5B0B4ED60E5101E03D78D22A /* README.md */,
 				AA3ABE5E8B71837B45C4119F /* TPPDF.podspec */,
-				D4B97A2A1F94B8BC00F83D1F /* .swift-version */,
+				D4E6F9AA1FA7633D0049890F /* .jazzy.yaml */,
+				D4E6F9AE1FA76CBE0049890F /* .swiftlint.yml */,
 				D4B97A2B1F94B8BC00F83D1F /* .travis.yml */,
 			);
 			name = "Podspec Metadata";
@@ -395,7 +401,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"info: Looking for SwiftLint in Pods folder: \" ${PODS_ROOT}\n\nif which swiftlint >/dev/null; then\n   \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "echo \"info: Looking for SwiftLint in Pods folder: \" ${PODS_ROOT}\n\nif which swiftlint >/dev/null; then\n   \"${PODS_ROOT}/SwiftLint/swiftlint\" --config ../.swiftlint.yml\nelse\n   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		D976C6A3339661B10333E1A9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
