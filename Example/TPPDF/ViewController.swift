@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         pdf.layout.space.footer = 25
         
         // Add custom pagination, starting at page 1 and excluding page 3
-        pdf.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.CustomClosure({ (page, total) -> String in
+        pdf.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure({ (page, total) -> String in
             return "\(page) / \(total)"
         }), range: (1, 10), hiddenPages: [3])
         
@@ -83,6 +83,7 @@ class ViewController: UIViewController {
         
         pdf.addList(list: list)
         
+        /*
         // Set Font for headline
         
         pdf.setFont(font: UIFont.systemFont(ofSize: 20.0))
@@ -102,7 +103,7 @@ class ViewController: UIViewController {
         pdf.addText(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
         pdf.addSpace(space: 10)
         var array = [String]()
-        for i in 0...1000 {
+        for i in 0...200 {
             array += ["\(i)"]
         }
         pdf.addText(text: array.joined(separator: ", "))
@@ -287,7 +288,7 @@ class ViewController: UIViewController {
         // Add more text after the table
         
         pdf.addText(text: "Just adding more text here...")
-        
+        */
         /* Execution Metrics */
         print("Preparation: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
         startTime = Date()

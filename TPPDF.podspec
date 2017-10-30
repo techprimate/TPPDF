@@ -16,4 +16,6 @@ TPPDF is a PDF builder based on the 'Builder' pattern. It uses the built-in fram
 
   s.source_files = 'Sources/**/*'
   s.frameworks = 'UIKit'
+  s.dependency 'SwiftLint'
+
 end
