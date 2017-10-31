@@ -134,11 +134,11 @@ class PDFTableObject: PDFObject {
                             NSAttributedStringKey.paragraphStyle: paragraph
                         ]
                         let attributedText = NSAttributedString(string: text, attributes: attributes)
-                        result = generator.calculateCellFrame(contentPosition, width: contentWidth, text: attributedText, alignment: cell.alignment)
+                        result = PDFCalculations.calculateCellFrame(generator: generator, origin: contentPosition, width: contentWidth, text: attributedText, alignment: cell.alignment)
                     case let text as NSAttributedString:
-                        result = generator.calculateCellFrame(contentPosition, width: contentWidth, text: text, alignment: cell.alignment)
+                        result = PDFCalculations.calculateCellFrame(generator: generator, origin: contentPosition, width: contentWidth, text: text, alignment: cell.alignment)
                     case let image as UIImage:
-                        result = generator.calculateCellFrame(contentPosition, width: contentWidth, image: image)
+                        result = PDFCalculations.calculateCellFrame(generator: generator, origin: contentPosition, width: contentWidth, image: image)
                     default:
                         break
                     }

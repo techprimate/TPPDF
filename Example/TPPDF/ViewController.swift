@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality.
         let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150), quality: 0.9)
-//        document.addImage(.contentCenter, image: image)
+        document.addImage(.contentCenter, image: image)
         
         // Add some spacing below image
 //        document.addSpace(space: 15.0)

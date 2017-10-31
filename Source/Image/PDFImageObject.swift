@@ -14,11 +14,14 @@ class PDFImageObject: PDFObject {
         self.image = image
     }
     
-    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
-        var (imageSize, captionSize) = generator.calculateImageCaptionSize(container,
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+        var result: [(PDFContainer, PDFObject)] = []
+        
+        var (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(generator: generator,
+                                                                           container: container,
                                                                            image: image.image,
-                                                                           size: image.size,
                                                                            caption: image.caption,
+                                                                           size: image.size,
                                                                            sizeFit: image.sizeFit)
         
         let y: CGFloat = try {
@@ -28,12 +31,14 @@ class PDFImageObject: PDFObject {
             case .contentLeft:
                 if generator.heights.content + imageSize.height + captionSize.height > generator.document.layout.contentSize.height ||
                     (image.sizeFit == .height && imageSize.height < image.size.height) {
-//                    try generator.generateNewPage(calculatingMetrics: true)
                     
-                    (imageSize, captionSize) = generator.calculateImageCaptionSize(container,
+                    result += [(container, PDFPageBreakObject())]
+                    
+                    (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(generator: generator,
+                                                                                   container: container,
                                                                                    image: image.image,
-                                                                                   size: image.size,
                                                                                    caption: image.caption,
+                                                                                   size: image.size,
                                                                                    sizeFit: image.sizeFit)
                 }
                 return generator.maxHeaderHeight() + generator.document.layout.space.header + generator.heights.content
@@ -58,15 +63,15 @@ class PDFImageObject: PDFObject {
         }()
         
         self.frame = CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height)
+        
+        return [
+            (container, self)
+        ]
     }
     
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         let compressedImage = PDFGraphics.resizeAndCompressImage(image: image.image, frame: frame, quality: image.quality)
         compressedImage.draw(in: self.frame)
-        
-        if image.caption.length > 0 {
-//            try generator.drawAttributedText(container, text: image.caption, textMaxWidth: frame.size.width, calculatingMetrics: false)
-        }
     }
     
     override func updateHeights(generator: PDFGenerator, container: PDFContainer) {

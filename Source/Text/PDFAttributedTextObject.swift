@@ -45,10 +45,11 @@ class PDFAttributedTextObject : PDFObject {
         let textMaxWidth = generator.document.layout.contentSize.width - generator.indentation.leftIn(container: container) - generator.indentation.rightIn(container: container)
         
         repeat {
-            let (calcFrame, frameRef, drawnSize) = generator.calculateTextFrameAndDrawnSizeInOnePage(container,
-                                                                                                     text: currentText!,
-                                                                                                     currentRange: currentRange,
-                                                                                                     textMaxWidth: textMaxWidth)
+            let (calcFrame, frameRef, drawnSize) = PDFCalculations.calculateTextFrameAndDrawnSizeInOnePage(generator: generator,
+                                                                                                           container: container,
+                                                                                                           text: currentText!,
+                                                                                                           currentRange: currentRange,
+                                                                                                           textMaxWidth: textMaxWidth)
             
             // Get the graphics context.
             let currentContext = UIGraphicsGetCurrentContext()!
