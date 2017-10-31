@@ -271,7 +271,7 @@ class PDFTableObject: PDFObject {
         }
     }
     
-    override func updateHeights(generator: PDFGenerator, container: PDFContainer) {
+    func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         if let lastPage = cellsPerPage.last {
             generator.heights.content = (lastPage.frame.maxY - generator.heights.maxHeaderHeight() - generator.document.layout.space.header)
         }

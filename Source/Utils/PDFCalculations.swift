@@ -134,7 +134,7 @@ class PDFCalculations {
         return (frame, frameRef, drawnSize)
     }
     
-    static func calculateImageCaptionSize(generator: PDFGenerator, container: PDFContainer, image: UIImage, caption: NSAttributedString,
+    static func calculateImageCaptionSize(generator: PDFGenerator, container: PDFContainer, image: PDFImage,
                                    size: CGSize, sizeFit: ImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         let size = (size == CGSize.zero) ? image.size : size
@@ -158,14 +158,16 @@ class PDFCalculations {
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
         
         var (_, captionSize) = (NSAttributedString(), CGSize.zero)
-        if caption.length > 0 {
-            let currentText = CFAttributedStringCreateCopy(nil, caption as CFAttributedString)
-            let currentRange = CFRange(location: 0, length: 0)
-            (_, _, captionSize) = calculateTextFrameAndDrawnSizeInOnePage(generator: generator,
-                                                                          container: container,
-                                                                          text: currentText!,
-                                                                          currentRange: currentRange,
-                                                                          textMaxWidth: imageSize.width)
+        if let caption = image.caption {
+            if caption.length > 0 {
+                let currentText = CFAttributedStringCreateCopy(nil, caption as CFAttributedString)
+                let currentRange = CFRange(location: 0, length: 0)
+                (_, _, captionSize) = calculateTextFrameAndDrawnSizeInOnePage(generator: generator,
+                                                                              container: container,
+                                                                              text: currentText!,
+                                                                              currentRange: currentRange,
+                                                                              textMaxWidth: imageSize.width)
+            }
         }
         
         return (imageSize, CGSize(width: imageSize.width, height: captionSize.height))

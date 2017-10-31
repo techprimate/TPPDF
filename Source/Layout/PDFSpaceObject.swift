@@ -14,14 +14,27 @@ class PDFSpaceObject: PDFObject {
         self.space = space
     }
     
-    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         let document = generator.document
         
-        let x: CGFloat = document.layout.margin.left + generator.indentation.leftIn(container: container)
-        let y: CGFloat = generator.heights.maxHeaderHeight() + document.layout.space.header + generator.heights.content
-        let width = document.layout.size.width - document.layout.margin.left - document.layout.margin.right - generator.indentation.rightIn(container: container)
+        let x: CGFloat = document.layout.margin.left
+            + generator.indentation.leftIn(container: container)
+        let y: CGFloat = document.layout.margin.header
+            + generator.heights.maxHeaderHeight()
+            + document.layout.space.header
+            + generator.heights.content
+        
+        let width = document.layout.size.width
+            - document.layout.margin.left
+            - document.layout.margin.right
+            - generator.indentation.leftIn(container: container)
+            - generator.indentation.rightIn(container: container)
         
         self.frame = CGRect(x: x, y: y, width: width, height: space)
+        
+        updateHeights(generator: generator, container: container)
+        
+        return [(container, self)]
     }
     
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
@@ -30,7 +43,7 @@ class PDFSpaceObject: PDFObject {
         }
     }
     
-    override func updateHeights(generator: PDFGenerator, container: PDFContainer) {
+    func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         if container.isHeader {
             generator.heights.header[container] = generator.heights.header[container]! + space
         } else if container.isFooter {

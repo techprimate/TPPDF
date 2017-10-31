@@ -16,11 +16,13 @@ class PDFIndentationObject: PDFObject {
         self.left = left
     }
     
-    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         if left {
             generator.indentation.setLeft(indentation: indentation, in: container)
         } else {
             generator.indentation.setRight(indentation: indentation, in: container)
         }
+        
+        return [(container, self)]
     }
 }

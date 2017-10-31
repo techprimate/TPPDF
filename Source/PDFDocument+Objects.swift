@@ -61,24 +61,48 @@ public extension PDFDocument {
     
     // MARK: - Table
     
+    /**
+     Adds a table object to the document in the defined container
+     */
     public func addTable(_ container: PDFContainer = PDFContainer.contentLeft, table: PDFTable) {
         objects += [(container, PDFTableObject(table: table))]
     }
     
     // MARK: - List
     
+    /**
+     Adds a list object to the document in the defined container
+     */
     public func addList(_ container: PDFContainer = PDFContainer.contentLeft, list: PDFList) {
         objects += [(container, PDFListObject(list: list))]
     }
     
+    // MARK: - Layout
+    
+    /**
+     Change the indentation in a container, use the parameter `left` to define from which side.
+     
+     - parameter container: Container whose indentation should be changed, defaults to `PDFContainer.contentLeft`
+     - parameter indent: Points from the side
+     - parameter left: If `true` then the left side indentation is set, else the right indentation is set
+     */
     public func setIndentation(_ container: PDFContainer = PDFContainer.contentLeft, indent: CGFloat, left: Bool) {
         objects += [(container, PDFIndentationObject(indentation: indent, left: left))]
     }
     
+    /**
+     Change the absolute top offset in a container
+     
+     - parameter container: Container whose current absoilute offset should be changed, defaults to `PDFContainer.contentLeft`
+     - parameter offset: Points from the top
+     */
     public func setAbsoluteOffset(_ container: PDFContainer = PDFContainer.contentLeft, offset: CGFloat) {
         objects += [(container, PDFOffsetObject(offset: offset))]
     }
     
+    /**
+     Creates a new page
+     */
     public func createNewPage() {
         objects += [(.contentLeft, PDFPageBreakObject())]
     }

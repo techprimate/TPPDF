@@ -38,8 +38,18 @@ class ViewController: UIViewController {
         
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality.
-        let image = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150), quality: 0.9)
-        document.addImage(.contentCenter, image: image)
+        let logoImage = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150), quality: 0.9)
+        document.addImage(.contentCenter, image: logoImage)
+        
+        // Add some spacing below image
+        document.addSpace(space: 15.0)
+        
+        let sideImage = PDFImage(image: UIImage(named: "Image-1.jpg")!)
+        sideImage.caption = NSAttributedString(string: "A beautiful waterfall!")
+        sideImage.size = CGSize(width: 200, height: 200)
+        
+        document.addImage(image: sideImage)
+        
         
         // Add some spacing below image
 //        document.addSpace(space: 15.0)
@@ -153,34 +163,37 @@ class ViewController: UIViewController {
             }(),
             .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0),
         ]
+        */
         
         // Create an image collage with captions
         
-        let images = [
-            [
-                PDFImage(image: UIImage(named: "Image-1.jpg")!, caption: NSAttributedString(string: "Waterfall", attributes: captionAttributes)),
-                PDFImage(image: UIImage(named: "Image-2.jpg")!, caption: NSAttributedString(string: "Forrest", attributes: captionAttributes)),
-                ],
-            [
-                PDFImage(image: UIImage(named: "Image-3.jpg")!, caption: NSAttributedString(string: "Fireworks", attributes: captionAttributes)),
-                PDFImage(image: UIImage(named: "Image-4.jpg")!, caption: NSAttributedString(string: "Field", attributes: captionAttributes)),
-                ]
-        ]
+//        let images = [
+//            [
+//                PDFImage(image: UIImage(named: "Image-1.jpg")!, caption: NSAttributedString(string: "Waterfall", attributes: captionAttributes)),
+//                PDFImage(image: UIImage(named: "Image-2.jpg")!, caption: NSAttributedString(string: "Forrest", attributes: captionAttributes)),
+//                ],
+//            [
+//                PDFImage(image: UIImage(named: "Image-3.jpg")!, caption: NSAttributedString(string: "Fireworks", attributes: captionAttributes)),
+//                PDFImage(image: UIImage(named: "Image-4.jpg")!, caption: NSAttributedString(string: "Field", attributes: captionAttributes)),
+//                ]
+//        ]
         
         // Add first row of images
         
-        pdf.addImagesInRow(images: images[0], spacing: 10)
+//        pdf.addImagesInRow(images: images[0], spacing: 10)
         
         // Add spacing between image rows
         
-        pdf.addSpace(space: 10)
+//        pdf.addSpace(space: 10)
         
         // Add second row of images
         
-        pdf.addImagesInRow(images: images[1], spacing: 10)
+//        pdf.addImagesInRow(images: images[1], spacing: 10)
         
         // Finish image collage with another line separator
         
+        /*
+         
         pdf.addSpace(space: 10)
         pdf.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
         pdf.addSpace(space: 10)
