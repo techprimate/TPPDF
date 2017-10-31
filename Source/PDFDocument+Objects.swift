@@ -36,11 +36,19 @@ public extension PDFDocument {
     // MARK: - Text
 
     public func addText(_ container: PDFContainer = PDFContainer.contentLeft, text: String, lineSpacing: CGFloat = 1.0) {
-        objects += [(container, PDFAttributedTextObject(text: text, spacing: lineSpacing))]
+        addText(container, textObject: PDFSimpleText(text: text, spacing: lineSpacing))
+    }
+    
+    public func addText(_ container: PDFContainer = PDFContainer.contentLeft, textObject: PDFSimpleText) {
+        objects += [(container, PDFAttributedTextObject(simpleText: textObject))]
     }
 
     public func addAttributedText(_ container: PDFContainer = PDFContainer.contentLeft, text: NSAttributedString) {
-        objects += [(container, PDFAttributedTextObject(attributedText: text))]
+        addAttributedText(container, textObject: PDFAttributedText(text: text))
+    }
+    
+    public func addAttributedText(_ container: PDFContainer = PDFContainer.contentLeft, textObject: PDFAttributedText) {
+        objects += [(container, PDFAttributedTextObject(attributedText: textObject))]
     }
     
     public func setFont(_ container: PDFContainer = PDFContainer.contentLeft, font: UIFont) {

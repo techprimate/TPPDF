@@ -84,9 +84,9 @@ class PDFImageObject: PDFObject {
         result.append((container, self))
         
         if let caption = image.caption {
-            let text = PDFAttributedTextObject(attributedText: caption)
+            let text = PDFAttributedTextObject(text: caption)
             text.frame = CGRect(x: self.frame.midX - captionSize.width / 2, y: self.frame.maxY, width: captionSize.width, height: captionSize.height)
-            result.append((container, text))
+            result += try text.calculate(generator: generator, container: container)
         }
         
         return result

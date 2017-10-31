@@ -159,15 +159,15 @@ class PDFCalculations {
         
         var (_, captionSize) = (NSAttributedString(), CGSize.zero)
         if let caption = image.caption {
-            if caption.length > 0 {
-                let currentText = CFAttributedStringCreateCopy(nil, caption as CFAttributedString)
-                let currentRange = CFRange(location: 0, length: 0)
-                (_, _, captionSize) = calculateTextFrameAndDrawnSizeInOnePage(generator: generator,
-                                                                              container: container,
-                                                                              text: currentText!,
-                                                                              currentRange: currentRange,
-                                                                              textMaxWidth: imageSize.width)
-            }
+//            if !caption.isEmpty {
+//                let currentText = CFAttributedStringCreateCopy(nil, caption as CFAttributedString)
+//                let currentRange = CFRange(location: 0, length: 0)
+//                (_, _, captionSize) = calculateTextFrameAndDrawnSizeInOnePage(generator: generator,
+//                                                                              container: container,
+//                                                                              text: currentText!,
+//                                                                              currentRange: currentRange,
+//                                                                              textMaxWidth: imageSize.width)
+//            }
         }
         
         return (imageSize, CGSize(width: imageSize.width, height: captionSize.height))

@@ -9,13 +9,13 @@
 public class PDFImage: TPJSONSerializable {
     
     public var image: UIImage
-    public var caption: NSAttributedString?
+    public var caption: PDFText?
     public var size: CGSize
     public var sizeFit: ImageSizeFit
     public var quality: CGFloat
     
     public init(image: UIImage,
-                caption: NSAttributedString? = nil,
+                caption: PDFText? = nil,
                 size: CGSize = .zero,
                 sizeFit: ImageSizeFit = .widthHeight,
                 quality: CGFloat = 0.85) {

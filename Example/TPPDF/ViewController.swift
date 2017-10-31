@@ -41,19 +41,6 @@ class ViewController: UIViewController {
         let logoImage = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150), quality: 0.9)
         document.addImage(.contentCenter, image: logoImage)
         
-        // Add some spacing below image
-        document.addSpace(space: 15.0)
-        
-        let sideImage = PDFImage(image: UIImage(named: "Image-1.jpg")!)
-        sideImage.caption = NSAttributedString(string: "A beautiful waterfall!")
-        sideImage.size = CGSize(width: 200, height: 200)
-        
-        document.addImage(image: sideImage)
-        
-        
-        // Add some spacing below image
-//        document.addSpace(space: 15.0)
-        
         // Create and add an title as an attributed string for more customization possibilities
         let title = NSMutableAttributedString(string: "TPPDF", attributes: [
             .font: UIFont.boldSystemFont(ofSize: 50.0),
@@ -64,7 +51,16 @@ class ViewController: UIViewController {
             }(),
             .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
             ])
-//        document.addAttributedText(.contentCenter, text: title)
+        document.addAttributedText(.contentCenter, text: title)
+        
+        // Add some spacing below image
+        document.addSpace(space: 15.0)
+        
+        let sideImage = PDFImage(image: UIImage(named: "Image-1.jpg")!)
+        sideImage.caption = PDFSimpleText(text: "A beautiful waterfall!")
+        sideImage.size = CGSize(width: 200, height: 200)
+        
+        document.addImage(image: sideImage)
         
         // Set document font and document color. This will be used only for simple text until it is reset.
 //        document.setFont(font: UIFont.systemFont(ofSize: 18.0))

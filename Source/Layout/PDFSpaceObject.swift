@@ -17,18 +17,19 @@ class PDFSpaceObject: PDFObject {
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         let document = generator.document
         
-        let x: CGFloat = document.layout.margin.left
+        let x = document.layout.margin.left
             + generator.indentation.leftIn(container: container)
-        let y: CGFloat = document.layout.margin.bottom
+        
+        let y = document.layout.margin.bottom
             + generator.heights.maxHeaderHeight()
             + document.layout.space.header
             + generator.heights.content
         
         let width = document.layout.size.width
             - document.layout.margin.left
-            - document.layout.margin.right
             - generator.indentation.leftIn(container: container)
             - generator.indentation.rightIn(container: container)
+            - document.layout.margin.right
         
         self.frame = CGRect(x: x, y: y, width: width, height: space)
         

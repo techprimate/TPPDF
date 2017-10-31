@@ -62,15 +62,16 @@ extension PDFGenerator {
         try render(objects: renderObjects)
     }
     
+    // MARK: - INTERNAL FUNCS
+    
     func createRenderObjects() throws -> [(PDFContainer, PDFObject)] {
-        // Extract content PDFCommands
-        let contentObjects = extractContentObjects()
+        // Extract content objects
+        let contentObjects = PDFGenerator.extractContentObjects(objects: document.objects)
         
-        // Split header & footer PDFCommands
-        let footers = document.objects.filter { return $0.0.isFooter }
-        let headers = document.objects.filter { return $0.0.isHeader }
+        // Extract header & footer objects
+        let footers = PDFGenerator.extractFooterObjects(objects: document.objects)
+        let headers = PDFGenerator.extractHeaderObjects(objects: document.objects)
         
-        // Extract header & footer PDFCommands
         headerFooterObjects = headers + footers
         
         // Only add space between content and footer if there are objects in footer.
@@ -104,18 +105,6 @@ extension PDFGenerator {
         return allObjects
     }
     
-    func extractHeaderObjects() -> [(PDFContainer, PDFObject)] {
-        return document.objects.filter { return $0.0.isHeader }
-    }
-    
-    func extractFooterObjects() -> [(PDFContainer, PDFObject)] {
-        return document.objects.filter { return $0.0.isFooter }
-    }
-    
-    func extractContentObjects() -> [(PDFContainer, PDFObject)] {
-        return document.objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
-    }
-    
     func addHeaderFooterObjects() throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
         
@@ -125,7 +114,8 @@ extension PDFGenerator {
         
         if pagination.container != .none {
             if !pagination.hiddenPages.contains(currentPage) && currentPage >= pagination.range.start && currentPage <= pagination.range.end {
-                let textObject = PDFAttributedTextObject(text: pagination.style.format(page: currentPage, total: totalPages))
+                let simpleText = PDFSimpleText(text: pagination.style.format(page: currentPage, total: totalPages))
+                let textObject = PDFAttributedTextObject(text: simpleText)
                 result += try textObject.calculate(generator: self, container: pagination.container)
             }
         }
@@ -147,5 +137,19 @@ extension PDFGenerator {
     func render(object: PDFObject, in container: PDFContainer) throws {
         try object.draw(generator: self, container: container)
     }
+    
+    // MARK: - INTERNAL STATIC
+    
+    
+    static func extractHeaderObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
+        return objects.filter { return $0.0.isHeader }
+    }
+    
+    static func extractFooterObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
+        return objects.filter { return $0.0.isFooter }
+    }
+    
+    static func extractContentObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
+        return objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
+    }
 }
-
