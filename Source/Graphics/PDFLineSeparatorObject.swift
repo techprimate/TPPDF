@@ -18,7 +18,7 @@ class PDFLineSeparatorObject: PDFObject {
         let document = generator.document
         
         let x: CGFloat = document.layout.margin.left + generator.indentation.leftIn(container: container)
-        let y: CGFloat = generator.heights.maxHeaderHeight() + document.layout.margin.header + generator.heights.content
+        let y: CGFloat = generator.heights.maxHeaderHeight() + document.layout.margin.top + generator.heights.content
         let width = document.layout.size.width - document.layout.margin.left - document.layout.margin.right - generator.indentation.rightIn(container: container)
         
         self.frame = CGRect(x: x, y: y, width: width, height: 0)

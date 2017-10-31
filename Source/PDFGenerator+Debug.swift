@@ -21,10 +21,10 @@ extension PDFGenerator {
         x = document.layout.width - document.layout.margin.right
         PDFGraphics.drawLine(start: CGPoint(x: x, y: 0), end: CGPoint(x: x, y: document.layout.height), style: debugLineStyle)
         
-        var y = document.layout.margin.header
+        var y = document.layout.margin.top
         PDFGraphics.drawLine(start: CGPoint(x: 0, y: y), end: CGPoint(x: document.layout.width, y: y), style: debugLineStyle)
         
-        y = document.layout.height - document.layout.margin.footer
+        y = document.layout.height - document.layout.margin.bottom
         PDFGraphics.drawLine(start: CGPoint(x: 0, y: y), end: CGPoint(x: document.layout.width, y: y), style: debugLineStyle)
     }
 }

@@ -68,7 +68,7 @@ class PDFTableObject: PDFObject {
         let totalWidth = document.layout.size.width - document.layout.margin.left - document.layout.margin.right - generator.indentation.leftIn(container: container)
         
         var x: CGFloat = document.layout.margin.left + generator.indentation.leftIn(container: container)
-        var y: CGFloat = generator.heights.maxHeaderHeight() + document.layout.margin.header + generator.heights.content
+        var y: CGFloat = generator.heights.maxHeaderHeight() + document.layout.margin.top + generator.heights.content
         
         self.frame = CGRect(x: x, y: y, width: totalWidth, height: 0)
         

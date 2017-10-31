@@ -26,7 +26,7 @@ public struct PDFLayout: TPJSONSerializable {
      `left`: Left inset of page
      `right`: Right inset of page
      */
-    public var margin: (header: CGFloat, footer: CGFloat, left: CGFloat, right: CGFloat) = (0, 0, 0, 0)
+    public var margin: UIEdgeInsets = .zero
     
     /**
      Spaces between header, content and footer.
@@ -67,10 +67,10 @@ public struct PDFLayout: TPJSONSerializable {
                 - margin.left
                 - margin.right,
             height: size.height
-                - margin.header
+                - margin.top
                 - space.header
                 - space.footer
-                - margin.footer
+                - margin.bottom
         )
     }
 }

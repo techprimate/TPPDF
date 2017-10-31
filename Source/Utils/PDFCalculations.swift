@@ -77,7 +77,7 @@ class PDFCalculations {
             if container.isHeader {
                 return generator.document.layout.height - generator.heights.header[container]!
             } else if container.isFooter {
-                return generator.document.layout.margin.footer
+                return generator.document.layout.margin.bottom
             } else {
                 return generator.document.layout.height
                     - generator.heights.maxHeaderHeight()

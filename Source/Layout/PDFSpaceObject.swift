@@ -19,7 +19,7 @@ class PDFSpaceObject: PDFObject {
         
         let x: CGFloat = document.layout.margin.left
             + generator.indentation.leftIn(container: container)
-        let y: CGFloat = document.layout.margin.header
+        let y: CGFloat = document.layout.margin.bottom
             + generator.heights.maxHeaderHeight()
             + document.layout.space.header
             + generator.heights.content
