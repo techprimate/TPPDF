@@ -27,9 +27,9 @@ class PDFImageObject: PDFObject {
             switch container.normalize {
             case .headerLeft:
                 return generator.document.layout.margin.top
-                    + generator.heights.header[container]!
+                    + generator.layout.heights.header[container]!
             case .contentLeft:
-                if generator.heights.content + imageSize.height + captionSize.height > generator.document.layout.contentSize.height ||
+                if generator.layout.heights.content + imageSize.height + captionSize.height > generator.document.layout.contentSize.height ||
                     (image.sizeFit == .height && imageSize.height < image.size.height) {
                     
                     result += [(container, PDFPageBreakObject())]
@@ -42,14 +42,14 @@ class PDFImageObject: PDFObject {
                         sizeFit: image.sizeFit)
                 }
                 return generator.document.layout.margin.top
-                    + generator.heights.maxHeaderHeight()
+                    + generator.layout.heights.maxHeaderHeight()
                     + generator.document.layout.space.header
-                    + generator.heights.content
+                    + generator.layout.heights.content
             case .footerLeft:
                 return generator.document.layout.contentSize.height
                     + generator.document.layout.margin.top
-                    + generator.heights.maxHeaderHeight()
-                    + generator.heights.footer[container]!
+                    + generator.layout.heights.maxHeaderHeight()
+                    + generator.layout.heights.footer[container]!
             default:
                 return 0
             }
@@ -59,18 +59,18 @@ class PDFImageObject: PDFObject {
             switch container {
             case .headerLeft, .contentLeft, .footerLeft:
                 return generator.document.layout.margin.left
-                    + generator.indentation.leftIn(container: container)
+                    + generator.layout.indentation.leftIn(container: container)
             case .headerCenter, .contentCenter, .footerCenter:
                 return generator.document.layout.margin.left
                     + (generator.document.layout.contentSize.width
-                        - generator.indentation.leftIn(container: container)
-                        - generator.indentation.rightIn(container: container)
+                        - generator.layout.indentation.leftIn(container: container)
+                        - generator.layout.indentation.rightIn(container: container)
                         ) / 2
                     - imageSize.width / 2
             case .headerRight, .contentRight, .footerRight:
                 return generator.document.layout.width
                     - generator.document.layout.margin.right
-                    - generator.indentation.rightIn(container: container)
+                    - generator.layout.indentation.rightIn(container: container)
                     - imageSize.width
             default:
                 return 0
@@ -99,11 +99,11 @@ class PDFImageObject: PDFObject {
     
     func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         if container.isHeader {
-            generator.heights.header[container] = generator.heights.header[container]! + image.size.height
+            generator.layout.heights.header[container] = generator.layout.heights.header[container]! + image.size.height
         } else if container.isFooter {
-            generator.heights.footer[container] = generator.heights.footer[container]! + image.size.height
+            generator.layout.heights.footer[container] = generator.layout.heights.footer[container]! + image.size.height
         } else {
-            generator.heights.content += image.size.height
+            generator.layout.heights.content += image.size.height
         }
     }
 }

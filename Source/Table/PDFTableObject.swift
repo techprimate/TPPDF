@@ -65,10 +65,10 @@ class PDFTableObject: PDFObject {
         
         let document = generator.document
         
-        let totalWidth = document.layout.size.width - document.layout.margin.left - document.layout.margin.right - generator.indentation.leftIn(container: container)
+        let totalWidth = document.layout.size.width - document.layout.margin.left - document.layout.margin.right - generator.layout.indentation.leftIn(container: container)
         
-        var x: CGFloat = document.layout.margin.left + generator.indentation.leftIn(container: container)
-        var y: CGFloat = generator.heights.maxHeaderHeight() + document.layout.margin.top + generator.heights.content
+        var x: CGFloat = document.layout.margin.left + generator.layout.indentation.leftIn(container: container)
+        var y: CGFloat = generator.layout.heights.maxHeaderHeight() + document.layout.margin.top + generator.layout.heights.content
         
         self.frame = CGRect(x: x, y: y, width: totalWidth, height: 0)
         
@@ -218,7 +218,7 @@ class PDFTableObject: PDFObject {
             
             var difference = cellsPerPage.map { return $0.frame.height }.reduce(0, +)
             
-            if allHeight + rowHeight - difference > document.layout.contentSize.height + generator.heights.maxHeaderHeight() + document.layout.space.header {
+            if allHeight + rowHeight - difference > document.layout.contentSize.height + generator.layout.heights.maxHeaderHeight() + document.layout.space.header {
                 currentTablePage.rows = rowsOnThisPage
                 cellsPerPage.append(currentTablePage)
                 
@@ -273,7 +273,7 @@ class PDFTableObject: PDFObject {
     
     func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         if let lastPage = cellsPerPage.last {
-            generator.heights.content = (lastPage.frame.maxY - generator.heights.maxHeaderHeight() - generator.document.layout.space.header)
+            generator.layout.heights.content = (lastPage.frame.maxY - generator.layout.heights.maxHeaderHeight() - generator.document.layout.space.header)
         }
     }
     

@@ -18,17 +18,17 @@ class PDFSpaceObject: PDFObject {
         let document = generator.document
         
         let x = document.layout.margin.left
-            + generator.indentation.leftIn(container: container)
+            + generator.layout.indentation.leftIn(container: container)
         
         let y = document.layout.margin.bottom
-            + generator.heights.maxHeaderHeight()
+            + generator.layout.heights.maxHeaderHeight()
             + document.layout.space.header
-            + generator.heights.content
+            + generator.layout.heights.content
         
         let width = document.layout.size.width
             - document.layout.margin.left
-            - generator.indentation.leftIn(container: container)
-            - generator.indentation.rightIn(container: container)
+            - generator.layout.indentation.leftIn(container: container)
+            - generator.layout.indentation.rightIn(container: container)
             - document.layout.margin.right
         
         self.frame = CGRect(x: x, y: y, width: width, height: space)
@@ -46,11 +46,11 @@ class PDFSpaceObject: PDFObject {
     
     func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         if container.isHeader {
-            generator.heights.header[container] = generator.heights.header[container]! + space
+            generator.layout.heights.header[container] = generator.layout.heights.header[container]! + space
         } else if container.isFooter {
-            generator.heights.header[container] = generator.heights.footer[container]! + space
+            generator.layout.heights.header[container] = generator.layout.heights.footer[container]! + space
         } else {
-            generator.heights.content += space
+            generator.layout.heights.content += space
         }
     }
 }

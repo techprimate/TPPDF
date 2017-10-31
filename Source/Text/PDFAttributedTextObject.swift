@@ -37,14 +37,20 @@ class PDFAttributedTextObject : PDFObject {
         attributedString = try generateAttributedText(generator: generator, container: container)
         
         result.append((container, self))
-//
-//        let currentText = CFAttributedStringCreateCopy(nil, attributedText as CFAttributedString)
-//        var currentRange = CFRange(location: 0, length: 0)
+        
+        let currentText = CFAttributedStringCreateCopy(nil, attributedString as CFAttributedString)
+        var currentRange = CFRange(location: 0, length: 0)
+        
+        let textMaxWidth = generator.document.layout.contentSize.width
+            - generator.layout.indentation.leftIn(container: container)
+            - generator.layout.indentation.rightIn(container: container)
+
+        
 //        var done = false
 //
 //        let textMaxWidth = generator.document.layout.contentSize.width
-//            - generator.indentation.leftIn(container: container)
-//            - generator.indentation.rightIn(container: container)
+//            - generator.layout.indentation.leftIn(container: container)
+//            - generator.layout.indentation.rightIn(container: container)
 //
 //        repeat {
 //            let (calcFrame, frameRef, drawnSize) = PDFCalculations.calculateTextFrameAndDrawnSizeInOnePage(generator: generator,

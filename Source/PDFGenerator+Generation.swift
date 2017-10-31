@@ -108,7 +108,7 @@ extension PDFGenerator {
     func addHeaderFooterObjects() throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
         
-        heights.resetHeaderFooterHeight()
+        layout.heights.resetHeaderFooterHeight()
         
         let pagination = document.pagination
         

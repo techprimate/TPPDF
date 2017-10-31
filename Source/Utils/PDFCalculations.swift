@@ -16,11 +16,11 @@ class PDFCalculations {
         let layout = generator.document.layout
         
         let textMaxHeight = layout.height
-            - generator.heights.maxHeaderHeight()
+            - generator.layout.heights.maxHeaderHeight()
             - layout.space.header
-            - generator.heights.maxFooterHeight()
+            - generator.layout.heights.maxFooterHeight()
             - layout.space.footer
-            - generator.heights.content
+            - generator.layout.heights.content
         
         // The height is not enough
         if textMaxHeight <= 0 {
@@ -46,11 +46,11 @@ class PDFCalculations {
     
     static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
         let imageMaxHeight = generator.document.layout.height
-            - generator.heights.maxHeaderHeight()
+            - generator.layout.heights.maxHeaderHeight()
             - generator.document.layout.space.header
-            - generator.heights.maxFooterHeight()
+            - generator.layout.heights.maxFooterHeight()
             - generator.document.layout.space.footer
-            - generator.heights.content
+            - generator.layout.heights.content
         
         // The height is not enough
         if imageMaxHeight <= 0 {
@@ -71,20 +71,20 @@ class PDFCalculations {
         let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : (generator.document.layout.width
             - generator.document.layout.margin.left
             - generator.document.layout.margin.right
-            - generator.indentation.leftIn(container: container)
-            - generator.indentation.rightIn(container: container))
+            - generator.layout.indentation.leftIn(container: container)
+            - generator.layout.indentation.rightIn(container: container))
         let textMaxHeight: CGFloat = {
             if container.isHeader {
-                return generator.document.layout.height - generator.heights.header[container]!
+                return generator.document.layout.height - generator.layout.heights.header[container]!
             } else if container.isFooter {
                 return generator.document.layout.margin.bottom
             } else {
                 return generator.document.layout.height
-                    - generator.heights.maxHeaderHeight()
+                    - generator.layout.heights.maxHeaderHeight()
                     - generator.document.layout.space.header
-                    - generator.heights.maxFooterHeight()
+                    - generator.layout.heights.maxFooterHeight()
                     - generator.document.layout.space.footer
-                    - generator.heights.content
+                    - generator.layout.heights.content
             }
         }()
         
@@ -92,7 +92,7 @@ class PDFCalculations {
         let x: CGFloat = {
             switch container {
             case .headerLeft, .contentLeft, .footerLeft:
-                return generator.document.layout.margin.left + generator.indentation.leftIn(container: container)
+                return generator.document.layout.margin.left + generator.layout.indentation.leftIn(container: container)
             case .headerCenter, .contentCenter, .footerCenter:
                 return generator.document.layout.bounds.midX - textMaxWidth / 2
             case .headerRight, .contentRight, .footerRight:
@@ -106,9 +106,9 @@ class PDFCalculations {
             if container.isHeader {
                 return CGRect(x: x, y: 0, width: textMaxWidth, height: textMaxHeight)
             } else if container.isFooter {
-                return CGRect(x: x, y: generator.document.layout.height - generator.heights.footer[container]!, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: generator.document.layout.height - generator.layout.heights.footer[container]!, width: textMaxWidth, height: textMaxHeight)
             } else {
-                return CGRect(x: x, y: generator.heights.content + generator.heights.maxHeaderHeight() + generator.document.layout.space.header, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: generator.layout.heights.content + generator.layout.heights.maxHeaderHeight() + generator.document.layout.space.header, width: textMaxWidth, height: textMaxHeight)
             }
         }()
         
@@ -134,13 +134,16 @@ class PDFCalculations {
         return (frame, frameRef, drawnSize)
     }
     
-    static func calculateImageCaptionSize(generator: PDFGenerator, container: PDFContainer, image: PDFImage,
-                                   size: CGSize, sizeFit: ImageSizeFit) -> (CGSize, CGSize) {
+    static func calculateImageCaptionSize(generator: PDFGenerator,
+                                          container: PDFContainer,
+                                          image: PDFImage,
+                                          size: CGSize,
+                                          sizeFit: ImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         let size = (size == CGSize.zero) ? image.size : size
         
-        let maxWidth = min(size.width, generator.document.layout.contentSize.width - generator.indentation.leftIn(container: container))
-        let maxHeight = min(size.height, generator.document.layout.contentSize.height - generator.heights.content)
+        let maxWidth = min(size.width, generator.document.layout.contentSize.width - generator.layout.indentation.leftIn(container: container))
+        let maxHeight = min(size.height, generator.document.layout.contentSize.height - generator.layout.heights.content)
         
         let wFactor = image.size.width / maxWidth
         let hFactor = image.size.height / maxHeight

@@ -16,9 +16,7 @@ public class PDFGenerator {
     
     var document: PDFDocument
     var headerFooterObjects: [(PDFContainer, PDFObject)] = []
-    
-    var heights = PDFLayoutHeights()
-    var indentation = PDFLayoutIndentations()
+    var layout = PDFLayout()
     
     var currentPage: Int = 1
     var totalPages: Int = 0
@@ -42,8 +40,7 @@ public class PDFGenerator {
     // MARK: - INTERNAL FUNCS
     
     func resetGenerator() {
-        heights = PDFLayoutHeights()
-        indentation = PDFLayoutIndentations()
+        layout.reset()
         currentPage = 1
         textColor = .black
     }

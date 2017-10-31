@@ -13,4 +13,3 @@ public class PDFAttributedText: PDFText, TPJSONSerializable {
         self.text = text
     }
 }
-

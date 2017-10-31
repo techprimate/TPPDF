@@ -19,7 +19,7 @@ public class PDFDocument: TPJSONSerializable {
     /**
      Holds all layout information
      */
-    public var layout: PDFLayout
+    public var layout: PDFPageLayout
     
     /**
      Holds all document information
@@ -45,7 +45,7 @@ public class PDFDocument: TPJSONSerializable {
      
      - parameter layout: Layout information for document
      */
-    public init(layout: PDFLayout) {
+    public init(layout: PDFPageLayout) {
         self.layout = layout
     }
     
