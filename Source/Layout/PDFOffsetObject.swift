@@ -15,6 +15,6 @@ class PDFOffsetObject: PDFObject {
     }
     
     func calculate(generator: PDFGenerator, container: PDFContainer) throws {
-        generator.setContentOffset(container, value: offset)
+        generator.layout.setContentOffset(in: container, to: offset)
     }
 }

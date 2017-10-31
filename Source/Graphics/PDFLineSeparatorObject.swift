@@ -19,9 +19,11 @@ class PDFLineSeparatorObject: PDFObject {
         
         let x: CGFloat = document.layout.margin.left
             + generator.layout.indentation.leftIn(container: container)
+        
         let y: CGFloat = generator.layout.heights.maxHeaderHeight()
             + document.layout.margin.top
             + generator.layout.heights.content
+        
         let width = document.layout.size.width
             - document.layout.margin.left
             - document.layout.margin.right

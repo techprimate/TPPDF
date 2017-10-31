@@ -15,6 +15,26 @@ class PDFLayout: TPJSONSerializable {
     
     // MARK: - INTERNAL FUNCS
     
+    func getContentOffset(in container: PDFContainer) -> CGFloat {
+        if container.isHeader {
+            return heights.header[container]!
+        } else if container.isFooter {
+            return heights.footer[container]!
+        } else {
+            return heights.content
+        }
+    }
+    
+    func setContentOffset(in container: PDFContainer, to value: CGFloat) {
+        if container.isHeader {
+            heights.header[container] = value
+        } else if container.isFooter {
+            heights.footer[container] = value
+        } else {
+            heights.content = value
+        }
+    }
+    
     func reset() {
         heights = PDFLayoutHeights()
         indentation = PDFLayoutIndentations()

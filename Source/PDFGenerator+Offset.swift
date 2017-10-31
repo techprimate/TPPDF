@@ -4,30 +4,11 @@
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
-//
 
-extension PDFGenerator {
+public extension PDFGenerator {
     
-    func setContentOffset(_ container: PDFContainer = PDFContainer.contentLeft, value: CGFloat) {
-        if container.isHeader {
-            layout.heights.header[container] = value
-        } else if container.isFooter {
-            layout.heights.footer[container] = value
-        } else {
-            layout.heights.content = value
-        }
-    }
-    
-    func getContentOffset(_ container: PDFContainer) -> CGFloat {
-        switch container.normalize {
-        case .headerLeft:
-            return layout.heights.header[container]!
-        case .contentLeft:
-            return layout.heights.content
-        case .footerLeft:
-            return layout.heights.footer[container]!
-        default:
-            return 0
-        }
+    @available(*, unavailable, "This method is broken and does not work correclty for now.")
+    public func getContentOffset(_ container: PDFContainer) -> CGFloat {
+        return layout.getContentOffset(in: container)
     }
 }
