@@ -16,9 +16,9 @@ class PDFCalculations {
         let layout = generator.document.layout
         
         let textMaxHeight = layout.height
-            - generator.maxHeaderHeight()
+            - generator.heights.maxHeaderHeight()
             - layout.space.header
-            - generator.maxFooterHeight()
+            - generator.heights.maxFooterHeight()
             - layout.space.footer
             - generator.heights.content
         
@@ -46,9 +46,9 @@ class PDFCalculations {
     
     static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
         let imageMaxHeight = generator.document.layout.height
-            - generator.maxHeaderHeight()
+            - generator.heights.maxHeaderHeight()
             - generator.document.layout.space.header
-            - generator.maxFooterHeight()
+            - generator.heights.maxFooterHeight()
             - generator.document.layout.space.footer
             - generator.heights.content
         
@@ -63,10 +63,11 @@ class PDFCalculations {
         return CGRect(x: origin.x, y: origin.y, width: width, height: height)
     }
     
-    static func calculateTextFrameAndDrawnSizeInOnePage(generator: PDFGenerator, container: PDFContainer,
-                                                 text: CFAttributedString,
-                                                 currentRange: CFRange,
-                                                 textMaxWidth: CGFloat) -> (CGRect, CTFrame, CGSize) {
+    static func calculateTextFrameAndDrawnSizeInOnePage(generator: PDFGenerator,
+                                                        container: PDFContainer,
+                                                        text: CFAttributedString,
+                                                        currentRange: CFRange,
+                                                        textMaxWidth: CGFloat) -> (CGRect, CTFrame, CGSize) {
         let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : (generator.document.layout.width
             - generator.document.layout.margin.left
             - generator.document.layout.margin.right
@@ -79,9 +80,9 @@ class PDFCalculations {
                 return generator.document.layout.margin.footer
             } else {
                 return generator.document.layout.height
-                    - generator.maxHeaderHeight()
+                    - generator.heights.maxHeaderHeight()
                     - generator.document.layout.space.header
-                    - generator.maxFooterHeight()
+                    - generator.heights.maxFooterHeight()
                     - generator.document.layout.space.footer
                     - generator.heights.content
             }
@@ -107,7 +108,7 @@ class PDFCalculations {
             } else if container.isFooter {
                 return CGRect(x: x, y: generator.document.layout.height - generator.heights.footer[container]!, width: textMaxWidth, height: textMaxHeight)
             } else {
-                return CGRect(x: x, y: generator.heights.content + generator.maxHeaderHeight() + generator.document.layout.space.header, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x, y: generator.heights.content + generator.heights.maxHeaderHeight() + generator.document.layout.space.header, width: textMaxWidth, height: textMaxHeight)
             }
         }()
         

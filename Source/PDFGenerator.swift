@@ -25,19 +25,6 @@ public class PDFGenerator {
     
     var textColor: UIColor = UIColor.black
     
-    // MARK: - INTERNAL COMPUTED VARS
-    
-    var leftOverContentSize: CGSize {
-        return CGSize(
-            width: document.layout.contentSize.width
-                - indentation.content.left
-                - indentation.content.right,
-            height: document.layout.contentSize.height
-                - maxHeaderHeight()
-                - maxFooterHeight()
-        )
-    }
-    
     lazy var fonts: [PDFContainer: UIFont] = {
         var defaults = [PDFContainer: UIFont]()
         for container in PDFContainer.all + [PDFContainer.none] {
@@ -50,8 +37,6 @@ public class PDFGenerator {
     
     init(document: PDFDocument) {
         self.document = document
-        
-        resetHeaderFooterHeight()
     }
     
     // MARK: - INTERNAL FUNCS

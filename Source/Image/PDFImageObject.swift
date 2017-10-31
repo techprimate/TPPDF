@@ -27,7 +27,8 @@ class PDFImageObject: PDFObject {
         let y: CGFloat = try {
             switch container.normalize {
             case .headerLeft:
-                return generator.heights.header[container]!
+                return generator.document.layout.margin.header
+                    + generator.heights.header[container]!
             case .contentLeft:
                 if generator.heights.content + imageSize.height + captionSize.height > generator.document.layout.contentSize.height ||
                     (image.sizeFit == .height && imageSize.height < image.size.height) {
@@ -41,9 +42,15 @@ class PDFImageObject: PDFObject {
                                                                                    size: image.size,
                                                                                    sizeFit: image.sizeFit)
                 }
-                return generator.maxHeaderHeight() + generator.document.layout.space.header + generator.heights.content
+                return generator.document.layout.margin.header
+                    + generator.heights.maxHeaderHeight()
+                    + generator.document.layout.space.header
+                    + generator.heights.content
             case .footerLeft:
-                return generator.document.layout.contentSize.height + generator.maxHeaderHeight() + generator.heights.header[container]!
+                return generator.document.layout.contentSize.height
+                    + generator.document.layout.margin.header
+                    + generator.heights.maxHeaderHeight()
+                    + generator.heights.footer[container]!
             default:
                 return 0
             }
@@ -52,11 +59,20 @@ class PDFImageObject: PDFObject {
         let x: CGFloat = {
             switch container {
             case .headerLeft, .contentLeft, .footerLeft:
-                return generator.document.layout.margin.left + generator.indentation.leftIn(container: container)
+                return generator.document.layout.margin.left
+                    + generator.indentation.leftIn(container: container)
             case .headerCenter, .contentCenter, .footerCenter:
-                return generator.document.layout.bounds.midX - imageSize.width / 2
+                return generator.document.layout.margin.left
+                    + (generator.document.layout.contentSize.width
+                        - generator.indentation.leftIn(container: container)
+                        - generator.indentation.rightIn(container: container)
+                        ) / 2
+                    - imageSize.width / 2
             case .headerRight, .contentRight, .footerRight:
-                return generator.document.layout.bounds.width - generator.document.layout.margin.left - imageSize.width
+                return generator.document.layout.width
+                    - generator.document.layout.margin.right
+                    - generator.indentation.rightIn(container: container)
+                    - imageSize.width
             default:
                 return 0
             }
