@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           TPPDF Docs
         </a>
-         (15% documented)
+         (16% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -60,6 +60,9 @@
             <a class="nav-group-name-link" href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFAttributedText.html">PDFAttributedText</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/PDFDocument.html">PDFDocument</a>
               </li>
               <li class="nav-group-task">
@@ -84,6 +87,9 @@
                 <a class="nav-group-task-link" href="../Classes.html#/s:5TPPDF9PDFObjectC">PDFObject</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFSimpleText.html">PDFSimpleText</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/PDFTable.html">PDFTable</a>
               </li>
               <li class="nav-group-task">
@@ -94,6 +100,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/PDFTableStyle.html">PDFTableStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:5TPPDF7PDFTextC">PDFText</a>
               </li>
             </ul>
           </li>
@@ -209,7 +218,10 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>The main class users interact with.
+This object holds the information about the document and also all PDF objects.</p>
+
+<p>It is possible to create a JSON representation using the <code><a href="../Protocols/TPJSONSerializable.html">TPJSONSerializable</a></code> protocol.</p>
 
           </div>
         </section>
@@ -591,6 +603,33 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:5TPPDF11PDFDocumentC7addTextyAA12PDFContainerO_AA09PDFSimpleD0C10textObjecttF"></a>
+                    <a name="//apple_ref/swift/Method/addText(_:textObject:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC7addTextyAA12PDFContainerO_AA09PDFSimpleD0C10textObjecttF">addText(_:textObject:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">textObject</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFSimpleText.html">PDFSimpleText</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:5TPPDF11PDFDocumentC17addAttributedTextyAA12PDFContainerO_So18NSAttributedStringC4texttF"></a>
                     <a name="//apple_ref/swift/Method/addAttributedText(_:text:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:5TPPDF11PDFDocumentC17addAttributedTextyAA12PDFContainerO_So18NSAttributedStringC4texttF">addAttributedText(_:text:)</a>
@@ -609,6 +648,33 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addAttributedText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC17addAttributedTextyAA12PDFContainerO_AA013PDFAttributedE0C10textObjecttF"></a>
+                    <a name="//apple_ref/swift/Method/addAttributedText(_:textObject:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC17addAttributedTextyAA12PDFContainerO_AA013PDFAttributedE0C10textObjecttF">addAttributedText(_:textObject:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addAttributedText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">textObject</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFAttributedText.html">PDFAttributedText</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -747,7 +813,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Adds a table object to the document in the defined container</p>
 
                       </div>
                       <div class="declaration">
@@ -785,7 +851,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Adds a list object to the document in the defined container</p>
 
                       </div>
                       <div class="declaration">
@@ -799,6 +865,17 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Layout2"></a>
+                <a name="//apple_ref/swift/Section/Layout" class="dashAnchor"></a>
+                <a href="#/Layout2">
+                  <h3 class="section-name">Layout</h3>
+                </a>
+              </div>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -812,7 +889,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Change the indentation in a container, use the parameter <code>left</code> to define from which side.</p>
 
                       </div>
                       <div class="declaration">
@@ -822,6 +899,49 @@
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setIndentation</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">indent</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container whose indentation should be changed, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Points from the side</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>left</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If <code>true</code> then the left side indentation is set, else the right indentation is set</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -839,7 +959,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Change the absolute top offset in a container</p>
 
                       </div>
                       <div class="declaration">
@@ -849,6 +969,37 @@
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setAbsoluteOffset</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container whose current absoilute offset should be changed, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>offset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Points from the top</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -866,7 +1017,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a new page</p>
 
                       </div>
                       <div class="declaration">
@@ -888,7 +1039,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2017-10-30)</p>
+      <p>&copy; 2017 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2017-10-31)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

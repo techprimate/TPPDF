@@ -22,7 +22,7 @@
         <a class="header-link" href="index.html">
           TPPDF Docs
         </a>
-         (15% documented)
+         (16% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -59,6 +59,9 @@
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/PDFAttributedText.html">PDFAttributedText</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/PDFDocument.html">PDFDocument</a>
               </li>
               <li class="nav-group-task">
@@ -83,6 +86,9 @@
                 <a class="nav-group-task-link" href="Classes.html#/s:5TPPDF9PDFObjectC">PDFObject</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/PDFSimpleText.html">PDFSimpleText</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/PDFTable.html">PDFTable</a>
               </li>
               <li class="nav-group-task">
@@ -93,6 +99,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/PDFTableStyle.html">PDFTableStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes.html#/s:5TPPDF7PDFTextC">PDFText</a>
               </li>
             </ul>
           </li>
@@ -224,7 +233,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The main class users interact with.
+This object holds the information about the document and also all PDF objects.</p>
+
+<p>It is possible to create a JSON representation using the <code><a href="Protocols/TPJSONSerializable.html">TPJSONSerializable</a></code> protocol.</p>
 
                         <a href="Classes/PDFDocument.html" class="slightly-smaller">See more</a>
                       </div>
@@ -310,6 +322,38 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:5TPPDF13PDFSimpleTextC"></a>
+                    <a name="//apple_ref/swift/Class/PDFSimpleText" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFSimpleTextC">PDFSimpleText</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/PDFSimpleText.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFSimpleText</span><span class="p">:</span> <span class="kt"><a href="Classes.html#/s:5TPPDF7PDFTextC">PDFText</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/TPJSONSerializable.html">TPJSONSerializable</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:5TPPDF7PDFInfoC"></a>
                     <a name="//apple_ref/swift/Class/PDFInfo" class="dashAnchor"></a>
                     <a class="token" href="#/s:5TPPDF7PDFInfoC">PDFInfo</a>
@@ -329,6 +373,69 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFInfo</span><span class="p">:</span> <span class="kt"><a href="Protocols/TPJSONSerializable.html">TPJSONSerializable</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF7PDFTextC"></a>
+                    <a name="//apple_ref/swift/Class/PDFText" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF7PDFTextC">PDFText</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFText</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF17PDFAttributedTextC"></a>
+                    <a name="//apple_ref/swift/Class/PDFAttributedText" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF17PDFAttributedTextC">PDFAttributedText</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/PDFAttributedText.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFAttributedText</span><span class="p">:</span> <span class="kt"><a href="Classes.html#/s:5TPPDF7PDFTextC">PDFText</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/TPJSONSerializable.html">TPJSONSerializable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -566,7 +673,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2017-10-30)</p>
+      <p>&copy; 2017 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2017-10-31)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PDFImage Class Reference</title>
+    <title>PDFAttributedText Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Class/PDFImage" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Class/PDFAttributedText" class="dashAnchor"></a>
 
-    <a title="PDFImage Class Reference"></a>
+    <a title="PDFAttributedText Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -50,7 +50,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">TPPDF Reference</a>
       <img class="carat" src="../img/carat.png" />
-      PDFImage Class Reference
+      PDFAttributedText Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -211,10 +211,10 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>PDFImage</h1>
+            <h1>PDFAttributedText</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFImage</span><span class="p">:</span> <span class="kt"><a href="../Protocols/TPJSONSerializable.html">TPJSONSerializable</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFAttributedText</span><span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:5TPPDF7PDFTextC">PDFText</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/TPJSONSerializable.html">TPJSONSerializable</a></span></code></pre>
 
                 </div>
               </div>
@@ -230,9 +230,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF8PDFImageC5imageSo7UIImageCv"></a>
-                    <a name="//apple_ref/swift/Property/image" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageC5imageSo7UIImageCv">image</a>
+                    <a name="/s:5TPPDF17PDFAttributedTextC4textSo18NSAttributedStringCv"></a>
+                    <a name="//apple_ref/swift/Property/text" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF17PDFAttributedTextC4textSo18NSAttributedStringCv">text</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -247,7 +247,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">NSAttributedString</span></code></pre>
 
                         </div>
                       </div>
@@ -257,9 +257,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF8PDFImageC7captionAA7PDFTextCSgv"></a>
-                    <a name="//apple_ref/swift/Property/caption" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageC7captionAA7PDFTextCSgv">caption</a>
+                    <a name="/s:5TPPDF17PDFAttributedTextCACSo18NSAttributedStringC4text_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(text:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF17PDFAttributedTextCACSo18NSAttributedStringC4text_tcfc">init(text:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -274,119 +274,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">caption</span><span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:5TPPDF7PDFTextC">PDFText</a></span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF8PDFImageC4sizeSC6CGSizeVv"></a>
-                    <a name="//apple_ref/swift/Property/size" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageC4sizeSC6CGSizeVv">size</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF8PDFImageC7sizeFitAA09ImageSizeD0Ov"></a>
-                    <a name="//apple_ref/swift/Property/sizeFit" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageC7sizeFitAA09ImageSizeD0Ov">sizeFit</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeFit</span><span class="p">:</span> <span class="kt"><a href="../Enums/ImageSizeFit.html">ImageSizeFit</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF8PDFImageC7quality12CoreGraphics7CGFloatVv"></a>
-                    <a name="//apple_ref/swift/Property/quality" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageC7quality12CoreGraphics7CGFloatVv">quality</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">quality</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF8PDFImageCACSo7UIImageC5image_AA7PDFTextCSg7captionSC6CGSizeV4sizeAA12ImageSizeFitO0hK012CoreGraphics7CGFloatV7qualitytcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(image:caption:size:sizeFit:quality:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageCACSo7UIImageC5image_AA7PDFTextCSg7captionSC6CGSizeV4sizeAA12ImageSizeFitO0hK012CoreGraphics7CGFloatV7qualitytcfc">init(image:caption:size:sizeFit:quality:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">,</span>
-            <span class="nv">caption</span><span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:5TPPDF7PDFTextC">PDFText</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-            <span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">,</span>
-            <span class="nv">sizeFit</span><span class="p">:</span> <span class="kt"><a href="../Enums/ImageSizeFit.html">ImageSizeFit</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">widthHeight</span><span class="p">,</span>
-            <span class="nv">quality</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.85</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
