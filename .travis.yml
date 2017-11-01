@@ -21,6 +21,7 @@ script:
   - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME"  -destination "$DESTINATION" -configuration Debug    ONLY_ACTIVE_ARCH=NO        | xcpretty
   - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME"  -destination "$DESTINATION" -configuration Release  ONLY_ACTIVE_ARCH=NO        | xcpretty
   - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -destination "$DESTINATION" -configuration Debug    ONLY_ACTIVE_ARCH=NO build  | xcpretty
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -destination "$DESTINATION" -configuration Debug    ONLY_ACTIVE_ARCH=NO test   | xcpretty
   - pod lib lint
  
 after_success:
