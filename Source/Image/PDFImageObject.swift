@@ -33,6 +33,7 @@ class PDFImageObject: PDFObject {
                     (image.sizeFit == .height && imageSize.height < image.size.height) {
                     
                     result += [(container, PDFPageBreakObject())]
+                    generator.layout.reset()
                     
                     (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(
                         generator: generator,

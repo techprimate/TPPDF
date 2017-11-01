@@ -4,7 +4,6 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
-//
 
 class PDFAttributedTextObject : PDFObject {
     
@@ -36,70 +35,31 @@ class PDFAttributedTextObject : PDFObject {
         
         attributedString = try generateAttributedText(generator: generator, container: container)
         
+        let (frame, renderString, leftOverString) = PDFCalculations.calculateText(generator: generator,
+                                                                                  container: container,
+                                                                                  text: attributedString)
+        
+        attributedString = renderString
+        self.frame = frame
+        
         result.append((container, self))
         
-        let currentText = CFAttributedStringCreateCopy(nil, attributedString as CFAttributedString)
-        var currentRange = CFRange(location: 0, length: 0)
+        if container.isHeader {
+            generator.layout.heights.header[container] = generator.layout.heights.header[container]! + frame.height
+        } else if container.isFooter {
+            generator.layout.heights.footer[container] = generator.layout.heights.footer[container]! + frame.height
+        } else {
+            generator.layout.heights.content += frame.height
+        }
         
-        let textMaxWidth = generator.document.layout.contentSize.width
-            - generator.layout.indentation.leftIn(container: container)
-            - generator.layout.indentation.rightIn(container: container)
-
-        
-//        var done = false
-//
-//        let textMaxWidth = generator.document.layout.contentSize.width
-//            - generator.layout.indentation.leftIn(container: container)
-//            - generator.layout.indentation.rightIn(container: container)
-//
-//        repeat {
-//            let (calcFrame, frameRef, drawnSize) = PDFCalculations.calculateTextFrameAndDrawnSizeInOnePage(generator: generator,
-//                                                                                                           container: container,
-//                                                                                                           text: currentText!,
-//                                                                                                           currentRange: currentRange,
-//                                                                                                           textMaxWidth: textMaxWidth)
-//
-//            // Get the graphics context.
-//            let currentContext = UIGraphicsGetCurrentContext()!
-//
-//            // Push state
-//            currentContext.saveGState()
-//
-//            // Put the text matrix into a known state. This ensures
-//            // that no old scaling factors are left in place.
-//            currentContext.textMatrix = CGAffineTransform.identity
-//
-//            // Core Text draws from the bottom-left corner up, so flip
-//            // the current transform prior to drawing.
-//            currentContext.translateBy(x: 0, y: generator.document.layout.height)
-//            currentContext.scaleBy(x: 1.0, y: -1.0)
-//
-//            // Pop state
-//            currentContext.restoreGState()
-//
-//            // Update the current range based on what was drawn.
-//            let visibleRange = CTFrameGetVisibleStringRange(frameRef)
-//            currentRange = CFRange(location: visibleRange.location + visibleRange.length, length: 0)
-//
-//            let substring = (currentText as! NSAttributedString).attributedSubstring(
-//                from: NSRange(location: visibleRange.location, length: visibleRange.length))
-//            let subObject = SubTextObject(text: substring, frame: calcFrame) // TODO: Insert correct attributed substring
-//            subTextObjects.append(subObject)
-//            self.frame = calcFrame
-//
-//            if container.isHeader {
-//                generator.heights.header[container] = generator.heights.header[container]! + drawnSize.height
-//            } else if container.isFooter {
-//                generator.heights.footer[container] = generator.heights.footer[container]! + drawnSize.height
-//            } else {
-//                generator.heights.content += drawnSize.height
-//            }
-//            if currentRange.location == CFAttributedStringGetLength(currentText) {
-//                done = true
-//            } else {
-////                try generator.generateNewPage(calculatingMetrics: true)
-//            }
-//        } while !done
+        if let left = leftOverString {
+            result += [(container, PDFPageBreakObject())]
+            generator.layout.reset()
+            
+            let subText = PDFAttributedText(text: left)
+            let textObject = PDFAttributedTextObject(attributedText: subText)
+            result += try textObject.calculate(generator: generator, container: container)
+        }
         
         return result
     }

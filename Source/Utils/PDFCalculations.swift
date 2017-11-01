@@ -4,15 +4,142 @@
 //
 //  Created by Philip Niedertscheider on 24/08/2017.
 //
-//
 
 class PDFCalculations {
     
-    static func calculateTextFrame(generator: PDFGenerator, container: PDFContainer, text: NSAttributedString) -> CGRect {
-        return CGRect.zero
+    static func calculateText(generator: PDFGenerator,
+                              container: PDFContainer,
+                              text: NSAttributedString) -> (frame: CGRect, renderString: NSAttributedString, remainder: NSAttributedString?) {
+        let availableSize = calculateAvailableFrame(for: generator, in: container)
+        let (fittingText, textSize, remainder) = calculateTextFrameAndRemainder(of: text, in: availableSize)
+        let origin = calculatePositionOfText(for: generator, in: container)
+        
+        return (
+            CGRect(origin: origin, size: textSize),
+            fittingText,
+            remainder
+        )
     }
     
-    static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, text: NSAttributedString, alignment: PDFTableCellAlignment) -> CGRect {
+    // MARK: - PRIVATE STATIC FUNCS
+    
+    private static func calculateAvailableFrame(for generator: PDFGenerator, in container: PDFContainer) -> CGSize {
+        return CGSize(
+            width: calculateAvailableFrameWidth(for: generator, in: container),
+            height: calculateAvailableFrameHeight(for: generator, in: container)
+        )
+    }
+    
+    private static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
+        let layout = generator.layout
+        let pageLayout = generator.document.layout
+        
+        return pageLayout.contentSize.width
+            - generator.layout.indentation.leftIn(container: container)
+            - generator.layout.indentation.rightIn(container: container)
+    }
+    
+    private static func calculateAvailableFrameHeight(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
+        let layout = generator.layout
+        let pageLayout = generator.document.layout
+        
+        if container.isHeader || container.isFooter {
+            return pageLayout.height
+        } else {
+            return pageLayout.contentSize.height
+                - layout.heights.maxHeaderHeight()
+                - pageLayout.space.header
+                - layout.heights.content
+                - pageLayout.space.footer
+                - layout.heights.maxFooterHeight()
+        }
+    }
+    
+    private static func calculateTextFrameAndRemainder(of text: NSAttributedString, in bounds: CGSize) -> (text: NSAttributedString, size: CGSize, remainder: NSAttributedString?) {
+        let framesetter = CTFramesetterCreateWithAttributedString(text)
+        let framePath = UIBezierPath(rect: CGRect(origin: .zero, size: bounds)).cgPath
+        
+        let textRange = CFRange(location: 0, length: text.length)
+        
+        // Get the frame that will do the rendering
+        let frameRef = CTFramesetterCreateFrame(framesetter, textRange, framePath, nil)
+        
+        // Calculate the range of the string which actually fits in the frame
+        let visibleRange = CTFrameGetVisibleStringRange(frameRef)
+        
+        // Calculate the actual size the string needs
+        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, bounds, nil)
+        
+        let castedRange = NSMakeRange(0, visibleRange.length)
+        let result = text.attributedSubstring(from: castedRange)
+        var remainder: NSAttributedString?
+        
+        if visibleRange.length != textRange.length {
+            let remainderRange = NSMakeRange(visibleRange.length, textRange.length - visibleRange.length)
+            remainder = text.attributedSubstring(from: remainderRange)
+        }
+        
+        return (result, drawnSize, remainder)
+    }
+    
+    private static func calculatePositionOfText(for generator: PDFGenerator, in container: PDFContainer) -> CGPoint {
+        return CGPoint(
+            x: calculatePositionX(for: generator, in: container),
+            y: calculatePositionY(for: generator, in: container)
+        )
+    }
+    
+    private static func calculatePositionX(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
+        let layout = generator.layout
+        let pageLayout = generator.document.layout
+        
+        if container.isLeft {
+            return pageLayout.width
+                + pageLayout.margin.left
+                + layout.indentation.leftIn(container: container)
+        } else if container.isRight {
+            return pageLayout.contentSize.width
+                - pageLayout.margin.right
+        } else {
+            return pageLayout.margin.left
+                + layout.indentation.leftIn(container: container)
+                + (pageLayout.contentSize.width - layout.indentation.leftIn(container: container) - layout.indentation.rightIn(container: container)) / 2
+        }
+    }
+    
+    private static func calculatePositionY(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
+        return 0
+    }
+    
+    
+    
+//
+//    static func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect, text: CFAttributedString, currentRange: CFRange) -> (CGRect, CTFrame, CGSize) {
+//        let framesetter = CTFramesetterCreateWithAttributedString(text)
+//        let framePath = UIBezierPath(rect: frame).cgPath
+//
+//        // Get the frame that will do the rendering.
+//        // The currentRange variable specifies only the starting point. The framesetter
+//        // lays out as much text as will fit into the frame.
+//        let frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, nil)
+//
+//        // Update the current range based on what was drawn.
+//        let visibleRange = CTFrameGetVisibleStringRange(frameRef)
+//
+//        // Update last drawn frame
+//        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, frame.size, nil)
+//
+//        return (frame, frameRef, drawnSize)
+//    }
+    
+    
+    // MARK: - LEGACY
+    
+    static func calculateCellFrame(generator: PDFGenerator,
+                                   origin: CGPoint,
+                                   width: CGFloat,
+                                   text: NSAttributedString,
+                                   alignment: PDFTableCellAlignment) -> CGRect {
         let layout = generator.document.layout
         
         let textMaxHeight = layout.height
@@ -73,9 +200,11 @@ class PDFCalculations {
             - generator.document.layout.margin.right
             - generator.layout.indentation.leftIn(container: container)
             - generator.layout.indentation.rightIn(container: container))
+        
         let textMaxHeight: CGFloat = {
             if container.isHeader {
-                return generator.document.layout.height - generator.layout.heights.header[container]!
+                return generator.document.layout.height
+                    - generator.layout.heights.header[container]!
             } else if container.isFooter {
                 return generator.document.layout.margin.bottom
             } else {
@@ -92,11 +221,15 @@ class PDFCalculations {
         let x: CGFloat = {
             switch container {
             case .headerLeft, .contentLeft, .footerLeft:
-                return generator.document.layout.margin.left + generator.layout.indentation.leftIn(container: container)
+                return generator.document.layout.margin.left
+                    + generator.layout.indentation.leftIn(container: container)
             case .headerCenter, .contentCenter, .footerCenter:
-                return generator.document.layout.bounds.midX - textMaxWidth / 2
+                return generator.document.layout.bounds.midX
+                    - textMaxWidth / 2
             case .headerRight, .contentRight, .footerRight:
-                return generator.document.layout.width - generator.document.layout.margin.right - textMaxWidth
+                return generator.document.layout.width
+                    - generator.document.layout.margin.right
+                    - textMaxWidth
             default:
                 return 0
             }
@@ -104,11 +237,23 @@ class PDFCalculations {
         
         let frame: CGRect = {
             if container.isHeader {
-                return CGRect(x: x, y: 0, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x,
+                              y: 0,
+                              width: textMaxWidth,
+                              height: textMaxHeight)
             } else if container.isFooter {
-                return CGRect(x: x, y: generator.document.layout.height - generator.layout.heights.footer[container]!, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x,
+                              y: generator.document.layout.height
+                                - generator.layout.heights.footer[container]!,
+                              width: textMaxWidth,
+                              height: textMaxHeight)
             } else {
-                return CGRect(x: x, y: generator.layout.heights.content + generator.layout.heights.maxHeaderHeight() + generator.document.layout.space.header, width: textMaxWidth, height: textMaxHeight)
+                return CGRect(x: x,
+                              y: generator.layout.heights.content
+                                + generator.layout.heights.maxHeaderHeight()
+                                + generator.document.layout.space.header,
+                              width: textMaxWidth,
+                              height: textMaxHeight)
             }
         }()
         
@@ -128,8 +273,7 @@ class PDFCalculations {
         let visibleRange = CTFrameGetVisibleStringRange(frameRef)
         
         // Update last drawn frame
-        let constraintSize = frame.size
-        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, constraintSize, nil)
+        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, frame.size, nil)
         
         return (frame, frameRef, drawnSize)
     }

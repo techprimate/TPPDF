@@ -50,6 +50,24 @@ public enum PDFContainer: TPJSONSerializable {
         }
     }
     
+    var isLeft: Bool {
+        switch self {
+        case .headerLeft, .contentLeft, .footerLeft:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    var isRight: Bool {
+        switch self {
+        case .headerRight, .contentRight, .footerRight:
+            return true
+        default:
+            return false
+        }
+    }
+    
     var normalize: PDFContainer {
         switch self {
         case .headerLeft, .headerCenter, .headerRight:
