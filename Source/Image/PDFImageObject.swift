@@ -23,7 +23,7 @@ class PDFImageObject: PDFObject {
                                                                            size: image.size,
                                                                            sizeFit: image.sizeFit)
         
-        let y: CGFloat = try {
+        let y: CGFloat = {
             switch container.normalize {
             case .headerLeft:
                 return generator.document.layout.margin.top

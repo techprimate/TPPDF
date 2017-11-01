@@ -31,7 +31,6 @@ class PDFCalculations {
     }
     
     private static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
-        let layout = generator.layout
         let pageLayout = generator.document.layout
         
         return pageLayout.contentSize.width
@@ -133,28 +132,6 @@ class PDFCalculations {
                 + layout.heights.content
         }
     }
-    
-    
-    
-//
-//    static func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect, text: CFAttributedString, currentRange: CFRange) -> (CGRect, CTFrame, CGSize) {
-//        let framesetter = CTFramesetterCreateWithAttributedString(text)
-//        let framePath = UIBezierPath(rect: frame).cgPath
-//
-//        // Get the frame that will do the rendering.
-//        // The currentRange variable specifies only the starting point. The framesetter
-//        // lays out as much text as will fit into the frame.
-//        let frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, nil)
-//
-//        // Update the current range based on what was drawn.
-//        let visibleRange = CTFrameGetVisibleStringRange(frameRef)
-//
-//        // Update last drawn frame
-//        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, frame.size, nil)
-//
-//        return (frame, frameRef, drawnSize)
-//    }
-    
     
     // MARK: - LEGACY
     
@@ -327,8 +304,8 @@ class PDFCalculations {
         
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
         
-        var (_, captionSize) = (NSAttributedString(), CGSize.zero)
-        if let caption = image.caption {
+        let (_, captionSize) = (NSAttributedString(), CGSize.zero)
+        if let _ = image.caption {
 //            if !caption.isEmpty {
 //                let currentText = CFAttributedStringCreateCopy(nil, caption as CFAttributedString)
 //                let currentRange = CFRange(location: 0, length: 0)

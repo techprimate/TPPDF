@@ -42,13 +42,11 @@ public class PDFListItem: TPJSONSerializable {
             representation["content"] = content as AnyObject
         }
         if let children = children {
-            if let result = children.map({ child -> AnyObject in
+            let result = children.map({ child -> AnyObject in
                 return child.JSONRepresentation
-            }) as? AnyObject {
-                representation["children"] = result
-            } else {
-                print("Could not convert array mapping to AnyObject")
-            }
+            }) as AnyObject
+
+            representation["children"] = result
         }
         return representation as AnyObject
     }

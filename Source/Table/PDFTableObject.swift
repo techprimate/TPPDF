@@ -320,7 +320,7 @@ class PDFTableObject: PDFObject {
                                                size: CGSize(width: cell.contentFrame.width,
                                                             height: cell.contentFrame.height + 20)))
             } else if let image = content.imageValue {
-                let compressedImage = PDFGraphics.resizeAndCompressImage(image: image, frame: cell.contentFrame, quality: 0.85) ?? image
+                let compressedImage = PDFGraphics.resizeAndCompressImage(image: image, frame: cell.contentFrame, quality: 0.85)
                 compressedImage.draw(in: cell.contentFrame)
             }
         }

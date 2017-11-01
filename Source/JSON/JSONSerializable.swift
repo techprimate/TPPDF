@@ -110,7 +110,7 @@ extension UIFont: TPJSONSerializable { }
 extension UIImage: TPJSONSerializable {
     
     public var JSONRepresentation: AnyObject {
-        return (UIImageJPEGRepresentation(self, 1.0)?.base64EncodedString() as? NSString) ?? NSNull()
+        return UIImageJPEGRepresentation(self, 1.0)?.base64EncodedString() as AnyObject? ?? NSNull()
     }
 }
 
