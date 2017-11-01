@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56220A052B0504BDDA5BB415 /* Pods_TPPDF_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F6FA9EF52B4AA99A5B51DE /* Pods_TPPDF_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* PDFListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* PDFListTests.swift */; };
-		775D4DA6721B1FFE31B9CE76 /* Pods_TPPDF_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DA00DDB7DB8E91282BF890 /* Pods_TPPDF_Example.framework */; };
+		A549573C658C70B3911B7712 /* Pods_TPPDF_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB1F372E18E7F48400D4AA1 /* Pods_TPPDF_Tests.framework */; };
 		D4F8C11F1EF14C5000188F42 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C1181EF14C5000188F42 /* Icon.png */; };
 		D4F8C1201EF14C5000188F42 /* Image-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C1191EF14C5000188F42 /* Image-1.jpg */; };
 		D4F8C1211EF14C5000188F42 /* Image-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C11A1EF14C5000188F42 /* Image-2.jpg */; };
@@ -23,6 +22,7 @@
 		D4F8C1241EF14C5000188F42 /* Image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C11D1EF14C5000188F42 /* Image.jpg */; };
 		D4F8C1251EF14C5000188F42 /* PortraitImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C11E1EF14C5000188F42 /* PortraitImage.jpg */; };
 		D4F8C12D1EF153F600188F42 /* PDFGeneratorTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C12C1EF153F600188F42 /* PDFGeneratorTableTests.swift */; };
+		E88C1927A4F83641BDA95C34 /* Pods_TPPDF_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4823B35F8EFABE8B67534310 /* Pods_TPPDF_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		242D99DADC2A9134C86CE579 /* Pods-TPPDF_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		2C36D92CB538EA795D0E1DD4 /* Pods-TPPDF_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.release.xcconfig"; sourceTree = "<group>"; };
-		2EDF8AF55CF5FF35B8CFECCA /* Pods-TPPDF_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		1EB1F372E18E7F48400D4AA1 /* Pods_TPPDF_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4823B35F8EFABE8B67534310 /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B0B4ED60E5101E03D78D22A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; lineEnding = 0; name = README.md; path = ../README.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		5B33C61EC58DBAB629433DE7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TPPDF_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPPDF_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,9 +50,8 @@
 		607FACE51AFB9204008FA782 /* TPPDF_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TPPDF_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* PDFListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListTests.swift; sourceTree = "<group>"; };
-		97F6FA9EF52B4AA99A5B51DE /* Pods_TPPDF_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83D77363F7C137BBCB867CA0 /* Pods-TPPDF_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AA3ABE5E8B71837B45C4119F /* TPPDF.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TPPDF.podspec; path = ../TPPDF.podspec; sourceTree = "<group>"; };
-		C4DA00DDB7DB8E91282BF890 /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40F12351FA8D9D100A95A26 /* .codebeatignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .codebeatignore; path = ../.codebeatignore; sourceTree = "<group>"; };
 		D418D71E1EF16FA4009FAF56 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; lineEnding = 0; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		D418D71F1EF16FA4009FAF56 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CODE_OF_CONDUCT.md; path = ../CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
@@ -70,7 +68,9 @@
 		D4F8C11D1EF14C5000188F42 /* Image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Image.jpg; sourceTree = "<group>"; };
 		D4F8C11E1EF14C5000188F42 /* PortraitImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PortraitImage.jpg; sourceTree = "<group>"; };
 		D4F8C12C1EF153F600188F42 /* PDFGeneratorTableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFGeneratorTableTests.swift; sourceTree = "<group>"; };
-		D7D24D424CAEC16A74B82068 /* Pods-TPPDF_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		D75D54FA94D489CEBAABD64B /* Pods-TPPDF_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.release.xcconfig"; sourceTree = "<group>"; };
+		E0E971A7A2908328ABD15960 /* Pods-TPPDF_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		EB1814C02287ABA6E10237CE /* Pods-TPPDF_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				775D4DA6721B1FFE31B9CE76 /* Pods_TPPDF_Example.framework in Frameworks */,
+				E88C1927A4F83641BDA95C34 /* Pods_TPPDF_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,33 +86,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56220A052B0504BDDA5BB415 /* Pods_TPPDF_Tests.framework in Frameworks */,
+				A549573C658C70B3911B7712 /* Pods_TPPDF_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3309C3986465654E91506C0A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C4DA00DDB7DB8E91282BF890 /* Pods_TPPDF_Example.framework */,
-				97F6FA9EF52B4AA99A5B51DE /* Pods_TPPDF_Tests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		42FB40DBB3B7B2761C4D9F94 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				242D99DADC2A9134C86CE579 /* Pods-TPPDF_Example.debug.xcconfig */,
-				2C36D92CB538EA795D0E1DD4 /* Pods-TPPDF_Example.release.xcconfig */,
-				D7D24D424CAEC16A74B82068 /* Pods-TPPDF_Tests.debug.xcconfig */,
-				2EDF8AF55CF5FF35B8CFECCA /* Pods-TPPDF_Tests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -120,8 +100,8 @@
 				607FACD21AFB9204008FA782 /* Example for TPPDF */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
-				42FB40DBB3B7B2761C4D9F94 /* Pods */,
-				3309C3986465654E91506C0A /* Frameworks */,
+				F9B9D2C2F988405F13572533 /* Pods */,
+				84D7A80E2D27ADF49DE71A47 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +173,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		84D7A80E2D27ADF49DE71A47 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4823B35F8EFABE8B67534310 /* Pods_TPPDF_Example.framework */,
+				1EB1F372E18E7F48400D4AA1 /* Pods_TPPDF_Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D4F8C1171EF14C5000188F42 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +196,17 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		F9B9D2C2F988405F13572533 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				83D77363F7C137BBCB867CA0 /* Pods-TPPDF_Example.debug.xcconfig */,
+				D75D54FA94D489CEBAABD64B /* Pods-TPPDF_Example.release.xcconfig */,
+				EB1814C02287ABA6E10237CE /* Pods-TPPDF_Tests.debug.xcconfig */,
+				E0E971A7A2908328ABD15960 /* Pods-TPPDF_Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,13 +214,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "TPPDF_Example" */;
 			buildPhases = (
-				1F20450A67DD80D638E56095 /* [CP] Check Pods Manifest.lock */,
+				68123E8B5DBAC9AA520637A2 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				D4E6F9A21FA732720049890F /* Swift Lint */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				48A9B9914622DAEDA409CDD2 /* [CP] Embed Pods Frameworks */,
-				EF99D392B1460022709E58DF /* [CP] Copy Pods Resources */,
+				6A3C839CD2224EBF02020B47 /* [CP] Embed Pods Frameworks */,
+				F65FC339E743039B2B30D8A8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,12 +235,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "TPPDF_Tests" */;
 			buildPhases = (
-				96B019A8310A3A829A95A275 /* [CP] Check Pods Manifest.lock */,
+				67F9262A379A22EEC0A85C62 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				D976C6A3339661B10333E1A9 /* [CP] Embed Pods Frameworks */,
-				CFA73BD69DB2A9DF397C3031 /* [CP] Copy Pods Resources */,
+				2A4981DFDC400C57624F5C6E /* [CP] Embed Pods Frameworks */,
+				577370F6FF4C5DBD103653D9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -322,90 +322,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1F20450A67DD80D638E56095 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TPPDF_Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48A9B9914622DAEDA409CDD2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/TPPDF/TPPDF.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPPDF.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		96B019A8310A3A829A95A275 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TPPDF_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CFA73BD69DB2A9DF397C3031 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D4E6F9A21FA732720049890F /* Swift Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Swift Lint";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"info: Looking for SwiftLint in Pods folder: \" ${PODS_ROOT}\n\nif which swiftlint >/dev/null; then\n   \"${PODS_ROOT}/SwiftLint/swiftlint\" --config ../.swiftlint.yml\nelse\n   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
-		D976C6A3339661B10333E1A9 /* [CP] Embed Pods Frameworks */ = {
+		2A4981DFDC400C57624F5C6E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -427,7 +344,90 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EF99D392B1460022709E58DF /* [CP] Copy Pods Resources */ = {
+		577370F6FF4C5DBD103653D9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67F9262A379A22EEC0A85C62 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TPPDF_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68123E8B5DBAC9AA520637A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TPPDF_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A3C839CD2224EBF02020B47 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TPPDF/TPPDF.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPPDF.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4E6F9A21FA732720049890F /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"info: Looking for SwiftLint in Pods folder: \" ${PODS_ROOT}\n\nif which swiftlint >/dev/null; then\n   \"${PODS_ROOT}/SwiftLint/swiftlint\" --config ../.swiftlint.yml\nelse\n   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		F65FC339E743039B2B30D8A8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -594,7 +594,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 242D99DADC2A9134C86CE579 /* Pods-TPPDF_Example.debug.xcconfig */;
+			baseConfigurationReference = 83D77363F7C137BBCB867CA0 /* Pods-TPPDF_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -612,7 +612,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C36D92CB538EA795D0E1DD4 /* Pods-TPPDF_Example.release.xcconfig */;
+			baseConfigurationReference = D75D54FA94D489CEBAABD64B /* Pods-TPPDF_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -630,7 +630,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7D24D424CAEC16A74B82068 /* Pods-TPPDF_Tests.debug.xcconfig */;
+			baseConfigurationReference = EB1814C02287ABA6E10237CE /* Pods-TPPDF_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = MS95BK8M4X;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -648,7 +648,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EDF8AF55CF5FF35B8CFECCA /* Pods-TPPDF_Tests.release.xcconfig */;
+			baseConfigurationReference = E0E971A7A2908328ABD15960 /* Pods-TPPDF_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = MS95BK8M4X;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
