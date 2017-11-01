@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-class PDFAttributedTextObject : PDFObject {
+class PDFAttributedTextObject: PDFObject {
     
     var attributedText: PDFAttributedText?
     var simpleText: PDFSimpleText?
@@ -67,7 +67,7 @@ class PDFAttributedTextObject : PDFObject {
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         attributedString.draw(in: self.frame)
         if PDFGenerator.debug {
-            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .green)
+            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
         }
     }
     

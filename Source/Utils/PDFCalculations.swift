@@ -12,7 +12,7 @@ class PDFCalculations {
                               text: NSAttributedString) -> (frame: CGRect, renderString: NSAttributedString, remainder: NSAttributedString?) {
         let availableSize = calculateAvailableFrame(for: generator, in: container)
         let (fittingText, textSize, remainder) = calculateTextFrameAndRemainder(of: text, in: availableSize)
-        let origin = calculatePositionOfText(for: generator, in: container)
+        let origin = calculatePositionOfText(for: generator, in: container, with: textSize)
         
         return (
             CGRect(origin: origin, size: textSize),
@@ -82,14 +82,14 @@ class PDFCalculations {
         return (result, drawnSize, remainder)
     }
     
-    private static func calculatePositionOfText(for generator: PDFGenerator, in container: PDFContainer) -> CGPoint {
+    private static func calculatePositionOfText(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGPoint {
         return CGPoint(
-            x: calculatePositionX(for: generator, in: container),
-            y: calculatePositionY(for: generator, in: container)
+            x: calculatePositionX(for: generator, in: container, with: size),
+            y: calculatePositionY(for: generator, in: container, with: size)
         )
     }
     
-    private static func calculatePositionX(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
+    private static func calculatePositionX(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
         
@@ -98,17 +98,40 @@ class PDFCalculations {
                 + pageLayout.margin.left
                 + layout.indentation.leftIn(container: container)
         } else if container.isRight {
-            return pageLayout.contentSize.width
+            return pageLayout.width
                 - pageLayout.margin.right
+                - layout.indentation.rightIn(container: container)
+                - size.width
         } else {
             return pageLayout.margin.left
                 + layout.indentation.leftIn(container: container)
-                + (pageLayout.contentSize.width - layout.indentation.leftIn(container: container) - layout.indentation.rightIn(container: container)) / 2
+                + (pageLayout.contentSize.width
+                    - layout.indentation.leftIn(container: container)
+                    - layout.indentation.rightIn(container: container)
+                    - size.width
+                ) / 2
         }
     }
     
-    private static func calculatePositionY(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
-        return 0
+    private static func calculatePositionY(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
+        let layout = generator.layout
+        let pageLayout = generator.document.layout
+        
+        if container.isHeader {
+            return pageLayout.margin.top
+                + pageLayout.space.header
+                + layout.heights.maxHeaderHeight()
+        } else if container.isFooter {
+            return pageLayout.height
+                - pageLayout.margin.bottom
+                - pageLayout.space.footer
+                - layout.heights.maxFooterHeight()
+        } else {
+            return pageLayout.margin.top
+                + layout.heights.maxHeaderHeight()
+                + pageLayout.space.header
+                + layout.heights.content
+        }
     }
     
     
