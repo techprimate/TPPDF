@@ -7,8 +7,11 @@
 
 public extension PDFGenerator {
     
-    @available(*, unavailable, message: "This method is broken and does not work correclty for now.")
-    public func getContentOffset(_ container: PDFContainer) -> CGFloat {
+    public func getContentOffset(in container: PDFContainer) -> CGFloat {
         return layout.getContentOffset(in: container)
+    }
+
+    public func setContentOffset(in container: PDFContainer, to value: CGFloat) {
+        layout.setContentOffset(in: container, to: value)
     }
 }

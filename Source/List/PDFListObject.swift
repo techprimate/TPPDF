@@ -13,38 +13,48 @@ class PDFListObject: PDFObject {
     init(list: PDFList) {
         self.list = list
     }
-    
-    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
-//        let originalIndent = generator.indentation[container.normalize]!
-//        
-//        for item in list.flatted() {
-//            let indent = (item.level < list.levelIndentations.count ?
-//                list.levelIndentations[item.level] :
-//                list.levelIndentations.last ?? (pre: 0, past: 0))
-//            
-//            indentation[container.normalize] = originalIndent + indent.pre
-//            
-//            let offset = getContentOffset(container)
-//            
-//            switch item.symbol {
-//            case .dash, .dot:
-//                //                try drawText(container, text: item.symbol.stringValue, spacing: 12, calculatingMetrics: calculatingMetrics)
-//                break
-//            case let .numbered(value):
-//                //                try drawText(container, text: (value ?? "?") + ".", spacing: 12, calculatingMetrics: calculatingMetrics)
-//                break
-//            case let .custom(value):
-//                //                try drawText(container, text: value, spacing: 12, calculatingMetrics: calculatingMetrics)
-//                break
-//            case .none, .inherit:
-//                break
-//            }
-//            
-//            setContentOffset(value: offset)
-//            indentation[container.normalize] = originalIndent + indent.pre + indent.past
-//            
-//            //            try drawText(container, text: item.text, spacing: 12, calculatingMetrics: calculatingMetrics)
-//            indentation[container.normalize] = originalIndent
-//        }
+
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+        var result: [(PDFContainer, PDFObject)] = []
+
+        let originalLeftIndent = generator.layout.indentation.leftIn(container: container)
+
+        for item in list.flatted() {
+            let indent = (item.level < list.levelIndentations.count ?
+                list.levelIndentations[item.level] :
+                list.levelIndentations.last ?? (pre: 0, past: 0))
+            generator.layout.indentation.setLeft(indentation: originalLeftIndent + indent.pre, in: container)
+
+            let offset = generator.getContentOffset(in: container)
+
+            let symbol: String = {
+                switch item.symbol {
+                case .dash, .dot:
+                    return item.symbol.stringValue
+                case let .numbered(value):
+                    return (value ?? "?") + "."
+                case let .custom(value):
+                    return value
+                case .none, .inherit:
+                    return ""
+                }
+            }()
+
+            let symbolText = PDFSimpleText(text: symbol)
+            let symbolTextObject = PDFAttributedTextObject(simpleText: symbolText)
+            result += try symbolTextObject.calculate(generator: generator, container: container)
+
+            generator.setContentOffset(in: container, to: offset)
+
+            generator.layout.indentation.setLeft(indentation: originalLeftIndent + indent.pre + indent.past, in: container)
+
+            let itemText = PDFSimpleText(text: item.text)
+            let itemTextObject = PDFAttributedTextObject(simpleText: itemText)
+            result += try itemTextObject.calculate(generator: generator, container: container)
+
+            generator.layout.indentation.setLeft(indentation: originalLeftIndent, in: container)
+        }
+
+        return result
     }
 }
