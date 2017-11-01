@@ -44,33 +44,25 @@ class ViewController: UIViewController {
         // Create and add an title as an attributed string for more customization possibilities
         let title = NSMutableAttributedString(string: "TPPDF", attributes: [
             .font: UIFont.boldSystemFont(ofSize: 50.0),
-            .paragraphStyle: {
-                let style = NSMutableParagraphStyle()
-                style.alignment = .center
-                return style
-            }(),
             .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
             ])
         document.addAttributedText(.contentCenter, text: title)
         
-        // Add some spacing below image
+        // Add some spacing below title
         document.addSpace(space: 15.0)
-        
-        let sideImage = PDFImage(image: UIImage(named: "Image-1.jpg")!)
-        sideImage.caption = PDFSimpleText(text: "A beautiful waterfall!")
-        sideImage.size = CGSize(width: 200, height: 200)
-        
-        document.addImage(image: sideImage)
 
         // Set document font and document color. This will be used only for simple text until it is reset.
         document.setFont(font: UIFont.systemFont(ofSize: 18.0))
-        document.setTextColor(color: UIColor.lightGray)
+        document.setTextColor(color: UIColor.red)
 
         document.addText(.contentCenter, text: "Create PDF documents easily.")
 
         // Reset font and text color
         document.resetFont()
         document.resetTextColor()
+
+        // Add some spacing below subtitle
+        document.addSpace(space: 10.0)
 
         // Create a list with level indentations
         let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
@@ -91,40 +83,28 @@ class ViewController: UIViewController {
 
         document.addList(list: list)
 
-
-        // Add some long text
-
-        let longText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies consectetur maximus. Vestibulum scelerisque posuere ex, ac bibendum mauris consequat a. Etiam id cursus sem. Cras rhoncus orci ac viverra dignissim. Sed scelerisque semper sem consectetur efficitur. Vivamus aliquet pharetra sem. Maecenas facilisis ante ipsum, sit amet fermentum ante vestibulum sit amet. Nulla nec nisl nec nunc molestie tincidunt sit amet vitae magna.\n\nSed feugiat est non risus faucibus accumsan. Aliquam euismod auctor leo, non luctus metus venenatis at. Nulla id ex vestibulum libero congue sagittis. Maecenas non lacus ligula. Nunc bibendum, arcu et cursus commodo, urna tortor venenatis risus, vitae tempus libero eros consectetur ex. Cras consequat metus eu nisi vestibulum, convallis suscipit purus posuere. Donec eleifend molestie quam quis euismod. Sed vel commodo enim, sed consequat est. Aliquam erat volutpat. Suspendisse ut velit non neque consequat scelerisque sed sit amet diam. Duis vulputate diam vitae nibh varius bibendum. Vivamus iaculis iaculis arcu, sed consectetur ante finibus quis. In ultrices nisi sed egestas fermentum.\n\nPhasellus congue, lacus eu tincidunt consectetur, quam nisi porttitor metus, varius pellentesque nulla lorem at erat. Proin aliquet blandit justo quis maximus. Cras scelerisque in orci ut elementum. Aenean ut lacus laoreet, varius sem luctus, tristique elit. Aenean a interdum mi, et imperdiet erat. Integer sit amet pharetra dolor. Duis egestas nisi eu eros pharetra dignissim vitae sed nulla. Fusce placerat facilisis massa. Aliquam dictum magna vel nunc egestas tempor. In orci sapien, iaculis quis sapien a, fermentum euismod dolor. Vestibulum consectetur, elit ut hendrerit tristique, arcu tortor mattis leo, eu vestibulum nulla magna eget mi.\n\nAliquam rhoncus cursus orci, at ultricies ipsum vehicula at. Vestibulum ac viverra odio. Fusce euismod orci justo, ac pulvinar ante rhoncus et. Donec bibendum sem in lectus ultricies posuere. Etiam iaculis mattis felis id semper. Cras tristique interdum purus at dignissim. Quisque pellentesque augue enim, nec suscipit libero tempor non. In rutrum purus at quam bibendum placerat vel sodales tortor. Fusce rhoncus condimentum ante, eu laoreet elit laoreet vitae. Donec egestas vulputate massa, vitae dignissim nibh feugiat ac.\n\nAliquam tempor varius felis, at rutrum ex blandit et. Nunc eu nulla vel odio interdum aliquet. Mauris porttitor nibh velit, id consectetur odio pretium a. Praesent mattis accumsan nisl at viverra. Nullam ultricies, diam nec aliquet dignissim, leo orci cursus dolor, eu porttitor sem leo vel leo. Sed at lectus odio. Duis at vestibulum leo, non venenatis ante."
-        document.addText(text: longText)
-        
-        /*
         // Set Font for headline
         
-        pdf.setFont(font: UIFont.systemFont(ofSize: 20.0))
+        document.setFont(font: UIFont.systemFont(ofSize: 20.0))
         
         // Add headline with extra spacing
         
-        pdf.addSpace(space: 30)
-        pdf.addText(text: "1. Introduction")
-        pdf.addSpace(space: 10)
+        document.addSpace(space: 20)
+        document.addText(text: "1. Introduction")
+        document.addSpace(space: 10)
         
         // Set font for text
         
-        pdf.setFont(font: UIFont.systemFont(ofSize: 13.0))
+        document.setFont(font: UIFont.systemFont(ofSize: 13.0))
         
         // Add long simple text. This will automatically word wrap if content width is not enough.
         
-        pdf.addText(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
-        pdf.addSpace(space: 10)
-        var array = [String]()
-        for i in 0...200 {
-            array += ["\(i)"]
-        }
-        pdf.addText(text: array.joined(separator: ", "))
-        pdf.addSpace(space: 10)
-        pdf.addText(text: "TPPDF includes many different features:")
+        document.addText(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
+        document.addSpace(space: 10)
+
+        document.addText(text: "TPPDF includes many different features:")
         
-        pdf.addSpace(space: 10)
+        document.addSpace(space: 10)
         
         // Simple bullet point list
         
@@ -141,19 +121,18 @@ class ViewController: UIViewController {
             PDFListItem(content: "Simple image positioning and rendering"),
             PDFListItem(content: "Image captions")
             ]))
-        pdf.addList(list: featureList)
+        document.addList(list: featureList)
         
         // Insert page break
         
-        pdf.createNewPage()
+        document.createNewPage()
         
         // Create a line separator
         
-        pdf.addSpace(space: 10)
-        pdf.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
-        pdf.addSpace(space: 10)
-        
-        
+        document.addSpace(space: 10)
+        document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
+        document.addSpace(space: 10)
+
         // Create attributes for captions
         
         let captionAttributes: [NSAttributedStringKey: AnyObject] = [
@@ -165,40 +144,45 @@ class ViewController: UIViewController {
             }(),
             .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0),
         ]
-        */
         
         // Create an image collage with captions
         
-//        let images = [
-//            [
-//                PDFImage(image: UIImage(named: "Image-1.jpg")!, caption: NSAttributedString(string: "Waterfall", attributes: captionAttributes)),
-//                PDFImage(image: UIImage(named: "Image-2.jpg")!, caption: NSAttributedString(string: "Forrest", attributes: captionAttributes)),
-//                ],
-//            [
-//                PDFImage(image: UIImage(named: "Image-3.jpg")!, caption: NSAttributedString(string: "Fireworks", attributes: captionAttributes)),
-//                PDFImage(image: UIImage(named: "Image-4.jpg")!, caption: NSAttributedString(string: "Field", attributes: captionAttributes)),
-//                ]
-//        ]
-        
+        let images = [
+            [
+                PDFImage(image: UIImage(named: "Image-1.jpg")!,
+                         caption: PDFAttributedText(text: NSAttributedString(string: "Waterfall",
+                                                                             attributes: captionAttributes))),
+                PDFImage(image: UIImage(named: "Image-2.jpg")!,
+                         caption: PDFAttributedText(text: NSAttributedString(string: "Forrest",
+                                                                             attributes: captionAttributes))),
+                ],
+            [
+                PDFImage(image: UIImage(named: "Image-3.jpg")!,
+                         caption: PDFAttributedText(text: NSAttributedString(string: "Fireworks",
+                                                                             attributes: captionAttributes))),
+                PDFImage(image: UIImage(named: "Image-4.jpg")!,
+                         caption: PDFAttributedText(text: NSAttributedString(string: "Field",
+                                                                             attributes: captionAttributes))),
+                ]
+        ]
+
         // Add first row of images
         
-//        pdf.addImagesInRow(images: images[0], spacing: 10)
-        
+        document.addImagesInRow(images: images[0], spacing: 10)
+
         // Add spacing between image rows
         
-//        pdf.addSpace(space: 10)
-        
+        document.addSpace(space: 10)
+
         // Add second row of images
         
-//        pdf.addImagesInRow(images: images[1], spacing: 10)
-        
+        document.addImagesInRow(images: images[1], spacing: 10)
+
         // Finish image collage with another line separator
-        
-        /*
-         
-        pdf.addSpace(space: 10)
-        pdf.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
-        pdf.addSpace(space: 10)
+
+        document.addSpace(space: 10)
+        document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
+        document.addSpace(space: 10)
         
         // Create a table
         
@@ -300,12 +284,12 @@ class ViewController: UIViewController {
         
         table.showHeadersOnEveryPage = true
         
-        pdf.addTable(table: table)
+        document.addTable(table: table)
         
         // Add more text after the table
         
-        pdf.addText(text: "Just adding more text here...")
-        */
+        document.addText(text: "Just adding more text here...")
+
         
         /* ---- Execution Metrics ---- */
         print("Preparation took: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))

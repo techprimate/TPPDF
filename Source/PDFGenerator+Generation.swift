@@ -93,7 +93,7 @@ extension PDFGenerator {
         
         // Iterate all objects and let them calculate the required rendering
         for (container, pdfObject) in contentObjects {
-            var objects = try pdfObject.calculate(generator: self, container: container)
+            let objects = try pdfObject.calculate(generator: self, container: container)
             for obj in objects {
                 allObjects.append(obj)
 

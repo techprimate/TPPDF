@@ -13,8 +13,10 @@ class PDFTextColorObject : PDFObject {
     init(color: UIColor) {
         self.color = color
     }
-    
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        generator.textColor = color
+
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+        generator.textColor[container] = color
+        
+        return [(container, self)]
     }
 }

@@ -6,46 +6,63 @@
 //
 //
 
-/// This struct defines how a line or border of a table is drawn.
+/**
+ This struct defines how a line or border of a table is drawn.
+ */
 public struct PDFLineStyle: TPJSONSerializable {
-    
-    /// These types of lines are available for rendering. Used in `PDFTableStyle` and `PDFTableCellStyle`
-    ///
-    /// - full: Line without any breaks
-    /// - dashed: Line consists out of short dashes
-    /// - dotted: Lines consists out of dots
+
+    /**
+     These types of lines are available for rendering. Used in `PDFTableStyle` and `PDFTableCellStyle`
+
+     - full: Line without any breaks
+     - dashed: Line consists out of short dashes
+     - dotted: Lines consists out of dots
+     */
     public enum LineType: TPJSONSerializable {
-        
+
         case none, full, dashed, dotted
-        
+
         // MARK: - JSON Serialization
-        
+
         public var JSONRepresentation: AnyObject {
             return self.hashValue as AnyObject
         }
     }
-    
-    /// Defines the type of this line
+
+    /**
+     Defines the type of this line
+     */
     public var type: LineType
-    /// Defines the color of this line
+
+    /**
+     Defines the color of this line
+     */
     public var color: UIColor
-    /// Defines the width of this line
+
+    /**
+     Defines the width of this line
+     */
     public var width: CGFloat
-    
-    /// Initialize a table line style
-    ///
-    /// - Parameters:
-    ///   - type: of Line
-    ///   - color: of Line
-    ///   - width: of Line
+
+    /**
+     Initialize a table line style
+
+     - Parameters:
+     - type: of Line
+     - color: of Line
+     - width: of Line
+     */
     public init(type: LineType = .full, color: UIColor = UIColor.black, width: CGFloat = 0.25) {
         self.type = type
         self.color = color
         self.width = width
     }
-    
-    /// Shorthand method for creating an invisible line
+
+    /**
+     Shorthand method for creating an invisible line
+     */
     public static var none: PDFLineStyle {
         return PDFLineStyle(type: .none)
     }
 }
+

@@ -13,8 +13,10 @@ class PDFOffsetObject: PDFObject {
     init(offset: CGFloat) {
         self.offset = offset
     }
-    
-    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
+
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         generator.layout.setContentOffset(in: container, to: offset)
+
+        return [(container, self)]
     }
 }

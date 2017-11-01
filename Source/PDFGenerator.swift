@@ -21,12 +21,18 @@ public class PDFGenerator {
     var currentPage: Int = 1
     var totalPages: Int = 1
     
-    var textColor: UIColor = UIColor.black
-    
     lazy var fonts: [PDFContainer: UIFont] = {
         var defaults = [PDFContainer: UIFont]()
         for container in PDFContainer.all + [PDFContainer.none] {
             defaults[container] = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        }
+        return defaults
+    }()
+
+    lazy var textColor: [PDFContainer: UIColor] = {
+        var defaults = [PDFContainer: UIColor]()
+        for container in PDFContainer.all + [PDFContainer.none] {
+            defaults[container] = UIColor.black
         }
         return defaults
     }()
@@ -42,6 +48,5 @@ public class PDFGenerator {
     func resetGenerator() {
         layout.reset()
         currentPage = 1
-        textColor = .black
     }
 }

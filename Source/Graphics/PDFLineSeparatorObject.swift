@@ -13,34 +13,32 @@ class PDFLineSeparatorObject: PDFObject {
     init(style: PDFLineStyle = PDFLineStyle()) {
         self.style = style
     }
-    
-    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
-        let document = generator.document
-        
-        let x: CGFloat = document.layout.margin.left
+
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+        let x = generator.document.layout.margin.left
             + generator.layout.indentation.leftIn(container: container)
-        
-        let y: CGFloat = generator.layout.heights.maxHeaderHeight()
-            + document.layout.margin.top
+        let y = generator.layout.heights.maxHeaderHeight()
+            + generator.document.layout.margin.top
             + generator.layout.heights.content
-        
-        let width = document.layout.size.width
-            - document.layout.margin.left
-            - document.layout.margin.right
+
+        let width = generator.document.layout.contentSize.width
+            - generator.layout.indentation.leftIn(container: container)
             - generator.layout.indentation.rightIn(container: container)
-        
+
         self.frame = CGRect(x: x, y: y, width: width, height: 0)
+
+        return [(container, self)]
     }
-    
+
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         PDFGraphics.drawLine(
             start: self.frame.origin,
-            end: CGPoint(x: self.frame.maxX, y: self.frame.minY),
+            end: CGPoint(x: self.frame.maxX, y: self.frame.maxY),
             style: style
         )
         
         if PDFGenerator.debug {
-            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .green)
+            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
         }
     }
 }

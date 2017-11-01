@@ -13,8 +13,10 @@ class PDFFontObject: PDFObject {
     init(font: UIFont) {
         self.font = font
     }
-    
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         generator.fonts[container] = font
+
+        return [(container, self)]
     }
 }
