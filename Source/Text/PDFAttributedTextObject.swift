@@ -65,7 +65,27 @@ class PDFAttributedTextObject: PDFObject {
     }
     
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        attributedString.draw(in: self.frame)
+        let currentContext = UIGraphicsGetCurrentContext()!
+
+        let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
+
+        currentContext.saveGState()
+        currentContext.textMatrix = CGAffineTransform.identity
+
+        let frameRect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        let framePath = UIBezierPath(rect: frameRect).cgPath
+
+        let frameRef = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, attributedString.length), framePath, nil)
+
+        currentContext.translateBy(x: 0, y: UIGraphicsGetPDFContextBounds().height)
+        currentContext.scaleBy(x: 1.0, y: -1.0)
+
+        currentContext.translateBy(x: frame.minX, y: UIGraphicsGetPDFContextBounds().height - frame.maxY)
+        CTFrameDraw(frameRef, currentContext)
+
+        // Pop state
+        currentContext.restoreGState()
+
         if PDFGenerator.debug {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
         }
