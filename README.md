@@ -1,6 +1,6 @@
 # TPPDF
 
-[![CI Status](http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square)](https://travis-ci.org/Techprimate/TPPDF.svg?branch=develop)
+[![CI Status](http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square)](https://travis-ci.org/Techprimate/TPPDF.svg?branch=master)
 [![Language](https://img.shields.io/badge/language-Swift-orange.svg?style=flat-square)](https://developer.apple.com/swift/)
 
 [![Cocoapods](https://img.shields.io/cocoapods/v/TPPDF.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Alamofire.svg)
@@ -13,8 +13,9 @@
 [![Twitter](https://img.shields.io/badge/twitter-@Techprimate-blue.svg?style=flat-square)](http://twitter.com/techprimate)
 [![Facebook](https://img.shields.io/badge/facebook-@Techprimate-blue.svg?style=flat-square)](http://facebook.com/techprimate)
 
-[![codebeat badge](https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de)](https://codebeat.co/projects/github-com-techprimate-tppdf-develop)
+[![codebeat badge](https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de)](https://codebeat.co/projects/github-com-techprimate-tppdf-master)
 [![BCH compliance](https://bettercodehub.com/edge/badge/Techprimate/TPPDF)](https://bettercodehub.com/results/Techprimate/TPPDF)
+[![codecov](https://codecov.io/gh/Techprimate/TPPDF/branch/master/graph/badge.svg)](https://codecov.io/gh/Techprimate/TPPDF)
 
 TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/wiki/Builder_pattern) pattern using simple commands. 
 
