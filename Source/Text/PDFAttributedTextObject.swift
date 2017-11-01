@@ -53,7 +53,7 @@ class PDFAttributedTextObject: PDFObject {
         }
         
         if let left = leftOverString {
-            result += [(container, PDFPageBreakObject())]
+            result += try PDFPageBreakObject().calculate(generator: generator, container: container)
             generator.layout.reset()
             
             let subText = PDFAttributedText(text: left)

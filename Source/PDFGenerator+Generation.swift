@@ -93,7 +93,14 @@ extension PDFGenerator {
         
         // Iterate all objects and let them calculate the required rendering
         for (container, pdfObject) in contentObjects {
-            allObjects += try pdfObject.calculate(generator: self, container: container)
+            var objects = try pdfObject.calculate(generator: self, container: container)
+            for obj in objects {
+                allObjects.append(obj)
+
+                if obj.1 is PDFPageBreakObject {
+                    allObjects += try addHeaderFooterObjects()
+                }
+            }
         }
         
         // Save calculated page count from reseting
@@ -139,8 +146,7 @@ extension PDFGenerator {
     }
     
     // MARK: - INTERNAL STATIC
-    
-    
+
     static func extractHeaderObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
         return objects.filter { return $0.0.isHeader }
     }

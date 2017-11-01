@@ -93,8 +93,7 @@ class PDFCalculations {
         let pageLayout = generator.document.layout
         
         if container.isLeft {
-            return pageLayout.width
-                + pageLayout.margin.left
+            return pageLayout.margin.left
                 + layout.indentation.leftIn(container: container)
         } else if container.isRight {
             return pageLayout.width

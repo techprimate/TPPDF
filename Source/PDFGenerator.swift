@@ -19,7 +19,7 @@ public class PDFGenerator {
     var layout = PDFLayout()
     
     var currentPage: Int = 1
-    var totalPages: Int = 0
+    var totalPages: Int = 1
     
     var textColor: UIColor = UIColor.black
     
