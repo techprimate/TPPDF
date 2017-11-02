@@ -33,4 +33,4 @@ script:
  
 after_success:
   - slather coverage -c -s -t --ignore '../*' -b ${TRAVIS_BUILD_DIR}/derived_data --verbose
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X xcode
