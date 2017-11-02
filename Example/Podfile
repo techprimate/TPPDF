@@ -24,9 +24,5 @@ post_install do |installer|
                 config.build_settings['SWIFT_VERSION'] = '3.2'
             end
         end
-        
-        target.build_configurations.each do |config|
-            config.build_settings['CLANG_ENABLE_CODE_COVERAGE'] = 'NO'
-        end
     end
 end

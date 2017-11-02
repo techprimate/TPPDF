@@ -1,26 +1,36 @@
 language: objective-c
 osx_image: xcode9.1
-podfile: Example/Podfile
+
+cache:
+  - bundler
+  - cocoapods
+
 env:
   global:
   - WORKSPACE=Example/TPPDF.xcworkspace
-  - TEST_FRAMEWORK_SCHEME="TPPDF_Tests"
+  - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
   - EXAMPLE_SCHEME="TPPDF-Example"
   matrix:
      - DESTINATION="OS=8.4,name=iPhone 6 Plus"
      - DESTINATION="OS=9.3,name=iPhone 6s Plus"
      - DESTINATION="OS=10.2,name=iPhone 7 Plus"
      - DESTINATION="OS=11.1,name=iPhone 8"
-    
+  
+install:
+  - bundle install
+  - bundle exec pod repo update --silent
+  - bundle exec pod install --project-directory=Example  
+
 script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
   - xcodebuild -list
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES -enableCodeCoverage YES build-for-testing test | xcpretty
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=YES                         build                  | xcpretty
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES                         build                  | xcpretty
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES -enableCodeCoverage YES build test | xcpretty
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=YES build | xcpretty
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES build | xcpretty
   - pod lib lint
  
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -cF ios
+  - slather coverage -c -s -t --ignore '../*' -b ${TRAVIS_BUILD_DIR}/derived_data --verbose
+  - bash <(curl -s https://codecov.io/bash)
