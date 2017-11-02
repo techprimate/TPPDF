@@ -4,7 +4,7 @@ podfile: Example/Podfile
 env:
   global:
   - WORKSPACE=Example/TPPDF.xcworkspace
-  - IOS_FRAMEWORK_SCHEME="TPPDF-Tests"
+  - TEST_FRAMEWORK_SCHEME="TPPDF_Tests"
   - EXAMPLE_SCHEME="TPPDF-Example"
   matrix:
      - DESTINATION="OS=8.4,name=iPhone 6 Plus"
@@ -16,9 +16,10 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES -enableCodeCoverage YES build-for-testing test | xcpretty
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=YES -enableCodeCoverage YES build-for-testing test | xcpretty
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"       -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES build | xcpretty
+  - xcodebuild -list
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES -enableCodeCoverage YES build-for-testing test | xcpretty
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=YES -enableCodeCoverage YES build-for-testing test | xcpretty
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES build | xcpretty
   - pod lib lint
  
 after_success:
