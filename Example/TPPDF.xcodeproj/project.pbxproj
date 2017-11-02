@@ -14,6 +14,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* PDFListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* PDFListTests.swift */; };
 		A549573C658C70B3911B7712 /* Pods_TPPDF_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB1F372E18E7F48400D4AA1 /* Pods_TPPDF_Tests.framework */; };
+		D429B0DB1FAA94E50053D0E2 /* PDFCalculations_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429B0DA1FAA94E50053D0E2 /* PDFCalculations_Spec.swift */; };
+		D429B0DD1FAA99250053D0E2 /* PDFObject_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429B0DC1FAA99250053D0E2 /* PDFObject_Tests.swift */; };
 		D4F8C11F1EF14C5000188F42 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C1181EF14C5000188F42 /* Icon.png */; };
 		D4F8C1201EF14C5000188F42 /* Image-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C1191EF14C5000188F42 /* Image-1.jpg */; };
 		D4F8C1211EF14C5000188F42 /* Image-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4F8C11A1EF14C5000188F42 /* Image-2.jpg */; };
@@ -55,6 +57,8 @@
 		D40F12351FA8D9D100A95A26 /* .codebeatignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .codebeatignore; path = ../.codebeatignore; sourceTree = "<group>"; };
 		D418D71E1EF16FA4009FAF56 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; lineEnding = 0; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		D418D71F1EF16FA4009FAF56 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CODE_OF_CONDUCT.md; path = ../CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
+		D429B0DA1FAA94E50053D0E2 /* PDFCalculations_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCalculations_Spec.swift; sourceTree = "<group>"; };
+		D429B0DC1FAA99250053D0E2 /* PDFObject_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFObject_Tests.swift; sourceTree = "<group>"; };
 		D4B97A2A1F94B8BC00F83D1F /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".swift-version"; path = "../.swift-version"; sourceTree = "<group>"; };
 		D4B97A2B1F94B8BC00F83D1F /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		D4E6F9AA1FA7633D0049890F /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .jazzy.yaml; path = ../.jazzy.yaml; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 				D4F8C12C1EF153F600188F42 /* PDFGeneratorTableTests.swift */,
 				607FACEB1AFB9204008FA782 /* PDFListTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				D429B0DA1FAA94E50053D0E2 /* PDFCalculations_Spec.swift */,
+				D429B0DC1FAA99250053D0E2 /* PDFObject_Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -458,8 +464,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D429B0DB1FAA94E50053D0E2 /* PDFCalculations_Spec.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* PDFListTests.swift in Sources */,
 				D4F8C12D1EF153F600188F42 /* PDFGeneratorTableTests.swift in Sources */,
+				D429B0DD1FAA99250053D0E2 /* PDFObject_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

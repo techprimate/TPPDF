@@ -6,10 +6,12 @@
 //
 
 class PDFCalculations {
-    
-    static func calculateText(generator: PDFGenerator,
-                              container: PDFContainer,
-                              text: NSAttributedString) -> (frame: CGRect, renderString: NSAttributedString, remainder: NSAttributedString?) {
+
+    // MARK: - INTERNAL STATIC FUNCS
+
+    internal static func calculateText(generator: PDFGenerator,
+                                       container: PDFContainer,
+                                       text: NSAttributedString) -> (frame: CGRect, renderString: NSAttributedString, remainder: NSAttributedString?) {
         let availableSize = calculateAvailableFrame(for: generator, in: container)
         let (fittingText, textSize, remainder) = calculateTextFrameAndRemainder(of: text, in: availableSize)
         let origin = calculatePositionOfText(for: generator, in: container, with: textSize)
@@ -20,7 +22,35 @@ class PDFCalculations {
             remainder
         )
     }
-    
+
+    internal static func calculateTextFrameAndRemainder(of text: NSAttributedString,
+                                                        in bounds: CGSize) -> (text: NSAttributedString, size: CGSize, remainder: NSAttributedString?) {
+        let framesetter = CTFramesetterCreateWithAttributedString(text)
+        let framePath = UIBezierPath(rect: CGRect(origin: .zero, size: bounds)).cgPath
+
+        let textRange = CFRange(location: 0, length: text.length)
+
+        // Get the frame that will do the rendering
+        let frameRef = CTFramesetterCreateFrame(framesetter, textRange, framePath, nil)
+
+        // Calculate the range of the string which actually fits in the frame
+        let visibleRange = CTFrameGetVisibleStringRange(frameRef)
+
+        // Calculate the actual size the string needs
+        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, bounds, nil)
+
+        let castedRange = NSRange(location: 0, length: visibleRange.length)
+        let result = text.attributedSubstring(from: castedRange)
+        var remainder: NSAttributedString?
+
+        if visibleRange.length != textRange.length {
+            let remainderRange = NSRange(location: visibleRange.length, length: textRange.length - visibleRange.length)
+            remainder = text.attributedSubstring(from: remainderRange)
+        }
+
+        return (result, drawnSize, remainder)
+    }
+
     // MARK: - PRIVATE STATIC FUNCS
     
     private static func calculateAvailableFrame(for generator: PDFGenerator, in container: PDFContainer) -> CGSize {
@@ -52,33 +82,6 @@ class PDFCalculations {
                 - pageLayout.space.footer
                 - layout.heights.maxFooterHeight()
         }
-    }
-    
-    private static func calculateTextFrameAndRemainder(of text: NSAttributedString, in bounds: CGSize) -> (text: NSAttributedString, size: CGSize, remainder: NSAttributedString?) {
-        let framesetter = CTFramesetterCreateWithAttributedString(text)
-        let framePath = UIBezierPath(rect: CGRect(origin: .zero, size: bounds)).cgPath
-        
-        let textRange = CFRange(location: 0, length: text.length)
-        
-        // Get the frame that will do the rendering
-        let frameRef = CTFramesetterCreateFrame(framesetter, textRange, framePath, nil)
-        
-        // Calculate the range of the string which actually fits in the frame
-        let visibleRange = CTFrameGetVisibleStringRange(frameRef)
-        
-        // Calculate the actual size the string needs
-        let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, bounds, nil)
-        
-        let castedRange = NSMakeRange(0, visibleRange.length)
-        let result = text.attributedSubstring(from: castedRange)
-        var remainder: NSAttributedString?
-        
-        if visibleRange.length != textRange.length {
-            let remainderRange = NSMakeRange(visibleRange.length, textRange.length - visibleRange.length)
-            remainder = text.attributedSubstring(from: remainderRange)
-        }
-        
-        return (result, drawnSize, remainder)
     }
     
     private static func calculatePositionOfText(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGPoint {
