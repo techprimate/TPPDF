@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
-public class PDFTableContent : TPJSONSerializable {
+public class PDFTableContent: TPJSONSerializable {
     
     enum ContentType: TPJSONSerializable {
         

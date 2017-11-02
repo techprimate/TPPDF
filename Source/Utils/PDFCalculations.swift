@@ -11,7 +11,7 @@ class PDFCalculations {
 
     internal static func calculateText(generator: PDFGenerator,
                                        container: PDFContainer,
-                                       text: NSAttributedString) -> (frame: CGRect, renderString: NSAttributedString, remainder: NSAttributedString?) {
+                                       text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString, remainder: NSAttributedString?) {
         let availableSize = calculateAvailableFrame(for: generator, in: container)
         let (fittingText, textSize, remainder) = calculateTextFrameAndRemainder(of: text, in: availableSize)
         let origin = calculatePositionOfText(for: generator, in: container, with: textSize)
@@ -307,7 +307,7 @@ class PDFCalculations {
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
         
         let (_, captionSize) = (NSAttributedString(), CGSize.zero)
-        if let _ = image.caption {
+//        if let _ = image.caption {
 //            if !caption.isEmpty {
 //                let currentText = CFAttributedStringCreateCopy(nil, caption as CFAttributedString)
 //                let currentRange = CFRange(location: 0, length: 0)
@@ -317,8 +317,8 @@ class PDFCalculations {
 //                                                                              currentRange: currentRange,
 //                                                                              textMaxWidth: imageSize.width)
 //            }
-        }
-        
+//        }
+
         return (imageSize, CGSize(width: imageSize.width, height: captionSize.height))
     }
 }

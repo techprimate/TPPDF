@@ -18,8 +18,8 @@ class PDFImageRowObject: PDFObject {
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
-        let totalImagesWidth = generator.document.layout.contentSize.width
-        let imageWidth = totalImagesWidth / CGFloat(images.count)
+//        let totalImagesWidth = generator.document.layout.contentSize.width
+//        let imageWidth = totalImagesWidth / CGFloat(images.count)
 
         for image in images {
             let imageObject = PDFImageObject(image: image)

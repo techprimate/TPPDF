@@ -64,7 +64,11 @@ class PDFTableObject: PDFObject {
         
         let document = generator.document
         
-        let totalWidth = document.layout.size.width - document.layout.margin.left - document.layout.margin.right - generator.layout.indentation.leftIn(container: container)
+        let totalWidth = document.layout.size.width
+            - document.layout.margin.left
+            - document.layout.margin.right
+            - generator.layout.indentation.leftIn(container: container)
+            - generator.layout.indentation.rightIn(container: container)
         
         var x: CGFloat = document.layout.margin.left + generator.layout.indentation.leftIn(container: container)
         var y: CGFloat = generator.layout.heights.maxHeaderHeight() + document.layout.margin.top + generator.layout.heights.content
@@ -133,11 +137,22 @@ class PDFTableObject: PDFObject {
                             NSAttributedStringKey.paragraphStyle: paragraph
                         ]
                         let attributedText = NSAttributedString(string: text, attributes: attributes)
-                        result = PDFCalculations.calculateCellFrame(generator: generator, origin: contentPosition, width: contentWidth, text: attributedText, alignment: cell.alignment)
+                        result = PDFCalculations.calculateCellFrame(generator: generator,
+                                                                    origin: contentPosition,
+                                                                    width: contentWidth,
+                                                                    text: attributedText,
+                                                                    alignment: cell.alignment)
                     case let text as NSAttributedString:
-                        result = PDFCalculations.calculateCellFrame(generator: generator, origin: contentPosition, width: contentWidth, text: text, alignment: cell.alignment)
+                        result = PDFCalculations.calculateCellFrame(generator: generator,
+                                                                    origin: contentPosition,
+                                                                    width: contentWidth,
+                                                                    text: text,
+                                                                    alignment: cell.alignment)
                     case let image as UIImage:
-                        result = PDFCalculations.calculateCellFrame(generator: generator, origin: contentPosition, width: contentWidth, image: image)
+                        result = PDFCalculations.calculateCellFrame(generator: generator,
+                                                                    origin: contentPosition,
+                                                                    width: contentWidth,
+                                                                    image: image)
                     default:
                         break
                     }
@@ -217,7 +232,9 @@ class PDFTableObject: PDFObject {
             
             var difference = cellsPerPage.map { return $0.frame.height }.reduce(0, +)
             
-            if allHeight + rowHeight - difference > document.layout.contentSize.height + generator.layout.heights.maxHeaderHeight() + document.layout.space.header {
+            if allHeight + rowHeight - difference > document.layout.contentSize.height
+                + generator.layout.heights.maxHeaderHeight()
+                + document.layout.space.header {
                 currentTablePage.rows = rowsOnThisPage
                 cellsPerPage.append(currentTablePage)
                 
@@ -272,7 +289,9 @@ class PDFTableObject: PDFObject {
     
     func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         if let lastPage = cellsPerPage.last {
-            generator.layout.heights.content = (lastPage.frame.maxY - generator.layout.heights.maxHeaderHeight() - generator.document.layout.space.header)
+            generator.layout.heights.content = lastPage.frame.maxY
+                - generator.layout.heights.maxHeaderHeight()
+                - generator.document.layout.space.header
         }
     }
     
