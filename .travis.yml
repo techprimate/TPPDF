@@ -18,8 +18,8 @@ script:
   - xcodebuild -showsdks
   - xcodebuild -list
   - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES -enableCodeCoverage YES build-for-testing test | xcpretty
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=YES -enableCodeCoverage YES build-for-testing test | xcpretty
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES build | xcpretty
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=YES                         build                  | xcpretty
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug   ONLY_ACTIVE_ARCH=YES                         build                  | xcpretty
   - pod lib lint
  
 after_success:
