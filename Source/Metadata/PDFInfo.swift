@@ -4,7 +4,6 @@
 //
 //  Created by Zheng-Xiang Ke on 2016/12/15.
 //
-//
 
 public class PDFInfo: TPJSONSerializable {
     

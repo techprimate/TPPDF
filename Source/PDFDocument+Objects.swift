@@ -4,7 +4,6 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
-//
 
 /**
  This extension contains all functions to modify the objects of a document

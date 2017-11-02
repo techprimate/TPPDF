@@ -4,7 +4,6 @@
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
-//
 
 public class PDFTable: TPJSONSerializable {
     

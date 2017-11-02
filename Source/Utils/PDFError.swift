@@ -4,7 +4,6 @@
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
-//
 
 public enum PDFError: Error {
     
@@ -15,4 +14,5 @@ public enum PDFError: Error {
     case tableCellWeakReferenceBroken
     
     case textObjectIsNil
+    
 }

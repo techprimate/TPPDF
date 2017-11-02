@@ -4,7 +4,6 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
-//
 
 class PDFImageRowObject: PDFObject {
     
@@ -30,4 +29,3 @@ class PDFImageRowObject: PDFObject {
         return result
     }
 }
-

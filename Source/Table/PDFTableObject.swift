@@ -4,7 +4,6 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
-//
 
 // swiftlint:disable cyclomatic_complexity function_body_length
 

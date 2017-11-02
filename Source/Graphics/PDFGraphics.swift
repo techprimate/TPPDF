@@ -4,12 +4,30 @@
 //
 //  Created by Philip Niedertscheider on 13/08/2017.
 //
-//
 
+/**
+ Contains a collection methods to render the following shapes:
+
+ - Line
+ - Rectangles
+
+ Also contains a collection of graphic utilities:
+
+ - Image resizing and compression
+ */
 class PDFGraphics {
 
-    // MARK: - Lines
+    // MARK: - INTERNAL STATIC FUNCS
 
+    // MARK: - Shape: Line
+
+    /**
+     Draws a line from the given `start` to the given `end` point into the current graphics context.
+
+     - parameter start: Start point of line
+     - parameter end: End point of line
+     - parameter style: Style of drawn line
+     */
     static func drawLine(start: CGPoint, end: CGPoint, style: PDFLineStyle) {
         if let path = createLinePath(start: start, end: end, style: style) {
             style.color.setStroke()
@@ -18,6 +36,15 @@ class PDFGraphics {
         }
     }
 
+    /**
+     Creates a path containing a line from the given `start` to the given `end` point.
+
+     - parameter start: Start point of line
+     - parameter end: End point of line
+     - parameter style: Style of drawn line
+
+     - returns: Bezier path of line, `nil` if line type in `style` was `PDFLineType.none`
+     */
     static func createLinePath(start: CGPoint, end: CGPoint, style: PDFLineStyle) -> UIBezierPath? {
         if style.type == .none {
             return nil
@@ -34,6 +61,15 @@ class PDFGraphics {
         return path
     }
 
+    // MARK: - Shape: Rectangle
+
+    /**
+     Draws a rectangle into the given `frame`.
+
+     - parameter rect: Frame of rectangle
+     - parameter outline: Style of border lines
+     - parameter fill: Inner color
+     */
     static func drawRect(rect: CGRect, outline: PDFLineStyle, fill: UIColor = .clear) {
         let path = createRectPath(rect: rect, outline: outline)
 
@@ -44,6 +80,12 @@ class PDFGraphics {
         path.stroke()
     }
 
+    /**
+     Creates a rectangular bezier path from the given `frame`.
+
+     - parameter rect: Frame of rectangle
+     - parameter outline: Style of border lines
+     */
     static func createRectPath(rect: CGRect, outline: PDFLineStyle) -> UIBezierPath {
         var path = UIBezierPath(rect: rect)
 
@@ -54,6 +96,18 @@ class PDFGraphics {
         return path
     }
 
+    // MARK: - Shape Utility
+
+    /**
+     Creates an array of dash values. Used to define dashes of a `UIBezierPath`.
+     Array is empty if line type is not a dashed or dotted.
+     This also sets the `UIBezierPath.lineCapStyle`.
+
+     - parameter style: Style of line
+     - parameter path: Reference to the path, which will be manipulated.
+
+     - returns: Array with dash values
+     */
     static func createDashes(style: PDFLineStyle, path: inout UIBezierPath) -> [CGFloat] {
         var dashes: [CGFloat] = []
 
@@ -71,8 +125,17 @@ class PDFGraphics {
         return dashes
     }
 
-    // MARK: - Image
+    // MARK: - Image Manipulation
 
+    /**
+     Draws a scaled version of the given `image` into the given `frame`.
+
+     - parameter image: Image to resize and compress
+     - parameter frame: Frame in which the new image will fit
+     - parameter quality: Value between 0.0 and 1.0, where 1.0 is maximum quality
+
+     - returns: Resized and compressed version of `image`
+     */
     static func resizeAndCompressImage(image: UIImage, frame: CGRect, quality: CGFloat) -> UIImage {
         // resize
         let resizeFactor = (3 * quality > 1) ? 1 : 3 * quality

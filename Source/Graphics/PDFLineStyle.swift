@@ -4,7 +4,6 @@
 //
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
-//
 
 /**
  This struct defines how a line or border of a table is drawn.
@@ -12,27 +11,9 @@
 public struct PDFLineStyle: TPJSONSerializable {
 
     /**
-     These types of lines are available for rendering. Used in `PDFTableStyle` and `PDFTableCellStyle`
-
-     - full: Line without any breaks
-     - dashed: Line consists out of short dashes
-     - dotted: Lines consists out of dots
-     */
-    public enum LineType: TPJSONSerializable {
-
-        case none, full, dashed, dotted
-
-        // MARK: - JSON Serialization
-
-        public var JSONRepresentation: AnyObject {
-            return self.hashValue as AnyObject
-        }
-    }
-
-    /**
      Defines the type of this line
      */
-    public var type: LineType
+    public var type: PDFLineType
 
     /**
      Defines the color of this line
@@ -47,12 +28,11 @@ public struct PDFLineStyle: TPJSONSerializable {
     /**
      Initialize a table line style
 
-     - Parameters:
-     - type: of Line
-     - color: of Line
-     - width: of Line
+     - parameter type: of Line
+     - parameter color: of Line
+     - parameter width: of Line
      */
-    public init(type: LineType = .full, color: UIColor = UIColor.black, width: CGFloat = 0.25) {
+    public init(type: PDFLineType = .full, color: UIColor = .black, width: CGFloat = 0.25) {
         self.type = type
         self.color = color
         self.width = width
@@ -65,4 +45,3 @@ public struct PDFLineStyle: TPJSONSerializable {
         return PDFLineStyle(type: .none)
     }
 }
-

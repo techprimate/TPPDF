@@ -4,9 +4,8 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
-//
 
-public class PDFObject: TPJSONSerializable {
+class PDFObject: TPJSONSerializable {
 
     var frame: CGRect = .zero
     

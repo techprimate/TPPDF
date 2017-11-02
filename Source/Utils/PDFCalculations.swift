@@ -284,7 +284,7 @@ class PDFCalculations {
                                           container: PDFContainer,
                                           image: PDFImage,
                                           size: CGSize,
-                                          sizeFit: ImageSizeFit) -> (CGSize, CGSize) {
+                                          sizeFit: PDFImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         let size = (size == CGSize.zero) ? image.size : size
         

@@ -4,7 +4,6 @@
 //
 //  Created by Philip Niedertscheider on 12/08/16.
 //
-//
 
 /**
  * Source for page sizes: https://www.papersizes.org
