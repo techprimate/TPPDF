@@ -5,32 +5,67 @@
 //  Created by Philip Niedertscheider on 12/08/16.
 //
 
+/**
+ A container defines the position of an element in the page.
+
+ Generally a document is vertically split up into a header, a content and a footer area.
+ Also each part is horizontally split up into a left, a center and a right area.
+ */
 public enum PDFContainer: TPJSONSerializable {
-    
+
+    /**
+     Element is in no container, only real use is as a default value
+     */
     case none
-    case headerLeft, headerCenter, headerRight
-    case contentLeft, contentCenter, contentRight
-    case footerLeft, footerCenter, footerRight
-    
-    var opposite: PDFContainer {
-        switch self {
-        case .headerLeft:
-            return .footerLeft
-        case .headerCenter:
-            return .footerCenter
-        case .headerRight:
-            return .footerRight
-        case .footerLeft:
-            return .headerLeft
-        case .footerCenter:
-            return .headerCenter
-        case .footerRight:
-            return .headerRight
-        default:
-            return .none
-        }
-    }
-    
+
+    /**
+     Container at the top left
+     */
+    case headerLeft
+
+    /**
+     Container at the top center
+     */
+    case headerCenter
+
+    /**
+     Container at the top right
+     */
+    case headerRight
+
+    /**
+     Container in the center, aligned to left
+     */
+    case contentLeft
+
+    /**
+     Container in the center, aligned to center
+     */
+    case contentCenter
+
+    /**
+     Container in the center, aligned to right
+     */
+    case contentRight
+
+    /**
+     Container at the bottom left
+     */
+    case footerLeft
+
+    /**
+     Container at the bottom center
+     */
+    case footerCenter
+
+    /**
+     Container at the bottom right
+     */
+    case footerRight
+
+    /**
+     Checks if this container is in the header area
+     */
     var isHeader: Bool {
         switch self {
         case .headerLeft, .headerCenter, .headerRight:
@@ -39,7 +74,10 @@ public enum PDFContainer: TPJSONSerializable {
             return false
         }
     }
-    
+
+    /**
+     Checks if this container is in the footer area
+     */
     var isFooter: Bool {
         switch self {
         case .footerLeft, .footerCenter, .footerRight:
@@ -48,7 +86,10 @@ public enum PDFContainer: TPJSONSerializable {
             return false
         }
     }
-    
+
+    /**
+     Checks if this container is on the left side
+     */
     var isLeft: Bool {
         switch self {
         case .headerLeft, .contentLeft, .footerLeft:
@@ -57,7 +98,10 @@ public enum PDFContainer: TPJSONSerializable {
             return false
         }
     }
-    
+
+    /**
+     Checks if this container is on the right side
+     */
     var isRight: Bool {
         switch self {
         case .headerRight, .contentRight, .footerRight:
@@ -66,20 +110,11 @@ public enum PDFContainer: TPJSONSerializable {
             return false
         }
     }
-    
-    var normalize: PDFContainer {
-        switch self {
-        case .headerLeft, .headerCenter, .headerRight:
-            return .headerLeft
-        case .contentLeft, .contentCenter, .contentRight:
-            return .contentLeft
-        case .footerLeft, .footerCenter, .footerRight:
-            return .footerLeft
-        case .none:
-            return .none
-        }
-    }
-    
+
+    /**
+     Array of all possible containers, expect `.none`.
+     Useful for initalizing default values for each container
+     */
     static var all: [PDFContainer] {
         return [
             .headerLeft, .headerCenter, .headerRight,
@@ -89,7 +124,10 @@ public enum PDFContainer: TPJSONSerializable {
     }
     
     // MARK: - JSON Serialization
-    
+
+    /**
+     Creates a representable object
+     */
     public var JSONRepresentation: AnyObject {
         return self.hashValue as AnyObject
     }

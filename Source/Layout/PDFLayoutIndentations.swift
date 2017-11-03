@@ -35,15 +35,12 @@ struct PDFLayoutIndentations {
      - returns: Left indentation of given container
      */
     func leftIn(container: PDFContainer) -> CGFloat {
-        switch container.normalize {
-        case .headerLeft:
+        if container.isHeader {
             return header.left
-        case .contentLeft:
-            return content.left
-        case .footerLeft:
+        } else if container.isFooter {
             return footer.left
-        default:
-            return 0
+        } else {
+            return content.left
         }
     }
     
@@ -55,15 +52,12 @@ struct PDFLayoutIndentations {
      - returns: Right indentation of given container
      */
     func rightIn(container: PDFContainer) -> CGFloat {
-        switch container.normalize {
-        case .headerLeft:
+        if container.isHeader {
             return header.right
-        case .contentLeft:
-            return content.right
-        case .footerLeft:
+        } else if container.isFooter {
             return footer.right
-        default:
-            return 0
+        } else {
+            return content.right
         }
     }
     
@@ -74,15 +68,12 @@ struct PDFLayoutIndentations {
      - parameter container: Corresponding container
      */
     mutating func setLeft(indentation: CGFloat, in container: PDFContainer) {
-        switch container.normalize {
-        case .headerLeft:
+        if container.isHeader {
             header.left = indentation
-        case .contentLeft:
-            content.left = indentation
-        case .footerLeft:
+        } else if container.isFooter {
             footer.left = indentation
-        default:
-            break
+        } else {
+            content.left = indentation
         }
     }
     
@@ -93,15 +84,12 @@ struct PDFLayoutIndentations {
      - parameter container: Corresponding container
      */
     mutating func setRight(indentation: CGFloat, in container: PDFContainer) {
-        switch container.normalize {
-        case .headerLeft:
+        if container.isHeader {
             header.right = indentation
-        case .contentLeft:
-            content.right = indentation
-        case .footerLeft:
+        } else if container.isFooter {
             footer.right = indentation
-        default:
-            break
+        } else {
+            content.right = indentation
         }
     }
 }

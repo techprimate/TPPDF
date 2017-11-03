@@ -23,11 +23,15 @@ class PDFImageObject: PDFObject {
                                                                            sizeFit: image.sizeFit)
         
         let y: CGFloat = {
-            switch container.normalize {
-            case .headerLeft:
+            if container.isHeader {
                 return generator.document.layout.margin.top
                     + generator.layout.heights.header[container]!
-            case .contentLeft:
+            } else if container.isFooter {
+                return generator.document.layout.contentSize.height
+                    + generator.document.layout.margin.top
+                    + generator.layout.heights.maxHeaderHeight()
+                    + generator.layout.heights.footer[container]!
+            } else {
                 if generator.layout.heights.content + imageSize.height + captionSize.height > generator.document.layout.contentSize.height ||
                     (image.sizeFit == .height && imageSize.height < image.size.height) {
                     
@@ -45,13 +49,6 @@ class PDFImageObject: PDFObject {
                     + generator.layout.heights.maxHeaderHeight()
                     + generator.document.layout.space.header
                     + generator.layout.heights.content
-            case .footerLeft:
-                return generator.document.layout.contentSize.height
-                    + generator.document.layout.margin.top
-                    + generator.layout.heights.maxHeaderHeight()
-                    + generator.layout.heights.footer[container]!
-            default:
-                return 0
             }
             }()
         
