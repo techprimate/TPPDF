@@ -17,6 +17,8 @@ class PDFPageBreakObject: PDFObject {
      - parameter generator: Generator which uses this object
      - parameter container: Unused
 
+     - throws: None
+     
      - returns: Self
      */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {

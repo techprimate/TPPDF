@@ -5,16 +5,28 @@
 //  Created by Philip Niedertscheider on 24/08/2017.
 //
 
+/**
+ A collection of static calculations
+ */
 class PDFCalculations {
 
     // MARK: - INTERNAL STATIC FUNCS
 
-    internal static func calculateText(generator: PDFGenerator,
+    /**
+     Calculates the frame, the string that fits in the given `container` and the remainding string.
+
+     - parameter generator: Generator which is calculating
+     - parameter container: Container where text is drawn
+     - parameter text: Text which should be calculated and drawn
+
+     - returns: Tuple of text `frame`, text which fits in frame and the remainding text which did not fit
+     */
+    static func calculateText(generator: PDFGenerator,
                                        container: PDFContainer,
                                        text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString, remainder: NSAttributedString?) {
         let availableSize = calculateAvailableFrame(for: generator, in: container)
-        let (fittingText, textSize, remainder) = calculateTextFrameAndRemainder(of: text, in: availableSize)
-        let origin = calculatePositionOfText(for: generator, in: container, with: textSize)
+        let (fittingText, textSize, remainder) = calculateTextSizeAndRemainder(of: text, in: availableSize)
+        let origin = calculateElementPosition(for: generator, in: container, with: textSize)
         
         return (
             CGRect(origin: origin, size: textSize),
@@ -23,8 +35,16 @@ class PDFCalculations {
         )
     }
 
-    internal static func calculateTextFrameAndRemainder(of text: NSAttributedString,
-                                                        in bounds: CGSize) -> (text: NSAttributedString, size: CGSize, remainder: NSAttributedString?) {
+    /**
+     Calculates the actual size of the text and the remainder which does not fit the given `bounds`
+
+     - parameter text: Text which is calculated
+     - paramter bounds: Bounds where text should fit
+
+     - returns: Tuple of `text`, real `size of the text and the `remainder`
+     */
+    static func calculateTextSizeAndRemainder(of text: NSAttributedString,
+                                              in bounds: CGSize) -> (text: NSAttributedString, size: CGSize, remainder: NSAttributedString?) {
         let framesetter = CTFramesetterCreateWithAttributedString(text)
         let framePath = UIBezierPath(rect: CGRect(origin: .zero, size: bounds)).cgPath
 
@@ -51,15 +71,39 @@ class PDFCalculations {
         return (result, drawnSize, remainder)
     }
 
-    // MARK: - PRIVATE STATIC FUNCS
-    
-    private static func calculateAvailableFrame(for generator: PDFGenerator, in container: PDFContainer) -> CGSize {
+    /**
+     Calculates the available bounds size in a given `container`
+
+     - parameter generator: Generator doing the calculations
+     - parameter container: Container which size is calculated
+
+     - returns: Available bounds size
+     */
+    static func calculateAvailableFrame(for generator: PDFGenerator, in container: PDFContainer) -> CGSize {
         return CGSize(
             width: calculateAvailableFrameWidth(for: generator, in: container),
             height: calculateAvailableFrameHeight(for: generator, in: container)
         )
     }
-    
+
+    /**
+     Calculates the position of an element with given `size` in the given `container
+
+     - parameter generator: Generator doing the calculations
+     - parameter container: Container where element is in
+     - parameter size: Size of element
+
+     - returns: Position of element
+     */
+    static func calculateElementPosition(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGPoint {
+        return CGPoint(
+            x: calculatePositionX(for: generator, in: container, with: size),
+            y: calculatePositionY(for: generator, in: container, with: size)
+        )
+    }
+
+    // MARK: - PRIVATE STATIC FUNCS
+
     private static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
         let pageLayout = generator.document.layout
         
@@ -83,14 +127,7 @@ class PDFCalculations {
                 - layout.heights.maxFooterHeight()
         }
     }
-    
-    private static func calculatePositionOfText(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGPoint {
-        return CGPoint(
-            x: calculatePositionX(for: generator, in: container, with: size),
-            y: calculatePositionY(for: generator, in: container, with: size)
-        )
-    }
-    
+
     private static func calculatePositionX(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
@@ -113,7 +150,7 @@ class PDFCalculations {
                 ) / 2
         }
     }
-    
+
     private static func calculatePositionY(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout

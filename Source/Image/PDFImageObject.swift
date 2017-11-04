@@ -5,14 +5,28 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+/**
+ Calculates the given image and a caption if necessary
+ */
 class PDFImageObject: PDFObject {
-    
+
+    /**
+     Image object holding all information
+     */
     var image: PDFImage
-    
+
+    /**
+     Initalizer
+
+     - parameter image: Image object
+     */
     init(image: PDFImage) {
         self.image = image
     }
-    
+
+    /**
+     Calculates the frame of the image and additionally returns one or multiple caption objects.
+     */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
         

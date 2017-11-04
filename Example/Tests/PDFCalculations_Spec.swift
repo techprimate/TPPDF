@@ -21,7 +21,7 @@ class PDFCalculations_Spec : QuickSpec {
                     let attributedString = NSAttributedString(string: "12345\n12345\n12345\n12345\n12345")
 
                     var bounds = CGSize(width: 100, height: 100)
-                    var (text, size, remainder) = PDFCalculations.calculateTextFrameAndRemainder(of: attributedString, in: bounds)
+                    var (text, size, remainder) = PDFCalculations.calculateTextSizeAndRemainder(of: attributedString, in: bounds)
 
                     expect(text) == NSAttributedString(string: "12345\n12345\n12345\n12345\n12345")
                     expect(size.width).to(beCloseTo(33.369140625, within: 0.00001))
@@ -29,7 +29,7 @@ class PDFCalculations_Spec : QuickSpec {
                     expect(remainder).to(beNil())
 
                     bounds = CGSize(width: 10, height: 200)
-                    (text, size, remainder) = PDFCalculations.calculateTextFrameAndRemainder(of: attributedString, in: bounds)
+                    (text, size, remainder) = PDFCalculations.calculateTextSizeAndRemainder(of: attributedString, in: bounds)
 
                     expect(text) == NSAttributedString(string: "12345\n12345\n123")
                     expect(size.width).to(beCloseTo(6.673828125, within: 0.00001))
@@ -37,7 +37,7 @@ class PDFCalculations_Spec : QuickSpec {
                     expect(remainder) == NSAttributedString(string: "45\n12345\n12345")
 
                     bounds = CGSize(width: 200, height: 20)
-                    (text, size, remainder) = PDFCalculations.calculateTextFrameAndRemainder(of: attributedString, in: bounds)
+                    (text, size, remainder) = PDFCalculations.calculateTextSizeAndRemainder(of: attributedString, in: bounds)
 
                     expect(text) == NSAttributedString(string: "12345\n")
                     expect(size.width).to(beCloseTo(33.369140625, within: 0.00001))
@@ -45,7 +45,7 @@ class PDFCalculations_Spec : QuickSpec {
                     expect(remainder) == NSAttributedString(string: "12345\n12345\n12345\n12345")
 
                     bounds = CGSize(width: 20, height: 20)
-                    (text, size, remainder) = PDFCalculations.calculateTextFrameAndRemainder(of: attributedString, in: bounds)
+                    (text, size, remainder) = PDFCalculations.calculateTextSizeAndRemainder(of: attributedString, in: bounds)
 
                     expect(text) == NSAttributedString(string: "12")
                     expect(size.width).to(beCloseTo(13.34765625, within: 0.00001))
