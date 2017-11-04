@@ -27,7 +27,7 @@ public extension PDFPageFormat {
         case .usLedger:
             return CGSize(width: 720, height: 1224)  // 279  x 432  mm | 11.0 x 17.0 in
         default:
-            return self.size
+            return size
         }
     }
 

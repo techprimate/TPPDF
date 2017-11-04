@@ -65,7 +65,7 @@ public enum PDFTableCellAlignment {
 /**
  Extends the table cell alignment to be serializable into a JSON
  */
-extension PDFTableCellAlignment: TPJSONSerializable {
+extension PDFTableCellAlignment: PDFJSONSerializable {
 
     /**
      Creates a representable object

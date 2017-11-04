@@ -12,7 +12,7 @@
  - dashed: Line consists out of short dashes
  - dotted: Lines consists out of dots
  */
-public enum PDFLineType: TPJSONSerializable {
+public enum PDFLineType {
 
     /**
      No visible line
@@ -34,7 +34,11 @@ public enum PDFLineType: TPJSONSerializable {
      */
     case dotted
 
-    // MARK: - JSON Serialization
+}
+
+// MARK: - JSON Serialization
+
+extension PDFLineType: PDFJSONSerializable {
 
     /**
      Creates a serializable object

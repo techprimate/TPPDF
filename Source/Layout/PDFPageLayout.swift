@@ -8,7 +8,7 @@
 /**
  Contains all relevant layout informations of a pdf document
  */
-public struct PDFPageLayout: TPJSONSerializable {
+public struct PDFPageLayout: PDFJSONSerializable {
     
     // MARK: - PUBLIC VARS
     

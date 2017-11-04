@@ -8,7 +8,7 @@
 /**
  Information saved in PDF file metadata.
  */
-public class PDFInfo: TPJSONSerializable {
+public class PDFInfo: PDFJSONSerializable {
 
     /**
      Title of document.
@@ -31,12 +31,14 @@ public class PDFInfo: TPJSONSerializable {
     public var keywords = ["tppdf", "pdf", "generator"]
 
     /**
-     The owner password of the PDF document. If this key is specified, the document is encrypted using the value as the owner password; otherwise, the document will not be encrypted.
+     The owner password of the PDF document.
+     If this password is set the document is encrypted; otherwise, the document will not be encrypted.
      */
     public var ownerPassword: String?
 
     /**
-     The user password of the PDF document. If the document is encrypted, then the value of this key will be the user password for the document.
+     The user password of the PDF document.
+     If the document is encrypted, then this value will be the user password for the document.
      */
     public var userPassword: String?
 

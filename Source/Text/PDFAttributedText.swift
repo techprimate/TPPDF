@@ -10,7 +10,7 @@
 
  Use this class for advanced text drawing
  */
-public class PDFAttributedText: PDFText, TPJSONSerializable {
+public class PDFAttributedText: PDFText, PDFJSONSerializable {
 
     /**
      Text which will be drawn

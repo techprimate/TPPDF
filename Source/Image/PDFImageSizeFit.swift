@@ -17,7 +17,7 @@ public enum PDFImageSizeFit {
 
 // MARK: - JSON Serialization
 
-extension PDFImageSizeFit: TPJSONSerializable {
+extension PDFImageSizeFit: PDFJSONSerializable {
 
     /**
      Creates representable object

@@ -11,7 +11,7 @@
 
  -
  */
-public class PDFTable: TPJSONSerializable {
+public class PDFTable: PDFJSONSerializable {
     
     /**
      Styling used for drawing

@@ -7,7 +7,7 @@
 
 extension PDFListItem {
     
-    public enum Symbol: RawRepresentable, TPJSONSerializable {
+    public enum Symbol: RawRepresentable, PDFJSONSerializable {
         case none
         case inherit
         case dot

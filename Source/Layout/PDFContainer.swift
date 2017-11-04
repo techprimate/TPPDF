@@ -11,7 +11,7 @@
  Generally a document is vertically split up into a header, a content and a footer area.
  Also each part is horizontally split up into a left, a center and a right area.
  */
-public enum PDFContainer: TPJSONSerializable {
+public enum PDFContainer: PDFJSONSerializable {
 
     /**
      Element is in no container, only real use is as a default value

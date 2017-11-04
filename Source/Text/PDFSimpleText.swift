@@ -10,7 +10,7 @@
 
  Use this class for simple and quick text drawing
  */
-public class PDFSimpleText: PDFText, TPJSONSerializable {
+public class PDFSimpleText: PDFText, PDFJSONSerializable {
 
     /**
      Text to be drawn

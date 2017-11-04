@@ -5,9 +5,9 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
-public class PDFTableContent: TPJSONSerializable {
+public class PDFTableContent: PDFJSONSerializable {
     
-    enum ContentType: TPJSONSerializable {
+    enum ContentType: PDFJSONSerializable {
         
         case none
         case string

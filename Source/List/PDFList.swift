@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
-public class PDFList: TPJSONSerializable {
+public class PDFList: PDFJSONSerializable {
     
     var items: [PDFListItem] = []
     var levelIndentations: [(pre: CGFloat, past: CGFloat)] = []

@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
-public class PDFListItem: TPJSONSerializable {
+public class PDFListItem: PDFJSONSerializable {
     
     public var parent: PDFListItem?
     public var content: String?

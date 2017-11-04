@@ -8,7 +8,7 @@
 /**
  Used to define the pagination behaviour of a document.
  */
-public struct PDFPagination: TPJSONSerializable {
+public struct PDFPagination: PDFJSONSerializable {
 
     /**
      Container where the pagination will be placed

@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
-public struct PDFTableCellPosition: TPJSONSerializable {
+public struct PDFTableCellPosition: PDFJSONSerializable {
     
     public var row = -1
     public var column = -1

@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
-public class PDFTableCell: TPJSONSerializable {
+public class PDFTableCell: PDFJSONSerializable {
     
     public var content: PDFTableContent?
     public var alignment: PDFTableCellAlignment

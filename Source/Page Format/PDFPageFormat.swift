@@ -61,6 +61,6 @@ public enum PDFPageFormat {
      Swaps height and width to create a landscape format
      */
     var landscapeSize: CGSize {
-        return CGSize(width: self.size.height, height: self.size.width)
+        return CGSize(width: size.height, height: size.width)
     }
 }

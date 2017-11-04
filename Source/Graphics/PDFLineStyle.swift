@@ -8,7 +8,7 @@
 /**
  This struct defines how a line or border of a table is drawn.
  */
-public struct PDFLineStyle: TPJSONSerializable {
+public struct PDFLineStyle: PDFJSONSerializable {
 
     /**
      Defines the type of this line

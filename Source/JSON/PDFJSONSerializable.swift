@@ -5,11 +5,9 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-import Foundation
+public protocol PDFJSONSerializable: PDFJSONRepresentable { }
 
-public protocol TPJSONSerializable: TPJSONRepresentable { }
-
-public extension TPJSONSerializable {
+public extension PDFJSONSerializable {
     
     public func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
         let representation = JSONRepresentation
@@ -24,7 +22,7 @@ public extension TPJSONSerializable {
     }
 }
 
-extension TPJSONSerializable {
+extension PDFJSONSerializable {
     
     public var JSONRepresentation: AnyObject {
         var representation = [String: AnyObject]()
@@ -37,10 +35,10 @@ extension TPJSONSerializable {
     }
 }
 
-extension TPJSONSerializable {
+extension PDFJSONSerializable {
     
     func convertValue(_ value: Any) -> AnyObject {
-        if let value = value as? TPJSONSerializable {
+        if let value = value as? PDFJSONSerializable {
             return value.JSONRepresentation
         } else if let value = value as? NSString {
             return value
@@ -73,7 +71,7 @@ extension TPJSONSerializable {
     }
 }
 
-extension Array: TPJSONSerializable {
+extension Array: PDFJSONSerializable {
     
     public var JSONRepresentation: AnyObject {
         var representation: [Any] = []
@@ -86,7 +84,7 @@ extension Array: TPJSONSerializable {
     }
 }
 
-extension Dictionary: TPJSONSerializable {
+extension Dictionary: PDFJSONSerializable {
     
     public var JSONRepresentation: AnyObject {
         let representation: NSMutableDictionary = [:]
@@ -99,21 +97,21 @@ extension Dictionary: TPJSONSerializable {
     }
 }
 
-extension CGRect: TPJSONSerializable { }
-extension CGPoint: TPJSONSerializable { }
-extension CGSize: TPJSONSerializable { }
+extension CGRect: PDFJSONSerializable { }
+extension CGPoint: PDFJSONSerializable { }
+extension CGSize: PDFJSONSerializable { }
 
-extension NSAttributedString: TPJSONSerializable { }
-extension UIFont: TPJSONSerializable { }
+extension NSAttributedString: PDFJSONSerializable { }
+extension UIFont: PDFJSONSerializable { }
 
-extension UIImage: TPJSONSerializable {
+extension UIImage: PDFJSONSerializable {
     
     public var JSONRepresentation: AnyObject {
         return UIImageJPEGRepresentation(self, 1.0)?.base64EncodedString() as AnyObject? ?? NSNull()
     }
 }
 
-extension UIColor: TPJSONSerializable {
+extension UIColor: PDFJSONSerializable {
     
     func toHexString() -> String {
         var r: CGFloat = 0

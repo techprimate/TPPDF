@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 19/01/2017.
 //
 
-public class PDFTableStyle: TPJSONSerializable {
+public class PDFTableStyle: PDFJSONSerializable {
     
     public var rowHeaderCount: Int
     public var columnHeaderCount: Int

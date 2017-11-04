@@ -8,7 +8,7 @@
 /**
  Image element for the PDF document. Contains all information about an image, including the caption.
  */
-public class PDFImage: TPJSONSerializable {
+public class PDFImage: PDFJSONSerializable {
 
     /**
      The actual image

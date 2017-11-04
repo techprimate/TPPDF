@@ -8,7 +8,7 @@
 /**
  Contains all relevant layout informations of a pdf document
  */
-class PDFLayout: TPJSONSerializable {
+class PDFLayout: PDFJSONSerializable {
     
     var heights = PDFLayoutHeights()
     var indentation = PDFLayoutIndentations()
