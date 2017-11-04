@@ -9,7 +9,9 @@
  This extension contains all functions to modify the objects of a document
  */
 public extension PDFDocument {
-    
+
+    // MARK: - PUBLIC FUNCS
+
     // MARK: - Layout
     
     /**
