@@ -5,8 +5,13 @@
 //  Created by Philip Niedertscheider on 05/06/2017.
 //
 
+/**
+ Gives the generator the functionality to convert a `PDFDocument` into a `PDF`
+ */
 extension PDFGenerator {
-    
+
+    // MARK: - PUBLIC STATIC FUNCS
+
     /**
      Generates PDF data and writes it to a temporary file.
      
@@ -49,7 +54,9 @@ extension PDFGenerator {
         
         return data as Data
     }
-    
+
+    // MARK: - INTERNAL FUNCS
+
     /**
      Generate PDF Context from PDFCommands
      
@@ -61,9 +68,12 @@ extension PDFGenerator {
         let renderObjects = try createRenderObjects()
         try render(objects: renderObjects)
     }
-    
-    // MARK: - INTERNAL FUNCS
-    
+
+    /**
+     Creates a list of container-object pairs which will be rendered.
+
+     - returns: List of renderable objects
+     */
     func createRenderObjects() throws -> [(PDFContainer, PDFObject)] {
         // Extract content objects
         let contentObjects = PDFGenerator.extractContentObjects(objects: document.objects)
@@ -111,7 +121,15 @@ extension PDFGenerator {
         
         return allObjects
     }
-    
+
+    /**
+     Returns a list of all header and footer objects with their corresponding container.
+     This list also contains the pagination object
+
+     - throws: PDFError
+
+     - returns: List of renderable objects
+     */
     func addHeaderFooterObjects() throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
         
@@ -130,7 +148,12 @@ extension PDFGenerator {
         
         return result
     }
-    
+
+    /**
+     Renders a list of objects in their corresponding container
+
+     - throws: PDFError, if rendering fails
+     */
     func render(objects: [(PDFContainer, PDFObject)]) throws {
         UIGraphicsBeginPDFPageWithInfo(document.layout.bounds, nil)
         
@@ -140,21 +163,47 @@ extension PDFGenerator {
             try render(object: object, in: container)
         }
     }
-    
+
+    /**
+     Render a object in its corresponding container
+
+     - throws: PDFError, if rendering fails
+     */
     func render(object: PDFObject, in container: PDFContainer) throws {
         try object.draw(generator: self, container: container)
     }
     
-    // MARK: - INTERNAL STATIC
+    // MARK: - INTERNAL STATIC FUNCS
 
+    /**
+     Filters out all objects which are in the header area
+
+     - parameter objects: List objects
+
+     - returns: List of all header objects
+     */
     static func extractHeaderObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
         return objects.filter { return $0.0.isHeader }
     }
-    
+
+    /**
+     Filters out all objects which are in the footer area
+
+     - parameter objects: List objects
+
+     - returns: List of all footer objects
+     */
     static func extractFooterObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
         return objects.filter { return $0.0.isFooter }
     }
-    
+
+    /**
+     Filters out all objects which are in the content area
+
+     - parameter objects: List objects
+
+     - returns: List of all content objects
+     */
     static func extractContentObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
         return objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
     }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PDFLayout Structure Reference</title>
+    <title>PDFImageSizeFit Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,16 +14,16 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/PDFLayout" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Enum/PDFImageSizeFit" class="dashAnchor"></a>
 
-    <a title="PDFLayout Structure Reference"></a>
+    <a title="PDFImageSizeFit Enumeration Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
           TPPDF Docs
         </a>
-         (16% documented)
+         (54% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -50,7 +50,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">TPPDF Reference</a>
       <img class="carat" src="../img/carat.png" />
-      PDFLayout Structure Reference
+      PDFImageSizeFit Enumeration Reference
     </p>
 
     <div class="content-wrapper">
@@ -84,9 +84,6 @@
                 <a class="nav-group-task-link" href="../Classes/PDFListItem/Symbol.html">– Symbol</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes.html#/s:5TPPDF9PDFObjectC">PDFObject</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/PDFSimpleText.html">PDFSimpleText</a>
               </li>
               <li class="nav-group-task">
@@ -101,22 +98,22 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/PDFTableStyle.html">PDFTableStyle</a>
               </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes.html#/s:5TPPDF7PDFTextC">PDFText</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/ImageSizeFit.html">ImageSizeFit</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/PDFContainer.html">PDFContainer</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFImageSizeFit.html">PDFImageSizeFit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFLineType.html">PDFLineType</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/PDFPageFormat.html">PDFPageFormat</a>
@@ -164,6 +161,9 @@
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:5TPPDF7PDFTextP">PDFText</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/TPJSONRepresentable.html">TPJSONRepresentable</a>
               </li>
               <li class="nav-group-task">
@@ -175,13 +175,10 @@
             <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/PDFLayout.html">PDFLayout</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/PDFLineStyle.html">PDFLineStyle</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/PDFLineStyle/LineType.html">– LineType</a>
+                <a class="nav-group-task-link" href="../Structs/PDFPageLayout.html">PDFPageLayout</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/PDFPagination.html">PDFPagination</a>
@@ -211,14 +208,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>PDFLayout</h1>
+            <h1>PDFImageSizeFit</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">PDFLayout</span><span class="p">:</span> <span class="kt"><a href="../Protocols/TPJSONSerializable.html">TPJSONSerializable</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFImageSizeFit</span></code></pre>
 
                 </div>
               </div>
-            <p>Contains all relevant layout informations of a pdf document</p>
+            <p>Constants defining scaling behaviour of an image, if not enough space to render full size is given.</p>
 
           </div>
         </section>
@@ -226,20 +223,13 @@
         <section class="section">
           <div class="section-content">
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/PUBLIC%20VARS"></a>
-                <a name="//apple_ref/swift/Section/PUBLIC VARS" class="dashAnchor"></a>
-                <a href="#/PUBLIC%20VARS">
-                  <h3 class="section-name">PUBLIC VARS</h3>
-                </a>
-              </div>
               <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF9PDFLayoutV4sizeSC6CGSizeVv"></a>
-                    <a name="//apple_ref/swift/Property/size" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF9PDFLayoutV4sizeSC6CGSizeVv">size</a>
+                    <a name="/s:5TPPDF15PDFImageSizeFitO5widthA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/width" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF15PDFImageSizeFitO5widthA2CmF">width</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -247,26 +237,30 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Size of each page</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span> <span class="o">=</span> <span class="kt">CGSize</span><span class="o">.</span><span class="n">zero</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">width</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF9PDFLayoutV6marginSC12UIEdgeInsetsVv"></a>
-                    <a name="//apple_ref/swift/Property/margin" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF9PDFLayoutV6marginSC12UIEdgeInsetsVv">margin</a>
+                    <a name="/s:5TPPDF15PDFImageSizeFitO6heightA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/height" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF15PDFImageSizeFitO6heightA2CmF">height</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -274,31 +268,30 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Margins of each page.</p>
-
-<p><code>header</code>: Top inset of page
-<code>footer</code>: Bottom inset of page
-<code>left</code>: Left inset of page
-<code>right</code>: Right inset of page</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">margin</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">height</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF9PDFLayoutV5space12CoreGraphics7CGFloatV6header_AG6footertv"></a>
-                    <a name="//apple_ref/swift/Property/space" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF9PDFLayoutV5space12CoreGraphics7CGFloatV6header_AG6footertv">space</a>
+                    <a name="/s:5TPPDF15PDFImageSizeFitO11widthHeightA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/widthHeight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF15PDFImageSizeFitO11widthHeightA2CmF">widthHeight</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -306,17 +299,45 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Spaces between header, content and footer.</p>
-
-<p><code>header</code>: Space between header and content
-<code>footer</code>: Space between content and footer</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">space</span><span class="p">:</span> <span class="p">(</span><span class="nv">header</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">footer</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">widthHeight</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF15PDFImageSizeFitO18JSONRepresentationyXlv"></a>
+                    <a name="//apple_ref/swift/Property/JSONRepresentation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF15PDFImageSizeFitO18JSONRepresentationyXlv">JSONRepresentation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates representable object</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">JSONRepresentation</span><span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                         </div>
                       </div>
@@ -331,7 +352,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2017-10-31)</p>
+      <p>&copy; 2017 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2017-11-04)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

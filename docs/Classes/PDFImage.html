@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           TPPDF Docs
         </a>
-         (16% documented)
+         (54% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -84,9 +84,6 @@
                 <a class="nav-group-task-link" href="../Classes/PDFListItem/Symbol.html">– Symbol</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes.html#/s:5TPPDF9PDFObjectC">PDFObject</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/PDFSimpleText.html">PDFSimpleText</a>
               </li>
               <li class="nav-group-task">
@@ -101,22 +98,22 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/PDFTableStyle.html">PDFTableStyle</a>
               </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes.html#/s:5TPPDF7PDFTextC">PDFText</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/ImageSizeFit.html">ImageSizeFit</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/PDFContainer.html">PDFContainer</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFImageSizeFit.html">PDFImageSizeFit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFLineType.html">PDFLineType</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/PDFPageFormat.html">PDFPageFormat</a>
@@ -164,6 +161,9 @@
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:5TPPDF7PDFTextP">PDFText</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/TPJSONRepresentable.html">TPJSONRepresentable</a>
               </li>
               <li class="nav-group-task">
@@ -175,13 +175,10 @@
             <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/PDFLayout.html">PDFLayout</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/PDFLineStyle.html">PDFLineStyle</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/PDFLineStyle/LineType.html">– LineType</a>
+                <a class="nav-group-task-link" href="../Structs/PDFPageLayout.html">PDFPageLayout</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/PDFPagination.html">PDFPagination</a>
@@ -218,7 +215,7 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Image element for the PDF document. Contains all information about an image, including the caption.</p>
 
           </div>
         </section>
@@ -230,9 +227,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF8PDFImageC5imageSo7UIImageCv"></a>
+                    <a name="/s:5TPPDF8PDFImageC5imageXev"></a>
                     <a name="//apple_ref/swift/Property/image" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageC5imageSo7UIImageCv">image</a>
+                    <a class="token" href="#/s:5TPPDF8PDFImageC5imageXev">image</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -240,7 +237,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The actual image</p>
 
                       </div>
                       <div class="declaration">
@@ -257,9 +254,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF8PDFImageC7captionAA7PDFTextCSgv"></a>
+                    <a name="/s:5TPPDF8PDFImageC7captionAA7PDFText_pSgv"></a>
                     <a name="//apple_ref/swift/Property/caption" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageC7captionAA7PDFTextCSgv">caption</a>
+                    <a class="token" href="#/s:5TPPDF8PDFImageC7captionAA7PDFText_pSgv">caption</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -267,14 +264,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An instance of a <code><a href="../Protocols.html#/s:5TPPDF7PDFTextP">PDFText</a></code> subclass.
+Use <code><a href="../Classes/PDFSimpleText.html">PDFSimpleText</a></code> for a simple, container-based styled caption and <code><a href="../Classes/PDFAttributedText.html">PDFAttributedText</a></code> for advanced styling.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">caption</span><span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:5TPPDF7PDFTextC">PDFText</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">caption</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5TPPDF7PDFTextP">PDFText</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -284,9 +282,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF8PDFImageC4sizeSC6CGSizeVv"></a>
+                    <a name="/s:5TPPDF8PDFImageC4sizeXev"></a>
                     <a name="//apple_ref/swift/Property/size" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageC4sizeSC6CGSizeVv">size</a>
+                    <a class="token" href="#/s:5TPPDF8PDFImageC4sizeXev">size</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -294,7 +292,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The size of the image in the PDF document</p>
 
                       </div>
                       <div class="declaration">
@@ -311,9 +309,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF8PDFImageC7sizeFitAA09ImageSizeD0Ov"></a>
+                    <a name="/s:5TPPDF8PDFImageC7sizeFitAA0b4SizeD0Ov"></a>
                     <a name="//apple_ref/swift/Property/sizeFit" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageC7sizeFitAA09ImageSizeD0Ov">sizeFit</a>
+                    <a class="token" href="#/s:5TPPDF8PDFImageC7sizeFitAA0b4SizeD0Ov">sizeFit</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -321,14 +319,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Defines how the image will fit if not enough space is given</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeFit</span><span class="p">:</span> <span class="kt"><a href="../Enums/ImageSizeFit.html">ImageSizeFit</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeFit</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFImageSizeFit.html">PDFImageSizeFit</a></span></code></pre>
 
                         </div>
                       </div>
@@ -338,9 +336,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF8PDFImageC7quality12CoreGraphics7CGFloatVv"></a>
+                    <a name="/s:5TPPDF8PDFImageC7qualityXev"></a>
                     <a name="//apple_ref/swift/Property/quality" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageC7quality12CoreGraphics7CGFloatVv">quality</a>
+                    <a class="token" href="#/s:5TPPDF8PDFImageC7qualityXev">quality</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -348,7 +346,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>JPEG quality of image.</p>
+
+<p>Value ranges between 0.0 and 1.0, maximum quality equals 1.0</p>
 
                       </div>
                       <div class="declaration">
@@ -365,9 +365,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF8PDFImageCACSo7UIImageC5image_AA7PDFTextCSg7captionSC6CGSizeV4sizeAA12ImageSizeFitO0hK012CoreGraphics7CGFloatV7qualitytcfc"></a>
+                    <a name="/s:5TPPDF8PDFImageCXeXecfc"></a>
                     <a name="//apple_ref/swift/Method/init(image:caption:size:sizeFit:quality:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFImageCACSo7UIImageC5image_AA7PDFTextCSg7captionSC6CGSizeV4sizeAA12ImageSizeFitO0hK012CoreGraphics7CGFloatV7qualitytcfc">init(image:caption:size:sizeFit:quality:)</a>
+                    <a class="token" href="#/s:5TPPDF8PDFImageCXeXecfc">init(image:caption:size:sizeFit:quality:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -375,7 +375,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializer to create a PDF image element.</p>
 
                       </div>
                       <div class="declaration">
@@ -383,12 +383,79 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">,</span>
-            <span class="nv">caption</span><span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:5TPPDF7PDFTextC">PDFText</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+            <span class="nv">caption</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5TPPDF7PDFTextP">PDFText</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
             <span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">,</span>
-            <span class="nv">sizeFit</span><span class="p">:</span> <span class="kt"><a href="../Enums/ImageSizeFit.html">ImageSizeFit</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">widthHeight</span><span class="p">,</span>
+            <span class="nv">sizeFit</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFImageSizeFit.html">PDFImageSizeFit</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">widthHeight</span><span class="p">,</span>
             <span class="nv">quality</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.85</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>image</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Image which will be drawn</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>caption</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Optional instance of a <code><a href="../Protocols.html#/s:5TPPDF7PDFTextP">PDFText</a></code> subclass, defaults to <code>nil</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Size of image, defaults to zero size</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sizeFit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Defines how the image will fit if not enough space is given, defaults to <code><a href="../Enums/PDFImageSizeFit.html#/s:5TPPDF15PDFImageSizeFitO11widthHeightA2CmF">PDFImageSizeFit.widthHeight</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quality</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>JPEG quality between 0.0 and 1.0, defaults to 0.85</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -401,7 +468,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2017-10-31)</p>
+      <p>&copy; 2017 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2017-11-04)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

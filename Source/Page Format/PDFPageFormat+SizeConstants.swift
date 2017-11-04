@@ -5,8 +5,15 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+/**
+ This extension includes all size constnats defined by their corresponding standard.
+ */
 public extension PDFPageFormat {
-    
+
+    /**
+     Returns the defined US paper size if this format is a US format.
+     If it is not a US format, it will check other constants for correct size
+     */
     var usSize: CGSize {
         switch self {
         case .usHalfLetter:
@@ -23,7 +30,11 @@ public extension PDFPageFormat {
             return self.size
         }
     }
-    
+
+    /**
+     Returns the defined ANSI paper size if this format is a ANSI format.
+     If it is not a ANSI format, it will check other constants for correct size
+     */
     var ansiSize: CGSize {
         switch self {
         case .ansiA:
@@ -40,7 +51,11 @@ public extension PDFPageFormat {
             return size
         }
     }
-    
+
+    /**
+     Returns the defined A-Series paper size if this format is a A-Series format.
+     If it is not a A-Series format, it will check other constants for correct size
+     */
     var aSize: CGSize {
         switch self {
         case .a0:
@@ -69,7 +84,11 @@ public extension PDFPageFormat {
             return size
         }
     }
-    
+
+    /**
+     Returns the defined B-Series paper size if this format is a B-Series format.
+     If it is not a B-Series format, it will check other constants for correct size
+     */
     var bSize: CGSize {
         switch self {
         case .b0:
@@ -98,7 +117,11 @@ public extension PDFPageFormat {
             return size
         }
     }
-    
+
+    /**
+     Returns the defined C-Series paper size if this format is a C-Series format.
+     If it is not a C-Series format, it will check other constants for correct size
+     */
     var cSize: CGSize {
         switch self {
         case .c0:

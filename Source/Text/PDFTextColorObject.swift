@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-class PDFTextColorObject : PDFObject {
+class PDFTextColorObject: PDFObject {
     
     var color: UIColor
     

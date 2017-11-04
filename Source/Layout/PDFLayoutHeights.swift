@@ -24,6 +24,16 @@ struct PDFLayoutHeights {
         footer[.footerCenter] = 0
         footer[.footerRight] = 0
     }
+
+    mutating func add(_ value: CGFloat, to container: PDFContainer) {
+        if container.isHeader {
+            header[container] = (header[container] ?? 0) + value
+        } else if container.isFooter {
+            footer[container] = (footer[container] ?? 0) + value
+        } else {
+            content += value
+        }
+    }
     
     func maxHeaderHeight() -> CGFloat {
         return header.values.max() ?? 0

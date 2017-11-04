@@ -5,14 +5,35 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+/**
+ Empty space between two elements
+ */
 class PDFSpaceObject: PDFObject {
-    
+
+    /**
+     Height of space object in points
+     */
     var space: CGFloat
 
+    /**
+     Initializer
+
+     - parameter space: Height of space object
+     */
     init(space: CGFloat) {
         self.space = space
     }
-    
+
+    /**
+     Creates a spacing object in the given `generator` in the given `container`
+
+     - parameter generator: Generator which uses this object
+     - parameter container: Container where this object is in
+
+     - throws: None
+
+     - returns: Self
+     */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         let document = generator.document
         
@@ -31,25 +52,23 @@ class PDFSpaceObject: PDFObject {
             - document.layout.margin.right
         
         self.frame = CGRect(x: x, y: y, width: width, height: space)
-        
-        updateHeights(generator: generator, container: container)
+
+        generator.layout.heights.add(space, to: container)
         
         return [(container, self)]
     }
-    
+
+    /**
+     If `PDFGenerator.debug` is enabled, this will draw a green rectangle with red border into the current context.
+
+     - parameter generator: Unused
+     - parameter container: Unused
+
+     - throws: None
+     */
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         if PDFGenerator.debug {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .green)
-        }
-    }
-    
-    func updateHeights(generator: PDFGenerator, container: PDFContainer) {
-        if container.isHeader {
-            generator.layout.heights.header[container] = generator.layout.heights.header[container]! + space
-        } else if container.isFooter {
-            generator.layout.heights.header[container] = generator.layout.heights.footer[container]! + space
-        } else {
-            generator.layout.heights.content += space
         }
     }
 }
