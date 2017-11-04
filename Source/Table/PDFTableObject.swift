@@ -8,50 +8,27 @@
 // swiftlint:disable cyclomatic_complexity function_body_length
 
 class PDFTableObject: PDFObject {
-    
+
+    /**
+     Table to calculate and draw
+     */
     var table: PDFTable
-    
+
+    /**
+     Initializer
+
+     - parameter: Table to calculate and draw
+     */
     init(table: PDFTable) {
         self.table = table
     }
-    
-    struct PDFTablePageObject {
-        
-        var frame: CGRect
-        var rows: [PDFTableRowObject]
-        
-        func enumerateCells(_ closure: (Int, Int, PDFTableRowObject, PDFTableCellObject, PDFTableCell) -> Void) throws {
-            for (rowIdx, row) in rows.enumerated() {
-                for (colIdx, cell) in row.cells.enumerated() {
-                    guard let pdfCell = cell.cell else {
-                        throw PDFError.tableCellWeakReferenceBroken
-                    }
-                    closure(rowIdx, colIdx, row, cell, pdfCell)
-                }
-            }
-        }
-    }
-    
-    struct PDFTableRowObject {
-        
-        var height: CGFloat
-        var cells: [PDFTableCellObject]
-        
-    }
-    
-    struct PDFTableCellObject {
-        
-        weak var cell: PDFTableCell?
-        var cellFrame: CGRect
-        var contentFrame: CGRect
-        
-    }
-    
-    var cellsPerPage: [PDFTablePageObject] = []
-    var styleIndexOffset: Int = 0
-    
-    func calculate(generator: PDFGenerator, container: PDFContainer) throws {
-        
+
+    /**
+     - throws: `PDFError` if table validation fails. See `PDFTableValidator.validateTableData(::)` for details
+     */
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+        try PDFTableValidator.validateTable(table: table)
+
         /// All outer cell frame
         var cellFrames: [[CGRect]] = []
         /// All Inner content cell frame
@@ -59,21 +36,12 @@ class PDFTableObject: PDFObject {
         
         cellsPerPage = []
         styleIndexOffset = 0
-        
-        try PDFTableValidator.validateTable(table: table)
-        
-        let document = generator.document
-        
-        let totalWidth = document.layout.size.width
-            - document.layout.margin.left
-            - document.layout.margin.right
-            - generator.layout.indentation.leftIn(container: container)
-            - generator.layout.indentation.rightIn(container: container)
-        
-        var x: CGFloat = document.layout.margin.left + generator.layout.indentation.leftIn(container: container)
-        var y: CGFloat = generator.layout.heights.maxHeaderHeight() + document.layout.margin.top + generator.layout.heights.content
-        
-        self.frame = CGRect(x: x, y: y, width: totalWidth, height: 0)
+
+        let layout = generator.document.layout
+        let availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
+        var origin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
+
+        self.frame = CGRect(x: origin.x, y: origin.y, width: availableSize.width, height: 0)
         
         // Calculate cells
         
@@ -85,13 +53,13 @@ class PDFTableObject: PDFObject {
             
             // Calcuate X, Y position and size
             for (colIdx, cell) in row.enumerated() {
-                let columnWidth = table.widths[colIdx] * totalWidth
+                let columnWidth = table.widths[colIdx] * availableSize.width
                 let cellWidth = columnWidth - 2 * table.margin
                 let contentWidth = columnWidth - 2 * (table.margin + table.padding)
                 
-                let contentPosition = CGPoint(
-                    x: x + table.margin + table.padding,
-                    y: y + document.layout.space.header + table.margin + table.padding
+                let contentPosition = origin + CGPoint(
+                    x: table.margin + table.padding,
+                    y: layout.space.header + table.margin + table.padding
                 )
                 
                 var contentFrame = CGRect(
@@ -99,10 +67,8 @@ class PDFTableObject: PDFObject {
                     size: CGSize(width: contentWidth, height: 0)
                 )
                 var cellFrame = CGRect(
-                    x: x + table.margin,
-                    y: y + table.margin,
-                    width: cellWidth,
-                    height: 0
+                    origin: origin + table.margin,
+                    size: CGSize(width: cellWidth, height: 0)
                 )
                 
                 if let content = cell.content {
@@ -121,13 +87,12 @@ class PDFTableObject: PDFObject {
                     case let text as String:
                         let paragraph = NSMutableParagraphStyle()
                         paragraph.alignment = {
-                            switch cell.alignment.normalizeHorizontal {
-                            case .right:
-                                return NSTextAlignment.right
-                            case .center:
-                                return NSTextAlignment.center
-                            default:
+                            if cell.alignment.isLeft {
                                 return NSTextAlignment.left
+                            } else if cell.alignment.isRight {
+                                return NSTextAlignment.right
+                            } else {
+                                return NSTextAlignment.center
                             }
                         }()
                         
@@ -164,7 +129,7 @@ class PDFTableObject: PDFObject {
                 contentFrames[rowIdx].append(contentFrame)
                 cellFrames[rowIdx].append(cellFrame)
                 
-                x += columnWidth
+                origin.x += columnWidth
             }
             
             // Reposition in Y-Axis. This is for vertical alignment
@@ -177,24 +142,22 @@ class PDFTableObject: PDFObject {
                 let contentFrame = contentFrames[rowIdx][colIdx]
                 
                 let contentX: CGFloat = {
-                    switch alignment.normalizeHorizontal {
-                    case .center:
-                        return contentFrame.minX + (cellFrame.width - 2 * table.padding - contentFrame.width) / 2
-                    case .right:
-                        return contentFrame.maxX - table.padding - contentFrame.width
-                    default:
+                    if alignment.isLeft {
                         return contentFrame.minX
+                    } else if alignment.isRight {
+                        return contentFrame.maxX - table.padding - contentFrame.width
+                    } else {
+                        return contentFrame.minX + (cellFrame.width - 2 * table.padding - contentFrame.width) / 2
                     }
                 }()
                 
                 let contentY: CGFloat = {
-                    switch alignment.normalizeVertical {
-                    case .center:
-                        return contentFrame.minY + (maxCellHeight - 2 * table.padding - contentFrame.height) / 2
-                    case .bottom:
-                        return contentFrame.minY + maxCellHeight - 2 * table.padding - contentFrame.height
-                    default:
+                    if alignment.isTop {
                         return contentFrame.minY
+                    } else if alignment.isBottom {
+                        return contentFrame.minY + maxCellHeight - 2 * table.padding - contentFrame.height
+                    } else {
+                        return contentFrame.minY + (maxCellHeight - 2 * table.padding - contentFrame.height) / 2
                     }
                 }()
                 
@@ -203,8 +166,8 @@ class PDFTableObject: PDFObject {
                 cellFrames[rowIdx][colIdx].size.height = maxCellHeight
             }
             
-            x = frame.minX
-            y += maxCellHeight + 2 * (table.margin)
+            origin.x = frame.minX
+            origin.y += maxCellHeight + 2 * (table.margin)
         }
         
         var allHeight: CGFloat = 0
@@ -232,9 +195,9 @@ class PDFTableObject: PDFObject {
             
             var difference = cellsPerPage.map { return $0.frame.height }.reduce(0, +)
             
-            if allHeight + rowHeight - difference > document.layout.contentSize.height
+            if allHeight + rowHeight - difference > layout.contentSize.height
                 + generator.layout.heights.maxHeaderHeight()
-                + document.layout.space.header {
+                + layout.space.header {
                 currentTablePage.rows = rowsOnThisPage
                 cellsPerPage.append(currentTablePage)
                 
@@ -261,8 +224,10 @@ class PDFTableObject: PDFObject {
         
         currentTablePage.rows = rowsOnThisPage
         cellsPerPage.append(currentTablePage)
+
+        return [(container, self)]
     }
-    
+
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         for (pageIdx, page) in cellsPerPage.enumerated() {
             // Draw background
@@ -426,4 +391,41 @@ class PDFTableObject: PDFObject {
             return style.contentStyle
         }
     }
+
+
+    struct PDFTablePageObject {
+
+        var frame: CGRect
+        var rows: [PDFTableRowObject]
+
+        func enumerateCells(_ closure: (Int, Int, PDFTableRowObject, PDFTableCellObject, PDFTableCell) -> Void) throws {
+            for (rowIdx, row) in rows.enumerated() {
+                for (colIdx, cell) in row.cells.enumerated() {
+                    guard let pdfCell = cell.cell else {
+                        throw PDFError.tableCellWeakReferenceBroken
+                    }
+                    closure(rowIdx, colIdx, row, cell, pdfCell)
+                }
+            }
+        }
+    }
+
+    struct PDFTableRowObject {
+
+        var height: CGFloat
+        var cells: [PDFTableCellObject]
+
+    }
+
+    struct PDFTableCellObject {
+
+        weak var cell: PDFTableCell?
+        var cellFrame: CGRect
+        var contentFrame: CGRect
+
+    }
+
+    var cellsPerPage: [PDFTablePageObject] = []
+    var styleIndexOffset: Int = 0
+
 }

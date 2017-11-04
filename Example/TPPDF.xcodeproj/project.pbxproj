@@ -14,6 +14,9 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* PDFListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* PDFListTests.swift */; };
 		A549573C658C70B3911B7712 /* Pods_TPPDF_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB1F372E18E7F48400D4AA1 /* Pods_TPPDF_Tests.framework */; };
+		D424C4D11FADF62F00FDFBBB /* PDFDocument_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D424C4CF1FADF62000FDFBBB /* PDFDocument_Spec.swift */; };
+		D424C4D71FADF85600FDFBBB /* PDFInfo_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D424C4D61FADF85600FDFBBB /* PDFInfo_Spec.swift */; };
+		D424C4DD1FAE059D00FDFBBB /* PDFPagination_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D424C4DC1FAE059D00FDFBBB /* PDFPagination_Spec.swift */; };
 		D429B0DB1FAA94E50053D0E2 /* PDFCalculations_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429B0DA1FAA94E50053D0E2 /* PDFCalculations_Spec.swift */; };
 		D429B0DD1FAA99250053D0E2 /* PDFObject_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429B0DC1FAA99250053D0E2 /* PDFObject_Tests.swift */; };
 		D429B0DF1FAAA0440053D0E2 /* PDFGraphics_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429B0DE1FAAA0440053D0E2 /* PDFGraphics_Spec.swift */; };
@@ -58,6 +61,9 @@
 		D40F12351FA8D9D100A95A26 /* .codebeatignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .codebeatignore; path = ../.codebeatignore; sourceTree = "<group>"; };
 		D418D71E1EF16FA4009FAF56 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; lineEnding = 0; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		D418D71F1EF16FA4009FAF56 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CODE_OF_CONDUCT.md; path = ../CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
+		D424C4CF1FADF62000FDFBBB /* PDFDocument_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocument_Spec.swift; sourceTree = "<group>"; };
+		D424C4D61FADF85600FDFBBB /* PDFInfo_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFInfo_Spec.swift; sourceTree = "<group>"; };
+		D424C4DC1FAE059D00FDFBBB /* PDFPagination_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPagination_Spec.swift; sourceTree = "<group>"; };
 		D429B0DA1FAA94E50053D0E2 /* PDFCalculations_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCalculations_Spec.swift; sourceTree = "<group>"; };
 		D429B0DC1FAA99250053D0E2 /* PDFObject_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFObject_Tests.swift; sourceTree = "<group>"; };
 		D429B0DE1FAAA0440053D0E2 /* PDFGraphics_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PDFGraphics_Spec.swift; path = Graphics/PDFGraphics_Spec.swift; sourceTree = "<group>"; };
@@ -146,12 +152,15 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D4F8C12C1EF153F600188F42 /* PDFGeneratorTableTests.swift */,
-				607FACEB1AFB9204008FA782 /* PDFListTests.swift */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
 				D429B0DA1FAA94E50053D0E2 /* PDFCalculations_Spec.swift */,
-				D429B0DC1FAA99250053D0E2 /* PDFObject_Tests.swift */,
+				D424C4CF1FADF62000FDFBBB /* PDFDocument_Spec.swift */,
+				D4F8C12C1EF153F600188F42 /* PDFGeneratorTableTests.swift */,
 				D429B0DE1FAAA0440053D0E2 /* PDFGraphics_Spec.swift */,
+				D424C4D61FADF85600FDFBBB /* PDFInfo_Spec.swift */,
+				607FACEB1AFB9204008FA782 /* PDFListTests.swift */,
+				D429B0DC1FAA99250053D0E2 /* PDFObject_Tests.swift */,
+				D424C4DC1FAE059D00FDFBBB /* PDFPagination_Spec.swift */,
+				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -468,10 +477,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D429B0DB1FAA94E50053D0E2 /* PDFCalculations_Spec.swift in Sources */,
+				D424C4DD1FAE059D00FDFBBB /* PDFPagination_Spec.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* PDFListTests.swift in Sources */,
 				D4F8C12D1EF153F600188F42 /* PDFGeneratorTableTests.swift in Sources */,
 				D429B0DF1FAAA0440053D0E2 /* PDFGraphics_Spec.swift in Sources */,
+				D424C4D11FADF62F00FDFBBB /* PDFDocument_Spec.swift in Sources */,
 				D429B0DD1FAA99250053D0E2 /* PDFObject_Tests.swift in Sources */,
+				D424C4D71FADF85600FDFBBB /* PDFInfo_Spec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

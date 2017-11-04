@@ -5,19 +5,54 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
+/**
+ A table is a two dimensional list.
+ It can be styled and can contain different data:
+
+ -
+ */
 public class PDFTable: TPJSONSerializable {
     
+    /**
+     Styling used for drawing
+     */
     public var style: PDFTableStyle = PDFTableStyleDefaults.simple
+
+    /**
+     All cell data
+     */
     public var cells: [[PDFTableCell]] = []
+
+    /**
+     List of relative widths. Values are between 0.0 and 1.0 and should sum up to 1.0
+     */
     public var widths: [CGFloat] = []
-    
+
+    /**
+     Padding is the distance between the cell content and its borders.
+     */
     public var padding: CGFloat = 0
+
+    /**
+     Margin is the distance between the cell borders and other cells
+     */
     public var margin: CGFloat = 0
-    
+
+    /**
+     Header rows will be drawn on every page
+     */
     public var showHeadersOnEveryPage: Bool = false
-    
+
+    /**
+     Public initalizer to create a table outside framework
+     */
     public init() {}
-    
+
+    /**
+     Generates cells from given `data` and `alignments` and stores the result in the instance variable `cells`
+
+     - throws: `PDFError` if table validation fails. See `PDFTableValidator.validateTableData(::)` for details
+     */
     public func generateCells(data: [[Any?]], alignments: [[PDFTableCellAlignment]]) throws {
         try PDFTableValidator.validateTableData(data: data, alignments: alignments)
         
@@ -35,7 +70,10 @@ public class PDFTable: TPJSONSerializable {
             self.cells.append(contentRow)
         }
     }
-    
+
+    /**
+     Modify the cell style of at the position defined by `row` and `column`
+     */
     public func setCellStyle(row rowIndex: Int, column columnIndex: Int, style cellStyle: PDFTableCellStyle?) throws {
         if rowIndex < 0 || rowIndex >= cells.count {
             throw PDFError.tableIndexOutOfBounds(index: rowIndex, length: cells.count)

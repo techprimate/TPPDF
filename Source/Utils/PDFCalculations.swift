@@ -197,13 +197,12 @@ class PDFCalculations {
         let currentRange = CFRange(location: 0, length: 0)
         let (_, _, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
         let x: CGFloat = {
-            switch alignment.normalizeHorizontal {
-            case .center:
-                return origin.x + width / 2 - drawnSize.width / 2
-            case .right:
-                return origin.x + width - drawnSize.width
-            default:
+            if alignment.isLeft {
                 return origin.x
+            } else if alignment.isRight {
+                return origin.x + width - drawnSize.width
+            } else {
+                return origin.x + width / 2 - drawnSize.width / 2
             }
         }()
         

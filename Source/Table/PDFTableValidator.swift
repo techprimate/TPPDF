@@ -7,6 +7,16 @@
 
 class PDFTableValidator {
     
+    /**
+     Validates a given `table`.
+     If no error is thrown, validation was successfull.
+
+     - parameter table: Table for validation
+
+     - throws:
+        - `PDFError.tableIsEmpty`, if cells count is zero - should be avoided.
+        - `PDFError`tableStructureInvalid`, if a row could not validated, see `PDFTableValidator.validateTableData(::)`
+     */
     public static func validateTable(table: PDFTable) throws {
         // Throw error when empty. Signalizes developer he tries to render an empty table. Might cause format errors
         if table.cells.count == 0 {
@@ -18,7 +28,22 @@ class PDFTableValidator {
             throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
         }
     }
-    
+
+    /**
+     Validates the given `data`, `alignments` and `columnWidths`
+     If no error is thrown, validation was successfull.
+
+     - parameter data: Two dimensional array of optional objects
+     - parameter alignments: Optional two dimensional array of alignments, defaults to `nil`
+     - parameter columnWidhts: Optional array of column width values
+
+     - throws:
+        - `PDFError.tableIsEmpty`, if cells count is zero - should be avoided.
+        - `PDFError.tableStructureInvalid`, if:
+            - data row count and alignment row count do not equal
+            - data column count and alignment column count do not equal
+            - data column count and column count do not equal
+     */
     public static func validateTableData(data: [[Any?]], alignments: [[PDFTableCellAlignment]]? = nil, columnWidths: [CGFloat]? = nil) throws {
         // Throw error when empty. Signalizes developer he tries to render an empty table. Might cause format errors
         if data.count == 0 {
@@ -45,3 +70,4 @@ class PDFTableValidator {
     }
     
 }
+

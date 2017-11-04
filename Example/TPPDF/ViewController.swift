@@ -298,8 +298,8 @@ class ViewController: UIViewController {
         
         // Convert document to JSON String for debugging
         let json = document.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
-        print(json)
-        
+//        print(json)
+
         do {
             // Enable debug mode if necessary
             PDFGenerator.debug = true

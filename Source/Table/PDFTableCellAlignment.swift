@@ -5,36 +5,71 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
-public enum PDFTableCellAlignment: TPJSONSerializable {
+public enum PDFTableCellAlignment {
 
     case topLeft, top, topRight
     case left, center, right
     case bottomLeft, bottom, bottomRight
-    
-    var normalizeVertical: PDFTableCellAlignment {
+
+    /**
+     Alignment is at the top side
+     */
+    var isTop: Bool {
         switch self {
         case .topLeft, .top, .topRight:
-            return .top
-        case .left, .center, .right:
-            return .center
-        case .bottomLeft, .bottom, .bottomRight:
-            return .bottom
+            return true
+        default:
+            return false
         }
     }
-    
-    var normalizeHorizontal: PDFTableCellAlignment {
+
+    /**
+     Alignment is at the bottom side
+     */
+    var isBottom: Bool {
         switch self {
-        case .topLeft, .left, .bottomLeft:
-            return .left
-        case .top, .center, .bottom:
-            return .center
-        case .topRight, .right, .bottomRight:
-            return .right
+        case .bottomLeft, .bottom, .bottomRight:
+            return true
+        default:
+            return false
         }
     }
-    
-    // MARK: - JSON Serialization
-    
+
+    /**
+     Alignment is on the left side
+     */
+    var isLeft: Bool {
+        switch self {
+        case .topLeft, .top, .topRight:
+            return true
+        default:
+            return false
+        }
+    }
+
+    /**
+     Alignment is on the right side
+     */
+    var isRight: Bool {
+        switch self {
+        case .topRight, .right, .bottomRight:
+            return true
+        default:
+            return false
+        }
+    }
+}
+
+// MARK: - JSON Serialization
+
+/**
+ Extends the table cell alignment to be serializable into a JSON
+ */
+extension PDFTableCellAlignment: TPJSONSerializable {
+
+    /**
+     Creates a representable object
+     */
     public var JSONRepresentation: AnyObject {
         return self.hashValue as AnyObject
     }
