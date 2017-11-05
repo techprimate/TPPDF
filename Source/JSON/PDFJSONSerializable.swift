@@ -11,14 +11,17 @@ public extension PDFJSONSerializable {
     
     public func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
         let representation = JSONRepresentation
-        
-        do {
-            let data = try JSONSerialization.data(withJSONObject: representation, options: options)
-            return String(data: data, encoding: .utf8)
-        } catch {
-            print(error)
+
+        guard JSONSerialization.isValidJSONObject(representation) else {
+            print("Invalid JSON from reprsentation.")
             return nil
         }
+
+        guard let data = try? JSONSerialization.data(withJSONObject: representation, options: options) else {
+            return nil
+        }
+
+        return String(data: data, encoding: .utf8)
     }
 }
 
@@ -47,11 +50,9 @@ extension PDFJSONSerializable {
         } else if isTuple(value: value) {
             return serializeTuple(value)
         } else if Mirror(reflecting: value).displayStyle == .optional {
-            // TODO: Do not return NSNull if optional has content
             return NSNull()
-        } else {
-            return "UNKNOWN" as NSString
         }
+        return "UNKNOWN" as AnyObject
     }
     
     func isTuple(value: Any) -> Bool {
@@ -105,28 +106,22 @@ extension NSAttributedString: PDFJSONSerializable { }
 extension UIFont: PDFJSONSerializable { }
 
 extension UIImage: PDFJSONSerializable {
-    
+
     public var JSONRepresentation: AnyObject {
-        return UIImageJPEGRepresentation(self, 1.0)?.base64EncodedString() as AnyObject? ?? NSNull()
+        return UIImageJPEGRepresentation(self, 1.0)?.JSONRepresentation ?? NSNull()
+    }
+}
+
+extension Data: PDFJSONSerializable {
+
+    public var JSONRepresentation: AnyObject {
+        return self.base64EncodedString() as AnyObject
     }
 }
 
 extension UIColor: PDFJSONSerializable {
     
-    func toHexString() -> String {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        
-        getRed(&r, green: &g, blue: &b, alpha: &a)
-        
-        let rgb: Int = (Int)(r*255) << 16 | (Int)(g*255) << 8 | (Int)(b*255) << 0
-        
-        return String(format: "#%06x", rgb)
-    }
-    
     public var JSONRepresentation: AnyObject {
-        return self.toHexString() as NSString
+        return self.hex as AnyObject
     }
 }

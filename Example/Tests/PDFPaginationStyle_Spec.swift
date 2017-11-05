@@ -75,6 +75,50 @@ class PDFPaginationStyle_Spec: QuickSpec {
                     expect(style.JSONRepresentation as? String) == "PDFPaginationStyle.customClosure"
                 }
             }
+
+            context("equatable") {
+
+                it("can be equated when default") {
+                    expect(PDFPaginationStyle.default == PDFPaginationStyle.default).to(beTrue())
+                }
+
+                it("can be equated when default") {
+                    expect(PDFPaginationStyle.roman(template: "%@ - %@") == PDFPaginationStyle.roman(template: "%@ - %@")).to(beTrue())
+                    expect(PDFPaginationStyle.roman(template: "%@ - %@") == PDFPaginationStyle.roman(template: "%@ / %@")).to(beFalse())
+                }
+
+                it("can be equated when default") {
+                    let numberFormatter1 = NumberFormatter()
+                    let numberFormatter2 = NumberFormatter()
+                    let template1 = "%@ - %@"
+                    let template2 = "%@ / %@"
+
+                    expect(
+                        PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter1) ==
+                            PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter1)
+                        ).to(beTrue())
+                    expect(
+                        PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter1) ==
+                            PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter2)
+                        ).to(beFalse())
+                    expect(
+                        PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter1) ==
+                            PDFPaginationStyle.customNumberFormat(template: template2, formatter: numberFormatter1)
+                        ).to(beFalse())
+                    expect(
+                        PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter1) ==
+                            PDFPaginationStyle.customNumberFormat(template: template2, formatter: numberFormatter2)
+                        ).to(beFalse())
+                }
+
+                it("can be equated when default") {
+                    expect(PDFPaginationStyle.customClosure({ (page, total) -> String in
+                        return String(format: "%@ %@", page, total)
+                    }) == PDFPaginationStyle.customClosure({ (page, total) -> String in
+                        return String(format: "%@ %@", page, total)
+                    })).to(beFalse())
+                }
+            }
         }
     }
 }
