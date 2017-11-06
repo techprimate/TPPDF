@@ -1,10 +1,11 @@
 language: objective-c
 osx_image: xcode9.1
-
 cache:
-  - bundler
-  - cocoapods
-
+- bundler
+- cocoapods
+notifications:
+  slack:
+    secure: zqgyogEkMEjTfIZqbSOfG8SWE3+93tDyPt+Q/aRe4xO/Bd/IKcUrn0XtLDeZf38Q5Xkb3oZzg+8NMcwj0EPEbV+iO/drmJd3keAHWlLwc1Lyzq7mjibfOgwtXRuahC6z5VxPooGFH3dXz0ZWPrk4oDTv6p9uJ+8efPxZMY55lMnJvvYRVBHwIfK9pxNkOt/dC7Sflh6/46JUIefJGuSr3rgG+ImE+exp/us6lA2wu/XDDyMyAqMQPBLa2L4OL/CKqLP6NFLy00QlRtlPKW/AvyIXPI2x/k9porkK+cueGK0n3ZnZcsINdf8YKIVuTpOATmd9igXX7d2oW7FGJwlU7ttZ6gaa/zQxfHwVHKYbXdQYdfpXrB6u/tb1qpfj/CbDVgxVHEr7vXXJQdMJVnWqzXJiLlai4S3tRrLHyD86IeyhWj28jMp0JT6A9bkhrMy30Fyx3L2QMzZf17/xRI3ZJdl+Exj/f5xEngdO5yk2B98K4YWFkfJO80kmegXnH178OolaOnhHTLW/1q6l/ZBD7LVtRq1hFgcPIR0JxgsvWzX6+0dE4cZ6pb1Ulq0uj90T8ryBV+jaHdHPKxOORCkOLHfsem+5Tw5GzMBVhVNKdV7ajX1SvZmIMyoczfCsKXdU5zk5vbjigjm0fqdKY2/1AJAXDAHB7QMeQSR/WDEXNbc=
 env:
   global:
   - WORKSPACE=Example/TPPDF.xcworkspace
@@ -13,25 +14,28 @@ env:
   - EXAMPLE_SCHEME="TPPDF-Example"
   - SOURCE_FOLDER="Source"
   matrix:
-     - DESTINATION="OS=8.4,name=iPhone 6 Plus"
-     - DESTINATION="OS=9.3,name=iPhone 6s Plus"
-     - DESTINATION="OS=10.2,name=iPhone 7 Plus"
-     - DESTINATION="OS=11.1,name=iPhone 8"
-  
+  - DESTINATION="OS=8.4,name=iPhone 6 Plus"
+  - DESTINATION="OS=9.3,name=iPhone 6s Plus"
+  - DESTINATION="OS=10.2,name=iPhone 7 Plus"
+  - DESTINATION="OS=11.1,name=iPhone 8"
 install:
-  - bundle install
-  - bundle exec pod repo update --silent
-  - bundle exec pod install --project-directory=Example  
-
+- bundle install
+- bundle exec pod repo update --silent
+- bundle exec pod install --project-directory=Example
 script:
-  - set -o pipefail
-  - xcodebuild -version
-  - xcodebuild -showsdks
-  - xcodebuild -list
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data  -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES build test | xcpretty
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data                          ONLY_ACTIVE_ARCH=YES                                                                           build      | xcpretty
-  - pod lib lint --allow-warnings
- 
+- set -o pipefail
+- xcodebuild -version
+- xcodebuild -showsdks
+- xcodebuild -list
+- xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator
+  -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data  -enableCodeCoverage
+  YES ONLY_ACTIVE_ARCH=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+  build test | xcpretty
+- xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -sdk iphonesimulator
+  -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data                          ONLY_ACTIVE_ARCH=YES                                                                           build      |
+  xcpretty
+- pod lib lint --allow-warnings
 after_success:
-  - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data -s --verbose
-  - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X xcode
+- slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data -s --verbose
+- bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X
+  xcode
