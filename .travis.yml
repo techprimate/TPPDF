@@ -8,8 +8,10 @@ cache:
 env:
   global:
   - WORKSPACE=Example/TPPDF.xcworkspace
+  - PROJECT=Example/TPPDF.xcodeproj
   - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
   - EXAMPLE_SCHEME="TPPDF-Example"
+  - SOURCE_FOLDER="Source"
   matrix:
      - DESTINATION="OS=8.4,name=iPhone 6 Plus"
      - DESTINATION="OS=9.3,name=iPhone 6s Plus"
@@ -31,5 +33,5 @@ script:
   - pod lib lint --allow-warnings
  
 after_success:
-  - slather coverage -c -s -t --ignore '../*' -b ${TRAVIS_BUILD_DIR}/derived_data --verbose
+  - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data -s --verbose
   - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X xcode
