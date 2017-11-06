@@ -81,9 +81,9 @@ extension PDFPaginationStyle {
                 return "PDFPaginationStyle.default"
             case .roman(let template):
                 return "PDFPaginationStyle.roman(" + template + ")"
-            case .customNumberFormat(let template, let formatter):
+            case .customNumberFormat(let template, _):
                 return "PDFPaginationStyle.customNumberFormat(" + template + ")"
-            case .customClosure(let closure):
+            case .customClosure(_):
                 return "PDFPaginationStyle.customClosure"
             }
         }()

@@ -28,7 +28,7 @@ script:
   - xcodebuild -list
   - xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data  -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES build test | xcpretty
   - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data                          ONLY_ACTIVE_ARCH=YES                                                                           build      | xcpretty
-  - pod lib lint
+  - pod lib lint --allow-warnings
  
 after_success:
   - slather coverage -c -s -t --ignore '../*' -b ${TRAVIS_BUILD_DIR}/derived_data --verbose
