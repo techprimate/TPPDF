@@ -1,6 +1,6 @@
 # TPPDF
 
-[![CI Status](http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square)](https://travis-ci.org/Techprimate/TPPDF.svg?branch=master)
+[![CI Status](http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square)](https://travis-ci.org/Techprimate/TPPDF)
 [![Language](https://img.shields.io/badge/language-Swift-orange.svg?style=flat-square)](https://developer.apple.com/swift/)
 
 [![Cocoapods](https://img.shields.io/cocoapods/v/TPPDF.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Alamofire.svg)
