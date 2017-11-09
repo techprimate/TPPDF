@@ -26,18 +26,18 @@ public class PDFList: PDFJSONSerializable {
         return items.count
     }
     
-    public func flatted() -> [(level: Int, text: String, symbol: PDFListItem.Symbol)] {
-        var result: [(level: Int, text: String, symbol: PDFListItem.Symbol)] = []
+    public func flatted() -> [(level: Int, text: String, symbol: PDFListItemSymbol)] {
+        var result: [(level: Int, text: String, symbol: PDFListItemSymbol)] = []
         for (idx, item) in self.items.enumerated() {
             result += flatItem(item: item, level: 0, index: idx)
         }
         return result
     }
     
-    private func flatItem(item: PDFListItem, level: Int, index: Int) -> [(level: Int, text: String, symbol: PDFListItem.Symbol)] {
-        var result: [(level: Int, text: String, symbol: PDFListItem.Symbol)] = []
+    private func flatItem(item: PDFListItem, level: Int, index: Int) -> [(level: Int, text: String, symbol: PDFListItemSymbol)] {
+        var result: [(level: Int, text: String, symbol: PDFListItemSymbol)] = []
         if let content = item.content {
-            var symbol: PDFListItem.Symbol = .inherit
+            var symbol: PDFListItemSymbol = .inherit
             if item.symbol == .inherit {
                 if let parent = item.parent {
                     if parent.symbol == .numbered(value: nil) {

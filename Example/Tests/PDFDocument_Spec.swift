@@ -14,6 +14,7 @@ class PDFDocument_Spec : QuickSpec {
 
     override func spec() {
         describe("PDFDocument") {
+            
             let layout = PDFPageLayout()
             var document: PDFDocument!
 
@@ -25,14 +26,27 @@ class PDFDocument_Spec : QuickSpec {
                 expect(document.layout) == layout
             }
 
+            it("can be initialized with a page format") {
+                document = PDFDocument(format: .a4)
+                expect(document.layout) == PDFPageFormat.a4.layout
+            }
+
             context("variables") {
 
-                it("should have a default info") {
+                it("should have layout") {
+                    expect(document.layout).toNot(beNil())
+                }
+
+                it("should have info with default value") {
                     expect(document.info) == PDFInfo()
                 }
 
-                it("should have a default pagina") {
+                it("should have pagination with default value") {
                     expect(document.pagination) == PDFPagination()
+                }
+
+                it("should have array of objects") {
+                    expect(document.objects).to(haveCount(0))
                 }
             }
         }

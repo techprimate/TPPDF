@@ -14,5 +14,7 @@ public enum PDFError: Error {
     case tableCellWeakReferenceBroken
     
     case textObjectIsNil
-    
+
+    case invalidHexLength(length: Int)
+    case invalidHex(hex: String)
 }

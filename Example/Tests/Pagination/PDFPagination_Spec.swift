@@ -40,25 +40,6 @@ class PDFPagination_Spec: QuickSpec {
                     expect(pagination.hiddenPages) == []
                 }
             }
-
-            it("can be equated") {
-                var pagination1 = PDFPagination()
-                pagination1.container = PDFContainer.contentLeft
-
-                var pagination2 = PDFPagination()
-                pagination2.style = PDFPaginationStyle.roman(template: "%@ / %@")
-
-                var pagination3 = PDFPagination()
-                pagination3.range = (start: 2, end: 5)
-
-                var pagination4 = PDFPagination()
-                pagination4.hiddenPages = [1, 2, 3]
-
-                expect(pagination1) != pagination
-                expect(pagination2) != pagination
-                expect(pagination3) != pagination
-                expect(pagination4) != pagination
-            }
         }
     }
 }

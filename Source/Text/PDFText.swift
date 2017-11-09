@@ -8,6 +8,16 @@
 /**
  Protocol all text objects should implement
  */
-public protocol PDFText: class {
+public class PDFText: Equatable {
     
+}
+
+public func == (lhs: PDFText, rhs: PDFText) -> Bool {
+    if lhs is PDFAttributedText && rhs is PDFAttributedText {
+        return (lhs as? PDFAttributedText) == (rhs as? PDFAttributedText)
+    } else if lhs is PDFSimpleText && rhs is PDFSimpleText {
+        return (lhs as? PDFSimpleText) == (rhs as? PDFSimpleText)
+    }
+
+    return false
 }

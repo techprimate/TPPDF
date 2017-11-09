@@ -32,7 +32,7 @@ class PDFAttributedTextObject: PDFObject {
 
      - parameter text: Subclass of `PDFText`
      */
-    convenience init(text: PDFText) {
+    convenience init<T: PDFText>(text: T) {
         if let attributedText = text as? PDFAttributedText {
             self.init(attributedText: attributedText)
         } else if let simpleText = text as? PDFSimpleText {

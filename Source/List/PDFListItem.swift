@@ -10,9 +10,9 @@ public class PDFListItem: PDFJSONSerializable {
     public var parent: PDFListItem?
     public var content: String?
     public var children: [PDFListItem]?
-    public var symbol: Symbol
+    public var symbol: PDFListItemSymbol
     
-    public init(symbol: Symbol = Symbol.inherit, content: String? = nil) {
+    public init(symbol: PDFListItemSymbol = PDFListItemSymbol.inherit, content: String? = nil) {
         self.symbol = symbol
         self.content = content
     }

@@ -11,7 +11,7 @@
  Generally a document is vertically split up into a header, a content and a footer area.
  Also each part is horizontally split up into a left, a center and a right area.
  */
-public enum PDFContainer: PDFJSONSerializable {
+public enum PDFContainer {
 
     /**
      Element is in no container, only real use is as a default value
@@ -122,9 +122,12 @@ public enum PDFContainer: PDFJSONSerializable {
             .footerLeft, .footerCenter, .footerRight
         ]
     }
-    
-    // MARK: - JSON Serialization
+}
 
+// MARK: - JSON Serialization
+
+extension PDFContainer: PDFJSONSerializable {
+    
     /**
      Creates a representable object
      */

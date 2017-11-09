@@ -247,7 +247,7 @@ class ViewController: UIViewController {
                               alpha: 1.0),
                 text: UIColor.white
             ),
-            borders: (left: PDFLineStyle(),
+            borders: PDFTableCellBorders(left: PDFLineStyle(),
                       top: PDFLineStyle(),
                       right: PDFLineStyle(),
                       bottom: PDFLineStyle()),

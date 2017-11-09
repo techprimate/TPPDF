@@ -24,10 +24,7 @@ public struct PDFTableStyleDefaults {
      */
     public static var simple: PDFTableStyle {
         let darkGray = UIColor(red: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
-        let invisibleBorders = (left: PDFLineStyle.none,
-                                top: PDFLineStyle.none,
-                                right: PDFLineStyle.none,
-                                bottom: PDFLineStyle.none)
+        let invisibleBorders = PDFTableCellBorders()
 
         return PDFTableStyle(
             rowHeaderCount: 1,
@@ -39,10 +36,7 @@ public struct PDFTableStyleDefaults {
             ),
             rowHeaderStyle: PDFTableCellStyle(
                 colors: (fill: UIColor.white, text: darkGray),
-                borders: (left: PDFLineStyle.none,
-                          top: PDFLineStyle.none,
-                          right: PDFLineStyle.none,
-                          bottom: PDFLineStyle(
+                borders: PDFTableCellBorders(bottom: PDFLineStyle(
                             type: .full,
                             color: UIColor.lightGray,
                             width: 0.5
@@ -76,4 +70,3 @@ public struct PDFTableStyleDefaults {
         )
     }
 }
-
