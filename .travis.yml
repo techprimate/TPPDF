@@ -36,6 +36,6 @@ script:
   xcpretty
 - pod lib lint --allow-warnings
 after_success:
-- slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data -s --verbose
+- slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verbose
 - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X
   xcode
