@@ -40,7 +40,7 @@ public enum PDFTableCellAlignment {
      */
     var isLeft: Bool {
         switch self {
-        case .topLeft, .left, .topRight:
+        case .topLeft, .left, .bottomLeft:
             return true
         default:
             return false
