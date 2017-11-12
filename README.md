@@ -1,7 +1,8 @@
 # TPPDF
 
-[![CI Status](http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square)](https://travis-ci.org/Techprimate/TPPDF.svg?branch=master)
+[![CI Status](http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square)](https://travis-ci.org/Techprimate/TPPDF)
 [![Language](https://img.shields.io/badge/language-Swift-orange.svg?style=flat-square)](https://developer.apple.com/swift/)
+
 [![Cocoapods](https://img.shields.io/cocoapods/v/TPPDF.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Alamofire.svg)
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-blue.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/TPPDF.svg?style=flat-square)](http://cocoapods.org/pods/TPPDF)
@@ -11,6 +12,10 @@
 [![Website](https://img.shields.io/badge/www-techprimate.com-blue.svg?style=flat-square)](http://www.techprimate.com)
 [![Twitter](https://img.shields.io/badge/twitter-@Techprimate-blue.svg?style=flat-square)](http://twitter.com/techprimate)
 [![Facebook](https://img.shields.io/badge/facebook-@Techprimate-blue.svg?style=flat-square)](http://facebook.com/techprimate)
+
+[![codebeat badge](https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de)](https://codebeat.co/projects/github-com-techprimate-tppdf-master)
+[![BCH compliance](https://bettercodehub.com/edge/badge/Techprimate/TPPDF)](https://bettercodehub.com/results/Techprimate/TPPDF)
+[![codecov](https://codecov.io/gh/Techprimate/TPPDF/branch/master/graph/badge.svg)](https://codecov.io/gh/Techprimate/TPPDF)
 
 TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/wiki/Builder_pattern) pattern using simple commands. 
 
@@ -22,8 +27,10 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 - [Usage](#usage)
 - [Credits](#credits)
 - [Contributors](#contributors)
+- [Sponsoring](#sponsoring)
 - [License](#license)
 
+# This project is currently under heavy changes. I am changing the project design architecture, therefore rendering of most elements is either wrong or not working. After the change, this library will be faster, more versatile, offering more calculation possibilities, have better testability and maintainability.
 
 ## Features
 
@@ -51,6 +58,7 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 
 | Language  | Branch | Pod version | Xcode version | iOS version |
 | --------- | ------ | ----------- | ------------- | ----------- |
+| Swift 4.0 | [develop](https://github.com/techprimate/TPPDF/tree/develop) | >= 1.0.x | Xcode 9 or greater| iOS 8.0+ |
 | Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 or greater| iOS 8.0+ |
 | Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x | iOS 8.0+ |
 | Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x | iOS 8.0+ |
@@ -183,14 +191,14 @@ The following values can be set to format the page:
 
 - `size`
 - `margin`
-- `headerMargin`
-- `footerMargin`
-- `headerSpace`
-- `footerSpace`
+- `margin.header`
+- `margin.footer`
+- `space.header`
+- `space.footer`
 
 All values are in dots and are rendered using 72 DPI (dots per inch), as this is the default screen DPI.
 
-You can also used the predefined formats. For details please refer to the source file [PageFormat.swift](https://github.com/Techprimate/TPPDF/blob/master/Source/PageFormat.swift)
+You can also used the predefined formats. For details please refer to the source file [PDFPageFormat.swift](https://github.com/Techprimate/TPPDF/blob/master/Source/PDFPageFormat.swift)
 
 If you need your page in landscape format, use the `landscapeSize` variable.
 
@@ -198,7 +206,7 @@ If you need your page in landscape format, use the `landscapeSize` variable.
 
 If you want to add a text to the header or footer you simply need to choose the correct container.
 
-If you want to render an image in one of these containers, it will use the square size `headerImageHeight`.
+If you want to render an image in one of these containers, set the size in the `PDFImage` object.
 
 But there are some limitations:
 
@@ -227,7 +235,7 @@ The following commands are the ones available to you for creating your document.
 Draws a horizontal line using the given line style in the given container.
 
 ```swift
-pdf.addLineSeparator(thickness: 0.1, style: LineStyle(type: .dashed, color: UIColor.green, width: 1.0))
+pdf.addLineSeparator(thickness: 0.1, style: PDFLineStyle(type: .dashed, color: UIColor.green, width: 1.0))
 ```
 
 #### Text
@@ -301,10 +309,10 @@ let data: [[String]] = [
 ]
 ```
 
-The parameter alignment is a two-dimensional array with `TableCellAlignment` values.
+The parameter alignment is a two-dimensional array with `PDFTableCellAlignment` values.
 
 ```swift
-let alignments: [[TableCellAlignment]] = [
+let alignments: [[PDFTableCellAlignment]] = [
 	[.Left, .Center, .Left, .Center],
 	[.Left, .Center, .Left, .Center]
 ]
@@ -325,7 +333,7 @@ Additional parameters are cell margin and cell padding. Margin is the spacing be
 
 This works the same way as HTML/CSS margin and padding works. Checkout w3schools.com [margin](http://www.w3schools.com/css/css_margin.asp) and [padding](http://www.w3schools.com/css/css_padding.asp)
 
-Table styling is done with a `TableStyle` object. `TableStyleDefaults` contain a couple of predefined table styles, which can be modified.
+Table styling is done with a `PDFTableStyle` object. `PDFTableStyleDefaults` contain a couple of predefined table styles, which can be modified.
 A table style consists out of five different styles, for the row header, column header, footer, content and for alternating rows. It is also possible to set custom cell styling using the method `setCellStyle(row, column, style)`.
 
 Cell styling includes background fill color, text color, font and the line style for each border.
@@ -333,10 +341,10 @@ Cell styling includes background fill color, text color, font and the line style
 Line styling includes line color, line width and line type, which can be either non, full, dashed or dotted.
 
 ```swift
-let tableStyle = TableStyleDefaults.simple
+let tableStyle = PDFTableStyleDefaults.simple
 
-tableStyle.setCellStyle(row: 2, column: 3, style: TableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
-tableStyle.setCellStyle(row: 20, column: 1, style: TableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
+tableStyle.setCellStyle(row: 2, column: 3, style: PDFTableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
+tableStyle.setCellStyle(row: 20, column: 1, style: PDFTableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
 
 pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 8, margin: 0, style: tableStyle)
 ```
@@ -418,7 +426,7 @@ switch command {
 - Add a public method `setFont` which adds a command to the command chain. 
 
 ```swift
-public func setFont(container: Container = Container.ContentLeft, font: UIFont = UIFont.systemFontOfSize(14)) {
+public func setFont(container: PDFContainer = PDFContainer.ContentLeft, font: UIFont = UIFont.systemFontOfSize(14)) {
 	commands += [(container, .SetFont(font: font))]
 }
 ```
@@ -428,7 +436,7 @@ public func setFont(container: Container = Container.ContentLeft, font: UIFont =
 ### Aspects to consider!!
 
 The previous example does not handle different `Containers`. The correct way of doing this, would be three instance variables of type `UIFont`. One for the header, one for the content and one for the footer.
-Then, when calling the command, it changes the correct font variable, depending on the Container provided.
+Then, when calling the command, it changes the correct font variable, depending on the PDFContainer provided.
 
 ## Apps using TPPDF
 
@@ -455,8 +463,18 @@ Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://
 
 ## Contributors
 
-- Philip Niedertscheider, [techprimate](https://www.github.com/techprimate)
+- Philip Niedertscheider, [techprimate-phil](https://www.github.com/techprimate-phil) - Techprimate [techprimate](https://www.github.com/techprimate)
 - Zheng-Xiang Ke, [kf99916](https://www.github.com/kf99916)
+
+## Sponsoring
+
+TPPDF is a non-profit open source project. The sponsoring is used to keep this project sustainable.
+We are currently using [Codesponsor.io](https://www.codesponsor.io) to show the following ads.
+
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/q5M1Ak8aUERquKQrLZh7JQTB/Techprimate/TPPDF'>
+<img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/q5M1Ak8aUERquKQrLZh7JQTB/Techprimate/TPPDF.svg' />
+</a>
 
 ## License
 
