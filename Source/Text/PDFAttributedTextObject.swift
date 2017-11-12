@@ -147,7 +147,7 @@ class PDFAttributedTextObject: PDFObject {
         currentContext.restoreGState()
 
         // If debugging is enabled, draw a outline around the text
-        if PDFGenerator.debug {
+        if generator.debug {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
         }
     }

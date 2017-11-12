@@ -17,7 +17,7 @@ extension PDFGenerator {
      */
     func drawDebugPageOverlay() {
         // Only render if debugging is enabled
-        guard PDFGenerator.debug else {
+        guard debug else {
             return
         }
         

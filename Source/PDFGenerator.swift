@@ -9,14 +9,7 @@
  Factory which converts a document into a PDF file
  */
 public class PDFGenerator {
-    
-    // MARK: - PUBLIC STATIC VARS
 
-    /**
-     Enables debugging on all generator instance
-     */
-    public static var debug: Bool = false
-    
     // MARK: - INTERNAL VARS
 
     /**
@@ -55,6 +48,11 @@ public class PDFGenerator {
         }
         return defaults
     }()
+
+    /**
+     Enables debugging on all generator instance
+     */
+    var debug: Bool = false
 
     /**
      Text color of each container.

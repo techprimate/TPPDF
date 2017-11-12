@@ -18,15 +18,19 @@ extension PDFGenerator {
      - parameter document:  PDFDocument which should be converted into a PDF file.
      - parameter filename:  Name of temporary file.
      - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
+     - parameter debug:     Enables debugging
+
      - returns:             URL to temporary file.
      
      - throws:              PDFError
      */
-    public static func generateURL(document: PDFDocument, filename: String, progress: ((CGFloat) -> Void)? = nil) throws -> URL {
+    public static func generateURL(document: PDFDocument, filename: String, progress: ((CGFloat) -> Void)? = nil, debug: Bool = false) throws -> URL {
         let name = filename.lowercased().hasSuffix(".pdf") ? filename : (filename + ".pdf")
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(name)
         let generator = PDFGenerator(document: document)
-        
+
+        generator.debug = debug
+
         UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, document.info.generate())
         try generator.generatePDFContext()
         UIGraphicsEndPDFContext()
@@ -39,15 +43,19 @@ extension PDFGenerator {
      
      - parameter document:  PDFDocument which should be converted into a PDF file.
      - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
+     - parameter debug:     Enables debugging
+
      - returns:             PDF Data
      
      - throws:              PDFError
      
      */
-    public static func generateData(document: PDFDocument, progress: ((CGFloat) -> Void)? = nil) throws -> Data {
+    public static func generateData(document: PDFDocument, progress: ((CGFloat) -> Void)? = nil, debug: Bool = false) throws -> Data {
         let data = NSMutableData()
         let generator = PDFGenerator(document: document)
-        
+
+        generator.debug = debug
+
         UIGraphicsBeginPDFContextToData(data, document.layout.bounds, document.info.generate())
         try generator.generatePDFContext()
         UIGraphicsEndPDFContext()

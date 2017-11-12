@@ -59,7 +59,7 @@ class PDFSpaceObject: PDFObject {
     }
 
     /**
-     If `PDFGenerator.debug` is enabled, this will draw a green rectangle with red border into the current context.
+     If `generator.debug` is enabled, this will draw a green rectangle with red border into the current context.
 
      - parameter generator: Unused
      - parameter container: Unused
@@ -67,7 +67,7 @@ class PDFSpaceObject: PDFObject {
      - throws: None
      */
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        if PDFGenerator.debug {
+        if generator.debug {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .green)
         }
     }

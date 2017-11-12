@@ -243,8 +243,10 @@ class PDFTableObject: PDFObject {
             PDFGraphics.drawRect(rect: page.frame, outline: table.style.outline)
             
             // Debug drawing
-            debugDraw(page: page)
-            
+            if generator.debug {
+                debugDraw(page: page)
+            }
+
             // Page break between tables
             if pageIdx != cellsPerPage.count - 1 {
 //                try generator.generateNewPage(calculatingMetrics: false)
@@ -338,8 +340,6 @@ class PDFTableObject: PDFObject {
     }
     
     func debugDraw(page: PDFTablePageObject) {
-        guard PDFGenerator.debug else { return }
-        
         let debugGridStyle = PDFLineStyle(type: .full, color: UIColor.red, width: 1.0)
         let debugCellStyle = PDFLineStyle(type: .full, color: UIColor.green, width: 1.0)
         let debugCellContentStyle = PDFLineStyle(type: .full, color: UIColor.blue, width: 1.0)
