@@ -13,6 +13,7 @@ public enum PDFImageSizeFit {
     case width
     case height
     case widthHeight
+
 }
 
 // MARK: - JSON Serialization

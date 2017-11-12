@@ -47,7 +47,7 @@ class PDFLineSeparatorObject: PDFObject {
             - generator.layout.indentation.leftIn(container: container)
             - generator.layout.indentation.rightIn(container: container)
 
-        self.frame = CGRect(x: x, y: y, width: width, height: 0)
+        self.frame = CGRect(x: x, y: y, width: width, height: style.width)
 
         return [(container, self)]
     }

@@ -12,7 +12,11 @@ extension PDFImage: Equatable {
             return false
         }
 
-        if lhs.caption != rhs.caption {
+        if let lhsCaption = lhs.caption, let rhsCaption = rhs.caption, lhsCaption != rhsCaption {
+            return false
+        }
+
+        if (lhs.caption == nil && rhs.caption != nil) || (lhs.caption != nil && rhs.caption == nil) {
             return false
         }
 

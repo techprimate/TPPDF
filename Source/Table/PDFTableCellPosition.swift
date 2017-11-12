@@ -5,13 +5,15 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
-public struct PDFTableCellPosition: PDFJSONSerializable {
+public struct PDFTableCellPosition {
     
-    public var row = -1
-    public var column = -1
+    public var row: Int
+    public var column: Int
     
     public init(row: Int, column: Int) {
         self.row = row
         self.column = column
     }
 }
+
+extension PDFTableCellPosition: PDFJSONSerializable { }

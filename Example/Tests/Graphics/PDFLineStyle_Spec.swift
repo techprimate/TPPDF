@@ -56,7 +56,10 @@ class PDFLineStyle_Spec: QuickSpec {
                 it("should have a width") {
                     expect(lineStyle.width) == width
                 }
+            }
 
+            it("has a static creator of style none") {
+                expect(PDFLineStyle.none) == PDFLineStyle(type: .none, color: .black, width: 0)
             }
         }
     }

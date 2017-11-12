@@ -8,15 +8,19 @@
 /**
  Protocol all text objects should implement
  */
-public class PDFText: Equatable {
+public class PDFText {
     
 }
 
+public func != (lhs: PDFText, rhs: PDFText) -> Bool {
+    return !(lhs == rhs)
+}
+
 public func == (lhs: PDFText, rhs: PDFText) -> Bool {
-    if lhs is PDFAttributedText && rhs is PDFAttributedText {
-        return (lhs as? PDFAttributedText) == (rhs as? PDFAttributedText)
-    } else if lhs is PDFSimpleText && rhs is PDFSimpleText {
-        return (lhs as? PDFSimpleText) == (rhs as? PDFSimpleText)
+    if let attributedLhs = lhs as? PDFAttributedText, let attributedRhs = rhs as? PDFAttributedText {
+        return attributedLhs == attributedRhs
+    } else if let simpleLhs = lhs as? PDFSimpleText, let simpleRhs = rhs as? PDFSimpleText {
+        return simpleLhs == simpleRhs
     }
 
     return false

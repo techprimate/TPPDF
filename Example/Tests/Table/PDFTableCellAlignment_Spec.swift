@@ -109,6 +109,20 @@ class PDFTableCellAlignment_Spec: QuickSpec {
                 expect(PDFTableCellAlignment.bottom.isRight).to(beFalse())
                 expect(PDFTableCellAlignment.bottomRight.isRight).to(beTrue())
             }
+
+            it("can be representated") {
+                expect(PDFTableCellAlignment.topLeft.JSONRepresentation as? Int) == 0
+                expect(PDFTableCellAlignment.top.JSONRepresentation as? Int) == 1
+                expect(PDFTableCellAlignment.topRight.JSONRepresentation as? Int) == 2
+
+                expect(PDFTableCellAlignment.left.JSONRepresentation as? Int) == 3
+                expect(PDFTableCellAlignment.center.JSONRepresentation as? Int) == 4
+                expect(PDFTableCellAlignment.right.JSONRepresentation as? Int) == 5
+
+                expect(PDFTableCellAlignment.bottomLeft.JSONRepresentation as? Int) == 6
+                expect(PDFTableCellAlignment.bottom.JSONRepresentation as? Int) == 7
+                expect(PDFTableCellAlignment.bottomRight.JSONRepresentation as? Int) == 8
+            }
         }
     }
 }

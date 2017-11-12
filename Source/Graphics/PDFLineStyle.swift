@@ -42,6 +42,6 @@ public struct PDFLineStyle: PDFJSONSerializable {
      Shorthand method for creating an invisible line
      */
     public static var none: PDFLineStyle {
-        return PDFLineStyle(type: .none)
+        return PDFLineStyle(type: .none, width: 0)
     }
 }
