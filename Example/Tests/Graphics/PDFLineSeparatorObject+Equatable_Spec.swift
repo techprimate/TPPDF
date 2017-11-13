@@ -15,11 +15,22 @@ class PDFLineSeparatorObject_Equatable_Spec: QuickSpec {
     override func spec() {
         describe("PDFLineSeparatorObject") {
 
-            it("can be equated") {
-                let style = PDFLineStyle(type: .dotted, color: .orange, width: 0.25)
+            context("Equatable") {
 
-                expect(PDFLineSeparatorObject(style: style)) == PDFLineSeparatorObject(style: style)
+                it("is equal") {
+                    let style = PDFLineStyle(type: .dotted, color: .orange, width: 0.25)
+
+                    expect(PDFLineSeparatorObject(style: style)) == PDFLineSeparatorObject(style: style)
+                }
+
+                it("is not equal with different style") {
+                    let style1 = PDFLineStyle(type: .dotted, color: .orange, width: 0.25)
+                    let style2 = PDFLineStyle(type: .dashed, color: .blue, width: 1.0)
+
+                    expect(PDFLineSeparatorObject(style: style1)) != PDFLineSeparatorObject(style: style2)
+                }
             }
         }
     }
 }
+

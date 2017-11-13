@@ -24,7 +24,7 @@ extension PDFTableStyle: Equatable {
             return false
         }
 
-        if lhs.rowHeaderStyle != lhs.rowHeaderStyle {
+        if lhs.rowHeaderStyle != rhs.rowHeaderStyle {
             return false
         }
 

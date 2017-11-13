@@ -8,7 +8,7 @@
 extension PDFLineSeparatorObject: Equatable {
 
     public static func == (lhs: PDFLineSeparatorObject, rhs: PDFLineSeparatorObject) -> Bool {
-        if lhs.style == rhs.style {
+        if lhs.style != rhs.style {
             return false
         }
         
