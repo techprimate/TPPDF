@@ -10,7 +10,7 @@
 
  Use this class for simple and quick text drawing
  */
-public class PDFSimpleText: PDFText, PDFJSONSerializable {
+public class PDFSimpleText: PDFText {
 
     /**
      Text to be drawn
@@ -33,3 +33,5 @@ public class PDFSimpleText: PDFText, PDFJSONSerializable {
         self.spacing = spacing
     }
 }
+
+extension PDFSimpleText: PDFJSONSerializable { }

@@ -63,13 +63,15 @@ extension UIColor {
             rgb |= (Int)(b * 255) << 0
 
             return String(format: "#%06x", rgb)
-        } else {
-            rgb = (Int)(r * 255) << 24
-            rgb |= (Int)(g * 255) << 16
-            rgb |= (Int)(b * 255) << 8
-            rgb |= (Int)(a * 255) << 0
-
-            return String(format: "#%08x", rgb)
         }
+
+        rgb = (Int)(r * 255) << 24
+        rgb |= (Int)(g * 255) << 16
+        rgb |= (Int)(b * 255) << 8
+        rgb |= (Int)(a * 255) << 0
+
+        return String(format: "#%08x", rgb)
+
     }
 }
+

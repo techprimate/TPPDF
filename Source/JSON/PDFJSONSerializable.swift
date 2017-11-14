@@ -12,12 +12,9 @@ public extension PDFJSONSerializable {
     public func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
         let representation = JSONRepresentation
 
-        guard JSONSerialization.isValidJSONObject(representation) else {
-            print("Invalid JSON from reprsentation.")
-            return nil
-        }
-
-        guard let data = try? JSONSerialization.data(withJSONObject: representation, options: options) else {
+        guard JSONSerialization.isValidJSONObject(representation),
+            let data = try? JSONSerialization.data(withJSONObject: representation, options: options) else {
+            print("Invalid JSON from representation.")
             return nil
         }
 

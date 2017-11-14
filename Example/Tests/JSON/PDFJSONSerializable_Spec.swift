@@ -15,6 +15,36 @@ class PDFJSONSerialization_Spec : QuickSpec {
     override func spec() {
         describe("PDFJSONSerialization") {
 
+            context("JSON String") {
+
+                class CustomJSON: PDFJSONSerializable {
+
+                    static var invalidJSON = false
+
+                    var JSONRepresentation: AnyObject {
+                        if CustomJSON.invalidJSON {
+                            return CustomJSON() as AnyObject
+                        }
+                        return ["TEST"] as AnyObject
+                    }
+                }
+
+                beforeEach {
+                    CustomJSON.invalidJSON = false
+                }
+
+                it("can be converted into a JSON string") {
+                    let instance = CustomJSON()
+                    expect(instance.toJSON()) == "[\"TEST\"]"
+                }
+
+                it("can not be converted if invalid json object") {
+                    let instance = CustomJSON()
+                    CustomJSON.invalidJSON = true
+
+                    expect(instance.toJSON()).to(beNil())
+                }
+            }
             context("Array") {
 
                 it("can be representated") {

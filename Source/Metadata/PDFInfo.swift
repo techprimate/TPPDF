@@ -79,17 +79,10 @@ public class PDFInfo: PDFJSONSerializable {
             kCGPDFContextAllowsPrinting as String: allowsPrinting,
             kCGPDFContextAllowsCopying as String: allowsCopying]
 
-        var creator = ""
-        if let bundleName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
-            creator += bundleName
+        var creator = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "TPPDF"
+        creator += " " + (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0")
 
-            if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-                creator += " v" + version
-            }
-        }
-        if !creator.isEmpty {
-            documentInfo[kCGPDFContextCreator as String] = creator
-        }
+        documentInfo[kCGPDFContextCreator as String] = creator
 
         if let ownerPassword = ownerPassword {
             documentInfo[kCGPDFContextOwnerPassword as String] = ownerPassword

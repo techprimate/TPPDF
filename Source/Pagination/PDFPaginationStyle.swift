@@ -57,8 +57,8 @@ public enum PDFPaginationStyle: PDFJSONSerializable {
             
             return String(format: template, romanIndex, romanMax)
         case .customNumberFormat(let template, let formatter):
-            let indexString = formatter.string(from: page as NSNumber) ?? "Formatting error!"
-            let maxString = formatter.string(from: total as NSNumber) ?? "Formatting error!"
+            let indexString = formatter.string(from: page as NSNumber)!
+            let maxString = formatter.string(from: total as NSNumber)!
             
             return String(format: template, indexString, maxString)
         case .customClosure(let closure):
