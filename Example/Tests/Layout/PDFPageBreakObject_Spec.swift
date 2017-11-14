@@ -1,5 +1,5 @@
 //
-//  PDFOffsetObject_Spec.swift
+//  PDFPageBreakObject_Spec.swift
 //  TPPDF_Tests
 //
 //  Created by Philip Niedertscheider on 14/11/2017.
@@ -10,26 +10,18 @@ import Quick
 import Nimble
 @testable import TPPDF
 
-class PDFOffsetObject_Spec: QuickSpec {
+class PDFPageBreakObject_Spec: QuickSpec {
 
     override func spec() {
-        describe("PDFOffsetObject") {
+        describe("PDFPageBreakObject") {
 
-            var object: PDFOffsetObject!
-            let offset: CGFloat = 20.0
+            var object: PDFPageBreakObject!
 
             beforeEach {
-                object = PDFOffsetObject(offset: offset)
+                object = PDFPageBreakObject()
             }
 
-            describe("variables") {
-
-                it("has an offset value") {
-                    expect(object.offset) == offset
-                }
-            }
-
-            describe("calculation") {
+            describe("calculation and drawing") {
 
                 let document = PDFDocument(format: .a4)
                 var generator: PDFGenerator!
@@ -43,18 +35,30 @@ class PDFOffsetObject_Spec: QuickSpec {
                 }
 
                 it("can set offset") {
+                    let currentPage = generator.currentPage
+                    let totalPages = generator.totalPages
+
                     expect {
                         result = try object.calculate(generator: generator, container: container)
                         }.toNot(throwError())
-                    expect(generator.layout.getContentOffset(in: container)).toEventually(equal(object.offset))
+                    expect(generator.layout.heights.content) == 0
+                    expect(generator.currentPage) == currentPage + 1
+                    expect(generator.totalPages) == totalPages + 1
 
                     expect(result).toEventually(haveCount(1))
                     expect(result.first?.0).toEventually(equal(container))
-                    expect(result.first?.1 as? PDFOffsetObject).toEventually(equal(object))
+                    expect(result.first?.1 as? PDFPageBreakObject).toEventually(equal(object))
+                }
+
+                it("can be drawn") {
+                    expect {
+                        try object.draw(generator: generator, container: container)
+                    }.toNot(throwError())
                 }
             }
         }
     }
 }
+
 
 

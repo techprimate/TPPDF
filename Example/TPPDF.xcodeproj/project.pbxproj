@@ -46,6 +46,8 @@
 		D476E1871FBB33D900024916 /* PDFLayoutIndentations+Equatable_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476E1861FBB33D900024916 /* PDFLayoutIndentations+Equatable_Spec.swift */; };
 		D476E1891FBB345F00024916 /* PDFOffsetObject_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476E1881FBB345F00024916 /* PDFOffsetObject_Spec.swift */; };
 		D476E18D1FBB357200024916 /* PDFOffsetObject+Equatable_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476E18C1FBB357200024916 /* PDFOffsetObject+Equatable_Spec.swift */; };
+		D476E18F1FBB365900024916 /* PDFPageBreakObject_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476E18E1FBB365900024916 /* PDFPageBreakObject_Spec.swift */; };
+		D476E1931FBB37BE00024916 /* PDFPageBreakObject+Equatable_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476E1921FBB37BE00024916 /* PDFPageBreakObject+Equatable_Spec.swift */; };
 		D4C6337B1FB7D45D00683C5A /* PDFGenerator+Layout_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C6337A1FB7D45D00683C5A /* PDFGenerator+Layout_Spec.swift */; };
 		D4C6337D1FB7D5E000683C5A /* PDFLineStyle_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C6337C1FB7D5E000683C5A /* PDFLineStyle_Spec.swift */; };
 		D4C6337F1FB7D77700683C5A /* PDFTableCellAlignment_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C6337E1FB7D77700683C5A /* PDFTableCellAlignment_Spec.swift */; };
@@ -132,6 +134,8 @@
 		D476E1861FBB33D900024916 /* PDFLayoutIndentations+Equatable_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFLayoutIndentations+Equatable_Spec.swift"; sourceTree = "<group>"; };
 		D476E1881FBB345F00024916 /* PDFOffsetObject_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFOffsetObject_Spec.swift; sourceTree = "<group>"; };
 		D476E18C1FBB357200024916 /* PDFOffsetObject+Equatable_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFOffsetObject+Equatable_Spec.swift"; sourceTree = "<group>"; };
+		D476E18E1FBB365900024916 /* PDFPageBreakObject_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPageBreakObject_Spec.swift; sourceTree = "<group>"; };
+		D476E1921FBB37BE00024916 /* PDFPageBreakObject+Equatable_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFPageBreakObject+Equatable_Spec.swift"; sourceTree = "<group>"; };
 		D4B97A2A1F94B8BC00F83D1F /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".swift-version"; path = "../.swift-version"; sourceTree = "<group>"; };
 		D4B97A2B1F94B8BC00F83D1F /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		D4C6337A1FB7D45D00683C5A /* PDFGenerator+Layout_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+Layout_Spec.swift"; sourceTree = "<group>"; };
@@ -298,6 +302,8 @@
 				D476E1841FBB2CB500024916 /* PDFLayoutIndentations_Spec.swift */,
 				D476E1861FBB33D900024916 /* PDFLayoutIndentations+Equatable_Spec.swift */,
 				D476E1881FBB345F00024916 /* PDFOffsetObject_Spec.swift */,
+				D476E18E1FBB365900024916 /* PDFPageBreakObject_Spec.swift */,
+				D476E1921FBB37BE00024916 /* PDFPageBreakObject+Equatable_Spec.swift */,
 				D476E18C1FBB357200024916 /* PDFOffsetObject+Equatable_Spec.swift */,
 			);
 			path = Layout;
@@ -702,6 +708,7 @@
 				D476E1811FBB245C00024916 /* PDFLayout+Equatable_Spec.swift in Sources */,
 				D4C6337F1FB7D77700683C5A /* PDFTableCellAlignment_Spec.swift in Sources */,
 				D4C6337D1FB7D5E000683C5A /* PDFLineStyle_Spec.swift in Sources */,
+				D476E1931FBB37BE00024916 /* PDFPageBreakObject+Equatable_Spec.swift in Sources */,
 				D4C6338F1FB9164500683C5A /* PDFImageSizeFit_Spec.swift in Sources */,
 				D44CF1611FB4604D00BEDD73 /* PDFDocument_Spec.swift in Sources */,
 				D476E1851FBB2CB500024916 /* PDFLayoutIndentations_Spec.swift in Sources */,
@@ -714,6 +721,7 @@
 				D44CF15C1FB4604D00BEDD73 /* PDFGraphics_Spec.swift in Sources */,
 				D44CF1531FB4604D00BEDD73 /* PDFInfo_Spec.swift in Sources */,
 				D476E1771FBAEDF500024916 /* PDFJSONRepresentable_Spec.swift in Sources */,
+				D476E18F1FBB365900024916 /* PDFPageBreakObject_Spec.swift in Sources */,
 				D476E18D1FBB357200024916 /* PDFOffsetObject+Equatable_Spec.swift in Sources */,
 				D4C6338D1FB7E94C00683C5A /* PDFImage_Equatable_Spec.swift in Sources */,
 				D44CF1871FB49D4700BEDD73 /* PDFGenerator_Spec.swift in Sources */,
