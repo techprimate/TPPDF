@@ -8,8 +8,18 @@
 extension PDFPageLayout: Equatable {
 
     public static func == (lhs: PDFPageLayout, rhs: PDFPageLayout) -> Bool {
-        return lhs.size == rhs.size
-            && lhs.margin == rhs.margin
-            && lhs.space == rhs.space
+        if lhs.size != rhs.size {
+            return false
+        }
+
+        if lhs.margin != rhs.margin {
+            return false
+        }
+
+        if lhs.space != rhs.space {
+            return false
+        }
+
+        return true
     }
 }
