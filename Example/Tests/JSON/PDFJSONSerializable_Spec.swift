@@ -15,7 +15,7 @@ class PDFJSONSerialization_Spec : QuickSpec {
     override func spec() {
         describe("PDFJSONSerialization") {
 
-            describe("Array") {
+            context("Array") {
 
                 it("can be representated") {
                     let examples = [["ABC", "DEF", "GHI"], [1, 2, 3]]
@@ -32,7 +32,7 @@ class PDFJSONSerialization_Spec : QuickSpec {
                 }
             }
 
-            describe("Dictionary") {
+            context("Dictionary") {
 
                 it("can be representated") {
                     let examples: [String: Any] = [
@@ -76,7 +76,7 @@ class PDFJSONSerialization_Spec : QuickSpec {
                 }
             }
 
-            describe("Tuple") {
+            context("Tuple") {
 
                 let points = [
                     (x: 10, y: 20),
@@ -108,7 +108,7 @@ class PDFJSONSerialization_Spec : QuickSpec {
                 }
             }
 
-            describe("UIImage") {
+            context("UIImage") {
 
                 it("can not be representated if invalid image") {
                     expect(UIImage().JSONRepresentation is NSNull).to(beTrue())
@@ -146,7 +146,7 @@ class PDFJSONSerialization_Spec : QuickSpec {
                 }
             }
 
-            describe("UIColor") {
+            context("UIColor") {
 
                 it("can be representated") {
                     let representable = UIColor.purple.JSONRepresentation
@@ -154,7 +154,7 @@ class PDFJSONSerialization_Spec : QuickSpec {
                 }
             }
 
-            describe("Optional") {
+            context("Optional") {
 
                 it("can be reprsentated") {
                     let objects = [

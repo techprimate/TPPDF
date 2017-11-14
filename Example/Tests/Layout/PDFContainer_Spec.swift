@@ -105,7 +105,7 @@ class PDFContainer_Spec: QuickSpec {
 
             context("JSON") {
 
-                it("can create a representable") {
+                it("can be represented") {
                     expect(PDFContainer.headerCenter.JSONRepresentation as? Int) == 2
                 }
             }

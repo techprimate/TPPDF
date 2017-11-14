@@ -22,10 +22,14 @@ class PDFImageSizeFit_Spec: QuickSpec {
             }
 
             context("JSONSerializable") {
-                expect(PDFImageSizeFit.width.JSONRepresentation as? Int) == PDFImageSizeFit.width.hashValue
-                expect(PDFImageSizeFit.height.JSONRepresentation as? Int) == PDFImageSizeFit.height.hashValue
-                expect(PDFImageSizeFit.widthHeight.JSONRepresentation as? Int) == PDFImageSizeFit.widthHeight.hashValue
+
+                it("can be represented") {
+                    expect(PDFImageSizeFit.width.JSONRepresentation as? Int) == PDFImageSizeFit.width.hashValue
+                    expect(PDFImageSizeFit.height.JSONRepresentation as? Int) == PDFImageSizeFit.height.hashValue
+                    expect(PDFImageSizeFit.widthHeight.JSONRepresentation as? Int) == PDFImageSizeFit.widthHeight.hashValue
+                }
             }
         }
     }
 }
+

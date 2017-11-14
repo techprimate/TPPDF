@@ -20,9 +20,8 @@ class PDFLayout: PDFJSONSerializable {
             return heights.header[container]!
         } else if container.isFooter {
             return heights.footer[container]!
-        } else {
-            return heights.content
         }
+        return heights.content
     }
     
     func setContentOffset(in container: PDFContainer, to value: CGFloat) {

@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-extension PDFAttributedText {
+extension PDFAttributedText: Equatable {
 
     public static func == (lhs: PDFAttributedText, rhs: PDFAttributedText) -> Bool {
         if lhs.text != rhs.text {
