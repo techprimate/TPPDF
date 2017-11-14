@@ -12,11 +12,11 @@ extension PDFLayoutIndentations: Equatable {
             return false
         }
 
-        if lhs.footer != rhs.footer {
+        if lhs.content != rhs.content {
             return false
         }
 
-        if lhs.content != rhs.content {
+        if lhs.footer != rhs.footer {
             return false
         }
 

@@ -39,9 +39,8 @@ struct PDFLayoutIndentations {
             return header.left
         } else if container.isFooter {
             return footer.left
-        } else {
-            return content.left
         }
+        return content.left
     }
     
     /**
@@ -56,9 +55,8 @@ struct PDFLayoutIndentations {
             return header.right
         } else if container.isFooter {
             return footer.right
-        } else {
-            return content.right
         }
+        return content.right
     }
     
     /**
