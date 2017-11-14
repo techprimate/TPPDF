@@ -53,6 +53,7 @@
 		D476E1991FBB3B2D00024916 /* PDFSpaceObject_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476E1981FBB3B2D00024916 /* PDFSpaceObject_Spec.swift */; };
 		D476E19B1FBB611700024916 /* PDFSimpleText_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476E19A1FBB611700024916 /* PDFSimpleText_Spec.swift */; };
 		D476E19D1FBB660100024916 /* PDFSimpleText+Equatable_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476E19C1FBB660100024916 /* PDFSimpleText+Equatable_Spec.swift */; };
+		D476E19F1FBB706000024916 /* PDFTable+Equatable_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476E19E1FBB706000024916 /* PDFTable+Equatable_Spec.swift */; };
 		D4C6337B1FB7D45D00683C5A /* PDFGenerator+Layout_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C6337A1FB7D45D00683C5A /* PDFGenerator+Layout_Spec.swift */; };
 		D4C6337D1FB7D5E000683C5A /* PDFLineStyle_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C6337C1FB7D5E000683C5A /* PDFLineStyle_Spec.swift */; };
 		D4C6337F1FB7D77700683C5A /* PDFTableCellAlignment_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C6337E1FB7D77700683C5A /* PDFTableCellAlignment_Spec.swift */; };
@@ -146,6 +147,7 @@
 		D476E1981FBB3B2D00024916 /* PDFSpaceObject_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFSpaceObject_Spec.swift; sourceTree = "<group>"; };
 		D476E19A1FBB611700024916 /* PDFSimpleText_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFSimpleText_Spec.swift; sourceTree = "<group>"; };
 		D476E19C1FBB660100024916 /* PDFSimpleText+Equatable_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFSimpleText+Equatable_Spec.swift"; sourceTree = "<group>"; };
+		D476E19E1FBB706000024916 /* PDFTable+Equatable_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFTable+Equatable_Spec.swift"; sourceTree = "<group>"; };
 		D4B97A2A1F94B8BC00F83D1F /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".swift-version"; path = "../.swift-version"; sourceTree = "<group>"; };
 		D4B97A2B1F94B8BC00F83D1F /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		D4C6337A1FB7D45D00683C5A /* PDFGenerator+Layout_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+Layout_Spec.swift"; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				D4C633901FB9B64300683C5A /* PDFTableStyle+Defaults_Spec.swift */,
 				D4C633921FB9B73F00683C5A /* PDFTableStyle+Equatable_Spec.swift */,
 				D4C633941FB9B92A00683C5A /* PDFTableStyle_Spec.swift */,
+				D476E19E1FBB706000024916 /* PDFTable+Equatable_Spec.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -760,6 +763,7 @@
 				D44CF14E1FB4604D00BEDD73 /* PDFContainer_Spec.swift in Sources */,
 				D476E1791FBAEEF800024916 /* PDFAttributedText+Equatable_Spec.swift in Sources */,
 				D44CF15E1FB4604D00BEDD73 /* UIImage+Pixel_Spec.swift in Sources */,
+				D476E19F1FBB706000024916 /* PDFTable+Equatable_Spec.swift in Sources */,
 				D4C633811FB7DA4C00683C5A /* PDFTableCellPosition_Spec.swift in Sources */,
 				D476E1831FBB2A6C00024916 /* PDFLayoutHeights+Equatable_Spec.swift in Sources */,
 			);
