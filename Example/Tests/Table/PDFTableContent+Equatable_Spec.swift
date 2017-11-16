@@ -25,7 +25,7 @@ class PDFTableContent_Equatable_Spec: QuickSpec {
 
                 it("is equal") {
                     let otherContent = PDFTableContent(type: .none, content: nil)
-                    expect(content) != otherContent
+                    expect(content) == otherContent
                 }
 
                 it("is not equal with different type") {
@@ -56,12 +56,12 @@ class PDFTableContent_Equatable_Spec: QuickSpec {
                     expect(content) != otherContent
                 }
 
-                it("is not equal with unknown objects") {
+                it("ignores content if unknown objects") {
                     content.type = .image
                     content.content = ["RANDOM"]
 
                     let otherContent = PDFTableContent(type: .image, content: ["RANDOM"])
-                    expect(content) != otherContent
+                    expect(content) == otherContent
                 }
             }
         }

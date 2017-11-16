@@ -12,19 +12,13 @@ extension PDFTableContent: Equatable {
             return false
         }
 
-        if let lhsString = lhs.content as? String, let rhsString = rhs.content as? String {
-            if lhsString != rhsString {
-                return false
-            }
-        } else if let lhsString = lhs.content as? NSAttributedString, let rhsString = rhs.content as? NSAttributedString {
-            if lhsString != rhsString {
-                return false
-            }
-        } else if let lhsImage = lhs.content as? UIImage, let rhsImage = rhs.content as? UIImage {
-            if lhsImage != rhsImage {
-                return false
-            }
-        } else {
+        if let lhsString = lhs.content as? String, let rhsString = rhs.content as? String, lhsString != rhsString {
+            return false
+        } else if let lhsString = lhs.content as? NSAttributedString, let rhsString = rhs.content as? NSAttributedString, lhsString != rhsString {
+            return false
+        } else if let lhsImage = lhs.content as? UIImage, let rhsImage = rhs.content as? UIImage, lhsImage != rhsImage {
+            return false
+        } else if (lhs == nil && rhs != nil) || (lhs != nil && rhs == nil) {
             return false
         }
 
