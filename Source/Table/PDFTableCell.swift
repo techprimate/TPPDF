@@ -8,8 +8,8 @@
 public class PDFTableCell: PDFJSONSerializable {
     
     public var content: PDFTableContent?
-    public var alignment: PDFTableCellAlignment
     public var style: PDFTableCellStyle?
+    public var alignment: PDFTableCellAlignment
     
     init(content: PDFTableContent? = nil, alignment: PDFTableCellAlignment = .center, style: PDFTableCellStyle? = nil) {
         self.content = content

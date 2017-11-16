@@ -19,9 +19,23 @@ class PDFTableCellPosition_Spec: QuickSpec {
             let column = 5
             let position = PDFTableCellPosition(row: row, column: column)
 
-            it("can be initalized with a row and a column") {
-                expect(position.row) == row
-                expect(position.column) == column
+            context("variables") {
+
+                it("has a row") {
+                    expect(position.row).toNot(beNil())
+                }
+
+                it("has a column") {
+                    expect(position.column).toNot(beNil())
+                }
+            }
+
+            context("initalizer") {
+
+                it("can be initalized with a row and a column") {
+                    expect(position.row) == row
+                    expect(position.column) == column
+                }
             }
 
             context("JSONSerializable") {

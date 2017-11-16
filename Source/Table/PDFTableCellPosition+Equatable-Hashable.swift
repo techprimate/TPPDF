@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-extension PDFTableCellPosition: Equatable, Hashable {
+extension PDFTableCellPosition: Hashable {
 
     /**
      Creates a hash value.
@@ -14,8 +14,11 @@ extension PDFTableCellPosition: Equatable, Hashable {
      your program. Do not save hash values to use during a future execution.
      */
     public var hashValue: Int {
-        return row * row + column
+        return row * row * 10 + column
     }
+}
+
+extension PDFTableCellPosition: Equatable {
 
     /**
      Returns a Boolean value indicating whether two values are equal.
@@ -28,7 +31,14 @@ extension PDFTableCellPosition: Equatable, Hashable {
      - rhs: Another value to compare.
      */
     public static func == (lhs: PDFTableCellPosition, rhs: PDFTableCellPosition) -> Bool {
-        return lhs.row == rhs.row && lhs.column == rhs.column
+        if lhs.row != rhs.row {
+            return false
+        }
+
+        if lhs.column != rhs.column {
+            return false
+        }
+
+        return true
     }
 }
-

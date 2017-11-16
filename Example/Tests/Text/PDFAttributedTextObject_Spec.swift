@@ -45,7 +45,6 @@ class PDFAttributedTextObject_Spec: QuickSpec {
                             let _ = PDFAttributedTextObject(text: custom)
                             return nil
                             }.to(throwAssertion())
-
                     #endif
                 }
             }
