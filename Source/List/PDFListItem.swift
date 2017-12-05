@@ -40,6 +40,8 @@ public class PDFListItem: PDFJSONSerializable {
         if let content = content {
             representation["content"] = content as AnyObject
         }
+        representation["symbol"] = symbol.JSONRepresentation
+
         if let children = children {
             let result = children.map({ child -> AnyObject in
                 return child.JSONRepresentation

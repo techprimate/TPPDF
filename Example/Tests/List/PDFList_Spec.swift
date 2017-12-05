@@ -1,5 +1,5 @@
 //
-//  ListTests.swift
+//  PDFList_Spec.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
@@ -11,7 +11,8 @@ import Nimble
 
 class ListSpec: QuickSpec {
     override func spec() {
-        describe("the List") {
+        describe("PDFList") {
+
             let list = PDFList(indentations: [(pre: 0.0, past: 10.0), (pre: 10.0, past: 10.0), (pre: 20.0, past: 10.0)])
             it("has no items by default") {
                 expect(list.count).to(equal(0))

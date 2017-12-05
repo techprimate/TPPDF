@@ -16,6 +16,15 @@ class PDFGraphics_Spec : QuickSpec {
 
         describe("PDFGraphics") {
 
+            it("can not create an none path") {
+                let start = CGPoint.zero
+                let end = CGPoint(x: 100, y: 100)
+                let style = PDFLineStyle.none
+
+                let dashes = PDFGraphics.createLinePath(start: start, end: end, style: style)
+                expect(dashes).to(beNil())
+            }
+
             it("can create dashes with butts") {
                 let width: CGFloat = 5
                 let style = PDFLineStyle(type: .dashed, color: .red, width: width)

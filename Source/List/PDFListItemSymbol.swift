@@ -75,4 +75,3 @@ public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
         return self.rawValue as AnyObject
     }
 }
-
