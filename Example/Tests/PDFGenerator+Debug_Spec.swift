@@ -17,7 +17,9 @@ class PDFGenerator_Debug_Spec: QuickSpec {
 
             context("Debug") {
 
-                let document = PDFDocument(format: .a4)
+                let document = PDFDocument(layout: PDFPageLayout(size: CGSize(width: 50, height: 50),
+                                                                 margin: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10),
+                                                                 space: (header: 5, footer: 5)))
                 let generator = PDFGenerator(document: document)
 
                 it("should not draw overlay if debug is disabled") {

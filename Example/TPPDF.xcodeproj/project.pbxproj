@@ -15,6 +15,7 @@
 		A549573C658C70B3911B7712 /* Pods_TPPDF_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB1F372E18E7F48400D4AA1 /* Pods_TPPDF_Tests.framework */; };
 		D409A68E1FD6D61000E050A7 /* PDFListItem_Equatable_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D409A68C1FD6D43300E050A7 /* PDFListItem_Equatable_Spec.swift */; };
 		D409A6911FD6E4EE00E050A7 /* PDFText_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D409A68F1FD6E4C800E050A7 /* PDFText_Spec.swift */; };
+		D409A6941FD6E5E400E050A7 /* PDFTextColorObject_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D409A6921FD6E5C500E050A7 /* PDFTextColorObject_Spec.swift */; };
 		D44CF14E1FB4604D00BEDD73 /* PDFContainer_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CF12F1FB4604B00BEDD73 /* PDFContainer_Spec.swift */; };
 		D44CF14F1FB4604D00BEDD73 /* PDFLayoutHeights_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CF1301FB4604B00BEDD73 /* PDFLayoutHeights_Spec.swift */; };
 		D44CF1501FB4604D00BEDD73 /* PDFAttributedText_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CF1321FB4604B00BEDD73 /* PDFAttributedText_Spec.swift */; };
@@ -122,6 +123,7 @@
 		AA3ABE5E8B71837B45C4119F /* TPPDF.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TPPDF.podspec; path = ../TPPDF.podspec; sourceTree = "<group>"; };
 		D409A68C1FD6D43300E050A7 /* PDFListItem_Equatable_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListItem_Equatable_Spec.swift; sourceTree = "<group>"; };
 		D409A68F1FD6E4C800E050A7 /* PDFText_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFText_Spec.swift; sourceTree = "<group>"; };
+		D409A6921FD6E5C500E050A7 /* PDFTextColorObject_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTextColorObject_Spec.swift; sourceTree = "<group>"; };
 		D40F12351FA8D9D100A95A26 /* .codebeatignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .codebeatignore; path = ../.codebeatignore; sourceTree = "<group>"; };
 		D418D71E1EF16FA4009FAF56 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; lineEnding = 0; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		D418D71F1EF16FA4009FAF56 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CODE_OF_CONDUCT.md; path = ../CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				D476E19A1FBB611700024916 /* PDFSimpleText_Spec.swift */,
 				D476E19C1FBB660100024916 /* PDFSimpleText+Equatable_Spec.swift */,
 				D409A68F1FD6E4C800E050A7 /* PDFText_Spec.swift */,
+				D409A6921FD6E5C500E050A7 /* PDFTextColorObject_Spec.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				D4F838261FBDC83F004B0D8F /* PDFIndentationObject_Equatable_Spec.swift in Sources */,
 				D4C6338B1FB7E53300683C5A /* PDFImage_Spec.swift in Sources */,
 				D476E19D1FBB660100024916 /* PDFSimpleText+Equatable_Spec.swift in Sources */,
+				D409A6941FD6E5E400E050A7 /* PDFTextColorObject_Spec.swift in Sources */,
 				D44CF14E1FB4604D00BEDD73 /* PDFContainer_Spec.swift in Sources */,
 				D476E1791FBAEEF800024916 /* PDFAttributedText+Equatable_Spec.swift in Sources */,
 				D44CF15E1FB4604D00BEDD73 /* UIImage+Pixel_Spec.swift in Sources */,
