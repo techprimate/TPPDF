@@ -76,7 +76,7 @@ class PDFGraphics_Spec : QuickSpec {
                 expect(compressed.size) == CGSize(width: 25.0, height: 25.0)
 
                 compressed = PDFGraphics.resizeAndCompressImage(image: image, frame: compressFrame, quality: 0.0)
-                expect( compressed) == image
+                expect(compressed) == image
             }
         }
     }

@@ -71,7 +71,5 @@ extension UIColor {
         rgb |= (Int)(a * 255) << 0
 
         return String(format: "#%08x", rgb)
-
     }
 }
-

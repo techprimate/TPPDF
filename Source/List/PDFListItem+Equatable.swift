@@ -11,15 +11,19 @@ extension PDFListItem: Equatable {
         if lhs.parent !== rhs.parent {
             return false
         }
+
         if lhs.content != rhs.content {
             return false
         }
+
         if (lhs.children ?? []) != (rhs.children ?? []) {
             return false
         }
+
         if lhs.symbol != rhs.symbol {
             return false
         }
+
         return true
     }
 }

@@ -9,6 +9,10 @@
 
 extension UIImage {
 
+    var pixelExtractor: PixelExtractor {
+        return PixelExtractor(img: self.cgImage!)
+    }
+
     func pixelColor(at location: CGPoint) -> UIColor {
         return PixelExtractor(img: self.cgImage!).colorAt(x: Int(location.x), y: Int(location.y))
     }
@@ -36,7 +40,6 @@ class PixelExtractor: NSObject {
     }
 
     class func createBitmapContext(cgImage: CGImage) -> CGContext {
-
         // Get image width, height
         let pixelsWide = cgImage.width
         let pixelsHigh = cgImage.height
@@ -64,7 +67,7 @@ class PixelExtractor: NSObject {
         return context!
     }
 
-    func colorAt(x: Int, y: Int)->UIColor {
+    func colorAt(x: Int, y: Int) -> UIColor {
         assert(0<=x && x<width)
         assert(0<=y && y<height)
 
