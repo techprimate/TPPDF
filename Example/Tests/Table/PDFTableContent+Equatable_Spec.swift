@@ -56,6 +56,20 @@ class PDFTableContent_Equatable_Spec: QuickSpec {
                     expect(content) != otherContent
                 }
 
+                it("is not equal with different content nil") {
+                    content.type = .image
+                    content.content = UIImage()
+
+                    var otherContent = PDFTableContent(type: .image, content: nil)
+                    expect(content) != otherContent
+
+                    content.type = .image
+                    content.content = nil
+
+                    otherContent = PDFTableContent(type: .image, content: UIImage())
+                    expect(content) != otherContent
+                }
+
                 it("ignores content if unknown objects") {
                     content.type = .image
                     content.content = ["RANDOM"]
