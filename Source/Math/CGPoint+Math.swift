@@ -18,6 +18,18 @@ public func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
 }
 
 /**
+ Subtracts two points from each other, by subtracting their components.
+
+ - parameter lhs: CGPoint
+ - parameter rhs: CGPoint
+
+ - returns: Subtracted point
+ */
+public func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+    return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+}
+
+/**
  Adds a value to both components of a point
 
  - parameter lhs: Point

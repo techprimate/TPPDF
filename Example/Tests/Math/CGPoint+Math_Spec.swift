@@ -23,6 +23,12 @@ class CGPoint_Math_Spec: QuickSpec {
                 expect(point + point2) == CGPoint(x: 40, y: 60)
             }
 
+            it("can be subtracted from a point") {
+                let point2 = CGPoint(x: 30, y: 40)
+
+                expect(point - point2) == CGPoint(x: -20, y: -20)
+            }
+
             it("can be added by a value") {
                 let value: CGFloat = 20
 
