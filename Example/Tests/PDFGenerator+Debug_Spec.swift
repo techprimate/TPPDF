@@ -71,7 +71,9 @@ class PDFGenerator_Debug_Spec: QuickSpec {
                                 if CGFloat(x) == document.layout.margin.left ||
                                     CGFloat(x) == document.layout.width - document.layout.margin.right ||
                                     CGFloat(y) == document.layout.margin.top ||
-                                    CGFloat(y) == document.layout.height - document.layout.margin.bottom {
+                                    CGFloat(y) == document.layout.margin.top + document.layout.space.header ||
+                                    CGFloat(y) == document.layout.height - document.layout.margin.bottom ||
+                                    CGFloat(y) == document.layout.height - document.layout.margin.bottom - document.layout.space.footer {
                                     expected = UIColor.blue
                                 }
 

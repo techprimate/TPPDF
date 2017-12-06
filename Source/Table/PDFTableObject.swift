@@ -52,13 +52,15 @@ class PDFTableObject: PDFObject {
                 cells: row)
 
             // Calculate cell items
-            let result = calculateRow(cells: row,
+            var result = calculateRow(cells: row,
                                       rowIndex: rowIdx,
                                       availableSize: availableSize,
                                       origin: origin,
                                       styles: styles,
                                       generator: generator)
+
             cellItems.append(result)
+            
             // Update position for next row
             origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
 

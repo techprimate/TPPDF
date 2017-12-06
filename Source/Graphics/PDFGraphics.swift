@@ -81,6 +81,23 @@ class PDFGraphics {
     }
 
     /**
+     Draws a rectangle into the given `frame`.
+
+     - parameter rect: Frame of rectangle
+     - parameter outline: Style of border lines
+     - parameter fill: Inner color
+     */
+    static func drawRect(rect: CGRect, outline: PDFLineStyle, pattern: FillPattern) {
+        let path = createRectPath(rect: rect, outline: outline)
+
+        outline.color.setStroke()
+        pattern.setFill()
+
+        path.fill()
+        path.stroke()
+    }
+
+    /**
      Creates a rectangular bezier path from the given `frame`.
 
      - parameter rect: Frame of rectangle
@@ -155,5 +172,34 @@ class PDFGraphics {
             compressedImage = UIImage(data: jpegData)
         }
         return compressedImage ?? image
+    }
+
+    /**
+     Constants for filling, mostly used for debugging elements
+     */
+    enum FillPattern {
+
+        case dotted(foreColor: UIColor, backColor: UIColor)
+
+        func setFill() {
+            switch self {
+            case .dotted(let foreColor, let backColor):
+                UIGraphicsBeginImageContext(CGSize(width: 5, height: 5))
+                UIColor.clear.setStroke()
+                backColor.setFill()
+
+                var path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 5, height: 5))
+                path.fill()
+
+                foreColor.setFill()
+
+                path = UIBezierPath(ovalIn: CGRect(x: 2.5, y: 2.5, width: 2.5, height: 2.5))
+                path.fill()
+
+                let image = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                UIColor(patternImage: image!).setFill()
+            }
+        }
     }
 }

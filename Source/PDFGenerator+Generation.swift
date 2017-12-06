@@ -126,7 +126,7 @@ extension PDFGenerator {
         
         // Reset all changes made by metrics calculation to generator
         resetGenerator()
-        
+
         return allObjects
     }
 
@@ -140,11 +140,11 @@ extension PDFGenerator {
      */
     func addHeaderFooterObjects() throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
-        
+
         layout.heights.resetHeaderFooterHeight()
-        
+
         let pagination = document.pagination
-        
+
         if pagination.container != .none {
             if !pagination.hiddenPages.contains(currentPage) && currentPage >= pagination.range.start && currentPage <= pagination.range.end {
                 let simpleText = PDFSimpleText(text: pagination.style.format(page: currentPage, total: totalPages))
@@ -152,8 +152,39 @@ extension PDFGenerator {
                 result += try textObject.calculate(generator: self, container: pagination.container)
             }
         }
-        result += headerFooterObjects
-        
+        for (container, headerFooter) in headerFooterObjects {
+            result += try headerFooter.calculate(generator: self, container: container)
+        }
+
+        result += try headerFooterDebugLines()
+
+        return result
+    }
+
+    private func headerFooterDebugLines() throws -> [(PDFContainer, PDFObject)] {
+        let headerFooterDebugLineStyle = PDFLineStyle(type: .dashed, color: .orange, width: 1)
+
+        let yPositions = [
+            document.layout.margin.top + layout.heights.maxHeaderHeight(),
+            document.layout.margin.top + layout.heights.maxHeaderHeight() + document.layout.space.header,
+            document.layout.height - document.layout.margin.bottom - layout.heights.maxFooterHeight(),
+            document.layout.height - document.layout.margin.bottom - layout.heights.maxFooterHeight() - document.layout.space.footer
+        ]
+
+        var lines: [PDFLineObject] = []
+
+        for y in yPositions {
+            let start = CGPoint(x: 0, y: y)
+            let end = CGPoint(x: document.layout.bounds.width, y: y)
+
+            lines.append(PDFLineObject(style: headerFooterDebugLineStyle, startPoint: start, endPoint: end))
+        }
+
+        var result: [(PDFContainer, PDFObject)] = []
+        for line in lines {
+            result += try line.calculate(generator: self, container: .contentLeft)
+        }
+
         return result
     }
 

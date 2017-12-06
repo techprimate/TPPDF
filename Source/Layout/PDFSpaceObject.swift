@@ -68,7 +68,8 @@ class PDFSpaceObject: PDFObject {
      */
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         if generator.debug {
-            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .green)
+            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0),
+                                 pattern: PDFGraphics.FillPattern.dotted(foreColor: .green, backColor: .white))
         }
     }
 }

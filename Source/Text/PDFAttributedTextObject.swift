@@ -80,8 +80,8 @@ class PDFAttributedTextObject: PDFObject {
         // Calculate the text frame and the text which is on this page
         // If it is not possible to draw the whole text on this page, a remainder text is returned
         let (frame, renderString, remainder) = PDFCalculations.calculateText(generator: generator,
-                                                                                  container: container,
-                                                                                  text: attributedString)
+                                                                             container: container,
+                                                                             text: attributedString)
 
         // Set data to self, and add it to results
         attributedString = renderString
@@ -153,7 +153,7 @@ class PDFAttributedTextObject: PDFObject {
 
         // If debugging is enabled, draw a outline around the text
         if generator.debug {
-            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
+            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0), fill: .clear)
         }
     }
 

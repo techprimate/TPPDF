@@ -67,7 +67,7 @@ class PDFLineSeparatorObject: PDFObject {
             style: style
         )
         
-        if generator.debug {
+        if generator.debug && (style.type == .none) {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
         }
     }

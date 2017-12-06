@@ -36,7 +36,7 @@ extension PDFGenerator {
      Style of debug lines
      */
     private var debugLineStyle: PDFLineStyle {
-        return PDFLineStyle(type: .full, color: UIColor.blue, width: 1.0)
+        return PDFLineStyle(type: .dashed, color: UIColor.blue, width: 1.0)
     }
     
     // MARK: - PRIVATE FUNCS
