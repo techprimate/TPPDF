@@ -221,7 +221,7 @@ class PDFTableObject: PDFObject {
                 if alignment.isLeft {
                     return frame.frames.content.minX
                 } else if alignment.isRight {
-                    return frame.frames.content.maxX - table.padding - frame.frames.content.width
+                    return frame.frames.content.minX + frame.frames.cell.width - 2 * table.padding - frame.frames.content.width
                 } else {
                     return frame.frames.content.minX + (frame.frames.cell.width - 2 * table.padding - frame.frames.content.width) / 2
                 }

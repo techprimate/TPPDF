@@ -207,16 +207,16 @@ class ViewController: UIViewController {
                 ],
                 alignments:
                 [
-                    [.center, .center, .center, .left],
-                    [.center, .center, .center, .left],
-                    [.center, .center, .center, .left],
-                    [.center, .center, .center, .left],
-                    [.center, .center, .center, .left],
-                    [.center, .center, .center, .left],
-                    [.center, .center, .center, .left],
-                    [.center, .center, .center, .left],
-                    [.center, .center, .center, .left],
-                    [.left, .left, .left, .left]
+                    [.center, .left, .center, .right],
+                    [.center, .left, .center, .right],
+                    [.center, .left, .center, .right],
+                    [.center, .left, .center, .right],
+                    [.center, .left, .center, .right],
+                    [.center, .left, .center, .right],
+                    [.center, .left, .center, .right],
+                    [.center, .left, .center, .right],
+                    [.center, .left, .center, .right],
+                    [.center, .left, .center, .right],
                 ])
         } catch PDFError.tableContentInvalid(let value) {
             // In case invalid input is provided, this error will be thrown.
