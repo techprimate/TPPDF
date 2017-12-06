@@ -39,15 +39,14 @@ class PDFTableObject: PDFObject {
         styleIndexOffset = 0
 
         let layout = generator.document.layout
-        let availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
+        var availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         var origin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
+        var startingPoint = origin
 
-        self.frame = CGRect(x: origin.x, y: origin.y, width: availableSize.width, height: 0)
-        
         // Calculate cells
         
         let cells = table.cells
-        var tableHeight: CGFloat = 0
+        var pageBreakIndicies: [Int] = []
 
         for (rowIdx, row) in cells.enumerated() {
             contentFrames.append([])
@@ -134,7 +133,7 @@ class PDFTableObject: PDFObject {
             // Reposition in Y-Axis. This is for vertical alignment
             
             let maxCellHeight: CGFloat = cellFrames[rowIdx].map { return $0.height }.max() ?? 0
-            
+
             for (colIdx, cell) in row.enumerated() {
                 let alignment = cell.alignment
                 let cellFrame = cellFrames[rowIdx][colIdx]
@@ -164,12 +163,22 @@ class PDFTableObject: PDFObject {
                 contentFrames[rowIdx][colIdx].origin.y = contentY
                 cellFrames[rowIdx][colIdx].size.height = maxCellHeight
             }
-            
-            origin.x = frame.minX
+            origin.x = startingPoint.x
             origin.y += maxCellHeight + 2 * (table.margin)
-            tableHeight = origin.y
+
+            if origin.y > availableSize.height {
+                pageBreakIndicies.append(rowIdx)
+
+                try PDFPageBreakObject().calculate(generator: generator, container: container)
+
+                availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
+                origin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
+                startingPoint = origin
+            }
         }
-        
+
+        // Create render objects
+
         var result: [(PDFContainer, PDFObject)] = []
 
         for (rowIdx, row) in cells.enumerated() {
@@ -237,10 +246,14 @@ class PDFTableObject: PDFObject {
                     result.append((container, line))
                 }
             }
+
+            if pageBreakIndicies.contains(rowIdx) {
+                result.append((container, PDFPageBreakObject()))
+            }
         }
 
-        let tableOutlineObject = PDFRectangleObject(lineStyle: table.style.outline, size: CGSize(width: self.frame.width, height: tableHeight))
-        result.append((container, tableOutlineObject))
+//        let tableOutlineObject = PDFRectangleObject(lineStyle: table.style.outline, size: CGSize(width: self.frame.width, height: tableHeight))
+//        result.append((container, tableOutlineObject))
 
         return result
     }

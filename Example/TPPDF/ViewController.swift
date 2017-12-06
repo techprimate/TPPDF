@@ -247,10 +247,10 @@ class ViewController: UIViewController {
                               alpha: 1.0),
                 text: UIColor.white
             ),
-            borders: PDFTableCellBorders(left: PDFLineStyle(),
-                      top: PDFLineStyle(),
-                      right: PDFLineStyle(),
-                      bottom: PDFLineStyle()),
+            borders: PDFTableCellBorders(left: PDFLineStyle(type: .full),
+                      top: PDFLineStyle(type: .full),
+                      right: PDFLineStyle(type: .full),
+                      bottom: PDFLineStyle(type: .full)),
             
             font: UIFont.systemFont(ofSize: 10)
         )
@@ -259,7 +259,7 @@ class ViewController: UIViewController {
         
         style.columnHeaderCount = 1
         style.footerCount = 1
-        
+
         table.style = style
         
         do {
