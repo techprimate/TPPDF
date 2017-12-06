@@ -31,7 +31,7 @@ class PDFTableObject: PDFObject {
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         try PDFTableValidator.validateTable(table: table)
 
-        var frames: [[(cell: CGRect, content: CGRect)]] = []
+        var cellItems: [[(cell: PDFTableCell, frames: (cell: CGRect, content: CGRect))]] = []
 
         let layout = generator.document.layout
         var availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
@@ -39,37 +39,21 @@ class PDFTableObject: PDFObject {
         var startingPoint = origin
 
         // Calculate cells
-        
-        let cells = table.cells
+
         var pageBreakIndicies: [Int] = []
 
-//        var headerCells: [[PDFTableCell]] = []
-//
-//        if cells.count > 0 {
-//            headerCells = Array(table.cells.prefix(table.style.rowHeaderCount))
-//        }
-
-        for (rowIdx, row) in cells.enumerated() {
-            let calculationResult = calculateFramesOfRow(row: row,
-                                              rowIdx: rowIdx,
-                                              availableSize: availableSize,
-                                              origin: origin,
-                                              layout: layout,
-                                              tableHeight: cells.count,
-                                              generator: generator)
-
-            // Reposition in Y-Axis. This is for vertical alignment
-
-            frames.append(calculationResult.frames)
-            origin = calculationResult.newOrigin
-
-            frames[rowIdx] = repositionRow(row: row, frames: calculationResult.frames)
-
-            origin.x = startingPoint.x
-            origin.y += (frames[rowIdx].map { return $0.cell.height }.max() ?? 0) + 2 * (table.margin)
+        for (rowIdx, row) in table.cells.enumerated() {
+            let result = calculateRow(cells: row,
+                                      rowIndex: rowIdx,
+                                      availableSize: availableSize,
+                                      origin: origin,
+                                      layout: layout,
+                                      generator: generator)
+            cellItems.append(result)
+            origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
 
             if origin.y > availableSize.height {
-                pageBreakIndicies.append(rowIdx)
+                pageBreakIndicies.append(cellItems.count - 1)
 
                 try PDFPageBreakObject().calculate(generator: generator, container: container)
 
@@ -77,24 +61,52 @@ class PDFTableObject: PDFObject {
                 origin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
                 startingPoint = origin
 
-                // add header cells
+                let result = calculateRow(cells: table.cells[0],
+                                          rowIndex: 0,
+                                          availableSize: availableSize,
+                                          origin: origin,
+                                          layout: layout,
+                                          generator: generator)
+                cellItems.append(result)
+                origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
             }
         }
 
         // Create render objects
         return createRenderObjects(container: container,
-                                   cells: cells,
-                                   frames: frames,
+                                   cellItems: cellItems,
                                    pageBreakIndicies: pageBreakIndicies)
     }
 
-    func calculateFramesOfRow(row: [PDFTableCell],
-                              rowIdx: Int,
-                              availableSize: CGSize,
-                              origin: CGPoint,
-                              layout: PDFPageLayout,
-                              tableHeight: Int,
-                              generator: PDFGenerator) -> (frames: [(cell: CGRect, content: CGRect)], newOrigin: CGPoint) {
+    func calculateRow(cells: [PDFTableCell],
+                      rowIndex: Int,
+                      availableSize: CGSize,
+                      origin: CGPoint,
+                      layout: PDFPageLayout,
+                      generator: PDFGenerator) -> [(cell: PDFTableCell, frames: (cell: CGRect, content: CGRect))] {
+        let calculationResult = calculateFrames(row: cells,
+                                                rowIdx: rowIndex,
+                                                availableSize: availableSize,
+                                                origin: origin,
+                                                layout: layout,
+                                                tableHeight: table.cells.count,
+                                                generator: generator)
+
+        // Reposition in Y-Axis. This is for vertical alignment
+        return repositionRow(row: cells, frames: calculationResult)
+            .enumerated()
+            .map { (index: Int, framePair: (cell: CGRect, content: CGRect)) -> (cell: PDFTableCell, (cell: CGRect, content: CGRect)) in
+                return (cell: cells[index], frames: framePair)
+        }
+    }
+
+    func calculateFrames(row: [PDFTableCell],
+                         rowIdx: Int,
+                         availableSize: CGSize,
+                         origin: CGPoint,
+                         layout: PDFPageLayout,
+                         tableHeight: Int,
+                         generator: PDFGenerator) -> [(cell: CGRect, content: CGRect)] {
         var frames: [(cell: CGRect, content: CGRect)] = []
         var newOrigin = origin
 
@@ -164,7 +176,7 @@ class PDFTableObject: PDFObject {
 
             newOrigin.x += columnWidth
         }
-        return (frames, newOrigin)
+        return frames
     }
 
     func repositionRow(row: [PDFTableCell], frames originalFrames: [(cell: CGRect, content: CGRect)]) -> [(cell: CGRect, content: CGRect)] {
@@ -228,28 +240,27 @@ class PDFTableObject: PDFObject {
     }
 
     func createRenderObjects(container: PDFContainer,
-                             cells: [[PDFTableCell]],
-                             frames: [[(cell: CGRect, content: CGRect)]],
+                             cellItems: [[(cell: PDFTableCell, frames: (cell: CGRect, content: CGRect))]],
                              pageBreakIndicies: [Int]) -> [(PDFContainer, PDFObject)] {
         // Create render objects
 
         var result: [PDFObject?] = []
 
-        for (rowIdx, row) in cells.enumerated() {
-            for (colIdx, cell) in row.enumerated() {
+        for (rowIdx, row) in cellItems.enumerated() {
+            for (colIdx, item) in row.enumerated() {
                 let cellStyle = getCellStyle(offset: styleIndexOffset,
                                              position: cellPosition(offset: styleIndexOffset, row: rowIdx, column: colIdx),
-                                             tableHeight: cells.count,
+                                             tableHeight: cellItems.count,
                                              style: table.style,
-                                             cell: cell)
-                let cellFrame = frames[rowIdx][colIdx].cell
-                let contentFrame = frames[rowIdx][colIdx].content
+                                             cell: item.cell)
+                let cellFrame = item.frames.cell
+                let contentFrame = item.frames.content
 
                 // Background
                 result.append(createCellBackgroundObject(cellStyle: cellStyle, frame: cellFrame))
 
                 // Content
-                result.append(createCellContentObject(content: cell.content, cellStyle: cellStyle, alignment: cell.alignment, frame: contentFrame))
+                result.append(createCellContentObject(content: item.cell.content, cellStyle: cellStyle, alignment: item.cell.alignment, frame: contentFrame))
 
                 // Grid
                 result += createCellOutlineObjects(borders: cellStyle.borders, cellFrame: cellFrame) as [PDFObject?]
