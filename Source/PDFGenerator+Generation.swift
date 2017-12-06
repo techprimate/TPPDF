@@ -156,7 +156,9 @@ extension PDFGenerator {
             result += try headerFooter.calculate(generator: self, container: container)
         }
 
-        result += try headerFooterDebugLines()
+        if debug {
+            result += try headerFooterDebugLines()
+        }
 
         return result
     }
