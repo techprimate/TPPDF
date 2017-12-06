@@ -17,21 +17,24 @@ public class PDFListItem: PDFJSONSerializable {
         self.content = content
     }
     
-    public func addItems(_ items: [PDFListItem]) -> PDFListItem {
+    @discardableResult public func addItems(_ items: [PDFListItem]) -> PDFListItem {
         for item in items {
             _ = addItem(item)
         }
+
         return self
     }
     
-    public func addItem(_ item: PDFListItem) -> PDFListItem {
+    @discardableResult public func addItem(_ item: PDFListItem) -> PDFListItem {
         item.parent = self
         self.children = (self.children ?? []) + [item]
+
         return self
     }
     
-    public func setContent(_ content: String) -> PDFListItem {
+    @discardableResult public func setContent(_ content: String) -> PDFListItem {
         self.content = content
+
         return self
     }
     

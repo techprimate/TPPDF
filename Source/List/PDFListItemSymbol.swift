@@ -20,6 +20,10 @@ public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
             return "\u{00B7}"
         case .dash:
             return "-"
+        case .numbered(let value):
+            return (value ?? "?") + "."
+        case .custom(let value):
+            return value
         default:
             return ""
         }

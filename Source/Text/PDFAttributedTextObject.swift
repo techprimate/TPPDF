@@ -27,7 +27,8 @@ class PDFAttributedTextObject: PDFObject {
 
     /**
 
-     If the given parameter `text` is neither a instance of `PDFAttributedText` nor a `PDFSimpleText` a `fatalError()` will be thrown,
+     If the given parameter `text` is neither a
+     instance of `PDFAttributedText` nor a `PDFSimpleText` a `fatalError()` will be thrown,
      as there are no more subclasses of `PDFText` in the TPPDF framework.
 
      - parameter text: Subclass of `PDFText`

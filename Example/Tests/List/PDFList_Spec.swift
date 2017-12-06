@@ -28,8 +28,9 @@ class ListSpec: QuickSpec {
             }
             
             it("should have one item") {
-                list.addItem(PDFListItem(symbol: .dash, content: "Item 1"))
-                
+                let result = list.addItem(PDFListItem(symbol: .dash, content: "Item 1"))
+
+                expect(result) === list
                 expect(list.count).to(equal(1))
                 expect(list.items[0].content).to(equal("Item 1"))
                 expect(list.items[0].symbol.rawValue).to(equal(PDFListItemSymbol.dash.rawValue))
@@ -38,7 +39,7 @@ class ListSpec: QuickSpec {
             it("should flatten to four items") {
                 list.clear()
                 
-                list.addItems(
+                let result = list.addItems(
                     [
                         PDFListItem(symbol: .dot, content: "Base 1")
                             .addItems(
@@ -71,7 +72,9 @@ class ListSpec: QuickSpec {
                         )
                     ]
                 )
-                
+
+                expect(result) === list
+
                 let flattedList = list.flatted()
                 expect(flattedList.count).to(equal(9))
                 

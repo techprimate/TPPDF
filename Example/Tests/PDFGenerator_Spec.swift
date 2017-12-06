@@ -50,6 +50,18 @@ class PDFGenerator_Spec: QuickSpec {
                     expect(generator.fonts[PDFContainer.footerRight]) == UIFont.systemFont(ofSize: UIFont.systemFontSize)
                 }
             }
+
+            it("can be resetted") {
+                generator.currentPage = 20
+                generator.layout.heights.add(30, to: .contentLeft)
+                generator.layout.indentation.setLeft(indentation: 45, in: .contentLeft)
+
+                generator.resetGenerator()
+
+                expect(generator.currentPage) == 1
+                expect(generator.layout.heights) == PDFLayoutHeights()
+                expect(generator.layout.indentation) == PDFLayoutIndentations()
+            }
         }
     }
 }

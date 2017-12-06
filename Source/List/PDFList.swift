@@ -13,13 +13,18 @@ public class PDFList: PDFJSONSerializable {
     public init(indentations: [(pre: CGFloat, past: CGFloat)]) {
         self.levelIndentations = indentations
     }
-    
-    public func addItem(_ item: PDFListItem) {
+
+
+    @discardableResult public func addItem(_ item: PDFListItem) -> PDFList {
         self.items.append(item)
+
+        return self
     }
     
-    public func addItems(_ items: [PDFListItem]) {
+    @discardableResult public func addItems(_ items: [PDFListItem]) -> PDFList {
         self.items += items
+
+        return self
     }
     
     public var count: Int {

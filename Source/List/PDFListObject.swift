@@ -26,18 +26,7 @@ class PDFListObject: PDFObject {
 
             let offset = generator.getContentOffset(in: container)
 
-            let symbol: String = {
-                switch item.symbol {
-                case .dash, .dot:
-                    return item.symbol.stringValue
-                case let .numbered(value):
-                    return (value ?? "?") + "."
-                case let .custom(value):
-                    return value
-                case .none, .inherit:
-                    return ""
-                }
-            }()
+            let symbol: String = item.symbol.stringValue
 
             let symbolText = PDFSimpleText(text: symbol)
             let symbolTextObject = PDFAttributedTextObject(simpleText: symbolText)
