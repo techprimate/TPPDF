@@ -14,7 +14,6 @@ public class PDFList: PDFJSONSerializable {
         self.levelIndentations = indentations
     }
 
-
     @discardableResult public func addItem(_ item: PDFListItem) -> PDFList {
         self.items.append(item)
 

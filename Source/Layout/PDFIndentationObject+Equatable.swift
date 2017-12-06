@@ -19,4 +19,3 @@ extension PDFIndentationObject: Equatable {
         return true
     }
 }
-

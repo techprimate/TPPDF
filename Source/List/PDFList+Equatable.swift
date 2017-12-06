@@ -24,8 +24,10 @@ extension PDFList: Equatable {
             return false
         }
 
-        for (idx, lhsItem) in lhs.items.enumerated() where rhs.items[idx] != lhsItem {
-            return false
+        for (idx, item) in lhs.items.enumerated() {
+            if rhs.items[idx] != item {
+                return false
+            }
         }
 
         return true

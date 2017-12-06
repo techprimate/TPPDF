@@ -22,8 +22,8 @@ class PDFCalculations {
      - returns: Tuple of text `frame`, text which fits in frame and the remainding text which did not fit
      */
     static func calculateText(generator: PDFGenerator,
-                                       container: PDFContainer,
-                                       text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString, remainder: NSAttributedString?) {
+                              container: PDFContainer,
+                              text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString, remainder: NSAttributedString?) {
         let availableSize = calculateAvailableFrame(for: generator, in: container)
         let (fittingText, textSize, remainder) = calculateTextSizeAndRemainder(of: text, in: availableSize)
         let origin = calculateElementPosition(for: generator, in: container, with: textSize)

@@ -18,6 +18,7 @@ class PDFPagination_Closure_Spec: QuickSpec {
             context("Closure") {
 
                 it("should have a closure typealias") {
+                    // TODO: complete this
                     let closure: PDFPaginationClosure = { (page: Int, total: Int) -> String in
                         return ""
                     }

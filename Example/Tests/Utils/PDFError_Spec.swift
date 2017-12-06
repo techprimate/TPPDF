@@ -24,6 +24,7 @@ class PDFError_Spec: QuickSpec {
                 expect(PDFError.tableCellWeakReferenceBroken).toNot(beNil())
 
                 expect(PDFError.textObjectIsNil).toNot(beNil())
+                expect(PDFError.textObjectNotCalculated).toNot(beNil())
 
                 expect(PDFError.invalidHexLength(length: 7)).toNot(beNil())
                 expect(PDFError.invalidHex(hex: "ABCD")).toNot(beNil())

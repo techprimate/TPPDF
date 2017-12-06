@@ -29,8 +29,8 @@ class PDFListItemSymbol_Spec : QuickSpec {
                 expect(PDFListItemSymbol.inherit.stringValue) == ""
                 expect(PDFListItemSymbol.dot.stringValue) == "\u{00B7}"
                 expect(PDFListItemSymbol.dash.stringValue) == "-"
-                expect(PDFListItemSymbol.custom(value: "%@").stringValue) == ""
-                expect(PDFListItemSymbol.numbered(value: "%@").stringValue) == ""
+                expect(PDFListItemSymbol.custom(value: "%@").stringValue) == "%@"
+                expect(PDFListItemSymbol.numbered(value: "%@").stringValue) == "%@"
             }
 
             it("has String as RawValue") {

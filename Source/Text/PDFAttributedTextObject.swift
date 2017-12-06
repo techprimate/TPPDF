@@ -114,6 +114,10 @@ class PDFAttributedTextObject: PDFObject {
      - throws: None
      */
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+        if attributedString == nil {
+            throw PDFError.textObjectNotCalculated
+        }
+
         // Get current graphics context
         let currentContext = UIGraphicsGetCurrentContext()!
 

@@ -108,7 +108,7 @@ class ViewController: UIViewController {
         
         // Simple bullet point list
         
-        let featureList = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
+        let featureList = PDFList(indentations: [(pre: 10.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
         
         featureList.addItem(PDFListItem(symbol: .dot).addItems([
             PDFListItem(content: "Simple text drawing"),
@@ -285,10 +285,10 @@ class ViewController: UIViewController {
         table.showHeadersOnEveryPage = true
         
         document.addTable(table: table)
-        
+
         // Add more text after the table
         
-        document.addText(text: "Just adding more text here...")
+//        document.addText(text: "Just adding more text here...")
 
         
         /* ---- Execution Metrics ---- */
@@ -297,7 +297,7 @@ class ViewController: UIViewController {
         /* ---- Execution Metrics ---- */
         
         // Convert document to JSON String for debugging
-        let json = document.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
+        let _ = document.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
 //        print(json)
 
         do {
