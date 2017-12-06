@@ -9,7 +9,7 @@ import Quick
 import Nimble
 @testable import TPPDF
 
-class PDFObject_Tests : QuickSpec {
+class PDFObject_Spec: QuickSpec {
 
     override func spec() {
 
@@ -33,12 +33,12 @@ class PDFObject_Tests : QuickSpec {
                 }
 
                 it("should return a empty subobjects array when calculating") {
-                    var objects: [(PDFContainer, PDFObject)] = []
-                    expect({
+                    var objects: [(PDFContainer, PDFObject)]?
+                    expect {
                         objects = try object.calculate(generator: generator, container: container)
-                    }).toNot(throwError())
+                    }.toNot(throwError())
 
-                    expect(objects).to(beEmpty())
+                    expect(objects).toEventually(beEmpty())
                 }
 
                 it("should have a draw method") {

@@ -162,7 +162,8 @@ class PDFAttributedTextObject: PDFObject {
 
      - throws: PDFError.textObjectIsNil, if neither `simpleText` nor `attributedText` is set
 
-     - returns: `NSAttributedString`, either created from `PDFAttributedTextObject.simpleText` or from extracted from `PDFAttributedTextObject.attributedText`
+     - returns: `NSAttributedString`, either created from `PDFAttributedTextObject.simpleText` or
+                from extracted from `PDFAttributedTextObject.attributedText`
      */
     func generateAttributedText(generator: PDFGenerator, container: PDFContainer) throws -> NSAttributedString {
         if let simple = self.simpleText {
