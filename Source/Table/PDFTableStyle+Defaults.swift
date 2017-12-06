@@ -31,7 +31,7 @@ public struct PDFTableStyleDefaults {
             columnHeaderCount: 1,
             footerCount: 0,
 
-            outline: PDFLineStyle.none,
+            outline: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 1.0),
             rowHeaderStyle: PDFTableCellStyle(
                 colors: (fill: UIColor.white, text: darkGray),
                 borders: PDFTableCellBorders(bottom: PDFLineStyle(
