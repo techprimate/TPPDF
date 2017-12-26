@@ -466,16 +466,6 @@ Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://
 - Philip Niedertscheider, [techprimate-phil](https://www.github.com/techprimate-phil) - Techprimate [techprimate](https://www.github.com/techprimate)
 - Zheng-Xiang Ke, [kf99916](https://www.github.com/kf99916)
 
-## Sponsoring
-
-TPPDF is a non-profit open source project. The sponsoring is used to keep this project sustainable.
-We are currently using [Codesponsor.io](https://www.codesponsor.io) to show the following ads.
-
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/q5M1Ak8aUERquKQrLZh7JQTB/Techprimate/TPPDF'>
-<img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/q5M1Ak8aUERquKQrLZh7JQTB/Techprimate/TPPDF.svg' />
-</a>
-
 ## License
 
 TPPDF is available under the MIT license. See the LICENSE file for more info.

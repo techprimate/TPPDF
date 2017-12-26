@@ -320,7 +320,7 @@ class ViewController: UIViewController {
         do {
             // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
             let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: nil, debug: true)
-            
+
             // Load PDF into a webview from the temporary file
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
         } catch {
