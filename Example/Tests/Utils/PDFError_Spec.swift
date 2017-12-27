@@ -29,6 +29,22 @@ class PDFError_Spec: QuickSpec {
                 expect(PDFError.invalidHexLength(length: 7)).toNot(beNil())
                 expect(PDFError.invalidHex(hex: "ABCD")).toNot(beNil())
             }
+
+            it("should have a localized description") {
+                expect(PDFError.tableContentInvalid(value: nil).localizedDescription) == "Table content is invalid: nil"
+
+                expect(PDFError.tableIsEmpty.localizedDescription) == "Table is empty"
+                expect(PDFError.tableStructureInvalid(message: "MESSAGE").localizedDescription) == "Table structure invalid: MESSAGE"
+                expect(PDFError.tableIndexOutOfBounds(index: 5, length: 4).localizedDescription) == "Table index out of bounds: <index: 5, length: 4>"
+                expect(PDFError.tableCellWeakReferenceBroken.localizedDescription) == "Weak reference in table cell is broken"
+
+                expect(PDFError.textObjectIsNil.localizedDescription) == "No text object has been set"
+                expect(PDFError.textObjectNotCalculated.localizedDescription) == "Text object is missing string, maybe not calculated?"
+
+                expect(PDFError.invalidHexLength(length: 7).localizedDescription) == "Hex color string has invalid length: 7"
+                expect(PDFError.invalidHex(hex: "ABCD").localizedDescription) == "Invalid hexdecimal string: ABCD"
+            }
         }
     }
 }
+

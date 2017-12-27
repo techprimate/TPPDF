@@ -28,7 +28,7 @@ public enum PDFError: Error {
         case .tableStructureInvalid(let message):
             return "Table structure invalid: " + message
         case .tableIndexOutOfBounds(let index, let length):
-            return "Table index out of bounds: <index: \(index), length: \(length)"
+            return "Table index out of bounds: <index: \(index), length: \(length)>"
         case .tableCellWeakReferenceBroken:
             return "Weak reference in table cell is broken"
         case .textObjectIsNil:
