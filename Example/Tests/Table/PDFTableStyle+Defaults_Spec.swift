@@ -26,7 +26,7 @@ class PDFTableStyle_Defaults_Spec: QuickSpec {
                     expect(simple.columnHeaderCount) == 1
                     expect(simple.footerCount) == 0
 
-                    expect(simple.outline) == PDFLineStyle.none
+                    expect(simple.outline) == PDFLineStyle(type: .full, color: UIColor.darkGray, width: 1.0)
                     expect(simple.rowHeaderStyle) == PDFTableCellStyle(
                         colors: (fill: UIColor.white, text: darkGray),
                         borders: PDFTableCellBorders(bottom: PDFLineStyle(

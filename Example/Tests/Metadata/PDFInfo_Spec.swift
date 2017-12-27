@@ -73,41 +73,6 @@ class PDFInfo_Spec: QuickSpec {
                 expect(metadata[kCGPDFContextUserPassword as String] as? String) == "ABCD"
                 expect(metadata[kCGPDFContextCreator as String] as? String) == "TPPDF 0.0.0"
             }
-
-            it("can be equated") {
-                let info1 = PDFInfo()
-                info1.title = "Title 2"
-
-                let info2 = PDFInfo()
-                info2.author = "Author 2"
-
-                let info3 = PDFInfo()
-                info3.subject = "Subject 2"
-
-                let info4 = PDFInfo()
-                info4.keywords = ["Keyword1", "Keyword2"]
-
-                let info5 = PDFInfo()
-                info5.ownerPassword = "PASSWORD"
-
-                let info6 = PDFInfo()
-                info6.userPassword = "PASSWORD"
-
-                let info7 = PDFInfo()
-                info7.allowsPrinting = false
-
-                let info8 = PDFInfo()
-                info8.allowsCopying = false
-
-                expect(info1) != info
-                expect(info2) != info
-                expect(info3) != info
-                expect(info4) != info
-                expect(info5) != info
-                expect(info6) != info
-                expect(info7) != info
-                expect(info8) != info
-            }
         }
     }
 }
