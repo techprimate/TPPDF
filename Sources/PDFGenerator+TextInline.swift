@@ -46,9 +46,9 @@ extension PDFGenerator {
 			currentRange = CFRange(location: visibleRange.location + visibleRange.length , length: 0)
 			
 			if container.isHeader {
-				headerHeight[container] = headerHeight[container]! + drawnSize.height
+				headerHeight[container] = headerHeight[container]! > drawnSize.height ? headerHeight[container]! : drawnSize.height
 			} else if container.isFooter {
-				footerHeight[container] = footerHeight[container]! + drawnSize.height
+				footerHeight[container] = footerHeight[container]! > drawnSize.height ? footerHeight[container]! : drawnSize.height
 			} else {
 				contentHeightInline = contentHeightInline > drawnSize.height ? contentHeightInline : drawnSize.height
 			}

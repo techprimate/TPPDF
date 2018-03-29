@@ -24,9 +24,13 @@ extension PDFGenerator {
 		commands += [(container, .addTextInline(text: text, lineSpacing: lineSpacing, textMaxWidth: textMaxWidth))]
 	}
     
-    open func addAttributedText(_ container: Container = Container.contentLeft, text: NSAttributedString) {
-        commands += [(container, .addAttributedText(text: text))]
-    }
+	open func addAttributedText(_ container: Container = Container.contentLeft, text: NSAttributedString) {
+		commands += [(container, .addAttributedText(text: text))]
+	}
+	
+	open func addAttributedTextInline(_ container: Container = Container.contentLeft, text: NSAttributedString) {
+		commands += [(container, .addAttributedTextInline(text: text))]
+	}
     
     open func setFont(_ container: Container = Container.contentLeft, font: UIFont) {
         commands += [(container, .setFont(font: font))]

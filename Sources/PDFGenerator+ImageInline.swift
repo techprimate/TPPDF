@@ -121,9 +121,9 @@ extension PDFGenerator {
 		}
 		
 		if container.isHeader {
-			headerHeight[container] = headerHeight[container]! + frame.height
+			headerHeight[container] = headerHeight[container]! > frame.height ? headerHeight[container]! : frame.height
 		} else if container.isFooter {
-			footerHeight[container] = footerHeight[container]! + frame.height
+			footerHeight[container] = footerHeight[container]! > frame.height ? footerHeight[container]! : frame.height
 		} else {
 			contentHeightInline = contentHeightInline > frame.height ? contentHeightInline : frame.height
 		}
