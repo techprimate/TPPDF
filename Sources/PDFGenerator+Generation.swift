@@ -15,12 +15,18 @@ extension PDFGenerator {
         case let .addText(text, spacing):
             drawText(container, text: text, spacing: spacing)
             break
+		case let .addTextInline(text, spacing, textMaxWidth):
+			drawTextInline(container, text: text, spacing: spacing, textMaxWidth: textMaxWidth)
+			break
         case let .addAttributedText(text):
             drawAttributedText(container, text: text)
             break
         case let .addImage(image, size, caption, sizeFit):
             drawImage(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
             break
+		case let .addImageInline(image, size, caption, sizeFit):
+			drawImageInline(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
+			break
         case let .addImagesInRow(images, captions, spacing):
             drawImagesInRow(container, images: images, captions: captions, spacing: spacing)
             break

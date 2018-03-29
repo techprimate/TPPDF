@@ -60,25 +60,4 @@ extension PDFGenerator {
             }
         } while(!done)
     }
-    
-    func generateDefaultTextAttributes(_ container: Container, spacing: CGFloat) -> [String: NSObject] {
-        let paragraphStyle = NSMutableParagraphStyle()
-        switch container {
-        case .headerLeft, .contentLeft, .footerLeft:
-            paragraphStyle.alignment = .left
-        case .headerCenter, .contentCenter, .footerCenter:
-            paragraphStyle.alignment = .center
-        case .headerRight, .contentRight, .footerRight:
-            paragraphStyle.alignment = .right
-        default:
-            paragraphStyle.alignment = .left
-        }
-        
-        paragraphStyle.lineSpacing = spacing
-        
-        return [
-            NSFontAttributeName: fonts[container]!,
-            NSParagraphStyleAttributeName: paragraphStyle
-        ]
-    }
 }

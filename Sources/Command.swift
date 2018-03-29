@@ -11,8 +11,10 @@ import UIKit
 public enum Command {
     
     case addText(text: String, lineSpacing: CGFloat)
+	case addTextInline(text: String, lineSpacing: CGFloat, textMaxWidth: CGFloat)
     case addAttributedText(text: NSAttributedString)
     case addImage(image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit)
+	case addImageInline(image: UIImage, size: CGSize, caption: NSAttributedString, sizeFit: ImageSizeFit)
     case addImagesInRow(images: [UIImage], captions: [NSAttributedString], spacing: CGFloat)
     case addSpace(space: CGFloat)
     case addLineSeparator(style: LineStyle)

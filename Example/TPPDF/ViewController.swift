@@ -18,6 +18,13 @@ class ViewController: UIViewController {
     
     func generatePDF() {
         let pdf = PDFGenerator(format: .a4)
+		
+		pdf.addTextInline(.contentLeft, text: "This is left aligned inline text.\n\nUse line breaks to separate multiple items.", textMaxWidth: 100)
+		if let image = UIImage(named: "Image") {
+			pdf.addImageInline(.contentRight, image: image, size: CGSize(width: 100, height: 100))
+		}
+		pdf.addTextInline(.contentCenter, text: "this is centered inline text", textMaxWidth: 100)
+		pdf.addSpace(space: 50)
         
         let tableData: [[String]] = [
             ["",    "Company",                     "Contact",              "Country"],

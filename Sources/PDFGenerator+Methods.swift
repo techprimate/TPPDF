@@ -19,6 +19,10 @@ extension PDFGenerator {
     open func addText(_ container: Container = Container.contentLeft, text: String, lineSpacing: CGFloat = 1.0) {
         commands += [(container, .addText(text: text, lineSpacing: lineSpacing))]
     }
+	
+	open func addTextInline(_ container: Container = Container.contentLeft, text: String, textMaxWidth: CGFloat = 0, lineSpacing: CGFloat = 1.0) {
+		commands += [(container, .addTextInline(text: text, lineSpacing: lineSpacing, textMaxWidth: textMaxWidth))]
+	}
     
     open func addAttributedText(_ container: Container = Container.contentLeft, text: NSAttributedString) {
         commands += [(container, .addAttributedText(text: text))]
@@ -37,6 +41,10 @@ extension PDFGenerator {
     open func addImage(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero, caption: NSAttributedString = NSAttributedString(), sizeFit: ImageSizeFit = .widthHeight) {
         commands += [(container, .addImage(image: image, size: size, caption: caption, sizeFit: sizeFit))]
     }
+	
+	open func addImageInline(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero, caption: NSAttributedString = NSAttributedString(), sizeFit: ImageSizeFit = .widthHeight) {
+		commands += [(container, .addImageInline(image: image, size: size, caption: caption, sizeFit: sizeFit))]
+	}
     
     open func addImagesInRow(_ container: Container = Container.contentLeft, images: [UIImage], captions: [NSAttributedString] = [], spacing: CGFloat = 5.0) {
         commands += [(container, .addImagesInRow(images: images, captions: captions, spacing: spacing))]

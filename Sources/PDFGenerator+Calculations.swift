@@ -77,7 +77,7 @@ extension PDFGenerator {
             } else if container.isFooter {
                 return footerMargin
             } else {
-                return pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace - contentHeight
+                return pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace - contentHeight + contentHeightInline
             }
         }()
         

@@ -42,7 +42,18 @@ open class PDFGenerator  {
     
     var headerHeight: [Container : CGFloat] = [:]
     var footerHeight: [Container : CGFloat] = [:]
-    var contentHeight: CGFloat = 0
+	
+	private var contentHeightBlock: CGFloat = 0
+	
+	var contentHeight: CGFloat {
+		get { return contentHeightBlock + contentHeightInline }
+		set {
+			contentHeightBlock = newValue
+			contentHeightInline = 0
+		}
+	}
+	
+	var contentHeightInline: CGFloat = 0
     
     var contentSize: CGSize {
         return CGSize(width: pageBounds.width - 2 * pageMargin, height: pageBounds.height - maxHeaderHeight() - headerSpace - maxFooterHeight() - footerSpace)
