@@ -142,4 +142,8 @@ extension PDFGenerator {
         
         return (imageSize, CGSize(width: imageSize.width, height: captionSize.height))
     }
+
+    func setMinimumOffset(_ offset: CGFloat, getter: () -> (CGFloat), setter: (CGFloat) -> ()) {
+        setter(max(getter(), offset))
+    }
 }

@@ -57,6 +57,21 @@ extension PDFGenerator {
         case .createNewPage():
             generateNewPage()
             break
+        case .setMinimumOffset(let points):
+            if container.isHeader {
+                setMinimumOffset(points,
+                                 getter: { headerHeight[container] ?? 0 },
+                                 setter: { headerHeight[container] = $0 })
+            } else if container.isFooter {
+                setMinimumOffset(points,
+                                 getter: { footerHeight[container] ?? 0 },
+                                 setter: { footerHeight[container] = $0 })
+            } else {
+                setMinimumOffset(points,
+                                 getter: { contentHeight },
+                                 setter: { contentHeight = $0 })
+            }
+            break
         }
     }
     
