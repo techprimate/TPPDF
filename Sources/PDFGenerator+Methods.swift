@@ -67,6 +67,10 @@ extension PDFGenerator {
     open func setAbsoluteOffset(_ container: Container = Container.contentLeft, offset: CGFloat) {
         commands += [(container, .setOffset(points: offset))]
     }
+
+    open func setMinimumOffset(_ container: Container = Container.contentLeft, offset: CGFloat) {
+        commands += [(container, .setMinimumOffset(points: offset))]
+    }
    
     open func createNewPage() {
         commands += [(.contentLeft, .createNewPage())]

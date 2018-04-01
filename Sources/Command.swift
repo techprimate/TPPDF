@@ -20,6 +20,7 @@ public enum Command {
     
     case setIndentation(points: CGFloat)
     case setOffset(points: CGFloat)
+    case setMinimumOffset(points: CGFloat)
     case setFont(font: UIFont)
     
     case createNewPage()
