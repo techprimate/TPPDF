@@ -12,6 +12,7 @@
 		5B6A4D08B0CCD52CCDC819EEEAAE10B7 /* Pods-TPPDF_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC652FF540FEA54EE65C9222344EB11 /* Pods-TPPDF_Example-dummy.m */; };
 		792037FD206CED7900C56D96 /* PDFGenerator+TextInline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792037FB206CEA4600C56D96 /* PDFGenerator+TextInline.swift */; };
 		79203800206CF0EB00C56D96 /* PDFGenerator+ImageInline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792037FE206CF0E400C56D96 /* PDFGenerator+ImageInline.swift */; };
+		796BFCE12072224B00CB8DE7 /* PDFGenerator+TableInline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796BFCDF2072222600CB8DE7 /* PDFGenerator+TableInline.swift */; };
 		8D01B502BA0D3721AD3066732EA99CBD /* Pods-TPPDF_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5618E9464F0B85C78C826D6552B2F7 /* Pods-TPPDF_Tests-dummy.m */; };
 		A25970F20E0E42829396544F7FF47B1D /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733CBFF5DD71B04FDB75BC60DDC2079 /* PDFGenerator.swift */; };
 		A9E1A990958D0034FED9D256362B8D88 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AEF1AC243777A0B37A48FAC63B6450 /* Command.swift */; };
@@ -68,6 +69,7 @@
 		75319B4750A1D4F87DA04721D9C33366 /* Pods-TPPDF_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TPPDF_Example-resources.sh"; sourceTree = "<group>"; };
 		792037FB206CEA4600C56D96 /* PDFGenerator+TextInline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+TextInline.swift"; sourceTree = "<group>"; };
 		792037FE206CF0E400C56D96 /* PDFGenerator+ImageInline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+ImageInline.swift"; sourceTree = "<group>"; };
+		796BFCDF2072222600CB8DE7 /* PDFGenerator+TableInline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+TableInline.swift"; sourceTree = "<group>"; };
 		8024FE3270E884F9FD724089CBA9172F /* Pods_TPPDF_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8275826837E091D0ABC9AF087300C10F /* TPPDF-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TPPDF-umbrella.h"; sourceTree = "<group>"; };
 		8515A60A596F397A6B737DB3222DED70 /* Pods-TPPDF_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TPPDF_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				D4022A3C1EE4C3F100AAA9A3 /* PDFGenerator+Methods.swift */,
 				D4022A3E1EE4C43200AAA9A3 /* PDFGenerator+Generation.swift */,
 				D4022A401EE4C57D00AAA9A3 /* PDFGenerator+Table.swift */,
+				796BFCDF2072222600CB8DE7 /* PDFGenerator+TableInline.swift */,
 				D4022A381EE4C2D200AAA9A3 /* PDFGenerator+DocumentInfo.swift */,
 				D4022A3A1EE4C34B00AAA9A3 /* PDFGenerator+Calculations.swift */,
 				D4022A361EE4C21800AAA9A3 /* PDFGenerator+Initialization.swift */,
@@ -361,7 +364,7 @@
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					FC6EBB3398BB217B61C97F01013F56B4 = {
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -417,6 +420,7 @@
 				3703960108494AC861B4FE4F0DD532BA /* PDFInfo.swift in Sources */,
 				79203800206CF0EB00C56D96 /* PDFGenerator+ImageInline.swift in Sources */,
 				B0820DEEB3BE9C7B592515F80FA3E56C /* TableStyle+Defaults.swift in Sources */,
+				796BFCE12072224B00CB8DE7 /* PDFGenerator+TableInline.swift in Sources */,
 				D4022A411EE4C57D00AAA9A3 /* PDFGenerator+Table.swift in Sources */,
 				D4022A451EE4C70400AAA9A3 /* PDFGenerator+Lines.swift in Sources */,
 				F6AFB2251471F7FB8766A8D9349168EE /* TableStyle.swift in Sources */,

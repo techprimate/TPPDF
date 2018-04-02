@@ -65,6 +65,16 @@ extension PDFGenerator {
         }
         commands += [(container, .addTable(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style))]
     }
+	
+	open func addTableInline(_ container: Container = Container.contentLeft, data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat = 0, margin: CGFloat = 0, style: TableStyle = TableStyle()) {
+		assert(data.count != 0, "You can't draw an table without rows!")
+		assert(data.count == alignment.count, "Data and alignment array must be equal size!")
+		for (rowIdx, row) in data.enumerated() {
+			assert(row.count == alignment[rowIdx].count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
+			assert(row.count == relativeColumnWidth.count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
+		}
+		commands += [(container, .addTableInline(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style))]
+	}
 
     // MARK: - Container
     

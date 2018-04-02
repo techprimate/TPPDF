@@ -20,6 +20,7 @@ public enum Command {
     case addSpace(space: CGFloat)
     case addLineSeparator(style: LineStyle)
     case addTable(data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle)
+	case addTableInline(data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat, margin: CGFloat, style: TableStyle)
     
     case setIndentation(points: CGFloat)
     case setOffset(points: CGFloat)

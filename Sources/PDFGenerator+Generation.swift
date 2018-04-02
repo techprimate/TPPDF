@@ -48,6 +48,9 @@ extension PDFGenerator {
         case let .addTable(data, alignment, relativeWidth, padding, margin, style):
             drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, style: style)
             break
+		case let .addTableInline(data, alignment, relativeWidth, padding, margin, style):
+			drawTableInline(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, style: style)
+			break
         case let .setIndentation(value):
             indentation[container.normalize] = value
             break
