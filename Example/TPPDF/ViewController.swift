@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 			[.left, .left]
 		]
 		
-		let inlineTableWidth: [CGFloat] = [0.25, 0.25]
+		let inlineTableWidth: [CGFloat] = [0.20, 0.20]
 		
 		let inlineTableStyle = TableStyleDefaults.simple
 		pdf.addTableInline(.contentRight, data: inlineTableData, alignment: inlineTableAlignment, relativeColumnWidth: inlineTableWidth, padding: 8, margin: 0, style: inlineTableStyle)

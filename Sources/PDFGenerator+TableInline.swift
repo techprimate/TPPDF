@@ -20,7 +20,7 @@ extension PDFGenerator {
 		if container != .contentRight {
 			x = pageMargin + indentation[container.normalize]!
 		} else {
-			x = pageBounds.size.width * relativeColumnWidth.reduce(0.0){ $0 + $1 }
+			x = totalWidth + pageMargin - totalWidth * relativeColumnWidth.reduce(0.0){ $0 + $1 }
 		}
 		var y: CGFloat = contentHeight - contentHeightInline
 		
@@ -76,7 +76,7 @@ extension PDFGenerator {
 			if container != .contentRight {
 				x = pageMargin + indentation[container.normalize]!
 			} else {
-				x = pageBounds.size.width * relativeColumnWidth.reduce(0.0){ $0 + $1 }
+				x = totalWidth + pageMargin - totalWidth * relativeColumnWidth.reduce(0.0){ $0 + $1 }
 			}
 			y += maxHeight + 2 * margin + 2 * padding
 		}
