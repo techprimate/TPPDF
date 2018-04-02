@@ -19,10 +19,18 @@ extension PDFGenerator {
     open func addText(_ container: Container = Container.contentLeft, text: String, lineSpacing: CGFloat = 1.0) {
         commands += [(container, .addText(text: text, lineSpacing: lineSpacing))]
     }
+	
+	open func addTextInline(_ container: Container = Container.contentLeft, text: String, textMaxWidth: CGFloat = 0, lineSpacing: CGFloat = 1.0) {
+		commands += [(container, .addTextInline(text: text, lineSpacing: lineSpacing, textMaxWidth: textMaxWidth))]
+	}
     
-    open func addAttributedText(_ container: Container = Container.contentLeft, text: NSAttributedString) {
-        commands += [(container, .addAttributedText(text: text))]
-    }
+	open func addAttributedText(_ container: Container = Container.contentLeft, text: NSAttributedString) {
+		commands += [(container, .addAttributedText(text: text))]
+	}
+	
+	open func addAttributedTextInline(_ container: Container = Container.contentLeft, text: NSAttributedString) {
+		commands += [(container, .addAttributedTextInline(text: text))]
+	}
     
     open func setFont(_ container: Container = Container.contentLeft, font: UIFont) {
         commands += [(container, .setFont(font: font))]
@@ -37,6 +45,10 @@ extension PDFGenerator {
     open func addImage(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero, caption: NSAttributedString = NSAttributedString(), sizeFit: ImageSizeFit = .widthHeight) {
         commands += [(container, .addImage(image: image, size: size, caption: caption, sizeFit: sizeFit))]
     }
+	
+	open func addImageInline(_ container: Container = Container.contentLeft, image: UIImage, size: CGSize = CGSize.zero, caption: NSAttributedString = NSAttributedString(), sizeFit: ImageSizeFit = .widthHeight) {
+		commands += [(container, .addImageInline(image: image, size: size, caption: caption, sizeFit: sizeFit))]
+	}
     
     open func addImagesInRow(_ container: Container = Container.contentLeft, images: [UIImage], captions: [NSAttributedString] = [], spacing: CGFloat = 5.0) {
         commands += [(container, .addImagesInRow(images: images, captions: captions, spacing: spacing))]
@@ -53,6 +65,16 @@ extension PDFGenerator {
         }
         commands += [(container, .addTable(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style))]
     }
+	
+	open func addTableInline(_ container: Container = Container.contentLeft, data: [[String]], alignment: [[TableCellAlignment]], relativeColumnWidth: [CGFloat], padding: CGFloat = 0, margin: CGFloat = 0, style: TableStyle = TableStyle()) {
+		assert(data.count != 0, "You can't draw an table without rows!")
+		assert(data.count == alignment.count, "Data and alignment array must be equal size!")
+		for (rowIdx, row) in data.enumerated() {
+			assert(row.count == alignment[rowIdx].count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
+			assert(row.count == relativeColumnWidth.count, "Data and alignment for row with index \(rowIdx) does not have the same amount!")
+		}
+		commands += [(container, .addTableInline(data: data, alignment: alignment, relativeColumnWidth: relativeColumnWidth, padding: padding, margin: margin, style: style))]
+	}
 
     // MARK: - Container
     

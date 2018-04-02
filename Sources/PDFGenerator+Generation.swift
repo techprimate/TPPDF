@@ -15,12 +15,21 @@ extension PDFGenerator {
         case let .addText(text, spacing):
             drawText(container, text: text, spacing: spacing)
             break
-        case let .addAttributedText(text):
-            drawAttributedText(container, text: text)
-            break
+		case let .addTextInline(text, spacing, textMaxWidth):
+			drawTextInline(container, text: text, spacing: spacing, textMaxWidth: textMaxWidth)
+			break
+		case let .addAttributedText(text):
+			drawAttributedText(container, text: text)
+			break
+		case let .addAttributedTextInline(text):
+			drawAttributedTextInline(container, text: text)
+			break
         case let .addImage(image, size, caption, sizeFit):
             drawImage(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
             break
+		case let .addImageInline(image, size, caption, sizeFit):
+			drawImageInline(container, image: image, size: size, caption: caption, sizeFit: sizeFit)
+			break
         case let .addImagesInRow(images, captions, spacing):
             drawImagesInRow(container, images: images, captions: captions, spacing: spacing)
             break
@@ -39,6 +48,9 @@ extension PDFGenerator {
         case let .addTable(data, alignment, relativeWidth, padding, margin, style):
             drawTable(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, style: style)
             break
+		case let .addTableInline(data, alignment, relativeWidth, padding, margin, style):
+			drawTableInline(container, data: data, alignments: alignment, relativeColumnWidth: relativeWidth, padding: padding, margin: margin, style: style)
+			break
         case let .setIndentation(value):
             indentation[container.normalize] = value
             break
