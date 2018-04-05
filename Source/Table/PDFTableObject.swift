@@ -42,7 +42,10 @@ class PDFTableObject: PDFObject {
         var pageBreakIndicies: [Int] = []
         var perPageIndex = 0
 
-        for (rowIdx, row) in table.cells.enumerated() {
+        var rowIdx = 0
+        while rowIdx < table.cells.count {
+            let row = table.cells[rowIdx]
+
             var styles: [PDFTableCellStyle] = stylesForRow(
                 tableStyle: table.style,
                 isHeader: perPageIndex < table.style.columnHeaderCount,
@@ -59,28 +62,38 @@ class PDFTableObject: PDFObject {
                                       styles: styles,
                                       generator: generator)
 
-            cellItems.append(result)
-            
-            // Update position for next row
-            origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
+            let maxHeight = result.map { return $0.frames.cell.height }.max() ?? 0
 
-            perPageIndex += 1
+            if maxHeight + 2 * table.margin <= availableSize.height {
+                // Row can fit this page
+                cellItems.append(result)
+                perPageIndex += 1
+                rowIdx += 1
 
-            // Next row is going to be out of bounds -> new page
-            if origin.y > availableSize.height {
-                // Add last index to list, will insert pagebreak after rendering the index
+                // Next row can also start on this page
+                let height = maxHeight + 2 * table.margin
+                origin.y += height
+                availableSize.height -= height
+            } else {
+                // Row needs to be on the next page
+                // if one of the first header rows, then start whole table on next page
+                if rowIdx < table.style.columnHeaderCount + 1 {
+                    try PDFPageBreakObject().calculate(generator: generator, container: container)
+                    return [(container, PDFPageBreakObject())] + (try calculate(generator: generator, container: container))
+                }
+
+                try PDFPageBreakObject().calculate(generator: generator, container: container)
                 pageBreakIndicies.append(cellItems.count - 1)
                 perPageIndex = 0
 
-                // Calculate page break, sets the enviroment
-                try PDFPageBreakObject().calculate(generator: generator, container: container)
-
                 availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
                 origin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
-                startingPoint = origin
 
                 if table.showHeadersOnEveryPage {
-                    for (index, cells) in Array(table.cells.prefix(table.style.rowHeaderCount)).enumerated() {
+                    var headerIndex = 0
+                    while headerIndex < table.style.rowHeaderCount {
+                        let cells = table.cells[headerIndex]
+
                         styles = stylesForRow(
                             tableStyle: table.style,
                             isHeader: true,
@@ -90,20 +103,110 @@ class PDFTableObject: PDFObject {
                             cells: row)
 
                         let result = calculateRow(cells: cells,
-                                                  rowIndex: index,
+                                                  rowIndex: headerIndex,
                                                   availableSize: availableSize,
                                                   origin: origin,
                                                   styles: styles,
                                                   generator: generator)
                         cellItems.append(result)
 
-                        origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
+                        let maxHeight = result.map { return $0.frames.cell.height }.max() ?? 0
+                        let height = maxHeight + 2 * table.margin
+                        origin.y += height
+                        availableSize.height -= height
 
                         perPageIndex += 1
+
+                        headerIndex += 1
                     }
                 }
             }
         }
+
+//
+//            if maxY <= availableSize.height {
+//                cellItems.append(result)
+//
+//                // Update position for next row
+//                origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
+//
+//                perPageIndex += 1
+//
+//                if origin.y > availableSize.height {
+//                    // Add last index to list, will insert pagebreak after rendering the index
+//                    pageBreakIndicies.append(cellItems.count - 1)
+//                    perPageIndex = 0
+//
+//                    // Calculate page break, sets the enviroment
+//                    try PDFPageBreakObject().calculate(generator: generator, container: container)
+//
+//                    availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
+//                    origin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
+//                    startingPoint = origin
+//
+//                    if table.showHeadersOnEveryPage {
+//                        for (index, cells) in Array(table.cells.prefix(table.style.rowHeaderCount)).enumerated() {
+//                            styles = stylesForRow(
+//                                tableStyle: table.style,
+//                                isHeader: true,
+//                                isFooter: false,
+//                                rowHeaderCount: table.style.rowHeaderCount,
+//                                isAlternatingRow: false,
+//                                cells: row)
+//
+//                            let result = calculateRow(cells: cells,
+//                                                      rowIndex: index,
+//                                                      availableSize: availableSize,
+//                                                      origin: origin,
+//                                                      styles: styles,
+//                                                      generator: generator)
+//                            cellItems.append(result)
+//
+//                            origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
+//
+//                            perPageIndex += 1
+//                        }
+//                    }
+//                }
+//            } else {
+//                // Add last index to list, will insert pagebreak after rendering the index
+//                pageBreakIndicies.append(0)
+//                perPageIndex = 0
+//
+//                // Calculate page break, sets the enviroment
+//                try PDFPageBreakObject().calculate(generator: generator, container: container)
+//
+//                availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
+//                origin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
+//                startingPoint = origin
+//
+//                if table.showHeadersOnEveryPage {
+//                    for (index, cells) in Array(table.cells.prefix(table.style.rowHeaderCount)).enumerated() {
+//                        styles = stylesForRow(
+//                            tableStyle: table.style,
+//                            isHeader: true,
+//                            isFooter: false,
+//                            rowHeaderCount: table.style.rowHeaderCount,
+//                            isAlternatingRow: false,
+//                            cells: row)
+//
+//                        let result = calculateRow(cells: cells,
+//                                                  rowIndex: index,
+//                                                  availableSize: availableSize,
+//                                                  origin: origin,
+//                                                  styles: styles,
+//                                                  generator: generator)
+//                        cellItems.append(result)
+//
+//                        origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
+//
+//                        perPageIndex += 1
+//                    }
+//                }
+//            }
+
+//            rowIdx += 1
+//        }
 
         // Create render objects
         return createRenderObjects(container: container,
