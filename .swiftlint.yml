@@ -14,6 +14,9 @@ force_try:
 identifier_name: 
   excluded: 
     - id
+    - x
+    - y
+    - i
   min_length: 
     error: 2
     warning: 2
