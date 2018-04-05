@@ -37,4 +37,8 @@ class PDFOffsetObject: PDFObject {
 
         return [(container, self)]
     }
+
+    override var copy: PDFObject {
+        return PDFOffsetObject(offset: self.offset)
+    }
 }

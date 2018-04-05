@@ -32,6 +32,10 @@ public class PDFSimpleText: PDFText {
         self.text = text
         self.spacing = spacing
     }
+
+    override var copy: PDFText {
+        return PDFSimpleText(text: self.text, spacing: self.spacing)
+    }
 }
 
 extension PDFSimpleText: PDFJSONSerializable { }

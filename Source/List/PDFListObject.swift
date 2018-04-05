@@ -31,7 +31,8 @@ class PDFListObject: PDFObject {
             let toAdd = try symbolTextObject.calculate(generator: generator, container: container)
 
             let symbolTextElement = (toAdd.count > 1 && toAdd[0].1 is PDFPageBreakObject) ? toAdd[1].1 : toAdd[0].1
-            generator.setContentOffset(in: container, to: PDFCalculations.calculateContentOffset(for: generator, of: symbolTextElement, in: container))
+            generator.setContentOffset(in: container, to: PDFCalculations
+                .calculateContentOffset(for: generator, of: symbolTextElement, in: container))
 
             result += toAdd
 
@@ -45,5 +46,9 @@ class PDFListObject: PDFObject {
         }
 
         return result
+    }
+
+    override var copy: PDFObject {
+        return PDFListObject(list: self.list.copy)
     }
 }

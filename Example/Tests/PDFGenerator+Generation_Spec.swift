@@ -36,7 +36,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             }.toNot(throwError())
                         expect(writtenData).toEventuallyNot(beNil())
 
-                        let expectedBase64 = ""
+//                        let expectedBase64 = ""
                         // TODO: implement correct base64
                         //                    expect(writtenData.base64EncodedString()).toEventually(equal(expectedBase64))
                     }
@@ -57,7 +57,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             }.toNot(throwError())
                         expect(writtenData).toEventuallyNot(beNil())
 
-                        let expectedBase64 = ""
+//                        let expectedBase64 = ""
                         // TODO: implement correct base64
                         //                    expect(writtenData.base64EncodedString()).toEventually(equal(expectedBase64))
                     }
@@ -78,16 +78,16 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             }.toNot(throwError())
                         expect(writtenData).toEventuallyNot(beNil())
 
-                        let expectedBase64 = ""
+//                        let expectedBase64 = ""
                         // TODO: implement correct base64
                         //                    expect(writtenData.base64EncodedString()).toEventually(equal(expectedBase64))
                     }
                 }
 
-                expect("data") {
+                describe("data") {
 
                     it("should generate") {
-                        let filename = "FILENAME"
+//                        let filename = "FILENAME"
 
                         var data: Data!
                         expect {
@@ -95,13 +95,13 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             return nil
                             }.toNot(throwError())
                         expect(data).toEventuallyNot(beNil())
-                        let expectedBase64 = ""
+//                        let expectedBase64 = ""
                         // TODO: implement correct base64
                         // expect(data()).toEventually(equal(expectedBase64))
                     }
 
                     it("should generate with debug") {
-                        let filename = "FILENAME"
+//                        let filename = "FILENAME"
 
                         var data: Data!
                         expect {
@@ -109,7 +109,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             return nil
                             }.toNot(throwError())
                         expect(data).toEventuallyNot(beNil())
-                        let expectedBase64 = ""
+//                        let expectedBase64 = ""
                         // TODO: implement correct base64
                         // expect(data()).toEventually(equal(expectedBase64))
                     }

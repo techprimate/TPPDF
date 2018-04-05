@@ -39,4 +39,8 @@ class PDFFontObject: PDFObject {
 
         return [(container, self)]
     }
+
+    override var copy: PDFObject {
+        return PDFFontObject(font: self.font)
+    }
 }

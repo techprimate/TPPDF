@@ -39,4 +39,8 @@ class PDFTextColorObject: PDFObject {
         
         return [(container, self)]
     }
+
+    override var copy: PDFObject {
+        return PDFTextColorObject(color: self.color)
+    }
 }

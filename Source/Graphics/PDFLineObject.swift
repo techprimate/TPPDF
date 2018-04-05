@@ -78,4 +78,8 @@ class PDFLineObject: PDFObject {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
         }
     }
+
+    override var copy: PDFObject {
+        return PDFLineObject(style: self.style, startPoint: self.startPoint, endPoint: self.endPoint)
+    }
 }

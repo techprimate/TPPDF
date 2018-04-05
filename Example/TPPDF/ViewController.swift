@@ -40,15 +40,15 @@ class ViewController: UIViewController {
         // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality.
         let logoImage = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150), quality: 0.9)
         document.addImage(.contentCenter, image: logoImage)
-        
+
         // Create and add an title as an attributed string for more customization possibilities
         let title = NSMutableAttributedString(string: "TPPDF", attributes: [
             .font: UIFont.boldSystemFont(ofSize: 50.0),
             .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
             ])
         document.addAttributedText(.contentCenter, text: title)
-        
-        // Add some spacing below title
+
+//         Add some spacing below title
         document.addSpace(space: 15.0)
 
         // Set document font and document color. This will be used only for simple text until it is reset.
@@ -86,41 +86,44 @@ class ViewController: UIViewController {
         // Set Font for headline
         
         document.setFont(font: UIFont.systemFont(ofSize: 20.0))
-        
+
         // Add headline with extra spacing
         
         document.addSpace(space: 20)
         document.addText(text: "1. Introduction")
         document.addSpace(space: 10)
-        
+
         // Set font for text
         
         document.setFont(font: UIFont.systemFont(ofSize: 13.0))
-        
+
         // Add long simple text. This will automatically word wrap if content width is not enough.
         
         document.addText(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
         document.addSpace(space: 10)
 
         document.addText(text: "TPPDF includes many different features:")
-        
         document.addSpace(space: 10)
-        
+
         // Simple bullet point list
         
         let featureList = PDFList(indentations: [(pre: 10.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
         
-        featureList.addItem(PDFListItem(symbol: .dot).addItems([
-            PDFListItem(content: "Simple text drawing"),
-            PDFListItem(content: "Advanced text drawing using AttributedString"),
-            PDFListItem(content: "Multi-layer rendering by simply setting the offset"),
-            PDFListItem(content: "Fully calculated content sizing"),
-            PDFListItem(content: "Automatic page wrapping"),
-            PDFListItem(content: "Customizable pagination"),
-            PDFListItem(content: "Fully editable header and footer"),
-            PDFListItem(content: "Simple image positioning and rendering"),
-            PDFListItem(content: "Image captions")
-            ]))
+        featureList.addItem(PDFListItem(symbol: .dot)
+            .addItems([
+                PDFListItem(content: "Simple text drawing"),
+                PDFListItem(content: "Advanced text drawing using AttributedString"),
+                PDFListItem(content: "Multi-layer rendering by simply setting the offset"),
+                PDFListItem(content: "Fully calculated content sizing"),
+                PDFListItem(content: "Automatic page wrapping"),
+                PDFListItem(content: "Customizable pagination"),
+                PDFListItem(content: "Fully editable header and footer"),
+                PDFListItem(content: "Simple image positioning and rendering"),
+                PDFListItem(content: "Image captions")
+                ]))
+        document.addList(list: featureList)
+        document.addList(list: featureList)
+        document.addList(list: featureList)
         document.addList(list: featureList)
 
         // Create a line separator
@@ -289,28 +292,28 @@ class ViewController: UIViewController {
         table.showHeadersOnEveryPage = true
 
         document.addTable(table: table)
-//
-//        // Add more text after the table
-//
-//        document.addText(text: "Just adding more text here...")
-//
-//        // Add text to footer
-//
-//        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 1"))
-//        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 2"))
-//        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 3"))
-//
-//        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 1"))
-//        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 2"))
-//        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 3"))
-//
-//        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 1"))
-//        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 2"))
-//        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 3"))
-//
-//        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 1"))
-//        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
-//        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
+
+        // Add more text after the table
+
+        document.addText(text: "Just adding more text here...")
+
+        // Add text to footer
+
+        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 1"))
+        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 2"))
+        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 3"))
+
+        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 1"))
+        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 2"))
+        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 3"))
+
+        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 1"))
+        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 2"))
+        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 3"))
+
+        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 1"))
+        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
+        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
 
         /* ---- Execution Metrics ---- */
         print("Preparation took: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))

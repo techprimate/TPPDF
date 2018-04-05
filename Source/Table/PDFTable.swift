@@ -85,4 +85,15 @@ public class PDFTable: PDFJSONSerializable {
         let cell = cells[rowIndex][columnIndex]
         cell.style = cellStyle
     }
+
+    var copy: PDFTable {
+        let table = PDFTable()
+        table.style = self.style
+        table.cells = self.cells
+        table.widths = self.widths
+        table.padding = self.padding
+        table.margin = self.margin
+        table.showHeadersOnEveryPage = self.showHeadersOnEveryPage
+        return table
+    }
 }

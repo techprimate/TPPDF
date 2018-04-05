@@ -42,5 +42,9 @@ class PDFPageBreakObject: PDFObject {
         UIGraphicsBeginPDFPage()
         generator.drawDebugPageOverlay()
     }
+
+    override var copy: PDFObject {
+        return PDFPageBreakObject()
+    }
     
 }

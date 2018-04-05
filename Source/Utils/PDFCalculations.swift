@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 24/08/2017.
 //
 
+// swiftlint:disable function_body_length
+
 /**
  A collection of static calculations
  */

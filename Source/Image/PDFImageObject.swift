@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+// swiftlint:disable function_body_length
+
 /**
  Calculates the given image and a caption if necessary
  */
@@ -114,5 +116,9 @@ class PDFImageObject: PDFObject {
     
     func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         generator.layout.heights.add(frame.height + (self.image.caption != nil ? captionSpacing : 0), to: container)
+    }
+
+    override var copy: PDFObject {
+        return PDFImageObject(image: self.image.copy, captionSpacing: self.captionSpacing)
     }
 }

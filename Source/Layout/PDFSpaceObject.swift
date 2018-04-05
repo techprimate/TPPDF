@@ -73,5 +73,9 @@ class PDFSpaceObject: PDFObject {
                                  pattern: PDFGraphics.FillPattern.dotted(foreColor: .green, backColor: .white))
         }
     }
+
+    override var copy: PDFObject {
+        return PDFSpaceObject(space: self.space)
+    }
 }
     

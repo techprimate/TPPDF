@@ -55,4 +55,8 @@ class PDFImageRowObject: PDFObject {
 
         return result
     }
+
+    override var copy: PDFObject {
+        return PDFImageRowObject(images: self.images, spacing: self.spacing, captionSpacing: self.captionSpacing)
+    }
 }

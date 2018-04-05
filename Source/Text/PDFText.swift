@@ -9,7 +9,11 @@
  Protocol all text objects should implement
  */
 public class PDFText {
-    
+
+    var copy: PDFText {
+        fatalError()
+    }
+
 }
 
 public func != (lhs: PDFText, rhs: PDFText) -> Bool {

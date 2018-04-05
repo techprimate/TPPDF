@@ -25,6 +25,10 @@ public class PDFAttributedText: PDFText {
     public init(text: NSAttributedString) {
         self.text = text
     }
+
+    override var copy: PDFText {
+        return PDFAttributedText(text: text)
+    }
 }
 
 extension PDFAttributedText: PDFJSONSerializable {}

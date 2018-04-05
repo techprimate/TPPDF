@@ -58,4 +58,8 @@ public class PDFImage: PDFJSONSerializable {
         self.sizeFit = sizeFit
         self.quality = quality
     }
+
+    var copy: PDFImage {
+        return PDFImage(image: self.image, caption: self.caption?.copy, size: self.size, sizeFit: self.sizeFit, quality: self.quality)
+    }
 }

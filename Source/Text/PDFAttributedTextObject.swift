@@ -102,7 +102,7 @@ class PDFAttributedTextObject: PDFObject {
             let textObject = PDFAttributedTextObject(attributedText: subText)
             result += try textObject.calculate(generator: generator, container: container)
         }
-        
+
         return result
     }
 
@@ -216,5 +216,9 @@ class PDFAttributedTextObject: PDFObject {
             NSAttributedStringKey.foregroundColor: textColor[container]!,
             NSAttributedStringKey.paragraphStyle: paragraphStyle
         ]
+    }
+
+    override var copy: PDFObject {
+        return PDFAttributedTextObject(text: (self.attributedText ?? self.simpleText)!)
     }
 }

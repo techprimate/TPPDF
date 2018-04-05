@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-// swiftlint:disable function_body_length
+// swiftlint:disable function_body_length function_parameter_count line_length
 
 class PDFTableObject: PDFObject {
 
@@ -123,91 +123,6 @@ class PDFTableObject: PDFObject {
             }
         }
 
-//
-//            if maxY <= availableSize.height {
-//                cellItems.append(result)
-//
-//                // Update position for next row
-//                origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
-//
-//                perPageIndex += 1
-//
-//                if origin.y > availableSize.height {
-//                    // Add last index to list, will insert pagebreak after rendering the index
-//                    pageBreakIndicies.append(cellItems.count - 1)
-//                    perPageIndex = 0
-//
-//                    // Calculate page break, sets the enviroment
-//                    try PDFPageBreakObject().calculate(generator: generator, container: container)
-//
-//                    availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
-//                    origin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
-//                    startingPoint = origin
-//
-//                    if table.showHeadersOnEveryPage {
-//                        for (index, cells) in Array(table.cells.prefix(table.style.rowHeaderCount)).enumerated() {
-//                            styles = stylesForRow(
-//                                tableStyle: table.style,
-//                                isHeader: true,
-//                                isFooter: false,
-//                                rowHeaderCount: table.style.rowHeaderCount,
-//                                isAlternatingRow: false,
-//                                cells: row)
-//
-//                            let result = calculateRow(cells: cells,
-//                                                      rowIndex: index,
-//                                                      availableSize: availableSize,
-//                                                      origin: origin,
-//                                                      styles: styles,
-//                                                      generator: generator)
-//                            cellItems.append(result)
-//
-//                            origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
-//
-//                            perPageIndex += 1
-//                        }
-//                    }
-//                }
-//            } else {
-//                // Add last index to list, will insert pagebreak after rendering the index
-//                pageBreakIndicies.append(0)
-//                perPageIndex = 0
-//
-//                // Calculate page break, sets the enviroment
-//                try PDFPageBreakObject().calculate(generator: generator, container: container)
-//
-//                availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
-//                origin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
-//                startingPoint = origin
-//
-//                if table.showHeadersOnEveryPage {
-//                    for (index, cells) in Array(table.cells.prefix(table.style.rowHeaderCount)).enumerated() {
-//                        styles = stylesForRow(
-//                            tableStyle: table.style,
-//                            isHeader: true,
-//                            isFooter: false,
-//                            rowHeaderCount: table.style.rowHeaderCount,
-//                            isAlternatingRow: false,
-//                            cells: row)
-//
-//                        let result = calculateRow(cells: cells,
-//                                                  rowIndex: index,
-//                                                  availableSize: availableSize,
-//                                                  origin: origin,
-//                                                  styles: styles,
-//                                                  generator: generator)
-//                        cellItems.append(result)
-//
-//                        origin.y += (result.map { return $0.frames.cell.height }.max() ?? 0) + 2 * (table.margin)
-//
-//                        perPageIndex += 1
-//                    }
-//                }
-//            }
-
-//            rowIdx += 1
-//        }
-
         // Create render objects
         return createRenderObjects(container: container,
                                    cellItems: cellItems,
@@ -312,8 +227,7 @@ class PDFTableObject: PDFObject {
         return frames
     }
 
-    func repositionRow(row: [PDFTableCell],
-                       frames originalFrames: [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))]) -> [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] {
+    func repositionRow(row: [PDFTableCell], frames originalFrames: [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))]) -> [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] {
         var frames: [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] = originalFrames
 
         let maxCellHeight: CGFloat = originalFrames.map { return $0.frames.cell.height }.max() ?? 0
@@ -510,5 +424,9 @@ class PDFTableObject: PDFObject {
         }
 
         return result
+    }
+
+    override var copy: PDFObject {
+        return PDFTableObject(table: table.copy)
     }
 }

@@ -69,4 +69,8 @@ class PDFRectangleObject: PDFObject {
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         PDFGraphics.drawRect(rect: self.frame, outline: lineStyle, fill: fillColor)
     }
+
+    override var copy: PDFObject {
+        return PDFRectangleObject(lineStyle: self.lineStyle, size: self.size, fillColor: self.fillColor)
+    }
 }
