@@ -24,15 +24,16 @@ class PDFListObject: PDFObject {
                 list.levelIndentations.last ?? (pre: 0, past: 0))
             generator.layout.indentation.setLeft(indentation: originalLeftIndent + indent.pre, in: container)
 
-            let offset = generator.getContentOffset(in: container)
-
             let symbol: String = item.symbol.stringValue
 
             let symbolText = PDFSimpleText(text: symbol)
             let symbolTextObject = PDFAttributedTextObject(simpleText: symbolText)
-            result += try symbolTextObject.calculate(generator: generator, container: container)
+            let toAdd = try symbolTextObject.calculate(generator: generator, container: container)
 
-            generator.setContentOffset(in: container, to: offset)
+            let symbolTextElement = (toAdd.count > 1 && toAdd[0].1 is PDFPageBreakObject) ? toAdd[1].1 : toAdd[0].1
+            generator.setContentOffset(in: container, to: PDFCalculations.calculateContentOffset(for: generator, of: symbolTextElement, in: container))
+
+            result += toAdd
 
             generator.layout.indentation.setLeft(indentation: originalLeftIndent + indent.pre + indent.past, in: container)
 

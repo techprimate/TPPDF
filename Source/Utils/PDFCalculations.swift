@@ -170,7 +170,28 @@ class PDFCalculations {
                 + layout.heights.content
         }
     }
-    
+
+    static func calculateContentOffset(for generator: PDFGenerator, of element: PDFObject, in container: PDFContainer) -> CGFloat {
+        let layout = generator.layout
+        let pageLayout = generator.document.layout
+
+        if container.isHeader {
+            return element.frame.minY
+                - pageLayout.margin.top
+        } else if container.isFooter {
+            return element.frame.minY
+                - (pageLayout.height
+                    - pageLayout.margin.bottom
+                    - layout.heights.value(for: container)
+                    - element.frame.height)
+        } else {
+            return element.frame.minY
+                - pageLayout.margin.top
+                - layout.heights.maxHeaderHeight()
+                - pageLayout.space.header
+        }
+    }
+
     // MARK: - LEGACY
     
     static func calculateCellFrame(generator: PDFGenerator,

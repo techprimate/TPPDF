@@ -86,8 +86,10 @@ class PDFAttributedTextObject: PDFObject {
         // Set data to self, and add it to results
         attributedString = renderString
         self.frame = frame
-        
-        result.append((container, self))
+
+        if attributedString.length > 0 {
+            result.append((container, self))
+        }
 
         // Update generator content height
         generator.layout.heights.add(frame.height, to: container)
@@ -95,8 +97,7 @@ class PDFAttributedTextObject: PDFObject {
         // If text is remainding, create a pagebreak and recursively add remainder text
         if let left = remainder {
             result += try PDFPageBreakObject().calculate(generator: generator, container: container)
-            generator.layout.reset()
-            
+
             let subText = PDFAttributedText(text: left)
             let textObject = PDFAttributedTextObject(attributedText: subText)
             result += try textObject.calculate(generator: generator, container: container)
