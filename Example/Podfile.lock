@@ -1,7 +1,7 @@
 PODS:
-  - Nimble (7.0.2)
+  - Nimble (7.0.3)
   - Quick (1.2.0)
-  - SwiftLint (0.23.1)
+  - SwiftLint (0.25.0)
   - TPPDF (1.0.0):
     - SwiftLint
 
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  SwiftLint: 1b670ce79284c76520f84060e87d645078fd32fa
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   TPPDF: c128562b88f7bc69f59002254708ea79051a733f
 
 PODFILE CHECKSUM: 906274ecb0e3a9c219e3fd071a16940c1d910422
