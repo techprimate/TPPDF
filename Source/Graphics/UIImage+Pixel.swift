@@ -5,8 +5,6 @@
 //  Created by Philip Niedertscheider on 05/11/2017.
 //
 
-// swiftlint:disable identifier_name
-
 extension UIImage {
 
     var pixelExtractor: PixelExtractor {
