@@ -52,4 +52,14 @@ struct PDFLayoutHeights {
             return content
         }
     }
+
+    mutating func set(_ value: CGFloat, to container: PDFContainer) {
+        if container.isHeader {
+            header[container] = value
+        } else if container.isFooter {
+            footer[container] = value
+        } else {
+            content = value
+        }
+    }
 }

@@ -24,7 +24,7 @@ class PDFCalculations {
     static func calculateText(generator: PDFGenerator,
                               container: PDFContainer,
                               text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString, remainder: NSAttributedString?) {
-        let availableSize = calculateAvailableFrame(for: generator, in: container)
+        var availableSize = calculateAvailableFrame(for: generator, in: container)
         let (fittingText, textSize, remainder) = calculateTextSizeAndRemainder(of: text, in: availableSize)
         let origin = calculateElementPosition(for: generator, in: container, with: textSize)
         
@@ -322,12 +322,13 @@ class PDFCalculations {
                                           sizeFit: PDFImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         let size = (size == CGSize.zero) ? image.size : size
-        
-        let maxWidth = min(size.width, generator.document.layout.contentSize.width - generator.layout.indentation.leftIn(container: container))
-        let maxHeight = min(size.height, generator.document.layout.contentSize.height - generator.layout.heights.content)
+
+        let maxWidth = min(size.width, calculateAvailableFrameWidth(for: generator, in: container))
+        let maxHeight = min(size.height, calculateAvailableFrameHeight(for: generator, in: container))
         
         let wFactor = image.size.width / maxWidth
         let hFactor = image.size.height / maxHeight
+
         let factor: CGFloat = {
             switch sizeFit {
             case .width:
@@ -340,20 +341,6 @@ class PDFCalculations {
         }()
         
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
-        
-        let (_, captionSize) = (NSAttributedString(), CGSize.zero)
-//        if let _ = image.caption {
-//            if !caption.isEmpty {
-//                let currentText = CFAttributedStringCreateCopy(nil, caption as CFAttributedString)
-//                let currentRange = CFRange(location: 0, length: 0)
-//                (_, _, captionSize) = calculateTextFrameAndDrawnSizeInOnePage(generator: generator,
-//                                                                              container: container,
-//                                                                              text: currentText!,
-//                                                                              currentRange: currentRange,
-//                                                                              textMaxWidth: imageSize.width)
-//            }
-//        }
-
-        return (imageSize, CGSize(width: imageSize.width, height: captionSize.height))
+        return (imageSize, CGSize(width: imageSize.width, height: 0))
     }
 }

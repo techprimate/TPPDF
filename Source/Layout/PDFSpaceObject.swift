@@ -36,22 +36,23 @@ class PDFSpaceObject: PDFObject {
      */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         let document = generator.document
-        
-        let x = document.layout.margin.left
-            + generator.layout.indentation.leftIn(container: container)
-        
-        let y = document.layout.margin.bottom
-            + generator.layout.heights.maxHeaderHeight()
-            + document.layout.space.header
-            + generator.layout.heights.content
-        
+
+        let origin = CGPoint(
+            x: document.layout.margin.left
+                + generator.layout.indentation.leftIn(container: container),
+            y: document.layout.margin.bottom
+                + generator.layout.heights.maxHeaderHeight()
+                + document.layout.space.header
+                + generator.layout.heights.content
+        )
+
         let width = document.layout.size.width
             - document.layout.margin.left
             - generator.layout.indentation.leftIn(container: container)
             - generator.layout.indentation.rightIn(container: container)
             - document.layout.margin.right
         
-        self.frame = CGRect(x: x, y: y, width: width, height: space)
+        self.frame = CGRect(x: origin.x, y: origin.y, width: width, height: space)
 
         generator.layout.heights.add(space, to: container)
         

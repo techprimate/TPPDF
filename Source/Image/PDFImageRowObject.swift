@@ -9,22 +9,49 @@ class PDFImageRowObject: PDFObject {
     
     var images: [PDFImage]
     var spacing: CGFloat
+    var captionSpacing: CGFloat
 
-    init(images: [PDFImage], spacing: CGFloat = 1.0) {
+    init(images: [PDFImage], spacing: CGFloat = 1.0, captionSpacing: CGFloat = 5.0) {
         self.images = images
         self.spacing = spacing
+        self.captionSpacing = captionSpacing
     }
 
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
-//        let totalImagesWidth = generator.document.layout.contentSize.width
-//        let imageWidth = totalImagesWidth / CGFloat(images.count)
+        let originalInsetLeft = generator.layout.indentation.leftIn(container: container)
+        let originalInsetRight = generator.layout.indentation.rightIn(container: container)
 
-        for image in images {
-            let imageObject = PDFImageObject(image: image)
+        var additionInset: CGFloat = 0
+
+        let originalHeight = generator.layout.heights.value(for: container)
+
+        let totalImagesWidth = generator.document.layout.contentSize.width
+        let totalSpacing = CGFloat(images.count - 1) * spacing
+        let imageWidth = (totalImagesWidth - totalSpacing) / CGFloat(images.count)
+
+        var maxHeight: CGFloat = 0
+
+        for (idx, image) in images.enumerated() {
+            let imageObject = PDFImageObject(image: image, captionSpacing: captionSpacing)
+
+            generator.layout.indentation.setLeft(indentation: originalInsetLeft + additionInset + spacing * CGFloat(idx), in: container)
+            generator.layout.indentation.setRight(indentation: originalInsetRight
+                + (imageWidth + spacing) * CGFloat(images.count - idx - 1), in: container)
+
             result += try imageObject.calculate(generator: generator, container: container)
+
+            maxHeight = max(maxHeight, generator.layout.heights.value(for: container))
+            generator.layout.heights.set(originalHeight, to: container)
+
+            additionInset += imageWidth
         }
+
+        generator.layout.heights.set(maxHeight, to: container)
+
+        generator.layout.indentation.setLeft(indentation: originalInsetLeft, in: container)
+        generator.layout.indentation.setLeft(indentation: originalInsetRight, in: container)
 
         return result
     }

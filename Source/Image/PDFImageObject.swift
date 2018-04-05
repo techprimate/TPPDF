@@ -16,12 +16,18 @@ class PDFImageObject: PDFObject {
     var image: PDFImage
 
     /**
+     Spacing between image and caption
+     */
+    var captionSpacing: CGFloat
+
+    /**
      Initalizer
 
      - parameter image: Image object
      */
-    init(image: PDFImage) {
+    init(image: PDFImage, captionSpacing: CGFloat = 0) {
         self.image = image
+        self.captionSpacing = captionSpacing
     }
 
     /**
@@ -96,24 +102,17 @@ class PDFImageObject: PDFObject {
         
         if let caption = image.caption {
             let text = PDFAttributedTextObject(text: caption)
-            result += try text.calculate(generator: generator, container: container)
+            result += try text.calculate(generator: generator, container: PDFContainer.contentCenter)
         }
         
         return result
     }
     
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        let compressedImage = PDFGraphics.resizeAndCompressImage(image: image.image, frame: frame, quality: image.quality)
-        compressedImage.draw(in: self.frame)
+        PDFGraphics.resizeAndCompressImage(image: image.image, frame: frame, quality: image.quality).draw(in: self.frame)
     }
     
     func updateHeights(generator: PDFGenerator, container: PDFContainer) {
-        if container.isHeader {
-            generator.layout.heights.header[container] = generator.layout.heights.header[container]! + image.size.height
-        } else if container.isFooter {
-            generator.layout.heights.footer[container] = generator.layout.heights.footer[container]! + image.size.height
-        } else {
-            generator.layout.heights.content += image.size.height
-        }
+        generator.layout.heights.add(frame.height + (self.image.caption != nil ? captionSpacing : 0), to: container)
     }
 }

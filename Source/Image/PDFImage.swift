@@ -54,7 +54,7 @@ public class PDFImage: PDFJSONSerializable {
                 quality: CGFloat = 0.85) {
         self.image = image
         self.caption = caption
-        self.size = size
+        self.size = (size == .zero) ? image.size : size
         self.sizeFit = sizeFit
         self.quality = quality
     }

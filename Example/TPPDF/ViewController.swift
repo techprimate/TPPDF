@@ -122,19 +122,20 @@ class ViewController: UIViewController {
             PDFListItem(content: "Image captions")
             ]))
         document.addList(list: featureList)
-        
-        // Insert page break
-        
-        document.createNewPage()
-        
+
         // Create a line separator
-        
+
         document.addSpace(space: 10)
         document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
         document.addSpace(space: 10)
 
+        // Insert page break
+
+        document.createNewPage()
+
+
         // Create attributes for captions
-        
+
         let captionAttributes: [NSAttributedStringKey: AnyObject] = [
             .font: UIFont.italicSystemFont(ofSize: 15.0),
             .paragraphStyle: { () -> NSMutableParagraphStyle in
@@ -144,17 +145,20 @@ class ViewController: UIViewController {
             }(),
             .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0),
         ]
-        
+
         // Create an image collage with captions
-        
+
         let images = [
             [
                 PDFImage(image: UIImage(named: "Image-1.jpg")!,
-                         caption: PDFAttributedText(text: NSAttributedString(string: "Waterfall",
+                         caption: PDFAttributedText(text: NSAttributedString(string: "In this picture you can see a beautiful waterfall!",
                                                                              attributes: captionAttributes))),
                 PDFImage(image: UIImage(named: "Image-2.jpg")!,
                          caption: PDFAttributedText(text: NSAttributedString(string: "Forrest",
                                                                              attributes: captionAttributes))),
+                PDFImage(image: UIImage(named: "Image-3.jpg")!,
+                         caption: PDFAttributedText(text: NSAttributedString(string: "Fireworks",
+                                                                             attributes: captionAttributes)))
                 ],
             [
                 PDFImage(image: UIImage(named: "Image-3.jpg")!,
@@ -167,15 +171,15 @@ class ViewController: UIViewController {
         ]
 
         // Add first row of images
-        
+
         document.addImagesInRow(images: images[0], spacing: 10)
 
         // Add spacing between image rows
-        
+
         document.addSpace(space: 10)
 
         // Add second row of images
-        
+
         document.addImagesInRow(images: images[1], spacing: 10)
 
         // Finish image collage with another line separator
@@ -183,13 +187,13 @@ class ViewController: UIViewController {
         document.addSpace(space: 10)
         document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
         document.addSpace(space: 10)
-        
+
         // Create a table
-        
+
         let table = PDFTable()
-        
+
         // Tables can contain Strings, Numbers, Images or nil, in case you need an empty cell. If you add a unknown content type, an error will be thrown and the rendering will stop.
-        
+
         do {
             try table.generateCells(
                 data:
@@ -220,24 +224,24 @@ class ViewController: UIViewController {
                 ])
         } catch PDFError.tableContentInvalid(let value) {
             // In case invalid input is provided, this error will be thrown.
-            
+
             print("This type of object is not supported as table content: " + String(describing: (type(of: value))))
         } catch {
             // General error handling in case something goes wrong.
-            
+
             print("Error while creating table: " + error.localizedDescription)
         }
-        
+
         // The widths of each column is proportional to the total width, set by a value between 0.0 and 1.0, representing percentage.
-        
+
         table.widths = [
             0.1, 0.25, 0.35, 0.3
         ]
-        
+
         // To speed up table styling, use a default and change it
-        
+
         let style = PDFTableStyleDefaults.simple
-        
+
         // Change standardized styles
         style.footerStyle = PDFTableCellStyle(
             colors: (
@@ -251,63 +255,63 @@ class ViewController: UIViewController {
                       top: PDFLineStyle(type: .full),
                       right: PDFLineStyle(type: .full),
                       bottom: PDFLineStyle(type: .full)),
-            
+
             font: UIFont.systemFont(ofSize: 10)
         )
-        
+
         // Simply set the amount of footer and header rows
-        
+
         style.columnHeaderCount = 1
         style.footerCount = 1
 
         table.style = style
-        
+
         do {
             // Style each cell individually
             try table.setCellStyle(row: 1, column: 1, style: PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black)))
         } catch PDFError.tableIndexOutOfBounds(let index, let length){
             // In case the index is out of bounds
-            
+
             print("Requested cell is out of bounds! \(index) / \(length)")
         } catch {
             // General error handling in case something goes wrong.
-            
+
             print("Error while setting cell style: " + error.localizedDescription)
         }
-        
+
         // Set table padding and margin
-        
+
         table.padding = 5.0
         table.margin = 10.0
-        
+
         // In case of a linebreak during rendering we want to have table headers on each page.
-        
+
         table.showHeadersOnEveryPage = true
-        
+
         document.addTable(table: table)
+//
+//        // Add more text after the table
+//
+//        document.addText(text: "Just adding more text here...")
+//
+//        // Add text to footer
+//
+//        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 1"))
+//        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 2"))
+//        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 3"))
+//
+//        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 1"))
+//        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 2"))
+//        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 3"))
+//
+//        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 1"))
+//        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 2"))
+//        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 3"))
+//
+//        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 1"))
+//        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
+//        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
 
-        // Add more text after the table
-        
-        document.addText(text: "Just adding more text here...")
-
-        // Add text to footer
-
-        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 1"))
-        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 2"))
-        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 3"))
-
-        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 1"))
-        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 2"))
-        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 3"))
-
-        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 1"))
-        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 2"))
-        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 3"))
-
-        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 1"))
-        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
-        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
-        
         /* ---- Execution Metrics ---- */
         print("Preparation took: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
         startTime = Date()
