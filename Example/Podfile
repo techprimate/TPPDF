@@ -10,7 +10,7 @@ target 'TPPDF_Tests' do
     pod 'TPPDF', :path => '../'
     
     pod 'Quick'
-    pod 'Nimble', '~> 7.0'
+    pod 'Nimble'
 end
 
 post_install do |installer|

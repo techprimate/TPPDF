@@ -60,7 +60,8 @@ class PDFTableObject: PDFObject {
                                       availableSize: availableSize,
                                       origin: origin,
                                       styles: styles,
-                                      generator: generator)
+                                      generator: generator,
+                                      container: container)
 
             let maxHeight = result.map { return $0.frames.cell.height }.max() ?? 0
 
@@ -106,7 +107,8 @@ class PDFTableObject: PDFObject {
                                                   availableSize: availableSize,
                                                   origin: origin,
                                                   styles: styles,
-                                                  generator: generator)
+                                                  generator: generator,
+                                                  container: container)
                         cellItems.append(result)
 
                         let maxHeight = result.map { return $0.frames.cell.height }.max() ?? 0
@@ -136,14 +138,16 @@ class PDFTableObject: PDFObject {
                       availableSize: CGSize,
                       origin: CGPoint,
                       styles: [PDFTableCellStyle],
-                      generator: PDFGenerator) -> [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] {
+                      generator: PDFGenerator,
+                      container: PDFContainer) -> [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] {
         let calculationResult = calculateFrames(row: cells,
                                                 rowIdx: rowIndex,
                                                 availableSize: availableSize,
                                                 origin: origin,
                                                 tableHeight: table.cells.count,
                                                 styles: styles,
-                                                generator: generator)
+                                                generator: generator,
+                                                container: container)
 
         // Reposition in Y-Axis. This is for vertical alignment
         return repositionRow(row: cells, frames: calculationResult)
@@ -155,7 +159,8 @@ class PDFTableObject: PDFObject {
                          origin: CGPoint,
                          tableHeight: Int,
                          styles: [PDFTableCellStyle],
-                         generator: PDFGenerator) -> [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] {
+                         generator: PDFGenerator,
+                         container: PDFContainer) -> [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] {
         let layout = generator.document.layout
         var frames: [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] = []
         var newOrigin = origin
@@ -202,6 +207,7 @@ class PDFTableObject: PDFObject {
                     if text != nil {
                         result = PDFCalculations
                             .calculateCellFrame(generator: generator,
+                                                container: container,
                                                 origin: frame.frames.content.origin,
                                                 width: frame.frames.content.width,
                                                 text: text,

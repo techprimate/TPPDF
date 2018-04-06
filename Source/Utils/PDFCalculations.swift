@@ -217,23 +217,12 @@ class PDFCalculations {
     // MARK: - LEGACY
     
     static func calculateCellFrame(generator: PDFGenerator,
+                                   container: PDFContainer,
                                    origin: CGPoint,
                                    width: CGFloat,
                                    text: NSAttributedString,
                                    alignment: PDFTableCellAlignment) -> CGRect {
-        let layout = generator.document.layout
-        
-        let textMaxHeight = layout.height
-            - generator.layout.heights.maxHeaderHeight()
-            - layout.space.header
-            - generator.layout.heights.maxFooterHeight()
-            - layout.space.footer
-            - generator.layout.heights.content
-        
-        // The height is not enough
-        if textMaxHeight <= 0 {
-            return CGRect.infinite
-        }
+        let textMaxHeight = PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container)
         let frame: CGRect = CGRect(x: origin.x, y: origin.y, width: width, height: textMaxHeight)
         
         let currentRange = CFRange(location: 0, length: 0)
@@ -252,18 +241,6 @@ class PDFCalculations {
     }
     
     static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
-        let imageMaxHeight = generator.document.layout.height
-            - generator.layout.heights.maxHeaderHeight()
-            - generator.document.layout.space.header
-            - generator.layout.heights.maxFooterHeight()
-            - generator.document.layout.space.footer
-            - generator.layout.heights.content
-        
-        // The height is not enough
-        if imageMaxHeight <= 0 {
-            return CGRect.infinite
-        }
-        
         let imageSize = image.size
         let height = imageSize.height / imageSize.width * width
         

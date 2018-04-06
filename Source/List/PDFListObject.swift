@@ -30,11 +30,13 @@ class PDFListObject: PDFObject {
             let symbolTextObject = PDFAttributedTextObject(simpleText: symbolText)
             let toAdd = try symbolTextObject.calculate(generator: generator, container: container)
 
-            let symbolTextElement = (toAdd.count > 1 && toAdd[0].1 is PDFPageBreakObject) ? toAdd[1].1 : toAdd[0].1
-            generator.setContentOffset(in: container, to: PDFCalculations
-                .calculateContentOffset(for: generator, of: symbolTextElement, in: container))
+            if toAdd.count > 0 {
+                let symbolTextElement = (toAdd.count > 1 && toAdd[0].1 is PDFPageBreakObject) ? toAdd[1].1 : toAdd[0].1
+                generator.setContentOffset(in: container, to: PDFCalculations
+                    .calculateContentOffset(for: generator, of: symbolTextElement, in: container))
 
-            result += toAdd
+                result += toAdd
+            }
 
             generator.layout.indentation.setLeft(indentation: originalLeftIndent + indent.pre + indent.past, in: container)
 

@@ -51,7 +51,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     }.toNot(throwError())
 
                     expect(result).toEventuallyNot(beNil())
-                    expect(result?.count).toEventually(equal(14))
+                    expect(result?.count).toEventually(equal(13))
 
                     expect(result?[0].0).toEventually(equal(PDFContainer.contentLeft))
 
@@ -104,36 +104,30 @@ class PDFListItemObject_Spec: QuickSpec {
                     expect(result?[8].0).toEventually(equal(PDFContainer.contentLeft))
 
                     item = result?[8].1 as? PDFAttributedTextObject
-                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 20, y: 143, width: 0, height: 0)))
-                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: "")))
+                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 30, y: 143, width: 89.0791015625, height: 17.0)))
+                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: "Subheading 2")))
 
                     expect(result?[9].0).toEventually(equal(PDFContainer.contentLeft))
 
                     item = result?[9].1 as? PDFAttributedTextObject
-                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 30, y: 143, width: 89.0791015625, height: 17.0)))
-                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: "Subheading 2")))
+                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 20, y: 160, width: 4.15625, height: 17.0)))
+                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: PDFListItemSymbol.dot.stringValue)))
 
                     expect(result?[10].0).toEventually(equal(PDFContainer.contentLeft))
 
                     item = result?[10].1 as? PDFAttributedTextObject
-                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 20, y: 160, width: 4.15625, height: 17.0)))
-                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: PDFListItemSymbol.dot.stringValue)))
+                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 30, y: 160, width: 89.400390625, height: 17.0)))
+                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: "Subheading 3")))
 
                     expect(result?[11].0).toEventually(equal(PDFContainer.contentLeft))
 
                     item = result?[11].1 as? PDFAttributedTextObject
-                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 30, y: 160, width: 89.400390625, height: 17.0)))
-                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: "Subheading 3")))
+                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 10, y: 177, width: 11.607421875, height: 17.0)))
+                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: "%")))
 
                     expect(result?[12].0).toEventually(equal(PDFContainer.contentLeft))
 
                     item = result?[12].1 as? PDFAttributedTextObject
-                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 10, y: 177, width: 10.85546875, height: 17.0)))
-                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: "%")))
-
-                    expect(result?[13].0).toEventually(equal(PDFContainer.contentLeft))
-
-                    item = result?[13].1 as? PDFAttributedTextObject
                     expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 20, y: 177, width: 66.4658203125, height: 17.0)))
                     expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: "Heading 4")))
                 }
@@ -147,7 +141,7 @@ class PDFListItemObject_Spec: QuickSpec {
                         }.toNot(throwError())
 
                     expect(result).toEventuallyNot(beNil())
-                    expect(result?.count).toEventually(equal(14))
+                    expect(result?.count).toEventually(equal(13))
 
                     expect(result?[0].0).toEventually(equal(PDFContainer.contentLeft))
 
