@@ -122,9 +122,13 @@ class PDFTableObject: PDFObject {
         }
 
         // Create render objects
-        return createRenderObjects(container: container,
-                                   cellItems: cellItems,
-                                   pageBreakIndicies: pageBreakIndicies)
+        let renderObjects = createRenderObjects(container: container,
+                                                cellItems: cellItems,
+                                                pageBreakIndicies: pageBreakIndicies)
+        let finalOffset = PDFCalculations.calculateContentOffset(for: generator, of: renderObjects.offset, in: container)
+        try PDFOffsetObject(offset: finalOffset).calculate(generator: generator, container: container)
+
+        return renderObjects.objects
     }
 
     func calculateRow(cells: [PDFTableCell],
@@ -284,7 +288,7 @@ class PDFTableObject: PDFObject {
 
     func createRenderObjects(container: PDFContainer,
                              cellItems: [[(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))]],
-                             pageBreakIndicies: [Int]) -> [(PDFContainer, PDFObject)] {
+                             pageBreakIndicies: [Int]) -> (objects: [(PDFContainer, PDFObject)], offset: CGFloat) {
         var result: [PDFObject?] = []
 
         var pageStart: CGPoint! = nil
@@ -314,8 +318,7 @@ class PDFTableObject: PDFObject {
                 result += createCellOutlineObjects(borders: item.style.borders, cellFrame: cellFrame) as [PDFObject?]
             }
 
-            // Page break
-            if pageBreakIndicies.contains(rowIdx) {
+            if pageBreakIndicies.contains(rowIdx) || rowIdx == cellItems.count - 1 {
                 let tableOutlineObject = PDFRectangleObject(lineStyle: table.style.outline, size: CGSize.zero)
                 tableOutlineObject.frame = CGRect(
                     x: pageStart.x,
@@ -324,20 +327,24 @@ class PDFTableObject: PDFObject {
                     height: pageEnd.y - pageStart.y
                 )
                 result.append(tableOutlineObject)
+            }
 
+            // Page break
+            if pageBreakIndicies.contains(rowIdx) {
                 result.append(PDFPageBreakObject())
 
                 pageStart = nil
             }
         }
 
-        return result.flatMap { (obj) -> (PDFContainer, PDFObject)? in
+        let compactObjects = result.compactMap { (obj) -> (PDFContainer, PDFObject)? in
             if let obj = obj {
                 return (container, obj)
             } else {
                 return nil
             }
         }
+        return (objects: compactObjects, offset: pageEnd.y)
     }
 
     func createCellBackgroundObject(cellStyle: PDFTableCellStyle, frame: CGRect) -> PDFObject {
