@@ -64,16 +64,15 @@ class PDFTableObject: PDFObject {
 
             let maxHeight = result.map { return $0.frames.cell.height }.max() ?? 0
 
-            if maxHeight + 2 * table.margin <= availableSize.height {
+            if maxHeight + table.margin <= availableSize.height {
                 // Row can fit this page
                 cellItems.append(result)
                 perPageIndex += 1
                 rowIdx += 1
 
                 // Next row can also start on this page
-                let height = maxHeight + 2 * table.margin
-                origin.y += height
-                availableSize.height -= height
+                origin.y += maxHeight + table.margin
+                availableSize.height -= maxHeight + table.margin
             } else {
                 // Row needs to be on the next page
                 // if one of the first header rows, then start whole table on next page
@@ -111,9 +110,8 @@ class PDFTableObject: PDFObject {
                         cellItems.append(result)
 
                         let maxHeight = result.map { return $0.frames.cell.height }.max() ?? 0
-                        let height = maxHeight + 2 * table.margin
-                        origin.y += height
-                        availableSize.height -= height
+                        origin.y += maxHeight + table.margin
+                        availableSize.height -= maxHeight + table.margin
 
                         perPageIndex += 1
 
@@ -174,10 +172,7 @@ class PDFTableObject: PDFObject {
                         )
                     ),
                     content: CGRect(
-                        origin: newOrigin + CGPoint(
-                            x: table.margin + table.padding,
-                            y: layout.space.header + table.margin + table.padding
-                        ),
+                        origin: newOrigin + table.margin + table.padding,
                         size: CGSize(
                             width: columnWidth - 2 * (table.margin + table.padding),
                             height: 0
