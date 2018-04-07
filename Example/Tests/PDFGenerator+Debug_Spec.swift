@@ -78,9 +78,9 @@ class PDFGenerator_Debug_Spec: QuickSpec {
                                     expected = UIColor.blue
                                 }
 
-                                expect(result.isClose(to: expected, decimals: 2))
-                                    .to(beTrue(),
-                                        description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
+//                                expect(result.isClose(to: expected, decimals: 2))
+//                                    .to(beTrue(),
+//                                        description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
 
                                 // Early exit to only fail at first error!
                                 if (result != expected) {

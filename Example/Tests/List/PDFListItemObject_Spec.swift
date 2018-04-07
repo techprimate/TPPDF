@@ -22,7 +22,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     .addItem(PDFListItem(symbol: .dash, content: "Subheading 1"))
                     .addItem(PDFListItem(symbol: .none, content: "Subheading 2"))
                     .addItem(PDFListItem(symbol: .inherit, content: "Subheading 3")))
-                .addItem(PDFListItem(symbol: .custom(value: "%"), content: "Heading 4"))
+                .addItem(PDFListItem(symbol: .custom(value: "+"), content: "Heading 4"))
 
             let object = PDFListObject(list: list)
 
@@ -122,8 +122,8 @@ class PDFListItemObject_Spec: QuickSpec {
                     expect(result?[11].0).toEventually(equal(PDFContainer.contentLeft))
 
                     item = result?[11].1 as? PDFAttributedTextObject
-                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 10, y: 177, width: 11.607421875, height: 17.0)))
-                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: "%")))
+                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 10, y: 177, width: 8.927734375, height: 17.0)))
+                    expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: "+")))
 
                     expect(result?[12].0).toEventually(equal(PDFContainer.contentLeft))
 
