@@ -67,19 +67,13 @@ class ViewController: UIViewController {
         // Create a list with level indentations
         let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
 
-        list.addItems([
-            PDFListItem(symbol: .numbered(value: nil))
-                .addItems([
-                    PDFListItem(content: "Introduction")
-                        .addItems([
-                            PDFListItem(symbol: .numbered(value: nil))
-                                .addItems([
-                                    PDFListItem(content: "Text"),
-                                    PDFListItem(content: "Attributed Text"),
-                                    ])
-                            ])
-                    ])
-            ])
+        list.addItem(PDFListItem(symbol: .numbered(value: "%@ %@"))
+            .addItem(PDFListItem(content: "Introduction")
+                .addItem(PDFListItem(symbol: .numbered(value: nil))
+                    .addItem(PDFListItem(content: "Text"))
+                    .addItem(PDFListItem(content: "Attributed Text"))
+            ))
+            .addItem(PDFListItem(content: "Usage")))
 
         document.addList(list: list)
 

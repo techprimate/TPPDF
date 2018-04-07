@@ -242,9 +242,60 @@ TODO: explain this
 
 #### List
 
-TODO: explain this
+Create a `PDFList` element with the indentation of each level. Each indentation level consists out of a pair of values, `pre` setting the indentation before the list symbol and `past` setting the distance between the symbol and the text.
 
-<!--addList(_ container: PDFContainer = PDFContainer.contentLeft, list: PDFList) -->
+If you do not provide enough indentation levels, e.g. you only define three but you add an element at the fourth level, the default value `0` will be used for `pre` and `past`.
+
+```swift
+let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
+```
+
+A list item consists out of a `symbol` and an optional `content`. The symbol is one of the following:
+
+- `PDFListItemSymbol.none`
+
+Doesn't display a symbol before the content
+
+- `PDFListItemSymbol.inherit`
+
+If an item is nested and uses this symbol, it will take the same one as the parent.
+
+- `PDFListItemSymbol.dot`
+
+Symbol is a middle-dot.
+
+- `PDFListItemSymbol.dash`
+
+Symbol is a dash/minus.
+
+- `PDFListItemSymbol.custom(value: String)`
+
+You need to provide any string `value` which will then be used as the symbol. Be sure to set the indentation value correctly, as the indentation is not based on the symbol frame width.
+
+- `PDFListItemSymbol.numbered(value: String?)`
+
+When the parent of multiple list items is of type `numbered` then it will use the index as the symbol, starting with `1` and append a dot `.` to the number.
+If you provide `value` this will be used for the parent item, in case you want to override the value.
+
+**Nested Lists**
+
+By adding a list item to another list item you can create nested lists:
+
+```swift
+list.addItem(PDFListItem(symbol: .numbered(value: nil))
+        .addItem(PDFListItem(content: "Introduction")
+            .addItem(PDFListItem(symbol: .numbered(value: nil))
+                .addItem(PDFListItem(content: "Text"))
+                .addItem(PDFListItem(content: "Attributed Text"))
+            ))
+        .addItem(PDFListItem(content: "Usage")))
+```
+
+Now you have created a multi-level list element, you can add to the document:
+
+```swift
+document.addList(list: list)
+```
 
 #### Table
 
