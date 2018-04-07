@@ -299,9 +299,159 @@ document.addList(list: list)
 
 #### Table
 
-TODO: explain this
+Create a `PDFTable` element, which will now be customized.
 
-<!--addTable(_ container: PDFContainer = PDFContainer.contentLeft, table: PDFTable) -->
+```swift
+let table = PDFTable()
+```
+
+Each cell has an optional `content` of type `PDFTableContent`, an optional `style` of `PDFTableCellStyle` and always an `alignment` of `PDFTableCellAlignment`.
+
+##### Alignment
+
+The aligmnet is one of the following `PDFTableCellAlignment`:
+
+- `topLeft`, `top`, `topRight`
+- `left`, `center`, `right`
+- `bottomLeft`, `bottom`, `bottomRight`
+
+During calculation the size of the content will be calculated, and afterwards it will be positioned using the cell alignment.
+
+##### Content
+
+A cell content instance `PDFTableCellContent` has a `content` value and a property `type`, which is one of the following:
+
+- `PDFTableContent.none`, empty cell
+- `PDFTableContent.string`, a simple string only styled through the cell style
+- `PDFTableContent.attributedString`, an attributed string which won't be changed by the cell style
+- `PDFTableContent.image`, an image which 
+
+If a cell height is too big for the rest of the page, it will be placed on the next page.
+
+##### Cell Style
+
+To define the style of a cell, you can create the an instance of `PDFTableCellStyle` and directly set it to the cells `style` property, but you can also style a whole table using the property `style` of type `PDFTableStyle` of the `table`.
+
+A cell style defines the `fill` and the `text` color of the content. Also it defines how the `border` is drawn and what `font` should be used:
+
+```swift
+let colors = (fill: UIColor.blue, text: UIColor.orange)
+let lineStyle = PDFLineStyle(type: .dashed, color: UIColor.gray, width: 10)
+let borders = PDFTableCellBorders(left: lineStyle, top: lineStyle, right: lineStyle, bottom: lineStyle)
+let font = UIFont.systemFont(ofSize: 20)
+let style = PDFTableCellStyle(colors: colors, borders: borders, font: font)
+```
+
+An instance of `PDFTableCellBorders` allows you set each border of a cell indvidually. The line style is defined as a `PDFLineStyle` (See [Line Style](#Line-Style)).
+
+To change the style of a specific cell, use the following method of `table`:
+
+```swift
+do {
+    try table.setCellStyle(row: 1, column: 1, style: PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black)))
+} catch PDFError.tableIndexOutOfBounds(let index, let length){
+    // In case the index is out of bounds
+
+    print("Requested cell is out of bounds! \(index) / \(length)")
+} catch {
+    // General error handling in case something goes wrong.
+
+    print("Error while setting cell style: " + error.localizedDescription)
+}
+```
+
+##### Table style
+
+A table style is a collection of cell styles, which will be applied as global values. Take a look at `PDFTableStyleDefaults` where you can find a collection of presets, e.g. `PDFTableStyleDefaults.simple`.
+
+Using the table style you can define the `outline` line style. This will be drawn around the table on each page.
+
+A `PDFTableStyle` lets you set how many rows and columns are considered header cells, and how many rows should be styled as footer rows:
+
+```swift
+let style = PDFTableStyle()
+style.rowHeaderCount = 3
+style.columnHeaderCount = 5
+style.footerCount = 1
+```
+
+Now the top five rows will be styled using the `style.columnHeaderStyle`, the first three columns will be styled using the `style.rowHeaderStyle` and the very last row will be styled using the `style.footerStyle`.
+
+All other cells are styled using the `style.contentStyle` and if the optional value `style.alternatingContentStyle` is set, then every other row will use this style.
+
+If there are conflicts, e.g a cell is a column and a header row, then the following priority order, with the higher ones beating the lower ones, is used:
+
+- `cell.style`, a custom style set for this particular cell
+- `style.columnHeaderStyle`, if the cell is a column header therefore in the top rows
+- `style.footerStyle`, if the cell is a footer row
+- `style.rowHeaderStyle`, if the cell is in the one of the first columns
+- `style.alternatingContentStyle`, if the cell is has an odd row index
+- `style.contentStyle`, the style every normal cell has
+
+If you set the property `table.showHeadersOnEveryPage` to `true`, the first rows which are the column headers, will be copied and inserted at the top of the table, after each page break.
+
+##### Table generation
+
+First, add your cell data and set the alignment for each cell. This needs to be wrapped in a `try-catch` because it can fail with invalid data or if the validation fails.
+
+The quickest way to generate a new table is using `generateCells(data:, alignments:)`. You need to pass two two-dimensional arrays, one with the data which can be `nil`, `String`, `NSAttributedString`, `Int`, `Double`, `Float` or an `UIImage`. Numbers will be converted into simple strings. Any other content will throw a `PDFError.tableContentInvalid`:
+
+```swift
+do {
+    try table.generateCells(data: [
+        [nil, "Name", "Image", "Description"],
+        [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
+        [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
+        [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
+        [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
+        [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
+        [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
+        [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
+        [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
+        [nil, nil, nil, "Many beautiful places"]
+    ],
+    alignments: [
+        [.center, .left, .center, .right],
+        [.center, .left, .center, .right],
+        [.center, .left, .center, .right],
+        [.center, .left, .center, .right],
+        [.center, .left, .center, .right],
+        [.center, .left, .center, .right],
+        [.center, .left, .center, .right],
+        [.center, .left, .center, .right],
+        [.center, .left, .center, .right],
+        [.center, .left, .center, .right],
+    ])
+} catch PDFError.tableContentInvalid(let value) {
+    // In case invalid input is provided, this error will be thrown.
+
+    print("This type of object is not supported as table content: " + String(describing: (type(of: value))))
+} catch {
+    // General error handling in case something goes wrong.
+
+    print("Error while creating table: " + error.localizedDescription)
+}
+```
+
+You are also able to create each cell individually, put them in a two-dimensional cell array and assign it to `table.cells` directly. The method above is simply added for convenience.
+
+##### Layout
+
+The table height is defined by its content, but the width is the available space between the indentations.
+The width of each column is set by a relative width, defined in an array of values between `0.0` and `1.0` which should sum up to `1.0` being `100%` of the width.
+
+```swift
+table.widths = [0.1, 0.3, 0.4, 0.2]
+```
+
+Also each cell can have a `margin` which is the distance between the cell frame and its inner borders and the `padding` as the distance between the inner borders and the content.
+
+
+...and finally you add the table to the document:
+
+```swift
+document.addTable(table: table)
+```
 
 ### Helpers
 
@@ -383,83 +533,6 @@ A `PDFLineStyle` can have one a line `type`, a `color` and a `width`. The follow
 - `PDFLineType.full`, a full line
 - `PFDLineType.dashed`, a dashed line with the dash length and spacing three times the line width
 - `PDFLineType.dotted`, a dotted line with the spacing two times the line width
-            
-<!--
-
-#### Image
-
-- `addImage(container, image, size, caption, sizeFit)`
-
-Draws an image in the given container. If the given size is not zero size, it will draw it using that size, proportionally scaling. The size of an image is scaled according to sizeFit. If the height of an image and its caption is beyond the page bounds, then a new page is created. The caption is an attributed string and can be styled (refer to `addAttributedText(...)` for an example).
-
-```swift
-document.addImage(image: UIImage(named: "Image.jpg")!)
-```
-
-- `addImagesInRow(container, images, captions, spacing)`
-
-Draws images with captions in the row using the given spacing in the given container.
-
-```swift
-document.addImagesInRow(images: [UIImage(named: "image.jpg")!, UIImage(named: "PortraitImage.jpg")!], captions: [NSAttributedString(string: "Caption 1"), NSAttributedString(string: "Caption 2")])
-```
-
-#### Table
-
-- `addTable(container, data, alignment, relativeColumnWidth, padding, margin, style)`
-
-Draws a table in the given container.
-
-The parameter data is a two-dimensional String array
-
-```swift
-let data: [[String]] = [
-	["Rating",     "4.5 / 5",  "Prep\nTime:",   "14 Hours"    ],
-	["Portions:",   "14",       "Cook\nTime:",   "16 Minutes" ]
-]
-```
-
-The parameter alignment is a two-dimensional array with `PDFTableCellAlignment` values.
-
-```swift
-let alignments: [[PDFTableCellAlignment]] = [
-	[.Left, .Center, .Left, .Center],
-	[.Left, .Center, .Left, .Center]
-]
-```
-
-The parameter `relativeColumnWidth` is an array of CGFloat smaller or equal than 1.0
-These are relative widths in percentage to the full page content width (= page width - 2 * page margin). It defines the width of each column.
-
-```swift
-let widths: [CGFloat] = [
-	0.3, 0.2, 0.3, 0.2
-]
-```
-
-The data array and the alignments array must contain the equal amount of items. The widths array must have the same amount as the data array columns has.
-
-Additional parameters are cell margin and cell padding. Margin is the spacing between each cell or between the cell and the table bounds. Padding is the spacing between the content of the cell to the cell bounds.
-
-This works the same way as HTML/CSS margin and padding works. Checkout w3schools.com [margin](http://www.w3schools.com/css/css_margin.asp) and [padding](http://www.w3schools.com/css/css_padding.asp)
-
-Table styling is done with a `PDFTableStyle` object. `PDFTableStyleDefaults` contain a couple of predefined table styles, which can be modified.
-A table style consists out of five different styles, for the row header, column header, footer, content and for alternating rows. It is also possible to set custom cell styling using the method `setCellStyle(row, column, style)`.
-
-Cell styling includes background fill color, text color, font and the line style for each border.
-
-Line styling includes line color, line width and line type, which can be either non, full, dashed or dotted.
-
-```swift
-let tableStyle = PDFTableStyleDefaults.simple
-
-tableStyle.setCellStyle(row: 2, column: 3, style: PDFTableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
-tableStyle.setCellStyle(row: 20, column: 1, style: PDFTableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
-
-document.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 8, margin: 0, style: tableStyle)
-```
-
---->
 
 ### Pagination
 
