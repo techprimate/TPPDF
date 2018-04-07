@@ -1,36 +1,52 @@
-# TPPDF
+![TPPDF](resources/header.png)
 
-[![CI Status](http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square)](https://travis-ci.org/Techprimate/TPPDF)
-[![Language](https://img.shields.io/badge/language-Swift-orange.svg?style=flat-square)](https://developer.apple.com/swift/)
+<p align="center">
+	<a href="https://github.com/Carthage/Carthage">
+		<img src="https://img.shields.io/badge/language-Swift-orange.svg?style=flat-square" alt="Swift"/>
+	</a>
+	<img src="https://img.shields.io/cocoapods/v/TPPDF.svg?style=flat-square" alt="Cocoapods"/>
+	<img src="https://img.shields.io/badge/Carthage-compatible-blue.svg?style=flat-square" alt="Carthage"/>
+	<a href="http://cocoapods.org/pods/TPPDF">
+		<img src="https://img.shields.io/cocoapods/p/TPPDF.svg?style=flat-square" alt="iOS"/>
+	</a>
+	<a href="http://cocoapods.org/pods/TPPDF">
+		<img src="https://img.shields.io/cocoapods/l/TPPDF.svg?style=flat-square" alt="License"/>
+	</a>
+	<a href="http://cocoapods.org/pods/TPPDF">
+		<img src="https://img.shields.io/cocoapods/dt/TPPDF.svg?style=flat-square" alt="Downloads"/>
+	</a>
+</p>
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/TPPDF.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Alamofire.svg)
-[![Carthage](https://img.shields.io/badge/Carthage-compatible-blue.svg?style=flat-square)](https://github.com/Carthage/Carthage)
-[![Platform](https://img.shields.io/cocoapods/p/TPPDF.svg?style=flat-square)](http://cocoapods.org/pods/TPPDF)
-[![License](https://img.shields.io/cocoapods/l/TPPDF.svg?style=flat-square)](http://cocoapods.org/pods/TPPDF)
-[![Downloads](https://img.shields.io/cocoapods/dt/TPPDF.svg?style=flat-square)](http://cocoapods.org/pods/TPPDF)
+<p align="center">
+	<a href="https://travis-ci.org/Techprimate/TPPDF">
+		<img src="http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square" alt="Travis">
+	</a>
+	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-master">
+		<img src="https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de" alt="codebeat">
+	</a>
+	<a href="https://bettercodehub.com/results/Techprimate/TPPDF">
+		<img src="https://bettercodehub.com/edge/badge/Techprimate/TPPDF" alt="bettercodehub">
+	</a>
+	<a href="https://codecov.io/gh/Techprimate/TPPDF">
+		<img src="https://img.shields.io/codecov/c/github/Techprimate/TPPDF.svg?style=flat-square" alt="codecov">
+	</a>
+</p>
 
-[![Website](https://img.shields.io/badge/www-techprimate.com-blue.svg?style=flat-square)](http://www.techprimate.com)
-[![Twitter](https://img.shields.io/badge/twitter-@Techprimate-blue.svg?style=flat-square)](http://twitter.com/techprimate)
-[![Facebook](https://img.shields.io/badge/facebook-@Techprimate-blue.svg?style=flat-square)](http://facebook.com/techprimate)
+<p align="center">
+	<b>
+	TPPDF is a fast PDF builder for iOS using simple commands to create advanced documents!
+	</b>
+</p>
 
-[![codebeat badge](https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de)](https://codebeat.co/projects/github-com-techprimate-tppdf-master)
-[![BCH compliance](https://bettercodehub.com/edge/badge/Techprimate/TPPDF)](https://bettercodehub.com/results/Techprimate/TPPDF)
-[![codecov](https://codecov.io/gh/Techprimate/TPPDF/branch/master/graph/badge.svg)](https://codecov.io/gh/Techprimate/TPPDF)
-
-TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/wiki/Builder_pattern) pattern using simple commands. 
-
-- [Features](#features)
-- [Requirements](#requirements)
-- [Communication](#communication)
-- [Installation](#installation)
-- [Example](#example)
-- [Usage](#usage)
-- [Credits](#credits)
-- [Contributors](#contributors)
-- [Sponsoring](#sponsoring)
-- [License](#license)
-
-# This project is currently under heavy changes. I am changing the project design architecture, therefore rendering of most elements is either wrong or not working. After the change, this library will be faster, more versatile, offering more calculation possibilities, have better testability and maintainability.
+<p align="center">
+    <a href="#features">Features</a>
+    <a href="#communication">Communication</a>
+  • <a href="#usage">Example</a>
+  • <a href="#usage">Installation</a>
+  • <a href="#usage">Usage</a>
+  • <a href="#credits">Credits</a>
+  • <a href="#license">License</a>
+</p>
 
 ## Features
 
@@ -54,15 +70,6 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 - :white_check_mark: Custom table styling
 - You need more features? Checkout #Contribute
 
-## Requirements
-
-| Language  | Branch | Pod version | Xcode version | iOS version |
-| --------- | ------ | ----------- | ------------- | ----------- |
-| Swift 4.0 | [develop](https://github.com/techprimate/TPPDF/tree/develop) | >= 1.0.x | Xcode 9 or greater| iOS 8.0+ |
-| Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 or greater| iOS 8.0+ |
-| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x | iOS 8.0+ |
-| Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x | iOS 8.0+ |
-
 ## Communication
 
 - If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf). (Tag 'TPPDF')
@@ -71,130 +78,56 @@ TPPDF is a PDF builder for iOS, based on the [Builder](https://en.wikipedia.org/
 - If you **have a feature request**, open an issue.
 - If you **want to contribute**, submit a pull request.
 
-## Installation
-
-### CocoaPods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-To integrate TPPDF into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
-use_frameworks!
-
-target '<Your Target Name>' do
-    pod 'TPPDF'
-end
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
-
-### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate TPPDF into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
-github "Techprimate/TPPDF" ~> 0.4
-```
-
-Run `carthage update` to build the framework and drag the built `Alamofire.framework` into your Xcode project
-
-### Swift Package Manager
-
-Swift Package Manager is not supported, as it is currently built for MacOS and Linux and therefore can't require the framework `UIKit`
-
-### Manually
-
-If you prefer not to use either of the aforementioned dependency managers, you can integrate TPPDF into your project manually.
-
-#### Embedded Framework
-
-- Open up Terminal, `cd` into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
-
-```bash
-$ git init
-```
-
-- Add TPPDF as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
-
-```bash
-$ git submodule add https://github.com/Techprimate/TPPDF.git
-```
-
-- Open the new `TPPDF` folder, and drag the `TPPDF.xcodeproj` into the Project Navigator of your application's Xcode project.
-
-    > It should appear nested underneath your application's blue project icon. Whether it is above or below all the other Xcode groups does not matter.
-
-- Select the `TPPDF.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
-- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
-- In the tab bar at the top of that window, open the "General" panel.
-- Click on the `+` button under the "Embedded Binaries" section.
-- You will see two different `TPPDF.xcodeproj` folders each with two different versions of the `TPPDF.framework` nested inside a `Products` folder.
-
-    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `TPPDF.framework`. 
-    
-- Select the top `TPPDF.framework` for iOS and the bottom one for OS X.
-
-    > You can verify which one you selected by inspecting the build log for your project. The build target for `TPPDF` will be listed as either `TPPDF iOS` or `TPPDF OSX`.
-
-- And that's it!
-
-> The `TPPDF.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
-
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, run `pod try TPPDF`
 
 ## Usage
 
-If you want to see a fully working example, please try the Cocoapod using `pod try TPPDF`.
+Building a PDF document is very easy:
 
-TPPDF creates a PDF based on commands. When the generator starts to build the PDF file it calls one command after another, until no commands are left.
-
-### Container
-
-Every command is associated to a specific container. Three containers exist: Header, Content, Footer. Additionally every container has an alignment: Left, Center, Right.
-
-When registering a command you provide the correct container - the default container is `ContentLeft`. When the PDFGenerator performs the commands, it applies the to the correct container. This way you can identify which area of the PDF gets changed.
-
-A good example would be the following call:
+First, you create a document with a paperformat...
 
 ```swift
-let pdf = PDFGenerator(format: .a4)
-pdf.addText(.footerCenter, text: "Created using TPPDF for iOS.")
+let document = PDFDocument(format: .a4)
 ```
 
-This command adds the text *"Created using TPPDF for iOS"* to the footer of all pages.
+...then you add your information to a container...
 
-### Pageformats
+```swift
+document.addText(.contentCenter, text: "Create PDF documents easily.")
+```
+
+...then you render the document...
+ 
+```swift 
+PDFGenerator.generateURL(document: document, filename: "Example.pdf")
+```
+
+**...done!**
+
+If you need more details, start here:
+
+### Document creation
+
+You can create a document using a predefined `PDFPageFormat` or by creating a custom `PDFPageLayout`:
+
+```swift
+let layout = PDFPageLayout()
+let document = PDFDocument(layout: layout)
+```
+```swift
+let document = PDFDocument(format: PDFPageFormat.a4)
+```
+
+### Page Layout
 
 The following values can be set to format the page:
 
-- `size`
-- `margin`
-- `margin.header`
-- `margin.footer`
-- `space.header`
-- `space.footer`
+- `size` --- width and height of a page
+- `margin` --- content inset on each side of a page
+- `space.header` --- Space between header and content elements
+- `space.footer` --- Space between footer and content elements
 
 All values are in dots and are rendered using 72 DPI (dots per inch), as this is the default screen DPI.
 
@@ -202,28 +135,143 @@ You can also used the predefined formats. For details please refer to the source
 
 If you need your page in landscape format, use the `landscapeSize` variable.
 
+![Layout](resources/layout.png)
+
+### Elements
+
+TPPDF is element based. When adding any content to the document, you are actually adding an element. Then at the render process all elements are calculated and rendered. But first you need to understand the concept of the layout engine:
+
+### Container
+
+Every element is placed in a specific container. Three containers exist: Header, Content, Footer. Additionally every container has an alignment: Left, Center, Right.
+
+When you add an new element, you need to provide the correct container - the default container is `ContentLeft`, therefore it is an optional parameter. During calculation it will place the element in the correct container and calculate the correct frame accordingly.
+
+A good example would be the following:
+
+```swift
+let document = PDFDocument(format: .a4)
+document.addText(.footerCenter, text: "Created using TPPDF for iOS.")
+```
+
+This command adds the text **Created using TPPDF for iOS** to the footer of all pages, because elements in the header and footer containers are placed on every page.
+
 ### Header & Footer
 
-If you want to add a text to the header or footer you simply need to choose the correct container.
+Basically all elements which are either to either a header (`headerLeft`, `headerCenter` or `headerRight`) or footer (`footerLeft`, `footerCenter` or `footerRight`) container, are considered as header and footer elements and will be repeated on each page.
 
-If you want to render an image in one of these containers, set the size in the `PDFImage` object.
+If a page does not have any content, e.g. an empty page in between two pages, the header and footer elements won't be added to this page neither.
 
-But there are some limitations:
+### List of element types
 
-- Only one line. If you want multiple lines, add multiple commands
+... now let's continue with the different kinds of elements.
 
-### Pagination
+#### Line Separator
 
-To enable pagination, set a `Container` on the variable `paginationContainer`.
+```swift
+let style = PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5)
+document.addLineSeparator(PDFContainer.contentLeft, style: style) 
+```
 
-### Image Quality
+Adds a horizontal line with a specific `style` in the given `container`. This line is affected by the `indentation`, therefore it is possible to change its width by setting a left and a right indentation before.
 
-To reduce the amount of data and the resulting file size, you can reduce the image quality by setting a value between 0 and 1 on the variable `imageQuality`.
+#### Simple Text
 
-### PDF Info
+addText(_ container: PDFContainer = PDFContainer.contentLeft, text: String, lineSpacing: CGFloat = 1.0)     addText(_ container: PDFContainer = PDFContainer.contentLeft, textObject: PDFSimpleText)
 
-Configure PDF metadata, including `title`, `author`, `subject`, `keywords`, `owner password`, `user password`, `allows printing`, and `allows copying`.
+#### Attributed Text
 
+addAttributedText(_ container: PDFContainer = PDFContainer.contentLeft, text: NSAttributedString)
+addAttributedText(_ container: PDFContainer = PDFContainer.contentLeft, textObject: PDFAttributedText) 
+
+
+#### Image
+
+addImage(_ container: PDFContainer = PDFContainer.contentLeft, image: PDFImage)
+
+#### Images in one row
+
+addImagesInRow(_ container: PDFContainer = PDFContainer.contentLeft, images: [PDFImage], spacing: CGFloat = 5.0) 
+
+#### List
+
+addList(_ container: PDFContainer = PDFContainer.contentLeft, list: PDFList) 
+
+#### Table
+
+addTable(_ container: PDFContainer = PDFContainer.contentLeft, table: PDFTable) 
+
+### Helpers
+
+The following methods of `PDFDocument` are not considered as elements, as they are only runtime changes to the calculations and rendering.
+
+#### Space - `addSpace(_ container: PDFContainer, space: CGFloat)`
+
+Adds a space with the height of `space` between the previous element and the next element.
+
+```swift
+document.setSpace(space: 32.0)
+```
+
+#### Simple Text Font - `setFont(_ container: PDFContainer, font: UIFont)`
+
+Sets the font of a container. This font will be used in all following elements of type `PDFSimpleText` in the given container, until the font is changed. This font does not affect `PDFAttributedText` elements.
+
+```swift
+pdf.setFont(font: UIFont.systemFont(ofSize: 20.0))
+```
+
+#### Reset Simple Text Font - `resetFont(_ container: PDFContainer)`
+
+This resets the font to the default font, which is `UIFont.systemFont(ofSize: UIFont.systemFontSize)`
+
+```swift
+pdf.resetFont(.contentLeft)
+```
+
+#### Simple Text Color - `setTextColor(_ container: PDFContainer, color: UIColor)`
+
+Sets the font of a container. This font will be used in the next commands in the given container, if there is not a different font specified.
+
+```swift
+pdf.setFont(UIFont.systemFont(ofSize: 20.0))
+```
+
+#### Reset Simple Text Color - `resetTextColor(_ container: PDFContainer)`
+
+This resets the font to the default font, which is `UIFont.systemFont(ofSize: UIFont.systemFontSize)`
+
+```swift
+pdf.resetFont(.contentLeft)
+```
+
+#### `setIndentation(_ container: PDFContainer, indent: CGFloat, left: Bool)` 
+
+Set the indentation to a given `indent` in the container. By setting `left` to `false` you will change the indentation from the right edge.
+
+```swift
+pdf.setIndentation(indent: 50.0, left: true)
+pdf.setIndentation(indent: 50.0, left: false)
+```
+
+Now the document has an indentation of `50` points from left and right edge.
+If you need to reset the indentation, call the function with `0.0` as parameter
+
+```swift
+pdf.setIndentation(indent: 0.0)
+```
+
+#### `setAbsoluteOffset(_ container: PDFContainer, offset: CGFloat)`
+
+Sets the offset in points from the top edge of a `container` to the given parameter `offset`.
+
+This is useful if you need to layer multiple elements above each other.
+
+#### Page Break
+
+Simply call `document.createNewPage()` and it will add a page break. The next element will be positioned on the next page.
+
+<!--
 ### Commands
 
 The following commands are the ones available to you for creating your document. Most of these take a container as a parameter, defaulting to page content with left alignment. For the sake of readability, there is only a container in the example of `addText(...)`.
@@ -258,22 +306,6 @@ let title = NSMutableAttributedString(string: "Awesome attributed title!", attri
 	NSForegroundColorAttributeName : UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0, alpha: 1.0)
 ])
 pdf.addAttributedText(text: title)
-```
-
-- `setFont(container, font)`
-
-Sets the font of a container. This font will be used in the next commands in the given container, if there is not a different font specified.
-
-```swift
-pdf.setFont(UIFont.systemFont(ofSize: 20.0))
-```
-
-- `resetFont(container)`
-
-This resets the font to the default font, which is `UIFont.systemFont(ofSize: UIFont.systemFontSize)`
-
-```swift
-pdf.resetFont(.contentLeft)
 ```
 
 #### Image
@@ -349,94 +381,185 @@ tableStyle.setCellStyle(row: 20, column: 1, style: PDFTableCellStyle(fillColor: 
 pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 8, margin: 0, style: tableStyle)
 ```
 
-#### Container
+--->
 
-- `addSpace(container, space)`
+### Pagination
 
-Adds the given value to the content height, resulting in a space between the previous and the next command element.
+To customize pagination, create an instance of `PDFPagination` and set it to the `pagination` property of your document or simply edit the default one.
 
-```swift
-pdf.addSpace(space: 12.0)
-```
+Pagination needs one container where it will add the pagination elements on each page. This defaults to `.none` which results in no pagination added.
 
-- `setIndentation(container, points)`
-
-If you need to indent your content you can simply call this method.
-
+It is possible to set pagination `range` with a `start` and `end` index. You can also hide specific pages, by adding the page nunber to the `hiddenPages` property. The range is set default to include all pages.
+As an example this won't paginate page `1`, `2`, `5` nor any page above `7`:
 
 ```swift
-pdf.setIndentation(indent: 50.0)
+let pagination = PDFPagination()
+pagination.range = (start: 3, end: 7)
+pagination.hiddenPages = [5]
 ```
 
-Now add more commands which are indented.
-If you need to reset the indentation simply call the function with `0.0` as parameter
+To actually define the `style` of the pagination, you can either choose on of the predefined ones, or create a custom closure-based style. The pagination algorithm receives the `current` page number and the `total` pages amount and returns a String, which will then be transformed into a text element.
 
+#### `.default`
+
+This is the default pagination setting, converts page `1` of `3` to `1 - 3`
+
+#### `.roman(template: String)`
+
+Page `8` of `13` will be converted into roman numerals `VIII` and `XIII` and inserted in the format, e.g `%@ _|_ %@` becomes `VIII _|_ XIII`. The main idea of this preset is converting the numbers into roman numerals but configure the text using the format.
+
+#### `.customNumberFormat(let template, numberFormatter: NumberFormatter)`
+
+Both numbers are converted into a string using the provided `numberFormatter`. This allows you to use the full capabilities of the built-in formatter class. Afterwards both values are also inserted into the provided `template`.
+
+Example:
 
 ```swift
-pdf.setIndentation(indent: 0.0)
+let formatter = NumberFormatter.init()
+formatter.alwaysShowsDecimalSeparator = true
+formatter.numberStyle = .currency
+formatter.currencyCode = "EUR"
+
+let template = "%@ + %@"
 ```
 
-- `setAbsoluteOffset(container, points)`
+Page `8` of `13` will return the following: `€8.00 + €13.00` which might be completly unsuitable as a pagination, but displays the possibilities. :) 
 
-If you do not want to add a space between two elements, you can also set a absolut offset form the top border.
+#### `customClosure(closure: (_ page: Int, _ total: Int) -> String)`
 
-One possible use case are layered PDF files.
-Simply call `pdf.setOffset(offset: 0.0)` and you can add content which is placed on top of the previously set content.
+The `closure` will be called everytime the generator needs the pagination value. You have full control on how the resulting string will look like.
+
+Example:
 
 ```swift
-pdf.setOffset(offset: 250.0)
+PDFPaginationStyle.customClosure({ (page, total) -> String in
+	let separator: String = {
+		switch page % 4 {
+			case 1:
+				return "#"
+			case 2:
+				return "&"
+			case 3:
+				return "*"
+			default:
+				return "-"
+		}
+	}()
+	return "\(page) " + separator + " \(total)"
+})
 ```
 
-- `createNewPage()`
+This example will return a different separator, depending on the modulo result.
 
-Create a new page.
+#### MORE!
 
-```swift
-pdf.createNewPage()
+If you want a specific style to be included in the presets, please open an issue! The more presets can be provided the better for everyone!
+
+### Document Info
+
+To store metadata information in the document, change the values of the `info` property.
+You are able to set a `title`, `author`, `subject` and `keywords`.
+
+If you need to encrypt the document, set an `owner password` and a `user password`. Also you can restrict printing and copying by setting the `allows printing` and `allows copying` flags.
+
+## Installation
+
+### Requirements
+
+| Language  | Branch | Pod version | Xcode version | iOS version |
+| --------- | ------ | ----------- | ------------- | ----------- |
+| Swift 4.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 1.0.x | Xcode 9 or greater| iOS 8.3+ |
+| Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 or greater| iOS 8.0+ |
+| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x | iOS 8.0+ |
+| Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x | iOS 8.0+ |
+
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
 ```
 
-## Contribute
+To integrate TPPDF into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
-You need more commands?
-Just fork the project, implement the following and create a pull request!
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
 
-To implement a new command you need to edit the following places. As an example we implement the command `SetFont`:
-
-- Add `SetFont` to the enum `Command` in [Command.swift](https://github.com/Techprimate/TPPDF/blob/master/TPPDF/Classes/Command.swift)
-
-```swift
-enum Command {
-...
-case SetFont(font: UIFont)
-}
+target '<Your Target Name>' do
+    pod 'TPPDF'
+end
 ```
 
-- Add `SetFont` to the switch statement in the method `renderCommand` in [PDFGenerator.swift](https://github.com/Techprimate/TPPDF/blob/master/TPPDF/Classes/PDFGenerator.swift). In this case you do not need to create another `draw...` method but in other cases you might have to create a new private drawing method, handling different containers.
+Then, run the following command:
 
-```swift
-switch command {
-	...
-   case let .SetFont(font):
-  		self.font = font // Currently there is one font variable used for draw calls. If you change it, all future commands will use the new font.
-  		break
-   }
-}
+```bash
+$ pod install
 ```
 
-- Add a public method `setFont` which adds a command to the command chain. 
+### Carthage
 
-```swift
-public func setFont(container: PDFContainer = PDFContainer.ContentLeft, font: UIFont = UIFont.systemFontOfSize(14)) {
-	commands += [(container, .SetFont(font: font))]
-}
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
 ```
 
-**If you add default values, then you need to do it in this method!**
+To integrate TPPDF into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-### Aspects to consider!!
+```ogdl
+github "Techprimate/TPPDF" ~> 1.0
+```
 
-The previous example does not handle different `Containers`. The correct way of doing this, would be three instance variables of type `UIFont`. One for the header, one for the content and one for the footer.
-Then, when calling the command, it changes the correct font variable, depending on the PDFContainer provided.
+Run `carthage update` to build the framework and drag the built `Alamofire.framework` into your Xcode project
+
+### Swift Package Manager
+
+Swift Package Manager is not supported, as TPPDF requires the framework `UIKit` which is not available on macOS or Linux.
+
+### Manually
+
+If you prefer not to use either of the aforementioned dependency managers, you can integrate TPPDF into your project manually.
+
+#### Embedded Framework
+
+- Open up Terminal, `cd` into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
+
+```bash
+$ git init
+```
+
+- Add TPPDF as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
+
+```bash
+$ git submodule add https://github.com/Techprimate/TPPDF.git
+```
+
+- Open the new `TPPDF` folder, and drag the `TPPDF.xcodeproj` into the Project Navigator of your application's Xcode project.
+
+    > It should appear nested underneath your application's blue project icon. Whether it is above or below all the other Xcode groups does not matter.
+
+- Select the `TPPDF.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
+- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
+- In the tab bar at the top of that window, open the "General" panel.
+- Click on the `+` button under the "Embedded Binaries" section.
+- You will see two different `TPPDF.xcodeproj` folders each with two different versions of the `TPPDF.framework` nested inside a `Products` folder.
+
+    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `TPPDF.framework`. 
+    
+- Select the top `TPPDF.framework` for iOS and the bottom one for OS X.
+
+    > You can verify which one you selected by inspecting the build log for your project. The build target for `TPPDF` will be listed as either `TPPDF iOS` or `TPPDF OSX`.
+
+- And that's it!
+
+> The `TPPDF.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
 
 ## Apps using TPPDF
 
@@ -454,18 +577,32 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 ![Mama's Cookbook](apps/MCB.png)
 
-
 ## Credits
 
-TPPDF is created by Philip Niedertscheider.
+TPPDF is created by Philip Niedertscheider, owned by [techprimate](https://www.github.com/techprimate)
 
-Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://github.com/nRewik/SimplePDF) for the inspiration and code base.
+<p align="center">
+	<a href="https://www.techprimate.com">
+		<img src="https://img.shields.io/badge/www-techprimate.com-blue.svg?style=flat-square" alt="techprimate.com">
+	</a>
+	<a href="http://twitter.com/techprimate">
+	    <img src="https://img.shields.io/badge/twitter-@Techprimate-blue.svg?style=flat-square" alt="twitter">
+	</a>
+	<a href="https://facebook.com/techprimate">
+		<img src="https://img.shields.io/badge/facebook-@Techprimate-blue.svg?style=flat-square" alt="facebook">
+	</a>
+</p>
 
-## Contributors
 
-- Philip Niedertscheider, [techprimate-phil](https://www.github.com/techprimate-phil) - Techprimate [techprimate](https://www.github.com/techprimate)
+### Contributors
+
+- Philip Niedertscheider, [techprimate-phil](https://www.github.com/techprimate-phil)
 - Zheng-Xiang Ke, [kf99916](https://www.github.com/kf99916)
+
+### Thank You
+
+Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://github.com/nRewik/SimplePDF) for the inspiration.
 
 ## License
 
-TPPDF is available under the MIT license. See the LICENSE file for more info.
+TPPDF is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
