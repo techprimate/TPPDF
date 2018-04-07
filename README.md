@@ -4,22 +4,22 @@
 	<a href="https://github.com/Carthage/Carthage">
 		<img src="https://img.shields.io/badge/language-Swift-orange.svg?style=flat-square" alt="Swift"/>
 	</a>
-	<img src="https://img.shields.io/cocoapods/v/TPPDF.svg?style=flat-square" alt="Cocoapods"/>
+	<img src="https://img.shields.io/cocoapods/v/TPdocument.svg?style=flat-square" alt="Cocoapods"/>
 	<img src="https://img.shields.io/badge/Carthage-compatible-blue.svg?style=flat-square" alt="Carthage"/>
 	<a href="http://cocoapods.org/pods/TPPDF">
-		<img src="https://img.shields.io/cocoapods/p/TPPDF.svg?style=flat-square" alt="iOS"/>
+		<img src="https://img.shields.io/cocoapods/p/TPdocument.svg?style=flat-square" alt="iOS"/>
 	</a>
 	<a href="http://cocoapods.org/pods/TPPDF">
-		<img src="https://img.shields.io/cocoapods/l/TPPDF.svg?style=flat-square" alt="License"/>
+		<img src="https://img.shields.io/cocoapods/l/TPdocument.svg?style=flat-square" alt="License"/>
 	</a>
 	<a href="http://cocoapods.org/pods/TPPDF">
-		<img src="https://img.shields.io/cocoapods/dt/TPPDF.svg?style=flat-square" alt="Downloads"/>
+		<img src="https://img.shields.io/cocoapods/dt/TPdocument.svg?style=flat-square" alt="Downloads"/>
 	</a>
 </p>
 
 <p align="center">
 	<a href="https://travis-ci.org/Techprimate/TPPDF">
-		<img src="http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square" alt="Travis">
+		<img src="http://img.shields.io/travis/Techprimate/TPdocument.svg?style=flat-square" alt="Travis">
 	</a>
 	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-master">
 		<img src="https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de" alt="codebeat">
@@ -28,7 +28,7 @@
 		<img src="https://bettercodehub.com/edge/badge/Techprimate/TPPDF" alt="bettercodehub">
 	</a>
 	<a href="https://codecov.io/gh/Techprimate/TPPDF">
-		<img src="https://img.shields.io/codecov/c/github/Techprimate/TPPDF.svg?style=flat-square" alt="codecov">
+		<img src="https://img.shields.io/codecov/c/github/Techprimate/TPdocument.svg?style=flat-square" alt="codecov">
 	</a>
 </p>
 
@@ -173,33 +173,84 @@ let style = PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5)
 document.addLineSeparator(PDFContainer.contentLeft, style: style) 
 ```
 
-Adds a horizontal line with a specific `style` in the given `container`. This line is affected by the `indentation`, therefore it is possible to change its width by setting a left and a right indentation before.
+Adds a horizontal line with a specific `style` in the given `container`. This line is affected by the `indentation`, therefore it is possible to change its width by setting a left and a right indentation before. See [Line Style](#LineStyle) for details about the line styling.
 
 #### Simple Text
 
-addText(_ container: PDFContainer = PDFContainer.contentLeft, text: String, lineSpacing: CGFloat = 1.0)     addText(_ container: PDFContainer = PDFContainer.contentLeft, textObject: PDFSimpleText)
+To add a simple string `text` with a custom `lineSpacing`, you first need to create a `PDFSimpleText` and the an add it to the document.
+
+```swift
+let text = "Some text!"
+let spacing: CGFloat = 10.0
+let textElement = PDFSimpleText(text: text, spacing: spacing)
+document.addText(textObject: textElement)
+```
+
+For convenience you are also able to add an attributed string directly, and TPPDF will wrap it in a `PDFSimpleText` for you.
+
+```swift
+document.addText(text: text, lineSpacing: spacing)
+```
+
+During the render process it will create an attributed string using the font set by `setFont(font:)` and the text color set by `setTextColor(color:)`. 
 
 #### Attributed Text
 
-addAttributedText(_ container: PDFContainer = PDFContainer.contentLeft, text: NSAttributedString)
-addAttributedText(_ container: PDFContainer = PDFContainer.contentLeft, textObject: PDFAttributedText) 
+To add an attributed string to the document, you first need to create a `PDFAttributedText` and then add it to the document.
 
+```swift
+let attributedTitle = NSMutableAttributedString(string: "Awesome attributed title!", attributes: [
+	NSFontAttributeName : UIFont.systemFontOfSize(28.0),
+	NSForegroundColorAttributeName : UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0, alpha: 1.0)
+])
+let textElement = PDFAttributedText(text: title)
+document.addAttributedText(textObject: attributedTitle)
+```
+
+For convenience you are also able to add an attributed string directly, and TPPDF will wrap it in a `PDFAttributedText` for you.
+
+```swift
+document.addAttributedText(text: attributedTitle)
+```
 
 #### Image
 
-addImage(_ container: PDFContainer = PDFContainer.contentLeft, image: PDFImage)
+To add an image to the document, you first need to create a `PDFImage` which wraps the image and the customization.
+
+```swift
+let image = UIImage(named: "awesome-image")!
+let imageElement = PDFImage(image: image)
+document.addImage(image: imageElement)
+```
+
+A `PDFImage` can also include a optional `caption` which is either a `PDFSimpleText` or `PDFAttributedText`. 
+The caption is underneath the image and has the image width as the maximum available width.
+
+If you set a `size` it will try to fit in this size, defaults to `CGSize.zero` which will then use the actual image pixel size. The image can either be scaled to fit the `width` the `height` or both. Adjust this by setting the `sizeFit` to either
+ 
+- `PDFImageSizeFit.width`
+- `PDFImageSizeFit.height`
+- `PDFImageSizeFit.widthHeight`
+
+To minimize the file size, images can be compressed using JPEG compression, which can be modified by setting the `quality` value between `0.0` for bad quality and `1.0` for best quality. Default value is `0.85` which gives good compression and good quality.
 
 #### Images in one row
 
-addImagesInRow(_ container: PDFContainer = PDFContainer.contentLeft, images: [PDFImage], spacing: CGFloat = 5.0) 
+TODO: explain this
+
+<!--addImagesInRow(_ container: PDFContainer = PDFContainer.contentLeft, images: [PDFImage], spacing: CGFloat = 5.0) -->
 
 #### List
 
-addList(_ container: PDFContainer = PDFContainer.contentLeft, list: PDFList) 
+TODO: explain this
+
+<!--addList(_ container: PDFContainer = PDFContainer.contentLeft, list: PDFList) -->
 
 #### Table
 
-addTable(_ container: PDFContainer = PDFContainer.contentLeft, table: PDFTable) 
+TODO: explain this
+
+<!--addTable(_ container: PDFContainer = PDFContainer.contentLeft, table: PDFTable) -->
 
 ### Helpers
 
@@ -218,7 +269,7 @@ document.setSpace(space: 32.0)
 Sets the font of a container. This font will be used in all following elements of type `PDFSimpleText` in the given container, until the font is changed. This font does not affect `PDFAttributedText` elements.
 
 ```swift
-pdf.setFont(font: UIFont.systemFont(ofSize: 20.0))
+document.setFont(font: UIFont.systemFont(ofSize: 20.0))
 ```
 
 #### Reset Simple Text Font - `resetFont(_ container: PDFContainer)`
@@ -226,7 +277,7 @@ pdf.setFont(font: UIFont.systemFont(ofSize: 20.0))
 This resets the font to the default font, which is `UIFont.systemFont(ofSize: UIFont.systemFontSize)`
 
 ```swift
-pdf.resetFont(.contentLeft)
+document.resetFont(.contentLeft)
 ```
 
 #### Simple Text Color - `setTextColor(_ container: PDFContainer, color: UIColor)`
@@ -234,7 +285,7 @@ pdf.resetFont(.contentLeft)
 Sets the font of a container. This font will be used in the next commands in the given container, if there is not a different font specified.
 
 ```swift
-pdf.setFont(UIFont.systemFont(ofSize: 20.0))
+document.setFont(UIFont.systemFont(ofSize: 20.0))
 ```
 
 #### Reset Simple Text Color - `resetTextColor(_ container: PDFContainer)`
@@ -242,7 +293,7 @@ pdf.setFont(UIFont.systemFont(ofSize: 20.0))
 This resets the font to the default font, which is `UIFont.systemFont(ofSize: UIFont.systemFontSize)`
 
 ```swift
-pdf.resetFont(.contentLeft)
+document.resetFont(.contentLeft)
 ```
 
 #### `setIndentation(_ container: PDFContainer, indent: CGFloat, left: Bool)` 
@@ -250,15 +301,15 @@ pdf.resetFont(.contentLeft)
 Set the indentation to a given `indent` in the container. By setting `left` to `false` you will change the indentation from the right edge.
 
 ```swift
-pdf.setIndentation(indent: 50.0, left: true)
-pdf.setIndentation(indent: 50.0, left: false)
+document.setIndentation(indent: 50.0, left: true)
+document.setIndentation(indent: 50.0, left: false)
 ```
 
 Now the document has an indentation of `50` points from left and right edge.
 If you need to reset the indentation, call the function with `0.0` as parameter
 
 ```swift
-pdf.setIndentation(indent: 0.0)
+document.setIndentation(indent: 0.0)
 ```
 
 #### `setAbsoluteOffset(_ container: PDFContainer, offset: CGFloat)`
@@ -271,42 +322,18 @@ This is useful if you need to layer multiple elements above each other.
 
 Simply call `document.createNewPage()` and it will add a page break. The next element will be positioned on the next page.
 
+### Styling objects
+
+#### Line Style
+
+A `PDFLineStyle` can have one a line `type`, a `color` and a `width`. The following types are currently impelemented:
+
+- `PDFLineType.none`, invisible line
+- `PDFLineType.full`, a full line
+- `PFDLineType.dashed`, a dashed line with the dash length and spacing three times the line width
+- `PDFLineType.dotted`, a dotted line with the spacing two times the line width
+            
 <!--
-### Commands
-
-The following commands are the ones available to you for creating your document. Most of these take a container as a parameter, defaulting to page content with left alignment. For the sake of readability, there is only a container in the example of `addText(...)`.
-
-#### Lines
-
-- `addLineSeparator(container, style)`
-
-Draws a horizontal line using the given line style in the given container.
-
-```swift
-pdf.addLineSeparator(thickness: 0.1, style: PDFLineStyle(type: .dashed, color: UIColor.green, width: 1.0))
-```
-
-#### Text
-
-- `addText(container, text, lineSpacing)`
-
-Draws a text in the given container. It creates a attributed string and sets the linespacing.
-
-```swift
-pdf.addText(.ContentCenter, text: "Created using TPPDF for iOS.", lineSpacing: 5)
-```
-
-- `addAttributedText(container, attributedText)`
-
-Draws a NSAttributedString in the given container.
-
-```swift
-let title = NSMutableAttributedString(string: "Awesome attributed title!", attributes: [
-	NSFontAttributeName : UIFont.systemFontOfSize(28.0),
-	NSForegroundColorAttributeName : UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0, alpha: 1.0)
-])
-pdf.addAttributedText(text: title)
-```
 
 #### Image
 
@@ -315,7 +342,7 @@ pdf.addAttributedText(text: title)
 Draws an image in the given container. If the given size is not zero size, it will draw it using that size, proportionally scaling. The size of an image is scaled according to sizeFit. If the height of an image and its caption is beyond the page bounds, then a new page is created. The caption is an attributed string and can be styled (refer to `addAttributedText(...)` for an example).
 
 ```swift
-pdf.addImage(image: UIImage(named: "Image.jpg")!)
+document.addImage(image: UIImage(named: "Image.jpg")!)
 ```
 
 - `addImagesInRow(container, images, captions, spacing)`
@@ -323,7 +350,7 @@ pdf.addImage(image: UIImage(named: "Image.jpg")!)
 Draws images with captions in the row using the given spacing in the given container.
 
 ```swift
-pdf.addImagesInRow(images: [UIImage(named: "image.jpg")!, UIImage(named: "PortraitImage.jpg")!], captions: [NSAttributedString(string: "Caption 1"), NSAttributedString(string: "Caption 2")])
+document.addImagesInRow(images: [UIImage(named: "image.jpg")!, UIImage(named: "PortraitImage.jpg")!], captions: [NSAttributedString(string: "Caption 1"), NSAttributedString(string: "Caption 2")])
 ```
 
 #### Table
@@ -378,7 +405,7 @@ let tableStyle = PDFTableStyleDefaults.simple
 tableStyle.setCellStyle(row: 2, column: 3, style: PDFTableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
 tableStyle.setCellStyle(row: 20, column: 1, style: PDFTableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
 
-pdf.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 8, margin: 0, style: tableStyle)
+document.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 8, margin: 0, style: tableStyle)
 ```
 
 --->
@@ -538,28 +565,28 @@ $ git init
 - Add TPPDF as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
 
 ```bash
-$ git submodule add https://github.com/Techprimate/TPPDF.git
+$ git submodule add https://github.com/Techprimate/TPdocument.git
 ```
 
-- Open the new `TPPDF` folder, and drag the `TPPDF.xcodeproj` into the Project Navigator of your application's Xcode project.
+- Open the new `TPPDF` folder, and drag the `TPdocument.xcodeproj` into the Project Navigator of your application's Xcode project.
 
     > It should appear nested underneath your application's blue project icon. Whether it is above or below all the other Xcode groups does not matter.
 
-- Select the `TPPDF.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
+- Select the `TPdocument.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
 - Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
 - In the tab bar at the top of that window, open the "General" panel.
 - Click on the `+` button under the "Embedded Binaries" section.
-- You will see two different `TPPDF.xcodeproj` folders each with two different versions of the `TPPDF.framework` nested inside a `Products` folder.
+- You will see two different `TPdocument.xcodeproj` folders each with two different versions of the `TPdocument.framework` nested inside a `Products` folder.
 
-    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `TPPDF.framework`. 
+    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `TPdocument.framework`. 
     
-- Select the top `TPPDF.framework` for iOS and the bottom one for OS X.
+- Select the top `TPdocument.framework` for iOS and the bottom one for OS X.
 
     > You can verify which one you selected by inspecting the build log for your project. The build target for `TPPDF` will be listed as either `TPPDF iOS` or `TPPDF OSX`.
 
 - And that's it!
 
-> The `TPPDF.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
+> The `TPdocument.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
 
 ## Apps using TPPDF
 

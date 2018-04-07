@@ -25,12 +25,12 @@ public enum PDFLineType {
     case full
 
     /**
-     Line is dashed, dash length and spacing is defined in a `PDFLineStyle` object
+     Line is dashed, dash length and spacing is three times the line width
      */
     case dashed
 
     /**
-     Line is dotted. Dot spacing is defined in a `PDFLineStyle` object
+     Line is dotted. Dot spacing is twice the line width
      */
     case dotted
 

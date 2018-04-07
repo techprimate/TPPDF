@@ -17,7 +17,7 @@ env:
   - DESTINATION="OS=8.4,name=iPhone 6 Plus"
   - DESTINATION="OS=9.3,name=iPhone 6s Plus"
   - DESTINATION="OS=10.2,name=iPhone 7 Plus"
-  - DESTINATION="OS=11.1,name=iPhone 8"
+  - DESTINATION="OS=11.3,name=iPhone 8"
 install:
 - bundle install
 - bundle exec pod repo update --silent
