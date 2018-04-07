@@ -26,7 +26,7 @@ class PDFCalculations {
     static func calculateText(generator: PDFGenerator,
                               container: PDFContainer,
                               text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString, remainder: NSAttributedString?) {
-        var availableSize = calculateAvailableFrame(for: generator, in: container)
+        let availableSize = calculateAvailableFrame(for: generator, in: container)
         let (fittingText, textSize, remainder) = calculateTextSizeAndRemainder(of: text, in: availableSize)
         let origin = calculateElementPosition(for: generator, in: container, with: textSize)
         
@@ -218,26 +218,25 @@ class PDFCalculations {
     
     static func calculateCellFrame(generator: PDFGenerator,
                                    container: PDFContainer,
-                                   origin: CGPoint,
-                                   width: CGFloat,
+                                   position: (origin: CGPoint, width: CGFloat),
                                    text: NSAttributedString,
                                    alignment: PDFTableCellAlignment) -> CGRect {
         let textMaxHeight = PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container)
-        let frame: CGRect = CGRect(x: origin.x, y: origin.y, width: width, height: textMaxHeight)
+        let frame: CGRect = CGRect(x: position.origin.x, y: position.origin.y, width: position.width, height: textMaxHeight)
         
         let currentRange = CFRange(location: 0, length: 0)
         let (_, _, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
         let x: CGFloat = {
             if alignment.isLeft {
-                return origin.x
+                return position.origin.x
             } else if alignment.isRight {
-                return origin.x + width - drawnSize.width
+                return position.origin.x + position.width - drawnSize.width
             } else {
-                return origin.x + width / 2 - drawnSize.width / 2
+                return position.origin.x + position.width / 2 - drawnSize.width / 2
             }
         }()
         
-        return CGRect(origin: CGPoint(x: x, y: origin.y), size: CGSize(width: drawnSize.width, height: drawnSize.height))
+        return CGRect(origin: CGPoint(x: x, y: position.origin.y), size: CGSize(width: drawnSize.width, height: drawnSize.height))
     }
     
     static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {

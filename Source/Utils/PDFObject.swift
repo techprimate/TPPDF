@@ -26,6 +26,7 @@ class PDFObject: PDFJSONSerializable {
 
      - returns: List of objects and the container they are located in
      */
+    @discardableResult
     func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         return []
     }

@@ -12,9 +12,6 @@ extension PDFTableContent: Equatable {
             return false
         }
 
-        print(lhs.content)
-        print(rhs.content)
-
         if let lhsString = lhs.content as? String, let rhsString = rhs.content as? String, lhsString != rhsString {
             return false
         } else if let lhsString = lhs.content as? NSAttributedString, let rhsString = rhs.content as? NSAttributedString, lhsString != rhsString {

@@ -35,7 +35,6 @@ class PDFTableObject: PDFObject {
 
         var availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         var origin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
-        var startingPoint = origin
 
         // Calculate cells
 
@@ -55,7 +54,7 @@ class PDFTableObject: PDFObject {
                 cells: row)
 
             // Calculate cell items
-            var result = calculateRow(cells: row,
+            let result = calculateRow(cells: row,
                                       rowIndex: rowIdx,
                                       availableSize: availableSize,
                                       origin: origin,
@@ -161,7 +160,6 @@ class PDFTableObject: PDFObject {
                          styles: [PDFTableCellStyle],
                          generator: PDFGenerator,
                          container: PDFContainer) -> [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] {
-        let layout = generator.document.layout
         var frames: [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] = []
         var newOrigin = origin
 
@@ -208,8 +206,7 @@ class PDFTableObject: PDFObject {
                         result = PDFCalculations
                             .calculateCellFrame(generator: generator,
                                                 container: container,
-                                                origin: frame.frames.content.origin,
-                                                width: frame.frames.content.width,
+                                                position: (origin: frame.frames.content.origin, width: frame.frames.content.width),
                                                 text: text,
                                                 alignment: cell.alignment)
                     }
@@ -301,7 +298,7 @@ class PDFTableObject: PDFObject {
         var pageEnd: CGPoint = CGPoint.zero
 
         for (rowIdx, row) in cellItems.enumerated() {
-            for (colIdx, item) in row.enumerated() {
+            for item in row {
                 let cellFrame = item.frames.cell
                 let contentFrame = item.frames.content
 

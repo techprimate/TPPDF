@@ -561,7 +561,6 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				6A3C839CD2224EBF02020B47 /* [CP] Embed Pods Frameworks */,
-				F65FC339E743039B2B30D8A8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -581,7 +580,6 @@
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
 				2A4981DFDC400C57624F5C6E /* [CP] Embed Pods Frameworks */,
-				577370F6FF4C5DBD103653D9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -685,21 +683,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		577370F6FF4C5DBD103653D9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Tests/Pods-TPPDF_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		67F9262A379A22EEC0A85C62 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -767,21 +750,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "echo \"info: Looking for SwiftLint in Pods folder: \" ${PODS_ROOT}\n\nif which swiftlint >/dev/null; then\n   \"${PODS_ROOT}/SwiftLint/swiftlint\" --config ../.swiftlint.yml\nelse\n   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
-		F65FC339E743039B2B30D8A8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 

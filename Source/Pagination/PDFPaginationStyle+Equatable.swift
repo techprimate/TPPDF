@@ -8,7 +8,7 @@
 extension PDFPaginationStyle: Equatable {
 
     public static func == (lhs: PDFPaginationStyle, rhs: PDFPaginationStyle) -> Bool {
-        if case let PDFPaginationStyle.default = lhs, case let PDFPaginationStyle.default = rhs {
+        if case PDFPaginationStyle.default = lhs, case PDFPaginationStyle.default = rhs {
             return true
         }
 
@@ -21,7 +21,7 @@ extension PDFPaginationStyle: Equatable {
             return lhsTemplate == rhsTemplate && lhsFormatter == rhsFormatter
         }
 
-        if case let PDFPaginationStyle.customClosure(_) = lhs, case let PDFPaginationStyle.customClosure(_) = rhs {
+        if case PDFPaginationStyle.customClosure(_) = lhs, case PDFPaginationStyle.customClosure(_) = rhs {
             // Always return false if a custom closure is used
             // https://stackoverflow.com/questions/24111984/how-do-you-test-functions-and-closures-for-equality
             return false
