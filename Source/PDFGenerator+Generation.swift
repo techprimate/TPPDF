@@ -109,9 +109,30 @@ extension PDFGenerator {
             allObjects += try addHeaderFooterObjects()
         }
 
-        NSLog("1: - footerRight")
-        for (idx, obj) in allObjects.filter({ return $0.0 == .footerRight }).enumerated() {
-            NSLog("1: \(idx) \(obj.0) -> \(obj.1.frame)")
+        // Iterate all objects and let them calculate the required rendering
+        for (container, pdfObject) in contentObjects {
+            let objects = try pdfObject.calculate(generator: self, container: container)
+            for obj in objects {
+                allObjects.append(obj)
+
+                if obj.1 is PDFPageBreakObject {
+                    currentPage += 1
+                    totalPages += 1
+                    allObjects += try addHeaderFooterObjects()
+                }
+            }
+        }
+
+        // Save calculated page count from reseting
+        totalPages = currentPage
+
+        // Reset all changes made by metrics calculation to generator
+        resetGenerator()
+        allObjects = []
+
+        // Only calculate render header & footer metrics if page has content.
+        if contentObjects.count > 0 {
+            allObjects += try addHeaderFooterObjects()
         }
 
         // Iterate all objects and let them calculate the required rendering
@@ -121,34 +142,11 @@ extension PDFGenerator {
                 allObjects.append(obj)
 
                 if obj.1 is PDFPageBreakObject {
-                    let headerFooter = try addHeaderFooterObjects()
-
-                    NSLog("2: - footerRight")
-                    for (idx, obj) in headerFooter.filter({ return $0.0 == .footerRight }).enumerated() {
-                        NSLog("2: \(idx) \(obj.0) -> \(obj.1.frame)")
-                    }
-
-                    allObjects += headerFooter
-
-                    NSLog("3: - footerRight")
-                    for (idx, obj) in allObjects.filter({ return $0.0 == .footerRight }).enumerated() {
-                        NSLog("3: \(idx) \(obj.0) -> \(obj.1.frame)")
-                    }
+                    currentPage += 1
+                    allObjects += try addHeaderFooterObjects()
                 }
             }
         }
-
-        NSLog("4: - footerRight")
-        for (idx, obj) in allObjects.filter({ return $0.0 == .footerRight }).enumerated() {
-            NSLog("4: \(idx) \(obj.0) -> \(obj.1.frame)")
-        }
-
-        // Save calculated page count from reseting
-        totalPages = currentPage
-        
-        // Reset all changes made by metrics calculation to generator
-        resetGenerator()
-
         return allObjects
     }
 

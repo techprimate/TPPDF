@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         // Add custom pagination, starting at page 1 and excluding page 3
         document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure({ (page, total) -> String in
             return "\(page) / \(total)"
-        }), range: (1, 10), hiddenPages: [3, 7])
+        }), range: (1, 20), hiddenPages: [3, 7])
         
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality.
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
             ])
         document.addAttributedText(.contentCenter, text: title)
 
-//         Add some spacing below title
+        // Add some spacing below title
         document.addSpace(space: 15.0)
 
         // Set document font and document color. This will be used only for simple text until it is reset.
@@ -314,6 +314,11 @@ class ViewController: UIViewController {
         document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 1"))
         document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
         document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
+
+        // Add  even more text
+
+        document.createNewPage()
+        document.addText(text: "Even more text!")
 
         /* ---- Execution Metrics ---- */
         print("Preparation took: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))

@@ -77,11 +77,11 @@ class PDFTableObject: PDFObject {
                 // Row needs to be on the next page
                 // if one of the first header rows, then start whole table on next page
                 if rowIdx < table.style.columnHeaderCount + 1 {
-                    try PDFPageBreakObject().calculate(generator: generator, container: container)
+                    generator.layout.heights.content = 0
                     return [(container, PDFPageBreakObject())] + (try calculate(generator: generator, container: container))
                 }
 
-                try PDFPageBreakObject().calculate(generator: generator, container: container)
+                generator.layout.heights.content = 0
                 pageBreakIndicies.append(cellItems.count - 1)
                 perPageIndex = 0
 
@@ -123,7 +123,8 @@ class PDFTableObject: PDFObject {
         }
 
         // Create render objects
-        let renderObjects = createRenderObjects(container: container,
+        let renderObjects = try createRenderObjects(generator: generator,
+                                                container: container,
                                                 cellItems: cellItems,
                                                 pageBreakIndicies: pageBreakIndicies)
         let finalOffset = PDFCalculations.calculateContentOffset(for: generator, of: renderObjects.offset, in: container)
@@ -289,9 +290,10 @@ class PDFTableObject: PDFObject {
         return NSAttributedString(string: text, attributes: attributes)
     }
 
-    func createRenderObjects(container: PDFContainer,
+    func createRenderObjects(generator: PDFGenerator,
+                             container: PDFContainer,
                              cellItems: [[(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))]],
-                             pageBreakIndicies: [Int]) -> (objects: [(PDFContainer, PDFObject)], offset: CGFloat) {
+                             pageBreakIndicies: [Int]) throws -> (objects: [(PDFContainer, PDFObject)], offset: CGFloat) {
         var result: [PDFObject?] = []
 
         var pageStart: CGPoint! = nil
