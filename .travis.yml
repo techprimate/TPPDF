@@ -14,9 +14,6 @@ env:
   - EXAMPLE_SCHEME="TPPDF-Example"
   - SOURCE_FOLDER="Source"
   matrix:
-  - DESTINATION="OS=8.4,name=iPhone 6 Plus"
-  - DESTINATION="OS=9.3,name=iPhone 6s Plus"
-  - DESTINATION="OS=10.3,name=iPhone 7 Plus"
   - DESTINATION="OS=11.3,name=iPhone 8"
 install:
 - bundle install
