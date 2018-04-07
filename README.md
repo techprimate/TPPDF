@@ -4,22 +4,22 @@
 	<a href="https://github.com/Carthage/Carthage">
 		<img src="https://img.shields.io/badge/language-Swift-orange.svg?style=flat-square" alt="Swift"/>
 	</a>
-	<img src="https://img.shields.io/cocoapods/v/TPdocument.svg?style=flat-square" alt="Cocoapods"/>
+	<img src="https://img.shields.io/cocoapods/v/TPPDF.svg?style=flat-square" alt="Cocoapods"/>
 	<img src="https://img.shields.io/badge/Carthage-compatible-blue.svg?style=flat-square" alt="Carthage"/>
 	<a href="http://cocoapods.org/pods/TPPDF">
-		<img src="https://img.shields.io/cocoapods/p/TPdocument.svg?style=flat-square" alt="iOS"/>
+		<img src="https://img.shields.io/cocoapods/p/TPPDF.svg?style=flat-square" alt="iOS"/>
 	</a>
 	<a href="http://cocoapods.org/pods/TPPDF">
-		<img src="https://img.shields.io/cocoapods/l/TPdocument.svg?style=flat-square" alt="License"/>
+		<img src="https://img.shields.io/cocoapods/l/TPPDF.svg?style=flat-square" alt="License"/>
 	</a>
 	<a href="http://cocoapods.org/pods/TPPDF">
-		<img src="https://img.shields.io/cocoapods/dt/TPdocument.svg?style=flat-square" alt="Downloads"/>
+		<img src="https://img.shields.io/cocoapods/dt/TPPDF.svg?style=flat-square" alt="Downloads"/>
 	</a>
 </p>
 
 <p align="center">
 	<a href="https://travis-ci.org/Techprimate/TPPDF">
-		<img src="http://img.shields.io/travis/Techprimate/TPdocument.svg?style=flat-square" alt="Travis">
+		<img src="http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square" alt="Travis">
 	</a>
 	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-master">
 		<img src="https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de" alt="codebeat">
@@ -28,7 +28,7 @@
 		<img src="https://bettercodehub.com/edge/badge/Techprimate/TPPDF" alt="bettercodehub">
 	</a>
 	<a href="https://codecov.io/gh/Techprimate/TPPDF">
-		<img src="https://img.shields.io/codecov/c/github/Techprimate/TPdocument.svg?style=flat-square" alt="codecov">
+		<img src="https://img.shields.io/codecov/c/github/Techprimate/TPPDF.svg?style=flat-square" alt="codecov">
 	</a>
 </p>
 
@@ -565,28 +565,28 @@ $ git init
 - Add TPPDF as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
 
 ```bash
-$ git submodule add https://github.com/Techprimate/TPdocument.git
+$ git submodule add https://github.com/Techprimate/TPPDF.git
 ```
 
-- Open the new `TPPDF` folder, and drag the `TPdocument.xcodeproj` into the Project Navigator of your application's Xcode project.
+- Open the new `TPPDF` folder, and drag the `TPPDF.xcodeproj` into the Project Navigator of your application's Xcode project.
 
     > It should appear nested underneath your application's blue project icon. Whether it is above or below all the other Xcode groups does not matter.
 
-- Select the `TPdocument.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
+- Select the `TPPDF.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
 - Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
 - In the tab bar at the top of that window, open the "General" panel.
 - Click on the `+` button under the "Embedded Binaries" section.
-- You will see two different `TPdocument.xcodeproj` folders each with two different versions of the `TPdocument.framework` nested inside a `Products` folder.
+- You will see two different `TPPDF.xcodeproj` folders each with two different versions of the `TPPDF.framework` nested inside a `Products` folder.
 
-    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `TPdocument.framework`. 
+    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `TPPDF.framework`. 
     
-- Select the top `TPdocument.framework` for iOS and the bottom one for OS X.
+- Select the top `TPPDF.framework` for iOS and the bottom one for OS X.
 
     > You can verify which one you selected by inspecting the build log for your project. The build target for `TPPDF` will be listed as either `TPPDF iOS` or `TPPDF OSX`.
 
 - And that's it!
 
-> The `TPdocument.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
+> The `TPPDF.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
 
 ## Apps using TPPDF
 
