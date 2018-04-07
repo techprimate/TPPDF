@@ -35,15 +35,10 @@ class PDFPageBreakObject_Spec: QuickSpec {
                 }
 
                 it("can set offset") {
-                    let currentPage = generator.currentPage
-                    let totalPages = generator.totalPages
-
                     expect {
                         result = try object.calculate(generator: generator, container: container)
                         }.toNot(throwError())
                     expect(generator.layout.heights.content) == 0
-                    expect(generator.currentPage) == currentPage + 1
-                    expect(generator.totalPages) == totalPages + 1
 
                     expect(result).toEventually(haveCount(1))
                     expect(result.first?.0).toEventually(equal(container))
