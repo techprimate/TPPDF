@@ -20,7 +20,7 @@ env:
   - DESTINATION="OS=11.3,name=iPhone 8"
 install:
 - bundle install
-- bundle exec pod repo update --silent
+- bundle exec pod repo update
 - bundle exec pod install --project-directory=Example
 script:
 - set -o pipefail

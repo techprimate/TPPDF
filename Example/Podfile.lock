@@ -6,7 +6,7 @@ PODS:
     - SwiftLint
 
 DEPENDENCIES:
-  - Nimble
+  - Nimble (~> 7.0)
   - Quick
   - TPPDF (from `../`)
 
