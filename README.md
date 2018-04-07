@@ -40,7 +40,7 @@
 
 <p align="center">
     <a href="#features">Features</a>
-    <a href="#communication">Communication</a>
+  • <a href="#communication">Communication</a>
   • <a href="#usage">Example</a>
   • <a href="#usage">Installation</a>
   • <a href="#usage">Usage</a>
