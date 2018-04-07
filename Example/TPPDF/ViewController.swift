@@ -32,9 +32,9 @@ class ViewController: UIViewController {
         document.layout.space.footer = 5
         
         // Add custom pagination, starting at page 1 and excluding page 3
-        document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure({ (page, total) -> String in
+        document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure() { (page, total) -> String in
             return "\(page) / \(total)"
-        }), range: (1, 20), hiddenPages: [3, 7])
+        }, range: (1, 20), hiddenPages: [3, 7])
         
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality.
@@ -351,19 +351,19 @@ class ViewController: UIViewController {
         let hours = (interval / 3600).rounded(.towardZero)
         
         var result = [String]()
-        if (hours > 1) {
+        if hours > 1 {
             result.append(String(format: "%.0f", hours) + "h")
         }
-        if (minutes > 1) {
+        if minutes > 1 {
             result.append(String(format: "%.0f", minutes) + "m")
         }
-        if (seconds > 1) {
+        if seconds > 1 {
             result.append(String(format: "%.0f", seconds) + "s")
         }
-        if (ms > 1) {
+        if ms > 1 {
             result.append(String(format: "%.0f", ms) + "ms")
         }
-        if (ns > 0.001) {
+        if ns > 0.001 {
             result.append(String(format: "%.3f", ns) + "ns")
         }
         return result.joined(separator: " ")

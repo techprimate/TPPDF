@@ -33,4 +33,3 @@ class PDFLineSeparatorObject_Equatable_Spec: QuickSpec {
         }
     }
 }
-

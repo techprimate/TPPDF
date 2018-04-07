@@ -1,5 +1,5 @@
 //
-//  JSONSerializable_Spec.swift
+//  PDFJSONSerializable_Spec.swift
 //  TPPDF_Tests
 //
 //  Created by Philip Niedertscheider on 04/11/2017.

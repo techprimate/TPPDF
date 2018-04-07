@@ -36,7 +36,7 @@ class PDFTextColorObject: PDFObject {
      */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         generator.textColor[container] = color
-        
+
         return [(container, self)]
     }
 

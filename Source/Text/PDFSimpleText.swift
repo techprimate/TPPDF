@@ -38,4 +38,4 @@ public class PDFSimpleText: PDFText {
     }
 }
 
-extension PDFSimpleText: PDFJSONSerializable { }
+extension PDFSimpleText: PDFJSONSerializable {}

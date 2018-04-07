@@ -49,4 +49,3 @@ class PDFLineStyle_Equatable_Spec: QuickSpec {
         }
     }
 }
-

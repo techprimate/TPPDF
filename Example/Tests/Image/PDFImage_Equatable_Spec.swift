@@ -98,4 +98,3 @@ class PDFImage_Equatable_Spec: QuickSpec {
         }
     }
 }
-

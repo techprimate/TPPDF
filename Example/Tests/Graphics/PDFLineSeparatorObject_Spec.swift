@@ -74,7 +74,7 @@ class PDFLineSeparatorObject_Spec: QuickSpec {
                     let image = UIGraphicsGetImageFromCurrentImageContext()
                     UIGraphicsEndImageContext()
 
-                    let extractor = image?.pixelExtractor;
+                    let extractor = image?.pixelExtractor
 
                     expect(image).toNot(beNil())
                     for x in 0..<Int(image!.size.width) {
@@ -90,7 +90,7 @@ class PDFLineSeparatorObject_Spec: QuickSpec {
 //                                expect(result).to(equal(expected), description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
 
                                 // Early exit to only fail at first error!
-                                if (result != expected) {
+                                if result != expected {
                                     return
                                 }
                             }
@@ -120,7 +120,7 @@ class PDFLineSeparatorObject_Spec: QuickSpec {
                                 if separator.frame.contains(CGPoint(x: x, y: y)) {
                                     expected = separator.style.color.hex
 
-                                    if (CGFloat(x) == separator.frame.minX || CGFloat(x) == separator.frame.maxX || CGFloat(y) == separator.frame.minY || CGFloat(y) == separator.frame.maxY) {
+                                    if CGFloat(x) == separator.frame.minX || CGFloat(x) == separator.frame.maxX || CGFloat(y) == separator.frame.minY || CGFloat(y) == separator.frame.maxY {
                                         expected = UIColor.green.hex
                                     }
                                 }
@@ -139,4 +139,3 @@ class PDFLineSeparatorObject_Spec: QuickSpec {
         }
     }
 }
-

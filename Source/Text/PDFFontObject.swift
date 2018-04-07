@@ -26,7 +26,7 @@ class PDFFontObject: PDFObject {
 
     /**
      Sets the font in `container`
-     
+
      - parameter generator: Generator which holds font information
      - parameter container: Container, where the font is changed
 
