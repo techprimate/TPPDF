@@ -495,7 +495,7 @@ If you need to encrypt the document, set an `owner password` and a `user passwor
 
 | Language  | Branch | Pod version | Xcode version | iOS version |
 | --------- | ------ | ----------- | ------------- | ----------- |
-| Swift 4.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 1.0.x | Xcode 9 or greater| iOS 8.3+ |
+| Swift 4.1 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 1.0.x | Xcode 9.3 or greater| iOS 8.3+ |
 | Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 or greater| iOS 8.0+ |
 | Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x | iOS 8.0+ |
 | Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x | iOS 8.0+ |
