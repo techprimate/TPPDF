@@ -236,9 +236,20 @@ To minimize the file size, images can be compressed using JPEG compression, whic
 
 #### Images in one row
 
-TODO: explain this
+To create a image collage, you can add multiple images in a single row with a `spacing` between them.
 
-<!--addImagesInRow(_ container: PDFContainer = PDFContainer.contentLeft, images: [PDFImage], spacing: CGFloat = 5.0) -->
+Just create an array of `PDFImage` and add them as images in a row. 
+
+```swift
+let images = [
+    PDFImage(image: UIImage(named: "Image-1.jpg")!, 
+             caption: PDFAttributedText(text: NSAttributedString(string: "In this picture you can see a beautiful waterfall!", attributes: captionAttributes))),
+    PDFImage(image: UIImage(named: "Image-2.jpg")!,
+             caption: PDFAttributedText(text: NSAttributedString(string: "Forrest", attributes: captionAttributes))),
+]
+
+document.addImagesInRow(images: images, spacing: 10)
+```
 
 #### List
 
