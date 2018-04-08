@@ -41,7 +41,7 @@ public class PDFDocument: PDFJSONSerializable {
 
     /**
      Creates a new document with the given layout
-     
+
      - parameter layout: Layout information for document
      */
     public init(layout: PDFPageLayout) {

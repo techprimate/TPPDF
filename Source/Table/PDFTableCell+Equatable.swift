@@ -22,4 +22,5 @@ extension PDFTableCell: Equatable {
 
         return true
     }
+
 }

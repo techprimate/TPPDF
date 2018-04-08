@@ -14,6 +14,7 @@ extension UIImage {
     func pixelColor(at location: CGPoint) -> UIColor {
         return PixelExtractor(img: self.cgImage!).colorAt(x: Int(location.x), y: Int(location.y))
     }
+
 }
 
 /**

@@ -201,6 +201,6 @@ class PDFGraphics {
                 UIColor(patternImage: image!).setFill()
             }
         }
-    }
+}
 
 }

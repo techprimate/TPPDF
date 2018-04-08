@@ -139,6 +139,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         override func draw(generator: PDFGenerator, container: PDFContainer) throws {
                             CustomObject.called = true
                         }
+
                     }
 
                     let obj = CustomObject()

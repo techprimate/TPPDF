@@ -168,7 +168,7 @@ class PDFSpaceObject_Spec: QuickSpec {
                                 // expect(result).toEventually(equal(expected), description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
 
                                 // Early exit to only fail at first error!
-                                if (result != expected) {
+                                if result != expected {
                                     shouldExit = true
                                 }
                             }

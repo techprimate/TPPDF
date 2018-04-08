@@ -49,5 +49,5 @@ class PDFTableCellPosition_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

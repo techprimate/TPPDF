@@ -34,6 +34,7 @@ extension PDFJSONSerializable {
 
         return representation as AnyObject
     }
+
 }
 
 extension PDFJSONSerializable {
@@ -68,6 +69,7 @@ extension PDFJSONSerializable {
         }
         return result.JSONRepresentation
     }
+
 }
 
 extension Array: PDFJSONSerializable {
@@ -81,6 +83,7 @@ extension Array: PDFJSONSerializable {
 
         return representation as NSArray
     }
+
 }
 
 extension Dictionary: PDFJSONSerializable {
@@ -94,6 +97,7 @@ extension Dictionary: PDFJSONSerializable {
 
         return representation as NSDictionary
     }
+
 }
 
 extension CGRect: PDFJSONSerializable {}
@@ -108,6 +112,7 @@ extension UIImage: PDFJSONSerializable {
     public var JSONRepresentation: AnyObject {
         return UIImageJPEGRepresentation(self, 1.0)?.JSONRepresentation ?? NSNull()
     }
+
 }
 
 extension Data: PDFJSONSerializable {
@@ -115,6 +120,7 @@ extension Data: PDFJSONSerializable {
     public var JSONRepresentation: AnyObject {
         return self.base64EncodedString() as AnyObject
     }
+
 }
 
 extension UIColor: PDFJSONSerializable {
@@ -122,4 +128,5 @@ extension UIColor: PDFJSONSerializable {
     public var JSONRepresentation: AnyObject {
         return self.hex as AnyObject
     }
+
 }

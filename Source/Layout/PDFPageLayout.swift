@@ -19,7 +19,7 @@ public struct PDFPageLayout: PDFJSONSerializable {
 
     /**
      Margins of each page.
-     
+
      `header`: Top inset of page
      `footer`: Bottom inset of page
      `left`: Left inset of page

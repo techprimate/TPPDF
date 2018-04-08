@@ -27,7 +27,7 @@ class ListSpec: QuickSpec {
                 expect(list.levelIndentations[2].pre).to(equal(20.0))
                 expect(list.levelIndentations[2].past).to(equal(10.0))
             }
-            
+
             it("should have one item") {
                 let result = list.addItem(PDFListItem(symbol: .dash, content: "Item 1"))
 

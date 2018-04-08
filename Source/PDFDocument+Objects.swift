@@ -16,7 +16,7 @@ public extension PDFDocument {
 
     /**
      Adds a empty space in the given container, between the previous and the next element
-     
+
      - parameter container: Container where the space will be set, defaults to `PDFContainer.contentLeft`
      - parameter space: Space distance in points
      */

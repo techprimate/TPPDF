@@ -16,6 +16,7 @@ extension PDFTableCellPosition: Hashable {
     public var hashValue: Int {
         return row * row * 10 + column
     }
+
 }
 
 extension PDFTableCellPosition: Equatable {
@@ -41,4 +42,5 @@ extension PDFTableCellPosition: Equatable {
 
         return true
     }
+
 }

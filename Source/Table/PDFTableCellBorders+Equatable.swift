@@ -26,4 +26,5 @@ extension PDFTableCellBorders: Equatable {
 
         return true
     }
+
 }

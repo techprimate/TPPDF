@@ -45,7 +45,7 @@ struct PDFLayoutIndentations {
 
     /**
      The given container is normalized and then returns the right indentation from either header, content or footer.
-     
+
      - parameter container: Container whose right indentation is requested
      
      - returns: Right indentation of given container

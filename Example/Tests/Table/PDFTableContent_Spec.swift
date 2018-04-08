@@ -288,5 +288,5 @@ class PDFTableContent_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

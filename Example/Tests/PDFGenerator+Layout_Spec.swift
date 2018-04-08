@@ -32,4 +32,5 @@ class PDFGenerator_Layout_Spec: QuickSpec {
             }
         }
     }
+
 }

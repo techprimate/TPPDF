@@ -40,5 +40,5 @@ class PDFPagination_Equatable_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

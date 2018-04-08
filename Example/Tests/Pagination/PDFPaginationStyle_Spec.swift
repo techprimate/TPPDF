@@ -62,9 +62,9 @@ class PDFPaginationStyle_Spec: QuickSpec {
 
             context("customClosure") {
 
-                let style = PDFPaginationStyle.customClosure({ (page, total) -> String in
+                let style = PDFPaginationStyle.customClosure { (page, total) -> String in
                     return String(format: "%i - %i", page * page, 2 * total)
-                })
+                }
 
                 it("can format a page number") {
                     expect(style.format(page: 3, total: 7)) == "9 - 14"
