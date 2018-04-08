@@ -549,7 +549,7 @@ pagination.range = (start: 3, end: 7)
 pagination.hiddenPages = [5]
 ```
 
-To actually define the `style` of the pagination, you can either choose on of the predefined ones, or create a custom closure-based style. The pagination algorithm receives the `current` page number and the `total` pages amount and returns a String, which will then be transformed into a text element.
+To actually define the `style` of the pagination, you can either choose on of the predefined ones, or create a custom closure-based style. The pagination algorithm receives the `current` page number and the `total` pages amount and returns a String, which will then be transformed into an attributed text element, using the attributes in the `textAttributes` dictionary.
 
 #### `.default`
 

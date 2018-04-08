@@ -32,6 +32,11 @@ public struct PDFPagination: PDFJSONSerializable {
     public var hiddenPages: [Int]
 
     /**
+     These text attribtues are used to create the attributed pagination string
+     */
+    public var textAttributes: [NSAttributedStringKey: Any]
+
+    /**
      Initializer
 
      - parameter container: Container where pagination is placed, defaults to `PDFContainer.none`, meaning it won't be rendered
@@ -42,10 +47,12 @@ public struct PDFPagination: PDFJSONSerializable {
     public init(container: PDFContainer = .none,
                 style: PDFPaginationStyle = .default,
                 range: (start: Int, end: Int) = (0, Int.max),
-                hiddenPages: [Int] = []) {
+                hiddenPages: [Int] = [],
+                textAttributes: [NSAttributedStringKey: Any] = [:]) {
         self.container = container
         self.style = style
         self.range = range
         self.hiddenPages = hiddenPages
+        self.textAttributes = textAttributes
     }
 }

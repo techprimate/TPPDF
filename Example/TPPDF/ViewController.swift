@@ -34,8 +34,11 @@ class ViewController: UIViewController {
         // Add custom pagination, starting at page 1 and excluding page 3
         document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure() { (page, total) -> String in
             return "\(page) / \(total)"
-        }, range: (1, 20), hiddenPages: [3, 7])
-        
+            }, range: (1, 20), hiddenPages: [3, 7], textAttributes: [
+            .font: UIFont.boldSystemFont(ofSize: 15.0),
+            .foregroundColor: UIColor.green
+        ])
+
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality.
         let logoImage = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150), quality: 0.9)
@@ -67,7 +70,7 @@ class ViewController: UIViewController {
         // Create a list with level indentations
         let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
 
-        list.addItem(PDFListItem(symbol: .numbered(value: "%@ %@"))
+        list.addItem(PDFListItem(symbol: .numbered(value: nil))
             .addItem(PDFListItem(content: "Introduction")
                 .addItem(PDFListItem(symbol: .numbered(value: nil))
                     .addItem(PDFListItem(content: "Text"))
