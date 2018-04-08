@@ -36,7 +36,7 @@ class ListSpec: QuickSpec {
                 expect(list.items[0].content).to(equal("Item 1"))
                 expect(list.items[0].symbol.rawValue).to(equal(PDFListItemSymbol.dash.rawValue))
             }
-            
+
             it("should flatten to four items") {
                 list.clear()
                 

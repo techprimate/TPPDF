@@ -29,7 +29,7 @@ public extension PDFDocument {
     /**
      Adds a horizontal line spearator to the given container. The line starts at the left indentation and ends at the right indentation.
      Customize by adjusting parameter `style`.
-     
+
      - parameter container: Container where the space will be set, defaults to `PDFContainer.contentLeft`
      - parameter style: Style of line
      */
@@ -41,7 +41,7 @@ public extension PDFDocument {
 
     /**
      Adds an image to the given container.
-     
+
      - parameter container: Container where the space will be set, defaults to `PDFContainer.contentLeft`
      - parameter image: Image object
      */
@@ -52,7 +52,7 @@ public extension PDFDocument {
     /**
      Adds an image row to the given container.
      This image row will fill the full available width between left indentation and right indentation.
-     
+
      - parameter container: Container where the space will be set, defaults to `PDFContainer.contentLeft`
      - parameter images: Array of images, from left to right
      - parameter spacing: Horizontal distance between images
@@ -65,7 +65,7 @@ public extension PDFDocument {
 
     /**
      Shorthand function to add a String text to the given container
-     
+
      - parameter container: Container where the space will be set, defaults to `PDFContainer.contentLeft`
      - parameter images: Array of images, from left to right
      - parameter spacing: Horizontal distance between images
@@ -76,7 +76,7 @@ public extension PDFDocument {
 
     /**
      Adds an text object to the given container
-     
+
      - parameter container: Container where the space will be set, defaults to `PDFContainer.contentLeft`
      - parameter textObject: Simple text object
      */
@@ -86,7 +86,7 @@ public extension PDFDocument {
 
     /**
      Shorthand function to add a attributed String text to the given container
-     
+
      - parameter container: Container where the space will be set, defaults to `PDFContainer.contentLeft`
      - parameter text: An attributed string
      */
@@ -96,7 +96,7 @@ public extension PDFDocument {
 
     /**
      Adds an attributed text object to the given container
-     
+
      - parameter container: Container where the space will be set, defaults to `PDFContainer.contentLeft`
      - parameter textObject: Attributed text object
      */
@@ -106,7 +106,7 @@ public extension PDFDocument {
 
     /**
      Set font in given container. This text color will be used when adding a `PDFSimpleText`
-     
+
      - parameter container: Container where the font will be set, defaults to `PDFContainer.contentLeft`
      - parameter font: Font of text
      */
@@ -116,7 +116,7 @@ public extension PDFDocument {
 
     /**
      Reset text color in given container to default.
-     
+
      - parameter container: Container whose text color will be reset, defaults to `PDFContainer.contentLeft`
      */
     public func resetFont(_ container: PDFContainer = PDFContainer.contentLeft) {
@@ -125,7 +125,7 @@ public extension PDFDocument {
 
     /**
      Set text color in given container. This text color will be used when adding a `PDFSimpleText`
-     
+
      - parameter container: Container where the text color will be set, defaults to `PDFContainer.contentLeft`
      - parameter color: Color of the text
      */
@@ -135,7 +135,7 @@ public extension PDFDocument {
 
     /**
      Reset text color in given container to default.
-     
+
      - parameter container: Container whose text color will be reset, defaults to `PDFContainer.contentLeft`
      */
     public func resetTextColor(_ container: PDFContainer = PDFContainer.contentLeft) {
@@ -164,7 +164,7 @@ public extension PDFDocument {
 
     /**
      Change the indentation in a container, use the parameter `left` to define from which side.
-     
+
      - parameter container: Container whose indentation should be changed, defaults to `PDFContainer.contentLeft`
      - parameter indent: Points from the side
      - parameter left: If `true` then the left side indentation is set, else the right indentation is set
@@ -175,7 +175,7 @@ public extension PDFDocument {
 
     /**
      Change the absolute top offset in a container
-     
+
      - parameter container: Container whose current absoilute offset should be changed, defaults to `PDFContainer.contentLeft`
      - parameter offset: Points from the top
      */

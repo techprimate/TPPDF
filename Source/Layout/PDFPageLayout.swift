@@ -29,7 +29,7 @@ public struct PDFPageLayout: PDFJSONSerializable {
 
     /**
      Spaces between header, content and footer.
-     
+
      `header`: Space between header and content
      `footer`: Space between content and footer
      */

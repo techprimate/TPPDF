@@ -50,10 +50,11 @@ public class PDFDocument: PDFJSONSerializable {
 
     /**
      Creates a new document with a predefined `PDFPageFormat`
-     
+
      - parameter layout: Predefined page formats
      */
     public init(format: PDFPageFormat) {
         self.layout = format.layout
     }
+
 }

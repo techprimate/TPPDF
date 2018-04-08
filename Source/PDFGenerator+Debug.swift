@@ -52,7 +52,7 @@ extension PDFGenerator {
 
     /**
      Draws a vertical line over the whole page at the given horizontal position
-     
+
      - parameter positionX: Position in points, from left page edge
      */
     private func drawVerticalMarginLines(positionX: CGFloat) {

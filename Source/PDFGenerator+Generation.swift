@@ -14,14 +14,14 @@ extension PDFGenerator {
 
     /**
      Generates PDF data and writes it to a temporary file.
-     
+
      - parameter document:  PDFDocument which should be converted into a PDF file.
      - parameter filename:  Name of temporary file.
      - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
      - parameter debug:     Enables debugging
 
      - returns:             URL to temporary file.
-     
+
      - throws:              PDFError
      */
     public static func generateURL(document: PDFDocument, filename: String, progress: ((CGFloat) -> Void)? = nil, debug: Bool = false) throws -> URL {
@@ -40,15 +40,15 @@ extension PDFGenerator {
 
     /**
      Generates PDF data and returns it
-     
+
      - parameter document:  PDFDocument which should be converted into a PDF file.
      - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
      - parameter debug:     Enables debugging
 
      - returns:             PDF Data
-     
+
      - throws:              PDFError
-     
+
      */
     public static func generateData(document: PDFDocument, progress: ((CGFloat) -> Void)? = nil, debug: Bool = false) throws -> Data {
         let data = NSMutableData()
@@ -67,9 +67,9 @@ extension PDFGenerator {
 
     /**
      Generate PDF Context from PDFCommands
-     
+
      - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
-     
+
      - throws: PDFError
      */
     func generatePDFContext() throws {

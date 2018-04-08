@@ -21,7 +21,7 @@ public enum PDFPaginationStyle: PDFJSONSerializable {
 
     /**
       Returns pagination in roman numerals.
-     
+
       - parameter template: Template `String`, instances of `%@` will be replaced.
      */
     case roman(template: String)
@@ -41,10 +41,10 @@ public enum PDFPaginationStyle: PDFJSONSerializable {
 
     /**
      Creates formatted pagination string.
-     
+
      - parameter page: `Int` - Current page
      - parameter total: `Int` - Total amount of pages.
-     
+
      - returns: Formatted `String`
      */
     public func format(page: Int, total: Int) -> String {
