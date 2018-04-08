@@ -60,5 +60,3 @@ class PDFTableCellStyle_Spec: QuickSpec {
         }
     }
 }
-
-
