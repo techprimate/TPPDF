@@ -166,7 +166,7 @@ class PDFGraphics {
         image.draw(in: CGRect(x: 0, y: 0, width: resizeImageSize.width, height: resizeImageSize.height))
         var compressedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         // compression
         if let image = compressedImage, let jpegData = UIImageJPEGRepresentation(image, quality) {
             compressedImage = UIImage(data: jpegData)

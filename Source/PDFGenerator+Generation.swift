@@ -34,10 +34,10 @@ extension PDFGenerator {
         UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, document.info.generate())
         try generator.generatePDFContext()
         UIGraphicsEndPDFContext()
-        
+
         return url
     }
-    
+
     /**
      Generates PDF data and returns it
      
@@ -59,7 +59,7 @@ extension PDFGenerator {
         UIGraphicsBeginPDFContextToData(data, document.layout.bounds, document.info.generate())
         try generator.generatePDFContext()
         UIGraphicsEndPDFContext()
-        
+
         return data as Data
     }
 
@@ -85,25 +85,25 @@ extension PDFGenerator {
     func createRenderObjects() throws -> [(PDFContainer, PDFObject)] {
         // Extract content objects
         let contentObjects = PDFGenerator.extractContentObjects(objects: document.objects)
-        
+
         // Extract header & footer objects
         let footers = PDFGenerator.extractFooterObjects(objects: document.objects)
         let headers = PDFGenerator.extractHeaderObjects(objects: document.objects)
-        
+
         headerFooterObjects = headers + footers
-        
+
         // Only add space between content and footer if there are objects in footer.
         if footers.count == 0 {
             document.layout.space.footer = 0
         }
-        
+
         // Only add space between content and header if there are objects in header.
         if headers.count == 0 {
             document.layout.space.header = 0
         }
-        
+
         var allObjects: [(PDFContainer, PDFObject)] = []
-        
+
         // Only calculate render header & footer metrics if page has content.
         if contentObjects.count > 0 {
             allObjects += try addHeaderFooterObjects()
@@ -218,9 +218,9 @@ extension PDFGenerator {
      */
     func render(objects: [(PDFContainer, PDFObject)]) throws {
         UIGraphicsBeginPDFPageWithInfo(document.layout.bounds, nil)
-        
+
         drawDebugPageOverlay()
-        
+
         for (container, object) in objects {
             try render(object: object, in: container)
         }
@@ -234,7 +234,7 @@ extension PDFGenerator {
     func render(object: PDFObject, in container: PDFContainer) throws {
         try object.draw(generator: self, container: container)
     }
-    
+
     // MARK: - INTERNAL STATIC FUNCS
 
     /**

@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         document.layout.space.footer = 5
         
         // Add custom pagination, starting at page 1 and excluding page 3
-        document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure() { (page, total) -> String in
+        document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure { (page, total) -> String in
             return "\(page) / \(total)"
             }, range: (1, 20), hiddenPages: [3, 7], textAttributes: [
             .font: UIFont.boldSystemFont(ofSize: 15.0),

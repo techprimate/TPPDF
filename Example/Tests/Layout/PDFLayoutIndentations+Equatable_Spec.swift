@@ -45,4 +45,3 @@ class PDFLayoutIndentations_Equatable_Spec: QuickSpec {
         }
     }
 }
-

@@ -8,7 +8,7 @@
 public protocol PDFJSONSerializable: PDFJSONRepresentable { }
 
 public extension PDFJSONSerializable {
-    
+
     public func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
         let representation = JSONRepresentation
 
@@ -23,20 +23,20 @@ public extension PDFJSONSerializable {
 }
 
 extension PDFJSONSerializable {
-    
+
     public var JSONRepresentation: AnyObject {
         var representation = [String: AnyObject]()
-        
+
         for case let (label?, value) in Mirror(reflecting: self).children {
             representation[label] = convertValue(value)
         }
-        
+
         return representation as AnyObject
     }
 }
 
 extension PDFJSONSerializable {
-    
+
     func convertValue(_ value: Any) -> AnyObject {
         if let value = value as? PDFJSONSerializable {
             return value.JSONRepresentation
@@ -51,16 +51,16 @@ extension PDFJSONSerializable {
         }
         return "UNKNOWN" as AnyObject
     }
-    
+
     func isTuple(value: Any) -> Bool {
         return Mirror(reflecting: value).displayStyle == .tuple
     }
-    
+
     func serializeTuple(_ value: Any) -> AnyObject {
         let mirror = Mirror(reflecting: value)
         var i = 0
         var result: [String: Any] = [:]
-        
+
         for (label, value) in mirror.children {
             result[label ?? "\(i)"] = value
             i += 1
@@ -70,27 +70,27 @@ extension PDFJSONSerializable {
 }
 
 extension Array: PDFJSONSerializable {
-    
+
     public var JSONRepresentation: AnyObject {
         var representation: [Any] = []
-        
+
         for (value) in self {
             representation.append(convertValue(value))
         }
-        
+
         return representation as NSArray
     }
 }
 
 extension Dictionary: PDFJSONSerializable {
-    
+
     public var JSONRepresentation: AnyObject {
         let representation: NSMutableDictionary = [:]
-        
+
         for (key, value) in self {
             representation[key] = convertValue(value)
         }
-        
+
         return representation as NSDictionary
     }
 }
@@ -117,7 +117,7 @@ extension Data: PDFJSONSerializable {
 }
 
 extension UIColor: PDFJSONSerializable {
-    
+
     public var JSONRepresentation: AnyObject {
         return self.hex as AnyObject
     }

@@ -14,19 +14,19 @@ struct PDFLayoutIndentations {
      Left and right indentation of header containers
      */
     var header: (left: CGFloat, right: CGFloat) = (0, 0)
-    
+
     /**
      Left and right indentation of content containers
      */
     var content: (left: CGFloat, right: CGFloat) = (0, 0)
-    
+
     /**
      Left and right indentation of footer containers
      */
     var footer: (left: CGFloat, right: CGFloat) = (0, 0)
-    
+
     // MARK: - INTERNAL FUNCS
-    
+
     /**
      The given container is normalized and then returns the left indentation from either header, content or footer.
      
@@ -42,7 +42,7 @@ struct PDFLayoutIndentations {
         }
         return content.left
     }
-    
+
     /**
      The given container is normalized and then returns the right indentation from either header, content or footer.
      
@@ -58,7 +58,7 @@ struct PDFLayoutIndentations {
         }
         return content.right
     }
-    
+
     /**
      Sets the given `indentation` as the left indentation in the normalized container `container`.
      
@@ -74,7 +74,7 @@ struct PDFLayoutIndentations {
             content.left = indentation
         }
     }
-    
+
     /**
      Sets the given `indentation` as the right indentation in the normalized container `container`.
      

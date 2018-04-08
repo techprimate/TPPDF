@@ -6,11 +6,11 @@
 //
 
 public struct PDFTableCellStyle: PDFJSONSerializable {
-    
+
     public var colors: (fill: UIColor, text: UIColor)
     public var borders: PDFTableCellBorders
     public var font: UIFont
-    
+
     public init(colors: (fill: UIColor, text: UIColor) = (UIColor.clear, UIColor.black),
                 borders: PDFTableCellBorders = PDFTableCellBorders(),
                 font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)) {

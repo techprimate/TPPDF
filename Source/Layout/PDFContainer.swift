@@ -127,7 +127,7 @@ public enum PDFContainer {
 // MARK: - JSON Serialization
 
 extension PDFContainer: PDFJSONSerializable {
-    
+
     /**
      Creates a representable object
      */

@@ -207,4 +207,3 @@ class PDFPageFormat_SizeConstants_Spec: QuickSpec {
         }
     }
 }
-

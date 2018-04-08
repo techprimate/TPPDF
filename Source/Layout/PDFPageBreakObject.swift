@@ -45,5 +45,5 @@ class PDFPageBreakObject: PDFObject {
     override var copy: PDFObject {
         return PDFPageBreakObject()
     }
-    
+
 }

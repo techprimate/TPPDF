@@ -30,13 +30,13 @@ public class PDFGenerator {
     /**
      Current page which increments during preparation
      */
-    var currentPage: Int = 1 
+    var currentPage: Int = 1
 
     /**
      Total page count used for displaying in rendered PDF
      */
     var totalPages: Int = 1
-    
+
     /**
      Font of each container.
      These values are used for simple text objects
@@ -65,7 +65,7 @@ public class PDFGenerator {
         }
         return defaults
     }()
-    
+
     // MARK: - INTERNAL INITS
 
     /**
@@ -76,7 +76,7 @@ public class PDFGenerator {
     init(document: PDFDocument) {
         self.document = document
     }
-    
+
     // MARK: - INTERNAL FUNCS
 
     /**

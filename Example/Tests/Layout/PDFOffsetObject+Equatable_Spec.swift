@@ -32,5 +32,3 @@ class PDFOffsetObject_Equatable_Spec: QuickSpec {
         }
     }
 }
-
-

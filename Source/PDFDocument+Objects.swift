@@ -13,7 +13,7 @@ public extension PDFDocument {
     // MARK: - PUBLIC FUNCS
 
     // MARK: - Layout
-    
+
     /**
      Adds a empty space in the given container, between the previous and the next element
      
@@ -23,9 +23,9 @@ public extension PDFDocument {
     public func addSpace(_ container: PDFContainer = PDFContainer.contentLeft, space: CGFloat) {
         objects += [(container, PDFSpaceObject(space: space))]
     }
-    
+
     // MARK: - Lines
-    
+
     /**
      Adds a horizontal line spearator to the given container. The line starts at the left indentation and ends at the right indentation.
      Customize by adjusting parameter `style`.
@@ -36,7 +36,7 @@ public extension PDFDocument {
     public func addLineSeparator(_ container: PDFContainer = PDFContainer.contentLeft, style: PDFLineStyle) {
         objects += [(container, PDFLineSeparatorObject(style: style))]
     }
-    
+
     // MARK: - Image
 
     /**
@@ -48,7 +48,7 @@ public extension PDFDocument {
     public func addImage(_ container: PDFContainer = PDFContainer.contentLeft, image: PDFImage) {
         objects += [(container, PDFImageObject(image: image))]
     }
-    
+
     /**
      Adds an image row to the given container.
      This image row will fill the full available width between left indentation and right indentation.
@@ -60,7 +60,7 @@ public extension PDFDocument {
     public func addImagesInRow(_ container: PDFContainer = PDFContainer.contentLeft, images: [PDFImage], spacing: CGFloat = 5.0) {
         objects += [(container, PDFImageRowObject(images: images, spacing: spacing))]
     }
-    
+
     // MARK: - Text
 
     /**
@@ -73,7 +73,7 @@ public extension PDFDocument {
     public func addText(_ container: PDFContainer = PDFContainer.contentLeft, text: String, lineSpacing: CGFloat = 1.0) {
         addText(container, textObject: PDFSimpleText(text: text, spacing: lineSpacing))
     }
-    
+
     /**
      Adds an text object to the given container
      
@@ -93,7 +93,7 @@ public extension PDFDocument {
     public func addAttributedText(_ container: PDFContainer = PDFContainer.contentLeft, text: NSAttributedString) {
         addAttributedText(container, textObject: PDFAttributedText(text: text))
     }
-    
+
     /**
      Adds an attributed text object to the given container
      
@@ -103,7 +103,7 @@ public extension PDFDocument {
     public func addAttributedText(_ container: PDFContainer = PDFContainer.contentLeft, textObject: PDFAttributedText) {
         objects += [(container, PDFAttributedTextObject(attributedText: textObject))]
     }
-    
+
     /**
      Set font in given container. This text color will be used when adding a `PDFSimpleText`
      
@@ -113,7 +113,7 @@ public extension PDFDocument {
     public func setFont(_ container: PDFContainer = PDFContainer.contentLeft, font: UIFont) {
         objects += [(container, PDFFontObject(font: font))]
     }
-    
+
     /**
      Reset text color in given container to default.
      
@@ -122,7 +122,7 @@ public extension PDFDocument {
     public func resetFont(_ container: PDFContainer = PDFContainer.contentLeft) {
         objects += [(container, PDFFontObject(font: UIFont.systemFont(ofSize: UIFont.systemFontSize)))]
     }
-    
+
     /**
      Set text color in given container. This text color will be used when adding a `PDFSimpleText`
      
@@ -132,7 +132,7 @@ public extension PDFDocument {
     public func setTextColor(_ container: PDFContainer = PDFContainer.contentLeft, color: UIColor) {
         objects += [(container, PDFTextColorObject(color: color))]
     }
-    
+
     /**
      Reset text color in given container to default.
      
@@ -141,27 +141,27 @@ public extension PDFDocument {
     public func resetTextColor(_ container: PDFContainer = PDFContainer.contentLeft) {
         objects += [(container, PDFTextColorObject(color: UIColor.black))]
     }
-    
+
     // MARK: - Table
-    
+
     /**
      Adds a table object to the document in the defined container
      */
     public func addTable(_ container: PDFContainer = PDFContainer.contentLeft, table: PDFTable) {
         objects += [(container, PDFTableObject(table: table))]
     }
-    
+
     // MARK: - List
-    
+
     /**
      Adds a list object to the document in the defined container
      */
     public func addList(_ container: PDFContainer = PDFContainer.contentLeft, list: PDFList) {
         objects += [(container, PDFListObject(list: list))]
     }
-    
+
     // MARK: - Layout
-    
+
     /**
      Change the indentation in a container, use the parameter `left` to define from which side.
      
@@ -172,7 +172,7 @@ public extension PDFDocument {
     public func setIndentation(_ container: PDFContainer = PDFContainer.contentLeft, indent: CGFloat, left: Bool) {
         objects += [(container, PDFIndentationObject(indentation: indent, left: left))]
     }
-    
+
     /**
      Change the absolute top offset in a container
      
@@ -182,7 +182,7 @@ public extension PDFDocument {
     public func setAbsoluteOffset(_ container: PDFContainer = PDFContainer.contentLeft, offset: CGFloat) {
         objects += [(container, PDFOffsetObject(offset: offset))]
     }
-    
+
     /**
      Creates a new page
      */

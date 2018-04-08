@@ -51,11 +51,11 @@ class PDFSpaceObject: PDFObject {
             - generator.layout.indentation.leftIn(container: container)
             - generator.layout.indentation.rightIn(container: container)
             - document.layout.margin.right
-        
+
         self.frame = CGRect(x: origin.x, y: origin.y, width: width, height: space)
 
         generator.layout.heights.add(space, to: container)
-        
+
         return [(container, self)]
     }
 
@@ -78,4 +78,3 @@ class PDFSpaceObject: PDFObject {
         return PDFSpaceObject(space: self.space)
     }
 }
-    

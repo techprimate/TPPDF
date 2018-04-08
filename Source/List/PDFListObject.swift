@@ -6,9 +6,9 @@
 //
 
 class PDFListObject: PDFObject {
-    
+
     var list: PDFList
-    
+
     init(list: PDFList) {
         self.list = list
     }

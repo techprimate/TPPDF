@@ -6,11 +6,11 @@
 //
 
 public class PDFTableStyle: PDFJSONSerializable {
-    
+
     public var rowHeaderCount: Int
     public var columnHeaderCount: Int
     public var footerCount: Int
- 
+
     public var outline: PDFLineStyle
 
     /**
@@ -48,20 +48,20 @@ public class PDFTableStyle: PDFJSONSerializable {
                 footerStyle: PDFTableCellStyle = PDFTableCellStyle(),
                 contentStyle: PDFTableCellStyle = PDFTableCellStyle(),
                 alternatingContentStyle: PDFTableCellStyle? = nil) {
-        
+
         self.rowHeaderCount = rowHeaderCount
         self.columnHeaderCount = columnHeaderCount
         self.footerCount = footerCount
-        
+
         self.outline = outline
-        
+
         self.rowHeaderStyle = rowHeaderStyle
         self.columnHeaderStyle = columnHeaderStyle
         self.footerStyle = footerStyle
         self.contentStyle = contentStyle
         self.alternatingContentStyle = alternatingContentStyle
     }
-    
+
     /**
      Creates a identical copy of this style
      */

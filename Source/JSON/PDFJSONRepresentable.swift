@@ -14,5 +14,5 @@ public protocol PDFJSONRepresentable {
      Creates a representable object
      */
     var JSONRepresentation: AnyObject { get }
-    
+
 }

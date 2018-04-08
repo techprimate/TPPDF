@@ -47,7 +47,7 @@ class PDFIndentationObject: PDFObject {
         } else {
             generator.layout.indentation.setRight(indentation: indentation, in: container)
         }
-        
+
         return [(container, self)]
     }
 

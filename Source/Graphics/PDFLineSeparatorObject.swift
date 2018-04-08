@@ -66,7 +66,7 @@ class PDFLineSeparatorObject: PDFObject {
             end: CGPoint(x: self.frame.maxX, y: self.frame.maxY),
             style: style
         )
-        
+
         if generator.debug && (style.type == .none) {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
         }

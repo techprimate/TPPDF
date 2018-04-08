@@ -17,7 +17,7 @@ class PDFLineStyle_Equatable_Spec: QuickSpec {
         describe("PDFLineStyle") {
 
             context("Equatable") {
-                
+
                 it("is equal") {
                     let style1 = PDFLineStyle(type: .dotted, color: .orange, width: 0.25)
                     let style2 = PDFLineStyle(type: .dotted, color: .orange, width: 0.25)

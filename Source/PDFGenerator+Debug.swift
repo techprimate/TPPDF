@@ -9,9 +9,9 @@
  Adds UI debugging information while rendering.
  */
 extension PDFGenerator {
-    
+
     // MARK: - INTERNAL FUNCS
-    
+
     /**
      Overlays horizontal and vertical lines at margin insets
      */
@@ -20,27 +20,27 @@ extension PDFGenerator {
         guard debug else {
             return
         }
-        
+
         // Draw vertical lines at left and right margin inset
         drawVerticalMarginLines(positionX: document.layout.margin.left)
         drawVerticalMarginLines(positionX: document.layout.width - document.layout.margin.right)
-        
+
         // Draw horizontal lines at top and bottom margin inset
         drawHorizontalMarginLines(positionY: document.layout.margin.top)
         drawHorizontalMarginLines(positionY: document.layout.height - document.layout.margin.bottom)
     }
-    
+
     // MARK: - PRIVATE COMPUTED VARS
-    
+
     /**
      Style of debug lines
      */
     private var debugLineStyle: PDFLineStyle {
         return PDFLineStyle(type: .dashed, color: UIColor.blue, width: 1.0)
     }
-    
+
     // MARK: - PRIVATE FUNCS
-    
+
     /**
      Draws a horizontal line over the whole page at the given vertical position
      
@@ -49,7 +49,7 @@ extension PDFGenerator {
     private func drawHorizontalMarginLines(positionY: CGFloat) {
         PDFGraphics.drawLine(start: CGPoint(x: 0, y: positionY), end: CGPoint(x: document.layout.width, y: positionY), style: debugLineStyle)
     }
-    
+
     /**
      Draws a vertical line over the whole page at the given horizontal position
      

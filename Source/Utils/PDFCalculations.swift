@@ -29,7 +29,7 @@ class PDFCalculations {
         let availableSize = calculateAvailableFrame(for: generator, in: container)
         let (fittingText, textSize, remainder) = calculateTextSizeAndRemainder(of: text, in: availableSize)
         let origin = calculateElementPosition(for: generator, in: container, with: textSize)
-        
+
         return (
             CGRect(origin: origin, size: textSize),
             fittingText,
@@ -108,16 +108,16 @@ class PDFCalculations {
 
     private static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
         let pageLayout = generator.document.layout
-        
+
         return pageLayout.contentSize.width
             - generator.layout.indentation.leftIn(container: container)
             - generator.layout.indentation.rightIn(container: container)
     }
-    
+
     private static func calculateAvailableFrameHeight(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
-        
+
         if container.isHeader || container.isFooter {
             return pageLayout.height
         } else {
@@ -133,7 +133,7 @@ class PDFCalculations {
     private static func calculatePositionX(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
-        
+
         if container.isLeft {
             return pageLayout.margin.left
                 + layout.indentation.leftIn(container: container)
@@ -156,7 +156,7 @@ class PDFCalculations {
     private static func calculatePositionY(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
-        
+
         if container.isHeader {
             return pageLayout.margin.top
                 + layout.heights.value(for: container)
@@ -215,7 +215,7 @@ class PDFCalculations {
     }
 
     // MARK: - LEGACY
-    
+
     static func calculateCellFrame(generator: PDFGenerator,
                                    container: PDFContainer,
                                    position: (origin: CGPoint, width: CGFloat),
@@ -223,7 +223,7 @@ class PDFCalculations {
                                    alignment: PDFTableCellAlignment) -> CGRect {
         let textMaxHeight = PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container)
         let frame: CGRect = CGRect(x: position.origin.x, y: position.origin.y, width: position.width, height: textMaxHeight)
-        
+
         let currentRange = CFRange(location: 0, length: 0)
         let (_, _, drawnSize) = calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
         let x: CGFloat = {
@@ -235,17 +235,17 @@ class PDFCalculations {
                 return position.origin.x + position.width / 2 - drawnSize.width / 2
             }
         }()
-        
+
         return CGRect(origin: CGPoint(x: x, y: position.origin.y), size: CGSize(width: drawnSize.width, height: drawnSize.height))
     }
-    
+
     static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
         let imageSize = image.size
         let height = imageSize.height / imageSize.width * width
-        
+
         return CGRect(x: origin.x, y: origin.y, width: width, height: height)
     }
-    
+
     static func calculateTextFrameAndDrawnSizeInOnePage(generator: PDFGenerator,
                                                         container: PDFContainer,
                                                         text: CFAttributedString,
@@ -256,7 +256,7 @@ class PDFCalculations {
             - generator.document.layout.margin.right
             - generator.layout.indentation.leftIn(container: container)
             - generator.layout.indentation.rightIn(container: container))
-        
+
         let textMaxHeight: CGFloat = {
             if container.isHeader {
                 return generator.document.layout.height
@@ -272,7 +272,7 @@ class PDFCalculations {
                     - generator.layout.heights.content
             }
         }()
-        
+
         // Create a path object to enclose the text.
         let x: CGFloat = {
             switch container {
@@ -290,7 +290,7 @@ class PDFCalculations {
                 return 0
             }
         }()
-        
+
         let frame: CGRect = {
             if container.isHeader {
                 return CGRect(x: x,
@@ -312,28 +312,28 @@ class PDFCalculations {
                               height: textMaxHeight)
             }
         }()
-        
+
         return calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
     }
-    
+
     static func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect, text: CFAttributedString, currentRange: CFRange) -> (CGRect, CTFrame, CGSize) {
         let framesetter = CTFramesetterCreateWithAttributedString(text)
         let framePath = UIBezierPath(rect: frame).cgPath
-        
+
         // Get the frame that will do the rendering.
         // The currentRange variable specifies only the starting point. The framesetter
         // lays out as much text as will fit into the frame.
         let frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, nil)
-        
+
         // Update the current range based on what was drawn.
         let visibleRange = CTFrameGetVisibleStringRange(frameRef)
-        
+
         // Update last drawn frame
         let drawnSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, visibleRange, nil, frame.size, nil)
-        
+
         return (frame, frameRef, drawnSize)
     }
-    
+
     static func calculateImageCaptionSize(generator: PDFGenerator,
                                           container: PDFContainer,
                                           image: PDFImage,
@@ -344,7 +344,7 @@ class PDFCalculations {
 
         let maxWidth = min(size.width, calculateAvailableFrameWidth(for: generator, in: container))
         let maxHeight = min(size.height, calculateAvailableFrameHeight(for: generator, in: container))
-        
+
         let wFactor = image.size.width / maxWidth
         let hFactor = image.size.height / maxHeight
 
@@ -358,7 +358,7 @@ class PDFCalculations {
                 return max(wFactor, hFactor)
             }
         }()
-        
+
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
         return (imageSize, CGSize(width: imageSize.width, height: 0))
     }

@@ -12,33 +12,33 @@
  It is possible to create a JSON representation using the `PDFJSONSerializable` protocol.
  */
 public class PDFDocument: PDFJSONSerializable {
-    
+
     // MARK: - PUBLIC VARS
-    
+
     /**
      Holds all layout information
      */
     public var layout: PDFPageLayout
-    
+
     /**
      Holds all document information
      */
     public var info: PDFInfo = PDFInfo()
-    
+
     /**
      Holds all pagination information
      */
     public var pagination = PDFPagination()
 
     // MARK: - INTERNAL VARS
-    
+
     /**
      All objects inside the document and the container they are located in
      */
     var objects: [(PDFContainer, PDFObject)] = []
-    
+
     // MARK: - PUBLIC INITIALIZERS
-    
+
     /**
      Creates a new document with the given layout
      
@@ -47,7 +47,7 @@ public class PDFDocument: PDFJSONSerializable {
     public init(layout: PDFPageLayout) {
         self.layout = layout
     }
-    
+
     /**
      Creates a new document with a predefined `PDFPageFormat`
      

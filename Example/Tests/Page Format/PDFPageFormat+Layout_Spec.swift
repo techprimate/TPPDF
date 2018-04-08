@@ -30,4 +30,3 @@ class PDFPageFormat_Layout_Spec: QuickSpec {
         }
     }
 }
-

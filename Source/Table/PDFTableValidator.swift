@@ -6,7 +6,7 @@
 //
 
 class PDFTableValidator {
-    
+
     /**
      Validates a given `table`.
      If no error is thrown, validation was successfull.
@@ -22,7 +22,7 @@ class PDFTableValidator {
         if table.cells.count == 0 {
             throw PDFError.tableIsEmpty
         }
-        
+
         // Compare each data row, throw error when columns row count does not equal relativeColumnWidth count
         for (rowIdx, row) in table.cells.enumerated() where row.count != table.widths.count {
             throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
@@ -49,24 +49,24 @@ class PDFTableValidator {
         if data.count == 0 {
             throw PDFError.tableIsEmpty
         }
-        
+
         // Throw error when data row count does not equal alignment row count
         if alignments != nil && data.count != alignments!.count {
             throw PDFError.tableStructureInvalid(message: "Data and alignment must be equal size!")
         }
-        
+
         // Compare each data row
         for (rowIdx, row) in data.enumerated() {
             // Throw error when columns count does not equal alignment columns count
             if alignments != nil && row.count != alignments![rowIdx].count {
                 throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
             }
-            
+
             // Throw error when columns row count does not equal relativeColumnWidth count
             if columnWidths != nil && row.count != columnWidths!.count {
                 throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
             }
         }
     }
-    
+
 }

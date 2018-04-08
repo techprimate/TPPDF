@@ -179,4 +179,3 @@ class PDFSpaceObject_Spec: QuickSpec {
         }
     }
 }
-

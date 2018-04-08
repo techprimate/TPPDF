@@ -6,10 +6,10 @@
 //
 
 public class PDFList: PDFJSONSerializable {
-    
+
     var items: [PDFListItem] = []
     var levelIndentations: [(pre: CGFloat, past: CGFloat)] = []
-    
+
     public init(indentations: [(pre: CGFloat, past: CGFloat)]) {
         self.levelIndentations = indentations
     }
@@ -19,17 +19,17 @@ public class PDFList: PDFJSONSerializable {
 
         return self
     }
-    
+
     @discardableResult public func addItems(_ items: [PDFListItem]) -> PDFList {
         self.items += items
 
         return self
     }
-    
+
     public var count: Int {
         return items.count
     }
-    
+
     public func flatted() -> [(level: Int, text: String, symbol: PDFListItemSymbol)] {
         var result: [(level: Int, text: String, symbol: PDFListItemSymbol)] = []
         for (idx, item) in self.items.enumerated() {
@@ -37,7 +37,7 @@ public class PDFList: PDFJSONSerializable {
         }
         return result
     }
-    
+
     private func flatItem(item: PDFListItem, level: Int, index: Int) -> [(level: Int, text: String, symbol: PDFListItemSymbol)] {
         var result: [(level: Int, text: String, symbol: PDFListItemSymbol)] = []
         if let content = item.content {
@@ -62,7 +62,7 @@ public class PDFList: PDFJSONSerializable {
         }
         return result
     }
-    
+
     func clear() {
         self.items = []
     }
@@ -72,5 +72,5 @@ public class PDFList: PDFJSONSerializable {
         list.items = items
         return list
     }
-    
+
 }

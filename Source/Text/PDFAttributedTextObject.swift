@@ -178,7 +178,7 @@ class PDFAttributedTextObject: PDFObject {
                 fonts: &generator.fonts,
                 textColor: &generator.textColor,
                 spacing: simple.spacing)
-            
+
             return NSAttributedString(string: simple.text, attributes: attributes)
         } else if let attributedText = self.attributedText {
             return attributedText.text
@@ -210,7 +210,7 @@ class PDFAttributedTextObject: PDFObject {
             paragraphStyle.alignment = .center
         }
         paragraphStyle.lineSpacing = spacing
-        
+
         return [
             NSAttributedStringKey.font: fonts[container]!,
             NSAttributedStringKey.foregroundColor: textColor[container]!,

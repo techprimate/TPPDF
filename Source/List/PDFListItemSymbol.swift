@@ -6,7 +6,7 @@
 //
 
 public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
-    
+
     case none
     case inherit
     case dot

@@ -9,14 +9,14 @@
  Contains all relevant layout informations of a pdf document
  */
 public struct PDFPageLayout: PDFJSONSerializable {
-    
+
     // MARK: - PUBLIC VARS
-    
+
     /**
      Size of each page
      */
     public var size: CGSize = CGSize.zero
-    
+
     /**
      Margins of each page.
      
@@ -26,7 +26,7 @@ public struct PDFPageLayout: PDFJSONSerializable {
      `right`: Right inset of page
      */
     public var margin: UIEdgeInsets = .zero
-    
+
     /**
      Spaces between header, content and footer.
      
@@ -34,9 +34,9 @@ public struct PDFPageLayout: PDFJSONSerializable {
      `footer`: Space between content and footer
      */
     public var space: (header: CGFloat, footer: CGFloat) = (0, 0)
-    
+
     // MARK: - INTERNAL COMPUTED VARS
-    
+
     /**
      Returns a `CGRect` with a origin at zero and the `size` of the layout.
      */
@@ -50,14 +50,14 @@ public struct PDFPageLayout: PDFJSONSerializable {
     var width: CGFloat {
         return size.width
     }
-    
+
     /**
      Shorthand access to layout height
      */
     var height: CGFloat {
         return size.height
     }
-    
+
     /**
      Size of content area of each page
      */

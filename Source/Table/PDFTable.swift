@@ -12,7 +12,7 @@
  -
  */
 public class PDFTable: PDFJSONSerializable {
-    
+
     /**
      Styling used for drawing
      */
@@ -55,15 +55,15 @@ public class PDFTable: PDFJSONSerializable {
      */
     public func generateCells(data: [[Any?]], alignments: [[PDFTableCellAlignment]]) throws {
         try PDFTableValidator.validateTableData(data: data, alignments: alignments)
-        
+
         self.cells = []
-        
+
         for (rowIndex, row) in data.enumerated() {
             var contentRow = [PDFTableCell]()
             for (colIndex, col) in row.enumerated() {
                 let content = try PDFTableContent(content: col)
                 let alignment = alignments[rowIndex][colIndex]
-                
+
                 let cell = PDFTableCell(content: content, alignment: alignment)
                 contentRow.append(cell)
             }
@@ -81,7 +81,7 @@ public class PDFTable: PDFJSONSerializable {
         if columnIndex < 0 || columnIndex >= cells[rowIndex].count {
             throw PDFError.tableIndexOutOfBounds(index: columnIndex, length: cells[rowIndex].count)
         }
-        
+
         let cell = cells[rowIndex][columnIndex]
         cell.style = cellStyle
     }

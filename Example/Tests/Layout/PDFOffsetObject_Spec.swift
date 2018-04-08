@@ -56,5 +56,3 @@ class PDFOffsetObject_Spec: QuickSpec {
         }
     }
 }
-
-

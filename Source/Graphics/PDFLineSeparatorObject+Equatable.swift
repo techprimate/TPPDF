@@ -11,7 +11,7 @@ extension PDFLineSeparatorObject: Equatable {
         if lhs.style != rhs.style {
             return false
         }
-        
+
         return true
     }
 }

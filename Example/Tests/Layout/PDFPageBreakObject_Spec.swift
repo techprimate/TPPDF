@@ -54,6 +54,3 @@ class PDFPageBreakObject_Spec: QuickSpec {
         }
     }
 }
-
-
-

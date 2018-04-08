@@ -37,4 +37,3 @@ class CGPoint_Math_Spec: QuickSpec {
         }
     }
 }
-

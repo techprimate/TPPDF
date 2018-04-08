@@ -6,13 +6,13 @@
 //
 
 public enum PDFError: Error {
-    
+
     case tableContentInvalid(value: Any?)
     case tableIsEmpty
     case tableStructureInvalid(message: String)
     case tableIndexOutOfBounds(index: Int, length: Int)
     case tableCellWeakReferenceBroken
-    
+
     case textObjectIsNil
     case textObjectNotCalculated
 
