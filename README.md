@@ -1,4 +1,6 @@
-![TPPDF](resources/header.png)
+<p align="center">
+	<img src="https://github.com/Techprimate/TPPDF/raw/master/resources/header.png" alt="TPPDF">
+</p>
 
 <p align="center">
 	<a href="https://github.com/Carthage/Carthage">
@@ -729,15 +731,15 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 [Hikingbook](https://itunes.apple.com/app/id1067838748) - by Zheng-Xiang Ke
 
-![Hikingbook](apps/Hikingbook.png)
+<img src="https://github.com/Techprimate/TPPDF/raw/master/resources/apps/Hikingbook.png" alt="Hikingbook"/>
 
 [Bug Journal](https://itunes.apple.com/us/app/bug-journal/id1232077952) - by David Johnson
 
-![Bug Journal](apps/Bug_Journal.png)
+<img src="https://github.com/Techprimate/TPPDF/raw/master/resources/apps/Bug_Journal.png" alt="Bug Journal"/>
 
 [Mama's Cookbook (future release)](https://itunes.apple.com/us/app/mamas-cookbook/id1019090528) - by Philip Niedertscheider
 
-![Mama's Cookbook](apps/MCB.png)
+<img src="https://github.com/Techprimate/TPPDF/raw/master/resources/apps/MCB.png" alt="Mama's Cookbook"/>
 
 ## Credits
 
