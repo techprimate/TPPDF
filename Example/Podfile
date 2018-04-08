@@ -1,11 +1,29 @@
+source "https://github.com/CocoaPods/Specs.git"
+
+platform :ios, '8.3'
 use_frameworks!
 
 target 'TPPDF_Example' do
-  pod 'TPPDF', :path => '../'
+    pod 'TPPDF', :path => '../'
+end
 
-  target 'TPPDF_Tests' do
-    inherit! :search_paths
-
+target 'TPPDF_Tests' do
+    pod 'TPPDF', :path => '../'
     
-  end
+    pod 'Quick'
+    pod 'Nimble'
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            if target.name == "TPPDF"
+                puts "#{target.name} -> 4.1"
+                config.build_settings['SWIFT_VERSION'] = '4.1'
+            else
+                puts "#{target.name} -> 3.2"
+                config.build_settings['SWIFT_VERSION'] = '3.2'
+            end
+        end
+    end
 end

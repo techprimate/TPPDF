@@ -1,0 +1,8 @@
+author: Philip Niedertscheider
+author_url: https://www.github.com/techprimate-phil
+github_url: https://www.github.com/Techprimate/TPPDF
+root_url: https://techprimate.github.io/TPPDF/
+module: TPPDF
+output: docs
+theme: fullwidth
+xcodebuild_arguments: [-workspace, 'Example/TPPDF.xcworkspace', -scheme, 'TPPDF-Example']

@@ -1,9 +1,11 @@
 Pod::Spec.new do |s|
   s.name             = 'TPPDF'
-  s.version          = '0.4.0'
+  s.version          = '1.0.0'
   s.summary          = 'TPPDF is a simple-to-use PDF builder for iOS'
   s.description      = <<-DESC
-TPPDF is a PDF builder based on the 'Builder' pattern. It uses the built-in framework for generating PDF files.
+    TPPDF is an object-based PDF builder.
+    You create a document by defining, adding and positioning different objects.
+    TPPDF then calculates the document and creates a PDF.
                        DESC
 
   s.homepage         = 'https://github.com/techprimate/TPPDF'
@@ -14,6 +16,9 @@ TPPDF is a PDF builder based on the 'Builder' pattern. It uses the built-in fram
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'Sources/**/*'
+  s.source_files = 'Source/**/*'
   s.frameworks = 'UIKit'
+
+  s.dependency 'SwiftLint'
+
 end

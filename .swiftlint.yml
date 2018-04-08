@@ -1,0 +1,33 @@
+--- 
+disabled_rules: 
+  - large_tuple
+excluded: 
+  - Carthage
+  - Pods
+file_length: 
+  error: 1200
+  warning: 500
+force_cast: warning
+force_try: 
+  severity: warning
+identifier_name: 
+  excluded: 
+    - id
+    - x
+    - y
+    - i
+  min_length: 
+    error: 2
+    warning: 2
+included: 
+  - ../Source
+line_length: 150
+reporter: xcode
+type_body_length: 
+  - 300
+  - 400
+type_name: 
+  max_length: 
+    error: 60
+    warning: 50
+  min_length: 2

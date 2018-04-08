@@ -1,0 +1,719 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Image/PDFImageSizeFit.swift",
+      "line": 13,
+      "symbol": "PDFImageSizeFit.width",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Image/PDFImageSizeFit.swift",
+      "line": 14,
+      "symbol": "PDFImageSizeFit.height",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Image/PDFImageSizeFit.swift",
+      "line": 15,
+      "symbol": "PDFImageSizeFit.widthHeight",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/JSON/PDFJSONSerializable.swift",
+      "line": null,
+      "symbol": "PDFJSONSerializable",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/JSON/PDFJSONSerializable.swift",
+      "line": null,
+      "symbol": "PDFJSONSerializable",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/JSON/PDFJSONSerializable.swift",
+      "line": 8,
+      "symbol": "PDFJSONSerializable",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/JSON/PDFJSONSerializable.swift",
+      "line": 12,
+      "symbol": "PDFJSONSerializable.toJSON(options:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/JSON/PDFJSONSerializable.swift",
+      "line": 107,
+      "symbol": "UIImage.JSONRepresentation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/JSON/PDFJSONSerializable.swift",
+      "line": 114,
+      "symbol": "Data.JSONRepresentation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/JSON/PDFJSONSerializable.swift",
+      "line": 121,
+      "symbol": "UIColor.JSONRepresentation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Layout/PDFLayoutHeights.swift",
+      "line": null,
+      "symbol": "PDFLayoutHeights",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFList.swift",
+      "line": null,
+      "symbol": "PDFList",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFList.swift",
+      "line": 8,
+      "symbol": "PDFList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFList.swift",
+      "line": 13,
+      "symbol": "PDFList.init(indentations:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFList.swift",
+      "line": 17,
+      "symbol": "PDFList.addItem(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFList.swift",
+      "line": 23,
+      "symbol": "PDFList.addItems(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFList.swift",
+      "line": 29,
+      "symbol": "PDFList.count",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFList.swift",
+      "line": 33,
+      "symbol": "PDFList.flatted()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItem.swift",
+      "line": null,
+      "symbol": "PDFListItem",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItem.swift",
+      "line": 8,
+      "symbol": "PDFListItem",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItem.swift",
+      "line": 10,
+      "symbol": "PDFListItem.parent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItem.swift",
+      "line": 11,
+      "symbol": "PDFListItem.content",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItem.swift",
+      "line": 12,
+      "symbol": "PDFListItem.children",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItem.swift",
+      "line": 13,
+      "symbol": "PDFListItem.symbol",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItem.swift",
+      "line": 15,
+      "symbol": "PDFListItem.init(symbol:content:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItem.swift",
+      "line": 20,
+      "symbol": "PDFListItem.addItems(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItem.swift",
+      "line": 28,
+      "symbol": "PDFListItem.addItem(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItem.swift",
+      "line": 35,
+      "symbol": "PDFListItem.setContent(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItemSymbol.swift",
+      "line": 8,
+      "symbol": "PDFListItemSymbol",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItemSymbol.swift",
+      "line": 10,
+      "symbol": "PDFListItemSymbol.none",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItemSymbol.swift",
+      "line": 11,
+      "symbol": "PDFListItemSymbol.inherit",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItemSymbol.swift",
+      "line": 12,
+      "symbol": "PDFListItemSymbol.dot",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItemSymbol.swift",
+      "line": 13,
+      "symbol": "PDFListItemSymbol.dash",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItemSymbol.swift",
+      "line": 14,
+      "symbol": "PDFListItemSymbol.custom",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/List/PDFListItemSymbol.swift",
+      "line": 15,
+      "symbol": "PDFListItemSymbol.numbered",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCell.swift",
+      "line": null,
+      "symbol": "PDFTableCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCell.swift",
+      "line": 8,
+      "symbol": "PDFTableCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCell.swift",
+      "line": 10,
+      "symbol": "PDFTableCell.content",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCell.swift",
+      "line": 11,
+      "symbol": "PDFTableCell.style",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCell.swift",
+      "line": 12,
+      "symbol": "PDFTableCell.alignment",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": null,
+      "symbol": "PDFTableCellAlignment",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": 8,
+      "symbol": "PDFTableCellAlignment",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": 10,
+      "symbol": "PDFTableCellAlignment.top",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": 10,
+      "symbol": "PDFTableCellAlignment.topLeft",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": 10,
+      "symbol": "PDFTableCellAlignment.topRight",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": 11,
+      "symbol": "PDFTableCellAlignment.center",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": 11,
+      "symbol": "PDFTableCellAlignment.left",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": 11,
+      "symbol": "PDFTableCellAlignment.right",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": 12,
+      "symbol": "PDFTableCellAlignment.bottom",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": 12,
+      "symbol": "PDFTableCellAlignment.bottomLeft",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellAlignment.swift",
+      "line": 12,
+      "symbol": "PDFTableCellAlignment.bottomRight",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellBorders.swift",
+      "line": null,
+      "symbol": "PDFTableCellBorders",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellBorders.swift",
+      "line": 8,
+      "symbol": "PDFTableCellBorders",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellBorders.swift",
+      "line": 10,
+      "symbol": "PDFTableCellBorders.left",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellBorders.swift",
+      "line": 11,
+      "symbol": "PDFTableCellBorders.top",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellBorders.swift",
+      "line": 12,
+      "symbol": "PDFTableCellBorders.right",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellBorders.swift",
+      "line": 13,
+      "symbol": "PDFTableCellBorders.bottom",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellBorders.swift",
+      "line": 15,
+      "symbol": "PDFTableCellBorders.init(left:top:right:bottom:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellPosition.swift",
+      "line": null,
+      "symbol": "PDFTableCellPosition",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellPosition.swift",
+      "line": null,
+      "symbol": "PDFTableCellPosition",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellPosition.swift",
+      "line": 8,
+      "symbol": "PDFTableCellPosition",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellPosition.swift",
+      "line": 10,
+      "symbol": "PDFTableCellPosition.row",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellPosition.swift",
+      "line": 11,
+      "symbol": "PDFTableCellPosition.column",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellPosition.swift",
+      "line": 13,
+      "symbol": "PDFTableCellPosition.init(row:column:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellStyle.swift",
+      "line": null,
+      "symbol": "PDFTableCellStyle",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellStyle.swift",
+      "line": 8,
+      "symbol": "PDFTableCellStyle",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellStyle.swift",
+      "line": 10,
+      "symbol": "PDFTableCellStyle.colors",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellStyle.swift",
+      "line": 11,
+      "symbol": "PDFTableCellStyle.borders",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellStyle.swift",
+      "line": 12,
+      "symbol": "PDFTableCellStyle.font",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableCellStyle.swift",
+      "line": 14,
+      "symbol": "PDFTableCellStyle.init(colors:borders:font:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableContent.swift",
+      "line": null,
+      "symbol": "PDFTableContent",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableContent.swift",
+      "line": 8,
+      "symbol": "PDFTableContent",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableContent.swift",
+      "line": 25,
+      "symbol": "PDFTableContent.init(content:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableContent.swift",
+      "line": 82,
+      "symbol": "String.toPDFTableContent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableContent.swift",
+      "line": 89,
+      "symbol": "NSAttributedString.toPDFTableContent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableContent.swift",
+      "line": 96,
+      "symbol": "UIImage.toPDFTableContent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableStyle.swift",
+      "line": null,
+      "symbol": "PDFTableStyle",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableStyle.swift",
+      "line": 8,
+      "symbol": "PDFTableStyle",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableStyle.swift",
+      "line": 10,
+      "symbol": "PDFTableStyle.rowHeaderCount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableStyle.swift",
+      "line": 11,
+      "symbol": "PDFTableStyle.columnHeaderCount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableStyle.swift",
+      "line": 12,
+      "symbol": "PDFTableStyle.footerCount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableStyle.swift",
+      "line": 14,
+      "symbol": "PDFTableStyle.outline",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableStyle.swift",
+      "line": 20,
+      "symbol": "PDFTableStyle.columnHeaderStyle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableStyle.swift",
+      "line": 21,
+      "symbol": "PDFTableStyle.footerStyle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableStyle.swift",
+      "line": 22,
+      "symbol": "PDFTableStyle.contentStyle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Table/PDFTableStyle.swift",
+      "line": 23,
+      "symbol": "PDFTableStyle.alternatingContentStyle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Text/PDFText.swift",
+      "line": 19,
+      "symbol": "!=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Text/PDFText.swift",
+      "line": 23,
+      "symbol": "==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFCopy.swift",
+      "line": 8,
+      "symbol": "PDFCopy",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFCopy.swift",
+      "line": 9,
+      "symbol": "PDFCopy.Element",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFCopy.swift",
+      "line": 11,
+      "symbol": "PDFCopy.copy",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 8,
+      "symbol": "PDFError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 10,
+      "symbol": "PDFError.tableContentInvalid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 11,
+      "symbol": "PDFError.tableIsEmpty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 12,
+      "symbol": "PDFError.tableStructureInvalid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 13,
+      "symbol": "PDFError.tableIndexOutOfBounds",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 14,
+      "symbol": "PDFError.tableCellWeakReferenceBroken",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 16,
+      "symbol": "PDFError.textObjectIsNil",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 17,
+      "symbol": "PDFError.textObjectNotCalculated",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 19,
+      "symbol": "PDFError.invalidHexLength",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 20,
+      "symbol": "PDFError.invalidHex",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source/Source/Utils/PDFError.swift",
+      "line": 22,
+      "symbol": "PDFError.localizedDescription",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/Philip/Desktop/Techprimate/Projects/TPPDF/Source"
+}

@@ -37,3 +37,5 @@ playground.xcworkspace
 
 # Carthage
 Carthage/Build
+Example/Pods
+derived_data

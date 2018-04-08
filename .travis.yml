@@ -1,60 +1,38 @@
 language: objective-c
-osx_image: xcode8
-cache: cocoapods
-podfile: Example/Podfile
-before_install:
- - rvm install ruby-2.2.2
- - gem install xcpretty
- - gem install cocoapods # Since Travis is not always on latest version
- - pod install --project-directory=Example
- 
-after_success:
-  - bash <(curl -s https://codecov.io/bash) 
-
+osx_image: xcode9.3beta
+cache:
+- bundler
+- cocoapods
+notifications:
+  slack:
+    secure: zqgyogEkMEjTfIZqbSOfG8SWE3+93tDyPt+Q/aRe4xO/Bd/IKcUrn0XtLDeZf38Q5Xkb3oZzg+8NMcwj0EPEbV+iO/drmJd3keAHWlLwc1Lyzq7mjibfOgwtXRuahC6z5VxPooGFH3dXz0ZWPrk4oDTv6p9uJ+8efPxZMY55lMnJvvYRVBHwIfK9pxNkOt/dC7Sflh6/46JUIefJGuSr3rgG+ImE+exp/us6lA2wu/XDDyMyAqMQPBLa2L4OL/CKqLP6NFLy00QlRtlPKW/AvyIXPI2x/k9porkK+cueGK0n3ZnZcsINdf8YKIVuTpOATmd9igXX7d2oW7FGJwlU7ttZ6gaa/zQxfHwVHKYbXdQYdfpXrB6u/tb1qpfj/CbDVgxVHEr7vXXJQdMJVnWqzXJiLlai4S3tRrLHyD86IeyhWj28jMp0JT6A9bkhrMy30Fyx3L2QMzZf17/xRI3ZJdl+Exj/f5xEngdO5yk2B98K4YWFkfJO80kmegXnH178OolaOnhHTLW/1q6l/ZBD7LVtRq1hFgcPIR0JxgsvWzX6+0dE4cZ6pb1Ulq0uj90T8ryBV+jaHdHPKxOORCkOLHfsem+5Tw5GzMBVhVNKdV7ajX1SvZmIMyoczfCsKXdU5zk5vbjigjm0fqdKY2/1AJAXDAHB7QMeQSR/WDEXNbc=
 env:
   global:
-  - LC_CTYPE=en_US.UTF-8
-  - LANG=en_US.UTF-8
   - WORKSPACE=Example/TPPDF.xcworkspace
-  - IOS_FRAMEWORK_SCHEME="TPPDF"
-  - IOS_SDK=iphonesimulator10.0
-  - MACOS_SDK=macosx10.12
-  - TVOS_SDK=appletvsimulator10.0
-  - WATCHOS_SDK=watchsimulator3.0
+  - PROJECT=Example/TPPDF.xcodeproj
+  - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
   - EXAMPLE_SCHEME="TPPDF-Example"
+  - SOURCE_FOLDER="Source"
   matrix:
-     - DESTINATION="OS=8.3,name=iPhone 5s"          SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO" BUILD_EXAMPLE="YES" POD_LINT="NO"
-     - DESTINATION="OS=8.4,name=iPhone 6"           SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO" BUILD_EXAMPLE="YES" POD_LINT="NO"
-     - DESTINATION="OS=9.0,name=iPhone 6"           SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO" BUILD_EXAMPLE="YES" POD_LINT="NO"
-     - DESTINATION="OS=9.1,name=iPhone 6 Plus"      SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO" BUILD_EXAMPLE="YES" POD_LINT="NO"
-     - DESTINATION="OS=9.2,name=iPhone 6s"          SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO" BUILD_EXAMPLE="YES" POD_LINT="NO"
-     - DESTINATION="OS=9.3,name=iPhone 6s Plus"     SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO" BUILD_EXAMPLE="YES" POD_LINT="NO"
-     - DESTINATION="OS=10.0,name=iPhone 7"          SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO" BUILD_EXAMPLE="YES" POD_LINT="NO"
+  - DESTINATION="OS=11.3,name=iPhone 8"
+install:
+- bundle install
+- bundle exec pod repo update
+- bundle exec pod install --project-directory=Example
 script:
-  - set -o pipefail
-  - xcodebuild -version
-  - xcodebuild -showsdks
-
-  # Build Framework in Debug and Run Tests if specified
-  - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
-    else
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
-    fi
-
-  # Build Framework in Release and Run Tests if specified
-  - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
-    else
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
-    fi
-
-  # Build Example in Debug if specified
-  - if [ $BUILD_EXAMPLE == "YES" ]; then
-      xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
-    fi
-
-  # Run `pod lib lint` if specified
-  - if [ $POD_LINT == "YES" ]; then
-      pod lib lint;
-    fi
+- set -o pipefail
+- xcodebuild -version
+- xcodebuild -showsdks
+- xcodebuild -list
+- xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator
+  -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data  -enableCodeCoverage
+  YES ONLY_ACTIVE_ARCH=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+  build test | xcpretty
+- xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME"        -sdk iphonesimulator
+  -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data                          ONLY_ACTIVE_ARCH=YES                                                                           build      |
+  xcpretty
+- pod lib lint --allow-warnings
+after_success:
+- slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verbose
+- bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X
+  xcode
