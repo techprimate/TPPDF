@@ -26,4 +26,5 @@ class PDFPageBreakObject_Equatable_Spec: QuickSpec {
             }
         }
     }
+
 }

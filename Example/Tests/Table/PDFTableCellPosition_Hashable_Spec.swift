@@ -24,5 +24,5 @@ class PDFTableCellPosition_Hashable_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

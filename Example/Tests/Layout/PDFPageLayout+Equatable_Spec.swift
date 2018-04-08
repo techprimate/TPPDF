@@ -57,4 +57,5 @@ class PDFPageLayout_Equatable_Spec: QuickSpec {
             }
         }
     }
+
 }

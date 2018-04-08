@@ -22,4 +22,5 @@ extension PDFPageLayout: Equatable {
 
         return true
     }
+
 }

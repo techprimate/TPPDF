@@ -23,4 +23,5 @@ class PDFAttributedText_Spec: QuickSpec {
             }
         }
     }
+
 }

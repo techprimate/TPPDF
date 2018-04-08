@@ -53,4 +53,5 @@ class UIImage_Pixel_Spec: QuickSpec {
             }
         }
     }
+
 }

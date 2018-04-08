@@ -90,4 +90,5 @@ class PDFInfo_Equatable_Spec: QuickSpec {
             }
         }
     }
+
 }

@@ -31,4 +31,5 @@ class PDFAttributedText_Equatable_Spec: QuickSpec {
             }
         }
     }
+
 }

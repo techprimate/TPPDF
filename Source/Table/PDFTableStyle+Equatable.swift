@@ -46,4 +46,5 @@ extension PDFTableStyle: Equatable {
 
         return true
     }
+
 }

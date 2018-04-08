@@ -49,4 +49,5 @@ class UIImage_CloseToEqual_Spec: QuickSpec {
             }
         }
     }
+
 }

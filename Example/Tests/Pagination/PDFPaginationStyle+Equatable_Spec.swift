@@ -76,13 +76,14 @@ class PDFPaginationStyle_Equatable_Spec: QuickSpec {
                 }
 
                 it("is never equal with custom closure") {
-                    let pagination = PDFPaginationStyle.customClosure({ (page, total) -> String in
+                    let pagination = PDFPaginationStyle.customClosure { (page, total) -> String in
                         return ""
-                    })
+                    }
                     expect(pagination) != pagination
                     expect(pagination.format(page: 1, total: 2)) == ""
                 }
             }
         }
     }
+
 }

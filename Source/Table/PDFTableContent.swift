@@ -75,6 +75,7 @@ public class PDFTableContent: PDFJSONSerializable {
     var imageValue: UIImage? {
         return type == .image ? content as? UIImage : nil
     }
+
 }
 
 public extension String {
@@ -82,6 +83,7 @@ public extension String {
     func toPDFTableContent() -> PDFTableContent {
         return PDFTableContent(type: .string, content: self)
     }
+
 }
 
 public extension NSAttributedString {
@@ -89,6 +91,7 @@ public extension NSAttributedString {
     func toPDFTableContent() -> PDFTableContent {
         return PDFTableContent(type: .attributedString, content: self)
     }
+
 }
 
 public extension UIImage {
@@ -96,4 +99,5 @@ public extension UIImage {
     func toPDFTableContent() -> PDFTableContent {
         return PDFTableContent(type: .image, content: self)
     }
+
 }

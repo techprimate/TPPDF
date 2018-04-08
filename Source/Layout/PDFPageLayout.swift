@@ -1,5 +1,5 @@
 //
-//  PDFLayout.swift
+//  PDFPageLayout.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 11/08/2017.
@@ -73,4 +73,5 @@ public struct PDFPageLayout: PDFJSONSerializable {
                 - margin.bottom
         )
     }
+
 }

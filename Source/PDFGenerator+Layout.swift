@@ -1,5 +1,5 @@
 //
-//  PDFGenerator+Offset.swift
+//  PDFGenerator+Layout.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
@@ -30,4 +30,5 @@ extension PDFGenerator {
     func setContentOffset(in container: PDFContainer, to value: CGFloat) {
         layout.setContentOffset(in: container, to: value)
     }
+
 }

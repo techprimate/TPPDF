@@ -14,7 +14,7 @@ public enum PDFPaginationStyle: PDFJSONSerializable {
 
     /**
      Default format, concats current page and total pages with a dash.
-     
+
      e.g. Converts page 1 of 3 to **"1 - 3"**
      */
     case `default`

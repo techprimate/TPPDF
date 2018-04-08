@@ -112,13 +112,14 @@ class PDFPaginationStyle_Spec: QuickSpec {
                 }
 
                 it("can be equated when default") {
-                    expect(PDFPaginationStyle.customClosure({ (page, total) -> String in
+                    expect(PDFPaginationStyle.customClosure { (page, total) -> String in
                         return String(format: "%@ %@", page, total)
-                    }) == PDFPaginationStyle.customClosure({ (page, total) -> String in
+                    } == PDFPaginationStyle.customClosure { (page, total) -> String in
                         return String(format: "%@ %@", page, total)
-                    })).to(beFalse())
+                    }).to(beFalse())
                 }
             }
         }
     }
+
 }

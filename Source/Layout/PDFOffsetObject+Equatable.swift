@@ -14,4 +14,5 @@ extension PDFOffsetObject: Equatable {
 
         return true
     }
+
 }

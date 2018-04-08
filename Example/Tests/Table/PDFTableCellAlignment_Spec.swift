@@ -125,5 +125,5 @@ class PDFTableCellAlignment_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

@@ -18,7 +18,7 @@ class PDFPageBreakObject: PDFObject {
      - parameter container: Unused
 
      - throws: None
-     
+
      - returns: Self
      */
     @discardableResult

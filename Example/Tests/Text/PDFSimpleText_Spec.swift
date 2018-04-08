@@ -51,4 +51,5 @@ class PDFSimpleText_Spec: QuickSpec {
             }
         }
     }
+
 }

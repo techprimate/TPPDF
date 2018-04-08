@@ -26,4 +26,5 @@ extension PDFListItem: Equatable {
 
         return true
     }
+
 }

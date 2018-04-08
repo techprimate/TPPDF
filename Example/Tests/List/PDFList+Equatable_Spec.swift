@@ -48,4 +48,5 @@ class PDFList_Equatable_Spec: QuickSpec {
             }
         }
     }
+
 }

@@ -29,9 +29,9 @@ struct PDFLayoutIndentations {
 
     /**
      The given container is normalized and then returns the left indentation from either header, content or footer.
-     
+
      - parameter container: Container whose left indentation is requested
-     
+
      - returns: Left indentation of given container
      */
     func leftIn(container: PDFContainer) -> CGFloat {
@@ -90,4 +90,5 @@ struct PDFLayoutIndentations {
             content.right = indentation
         }
     }
+
 }

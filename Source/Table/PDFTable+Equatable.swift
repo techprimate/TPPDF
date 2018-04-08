@@ -38,4 +38,5 @@ extension PDFTable: Equatable {
 
         return true
     }
+
 }

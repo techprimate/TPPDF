@@ -116,7 +116,7 @@ class PDFSpaceObject_Spec: QuickSpec {
                                 // expect(result).toEventually(equal(expected), description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
 
                                 // Early exit to only fail at first error!
-                                if (result != expected) {
+                                if result != expected {
                                     shouldExit = true
                                 }
                             }
@@ -157,7 +157,7 @@ class PDFSpaceObject_Spec: QuickSpec {
                                 let result = pixel.hex
 
                                 if object.frame.contains(CGPoint(x: x, y: y)) {
-                                    if CGFloat(x) == object.frame.minX || CGFloat(x) == object.frame.maxX || CGFloat(y) == object.frame.minY || CGFloat(y) == object.frame.maxY{
+                                    if CGFloat(x) == object.frame.minX || CGFloat(x) == object.frame.maxX || CGFloat(y) == object.frame.minY || CGFloat(y) == object.frame.maxY {
                                         expected = UIColor.red.hex
                                     } else {
                                         expected = UIColor.green.hex
@@ -178,4 +178,5 @@ class PDFSpaceObject_Spec: QuickSpec {
             }
         }
     }
+
 }

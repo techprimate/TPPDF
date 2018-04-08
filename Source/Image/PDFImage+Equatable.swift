@@ -34,4 +34,5 @@ extension PDFImage: Equatable {
 
         return true
     }
+
 }

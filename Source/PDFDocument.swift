@@ -8,7 +8,7 @@
 /**
  The main class users interact with.
  This object holds the information about the document and also all PDF objects.
- 
+
  It is possible to create a JSON representation using the `PDFJSONSerializable` protocol.
  */
 public class PDFDocument: PDFJSONSerializable {

@@ -29,4 +29,5 @@ extension PDFPaginationStyle: Equatable {
 
         return false
     }
+
 }

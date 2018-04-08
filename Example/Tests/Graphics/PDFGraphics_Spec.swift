@@ -89,4 +89,5 @@ class PDFGraphics_Spec : QuickSpec {
             }
         }
     }
+
 }

@@ -177,4 +177,5 @@ class PDFTableStyle_Equatable_Spec: QuickSpec {
             }
         }
     }
+
 }

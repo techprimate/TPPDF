@@ -1,5 +1,5 @@
 //
-//  PDFDocument+Commands.swift
+//  PDFDocument+Objects.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
@@ -189,4 +189,5 @@ public extension PDFDocument {
     public func createNewPage() {
         objects += [(.contentLeft, PDFPageBreakObject())]
     }
+
 }

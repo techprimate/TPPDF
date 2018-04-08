@@ -1,5 +1,5 @@
 //
-//  PDFTableCellPosition+Equatable-Hashable_Spec.swift
+//  PDFTableCellPosition+Equatable_Spec.swift
 //  TPPDF_Tests
 //
 //  Created by Philip Niedertscheider on 16/11/2017.
@@ -36,4 +36,5 @@ class PDFTableCellPosition_Equatable_Spec: QuickSpec {
             }
         }
     }
+
 }

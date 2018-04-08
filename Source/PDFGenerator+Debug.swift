@@ -43,7 +43,7 @@ extension PDFGenerator {
 
     /**
      Draws a horizontal line over the whole page at the given vertical position
-     
+
      - parameter positionY: Position in points, from top page edge
      */
     private func drawHorizontalMarginLines(positionY: CGFloat) {
@@ -58,4 +58,5 @@ extension PDFGenerator {
     private func drawVerticalMarginLines(positionX: CGFloat) {
         PDFGraphics.drawLine(start: CGPoint(x: positionX, y: 0), end: CGPoint(x: positionX, y: document.layout.height), style: debugLineStyle)
     }
+
 }

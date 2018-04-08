@@ -68,5 +68,5 @@ class PDFTableCellBorders_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

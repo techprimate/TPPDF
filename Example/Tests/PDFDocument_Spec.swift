@@ -13,8 +13,9 @@ import Nimble
 class PDFDocument_Spec : QuickSpec {
 
     override func spec() {
+
         describe("PDFDocument") {
-            
+
             let layout = PDFPageLayout()
             var document: PDFDocument!
 
@@ -51,4 +52,5 @@ class PDFDocument_Spec : QuickSpec {
             }
         }
     }
+
 }

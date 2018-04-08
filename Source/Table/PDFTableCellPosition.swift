@@ -14,6 +14,7 @@ public struct PDFTableCellPosition {
         self.row = row
         self.column = column
     }
+
 }
 
-extension PDFTableCellPosition: PDFJSONSerializable { }
+extension PDFTableCellPosition: PDFJSONSerializable {}

@@ -120,5 +120,5 @@ class PDFTableValidator_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

@@ -1,9 +1,9 @@
 //
-//  PDFCalculations_Tests.swift
+//  PDFCalculations_Spec.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 02/11/2017.
-//Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
 import Quick
@@ -55,4 +55,5 @@ class PDFCalculations_Spec : QuickSpec {
             }
         }
     }
+
 }

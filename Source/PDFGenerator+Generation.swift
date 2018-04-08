@@ -269,4 +269,5 @@ extension PDFGenerator {
     static func extractContentObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
         return objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
     }
+
 }

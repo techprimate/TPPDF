@@ -362,4 +362,5 @@ class PDFCalculations {
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
         return (imageSize, CGSize(width: imageSize.width, height: 0))
     }
+
 }

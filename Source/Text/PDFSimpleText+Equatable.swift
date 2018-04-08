@@ -18,4 +18,5 @@ extension PDFSimpleText: Equatable {
 
         return true
     }
+
 }

@@ -38,7 +38,7 @@ class PDFAttributedTextObject_Spec: QuickSpec {
 
                 it("can not be initialized with a custom object") {
                     #if arch(x86_64)
-                        class CustomTextObject: PDFText { }
+                        class CustomTextObject: PDFText {}
 
                         let custom = CustomTextObject()
                         expect {
@@ -50,5 +50,5 @@ class PDFAttributedTextObject_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

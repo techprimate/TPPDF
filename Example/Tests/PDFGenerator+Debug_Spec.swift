@@ -83,7 +83,7 @@ class PDFGenerator_Debug_Spec: QuickSpec {
 //                                        description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
 
                                 // Early exit to only fail at first error!
-                                if (result != expected) {
+                                if result != expected {
                                     return
                                 }
                             }
@@ -93,5 +93,5 @@ class PDFGenerator_Debug_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

@@ -64,4 +64,5 @@ class PDFTableStyle_Defaults_Spec: QuickSpec {
             }
         }
     }
+
 }

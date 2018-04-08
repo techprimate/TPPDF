@@ -31,4 +31,5 @@ class PDFJSONRepresentable_Spec: QuickSpec {
             }
         }
     }
+
 }

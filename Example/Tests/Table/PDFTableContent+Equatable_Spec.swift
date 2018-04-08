@@ -80,4 +80,5 @@ class PDFTableContent_Equatable_Spec: QuickSpec {
             }
         }
     }
+
 }

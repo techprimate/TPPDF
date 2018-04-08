@@ -138,4 +138,5 @@ class PDFLineSeparatorObject_Spec: QuickSpec {
             }
         }
     }
+
 }

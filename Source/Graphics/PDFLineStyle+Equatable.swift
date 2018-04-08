@@ -22,4 +22,5 @@ extension PDFLineStyle: Equatable {
 
         return true
     }
+
 }

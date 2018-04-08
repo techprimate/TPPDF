@@ -118,5 +118,5 @@ class PDFLayoutHeights_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

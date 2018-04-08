@@ -46,5 +46,5 @@ class PDFError_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

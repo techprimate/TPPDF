@@ -13,4 +13,5 @@ extension PDFPagination: Equatable {
             && lhs.range == rhs.range
             && lhs.hiddenPages == rhs.hiddenPages
     }
+
 }

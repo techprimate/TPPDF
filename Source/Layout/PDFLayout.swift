@@ -38,4 +38,5 @@ class PDFLayout: PDFJSONSerializable {
         heights = PDFLayoutHeights()
         indentation = PDFLayoutIndentations()
     }
+
 }

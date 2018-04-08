@@ -57,5 +57,5 @@ class PDFTextColorObject_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

@@ -28,4 +28,5 @@ extension PDFInfo: Equatable {
             && lhs.allowsPrinting == rhs.allowsPrinting
             && lhs.allowsCopying == rhs.allowsCopying
     }
+
 }

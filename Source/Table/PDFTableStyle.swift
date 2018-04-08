@@ -78,4 +78,5 @@ public class PDFTableStyle: PDFJSONSerializable {
             alternatingContentStyle: self.alternatingContentStyle
         )
     }
+
 }

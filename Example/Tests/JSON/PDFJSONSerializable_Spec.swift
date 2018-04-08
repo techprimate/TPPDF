@@ -224,4 +224,5 @@ class PDFJSONSerialization_Spec : QuickSpec {
             }
         }
     }
+
 }

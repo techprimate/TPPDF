@@ -14,4 +14,5 @@ extension PDFLineSeparatorObject: Equatable {
 
         return true
     }
+
 }

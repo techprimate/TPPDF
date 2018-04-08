@@ -14,4 +14,5 @@ extension PDFAttributedText: Equatable {
 
         return true
     }
+
 }

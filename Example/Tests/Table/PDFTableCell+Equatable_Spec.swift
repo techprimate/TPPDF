@@ -42,5 +42,5 @@ class PDFTableCell_Equatable_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

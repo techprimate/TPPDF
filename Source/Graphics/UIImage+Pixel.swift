@@ -82,4 +82,5 @@ class PixelExtractor: NSObject {
 
         return color
     }
+
 }

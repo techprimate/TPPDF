@@ -94,4 +94,5 @@ public class PDFInfo: PDFJSONSerializable {
 
         return documentInfo
     }
+
 }

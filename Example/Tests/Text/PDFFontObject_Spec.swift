@@ -57,4 +57,5 @@ class PDFFontObject_Spec: QuickSpec {
             }
         }
     }
+
 }

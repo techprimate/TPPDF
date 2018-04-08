@@ -57,5 +57,5 @@ class PDFTableCell_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

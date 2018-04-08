@@ -26,5 +26,5 @@ class PDFPagination_Closure_Spec: QuickSpec {
             }
         }
     }
-}
 
+}

@@ -1,5 +1,5 @@
 //
-//  JSONSerializable.swift
+//  PDFJSONSerializable.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
@@ -20,6 +20,7 @@ public extension PDFJSONSerializable {
 
         return String(data: data, encoding: .utf8)
     }
+
 }
 
 extension PDFJSONSerializable {

@@ -99,7 +99,7 @@ class PDFListItem_Spec: QuickSpec {
                     object.symbol = PDFListItemSymbol.dot
 
                     let item = PDFListItem(symbol: .dash, content: "A1")
-                    
+
                     let representation = object.addItem(item).JSONRepresentation as? [String: AnyObject]
                     expect(representation).toNot(beNil())
 
@@ -114,4 +114,5 @@ class PDFListItem_Spec: QuickSpec {
             }
         }
     }
+
 }

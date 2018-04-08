@@ -31,4 +31,5 @@ class PDFImageSizeFit_Spec: QuickSpec {
             }
         }
     }
+
 }

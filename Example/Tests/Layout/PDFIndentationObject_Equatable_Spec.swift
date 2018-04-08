@@ -36,4 +36,5 @@ class PDFIndentationObject_Equatable_Spec: QuickSpec {
             }
         }
     }
+
 }

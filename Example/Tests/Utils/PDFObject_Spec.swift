@@ -1,5 +1,5 @@
 //
-//  PDFObject_Tests.swift
+//  PDFObject_Spec.swift
 //  TPPDF_Tests
 //
 //  Created by Philip Niedertscheider on 02/11/2017.
@@ -49,4 +49,5 @@ class PDFObject_Spec: QuickSpec {
             }
         }
     }
+
 }

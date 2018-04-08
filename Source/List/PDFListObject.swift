@@ -19,9 +19,9 @@ class PDFListObject: PDFObject {
         let originalLeftIndent = generator.layout.indentation.leftIn(container: container)
 
         for item in list.flatted() {
-            let indent = (item.level < list.levelIndentations.count ?
+            let indent = item.level < list.levelIndentations.count ?
                 list.levelIndentations[item.level] :
-                list.levelIndentations.last ?? (pre: 0, past: 0))
+                list.levelIndentations.last ?? (pre: 0, past: 0)
             generator.layout.indentation.setLeft(indentation: originalLeftIndent + indent.pre, in: container)
 
             let symbol: String = item.symbol.stringValue

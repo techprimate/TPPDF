@@ -10,6 +10,7 @@ import Nimble
 @testable import TPPDF
 
 class ListSpec: QuickSpec {
+
     override func spec() {
         describe("PDFList") {
 
@@ -17,7 +18,7 @@ class ListSpec: QuickSpec {
             it("has no items by default") {
                 expect(list.count).to(equal(0))
             }
-            
+
             it("should have different level indentations") {
                 expect(list.levelIndentations[0].pre).to(equal(0.0))
                 expect(list.levelIndentations[0].past).to(equal(10.0))
@@ -116,4 +117,5 @@ class ListSpec: QuickSpec {
             }
         }
     }
+
 }

@@ -64,4 +64,5 @@ class PDFGenerator_Spec: QuickSpec {
             }
         }
     }
+
 }

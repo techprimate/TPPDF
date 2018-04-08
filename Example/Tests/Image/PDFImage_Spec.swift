@@ -65,4 +65,5 @@ class PDFImage_Spec: QuickSpec {
             }
         }
     }
+
 }
