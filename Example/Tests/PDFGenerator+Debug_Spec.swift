@@ -31,7 +31,7 @@ class PDFGenerator_Debug_Spec: QuickSpec {
                     let image = UIGraphicsGetImageFromCurrentImageContext()
                     UIGraphicsEndImageContext()
 
-                    let extractor = image?.pixelExtractor;
+                    let extractor = image?.pixelExtractor
 
                     expect(image).toNot(beNil())
                     for x in 0..<Int(image!.size.width) {
@@ -60,7 +60,7 @@ class PDFGenerator_Debug_Spec: QuickSpec {
                     let image = UIGraphicsGetImageFromCurrentImageContext()
                     UIGraphicsEndImageContext()
 
-                    let extractor = image?.pixelExtractor;
+                    let extractor = image?.pixelExtractor
 
                     expect(image).toNot(beNil())
                     for x in 0..<Int(image!.size.width) {

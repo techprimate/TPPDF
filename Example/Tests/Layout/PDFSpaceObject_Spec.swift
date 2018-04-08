@@ -96,7 +96,7 @@ class PDFSpaceObject_Spec: QuickSpec {
                     let image = UIGraphicsGetImageFromCurrentImageContext()
                     UIGraphicsEndImageContext()
 
-                    let extractor = image?.pixelExtractor;
+                    let extractor = image?.pixelExtractor
 
                     expect(image).toNot(beNil())
                     var shouldExit = false
@@ -139,7 +139,7 @@ class PDFSpaceObject_Spec: QuickSpec {
                     let image = UIGraphicsGetImageFromCurrentImageContext()
                     UIGraphicsEndImageContext()
 
-                    let extractor = image?.pixelExtractor;
+                    let extractor = image?.pixelExtractor
 
                     expect(image).toNot(beNil())
                     var shouldExit = false

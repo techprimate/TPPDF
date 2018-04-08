@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-public protocol PDFJSONSerializable: PDFJSONRepresentable { }
+public protocol PDFJSONSerializable: PDFJSONRepresentable {}
 
 public extension PDFJSONSerializable {
 
@@ -95,12 +95,12 @@ extension Dictionary: PDFJSONSerializable {
     }
 }
 
-extension CGRect: PDFJSONSerializable { }
-extension CGPoint: PDFJSONSerializable { }
-extension CGSize: PDFJSONSerializable { }
+extension CGRect: PDFJSONSerializable {}
+extension CGPoint: PDFJSONSerializable {}
+extension CGSize: PDFJSONSerializable {}
 
-extension NSAttributedString: PDFJSONSerializable { }
-extension UIFont: PDFJSONSerializable { }
+extension NSAttributedString: PDFJSONSerializable {}
+extension UIFont: PDFJSONSerializable {}
 
 extension UIImage: PDFJSONSerializable {
 
