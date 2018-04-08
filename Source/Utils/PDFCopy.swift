@@ -9,4 +9,5 @@ public protocol PDFCopy {
     associatedtype Element
 
     var copy: Element { get }
+
 }
