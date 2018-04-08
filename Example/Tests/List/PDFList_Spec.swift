@@ -39,7 +39,7 @@ class ListSpec: QuickSpec {
 
             it("should flatten to four items") {
                 list.clear()
-                
+
                 let result = list.addItems(
                     [
                         PDFListItem(symbol: .dot, content: "Base 1")

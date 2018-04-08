@@ -59,10 +59,12 @@ class PDFTableContent_Spec: QuickSpec {
             context("initializer") {
 
                 it("can be initalized with any") {
-                    expect({
-                        let _ = try PDFTableContent(content: 123)
-                        let _ = try PDFTableContent(content: ["EXAMPLE"])
-                    }).toNot(throwError())
+                    expect {
+                        try PDFTableContent(content: 123)
+                        }.toNot(throwError())
+                    expect {
+                        try PDFTableContent(content: ["EXAMPLE"])
+                        }.to(throwError())
                 }
 
                 it("can be initalized with type and optional content") {
