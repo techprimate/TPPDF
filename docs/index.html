@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
-
+    
     <script src="js/lunr.min.js" defer></script>
     <script src="js/typeahead.jquery.js" defer></script>
     <script src="js/jazzy.search.js" defer></script>
@@ -22,22 +22,22 @@
         <a class="header-link" href="index.html">
           TPPDF Docs
         </a>
-         (68% documented)
+         (69% documented)
       </p>
-
+    
       <p class="header-col--secondary">
         <form role="search" action="search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
       </p>
-
+    
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://www.github.com/Techprimate/TPPDF">
             <img class="header-icon" src="img/gh.png"/>
             View on GitHub
           </a>
         </p>
-
+    
         <p class="header-col header-col--secondary">
           <a class="header-link" href="dash-feed://https%3A%2F%2Ftechprimate%2Egithub%2Eio%2FTPPDF%2Fdocsets%2FTPPDF%2Exml">
             <img class="header-icon" src="img/dash.png"/>
@@ -182,10 +182,13 @@
                 <a class="nav-group-task-link" href="Functions.html#/s:5TPPDF2neoiSbAA7PDFTextC_ADtF">!=(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Functions.html#/s:5TPPDF1poiXeXeF">+(_:_:)</a>
+                <a class="nav-group-task-link" href="Functions.html#/s:5TPPDF1poiSC7CGPointVAD_12CoreGraphics7CGFloatVtF">+(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Functions.html#/s:5TPPDF1soiXeXeF">-(_:_:)</a>
+                <a class="nav-group-task-link" href="Functions.html#/s:5TPPDF1poiSC7CGPointVAD_ADtF">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Functions.html#/s:5TPPDF1soiSC7CGPointVAD_ADtF">-(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Functions.html#/s:5TPPDF2eeoiSbAA7PDFTextC_ADtF">==(_:_:)</a>
@@ -246,8 +249,10 @@
 
         <section class="section">
           <div class="section-content">
-
-            <p><img src="resources/header.png" alt="TPPDF"></p>
+            
+            <p align="center">
+    <img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/header.png" alt="TPPDF">
+</p>
 
 <p align="center">
     <a href="https://github.com/Carthage/Carthage">
@@ -299,24 +304,24 @@
 <h2 id='features' class='heading'>Features</h2>
 
 <ul>
-<li>:white_check_mark: Page header and footer</li>
-<li>:white_check_mark: Dynamic content layout with page alignment</li>
-<li>:white_check_mark: Support for tables and cell alignment</li>
-<li>:white_check_mark: Attributed strings</li>
-<li>:white_check_mark: Custom spacing</li>
-<li>:white_check_mark: Image support</li>
-<li>:white_check_mark: Horizontal line separators</li>
-<li>:white_check_mark: Custom indentation</li>
-<li>:white_check_mark: Custom top offset (good for layered rendering)</li>
-<li>:white_check_mark: Pagination</li>
-<li>:white_check_mark: Image caption</li>
-<li>:white_check_mark: Compress images</li>
-<li>:white_check_mark: Custom image size fit</li>
-<li>:white_check_mark: Image in the header and footer</li>
-<li>:white_check_mark: Horizontal line separators in the header and footer</li>
-<li>:white_check_mark: Generate PDF files directly to handle large PDF files (<a href="http://stackoverflow.com/questions/14691264/how-can-i-lower-memory-climb-when-generating-large-pdfs">Details</a>)</li>
-<li>:white_check_mark: PDF metadata</li>
-<li>:white_check_mark: Custom table styling</li>
+<li>Page header and footer</li>
+<li>Dynamic content layout with page alignment</li>
+<li>Support for tables and cell alignment</li>
+<li>Attributed strings</li>
+<li>Custom spacing</li>
+<li>Image support</li>
+<li>Horizontal line separators</li>
+<li>Custom indentation</li>
+<li>Custom top offset (good for layered rendering)</li>
+<li>Pagination</li>
+<li>Image caption</li>
+<li>Compress images</li>
+<li>Custom image size fit</li>
+<li>Image in the header and footer</li>
+<li>Horizontal line separators in the header and footer</li>
+<li>Generate PDF files directly to handle large PDF files (<a href="http://stackoverflow.com/questions/14691264/how-can-i-lower-memory-climb-when-generating-large-pdfs">Details</a>)</li>
+<li>PDF metadata</li>
+<li>Custom table styling</li>
 <li>You need more features? Checkout #Contribute</li>
 </ul>
 <h2 id='communication' class='heading'>Communication</h2>
@@ -401,7 +406,7 @@
 <p>&hellip; now let&rsquo;s continue with the different kinds of elements.</p>
 <h4 id='line-separator' class='heading'>Line Separator</h4>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">PDFLineStyle</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">full</span><span class="p">,</span> <span class="nv">color</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">darkGray</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">document</span><span class="o">.</span><span class="nf">addLineSeparator</span><span class="p">(</span><span class="kt">PDFContainer</span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">style</span><span class="p">:</span> <span class="n">style</span><span class="p">)</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">addLineSeparator</span><span class="p">(</span><span class="kt">PDFContainer</span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">style</span><span class="p">:</span> <span class="n">style</span><span class="p">)</span> 
 </code></pre>
 
 <p>Adds a horizontal line with a specific <code>style</code> in the given <code>container</code>. This line is affected by the <code>indentation</code>, therefore it is possible to change its width by setting a left and a right indentation before. See <a href="#LineStyle">Line Style</a> for details about the line styling.</p>
@@ -441,7 +446,7 @@
 <span class="n">document</span><span class="o">.</span><span class="nf">addImage</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="n">imageElement</span><span class="p">)</span>
 </code></pre>
 
-<p>A <code><a href="Classes/PDFImage.html">PDFImage</a></code> can also include a optional <code>caption</code> which is either a <code><a href="Classes/PDFSimpleText.html">PDFSimpleText</a></code> or <code><a href="Classes/PDFAttributedText.html">PDFAttributedText</a></code>.
+<p>A <code><a href="Classes/PDFImage.html">PDFImage</a></code> can also include a optional <code>caption</code> which is either a <code><a href="Classes/PDFSimpleText.html">PDFSimpleText</a></code> or <code><a href="Classes/PDFAttributedText.html">PDFAttributedText</a></code>. 
 The caption is underneath the image and has the image width as the maximum available width.</p>
 
 <p>If you set a <code>size</code> it will try to fit in this size, defaults to <code>CGSize.zero</code> which will then use the actual image pixel size. The image can either be scaled to fit the <code>width</code> the <code>height</code> or both. Adjust this by setting the <code>sizeFit</code> to either</p>
@@ -455,9 +460,18 @@ The caption is underneath the image and has the image width as the maximum avail
 <p>To minimize the file size, images can be compressed using JPEG compression, which can be modified by setting the <code>quality</code> value between <code>0.0</code> for bad quality and <code>1.0</code> for best quality. Default value is <code>0.85</code> which gives good compression and good quality.</p>
 <h4 id='images-in-one-row' class='heading'>Images in one row</h4>
 
-<p>TODO: explain this</p>
+<p>To create a image collage, you can add multiple images in a single row with a <code>spacing</code> between them.</p>
 
-<!--addImagesInRow(_ container: PDFContainer = PDFContainer.contentLeft, images: [PDFImage], spacing: CGFloat = 5.0) -->
+<p>Just create an array of <code><a href="Classes/PDFImage.html">PDFImage</a></code> and add them as images in a row. </p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">images</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="kt">PDFImage</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"Image-1.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> 
+             <span class="nv">caption</span><span class="p">:</span> <span class="kt">PDFAttributedText</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"In this picture you can see a beautiful waterfall!"</span><span class="p">,</span> <span class="nv">attributes</span><span class="p">:</span> <span class="n">captionAttributes</span><span class="p">))),</span>
+    <span class="kt">PDFImage</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"Image-2.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span>
+             <span class="nv">caption</span><span class="p">:</span> <span class="kt">PDFAttributedText</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"Forrest"</span><span class="p">,</span> <span class="nv">attributes</span><span class="p">:</span> <span class="n">captionAttributes</span><span class="p">))),</span>
+<span class="p">]</span>
+
+<span class="n">document</span><span class="o">.</span><span class="nf">addImagesInRow</span><span class="p">(</span><span class="nv">images</span><span class="p">:</span> <span class="n">images</span><span class="p">,</span> <span class="nv">spacing</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre>
 <h4 id='list' class='heading'>List</h4>
 
 <p>Create a <code><a href="Classes/PDFList.html">PDFList</a></code> element with the indentation of each level. Each indentation level consists out of a pair of values, <code>pre</code> setting the indentation before the list symbol and <code>past</code> setting the distance between the symbol and the text.</p>
@@ -522,9 +536,144 @@ If you provide <code>value</code> this will be used for the parent item, in case
 </code></pre>
 <h4 id='table' class='heading'>Table</h4>
 
-<p>TODO: explain this</p>
+<p>Create a <code><a href="Classes/PDFTable.html">PDFTable</a></code> element, which will now be customized.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">table</span> <span class="o">=</span> <span class="kt">PDFTable</span><span class="p">()</span>
+</code></pre>
 
-<!--addTable(_ container: PDFContainer = PDFContainer.contentLeft, table: PDFTable) -->
+<p>Each cell has an optional <code>content</code> of type <code><a href="Classes/PDFTableContent.html">PDFTableContent</a></code>, an optional <code>style</code> of <code><a href="Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></code> and always an <code>alignment</code> of <code><a href="Enums/PDFTableCellAlignment.html">PDFTableCellAlignment</a></code>.</p>
+<h5 id='alignment' class='heading'>Alignment</h5>
+
+<p>The aligmnet is one of the following <code><a href="Enums/PDFTableCellAlignment.html">PDFTableCellAlignment</a></code>:</p>
+
+<ul>
+<li><code>topLeft</code>, <code>top</code>, <code>topRight</code></li>
+<li><code>left</code>, <code>center</code>, <code>right</code></li>
+<li><code>bottomLeft</code>, <code>bottom</code>, <code>bottomRight</code></li>
+</ul>
+
+<p>During calculation the size of the content will be calculated, and afterwards it will be positioned using the cell alignment.</p>
+<h5 id='content' class='heading'>Content</h5>
+
+<p>A cell content instance <code>PDFTableCellContent</code> has a <code>content</code> value and a property <code>type</code>, which is one of the following:</p>
+
+<ul>
+<li><code>PDFTableContent.none</code>, empty cell</li>
+<li><code>PDFTableContent.string</code>, a simple string only styled through the cell style</li>
+<li><code>PDFTableContent.attributedString</code>, an attributed string which won&rsquo;t be changed by the cell style</li>
+<li><code>PDFTableContent.image</code>, an image which</li>
+</ul>
+
+<p>If a cell height is too big for the rest of the page, it will be placed on the next page.</p>
+<h5 id='cell-style' class='heading'>Cell Style</h5>
+
+<p>To define the style of a cell, you can create the an instance of <code><a href="Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></code> and directly set it to the cells <code>style</code> property, but you can also style a whole table using the property <code>style</code> of type <code><a href="Classes/PDFTableStyle.html">PDFTableStyle</a></code> of the <code>table</code>.</p>
+
+<p>A cell style defines the <code>fill</code> and the <code>text</code> color of the content. Also it defines how the <code>border</code> is drawn and what <code>font</code> should be used:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">colors</span> <span class="o">=</span> <span class="p">(</span><span class="nv">fill</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">orange</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">lineStyle</span> <span class="o">=</span> <span class="kt">PDFLineStyle</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">dashed</span><span class="p">,</span> <span class="nv">color</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">borders</span> <span class="o">=</span> <span class="kt">PDFTableCellBorders</span><span class="p">(</span><span class="nv">left</span><span class="p">:</span> <span class="n">lineStyle</span><span class="p">,</span> <span class="nv">top</span><span class="p">:</span> <span class="n">lineStyle</span><span class="p">,</span> <span class="nv">right</span><span class="p">:</span> <span class="n">lineStyle</span><span class="p">,</span> <span class="nv">bottom</span><span class="p">:</span> <span class="n">lineStyle</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">font</span> <span class="o">=</span> <span class="kt">UIFont</span><span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">PDFTableCellStyle</span><span class="p">(</span><span class="nv">colors</span><span class="p">:</span> <span class="n">colors</span><span class="p">,</span> <span class="nv">borders</span><span class="p">:</span> <span class="n">borders</span><span class="p">,</span> <span class="nv">font</span><span class="p">:</span> <span class="n">font</span><span class="p">)</span>
+</code></pre>
+
+<p>An instance of <code><a href="Structs/PDFTableCellBorders.html">PDFTableCellBorders</a></code> allows you set each border of a cell indvidually. The line style is defined as a <code><a href="Structs/PDFLineStyle.html">PDFLineStyle</a></code> (See <a href="#Line-Style">Line Style</a>).</p>
+
+<p>To change the style of a specific cell, use the following method of <code>table</code>:</p>
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="n">table</span><span class="o">.</span><span class="nf">setCellStyle</span><span class="p">(</span><span class="nv">row</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">column</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">style</span><span class="p">:</span> <span class="kt">PDFTableCellStyle</span><span class="p">(</span><span class="nv">colors</span><span class="p">:</span> <span class="p">(</span><span class="nv">fill</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">yellow</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">black</span><span class="p">)))</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="kt">PDFError</span><span class="o">.</span><span class="nf">tableIndexOutOfBounds</span><span class="p">(</span><span class="k">let</span> <span class="nv">index</span><span class="p">,</span> <span class="k">let</span> <span class="nv">length</span><span class="p">){</span>
+    <span class="c1">// In case the index is out of bounds</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Requested cell is out of bounds! </span><span class="se">\(</span><span class="n">index</span><span class="se">)</span><span class="s"> / </span><span class="se">\(</span><span class="n">length</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">// General error handling in case something goes wrong.</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Error while setting cell style: "</span> <span class="o">+</span> <span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h5 id='table-style' class='heading'>Table style</h5>
+
+<p>A table style is a collection of cell styles, which will be applied as global values. Take a look at <code><a href="Structs/PDFTableStyleDefaults.html">PDFTableStyleDefaults</a></code> where you can find a collection of presets, e.g. <code><a href="Structs/PDFTableStyleDefaults.html#/s:5TPPDF21PDFTableStyleDefaultsV6simpleAA0bC0CvpZ">PDFTableStyleDefaults.simple</a></code>.</p>
+
+<p>Using the table style you can define the <code>outline</code> line style. This will be drawn around the table on each page.</p>
+
+<p>A <code><a href="Classes/PDFTableStyle.html">PDFTableStyle</a></code> lets you set how many rows and columns are considered header cells, and how many rows should be styled as footer rows:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">PDFTableStyle</span><span class="p">()</span>
+<span class="n">style</span><span class="o">.</span><span class="n">rowHeaderCount</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">style</span><span class="o">.</span><span class="n">columnHeaderCount</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">style</span><span class="o">.</span><span class="n">footerCount</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre>
+
+<p>Now the top five rows will be styled using the <code>style.columnHeaderStyle</code>, the first three columns will be styled using the <code>style.rowHeaderStyle</code> and the very last row will be styled using the <code>style.footerStyle</code>.</p>
+
+<p>All other cells are styled using the <code>style.contentStyle</code> and if the optional value <code>style.alternatingContentStyle</code> is set, then every other row will use this style.</p>
+
+<p>If there are conflicts, e.g a cell is a column and a header row, then the following priority order, with the higher ones beating the lower ones, is used:</p>
+
+<ul>
+<li><code>cell.style</code>, a custom style set for this particular cell</li>
+<li><code>style.columnHeaderStyle</code>, if the cell is a column header therefore in the top rows</li>
+<li><code>style.footerStyle</code>, if the cell is a footer row</li>
+<li><code>style.rowHeaderStyle</code>, if the cell is in the one of the first columns</li>
+<li><code>style.alternatingContentStyle</code>, if the cell is has an odd row index</li>
+<li><code>style.contentStyle</code>, the style every normal cell has</li>
+</ul>
+
+<p>If you set the property <code>table.showHeadersOnEveryPage</code> to <code>true</code>, the first rows which are the column headers, will be copied and inserted at the top of the table, after each page break.</p>
+<h5 id='table-generation' class='heading'>Table generation</h5>
+
+<p>First, add your cell data and set the alignment for each cell. This needs to be wrapped in a <code>try-catch</code> because it can fail with invalid data or if the validation fails.</p>
+
+<p>The quickest way to generate a new table is using <code>generateCells(data:, alignments:)</code>. You need to pass two two-dimensional arrays, one with the data which can be <code>nil</code>, <code>String</code>, <code>NSAttributedString</code>, <code>Int</code>, <code>Double</code>, <code>Float</code> or an <code>UIImage</code>. Numbers will be converted into simple strings. Any other content will throw a <code><a href="Enums/PDFError.html#/s:5TPPDF8PDFErrorO19tableContentInvalidACypSg5value_tcACmF">PDFError.tableContentInvalid</a></code>:</p>
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="n">table</span><span class="o">.</span><span class="nf">generateCells</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span><span class="kc">nil</span><span class="p">,</span> <span class="s">"Name"</span><span class="p">,</span> <span class="s">"Image"</span><span class="p">,</span> <span class="s">"Description"</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s">"Waterfall"</span><span class="p">,</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"Image-1.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="s">"Water flowing down stones."</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s">"Forrest"</span><span class="p">,</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"Image-2.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="s">"Sunlight shining through the leafs."</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s">"Fireworks"</span><span class="p">,</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"Image-3.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="s">"Fireworks exploding into 100.000 stars"</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="s">"Fields"</span><span class="p">,</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"Image-4.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="s">"Crops growing big and providing food."</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s">"Waterfall"</span><span class="p">,</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"Image-1.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="s">"Water flowing down stones."</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s">"Forrest"</span><span class="p">,</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"Image-2.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="s">"Sunlight shining through the leafs."</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s">"Fireworks"</span><span class="p">,</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"Image-3.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="s">"Fireworks exploding into 100.000 stars"</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="s">"Fields"</span><span class="p">,</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"Image-4.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="s">"Crops growing big and providing food."</span><span class="p">],</span>
+        <span class="p">[</span><span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="s">"Many beautiful places"</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="nv">alignments</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">right</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">right</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">right</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">right</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">right</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">right</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">right</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">right</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">right</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="o">.</span><span class="n">right</span><span class="p">],</span>
+    <span class="p">])</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="kt">PDFError</span><span class="o">.</span><span class="nf">tableContentInvalid</span><span class="p">(</span><span class="k">let</span> <span class="nv">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// In case invalid input is provided, this error will be thrown.</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="s">"This type of object is not supported as table content: "</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">value</span><span class="p">))))</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">// General error handling in case something goes wrong.</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Error while creating table: "</span> <span class="o">+</span> <span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>You are also able to create each cell individually, put them in a two-dimensional cell array and assign it to <code>table.cells</code> directly. The method above is simply added for convenience.</p>
+<h5 id='layout' class='heading'>Layout</h5>
+
+<p>The table height is defined by its content, but the width is the available space between the indentations.
+The width of each column is set by a relative width, defined in an array of values between <code>0.0</code> and <code>1.0</code> which should sum up to <code>1.0</code> being <code>100%</code> of the width.</p>
+<pre class="highlight swift"><code><span class="n">table</span><span class="o">.</span><span class="n">widths</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+</code></pre>
+
+<p>Also each cell can have a <code>margin</code> which is the distance between the cell frame and its inner borders and the <code>padding</code> as the distance between the inner borders and the content.</p>
+
+<p>&hellip;and finally you add the table to the document:</p>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">addTable</span><span class="p">(</span><span class="nv">table</span><span class="p">:</span> <span class="n">table</span><span class="p">)</span>
+</code></pre>
 <h3 id='helpers' class='heading'>Helpers</h3>
 
 <p>The following methods of <code><a href="Classes/PDFDocument.html">PDFDocument</a></code> are not considered as elements, as they are only runtime changes to the calculations and rendering.</p>
@@ -583,83 +732,6 @@ If you need to reset the indentation, call the function with <code>0.0</code> as
 <li><code>PFDLineType.dashed</code>, a dashed line with the dash length and spacing three times the line width</li>
 <li><code><a href="Enums/PDFLineType.html#/s:5TPPDF11PDFLineTypeO6dottedA2CmF">PDFLineType.dotted</a></code>, a dotted line with the spacing two times the line width</li>
 </ul>
-
-<!--
-
-#### Image
-
-- `addImage(container, image, size, caption, sizeFit)`
-
-Draws an image in the given container. If the given size is not zero size, it will draw it using that size, proportionally scaling. The size of an image is scaled according to sizeFit. If the height of an image and its caption is beyond the page bounds, then a new page is created. The caption is an attributed string and can be styled (refer to `addAttributedText(...)` for an example).
-
-```swift
-document.addImage(image: UIImage(named: "Image.jpg")!)
-```
-
-- `addImagesInRow(container, images, captions, spacing)`
-
-Draws images with captions in the row using the given spacing in the given container.
-
-```swift
-document.addImagesInRow(images: [UIImage(named: "image.jpg")!, UIImage(named: "PortraitImage.jpg")!], captions: [NSAttributedString(string: "Caption 1"), NSAttributedString(string: "Caption 2")])
-```
-
-#### Table
-
-- `addTable(container, data, alignment, relativeColumnWidth, padding, margin, style)`
-
-Draws a table in the given container.
-
-The parameter data is a two-dimensional String array
-
-```swift
-let data: [[String]] = [
-    ["Rating",     "4.5 / 5",  "Prep\nTime:",   "14 Hours"    ],
-    ["Portions:",   "14",       "Cook\nTime:",   "16 Minutes" ]
-]
-```
-
-The parameter alignment is a two-dimensional array with `PDFTableCellAlignment` values.
-
-```swift
-let alignments: [[PDFTableCellAlignment]] = [
-    [.Left, .Center, .Left, .Center],
-    [.Left, .Center, .Left, .Center]
-]
-```
-
-The parameter `relativeColumnWidth` is an array of CGFloat smaller or equal than 1.0
-These are relative widths in percentage to the full page content width (= page width - 2 * page margin). It defines the width of each column.
-
-```swift
-let widths: [CGFloat] = [
-    0.3, 0.2, 0.3, 0.2
-]
-```
-
-The data array and the alignments array must contain the equal amount of items. The widths array must have the same amount as the data array columns has.
-
-Additional parameters are cell margin and cell padding. Margin is the spacing between each cell or between the cell and the table bounds. Padding is the spacing between the content of the cell to the cell bounds.
-
-This works the same way as HTML/CSS margin and padding works. Checkout w3schools.com [margin](http://www.w3schools.com/css/css_margin.asp) and [padding](http://www.w3schools.com/css/css_padding.asp)
-
-Table styling is done with a `PDFTableStyle` object. `PDFTableStyleDefaults` contain a couple of predefined table styles, which can be modified.
-A table style consists out of five different styles, for the row header, column header, footer, content and for alternating rows. It is also possible to set custom cell styling using the method `setCellStyle(row, column, style)`.
-
-Cell styling includes background fill color, text color, font and the line style for each border.
-
-Line styling includes line color, line width and line type, which can be either non, full, dashed or dotted.
-
-```swift
-let tableStyle = PDFTableStyleDefaults.simple
-
-tableStyle.setCellStyle(row: 2, column: 3, style: PDFTableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
-tableStyle.setCellStyle(row: 20, column: 1, style: PDFTableCellStyle(fillColor: .yellow, textColor: .blue, font: UIFont.boldSystemFont(ofSize: 18)))
-
-document.addTable(data: tableData, alignment: tableAlignment, relativeColumnWidth: tableWidth, padding: 8, margin: 0, style: tableStyle)
-```
-
---->
 <h3 id='pagination' class='heading'>Pagination</h3>
 
 <p>To customize pagination, create an instance of <code><a href="Structs/PDFPagination.html">PDFPagination</a></code> and set it to the <code>pagination</code> property of your document or simply edit the default one.</p>
@@ -673,7 +745,7 @@ As an example this won&rsquo;t paginate page <code>1</code>, <code>2</code>, <co
 <span class="n">pagination</span><span class="o">.</span><span class="n">hiddenPages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span>
 </code></pre>
 
-<p>To actually define the <code>style</code> of the pagination, you can either choose on of the predefined ones, or create a custom closure-based style. The pagination algorithm receives the <code>current</code> page number and the <code>total</code> pages amount and returns a String, which will then be transformed into a text element.</p>
+<p>To actually define the <code>style</code> of the pagination, you can either choose on of the predefined ones, or create a custom closure-based style. The pagination algorithm receives the <code>current</code> page number and the <code>total</code> pages amount and returns a String, which will then be transformed into an attributed text element, using the attributes in the <code>textAttributes</code> dictionary.</p>
 <h4 id='code-default-code' class='heading'><code>.default</code></h4>
 
 <p>This is the default pagination setting, converts page <code>1</code> of <code>3</code> to <code>1 - 3</code></p>
@@ -852,15 +924,15 @@ You are able to set a <code>title</code>, <code>author</code>, <code>subject</co
 
 <p><a href="https://itunes.apple.com/app/id1067838748">Hikingbook</a> - by Zheng-Xiang Ke</p>
 
-<p><img src="apps/Hikingbook.png" alt="Hikingbook"></p>
+<p><img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/Hikingbook.png" alt="Hikingbook"/></p>
 
 <p><a href="https://itunes.apple.com/us/app/bug-journal/id1232077952">Bug Journal</a> - by David Johnson</p>
 
-<p><img src="apps/Bug_Journal.png" alt="Bug Journal"></p>
+<p><img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/Bug_Journal.png" alt="Bug Journal"/></p>
 
 <p><a href="https://itunes.apple.com/us/app/mamas-cookbook/id1019090528">Mama&rsquo;s Cookbook (future release)</a> - by Philip Niedertscheider</p>
 
-<p><img src="apps/MCB.png" alt="Mama&#39;s Cookbook"></p>
+<p><img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/MCB.png" alt=MCB"/></p>
 <h2 id='credits' class='heading'>Credits</h2>
 
 <p>TPPDF is created by Philip Niedertscheider, owned by <a href="https://www.github.com/techprimate">techprimate</a></p>
@@ -896,7 +968,7 @@ You are able to set a <code>title</code>, <code>author</code>, <code>subject</co
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2018-04-07)</p>
+      <p>&copy; 2018 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2018-04-08)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
