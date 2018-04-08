@@ -739,7 +739,7 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 [Mama's Cookbook (future release)](https://itunes.apple.com/us/app/mamas-cookbook/id1019090528) - by Philip Niedertscheider
 
-<img src="https://github.com/Techprimate/TPPDF/raw/master/resources/apps/MCB.png" alt="Mama's Cookbook"/>
+<img src="https://github.com/Techprimate/TPPDF/raw/master/resources/apps/MCB.png" alt=MCB"/>
 
 ## Credits
 
