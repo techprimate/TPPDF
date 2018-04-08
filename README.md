@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/Techprimate/TPPDF/raw/master/resources/header.png" alt="TPPDF">
+	<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/header.png" alt="TPPDF">
 </p>
 
 <p align="center">
@@ -52,24 +52,24 @@
 
 ## Features
 
-- :white_check_mark: Page header and footer
-- :white_check_mark: Dynamic content layout with page alignment
-- :white_check_mark: Support for tables and cell alignment
-- :white_check_mark: Attributed strings
-- :white_check_mark: Custom spacing
-- :white_check_mark: Image support
-- :white_check_mark: Horizontal line separators
-- :white_check_mark: Custom indentation
-- :white_check_mark: Custom top offset (good for layered rendering)
-- :white_check_mark: Pagination
-- :white_check_mark: Image caption
-- :white_check_mark: Compress images
-- :white_check_mark: Custom image size fit
-- :white_check_mark: Image in the header and footer
-- :white_check_mark: Horizontal line separators in the header and footer
-- :white_check_mark: Generate PDF files directly to handle large PDF files ([Details](http://stackoverflow.com/questions/14691264/how-can-i-lower-memory-climb-when-generating-large-pdfs))
-- :white_check_mark: PDF metadata
-- :white_check_mark: Custom table styling
+- Page header and footer
+- Dynamic content layout with page alignment
+- Support for tables and cell alignment
+- Attributed strings
+- Custom spacing
+- Image support
+- Horizontal line separators
+- Custom indentation
+- Custom top offset (good for layered rendering)
+- Pagination
+- Image caption
+- Compress images
+- Custom image size fit
+- Image in the header and footer
+- Horizontal line separators in the header and footer
+- Generate PDF files directly to handle large PDF files ([Details](http://stackoverflow.com/questions/14691264/how-can-i-lower-memory-climb-when-generating-large-pdfs))
+- PDF metadata
+- Custom table styling
 - You need more features? Checkout #Contribute
 
 ## Communication
@@ -731,15 +731,15 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 [Hikingbook](https://itunes.apple.com/app/id1067838748) - by Zheng-Xiang Ke
 
-<img src="https://github.com/Techprimate/TPPDF/raw/master/resources/apps/Hikingbook.png" alt="Hikingbook"/>
+<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/Hikingbook.png" alt="Hikingbook"/>
 
 [Bug Journal](https://itunes.apple.com/us/app/bug-journal/id1232077952) - by David Johnson
 
-<img src="https://github.com/Techprimate/TPPDF/raw/master/resources/apps/Bug_Journal.png" alt="Bug Journal"/>
+<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/Bug_Journal.png" alt="Bug Journal"/>
 
 [Mama's Cookbook (future release)](https://itunes.apple.com/us/app/mamas-cookbook/id1019090528) - by Philip Niedertscheider
 
-<img src="https://github.com/Techprimate/TPPDF/raw/master/resources/apps/MCB.png" alt=MCB"/>
+<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/MCB.png" alt=MCB"/>
 
 ## Credits
 
