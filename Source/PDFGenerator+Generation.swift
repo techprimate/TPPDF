@@ -29,10 +29,11 @@ extension PDFGenerator {
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(name)
         let generator = PDFGenerator(document: document)
 
+        generator.progressValue = 0
         generator.debug = debug
 
         UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, document.info.generate())
-        try generator.generatePDFContext()
+        try generator.generatePDFContext(progress: progress)
         UIGraphicsEndPDFContext()
 
         return url
@@ -54,10 +55,11 @@ extension PDFGenerator {
         let data = NSMutableData()
         let generator = PDFGenerator(document: document)
 
+        generator.progressValue = 0
         generator.debug = debug
 
         UIGraphicsBeginPDFContextToData(data, document.layout.bounds, document.info.generate())
-        try generator.generatePDFContext()
+        try generator.generatePDFContext(progress: progress)
         UIGraphicsEndPDFContext()
 
         return data as Data
@@ -72,9 +74,11 @@ extension PDFGenerator {
 
      - throws: PDFError
      */
-    func generatePDFContext() throws {
-        let renderObjects = try createRenderObjects()
-        try render(objects: renderObjects)
+    func generatePDFContext(progress: ((CGFloat) -> Void)?) throws {
+        progress?(progressValue)
+        let renderObjects = try createRenderObjects(progress: progress)
+        try render(objects: renderObjects, progress: progress)
+        progress?(progressValue)
     }
 
     /**
@@ -82,9 +86,10 @@ extension PDFGenerator {
 
      - returns: List of renderable objects
      */
-    func createRenderObjects() throws -> [(PDFContainer, PDFObject)] {
+    func createRenderObjects(progress: ((CGFloat) -> Void)?) throws -> [(PDFContainer, PDFObject)] {
         // Extract content objects
         let contentObjects = PDFGenerator.extractContentObjects(objects: document.objects)
+        let numContentObjects = contentObjects.count
 
         // Extract header & footer objects
         let footers = PDFGenerator.extractFooterObjects(objects: document.objects)
@@ -105,7 +110,7 @@ extension PDFGenerator {
         var allObjects: [(PDFContainer, PDFObject)] = []
 
         // Only calculate render header & footer metrics if page has content.
-        if contentObjects.count > 0 {
+        if numContentObjects > 0 {
             allObjects += try addHeaderFooterObjects()
         }
 
@@ -121,6 +126,8 @@ extension PDFGenerator {
                     allObjects += try addHeaderFooterObjects()
                 }
             }
+            progressValue += 0.5 / CGFloat(2 * numContentObjects)
+            progress?(progressValue)
         }
 
         // Save calculated page count from reseting
@@ -146,6 +153,8 @@ extension PDFGenerator {
                     allObjects += try addHeaderFooterObjects()
                 }
             }
+            progressValue += 0.5 / CGFloat(2 * numContentObjects)
+            progress?(progressValue)
         }
         return allObjects
     }
@@ -216,13 +225,16 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    func render(objects: [(PDFContainer, PDFObject)]) throws {
+    func render(objects: [(PDFContainer, PDFObject)], progress: ((CGFloat) -> Void)?) throws {
         UIGraphicsBeginPDFPageWithInfo(document.layout.bounds, nil)
 
         drawDebugPageOverlay()
 
+        let numObjects = objects.count
         for (container, object) in objects {
             try render(object: object, in: container)
+            progressValue += 0.5 / CGFloat(numObjects)
+            progress?(progressValue)
         }
     }
 
