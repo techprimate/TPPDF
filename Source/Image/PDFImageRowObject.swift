@@ -34,6 +34,11 @@ class PDFImageRowObject: PDFObject {
         var maxHeight: CGFloat = 0
 
         for (idx, image) in images.enumerated() {
+            // Ensure the image's width is smaller than the row's width
+            let width = min(imageWidth, image.size.width)
+            image.size = CGSize(width: width, height: image.size.height * width / image.size.width)
+            image.sizeFit = .width
+            
             let imageObject = PDFImageObject(image: image, captionSpacing: captionSpacing)
 
             generator.layout.indentation.setLeft(indentation: originalInsetLeft + additionInset + spacing * CGFloat(idx), in: container)
