@@ -25,7 +25,7 @@ class PDFImageRowObject: PDFObject {
 
         var additionInset: CGFloat = 0
 
-        let originalHeight = generator.layout.heights.value(for: container)
+        var originalHeight = generator.layout.heights.value(for: container)
 
         let totalImagesWidth = generator.document.layout.contentSize.width
         let totalSpacing = CGFloat(images.count - 1) * spacing
@@ -40,7 +40,13 @@ class PDFImageRowObject: PDFObject {
             generator.layout.indentation.setRight(indentation: originalInsetRight
                 + (imageWidth + spacing) * CGFloat(images.count - idx - 1), in: container)
 
-            result += try imageObject.calculate(generator: generator, container: container)
+            let res = try imageObject.calculate(generator: generator, container: container)
+            for obj in res {
+                if obj.1 is PDFPageBreakObject {
+                    originalHeight = 0
+                }
+            }
+            result += res
 
             maxHeight = max(maxHeight, generator.layout.heights.value(for: container))
             generator.layout.heights.set(originalHeight, to: container)
