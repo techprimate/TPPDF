@@ -181,6 +181,13 @@ class ViewController: UIViewController {
         // Add second row of images
 
         document.addImagesInRow(images: images[1], spacing: 10)
+        
+        // Add many rows of images to test break a page
+        document.addImagesInRow(images: images[1], spacing: 10)
+        document.addImagesInRow(images: images[1], spacing: 10)
+        document.addImagesInRow(images: images[1], spacing: 10)
+        document.addImagesInRow(images: images[1], spacing: 10)
+        document.addImagesInRow(images: images[1], spacing: 10)
 
         // Finish image collage with another line separator
 
