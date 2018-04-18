@@ -1,13 +1,28 @@
 # Change Log
 
 ## [Unreleased](https://github.com/Techprimate/TPPDF/tree/HEAD)
-[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.1...HEAD)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.1...1.0.2)
 
 **Implemented enhancements:**
 
 **Fixed bugs:**
 
 **Closed issues:**
+
+**Merged pull requests:**
+
+## [1.0.2](https://github.com/Techprimate/TPPDF/tree/1.0.2)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.1...1.0.2)
+
+**Implemented enhancements:**
+
+**Fixed bugs:**
+
+- Carthage scheme not available
+
+**Closed issues:**
+
+- #59
 
 **Merged pull requests:**
 
