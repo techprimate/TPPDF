@@ -17,6 +17,11 @@ public class PDFSection: PDFJSONSerializable {
 	*/
 	public var columnMargin: CGFloat = 10.0
 
+    /**
+     Text should be floating, therefore continuing in next column if column is full.
+    */
+    public var floating = false
+
 	// MARK: - PUBLIC INITIALIZERS
 
 	/**
