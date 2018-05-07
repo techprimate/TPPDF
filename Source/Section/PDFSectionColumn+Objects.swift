@@ -159,9 +159,9 @@ public extension PDFSectionColumn {
 	public func addList(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, list: PDFList) {
 		objects += [(container, PDFListObject(list: list))]
 	}
-	
+
 	// MARK: - Layout
-	
+
 	/**
 	Change the indentation in a container, use the parameter `left` to define from which side.
 	

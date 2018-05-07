@@ -91,35 +91,47 @@ class PDFSectionObject: PDFObject {
 	```
 	*/
 	func calulatePageBreakPositions(_ objectsPerColumn: [Int: [(PDFContainer, PDFObject)]]) -> [(PDFContainer, PDFObject)] {
+		// stores how many objects are in one column at max
 		let maxObjectsPerColumn = objectsPerColumn.reduce(0) { return max($0, $1.value.count) }
 
+		/* as soon as a column requests a page break, we need to stack subsequent objects of the very same column until the following is `true`:
+		 * one or more columns do not have more objects and all other columns, which have more objects left, are requesting a page break
+		*/
 		var stackedObjectsPerColumn = [Int: [(PDFContainer, PDFObject)]]()
 		for columnIndex in objectsPerColumn.keys {
 			stackedObjectsPerColumn[columnIndex] = []
 		}
 
+		// stores the final objects which can be drawn to the pdf
 		var result: [(PDFContainer, PDFObject)] = []
+
+		// loop through all objects, row by row for each column
 		for objectIndex in 0..<maxObjectsPerColumn {
 			for (columnIndex, columnObjects) in objectsPerColumn where columnObjects.count > objectIndex {
 				let columnObject = columnObjects[objectIndex]
 
-				if var columnStack = stackedObjectsPerColumn[columnIndex], false == columnStack.isEmpty {
+				// if we already began to stack objects for this column, we simply put all subsequent objects onto the stack
+				if var columnStack = stackedObjectsPerColumn[columnIndex], !columnStack.isEmpty {
 					columnStack.append(columnObject)
 					stackedObjectsPerColumn[columnIndex] = columnStack
 
+				// if the column is requesting a page break, we start stacking the objects
 				} else if columnObject.1 is PDFPageBreakObject {
 					stackedObjectsPerColumn[columnIndex] = [columnObject]
 
+				// if the column does not have a stack and is not requesting a page break we just add the object to the result
 				} else {
 					result += [columnObject]
 				}
 			}
 
+			// does any of the columns request a page break?
 			let isPageBreakNeeded = objectsPerColumn.keys.reduce(false) { isNeeded, columnIndex in
 				return isNeeded || stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject
 			}
 			guard isPageBreakNeeded else { continue }
 
+			// do all columns requesting a page break or if not, do they not contain any further objects?
 			let isPageBreakAllowed = objectsPerColumn.keys.reduce(true) { isAllowed, columnIndex in
 				return isAllowed && (
 					stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject ||
@@ -128,6 +140,8 @@ class PDFSectionObject: PDFObject {
 			}
 			guard isPageBreakAllowed else { continue }
 
+			// we need to draw a page break now. For this we remove the first elements of all stacks
+			// since these are the page breaks stored for each column
 			for columnIndex in stackedObjectsPerColumn.keys {
 				guard var columnStack = stackedObjectsPerColumn[columnIndex] else { continue }
 				if columnStack.first?.1 is PDFPageBreakObject {
@@ -136,9 +150,14 @@ class PDFSectionObject: PDFObject {
 				stackedObjectsPerColumn[columnIndex] = columnStack
 			}
 
+			// now we add one page break for all columns ...
 			result += [(.contentLeft, PDFPageBreakObject())]
+
+			// ... and process the stacked objects first
 			result += calulatePageBreakPositions(stackedObjectsPerColumn)
 
+			// now we can empty the column stacks and keep going
+			// with the objects which still need to be processed
 			for columnIndex in objectsPerColumn.keys {
 				stackedObjectsPerColumn[columnIndex]?.removeAll()
 			}
