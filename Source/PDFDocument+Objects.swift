@@ -160,6 +160,15 @@ public extension PDFDocument {
         objects += [(container, PDFListObject(list: list))]
     }
 
+	// MARK: - Section
+
+	/**
+	Adds a section object to the document
+	*/
+	public func addSection(_ section: PDFSection) {
+		objects += [(.contentLeft, PDFSectionObject(section: section))]
+	}
+
     // MARK: - Layout
 
     /**
