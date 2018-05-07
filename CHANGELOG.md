@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/Techprimate/TPPDF/tree/HEAD)
-[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.2...HEAD)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,21 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [1.1.0](https://github.com/Techprimate/TPPDF/tree/HEAD)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.3...1.1.0)
+
+**Implemented enhancements:**
+
+- Multi Column Sections (#9)
+
+**Fixed bugs:**
+
+**Closed issues:**
+
+**Merged pull requests:**
+
+- PR #63
 
 ## [1.0.3](https://github.com/Techprimate/TPPDF/tree/HEAD)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.2...1.0.3)

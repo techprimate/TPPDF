@@ -44,11 +44,17 @@
     <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
   • <a href="#usage">Example</a>
-  • <a href="#usage">Installation</a>
   • <a href="#usage">Usage</a>
+  • <a href="#installation">Installation</a>
   • <a href="#credits">Credits</a>
   • <a href="#license">License</a>
 </p>
+
+## What's new in 1.1.0?
+
+- Multi-Column Sections
+
+You can now have multiple columns next to each other and add all objects to them!
 
 ## Features
 
@@ -70,6 +76,7 @@
 - Generate PDF files directly to handle large PDF files ([Details](http://stackoverflow.com/questions/14691264/how-can-i-lower-memory-climb-when-generating-large-pdfs))
 - PDF metadata
 - Custom table styling
+- Multi-column sections
 - You need more features? Checkout #Contribute
 
 ## Communication
@@ -464,6 +471,20 @@ Also each cell can have a `margin` which is the distance between the cell frame 
 
 ```swift
 document.addTable(table: table)
+```
+
+#### Multi-Column Sections
+
+A multi-column section is a nested container. You create the section with an amount of columns and their relative width, add objects to each column and then add the whole section to the document. 
+
+When adding an object to the section column, you use the Array subscript `section.columns[0]`. You are able to give it an alignment as the first parameter, similar to the `PDFContainer` but only with `.left`, `.center` and `.right` as it is not possible to add a section to the header or footer containers.
+
+```swift
+let section = PDFSection(columnWidths: [0.3, 0.4, 0.3])
+section.columns[0].addText(.right, text: "right")
+section.columns[1].addText(.left, text: "left")
+section.columns[2].addText(.center, text: "center")
+document.addSection(section)
 ```
 
 ### Helpers
