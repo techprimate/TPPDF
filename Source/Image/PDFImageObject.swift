@@ -81,6 +81,7 @@ class PDFImageObject: PDFObject {
                     + generator.layout.indentation.leftIn(container: container)
             case .headerCenter, .contentCenter, .footerCenter:
                 return generator.document.layout.margin.left
+					+ generator.layout.indentation.leftIn(container: container)
                     + (generator.document.layout.contentSize.width
                         - generator.layout.indentation.leftIn(container: container)
                         - generator.layout.indentation.rightIn(container: container)
