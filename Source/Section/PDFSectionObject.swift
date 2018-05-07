@@ -32,7 +32,9 @@ class PDFSectionObject: PDFObject {
 			for container in [PDFContainer.contentLeft, .contentCenter, .contentRight] {
 				generator.setContentOffset(in: container, to: originalContentOffset)
 				generator.layout.indentation.setLeft(indentation: indentationLeft + columnLeftMargin, in: container)
-				generator.layout.indentation.setRight(indentation: generator.document.layout.contentSize.width - columnWidthSum * generator.document.layout.contentSize.width + columnRightMargin, in: container)
+				generator.layout.indentation.setRight(indentation: generator.document.layout.contentSize.width
+                    - columnWidthSum * generator.document.layout.contentSize.width
+                    + columnRightMargin, in: container)
 			}
 
 			let object = PDFSectionColumnObject(column: column)
@@ -69,7 +71,7 @@ class PDFSectionObject: PDFObject {
 
 		return result
 	}
-	
+
 	/** The `PDFDocument` render engine calculates each object, which returns a list of calculated objects.
 	As an example if you add a text object, it will be calculated and return one text object which will then be rendered.
 	

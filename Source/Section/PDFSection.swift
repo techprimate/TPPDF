@@ -20,7 +20,7 @@ public class PDFSection: PDFJSONSerializable {
     /**
      Text should be floating, therefore continuing in next column if column is full.
     */
-    public var floating = false
+//    public var floating = false
 
 	// MARK: - PUBLIC INITIALIZERS
 

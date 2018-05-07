@@ -38,7 +38,7 @@ class PDFImageRowObject: PDFObject {
             let width = min(imageWidth, image.size.width)
             image.size = CGSize(width: width, height: image.size.height * width / image.size.width)
             image.sizeFit = .width
-            
+
             let imageObject = PDFImageObject(image: image, captionSpacing: captionSpacing)
 
             generator.layout.indentation.setLeft(indentation: originalInsetLeft + additionInset + spacing * CGFloat(idx), in: container)
@@ -46,10 +46,8 @@ class PDFImageRowObject: PDFObject {
                 + (imageWidth + spacing) * CGFloat(images.count - idx - 1), in: container)
 
             let res = try imageObject.calculate(generator: generator, container: container)
-            for obj in res {
-                if obj.1 is PDFPageBreakObject {
-                    originalHeight = 0
-                }
+            for obj in res where obj.1 is PDFPageBreakObject {
+                originalHeight = 0
             }
             result += res
 
