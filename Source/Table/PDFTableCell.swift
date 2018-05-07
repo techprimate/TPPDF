@@ -11,7 +11,7 @@ public class PDFTableCell: PDFJSONSerializable {
     public var style: PDFTableCellStyle?
     public var alignment: PDFTableCellAlignment
 
-    init(content: PDFTableContent? = nil, alignment: PDFTableCellAlignment = .center, style: PDFTableCellStyle? = nil) {
+    public init(content: PDFTableContent? = nil, alignment: PDFTableCellAlignment = .center, style: PDFTableCellStyle? = nil) {
         self.content = content
         self.alignment = alignment
         self.style = style
