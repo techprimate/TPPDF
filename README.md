@@ -626,6 +626,44 @@ You are able to set a `title`, `author`, `subject` and `keywords`.
 
 If you need to encrypt the document, set an `owner password` and a `user password`. Also you can restrict printing and copying by setting the `allows printing` and `allows copying` flags.
 
+### Generation
+
+You can generate the PDF file using the following method:
+
+```swift
+let document: PDFDocument
+let filename = "awesome.pdf"
+
+let url = try PDFGenerator.generateURL(document: document, filename: String, progress: { progress in
+    print(progress)
+}, debug: false)
+```
+
+This will render the document to a temporary file and return the URL. Be sure to wrap it a `try-catch` block, as it might throw an error!
+
+It is also possible to render the file and return the data, using `generateData`:
+
+```swift
+let document: PDFDocument
+let filename = "awesome.pdf"
+
+let data = try PDFGenerator.generateData(document: document, progress: { progress in
+    print(progress)
+}, debug: false)
+```
+
+And if you want to directly save it to a specific file, pass an URL to `generate(document:, to: )`:
+
+```swift
+let document: PDFDocument
+let url = URL(string: "file://~/Desktop/awesome.pdf")!
+
+try PDFGenerator.generate(document: document, to: url, progress: { progress in
+    print(progress)
+}, debug: false)
+```
+
+
 ## Installation
 
 ### Requirements

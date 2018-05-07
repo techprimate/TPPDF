@@ -40,6 +40,29 @@ extension PDFGenerator {
     }
 
     /**
+     Generates PDF data and writes it to a temporary file.
+
+     - parameter document:  PDFDocument which should be converted into a PDF file.
+     - parameter to url:    URL where file should be saved.
+     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
+     - parameter debug:     Enables debugging
+
+     - returns:             URL to temporary file.
+
+     - throws:              PDFError
+     */
+    public static func generate(document: PDFDocument, to url: URL, progress: ((CGFloat) -> Void)? = nil, debug: Bool = false) throws {
+        let generator = PDFGenerator(document: document)
+
+        generator.progressValue = 0
+        generator.debug = debug
+
+        UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, document.info.generate())
+        try generator.generatePDFContext(progress: progress)
+        UIGraphicsEndPDFContext()
+    }
+
+    /**
      Generates PDF data and returns it
 
      - parameter document:  PDFDocument which should be converted into a PDF file.
