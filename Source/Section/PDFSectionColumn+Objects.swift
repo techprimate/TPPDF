@@ -182,12 +182,4 @@ public extension PDFSectionColumn {
 	public func setAbsoluteOffset(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, offset: CGFloat) {
 		objects += [(container, PDFOffsetObject(offset: offset))]
 	}
-
-	/**
-	Creates a new page
-	*/
-	public func createNewPage() {
-		objects += [(.left, PDFPageBreakObject())]
-	}
-
 }
