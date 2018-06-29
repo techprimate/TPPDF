@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/Techprimate/TPPDF/tree/HEAD)
-[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.0...HEAD)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.1...HEAD)
 
 **Implemented enhancements:**
 
@@ -11,7 +11,22 @@
 
 **Merged pull requests:**
 
-## [1.1.0](https://github.com/Techprimate/TPPDF/tree/HEAD)
+## [1.1.1](https://github.com/Techprimate/TPPDF/tree/1.1.1)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.0...1.1.1)
+
+**Implemented enhancements:**
+
+**Fixed bugs:**
+
+- Strong retain cycle in PDFList
+
+**Closed issues:**
+
+- #76
+
+**Merged pull requests:**
+
+## [1.1.0](https://github.com/Techprimate/TPPDF/tree/1.1.0)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.3...1.1.0)
 
 **Implemented enhancements:**
@@ -26,7 +41,7 @@
 
 - PR #63
 
-## [1.0.3](https://github.com/Techprimate/TPPDF/tree/HEAD)
+## [1.0.3](https://github.com/Techprimate/TPPDF/tree/1.0.3)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.2...1.0.3)
 
 **Implemented enhancements:**
