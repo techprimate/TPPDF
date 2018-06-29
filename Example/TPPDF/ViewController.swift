@@ -12,10 +12,39 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generatePDF()
+        generateTestPDF()
+//        generateExamplePDF()
+    }
+
+    func generateTestPDF() {
+        let document = PDFDocument(format: .a4)
+
+        let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
+
+        list.addItem(PDFListItem(symbol: .dot)
+            .addItem(PDFListItem(content: "viewModel.partyInfoData.startTime"))
+            .addItem(PDFListItem(content: "viewModel.partyInfoData.amountPerson"))
+            .addItem(PDFListItem(content: "viewModel.partyInfoData.amountChild"))
+            .addItem(PDFListItem(content: "viewModel.partyInfoData.music"))
+            .addItem(PDFListItem(content: "viewModel.partyInfoData.otherInformation")))
+
+        document.addList(list: list)
+
+        do {
+            // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
+            let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: {
+                (progressValue: CGFloat) in
+                print("progress: ", progressValue)
+            }, debug: true)
+
+            // Load PDF into a webview from the temporary file
+            (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
+        } catch {
+            print("Error while generating PDF: " + error.localizedDescription)
+        }
     }
     
-    func generatePDF() {
+    func generateExamplePDF() {
         /* ---- Execution Metrics ---- */
         var startTime = Date()
         /* ---- Execution Metrics ---- */

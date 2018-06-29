@@ -7,7 +7,7 @@
 
 public class PDFListItem: PDFJSONSerializable {
 
-    public var parent: PDFListItem?
+    public weak var parent: PDFListItem?
     public var content: String?
     public var children: [PDFListItem]?
     public var symbol: PDFListItemSymbol
