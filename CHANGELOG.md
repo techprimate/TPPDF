@@ -16,6 +16,8 @@
 
 **Implemented enhancements:**
 
+- Made PDFPageLayout accessor public
+
 **Fixed bugs:**
 
 - Strong retain cycle in PDFList

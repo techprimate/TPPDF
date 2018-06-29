@@ -40,28 +40,28 @@ public struct PDFPageLayout: PDFJSONSerializable {
     /**
      Returns a `CGRect` with a origin at zero and the `size` of the layout.
      */
-    var bounds: CGRect {
+    public var bounds: CGRect {
         return CGRect(origin: .zero, size: size)
     }
 
     /**
      Shorthand access to layout width
      */
-    var width: CGFloat {
+    public var width: CGFloat {
         return size.width
     }
 
     /**
      Shorthand access to layout height
      */
-    var height: CGFloat {
+    public var height: CGFloat {
         return size.height
     }
 
     /**
      Size of content area of each page
      */
-    var contentSize: CGSize {
+    public var contentSize: CGSize {
         return CGSize(
             width: size.width
                 - margin.left
