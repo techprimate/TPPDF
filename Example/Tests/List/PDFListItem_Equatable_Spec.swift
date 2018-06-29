@@ -30,8 +30,9 @@ class PDFListItem_Equatable_Spec: QuickSpec {
 
                 it("is not equal with different parents") {
                     let otherObject = PDFListItem()
-
-                    otherObject.parent = PDFListItem()
+                    let otherParent = PDFListItem()
+                    
+                    otherObject.parent = otherParent
 
                     expect(object) != otherObject
                 }
