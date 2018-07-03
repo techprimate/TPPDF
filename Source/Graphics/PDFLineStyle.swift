@@ -26,16 +26,23 @@ public struct PDFLineStyle: PDFJSONSerializable {
     public var width: CGFloat
 
     /**
+     Defines the width of this radius (Only for rect draw, not for line)
+     */
+    public var radius: CGFloat?
+
+    /**
      Initialize a table line style
 
      - parameter type: of Line
      - parameter color: of Line
      - parameter width: of Line
+     - parameter radius: of border
      */
-    public init(type: PDFLineType = .full, color: UIColor = .black, width: CGFloat = 0.25) {
+    public init(type: PDFLineType = .full, color: UIColor = .black, width: CGFloat = 0.25, radius:CGFloat? = nil) {
         self.type = type
         self.color = color
         self.width = width
+        self.radius = radius
     }
 
     /**
