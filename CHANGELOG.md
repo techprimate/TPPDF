@@ -16,11 +16,15 @@
 
 **Implemented enhancements:**
 
-- `PDFLineStyle` now allows to set a border radius, if drawn as rectangle
+- `PDFLineStyle` now allows to set a border radius, if drawn as rectangle.
 
 **Fixed bugs:**
 
+- JPEG Compression of `PDFImage` not working when quality set to zero.
+
 **Closed issues:**
+
+- #78
 
 **Merged pull requests:**
 
