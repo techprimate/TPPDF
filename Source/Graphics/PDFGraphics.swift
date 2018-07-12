@@ -159,26 +159,54 @@ class PDFGraphics {
         var finalImage = image
 
         if shouldResize {
-            // resize
-            var resizeFactor = (3 * quality > 1) ? 1 : 3 * quality
-            if resizeFactor == 0 {
-                resizeFactor = 0.2
-            }
-            let resizeImageSize = CGSize(width: frame.size.width * resizeFactor, height: frame.size.height * resizeFactor)
-
-            UIGraphicsBeginImageContext(resizeImageSize)
-            image.draw(in: CGRect(x: 0, y: 0, width: resizeImageSize.width, height: resizeImageSize.height))
-            finalImage = UIGraphicsGetImageFromCurrentImageContext() ?? finalImage
-            UIGraphicsEndImageContext()
+            finalImage = resize(image: finalImage, frame: frame, quality: quality)
         }
-
         if shouldCompress {
-            if let jpegData = UIImageJPEGRepresentation(finalImage, quality) {
-                finalImage = UIImage(data: jpegData) ?? finalImage
-            }
+            finalImage = compress(image: finalImage, quality: quality)
         }
 
         return finalImage
+    }
+
+    /**
+     Draws a scaled version of the given `image` into the given `frame`.
+
+     - parameter image: Image to resize
+     - parameter frame: Frame in which the new image will fit
+     - parameter quality: Value between 0.0 and 1.0, where 1.0 is maximum quality, used for size calculations
+
+     - returns: Resized version of `image`
+     */
+    static func resize(image: UIImage, frame: CGRect, quality: CGFloat) -> UIImage {
+        let factor: CGFloat = min(3 * quality, 1)
+        let resizeFactor = factor.isZero ? 0.2 : factor
+
+        let size = CGSize(width: frame.width * resizeFactor,
+                          height: frame.height * resizeFactor)
+
+        UIGraphicsBeginImageContext(size)
+        image.draw(in: CGRect(origin: .zero, size: size))
+        let finalImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return finalImage ?? image
+    }
+
+    /**
+     Performs JPEG compression on the given image.
+     If the given image can not be compressed, it will silently return the original image.
+
+     - parameter image: Image to compress
+     - parameter quality: Value between 0.0 and 1.0, where 1.0 is maximum quality/least compression
+     */
+    static func compress(image: UIImage, quality: CGFloat) -> UIImage {
+        guard let data = UIImageJPEGRepresentation(image, quality) else {
+            return image
+        }
+        guard let compressed = UIImage(data: data) else {
+            return image
+        }
+        return compressed
     }
 
     /**

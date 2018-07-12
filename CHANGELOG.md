@@ -17,10 +17,12 @@
 **Implemented enhancements:**
 
 - Added options to `PDFImage`, allowing more precise control about resizing and compression.
+- Improvements to internal image resizing and compression methods.
 
 **Closed issues:**
 
 - Issue #77
+- Issue #78
 
 ## [1.1.2](https://github.com/Techprimate/TPPDF/tree/1.1.2) (2018-07-12)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.1...1.1.2)
