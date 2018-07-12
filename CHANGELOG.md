@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/Techprimate/TPPDF/tree/HEAD)
-[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.1...HEAD)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.2...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,21 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [1.1.2](https://github.com/Techprimate/TPPDF/tree/1.1.2)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.1...1.1.2)
+
+**Implemented enhancements:**
+
+- `PDFLineStyle` now allows to set a border radius, if drawn as rectangle
+
+**Fixed bugs:**
+
+**Closed issues:**
+
+**Merged pull requests:**
+
+- #77
 
 ## [1.1.1](https://github.com/Techprimate/TPPDF/tree/1.1.1)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.0...1.1.1)
