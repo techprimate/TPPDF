@@ -157,12 +157,11 @@ class PDFGraphics {
      */
     static func resizeAndCompressImage(image: UIImage, frame: CGRect, quality: CGFloat) -> UIImage {
         // resize
-        let resizeFactor = (3 * quality > 1) ? 1 : 3 * quality
-        let resizeImageSize = CGSize(width: frame.size.width * resizeFactor, height: frame.size.height * resizeFactor)
-
+        var resizeFactor = (3 * quality > 1) ? 1 : 3 * quality
         if resizeFactor == 0 {
-            return image
+            resizeFactor = 0.2
         }
+        let resizeImageSize = CGSize(width: frame.size.width * resizeFactor, height: frame.size.height * resizeFactor)
 
         UIGraphicsBeginImageContext(resizeImageSize)
         image.draw(in: CGRect(x: 0, y: 0, width: resizeImageSize.width, height: resizeImageSize.height))
