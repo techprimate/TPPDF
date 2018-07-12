@@ -1,7 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/Techprimate/TPPDF/tree/HEAD)
-[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.2...HEAD)
+## [Unreleased](https://github.com/Techprimate/TPPDF/tree/HEAD) (2018-??-??)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.2.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -11,7 +11,18 @@
 
 **Merged pull requests:**
 
-## [1.1.2](https://github.com/Techprimate/TPPDF/tree/1.1.2)
+## [1.2.0](https://github.com/Techprimate/TPPDF/tree/1.2.0) (2018-07-12)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.2...1.2.0)
+
+**Implemented enhancements:**
+
+- Added options to `PDFImage`, allowing more precise control about resizing and compression.
+
+**Closed issues:**
+
+- Issue #77
+
+## [1.1.2](https://github.com/Techprimate/TPPDF/tree/1.1.2) (2018-07-12)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.1...1.1.2)
 
 **Implemented enhancements:**
@@ -24,13 +35,13 @@
 
 **Closed issues:**
 
-- #78
+- Issue #78
 
 **Merged pull requests:**
 
-- #77
+- PR #77 [by emericspiroux]
 
-## [1.1.1](https://github.com/Techprimate/TPPDF/tree/1.1.1)
+## [1.1.1](https://github.com/Techprimate/TPPDF/tree/1.1.1) (2018-06-29)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.1.0...1.1.1)
 
 **Implemented enhancements:**
@@ -43,45 +54,33 @@
 
 **Closed issues:**
 
-- #76
+- Issue #76
 
-**Merged pull requests:**
-
-## [1.1.0](https://github.com/Techprimate/TPPDF/tree/1.1.0)
+## [1.1.0](https://github.com/Techprimate/TPPDF/tree/1.1.0) (2018-05-07)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.3...1.1.0)
 
 **Implemented enhancements:**
 
 - Multi Column Sections (#9)
 
-**Fixed bugs:**
-
-**Closed issues:**
-
 **Merged pull requests:**
 
 - PR #63
 
-## [1.0.3](https://github.com/Techprimate/TPPDF/tree/1.0.3)
+## [1.0.3](https://github.com/Techprimate/TPPDF/tree/1.0.3) (2018-05-07)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.2...1.0.3)
 
 **Implemented enhancements:**
 
-Added `PDFGenerator.generate(document:, to:)`
-
-**Fixed bugs:**
+- Added `PDFGenerator.generate(document:, to:)`
 
 **Closed issues:**
 
-Fixed #55
-Fixed #64
+- Issue #55
+- Issue #64
 
-**Merged pull requests:**
-
-## [1.0.2](https://github.com/Techprimate/TPPDF/tree/1.0.2)
+## [1.0.2](https://github.com/Techprimate/TPPDF/tree/1.0.2) (2018-04-18)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.1...1.0.2)
-
-**Implemented enhancements:**
 
 **Fixed bugs:**
 
@@ -89,35 +88,21 @@ Fixed #64
 
 **Closed issues:**
 
-- #59
+- Issue #59
 
-**Merged pull requests:**
-
-## [1.0.1](https://github.com/Techprimate/TPPDF/tree/1.0.1)
+## [1.0.1](https://github.com/Techprimate/TPPDF/tree/1.0.1) (2018-04-16)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/1.0.0...1.0.1)
-
-**Implemented enhancements:**
-
-**Fixed bugs:**
-
-**Closed issues:**
 
 **Merged pull requests:**
 
 - PR #56 [by kf99916]
 
-## [1.0.0](https://github.com/Techprimate/TPPDF/tree/1.0.0)
-[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.4.0...HEAD)
+## [1.0.0](https://github.com/Techprimate/TPPDF/tree/1.0.0) (2018-04-08)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.4.0...1.0.0)
 
 **Implemented enhancements:**
 
 - Rebuilt whole library, too much for one changelog
-
-**Fixed bugs:**
-
-**Closed issues:**
-
-**Merged pull requests:**
 
 ## [0.4.0](https://github.com/Techprimate/TPPDF/tree/0.4.0) (2017-06-05)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.3.0...0.4.0)
@@ -129,15 +114,11 @@ Fixed #64
 - Added Carthage support
 - Added table styling
 
-**Fixed bugs:**
-
 **Closed issues:**
 
 - Issue #2
 - Issue #4
-- Isseu #7
-
-**Merged pull requests:**
+- Issue #7
 
 ## [0.3.0](https://github.com/Techprimate/TPPDF/tree/0.3.0) (2017-01-19)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.2.0...0.3.0)
@@ -159,38 +140,20 @@ Fixed #64
 - Added command `setFont(font: UIFont)` to change the font in a container
 - Added command `resetFont(container: Container)` to reset the font of a container to default
 
-**Fixed bugs:**
-
-**Closed issues:**
-
 **Merged pull requests:**
 
-- [#3](https://github.com/Techprimate/TPPDF/pull/3) from kf99916/master
+- PR #3 from kf99916/master
 
 
 ## [0.2.0](https://github.com/Techprimate/TPPDF/tree/0.2.0) (2016-11-07)
-[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.4...0.2.0)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.5...0.2.0)
 
 **Implemented enhancements:**
 
 - Updated to Swift 3.0
 
-**Fixed bugs:**
-
-**Closed issues:**
-
-**Merged pull requests:**
-
-## [0.1.5](https://github.com/Techprimate/TPPDF/tree/0.1.4) (2016-11-09)
-[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.3...0.1.4)
-
-**Implemented enhancements:**
-
-**Fixed bugs:**
-
-**Closed issues:**
-
-**Merged pull requests:**
+## [0.1.5](https://github.com/Techprimate/TPPDF/tree/0.1.5) (2016-11-09)
+[Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.4...0.1.5)
 
 ## [0.1.4](https://github.com/Techprimate/TPPDF/tree/0.1.4) (2016-08-24)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.3...0.1.4)
@@ -203,10 +166,6 @@ Fixed #64
 
 - Small link issues in `CHANGELOG.md`
 
-**Closed issues:**
-
-**Merged pull requests:**
-
 ## [0.1.3](https://github.com/Techprimate/TPPDF/tree/0.1.3) (2016-08-21)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.2...0.1.3)
 
@@ -214,21 +173,9 @@ Fixed #64
 
 - Added indentation command `SetIndentation(points: CGFloat)`
 
-**Fixed bugs:**
-
-**Closed issues:**
-
-**Merged pull requests:**
-
 ## [0.1.2](https://github.com/Techprimate/TPPDF/tree/0.1.2) (2016-08-16)
 [Full Changelog](https://github.com/Techprimate/TPPDF/compare/0.1.1...0.1.2)
-
-**Implemented enhancements:**
 
 **Fixed bugs:**
 
 - Footer space is rendering correctly now
-
-**Closed issues:**
-
-**Merged pull requests:**

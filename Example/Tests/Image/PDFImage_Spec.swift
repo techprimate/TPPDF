@@ -23,11 +23,12 @@ class PDFImage_Spec: QuickSpec {
             let size = CGSize(width: 100, height: 100)
             let fit = PDFImageSizeFit.height
             let quality: CGFloat = 0.9
+            let options: PDFImageOptions = [.resize]
 
             var pdfImage: PDFImage!
 
             beforeEach {
-                pdfImage = PDFImage(image: image, caption: caption, size: size, sizeFit: fit, quality: quality)
+                pdfImage = PDFImage(image: image, caption: caption, size: size, sizeFit: fit, quality: quality, options: options)
             }
 
             context("initializer") {
@@ -38,6 +39,7 @@ class PDFImage_Spec: QuickSpec {
                     expect(pdfImage.caption).to(beNil())
                     expect(pdfImage.sizeFit) == PDFImageSizeFit.widthHeight
                     expect(pdfImage.quality) == 0.85
+                    expect(pdfImage.options) == [.resize, .compress]
                 }
             }
 
@@ -61,6 +63,10 @@ class PDFImage_Spec: QuickSpec {
 
                 it("has a quality") {
                     expect(pdfImage.quality) == quality
+                }
+
+                it("has options") {
+                    expect(pdfImage.options) == options
                 }
             }
         }

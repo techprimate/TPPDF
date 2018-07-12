@@ -241,7 +241,10 @@ If you set a `size` it will try to fit in this size, defaults to `CGSize.zero` w
 - `PDFImageSizeFit.height`
 - `PDFImageSizeFit.widthHeight`
 
-To minimize the file size, images can be compressed using JPEG compression, which can be modified by setting the `quality` value between `0.0` for bad quality and `1.0` for best quality. Default value is `0.85` which gives good compression and good quality.
+To optimize file size, images are resized and compressed using JPEG compression. By default both is enabled, but can change them by setting `options`.
+
+If resizing is enabled, the image will be resized to its frame size in the document.
+If compression is enabled, the image will be compressed using the value set in `quality` value. This value is between `0.0` for bad quality and `1.0` for best quality - default is set to `0.85`, which resolves in a good balance between compression and quality.
 
 #### Images in one row
 

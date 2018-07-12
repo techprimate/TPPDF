@@ -38,7 +38,7 @@ public struct PDFLineStyle: PDFJSONSerializable {
      - parameter width: of Line
      - parameter radius: of border
      */
-    public init(type: PDFLineType = .full, color: UIColor = .black, width: CGFloat = 0.25, radius:CGFloat? = nil) {
+    public init(type: PDFLineType = .full, color: UIColor = .black, width: CGFloat = 0.25, radius: CGFloat? = nil) {
         self.type = type
         self.color = color
         self.width = width

@@ -39,6 +39,11 @@ public class PDFImage: PDFJSONSerializable {
     public var quality: CGFloat
 
     /**
+
+    */
+    public var options: PDFImageOptions
+
+    /**
      Initializer to create a PDF image element.
 
      - parameter image: Image which will be drawn
@@ -51,15 +56,22 @@ public class PDFImage: PDFJSONSerializable {
                 caption: PDFText? = nil,
                 size: CGSize = .zero,
                 sizeFit: PDFImageSizeFit = .widthHeight,
-                quality: CGFloat = 0.85) {
+                quality: CGFloat = 0.85,
+                options: PDFImageOptions = [.resize, .compress]) {
         self.image = image
         self.caption = caption
         self.size = (size == .zero) ? image.size : size
         self.sizeFit = sizeFit
         self.quality = quality
+        self.options = options
     }
 
     var copy: PDFImage {
-        return PDFImage(image: self.image, caption: self.caption?.copy, size: self.size, sizeFit: self.sizeFit, quality: self.quality)
+        return PDFImage(image: self.image,
+                        caption: self.caption?.copy,
+                        size: self.size,
+                        sizeFit: self.sizeFit,
+                        quality: self.quality,
+                        options: self.options)
     }
 }

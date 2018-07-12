@@ -112,7 +112,11 @@ class PDFImageObject: PDFObject {
     }
 
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        PDFGraphics.resizeAndCompressImage(image: image.image, frame: frame, quality: image.quality).draw(in: self.frame)
+        PDFGraphics.resizeAndCompressImage(image: image.image,
+                                           frame: frame,
+                                           shouldResize: image.options.contains(.resize),
+                                           shouldCompress: image.options.contains(.compress),
+                                           quality: image.quality).draw(in: self.frame)
     }
 
     func updateHeights(generator: PDFGenerator, container: PDFContainer) {

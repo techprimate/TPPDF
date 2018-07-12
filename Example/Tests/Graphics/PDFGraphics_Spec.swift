@@ -77,15 +77,34 @@ class PDFGraphics_Spec : QuickSpec {
                 expect(image.size) == CGSize(width: 61, height: 68)
 
                 var compressFrame = CGRect(x: 0, y: 0, width: 40, height: 40)
-                var compressed = PDFGraphics.resizeAndCompressImage(image: image, frame: compressFrame, quality: 1.0)
+                var compressed = PDFGraphics.resizeAndCompressImage(image: image,
+                                                                    frame: compressFrame,
+                                                                    shouldResize: true,
+                                                                    shouldCompress: true,
+                                                                    quality: 1.0)
                 expect(compressed.size) == compressFrame.size
 
                 compressFrame = CGRect(x: 0, y: 0, width: 40.0, height: 40.0)
-                compressed = PDFGraphics.resizeAndCompressImage(image: image, frame: compressFrame, quality: 0.2)
+                compressed = PDFGraphics.resizeAndCompressImage(image: image,
+                                                                frame: compressFrame,
+                                                                shouldResize: true,
+                                                                shouldCompress: true,
+                                                                quality: 0.2)
                 expect(compressed.size) == CGSize(width: 25.0, height: 25.0)
 
-                compressed = PDFGraphics.resizeAndCompressImage(image: image, frame: compressFrame, quality: 0.0)
+                compressed = PDFGraphics.resizeAndCompressImage(image: image,
+                                                                frame: compressFrame,
+                                                                shouldResize: true,
+                                                                shouldCompress: true,
+                                                                quality: 0.0)
                 expect(compressed.size) == CGSize(width: 8, height: 8)
+
+                compressed = PDFGraphics.resizeAndCompressImage(image: image,
+                                                                frame: compressFrame,
+                                                                shouldResize: false,
+                                                                shouldCompress: false,
+                                                                quality: 0.0)
+                expect(compressed) == image
             }
         }
     }

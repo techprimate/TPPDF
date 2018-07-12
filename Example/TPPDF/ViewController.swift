@@ -66,8 +66,8 @@ class ViewController: UIViewController {
         ])
 
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
-        // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality.
-        let logoImage = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150), quality: 0.9)
+        // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality. This is applied if the option `compress` is set.
+        let logoImage = PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 150, height: 150), quality: 0.9, options: [.resize, .compress])
         document.addImage(.contentCenter, image: logoImage)
 
         // Create and add an title as an attributed string for more customization possibilities
