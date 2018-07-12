@@ -105,11 +105,13 @@ class PDFGraphics {
      */
     static func createRectPath(rect: CGRect, outline: PDFLineStyle) -> UIBezierPath {
         var path = UIBezierPath(rect: rect)
+        if let radius = outline.radius {
+            path = UIBezierPath.init(roundedRect: rect, cornerRadius: radius)
+        }
 
         let dashes = createDashes(style: outline, path: &path)
         path.setLineDash(dashes, count: dashes.count, phase: 0.0)
         path.lineWidth = CGFloat(outline.width)
-
         return path
     }
 
