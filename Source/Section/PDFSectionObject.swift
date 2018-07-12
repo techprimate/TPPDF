@@ -67,7 +67,7 @@ class PDFSectionObject: PDFObject {
 				contentMinY = currentObject.frame.minY
 			}
 		}
-		generator.setContentOffset(in: container, to: (contentMaxY ?? 0) - (contentMinY ?? 0))
+		generator.setContentOffset(in: container, to: (contentMaxY ?? 0) - (contentMinY ?? 0) + originalContentOffset)
 
 		return result
 	}
