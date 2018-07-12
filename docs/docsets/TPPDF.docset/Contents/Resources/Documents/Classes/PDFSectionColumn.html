@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PDFDocument Class Reference</title>
+    <title>PDFSectionColumn Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Class/PDFDocument" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Class/PDFSectionColumn" class="dashAnchor"></a>
 
-    <a title="PDFDocument Class Reference"></a>
+    <a title="PDFSectionColumn Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -50,7 +50,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">TPPDF Reference</a>
       <img class="carat" src="../img/carat.png" />
-      PDFDocument Class Reference
+      PDFSectionColumn Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -259,17 +259,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>PDFDocument</h1>
+            <h1>PDFSectionColumn</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFDocument</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFSectionColumn</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 
                 </div>
               </div>
-            <p>The main class users interact with.
-This object holds the information about the document and also all PDF objects.</p>
-
-<p>It is possible to create a JSON representation using the <code><a href="../Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></code> protocol.</p>
+            <p>Undocumented</p>
 
           </div>
         </section>
@@ -288,9 +285,9 @@ This object holds the information about the document and also all PDF objects.</
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC6layoutAA13PDFPageLayoutVvp"></a>
-                    <a name="//apple_ref/swift/Property/layout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC6layoutAA13PDFPageLayoutVvp">layout</a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC5width12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/width" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC5width12CoreGraphics7CGFloatVvp">width</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -298,68 +295,14 @@ This object holds the information about the document and also all PDF objects.</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Holds all layout information</p>
+                        <p>Holds the relative column width. Value is between 0.0 and 1.0.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">layout</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFPageLayout.html">PDFPageLayout</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF11PDFDocumentC4infoAA7PDFInfoCvp"></a>
-                    <a name="//apple_ref/swift/Property/info" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC4infoAA7PDFInfoCvp">info</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Holds all document information</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">info</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFInfo.html">PDFInfo</a></span> <span class="o">=</span> <span class="kt"><a href="../Classes/PDFInfo.html">PDFInfo</a></span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF11PDFDocumentC10paginationAA13PDFPaginationVvp"></a>
-                    <a name="//apple_ref/swift/Property/pagination" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC10paginationAA13PDFPaginationVvp">pagination</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Holds all pagination information</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">pagination</span> <span class="o">=</span> <span class="kt"><a href="../Structs/PDFPagination.html">PDFPagination</a></span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
 
                         </div>
                       </div>
@@ -380,9 +323,9 @@ This object holds the information about the document and also all PDF objects.</
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentCAcA13PDFPageLayoutV6layout_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(layout:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentCAcA13PDFPageLayoutV6layout_tcfc">init(layout:)</a>
+                    <a name="/s:5TPPDF16PDFSectionColumnCAC12CoreGraphics7CGFloatV5width_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(width:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnCAC12CoreGraphics7CGFloatV5width_tcfc">init(width:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -390,14 +333,14 @@ This object holds the information about the document and also all PDF objects.</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates a new document with the given layout</p>
+                        <p>Creates a new section column with the given relative width.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">layout</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFPageLayout.html">PDFPageLayout</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -408,58 +351,12 @@ This object holds the information about the document and also all PDF objects.</
                             <tr>
                               <td>
                                 <code>
-                                <em>layout</em>
+                                <em>width</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Layout information for document</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF11PDFDocumentCAcA13PDFPageFormatO6format_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(format:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentCAcA13PDFPageFormatO6format_tcfc">init(format:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Creates a new document with a predefined <code><a href="../Enums/PDFPageFormat.html">PDFPageFormat</a></code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFPageFormat.html">PDFPageFormat</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>layout</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Predefined page formats</p>
+                                  <p>Relative column width. Value is between 0.0 and 1.0.</p>
                                 </div>
                               </td>
                             </tr>
@@ -483,9 +380,9 @@ This object holds the information about the document and also all PDF objects.</
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC8addSpaceyAA12PDFContainerO_12CoreGraphics7CGFloatV5spacetF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC8addSpaceyAA0bC9ContainerO_12CoreGraphics7CGFloatV5spacetF"></a>
                     <a name="//apple_ref/swift/Method/addSpace(_:space:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC8addSpaceyAA12PDFContainerO_12CoreGraphics7CGFloatV5spacetF">addSpace(_:space:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC8addSpaceyAA0bC9ContainerO_12CoreGraphics7CGFloatV5spacetF">addSpace(_:space:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -500,7 +397,7 @@ This object holds the information about the document and also all PDF objects.</
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addSpace</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">space</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addSpace</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">space</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -516,7 +413,7 @@ This object holds the information about the document and also all PDF objects.</
                               </td>
                               <td>
                                 <div>
-                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -552,9 +449,9 @@ This object holds the information about the document and also all PDF objects.</
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC16addLineSeparatoryAA12PDFContainerO_AA12PDFLineStyleV5styletF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC16addLineSeparatoryAA0bC9ContainerO_AA12PDFLineStyleV5styletF"></a>
                     <a name="//apple_ref/swift/Method/addLineSeparator(_:style:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC16addLineSeparatoryAA12PDFContainerO_AA12PDFLineStyleV5styletF">addLineSeparator(_:style:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC16addLineSeparatoryAA0bC9ContainerO_AA12PDFLineStyleV5styletF">addLineSeparator(_:style:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -570,7 +467,7 @@ Customize by adjusting parameter <code>style</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addLineSeparator</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">style</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFLineStyle.html">PDFLineStyle</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addLineSeparator</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">style</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFLineStyle.html">PDFLineStyle</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -586,7 +483,7 @@ Customize by adjusting parameter <code>style</code>.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -622,9 +519,9 @@ Customize by adjusting parameter <code>style</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC8addImageyAA12PDFContainerO_AA8PDFImageC5imagetF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC8addImageyAA0bC9ContainerO_AA8PDFImageC5imagetF"></a>
                     <a name="//apple_ref/swift/Method/addImage(_:image:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC8addImageyAA12PDFContainerO_AA8PDFImageC5imagetF">addImage(_:image:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC8addImageyAA0bC9ContainerO_AA8PDFImageC5imagetF">addImage(_:image:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -639,7 +536,7 @@ Customize by adjusting parameter <code>style</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addImage</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFImage.html">PDFImage</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addImage</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFImage.html">PDFImage</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -655,7 +552,7 @@ Customize by adjusting parameter <code>style</code>.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -680,9 +577,9 @@ Customize by adjusting parameter <code>style</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC14addImagesInRowyAA12PDFContainerO_SayAA8PDFImageCG6images12CoreGraphics7CGFloatV7spacingtF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC14addImagesInRowyAA0bC9ContainerO_SayAA8PDFImageCG6images12CoreGraphics7CGFloatV7spacingtF"></a>
                     <a name="//apple_ref/swift/Method/addImagesInRow(_:images:spacing:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC14addImagesInRowyAA12PDFContainerO_SayAA8PDFImageCG6images12CoreGraphics7CGFloatV7spacingtF">addImagesInRow(_:images:spacing:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC14addImagesInRowyAA0bC9ContainerO_SayAA8PDFImageCG6images12CoreGraphics7CGFloatV7spacingtF">addImagesInRow(_:images:spacing:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -698,7 +595,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addImagesInRow</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">images</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/PDFImage.html">PDFImage</a></span><span class="p">],</span> <span class="nv">spacing</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addImagesInRow</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">images</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/PDFImage.html">PDFImage</a></span><span class="p">],</span> <span class="nv">spacing</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -714,7 +611,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -762,9 +659,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC7addTextyAA12PDFContainerO_SS4text12CoreGraphics7CGFloatV11lineSpacingtF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC7addTextyAA0bC9ContainerO_SS4text12CoreGraphics7CGFloatV11lineSpacingtF"></a>
                     <a name="//apple_ref/swift/Method/addText(_:text:lineSpacing:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC7addTextyAA12PDFContainerO_SS4text12CoreGraphics7CGFloatV11lineSpacingtF">addText(_:text:lineSpacing:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC7addTextyAA0bC9ContainerO_SS4text12CoreGraphics7CGFloatV11lineSpacingtF">addText(_:text:lineSpacing:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -779,7 +676,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">lineSpacing</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">lineSpacing</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -795,7 +692,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -832,9 +729,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC7addTextyAA12PDFContainerO_AA09PDFSimpleD0C10textObjecttF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC7addTextyAA0bC9ContainerO_AA09PDFSimpleE0C10textObjecttF"></a>
                     <a name="//apple_ref/swift/Method/addText(_:textObject:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC7addTextyAA12PDFContainerO_AA09PDFSimpleD0C10textObjecttF">addText(_:textObject:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC7addTextyAA0bC9ContainerO_AA09PDFSimpleE0C10textObjecttF">addText(_:textObject:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -849,7 +746,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">textObject</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFSimpleText.html">PDFSimpleText</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">textObject</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFSimpleText.html">PDFSimpleText</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -865,7 +762,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -890,9 +787,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC17addAttributedTextyAA12PDFContainerO_So18NSAttributedStringC4texttF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC17addAttributedTextyAA0bC9ContainerO_So18NSAttributedStringC4texttF"></a>
                     <a name="//apple_ref/swift/Method/addAttributedText(_:text:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC17addAttributedTextyAA12PDFContainerO_So18NSAttributedStringC4texttF">addAttributedText(_:text:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC17addAttributedTextyAA0bC9ContainerO_So18NSAttributedStringC4texttF">addAttributedText(_:text:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -907,7 +804,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addAttributedText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addAttributedText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -923,7 +820,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -948,9 +845,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC17addAttributedTextyAA12PDFContainerO_AA013PDFAttributedE0C10textObjecttF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC17addAttributedTextyAA0bC9ContainerO_AA013PDFAttributedF0C10textObjecttF"></a>
                     <a name="//apple_ref/swift/Method/addAttributedText(_:textObject:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC17addAttributedTextyAA12PDFContainerO_AA013PDFAttributedE0C10textObjecttF">addAttributedText(_:textObject:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC17addAttributedTextyAA0bC9ContainerO_AA013PDFAttributedF0C10textObjecttF">addAttributedText(_:textObject:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -965,7 +862,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addAttributedText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">textObject</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFAttributedText.html">PDFAttributedText</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addAttributedText</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">textObject</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFAttributedText.html">PDFAttributedText</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -981,7 +878,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container where the space will be set, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -1006,9 +903,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC7setFontyAA12PDFContainerO_So6UIFontC4fonttF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC7setFontyAA0bC9ContainerO_So6UIFontC4fonttF"></a>
                     <a name="//apple_ref/swift/Method/setFont(_:font:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC7setFontyAA12PDFContainerO_So6UIFontC4fonttF">setFont(_:font:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC7setFontyAA0bC9ContainerO_So6UIFontC4fonttF">setFont(_:font:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1023,7 +920,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setFont</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">font</span><span class="p">:</span> <span class="kt">UIFont</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setFont</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">font</span><span class="p">:</span> <span class="kt">UIFont</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1039,7 +936,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container where the font will be set, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container where the font will be set, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -1064,9 +961,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC9resetFontyAA12PDFContainerOF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC9resetFontyAA0bC9ContainerOF"></a>
                     <a name="//apple_ref/swift/Method/resetFont(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC9resetFontyAA12PDFContainerOF">resetFont(_:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC9resetFontyAA0bC9ContainerOF">resetFont(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1081,7 +978,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resetFont</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resetFont</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1097,7 +994,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container whose text color will be reset, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container whose text color will be reset, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -1110,9 +1007,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC12setTextColoryAA12PDFContainerO_So7UIColorC5colortF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC12setTextColoryAA0bC9ContainerO_So7UIColorC5colortF"></a>
                     <a name="//apple_ref/swift/Method/setTextColor(_:color:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC12setTextColoryAA12PDFContainerO_So7UIColorC5colortF">setTextColor(_:color:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC12setTextColoryAA0bC9ContainerO_So7UIColorC5colortF">setTextColor(_:color:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1127,7 +1024,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setTextColor</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">color</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setTextColor</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">color</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1143,7 +1040,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container where the text color will be set, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container where the text color will be set, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -1168,9 +1065,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC14resetTextColoryAA12PDFContainerOF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC14resetTextColoryAA0bC9ContainerOF"></a>
                     <a name="//apple_ref/swift/Method/resetTextColor(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC14resetTextColoryAA12PDFContainerOF">resetTextColor(_:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC14resetTextColoryAA0bC9ContainerOF">resetTextColor(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1185,7 +1082,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resetTextColor</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resetTextColor</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1201,7 +1098,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container whose text color will be reset, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container whose text color will be reset, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -1225,9 +1122,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC8addTableyAA12PDFContainerO_AA8PDFTableC5tabletF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC8addTableyAA0bC9ContainerO_AA8PDFTableC5tabletF"></a>
                     <a name="//apple_ref/swift/Method/addTable(_:table:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC8addTableyAA12PDFContainerO_AA8PDFTableC5tabletF">addTable(_:table:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC8addTableyAA0bC9ContainerO_AA8PDFTableC5tabletF">addTable(_:table:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1242,7 +1139,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addTable</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">table</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFTable.html">PDFTable</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addTable</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">table</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFTable.html">PDFTable</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1263,9 +1160,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC7addListyAA12PDFContainerO_AA7PDFListC4listtF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC7addListyAA0bC9ContainerO_AA7PDFListC4listtF"></a>
                     <a name="//apple_ref/swift/Method/addList(_:list:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC7addListyAA12PDFContainerO_AA7PDFListC4listtF">addList(_:list:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC7addListyAA0bC9ContainerO_AA7PDFListC4listtF">addList(_:list:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1280,45 +1177,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addList</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">list</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFList.html">PDFList</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Section"></a>
-                <a name="//apple_ref/swift/Section/Section" class="dashAnchor"></a>
-                <a href="#/Section">
-                  <h3 class="section-name">Section</h3>
-                </a>
-              </div>
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF11PDFDocumentC10addSectionyAA10PDFSectionCF"></a>
-                    <a name="//apple_ref/swift/Method/addSection(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC10addSectionyAA10PDFSectionCF">addSection(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Adds a section object to the document</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addSection</span><span class="p">(</span><span class="n">_</span> <span class="nv">section</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFSection.html">PDFSection</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addList</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">list</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFList.html">PDFList</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1339,9 +1198,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC14setIndentationyAA12PDFContainerO_12CoreGraphics7CGFloatV6indentSb4lefttF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC14setIndentationyAA0bC9ContainerO_12CoreGraphics7CGFloatV6indentSb4lefttF"></a>
                     <a name="//apple_ref/swift/Method/setIndentation(_:indent:left:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC14setIndentationyAA12PDFContainerO_12CoreGraphics7CGFloatV6indentSb4lefttF">setIndentation(_:indent:left:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC14setIndentationyAA0bC9ContainerO_12CoreGraphics7CGFloatV6indentSb4lefttF">setIndentation(_:indent:left:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1356,7 +1215,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setIndentation</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">indent</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setIndentation</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">indent</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1372,7 +1231,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container whose indentation should be changed, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container whose indentation should be changed, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -1409,9 +1268,9 @@ This image row will fill the full available width between left indentation and r
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF11PDFDocumentC17setAbsoluteOffsetyAA12PDFContainerO_12CoreGraphics7CGFloatV6offsettF"></a>
+                    <a name="/s:5TPPDF16PDFSectionColumnC17setAbsoluteOffsetyAA0bC9ContainerO_12CoreGraphics7CGFloatV6offsettF"></a>
                     <a name="//apple_ref/swift/Method/setAbsoluteOffset(_:offset:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC17setAbsoluteOffsetyAA12PDFContainerO_12CoreGraphics7CGFloatV6offsettF">setAbsoluteOffset(_:offset:)</a>
+                    <a class="token" href="#/s:5TPPDF16PDFSectionColumnC17setAbsoluteOffsetyAA0bC9ContainerO_12CoreGraphics7CGFloatV6offsettF">setAbsoluteOffset(_:offset:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1426,7 +1285,7 @@ This image row will fill the full available width between left indentation and r
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setAbsoluteOffset</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setAbsoluteOffset</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a></span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1442,7 +1301,7 @@ This image row will fill the full available width between left indentation and r
                               </td>
                               <td>
                                 <div>
-                                  <p>Container whose current absoilute offset should be changed, defaults to <code><a href="../Enums/PDFContainer.html#/s:5TPPDF12PDFContainerO11contentLeftA2CmF">PDFContainer.contentLeft</a></code></p>
+                                  <p>Container whose current absolute offset should be changed, defaults to <code><a href="../Enums/PDFSectionColumnContainer.html#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">PDFSectionColumnContainer.left</a></code></p>
                                 </div>
                               </td>
                             </tr>
@@ -1460,33 +1319,6 @@ This image row will fill the full available width between left indentation and r
                             </tr>
                           </tbody>
                         </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF11PDFDocumentC13createNewPageyyF"></a>
-                    <a name="//apple_ref/swift/Method/createNewPage()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF11PDFDocumentC13createNewPageyyF">createNewPage()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Creates a new page</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">createNewPage</span><span class="p">()</span></code></pre>
-
-                        </div>
                       </div>
                     </section>
                   </div>

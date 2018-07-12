@@ -22,7 +22,7 @@
         <a class="header-link" href="index.html">
           TPPDF Docs
         </a>
-         (69% documented)
+         (72% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -80,6 +80,12 @@
                 <a class="nav-group-task-link" href="Classes/PDFListItem.html">PDFListItem</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/PDFSection.html">PDFSection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/PDFSectionColumn.html">PDFSectionColumn</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/PDFSimpleText.html">PDFSimpleText</a>
               </li>
               <li class="nav-group-task">
@@ -122,6 +128,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/PDFPaginationStyle.html">PDFPaginationStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/PDFTableCellAlignment.html">PDFTableCellAlignment</a>
@@ -296,11 +305,18 @@
     <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
   • <a href="#usage">Example</a>
-  • <a href="#usage">Installation</a>
   • <a href="#usage">Usage</a>
+  • <a href="#installation">Installation</a>
   • <a href="#credits">Credits</a>
   • <a href="#license">License</a>
 </p>
+<h2 id='what-39-s-new-in-1-1-0' class='heading'>What&rsquo;s new in 1.1.0?</h2>
+
+<ul>
+<li>Multi-Column Sections</li>
+</ul>
+
+<p>You can now have multiple columns next to each other and add all objects to them!</p>
 <h2 id='features' class='heading'>Features</h2>
 
 <ul>
@@ -322,6 +338,7 @@
 <li>Generate PDF files directly to handle large PDF files (<a href="http://stackoverflow.com/questions/14691264/how-can-i-lower-memory-climb-when-generating-large-pdfs">Details</a>)</li>
 <li>PDF metadata</li>
 <li>Custom table styling</li>
+<li>Multi-column sections</li>
 <li>You need more features? Checkout #Contribute</li>
 </ul>
 <h2 id='communication' class='heading'>Communication</h2>
@@ -543,7 +560,7 @@ If you provide <code>value</code> this will be used for the parent item, in case
 <p>Each cell has an optional <code>content</code> of type <code><a href="Classes/PDFTableContent.html">PDFTableContent</a></code>, an optional <code>style</code> of <code><a href="Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></code> and always an <code>alignment</code> of <code><a href="Enums/PDFTableCellAlignment.html">PDFTableCellAlignment</a></code>.</p>
 <h5 id='alignment' class='heading'>Alignment</h5>
 
-<p>The aligmnet is one of the following <code><a href="Enums/PDFTableCellAlignment.html">PDFTableCellAlignment</a></code>:</p>
+<p>The alignment is one of the following <code><a href="Enums/PDFTableCellAlignment.html">PDFTableCellAlignment</a></code>:</p>
 
 <ul>
 <li><code>topLeft</code>, <code>top</code>, <code>topRight</code></li>
@@ -611,6 +628,7 @@ If you provide <code>value</code> this will be used for the parent item, in case
 <p>If there are conflicts, e.g a cell is a column and a header row, then the following priority order, with the higher ones beating the lower ones, is used:</p>
 
 <ul>
+<li><code>style.outline</code> can receive a <code><a href="Structs/PDFLineStyle.html">PDFLineStyle</a></code> to draw table borders. PDFLineStyle can take radius <code>CGFloat?</code> propriety to define radius border. This proprity is only used when drawing a rect, like table.</li>
 <li><code>cell.style</code>, a custom style set for this particular cell</li>
 <li><code>style.columnHeaderStyle</code>, if the cell is a column header therefore in the top rows</li>
 <li><code>style.footerStyle</code>, if the cell is a footer row</li>
@@ -673,6 +691,17 @@ The width of each column is set by a relative width, defined in an array of valu
 
 <p>&hellip;and finally you add the table to the document:</p>
 <pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">addTable</span><span class="p">(</span><span class="nv">table</span><span class="p">:</span> <span class="n">table</span><span class="p">)</span>
+</code></pre>
+<h4 id='multi-column-sections' class='heading'>Multi-Column Sections</h4>
+
+<p>A multi-column section is a nested container. You create the section with an amount of columns and their relative width, add objects to each column and then add the whole section to the document. </p>
+
+<p>When adding an object to the section column, you use the Array subscript <code>section.columns[0]</code>. You are able to give it an alignment as the first parameter, similar to the <code><a href="Enums/PDFContainer.html">PDFContainer</a></code> but only with <code>.left</code>, <code>.center</code> and <code>.right</code> as it is not possible to add a section to the header or footer containers.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">section</span> <span class="o">=</span> <span class="kt">PDFSection</span><span class="p">(</span><span class="nv">columnWidths</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="n">section</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="nf">addText</span><span class="p">(</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="s">"right"</span><span class="p">)</span>
+<span class="n">section</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="nf">addText</span><span class="p">(</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="s">"left"</span><span class="p">)</span>
+<span class="n">section</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="nf">addText</span><span class="p">(</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="s">"center"</span><span class="p">)</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">addSection</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
 </code></pre>
 <h3 id='helpers' class='heading'>Helpers</h3>
 
@@ -798,6 +827,36 @@ As an example this won&rsquo;t paginate page <code>1</code>, <code>2</code>, <co
 You are able to set a <code>title</code>, <code>author</code>, <code>subject</code> and <code>keywords</code>.</p>
 
 <p>If you need to encrypt the document, set an <code>owner password</code> and a <code>user password</code>. Also you can restrict printing and copying by setting the <code>allows printing</code> and <code>allows copying</code> flags.</p>
+<h3 id='generation' class='heading'>Generation</h3>
+
+<p>You can generate the PDF file using the following method:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">document</span><span class="p">:</span> <span class="kt">PDFDocument</span>
+<span class="k">let</span> <span class="nv">filename</span> <span class="o">=</span> <span class="s">"awesome.pdf"</span>
+
+<span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">PDFGenerator</span><span class="o">.</span><span class="nf">generateURL</span><span class="p">(</span><span class="nv">document</span><span class="p">:</span> <span class="n">document</span><span class="p">,</span> <span class="nv">filename</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="p">{</span> <span class="n">progress</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>
+<span class="p">},</span> <span class="nv">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+</code></pre>
+
+<p>This will render the document to a temporary file and return the URL. Be sure to wrap it a <code>try-catch</code> block, as it might throw an error!</p>
+
+<p>It is also possible to render the file and return the data, using <code>generateData</code>:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">document</span><span class="p">:</span> <span class="kt">PDFDocument</span>
+<span class="k">let</span> <span class="nv">filename</span> <span class="o">=</span> <span class="s">"awesome.pdf"</span>
+
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">PDFGenerator</span><span class="o">.</span><span class="nf">generateData</span><span class="p">(</span><span class="nv">document</span><span class="p">:</span> <span class="n">document</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="p">{</span> <span class="n">progress</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>
+<span class="p">},</span> <span class="nv">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+</code></pre>
+
+<p>And if you want to directly save it to a specific file, pass an URL to <code>generate(document:, to: )</code>:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">document</span><span class="p">:</span> <span class="kt">PDFDocument</span>
+<span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"file://~/Desktop/awesome.pdf"</span><span class="p">)</span><span class="o">!</span>
+
+<span class="k">try</span> <span class="kt">PDFGenerator</span><span class="o">.</span><span class="nf">generate</span><span class="p">(</span><span class="nv">document</span><span class="p">:</span> <span class="n">document</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="p">{</span> <span class="n">progress</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>
+<span class="p">},</span> <span class="nv">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+</code></pre>
 <h2 id='installation' class='heading'>Installation</h2>
 <h3 id='requirements' class='heading'>Requirements</h3>
 
@@ -930,6 +989,10 @@ You are able to set a <code>title</code>, <code>author</code>, <code>subject</co
 
 <p><img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/Bug_Journal.png" alt="Bug Journal"/></p>
 
+<p><a href="https://itunes.apple.com/de/app/energy-tracker/id1193010972">Energy Tracker</a> - by Stefan Nebel</p>
+
+<p><img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/EnergyTracker.jpg" alt="Energy Tracker"/></p>
+
 <p><a href="https://itunes.apple.com/us/app/mamas-cookbook/id1019090528">Mama&rsquo;s Cookbook (future release)</a> - by Philip Niedertscheider</p>
 
 <p><img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/MCB.png" alt=MCB"/></p>
@@ -952,7 +1015,8 @@ You are able to set a <code>title</code>, <code>author</code>, <code>subject</co
 
 <ul>
 <li>Philip Niedertscheider, <a href="https://www.github.com/techprimate-phil">techprimate-phil</a></li>
-<li>Zheng-Xiang Ke, <a href="https://www.github.com/kf99916">kf99916</a></li>
+<li>Zheng-Xiang Ke, <a href="https://www.github.csom/kf99916">kf99916</a></li>
+<li>Marco Betschart, <a href="https://github.com/marbetschar">marbetschar</a></li>
 </ul>
 <h3 id='thank-you' class='heading'>Thank You</h3>
 
@@ -968,7 +1032,7 @@ You are able to set a <code>title</code>, <code>author</code>, <code>subject</co
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2018-04-08)</p>
+      <p>&copy; 2018 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2018-07-12)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

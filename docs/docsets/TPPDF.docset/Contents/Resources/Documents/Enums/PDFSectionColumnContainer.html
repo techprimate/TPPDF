@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Dictionary Extension Reference</title>
+    <title>PDFSectionColumnContainer Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Extension/Dictionary" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Enum/PDFSectionColumnContainer" class="dashAnchor"></a>
 
-    <a title="Dictionary Extension Reference"></a>
+    <a title="PDFSectionColumnContainer Enumeration Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -50,7 +50,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">TPPDF Reference</a>
       <img class="carat" src="../img/carat.png" />
-      Dictionary Extension Reference
+      PDFSectionColumnContainer Enumeration Reference
     </p>
 
     <div class="content-wrapper">
@@ -259,14 +259,15 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Dictionary</h1>
+            <h1>PDFSectionColumnContainer</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Dictionary</span><span class="o">&lt;</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Key</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFSectionColumnContainer</span></code></pre>
 
                 </div>
               </div>
-            
+            <p>A section container defines the position of an element in a column of a given container.</p>
+
           </div>
         </section>
 
@@ -277,9 +278,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5TPPDF20PDFJSONRepresentableP18JSONRepresentationyXlvp"></a>
-                    <a name="//apple_ref/swift/Property/JSONRepresentation" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF20PDFJSONRepresentableP18JSONRepresentationyXlvp">JSONRepresentation</a>
+                    <a name="/s:5TPPDF25PDFSectionColumnContainerO4noneA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/none" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF25PDFSectionColumnContainerO4noneA2CmF">none</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -287,7 +288,132 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Element is in no container, only real use is as a default value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="k">none</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/left" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF25PDFSectionColumnContainerO4leftA2CmF">left</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Container aligned to left</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">left</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF25PDFSectionColumnContainerO6centerA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/center" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF25PDFSectionColumnContainerO6centerA2CmF">center</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Container aligned to center</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">center</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF25PDFSectionColumnContainerO5rightA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/right" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF25PDFSectionColumnContainerO5rightA2CmF">right</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Container aligned to right</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">right</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF25PDFSectionColumnContainerO18JSONRepresentationyXlvp"></a>
+                    <a name="//apple_ref/swift/Property/JSONRepresentation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF25PDFSectionColumnContainerO18JSONRepresentationyXlvp">JSONRepresentation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a representable object</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
