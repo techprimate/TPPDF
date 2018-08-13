@@ -64,7 +64,7 @@ class PDFTableValidator {
 
             // Throw error when columns row count does not equal relativeColumnWidth count
             if columnWidths != nil && row.count != columnWidths!.count {
-                throw PDFError.tableStructureInvalid(message: "Data and alignment for row with index \(rowIdx) does not have the same amount!")
+                throw PDFError.tableStructureInvalid(message: "Data and widths for row with index \(rowIdx) does not have the same amount!")
             }
         }
     }
