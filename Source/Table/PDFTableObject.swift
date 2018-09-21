@@ -282,10 +282,10 @@ class PDFTableObject: PDFObject {
             }
         }()
 
-        let attributes: [NSAttributedStringKey: AnyObject] = [
-            NSAttributedStringKey.foregroundColor: cellStyle.colors.text,
-            NSAttributedStringKey.font: cellStyle.font,
-            NSAttributedStringKey.paragraphStyle: paragraph
+        let attributes: [NSAttributedString.Key: AnyObject] = [
+            NSAttributedString.Key.foregroundColor: cellStyle.colors.text,
+            NSAttributedString.Key.font: cellStyle.font,
+            NSAttributedString.Key.paragraphStyle: paragraph
         ]
         return NSAttributedString(string: text, attributes: attributes)
     }
