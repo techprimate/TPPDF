@@ -200,7 +200,7 @@ class PDFAttributedTextObject: PDFObject {
     static func generateDefaultTextAttributes(container: PDFContainer,
                                               fonts: inout [PDFContainer: UIFont],
                                               textColor: inout [PDFContainer: UIColor],
-                                              spacing: CGFloat) -> [NSAttributedStringKey: NSObject] {
+                                              spacing: CGFloat) -> [NSAttributedString.Key: NSObject] {
         let paragraphStyle = NSMutableParagraphStyle()
         if container.isLeft {
             paragraphStyle.alignment = .left

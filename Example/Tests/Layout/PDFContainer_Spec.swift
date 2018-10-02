@@ -103,7 +103,7 @@ class PDFContainer_Spec: QuickSpec {
                 ]
             }
 
-            context("JSON") {
+            describe("JSON") {
 
                 it("can be represented") {
                     expect(PDFContainer.headerCenter.JSONRepresentation as? Int) == 2

@@ -132,6 +132,27 @@ extension PDFContainer: PDFJSONSerializable {
      Creates a representable object
      */
     public var JSONRepresentation: AnyObject {
-        return self.hashValue as AnyObject
+        switch self {
+        case .none:
+            return 0 as AnyObject
+        case .headerLeft:
+            return 1 as AnyObject
+        case .headerCenter:
+            return 2 as AnyObject
+        case .headerRight:
+            return 3 as AnyObject
+        case .contentLeft:
+            return 4 as AnyObject
+        case .contentCenter:
+            return 5 as AnyObject
+        case .contentRight:
+            return 6 as AnyObject
+        case .footerLeft:
+            return 7 as AnyObject
+        case .footerCenter:
+            return 8 as AnyObject
+        case .footerRight:
+            return 9 as AnyObject
+        }
     }
 }

@@ -200,7 +200,7 @@ class PDFGraphics {
      - parameter quality: Value between 0.0 and 1.0, where 1.0 is maximum quality/least compression
      */
     static func compress(image: UIImage, quality: CGFloat) -> UIImage {
-        guard let data = UIImageJPEGRepresentation(image, quality) else {
+        guard let data = image.jpegData(compressionQuality: quality) else {
             return image
         }
         guard let compressed = UIImage(data: data) else {

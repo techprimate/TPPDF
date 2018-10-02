@@ -162,7 +162,7 @@ class ViewController: UIViewController {
 
         // Create attributes for captions
 
-        let captionAttributes: [NSAttributedStringKey: AnyObject] = [
+        let captionAttributes: [NSAttributedString.Key: AnyObject] = [
             .font: UIFont.italicSystemFont(ofSize: 15.0),
             .paragraphStyle: { () -> NSMutableParagraphStyle in
                 let style = NSMutableParagraphStyle()

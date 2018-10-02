@@ -59,6 +59,15 @@ extension PDFSectionColumnContainer: PDFJSONSerializable {
 	Creates a representable object
 	*/
 	public var JSONRepresentation: AnyObject {
-		return self.hashValue as AnyObject
+        switch self {
+        case .none:
+            return 0 as AnyObject
+        case .left:
+            return 1 as AnyObject
+        case .center:
+            return 2 as AnyObject
+        case .right:
+            return 3 as AnyObject
+        }
 	}
 }
