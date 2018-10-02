@@ -1,4 +1,4 @@
-language: objective-c
+os: osx
 osx_image: xcode10
 cache:
 - bundler
