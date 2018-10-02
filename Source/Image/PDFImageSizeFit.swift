@@ -24,6 +24,13 @@ extension PDFImageSizeFit: PDFJSONSerializable {
      Creates representable object
      */
     public var JSONRepresentation: AnyObject {
-        return self.hashValue as AnyObject
+        switch self {
+        case .width:
+            return 0 as AnyObject
+        case .height:
+            return 1 as AnyObject
+        case .widthHeight:
+            return 2 as AnyObject
+        }
     }
 }

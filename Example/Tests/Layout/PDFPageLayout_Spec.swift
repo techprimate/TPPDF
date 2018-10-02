@@ -56,7 +56,7 @@ class PDFPageLayout_Spec: QuickSpec {
 
                 it("has a content size") {
                     layout.size = CGSize(width: 100, height: 200)
-                    layout.margin = UIEdgeInsetsMake(5, 6, 7, 8)
+                    layout.margin = UIEdgeInsets(top: 5, left: 6, bottom: 7, right: 8)
                     layout.space = (8, 9)
 
                     expect(layout.contentSize) == CGSize(width: 86, height: 171)
