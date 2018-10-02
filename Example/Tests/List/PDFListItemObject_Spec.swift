@@ -80,7 +80,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     expect(result?[4].0).toEventually(equal(PDFContainer.contentLeft))
 
                     item = result?[4].1 as? PDFAttributedTextObject
-                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 10, y: 109, width: 4.005859375, height: 17.0)))
+                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 10, y: 109, width: 4.15625, height: 17.0)))
                     expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: PDFListItemSymbol.dot.stringValue)))
 
                     expect(result?[5].0).toEventually(equal(PDFContainer.contentLeft))
@@ -110,7 +110,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     expect(result?[9].0).toEventually(equal(PDFContainer.contentLeft))
 
                     item = result?[9].1 as? PDFAttributedTextObject
-                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 20, y: 160, width: 4.005859375, height: 17.0)))
+                    expect(item?.frame).toEventually(equal(CGRect(x: document.layout.margin.left + 20, y: 160, width: 4.15625, height: 17.0)))
                     expect(item?.simpleText).toEventually(equal(PDFSimpleText(text: PDFListItemSymbol.dot.stringValue)))
 
                     expect(result?[10].0).toEventually(equal(PDFContainer.contentLeft))
