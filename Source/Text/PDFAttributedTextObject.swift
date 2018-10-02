@@ -212,9 +212,9 @@ class PDFAttributedTextObject: PDFObject {
         paragraphStyle.lineSpacing = spacing
 
         return [
-            NSAttributedStringKey.font: fonts[container]!,
-            NSAttributedStringKey.foregroundColor: textColor[container]!,
-            NSAttributedStringKey.paragraphStyle: paragraphStyle
+            NSAttributedString.Key.font: fonts[container]!,
+            NSAttributedString.Key.foregroundColor: textColor[container]!,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
         ]
     }
 
