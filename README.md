@@ -20,8 +20,8 @@
 </p>
 
 <p align="center">
-	<a href="https://travis-ci.org/Techprimate/TPPDF">
-		<img src="http://img.shields.io/travis/Techprimate/TPPDF.svg?style=flat-square" alt="Travis">
+	<a href="https://travis-ci.org/techprimate/TPPDF">
+		<img src="https://travis-ci.org/Techprimate/TPPDF.svg?branch=master&style=flat-square" alt="Travis">
 	</a>
 	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-master">
 		<img src="https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de" alt="codebeat">
@@ -29,8 +29,8 @@
 	<a href="https://bettercodehub.com/results/Techprimate/TPPDF">
 		<img src="https://bettercodehub.com/edge/badge/Techprimate/TPPDF" alt="bettercodehub">
 	</a>
-	<a href="https://codecov.io/gh/Techprimate/TPPDF">
-		<img src="https://img.shields.io/codecov/c/github/Techprimate/TPPDF.svg?style=flat-square" alt="codecov">
+	<a href="https://codecov.io/gh/techprimate/TPPDF">
+		<img src="https://img.shields.io/codecov/c/github/techprimate/TPPDF.svg?style=flat-square" alt="codecov">
 	</a>
 </p>
 
@@ -49,12 +49,6 @@
   • <a href="#credits">Credits</a>
   • <a href="#license">License</a>
 </p>
-
-## What's new in 1.1.0?
-
-- Multi-Column Sections
-
-You can now have multiple columns next to each other and add all objects to them!
 
 ## Features
 
@@ -140,7 +134,7 @@ The following values can be set to format the page:
 
 All values are in dots and are rendered using 72 DPI (dots per inch), as this is the default screen DPI.
 
-You can also used the predefined formats. For details please refer to the source file [PDFPageFormat.swift](https://github.com/Techprimate/TPPDF/blob/master/Source/PDFPageFormat.swift)
+You can also used the predefined formats. For details please refer to the source file [PDFPageFormat.swift](https://github.com/techprimate/TPPDF/blob/master/Source/PDFPageFormat.swift)
 
 If you need your page in landscape format, use the `landscapeSize` variable.
 
@@ -695,8 +689,9 @@ try PDFGenerator.generate(document: document, to: url, progress: { progress in
 
 | Language  | Branch | Pod version | Xcode version | iOS version |
 | --------- | ------ | ----------- | ------------- | ----------- |
-| Swift 4.1 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 1.0.x | Xcode 9.3 or greater| iOS 8.3+ |
-| Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 or greater| iOS 8.0+ |
+| Swift 4.2 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 1.3.x | Xcode 10 or greater | iOS 8.3+ |
+| Swift 4.1 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 1.0.x | Xcode 9.3 | iOS 8.3+ |
+| Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 | iOS 8.0+ |
 | Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x | iOS 8.0+ |
 | Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x | iOS 8.0+ |
 
@@ -741,52 +736,19 @@ $ brew install carthage
 To integrate TPPDF into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Techprimate/TPPDF" ~> 1.0
+github "techprimate/TPPDF" ~> 1.3
 ```
 
-Run `carthage update` to build the framework and drag the built `Alamofire.framework` into your Xcode project
+Run `carthage update` to build the framework and drag the built `TPPDF.framework` into your Xcode project
 
 ### Swift Package Manager
 
 Swift Package Manager is not supported, as TPPDF requires the framework `UIKit` which is not available on macOS or Linux.
 
-### Manually
+### Manual Installation
 
-If you prefer not to use either of the aforementioned dependency managers, you can integrate TPPDF into your project manually.
-
-#### Embedded Framework
-
-- Open up Terminal, `cd` into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
-
-```bash
-$ git init
-```
-
-- Add TPPDF as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
-
-```bash
-$ git submodule add https://github.com/Techprimate/TPPDF.git
-```
-
-- Open the new `TPPDF` folder, and drag the `TPPDF.xcodeproj` into the Project Navigator of your application's Xcode project.
-
-    > It should appear nested underneath your application's blue project icon. Whether it is above or below all the other Xcode groups does not matter.
-
-- Select the `TPPDF.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
-- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
-- In the tab bar at the top of that window, open the "General" panel.
-- Click on the `+` button under the "Embedded Binaries" section.
-- You will see two different `TPPDF.xcodeproj` folders each with two different versions of the `TPPDF.framework` nested inside a `Products` folder.
-
-    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `TPPDF.framework`. 
-    
-- Select the top `TPPDF.framework` for iOS and the bottom one for OS X.
-
-    > You can verify which one you selected by inspecting the build log for your project. The build target for `TPPDF` will be listed as either `TPPDF iOS` or `TPPDF OSX`.
-
-- And that's it!
-
-> The `TPPDF.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
+As Xcode project configurations are getting pretty complex, it is recommended to use a dependency manager.
+If you still want to add TPPDF manually, please see issue [#97](https://github.com/techprimate/TPPDF/issues/97).
 
 ## Apps using TPPDF
 
@@ -804,28 +766,29 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 <img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/EnergyTracker.jpg" alt="Energy Tracker"/>
 
-[Mama's Cookbook (future release)](https://itunes.apple.com/us/app/mamas-cookbook/id1019090528) - by Philip Niedertscheider
-
-<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/MCB.png" alt=MCB"/>
-
 ## Credits
 
-TPPDF is created by Philip Niedertscheider, owned by [techprimate](https://www.github.com/techprimate)
+TPPDF is created and maintained by Philip Niedertscheider, owned by [techprimate](https://www.github.com/techprimate).
 
 <p align="center">
 	<a href="https://www.techprimate.com">
-		<img src="https://img.shields.io/badge/www-techprimate.com-blue.svg?style=flat-square" alt="techprimate.com">
+		<img src="https://img.shields.io/badge/www-techprimate.com-lightgrey.svg?style=flat-square" alt="techprimate.com">
 	</a>
 	<a href="http://twitter.com/techprimate">
-	    <img src="https://img.shields.io/badge/twitter-@Techprimate-blue.svg?style=flat-square" alt="twitter">
+	    <img src="https://img.shields.io/badge/twitter-@techprimate-blue.svg?style=flat-square" alt="twitter">
+	</a>
+	<a href="https://instagram.com/techprimate">
+		<img src="https://img.shields.io/badge/instagram-@techprimate-c13584.svg?style=flat-square" alt="facebook">
 	</a>
 	<a href="https://facebook.com/techprimate">
-		<img src="https://img.shields.io/badge/facebook-@Techprimate-blue.svg?style=flat-square" alt="facebook">
+		<img src="https://img.shields.io/badge/facebook-@techprimate-blue.svg?style=flat-square" alt="facebook">
 	</a>
 </p>
 
 
 ### Contributors
+
+We want to thank the following individuals for their work:
 
 - Philip Niedertscheider, [techprimate-phil](https://www.github.com/techprimate-phil)
 - Zheng-Xiang Ke, [kf99916](https://www.github.csom/kf99916)
@@ -833,7 +796,7 @@ TPPDF is created by Philip Niedertscheider, owned by [techprimate](https://www.g
 
 ### Thank You
 
-Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://github.com/nRewik/SimplePDF) for the inspiration.
+Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://github.com/nRewik/SimplePDF) as the inspiration.
 
 ## License
 
