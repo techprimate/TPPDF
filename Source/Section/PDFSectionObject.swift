@@ -45,8 +45,8 @@ class PDFSectionObject: PDFObject {
 		result += calulatePageBreakPositions(objectsPerColumn)
 		generator.layout.indentation.content = originalIndent
 
-		var contentMinY: CGFloat? = nil
-		var contentMaxY: CGFloat? = nil
+		var contentMinY: CGFloat?
+		var contentMaxY: CGFloat?
 
 		for current in result.reversed() {
 			let currentObject = current.1

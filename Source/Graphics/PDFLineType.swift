@@ -44,6 +44,15 @@ extension PDFLineType: PDFJSONSerializable {
      Creates a serializable object
      */
     public var JSONRepresentation: AnyObject {
-        return self.hashValue as AnyObject
+        switch self {
+        case .none:
+            return 0 as AnyObject
+        case .full:
+            return 1 as AnyObject
+        case .dashed:
+            return 2 as AnyObject
+        case .dotted:
+            return 3 as AnyObject
+        }
     }
 }

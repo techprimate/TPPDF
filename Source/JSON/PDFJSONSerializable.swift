@@ -110,7 +110,7 @@ extension UIFont: PDFJSONSerializable {}
 extension UIImage: PDFJSONSerializable {
 
     public var JSONRepresentation: AnyObject {
-        return UIImageJPEGRepresentation(self, 1.0)?.JSONRepresentation ?? NSNull()
+        return self.jpegData(compressionQuality: 1.0)?.JSONRepresentation ?? NSNull()
     }
 
 }

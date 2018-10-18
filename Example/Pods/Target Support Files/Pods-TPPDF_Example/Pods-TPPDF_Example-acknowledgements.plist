@@ -45,7 +45,7 @@ SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright (c) 2017 Philip Niedertscheider &lt;phil@techprimate.com&gt;
+			<string>Copyright (c) 2018 Philip Niedertscheider &lt;phil@techprimate.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -64,7 +64,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-</string>
+
+Although it is not required, it is greatly appreciated to notify the project owner about you using TPPDF.</string>
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
