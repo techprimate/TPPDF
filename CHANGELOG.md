@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2018-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.2.0...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.1...HEAD)
 
 **Implemented enhancements:**
 
@@ -9,7 +9,23 @@
 
 **Closed issues:**
 
+## [1.3.1](https://github.com/techprimate/TPPDF/tree/1.3.1) (2018-11-13)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.0...1.3.1)
+
+**Fixed bugs:**
+
+- Issue #98
+
+## [1.3.0](https://github.com/techprimate/TPPDF/tree/HEAD) (2018-10-03)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.2.1...1.3.0)
+
+**Implemented enhancements:**
+
+- Support for Swift 4.2
+
 **Merged pull requests:**
+
+- PR #94 [by techprimate-phil]
 
 ## [1.2.0](https://github.com/techprimate/TPPDF/tree/1.2.0) (2018-07-12)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.1.2...1.2.0)
