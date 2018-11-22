@@ -23,6 +23,9 @@
 	<a href="https://travis-ci.org/techprimate/TPPDF">
 		<img src="https://travis-ci.org/Techprimate/TPPDF.svg?branch=master&style=flat-square" alt="Travis">
 	</a>
+	<a href="https://app.codacy.com/app/techprimate/TPPDF">
+		<img src="https://api.codacy.com/project/badge/Grade/a30af06f7c6742d9960960a339e908f2" alt="Codacy">
+	</a>
 	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-master">
 		<img src="https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de" alt="codebeat">
 	</a>
@@ -228,17 +231,18 @@ document.addImage(image: imageElement)
 
 A `PDFImage` can also include a optional `caption` which is either a `PDFSimpleText` or `PDFAttributedText`. 
 The caption is underneath the image and has the image width as the maximum available width.
+All image settings are customizable per image-object.
 
-If you set a `size` it will try to fit in this size, defaults to `CGSize.zero` which will then use the actual image pixel size. The image can either be scaled to fit the `width` the `height` or both. Adjust this by setting the `sizeFit` to either
+If you set a `size` it will try to fit in this size, defaults to `CGSize.zero` which will then use the actual image pixel size. The image can either be scaled to fit the `width` the `height` or both. Adjust this by setting the `sizeFit` on of:
  
 - `PDFImageSizeFit.width`
 - `PDFImageSizeFit.height`
 - `PDFImageSizeFit.widthHeight`
 
-To optimize file size, images are resized and compressed using JPEG compression. By default both is enabled, but can change them by setting `options`.
+To optimize file size, images are resized and compressed using JPEG compression. By default both is enabled, but can change them by setting `options` on the image instance.
 
 If resizing is enabled, the image will be resized to its frame size in the document.
-If compression is enabled, the image will be compressed using the value set in `quality` value. This value is between `0.0` for bad quality and `1.0` for best quality - default is set to `0.85`, which resolves in a good balance between compression and quality.
+If compression is enabled, the image will be compressed using the value set in the property `quality`. This value ranges from between `0.0` for bad quality and `1.0` for best quality - default is set to `0.85`, which resolves in a good balance between compression and quality.
 
 #### Images in one row
 
