@@ -52,6 +52,8 @@
 
 ## Features
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a30af06f7c6742d9960960a339e908f2)](https://app.codacy.com/app/techprimate/TPPDF?utm_source=github.com&utm_medium=referral&utm_content=Techprimate/TPPDF&utm_campaign=Badge_Grade_Settings)
+
 - Page header and footer
 - Dynamic content layout with page alignment
 - Support for tables and cell alignment
