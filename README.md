@@ -686,6 +686,9 @@ try PDFGenerator.generate(document: document, to: url, progress: { progress in
 }, debug: false)
 ```
 
+#### Debug
+
+If you want to enable a debug overlay, set the flag `debug` in `PDFGenerator.generate(..)`, `PDFGenerator.generateURL(..)` or `PDFGenerator.generateData(..)` to `true` and it will add colored outlines of the elements in you document.
 
 ## Installation
 

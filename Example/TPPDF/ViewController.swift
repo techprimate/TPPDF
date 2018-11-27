@@ -32,7 +32,7 @@ class ViewController: UIViewController {
             let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: {
                 (progressValue: CGFloat) in
                 print("progress: ", progressValue)
-            }, debug: true)
+            }, debug: false)
 
             // Load PDF into a webview from the temporary file
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
@@ -395,7 +395,7 @@ class ViewController: UIViewController {
             let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: {
                 (progressValue: CGFloat) in
                 print("progress: ", progressValue)
-            }, debug: true)
+            }, debug: false)
 
             // Load PDF into a webview from the temporary file
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
