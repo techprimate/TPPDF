@@ -9,6 +9,10 @@
 
 **Closed issues:**
 
+**Merged pull requests:**
+
+- PR #106 [by protspace]
+
 ## [1.3.1](https://github.com/techprimate/TPPDF/tree/1.3.1) (2018-11-13)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.0...1.3.1)
 
