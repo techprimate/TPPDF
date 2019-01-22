@@ -14,7 +14,7 @@ public extension PDFPageFormat {
      Returns the defined US paper size if this format is a US format.
      If it is not a US format, it will check other constants for correct size
      */
-    var usSize: CGSize {
+    public var usSize: CGSize {
         switch self {
         case .usHalfLetter:
             return CGSize(width: 396, height: 612)   // 140  x 216  mm | 5.5  x 8.5  in
@@ -35,7 +35,7 @@ public extension PDFPageFormat {
      Returns the defined ANSI paper size if this format is a ANSI format.
      If it is not a ANSI format, it will check other constants for correct size
      */
-    var ansiSize: CGSize {
+    public var ansiSize: CGSize {
         switch self {
         case .ansiA:
             return CGSize(width: 612, height: 792)   // 216  x 279  mm | 8.5  x 11.0 in
@@ -56,7 +56,7 @@ public extension PDFPageFormat {
      Returns the defined A-Series paper size if this format is a A-Series format.
      If it is not a A-Series format, it will check other constants for correct size
      */
-    var aSize: CGSize {
+    public var aSize: CGSize {
         switch self {
         case .a0:
             return CGSize(width: 2384, height: 3370) // 841  x 1189 mm | 33.1 x 46.8 in
@@ -89,7 +89,7 @@ public extension PDFPageFormat {
      Returns the defined B-Series paper size if this format is a B-Series format.
      If it is not a B-Series format, it will check other constants for correct size
      */
-    var bSize: CGSize {
+    public var bSize: CGSize {
         switch self {
         case .b0:
             return CGSize(width: 2834, height: 4008) // 1000 x 1414 mm | 39.4 x 66.7 in
@@ -122,7 +122,7 @@ public extension PDFPageFormat {
      Returns the defined C-Series paper size if this format is a C-Series format.
      If it is not a C-Series format, it will check other constants for correct size
      */
-    var cSize: CGSize {
+    public var cSize: CGSize {
         switch self {
         case .c0:
             return CGSize(width: 2599, height: 3677) // 917  x 1297 mm | 36.1 x 51.5 in
@@ -150,5 +150,4 @@ public extension PDFPageFormat {
             return size
         }
     }
-
 }
