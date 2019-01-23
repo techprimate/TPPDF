@@ -17,10 +17,12 @@
 **Implemented enhancements:**
 
 - Changed accessor methods of `PDFPageFormat` to be publicly accessible.
+- Added public accessor method to `PDFPageLayout`
 
 **Closed issues:**
 
 - Issue #11
+- Issue #111
 
 **Merged pull requests:**
 
