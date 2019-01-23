@@ -33,7 +33,22 @@ public struct PDFPageLayout: PDFJSONSerializable {
      `header`: Space between header and content
      `footer`: Space between content and footer
      */
-    public var space: (header: CGFloat, footer: CGFloat) = (0, 0)
+    public var space: (header: CGFloat, footer: CGFloat)
+
+    // MARK: - PUBLIC FUNCTIONS
+
+    /**
+     Creates a new layout object using the given parameters.
+
+     - Parameter size: Size of the page
+     - Parameter margin: Edge margin insets
+     - Parameter space: Vertical spacing between header, footer and content
+     */
+    public init(size: CGSize = .zero, margin: UIEdgeInsets = .zero, space: (header: CGFloat, footer: CGFloat) = (0, 0)) {
+        self.size = size
+        self.margin = margin
+        self.space = space
+    }
 
     // MARK: - INTERNAL COMPUTED VARS
 
