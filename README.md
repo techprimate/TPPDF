@@ -795,6 +795,12 @@ TPPDF is created and maintained by Philip Niedertscheider, owned by [techprimate
 
 ### Contributors
 
+Please consider backing this project by using the following link: 
+
+<a href="https://paypal.me/tprm8">
+	<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/back-this-project.png" alt="Back This Project">
+</a>
+
 We want to thank all [contributors](https://github.com/techprimate/TPPDF/graphs/contributors) for their effort!
 
 ### Thank You
