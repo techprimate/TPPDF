@@ -35,7 +35,7 @@ public class PDFGenerator {
     /**
      Total page count used for displaying in rendered PDF
      */
-    var totalPages: Int = 1
+    public var totalPages: Int = 1
 
     var progressValue: CGFloat = 0
 

@@ -9,7 +9,7 @@
  All renderable objects subclass from this object.
  Each object is first calculated and then drawn.
  */
-class PDFObject: PDFJSONSerializable {
+public class PDFObject: PDFJSONSerializable {
 
     /**
      Frame of this object
