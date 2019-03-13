@@ -15,5 +15,6 @@ public struct PDFImageOptions: OptionSet {
 
     public static let resize = PDFImageOptions(rawValue: 1 << 0)
     public static let compress = PDFImageOptions(rawValue: 1 << 1)
+    public static let none = PDFImageOptions(rawValue: 1 << 2)
 
 }

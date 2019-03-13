@@ -97,7 +97,7 @@ extension PDFGenerator {
 
      - throws: PDFError
      */
-    func generatePDFContext(progress: ((CGFloat) -> Void)?) throws {
+    public func generatePDFContext(progress: ((CGFloat) -> Void)?) throws {
         progress?(progressValue)
         let renderObjects = try createRenderObjects(progress: progress)
         try render(objects: renderObjects, progress: progress)
@@ -109,7 +109,7 @@ extension PDFGenerator {
 
      - returns: List of renderable objects
      */
-    func createRenderObjects(progress: ((CGFloat) -> Void)?) throws -> [(PDFContainer, PDFObject)] {
+    public func createRenderObjects(progress: ((CGFloat) -> Void)?) throws -> [(PDFContainer, PDFObject)] {
         // Extract content objects
         let contentObjects = PDFGenerator.extractContentObjects(objects: document.objects)
         let numContentObjects = contentObjects.count
