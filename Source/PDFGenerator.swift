@@ -68,14 +68,14 @@ public class PDFGenerator {
         return defaults
     }()
 
-    // MARK: - INTERNAL INITS
+    // MARK: - PUBLIC INITS
 
     /**
      Initializes the generator with a document.
 
      - parameter document: The document which will be converted
      */
-    init(document: PDFDocument) {
+    public init(document: PDFDocument) {
         self.document = document
     }
 
@@ -88,5 +88,4 @@ public class PDFGenerator {
         layout.reset()
         currentPage = 1
     }
-
 }
