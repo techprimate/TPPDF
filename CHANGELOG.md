@@ -11,6 +11,29 @@
 
 **Merged pull requests:**
 
+## [1.3.3](https://github.com/techprimate/TPPDF/tree/1.3.3) (2019-03-13)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.2...1.3.3)
+
+**Implemented enhancements:**
+
+- Changed accessibility of `PDFGenerator`
+
+**Closed issues:**
+
+- #101
+- #103
+- #108
+- #109
+- #111
+- #113
+- #114
+
+
+**Merged pull requests:**
+
+- PR #106 [by protspace]
+- PR #119 [by yhelfronda]
+
 ## [1.3.2](https://github.com/techprimate/TPPDF/tree/1.3.2) (2019-01-22)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.1...1.3.2)
 
