@@ -42,7 +42,7 @@ public enum PDFPageFormat {
     /**
      Size defined in constants
      */
-    var size: CGSize {
+    public var size: CGSize {
         switch self {
         case .usHalfLetter, .usLetter, .usLegal, .usJuniorLegal, .usLedger:
             return usSize
@@ -60,7 +60,7 @@ public enum PDFPageFormat {
     /**
      Swaps height and width to create a landscape format
      */
-    var landscapeSize: CGSize {
+    public var landscapeSize: CGSize {
         return CGSize(width: size.height, height: size.width)
     }
 }

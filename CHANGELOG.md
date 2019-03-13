@@ -1,13 +1,32 @@
 # Change Log
 
-## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2018-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.1...HEAD)
+## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2019-??-??)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.2...HEAD)
 
 **Implemented enhancements:**
 
 **Fixed bugs:**
 
 **Closed issues:**
+
+**Merged pull requests:**
+
+## [1.3.2](https://github.com/techprimate/TPPDF/tree/1.3.2) (2019-01-22)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.1...1.3.2)
+
+**Implemented enhancements:**
+
+- Changed accessor methods of `PDFPageFormat` to be publicly accessible.
+- Added public accessor method to `PDFPageLayout`
+
+**Closed issues:**
+
+- Issue #11
+- Issue #111
+
+**Merged pull requests:**
+
+- PR #106 [by protspace]
 
 ## [1.3.1](https://github.com/techprimate/TPPDF/tree/1.3.1) (2018-11-13)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.0...1.3.1)

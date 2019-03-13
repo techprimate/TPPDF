@@ -67,7 +67,8 @@ class PDFSectionObject: PDFObject {
 				contentMinY = currentObject.frame.minY
 			}
 		}
-		generator.setContentOffset(in: container, to: (contentMaxY ?? 0) - (contentMinY ?? 0) + originalContentOffset)
+        let containsBreak = result.contains(where: { $0.1 is PDFPageBreakObject })
+        generator.setContentOffset(in: container, to: (contentMaxY ?? 0) - (contentMinY ?? 0) + (containsBreak ? 0 : originalContentOffset))
 
 		return result
 	}
