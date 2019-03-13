@@ -601,7 +601,7 @@
 					};
 					D49CB2DC21C7EAD200CDCE70 = {
 						CreatedOnToolsVersion = 10.1;
-						DevelopmentTeam = 4N4ASZ575M;
+						DevelopmentTeam = 8REJWL5T8N;
 						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 607FACCF1AFB9204008FA782;
@@ -1051,7 +1051,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 4N4ASZ575M;
+				DEVELOPMENT_TEAM = 8REJWL5T8N;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TPPDF_Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1082,7 +1082,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4N4ASZ575M;
+				DEVELOPMENT_TEAM = 8REJWL5T8N;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TPPDF_Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

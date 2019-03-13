@@ -367,7 +367,7 @@ class PDFTableObject: PDFObject {
         var contentObject: PDFObject?
 
         if let contentImage = content?.imageValue {
-            contentObject = PDFImageObject(image: PDFImage(image: contentImage))
+            contentObject = PDFImageObject(image: PDFImage(image: contentImage, options: [.none]))
         } else {
             var attributedString: NSAttributedString?
             if let contentText = content?.stringValue {
