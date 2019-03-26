@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
+import Foundation
+
 extension PDFTableCellPosition: Hashable {
 
     /**
@@ -13,10 +15,10 @@ extension PDFTableCellPosition: Hashable {
      Hash values are not guaranteed to be equal across different executions of
      your program. Do not save hash values to use during a future execution.
      */
-    public var hashValue: Int {
-        return row * row * 10 + column
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(row)
+        hasher.combine(column)
     }
-
 }
 
 extension PDFTableCellPosition: Equatable {
