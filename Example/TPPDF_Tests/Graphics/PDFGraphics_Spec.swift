@@ -138,6 +138,17 @@ class PDFGraphics_Spec : QuickSpec {
                                                                     quality: 0.0)
                     expect(result.size) == CGSize(width: 8, height: 8)
                 }
+
+                it("can create a rounded image") {
+                    let result = PDFGraphics.resizeAndCompressImage(image: image,
+                                                                    frame: resultFrame,
+                                                                    shouldResize: false,
+                                                                    shouldCompress: false,
+                                                                    quality: 0.0,
+                                                                    roundCorners: [.allCorners],
+                                                                    cornerRadius: 10)
+                    expect(result) !== image
+                }
             }
         }
     }
