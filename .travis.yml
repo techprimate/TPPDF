@@ -14,7 +14,7 @@ env:
   - EXAMPLE_SCHEME="TPPDF-Example"
   - SOURCE_FOLDER="Source"
   matrix:
-  - DESTINATION="OS=12.2,name=iPhone Xs"
+  - DESTINATION="OS=12.2,name=iPhone XS Max"
 install:
 - bundle install
 - bundle exec pod repo update
