@@ -17,6 +17,7 @@
 **Implemented enhancements:**
 
 - Added rounded corner clipping to images (#123)
+- Added Swift 5 support
 
 **Fixed bugs:**
 
@@ -25,6 +26,7 @@
 **Closed issues:**
 
 - #123
+- #125
 - #128
 
 ## [1.3.3](https://github.com/techprimate/TPPDF/tree/1.3.3) (2019-03-13)
