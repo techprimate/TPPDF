@@ -147,15 +147,22 @@ class PDFGraphics {
     // MARK: - Image Manipulation
 
     /**
-     Draws a scaled version of the given `image` into the given `frame`.
+     Creates a scaled version of the given `image` by the given `frame` and add optional corner clipping.
 
      - parameter image: Image to resize and compress
      - parameter frame: Frame in which the new image will fit
+     - parameter shouldResize: Flag if image should be resized to frame before drawing
+     - parameter shouldCompress: Flag if image should be compressed to quality before drawing
      - parameter quality: Value between 0.0 and 1.0, where 1.0 is maximum quality
+     - parameter roundCorners: Indicates which corners should be rounded, defaults to be empty
+     - parameter cornerRadii: Radius of corners which are rounded based on `roundCorners`, if `nil` it will create a fully round image
 
-     - returns: Resized and compressed version of `image`
+     - returns: Resized, compressed and rounded copy of `image`
      */
-    static func resizeAndCompressImage(image: UIImage, frame: CGRect, shouldResize: Bool, shouldCompress: Bool, quality: CGFloat) -> UIImage {
+    static func resizeAndCompressImage(image: UIImage, frame: CGRect,
+                                       shouldResize: Bool, shouldCompress: Bool,
+                                       quality: CGFloat,
+                                       roundCorners: UIRectCorner = [], cornerRadius: CGFloat? = nil) -> UIImage {
         var finalImage = image
 
         if shouldResize {
@@ -163,6 +170,9 @@ class PDFGraphics {
         }
         if shouldCompress {
             finalImage = compress(image: finalImage, quality: quality)
+        }
+        if !roundCorners.isEmpty {
+            finalImage = round(image: finalImage, frame: frame, corners: roundCorners, cornerRadius: cornerRadius)
         }
 
         return finalImage
@@ -207,6 +217,29 @@ class PDFGraphics {
             return image
         }
         return compressed
+    }
+
+    static func round(image: UIImage, frame: CGRect, corners: UIRectCorner, cornerRadius: CGFloat?) -> UIImage {
+        let size = image.size
+
+        var cornerRadii = CGSize.zero
+        if var radius = cornerRadius {
+            radius = radius * (frame.width > frame.height ? size.width / frame.width : size.height / frame.height)
+            cornerRadii = CGSize(width: radius, height: radius)
+        } else {
+            let radius = size.width < size.height ? frame.width / 2 : frame.height / 2
+            cornerRadii = CGSize(width: radius, height: radius)
+        }
+
+        UIGraphicsBeginImageContext(size)
+        let clipPath = UIBezierPath(roundedRect: CGRect(origin: .zero, size: size), byRoundingCorners: corners, cornerRadii: cornerRadii)
+        clipPath.addClip()
+        image.draw(in: CGRect(origin: .zero, size: size))
+
+        let finalImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return finalImage ?? image
     }
 
     /**
