@@ -18,8 +18,10 @@ class PDFTableCellPosition_Hashable_Spec: QuickSpec {
             context("Hashable") {
 
                 it("can create a hashvalue") {
-                    expect(PDFTableCellPosition(row: 1, column: 2).hashValue) == 1 * 1 * 10 + 2
-                    expect(PDFTableCellPosition(row: 4, column: 9).hashValue) == 4 * 4 * 10 + 9
+                    let position1 = PDFTableCellPosition(row: 1, column: 2)
+                    let position2 = PDFTableCellPosition(row: 4, column: 9)
+                    expect(position1.hashValue) == position1.hashValue
+                    expect(position1.hashValue) != position2.hashValue
                 }
             }
         }
