@@ -712,14 +712,16 @@ If you want to enable a debug overlay, set the flag `debug` in `PDFGenerator.gen
 
 ### Requirements
 
-| Language  | Branch | Pod version | Xcode version | iOS version |
-| --------- | ------ | ----------- | ------------- | ----------- |
-| Swift 4.2 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 1.3.x | Xcode 10 or greater | iOS 8.3+ |
-| Swift 4.1 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 1.0.x | Xcode 9.3 | iOS 8.3+ |
-| Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 | iOS 8.0+ |
-| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x | iOS 8.0+ |
-| Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x | iOS 8.0+ |
+| Language  | Branch                                                           | Pod version | Xcode version         | iOS version |
+| --------- | ---------------------------------------------------------------- | ----------- | --------------------- | ----------- |
+| Swift 5   | [master](https://github.com/techprimate/TPPDF/tree/master)       | >= 1.4.x    | Xcode 10.2+           | iOS 8.3+    |
+| Swift 4.2 | [swift-4.2](https://github.com/techprimate/TPPDF/tree/swift-4.2) | >= 1.3.x    | Xcode 10.0+           | iOS 8.3+    |
+| Swift 4.1 | [swift-4.1](https://github.com/techprimate/TPPDF/tree/swift-4.1) | >= 1.0.x    | Xcode 9.3             | iOS 8.3+    |
+| Swift 3.0 | [swift-3.0](https://github.com/techprimate/TPPDF/tree/swift-3.0) | >= 0.2.x    | Xcode 8               | iOS 8.0+    |
+| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5       | Xcode 8, Xcode 7.3.x  | iOS 8.0+    |
+| Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4       | Xcode 7.3.x           | iOS 8.0+    |
 
+Bleed development version can be found on the `develop` branch.
 
 ### CocoaPods
 
