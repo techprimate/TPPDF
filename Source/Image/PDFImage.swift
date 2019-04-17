@@ -39,9 +39,14 @@ public class PDFImage: PDFJSONSerializable {
     public var quality: CGFloat
 
     /**
-
-    */
+     Options used for changing the image before drawing
+     */
     public var options: PDFImageOptions
+
+    /**
+     Optional corner radius, is used if the `options` are set.
+     */
+    public var cornerRadius: CGFloat?
 
     /**
      Initializer to create a PDF image element.
@@ -51,19 +56,23 @@ public class PDFImage: PDFJSONSerializable {
      - parameter size: Size of image, defaults to zero size
      - parameter sizeFit: Defines how the image will fit if not enough space is given, defaults to `PDFImageSizeFit.widthHeight`
      - parameter quality: JPEG quality between 0.0 and 1.0, defaults to 0.85
+     - parameter options: Defines if the image will be modified before rendering
+     - parameter cornerRadius: Defines if the
      */
     public init(image: UIImage,
                 caption: PDFText? = nil,
                 size: CGSize = .zero,
                 sizeFit: PDFImageSizeFit = .widthHeight,
                 quality: CGFloat = 0.85,
-                options: PDFImageOptions = [.resize, .compress]) {
+                options: PDFImageOptions = [.resize, .compress],
+                cornerRadius: CGFloat? = nil) {
         self.image = image
         self.caption = caption
         self.size = (size == .zero) ? image.size : size
         self.sizeFit = sizeFit
         self.quality = quality
         self.options = options
+        self.cornerRadius = cornerRadius
     }
 
     var copy: PDFImage {
@@ -72,6 +81,7 @@ public class PDFImage: PDFJSONSerializable {
                         size: self.size,
                         sizeFit: self.sizeFit,
                         quality: self.quality,
-                        options: self.options)
+                        options: self.options,
+                        cornerRadius: self.cornerRadius)
     }
 }

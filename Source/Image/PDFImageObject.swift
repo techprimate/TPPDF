@@ -112,11 +112,33 @@ class PDFImageObject: PDFObject {
     }
 
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        PDFGraphics.resizeAndCompressImage(image: image.image,
-                                           frame: frame,
-                                           shouldResize: image.options.contains(.resize),
-                                           shouldCompress: image.options.contains(.compress),
-                                           quality: image.quality).draw(in: self.frame)
+        var roundedCorners: UIRectCorner = []
+        if image.options.contains(.rounded) {
+            roundedCorners = .allCorners
+        } else {
+            if image.options.contains(.roundedTopLeft) {
+                roundedCorners.formUnion(.topLeft)
+            }
+            if image.options.contains(.roundedTopRight) {
+                roundedCorners.formUnion(.topRight)
+            }
+            if image.options.contains(.roundedBottomRight) {
+                roundedCorners.formUnion(.bottomRight)
+            }
+            if image.options.contains(.roundedBottomLeft) {
+                roundedCorners.formUnion(.bottomLeft)
+            }
+        }
+
+
+        let modifiedImage = PDFGraphics.resizeAndCompressImage(image: image.image,
+                                                               frame: frame,
+                                                               shouldResize: image.options.contains(.resize),
+                                                               shouldCompress: image.options.contains(.compress),
+                                                               quality: image.quality,
+                                                               roundCorners: roundedCorners,
+                                                               cornerRadius: image.cornerRadius)
+        modifiedImage.draw(in: self.frame)
     }
 
     func updateHeights(generator: PDFGenerator, container: PDFContainer) {
