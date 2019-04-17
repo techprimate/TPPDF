@@ -62,8 +62,8 @@ class PDFLineSeparatorObject: PDFObject {
      */
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         PDFGraphics.drawLine(
-            start: self.frame.origin,
-            end: CGPoint(x: self.frame.maxX, y: self.frame.maxY),
+            start: CGPoint(x: self.frame.minX, y: self.frame.midY),
+            end: CGPoint(x: self.frame.maxX, y: self.frame.midY),
             style: style
         )
 
