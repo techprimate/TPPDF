@@ -244,6 +244,24 @@ To optimize file size, images are resized and compressed using JPEG compression.
 If resizing is enabled, the image will be resized to its frame size in the document.
 If compression is enabled, the image will be compressed using the value set in the property `quality`. This value ranges from between `0.0` for bad quality and `1.0` for best quality - default is set to `0.85`, which resolves in a good balance between compression and quality.
 
+##### Round Corners
+
+To enable rounded corners, simple add `.roundedTopLeft`, `.roundedTopRight`, `.roundedBottomRight` or `.roundedBottomLeft` for their respective corner to the `options` field or `.rounded` as a shorthand for all corners.
+
+The default value for the `cornerRadius` is set to `nil`, is uses half the image frame size radius. If a custom value is set, it will be in aspect to the final frame.
+
+**Example:**
+
+The  image `Icon.png` has the size `1024px x 1024px` and will be drawn in a frame of `150pt x 150pt`.
+The corner radius is set to `15pt`, therefore the image will first be clipped with a `1024 / 150 * 25 = 170pt` radius and then drawn in the frame, resulting in the given corner radius.
+
+```swift
+PDFImage(image: UIImage(named: "Icon.png")!,
+         size: CGSize(width: 150, height: 150),
+         options: [.rounded],
+         cornerRadius: 25)
+```
+
 #### Images in one row
 
 To create a image collage, you can add multiple images in a single row with a `spacing` between them.
