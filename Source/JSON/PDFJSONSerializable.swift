@@ -9,7 +9,7 @@ public protocol PDFJSONSerializable: PDFJSONRepresentable {}
 
 public extension PDFJSONSerializable {
 
-    public func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
+    func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
         let representation = JSONRepresentation
 
         guard JSONSerialization.isValidJSONObject(representation),

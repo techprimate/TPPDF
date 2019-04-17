@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2019-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.2...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,24 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [1.4.0](https://github.com/techprimate/TPPDF/tree/1.4.0) (2019-04-17)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.3...1.4.0)
+
+**Implemented enhancements:**
+
+- Added rounded corner clipping to images (#123)
+- Added Swift 5 support
+
+**Fixed bugs:**
+
+- Line separator skewed (#128)
+
+**Closed issues:**
+
+- #123
+- #125
+- #128
 
 ## [1.3.3](https://github.com/techprimate/TPPDF/tree/1.3.3) (2019-03-13)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.2...1.3.3)

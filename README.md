@@ -244,6 +244,24 @@ To optimize file size, images are resized and compressed using JPEG compression.
 If resizing is enabled, the image will be resized to its frame size in the document.
 If compression is enabled, the image will be compressed using the value set in the property `quality`. This value ranges from between `0.0` for bad quality and `1.0` for best quality - default is set to `0.85`, which resolves in a good balance between compression and quality.
 
+##### Round Corners
+
+To enable rounded corners, simple add `.roundedTopLeft`, `.roundedTopRight`, `.roundedBottomRight` or `.roundedBottomLeft` for their respective corner to the `options` field or `.rounded` as a shorthand for all corners.
+
+The default value for the `cornerRadius` is set to `nil`, is uses half the image frame size radius. If a custom value is set, it will be in aspect to the final frame.
+
+**Example:**
+
+The  image `Icon.png` has the size `1024px x 1024px` and will be drawn in a frame of `150pt x 150pt`.
+The corner radius is set to `15pt`, therefore the image will first be clipped with a `1024 / 150 * 25 = 170pt` radius and then drawn in the frame, resulting in the given corner radius.
+
+```swift
+PDFImage(image: UIImage(named: "Icon.png")!,
+         size: CGSize(width: 150, height: 150),
+         options: [.rounded],
+         cornerRadius: 25)
+```
+
 #### Images in one row
 
 To create a image collage, you can add multiple images in a single row with a `spacing` between them.
@@ -694,14 +712,16 @@ If you want to enable a debug overlay, set the flag `debug` in `PDFGenerator.gen
 
 ### Requirements
 
-| Language  | Branch | Pod version | Xcode version | iOS version |
-| --------- | ------ | ----------- | ------------- | ----------- |
-| Swift 4.2 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 1.3.x | Xcode 10 or greater | iOS 8.3+ |
-| Swift 4.1 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 1.0.x | Xcode 9.3 | iOS 8.3+ |
-| Swift 3.0 | [master](https://github.com/techprimate/TPPDF/tree/master) | >= 0.2.x | Xcode 8 | iOS 8.0+ |
-| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5 | Xcode 8, Xcode 7.3.x | iOS 8.0+ |
-| Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4 | Xcode 7.3.x | iOS 8.0+ |
+| Language  | Branch                                                           | Pod version | Xcode version         | iOS version |
+| --------- | ---------------------------------------------------------------- | ----------- | --------------------- | ----------- |
+| Swift 5   | [master](https://github.com/techprimate/TPPDF/tree/master)       | >= 1.4.x    | Xcode 10.2+           | iOS 8.3+    |
+| Swift 4.2 | [swift-4.2](https://github.com/techprimate/TPPDF/tree/swift-4.2) | >= 1.3.x    | Xcode 10.0+           | iOS 8.3+    |
+| Swift 4.1 | [swift-4.1](https://github.com/techprimate/TPPDF/tree/swift-4.1) | >= 1.0.x    | Xcode 9.3             | iOS 8.3+    |
+| Swift 3.0 | [swift-3.0](https://github.com/techprimate/TPPDF/tree/swift-3.0) | >= 0.2.x    | Xcode 8               | iOS 8.0+    |
+| Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5       | Xcode 8, Xcode 7.3.x  | iOS 8.0+    |
+| Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4       | Xcode 7.3.x           | iOS 8.0+    |
 
+Bleed development version can be found on the `develop` branch.
 
 ### CocoaPods
 
