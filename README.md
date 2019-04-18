@@ -14,14 +14,11 @@
 	<a href="http://cocoapods.org/pods/TPPDF">
 		<img src="https://img.shields.io/cocoapods/l/TPPDF.svg?style=flat-square" alt="License"/>
 	</a>
-	<a href="http://cocoapods.org/pods/TPPDF">
-		<img src="https://img.shields.io/cocoapods/dt/TPPDF.svg?style=flat-square" alt="Downloads"/>
-	</a>
 </p>
 
 <p align="center">
 	<a href="https://travis-ci.org/techprimate/TPPDF">
-		<img src="https://travis-ci.org/Techprimate/TPPDF.svg?branch=master&style=flat-square" alt="Travis">
+		<img src="https://travis-ci.org/techprimate/TPPDF.svg?branch=master&style=flat-square" alt="Travis">
 	</a>
 	<a href="https://app.codacy.com/app/techprimate/TPPDF">
 		<img src="https://api.codacy.com/project/badge/Grade/a30af06f7c6742d9960960a339e908f2" alt="Codacy">
