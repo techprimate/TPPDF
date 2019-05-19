@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2019-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.0...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.1...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,17 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [1.4.0](https://github.com/techprimate/TPPDF/tree/1.4.1) (2019-05-19)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.0...1.4.1)
+
+**Fixed bugs:**
+
+- Carthage missing shared scheme (#135)
+
+**Closed issues:**
+
+- #135
 
 ## [1.4.0](https://github.com/techprimate/TPPDF/tree/1.4.0) (2019-04-17)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.3...1.4.0)
