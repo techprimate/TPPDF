@@ -23,18 +23,26 @@ public class PDFSimpleText: PDFText {
     public var spacing: CGFloat
 
     /**
+     Weak reference to style used by this text object
+     */
+    public weak var style: PDFTextStyle?
+
+
+    /**
      Initalizer
 
      - parameter text: Text to be drawn
      - parameter spacing: Spacing between text lines, defaults to 0
+     - parameter style: Reference to style, defaults to nil
      */
-    public init(text: String, spacing: CGFloat = 0) {
+    public init(text: String, spacing: CGFloat = 0, style: PDFTextStyle? = nil) {
         self.text = text
         self.spacing = spacing
+        self.style = style
     }
 
     override var copy: PDFText {
-        return PDFSimpleText(text: self.text, spacing: self.spacing)
+        return PDFSimpleText(text: self.text, spacing: self.spacing, style: self.style)
     }
 }
 

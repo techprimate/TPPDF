@@ -199,4 +199,11 @@ public extension PDFDocument {
         objects += [(.contentLeft, PDFPageBreakObject())]
     }
 
+    /**
+     Adds a style to the index
+     */
+    func add(style: PDFTextStyle) -> PDFTextStyle {
+        self.styles.append(style)
+        return style
+    }
 }

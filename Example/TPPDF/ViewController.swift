@@ -12,18 +12,29 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        generateTestPDF()
-        generateExamplePDF()
+        generateTestPDF()
+//        generateExamplePDF()
     }
 
     func generateTestPDF() {
         let document = PDFDocument(format: .a4)
 
-        let logoImage = PDFImage(image: UIImage(named: "Icon.png")!,
-                                 size: CGSize(width: 512, height: 512),
-                                 options: [.none, .rounded],
-                                 cornerRadius: nil)
-        document.addImage(.contentCenter, image: logoImage)
+        let headingStyle1 = document.add(style: PDFTextStyle(name: "Heading 1", font: UIFont.systemFont(ofSize: 25), color: UIColor.green))
+        let headingStyle2 = document.add(style: PDFTextStyle(name: "Heading 2", font: UIFont.systemFont(ofSize: 20), color: UIColor.red))
+        let headingStyle3 = document.add(style: PDFTextStyle(name: "Heading 3", font: UIFont.systemFont(ofSize: 18), color: UIColor.blue))
+        let bodyStyle = document.add(style: PDFTextStyle(name: "Body", font: UIFont.systemFont(ofSize: 12), color: UIColor.orange))
+
+        document.addText(textObject: PDFSimpleText(text: "Heading 1", style: headingStyle1))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+
+        document.addText(textObject: PDFSimpleText(text: "Heading 2", style: headingStyle2))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+
+        document.addText(textObject: PDFSimpleText(text: "Heading 3", style: headingStyle3))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
 
         do {
             // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file

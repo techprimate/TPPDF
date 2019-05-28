@@ -177,7 +177,8 @@ class PDFAttributedTextObject: PDFObject {
                 container: container,
                 fonts: &generator.fonts,
                 textColor: &generator.textColor,
-                spacing: simple.spacing)
+                spacing: simple.spacing,
+                style: simple.style)
 
             return NSAttributedString(string: simple.text, attributes: attributes)
         } else if let attributedText = self.attributedText {
@@ -194,13 +195,15 @@ class PDFAttributedTextObject: PDFObject {
      - parameter fonts: Reference to fonts per container
      - parameter textColor: Reference to text color per continaer
      - parameter spacing: Line spacing
+     - parameter style: Optional style used to overrule generator settings
 
      - returns: Attributes dictionary, used for `NSAttributedString` creation
      */
     static func generateDefaultTextAttributes(container: PDFContainer,
                                               fonts: inout [PDFContainer: UIFont],
                                               textColor: inout [PDFContainer: UIColor],
-                                              spacing: CGFloat) -> [NSAttributedString.Key: NSObject] {
+                                              spacing: CGFloat,
+                                              style: PDFTextStyle?) -> [NSAttributedString.Key: NSObject] {
         let paragraphStyle = NSMutableParagraphStyle()
         if container.isLeft {
             paragraphStyle.alignment = .left
@@ -212,8 +215,8 @@ class PDFAttributedTextObject: PDFObject {
         paragraphStyle.lineSpacing = spacing
 
         return [
-            NSAttributedString.Key.font: fonts[container]!,
-            NSAttributedString.Key.foregroundColor: textColor[container]!,
+            NSAttributedString.Key.font: style?.font ?? fonts[container]!,
+            NSAttributedString.Key.foregroundColor: style?.color ?? textColor[container]!,
             NSAttributedString.Key.paragraphStyle: paragraphStyle
         ]
     }

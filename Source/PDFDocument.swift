@@ -30,6 +30,11 @@ public class PDFDocument: PDFJSONSerializable {
      */
     public var pagination = PDFPagination()
 
+    /**
+     Holds strong references to all text styles
+     */
+    public var styles: [PDFTextStyle] = []
+
     // MARK: - INTERNAL VARS
 
     /**
