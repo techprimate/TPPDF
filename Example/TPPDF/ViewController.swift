@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         document.addText(text: "Text 3")
         document.addText(text: "Text 4")
         document.addText(text: "Text 5")
-        document.enable(columns: 4);
+        document.enable(columns: 2);
         for i in 0..<200 {
             document.addText(text: "\(i)-\(i)-\(i)-\(i)")
         }

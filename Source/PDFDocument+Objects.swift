@@ -205,6 +205,7 @@ public extension PDFDocument {
      Starts a column section with automatic wrapping
      */
     func enable(_ container: PDFContainer = PDFContainer.contentLeft, columns: Int) {
+        assert(columns > 1, "A column wrap section must have more than one column")
         objects += [(container, PDFColumnWrapSectionObject(columns: columns, isDisable: false))]
     }
 

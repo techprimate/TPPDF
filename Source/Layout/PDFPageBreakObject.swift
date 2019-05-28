@@ -32,15 +32,15 @@ class PDFPageBreakObject: PDFObject {
         var result: [(PDFContainer, PDFObject)] = [(container, self)]
         if let maxColumns = generator.maxColumns {
             generator.currentColumn += 1
+            if generator.currentColumn >= maxColumns {
+                generator.wrapColumnsHeight = 0
+                generator.layout.heights.content = 0
+            }
             if generator.currentColumn <= maxColumns {
                 stayOnSamePage = true
             } else {
                 generator.currentColumn = 1
             }
-            if generator.currentColumn == maxColumns {
-                generator.wrapColumnsHeight = 0
-            }
-
             let leftColumns = generator.currentColumn - 1
             let rightColumns = maxColumns - generator.currentColumn
             result += try PDFIndentationObject(indentation: CGFloat(leftColumns) * generator.columnWidth, left: true)
