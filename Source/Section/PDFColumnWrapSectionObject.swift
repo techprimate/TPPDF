@@ -1,11 +1,11 @@
 //
-//  PDFColumnObject.swift
+//  PDFColumnWrapSectionObject.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 28.05.19.
 //
 
-class PDFColumnObject: PDFObject {
+class PDFColumnWrapSectionObject: PDFObject {
 
     var columns: Int
     var isDisable: Bool
@@ -33,6 +33,7 @@ class PDFColumnObject: PDFObject {
             let leftInsetObjects = try PDFIndentationObject(indentation: 0, left: false).calculate(generator: generator, container: container)
             let rightInsetObjects = try PDFIndentationObject(indentation: 0, left: true).calculate(generator: generator, container: container)
             let pageBreakObjects = try PDFPageBreakObject().calculate(generator: generator, container: container)
+
             return leftInsetObjects + rightInsetObjects + pageBreakObjects
         } else {
             generator.maxColumns = columns
@@ -48,8 +49,7 @@ class PDFColumnObject: PDFObject {
         }
     }
 
-
     override var copy: PDFObject {
-        return PDFColumnObject(columns: self.columns, isDisable: self.isDisable)
+        return PDFColumnWrapSectionObject(columns: self.columns, isDisable: self.isDisable)
     }
 }

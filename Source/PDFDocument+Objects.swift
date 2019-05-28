@@ -202,13 +202,16 @@ public extension PDFDocument {
     // MARK: - Column Wrapping
 
     /**
-     Starts a column
+     Starts a column section with automatic wrapping
      */
     func enable(_ container: PDFContainer = PDFContainer.contentLeft, columns: Int) {
-        objects += [(container, PDFColumnObject(columns: columns, isDisable: false))]
+        objects += [(container, PDFColumnWrapSectionObject(columns: columns, isDisable: false))]
     }
 
+    /**
+     Finishes a column section
+     */
     func disableColumns(_ container: PDFContainer = PDFContainer.contentLeft) {
-        objects += [(container, PDFColumnObject(columns: 0, isDisable: true))]
+        objects += [(container, PDFColumnWrapSectionObject(columns: 0, isDisable: true))]
     }
 }

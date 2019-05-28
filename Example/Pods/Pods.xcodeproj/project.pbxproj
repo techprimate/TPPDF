@@ -195,7 +195,7 @@
 		D1FD91581D2DC0A42C9134862F569C83 /* RaisesException.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06059EFCC00B2A4C0B9054511FE2CE8 /* RaisesException.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		D3A571F180E2A2D8A1248890490C9E36 /* BeEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5096B75F86417D2500DD3E22CD83C5 /* BeEmpty.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		D49731A9229D635800DE890D /* PDFLineSeparatorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355282CF57DA337F8B046D5BAD147136 /* PDFLineSeparatorObject.swift */; };
-		D49731AA229D635A00DE890D /* PDFColumnObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731A7229D632700DE890D /* PDFColumnObject.swift */; };
+		D49731AA229D635A00DE890D /* PDFColumnWrapSectionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731A7229D632700DE890D /* PDFColumnWrapSectionObject.swift */; };
 		D4FF0990DB524278EB20490C5311E19B /* AllPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B764100A35680567D74DEAAC37CD583 /* AllPass.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		D68BE963D3287CB3B5977D218E99B6A7 /* PDFSimpleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151743AD78300FDB0AAD39AD6C9CBFB7 /* PDFSimpleText.swift */; };
 		D6D06CC5E79E3706EE0198FF29200C9E /* PDFTableStyle+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360BC6B2E767C4D9A75605D4EC065AD6 /* PDFTableStyle+Defaults.swift */; };
@@ -607,7 +607,7 @@
 		D417997E0CBBA87359AAAB8D2BD370C3 /* SuiteHooks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SuiteHooks.swift; path = Sources/Quick/Hooks/SuiteHooks.swift; sourceTree = "<group>"; };
 		D42FF328A9FE6EE63292FFE3508C0C50 /* PDFSectionColumn.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = PDFSectionColumn.html; path = docs/Classes/PDFSectionColumn.html; sourceTree = "<group>"; };
 		D436A79990315954176240671AD94710 /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D49731A7229D632700DE890D /* PDFColumnObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFColumnObject.swift; sourceTree = "<group>"; };
+		D49731A7229D632700DE890D /* PDFColumnWrapSectionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFColumnWrapSectionObject.swift; sourceTree = "<group>"; };
 		D5CED4C0A3D54053193A759C9AA1AB10 /* PDFListItem+Equatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "PDFListItem+Equatable.swift"; sourceTree = "<group>"; };
 		D6B775F5A52E9E8F266A8E1F5E23DFC4 /* PDFCalculations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFCalculations.swift; sourceTree = "<group>"; };
 		D87D47942A54810BA13BCC6572B42100 /* PDFList.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html.documentation; name = PDFList.html; path = docs/docsets/TPPDF.docset/Contents/Resources/Documents/Classes/PDFList.html; sourceTree = "<group>"; };
@@ -846,7 +846,7 @@
 				E131E446FC35CDC206F9EA2B26545333 /* PDFSectionColumn+Objects.swift */,
 				38994938E05ADFAB86D2456EACCD0C4E /* PDFSectionColumnObject.swift */,
 				ECC5CCB8A9F5285A6A58200A84F9E344 /* PDFSectionObject.swift */,
-				D49731A7229D632700DE890D /* PDFColumnObject.swift */,
+				D49731A7229D632700DE890D /* PDFColumnWrapSectionObject.swift */,
 			);
 			name = Section;
 			path = Source/Section;
@@ -1832,7 +1832,7 @@
 				05AE245FF30FDC4BE59C42B10E581979 /* PDFTextColorObject.swift in Sources */,
 				5C07992EE1B455089A1A66022BAAE855 /* TPPDF-dummy.m in Sources */,
 				36C1B4EA8FD2ED8ABF69D0D00A81157C /* UIColor+CloseToEqual.swift in Sources */,
-				D49731AA229D635A00DE890D /* PDFColumnObject.swift in Sources */,
+				D49731AA229D635A00DE890D /* PDFColumnWrapSectionObject.swift in Sources */,
 				198057CC348FD386E87DFBD82F4DCAB1 /* UIColor+Hex.swift in Sources */,
 				B9A748BCE7466155894E44CEA06CAA5A /* UIImage+Pixel.swift in Sources */,
 			);
