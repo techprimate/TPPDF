@@ -19,15 +19,14 @@ class ViewController: UIViewController {
     func generateTestPDF() {
         let document = PDFDocument(format: .a4)
 
-        document.addText(text: "Text 123")
-        document.enable(columns: 10);
+        document.addText(text: "Text 1")
+        document.addText(text: "Text 2")
+        document.addText(text: "Text 3")
+        document.addText(text: "Text 4")
+        document.addText(text: "Text 5")
+        document.enable(columns: 4);
         for i in 0..<200 {
-            document.addText(text: "Row - \(i) - \(i) - \(i) - \(i)")
-        }
-        document.disableColumns();
-        document.enable(columns: 3);
-        for i in 0..<200 {
-            document.addText(text: "Row - \(i) - \(i) - \(i) - \(i)")
+            document.addText(text: "\(i)-\(i)-\(i)-\(i)")
         }
         document.disableColumns();
         document.addText(text: "Text 123")

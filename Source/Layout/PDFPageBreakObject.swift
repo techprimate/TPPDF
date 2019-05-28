@@ -25,7 +25,7 @@ class PDFPageBreakObject: PDFObject {
      */
     @discardableResult
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
-        generator.layout.heights.content = 0
+        generator.layout.heights.content = generator.wrapColumnsHeight
 
         stayOnSamePage = false
 
@@ -37,6 +37,10 @@ class PDFPageBreakObject: PDFObject {
             } else {
                 generator.currentColumn = 1
             }
+            if generator.currentColumn == maxColumns {
+                generator.wrapColumnsHeight = 0
+            }
+
             let leftColumns = generator.currentColumn - 1
             let rightColumns = maxColumns - generator.currentColumn
             result += try PDFIndentationObject(indentation: CGFloat(leftColumns) * generator.columnWidth, left: true)

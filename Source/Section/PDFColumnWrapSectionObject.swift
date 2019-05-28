@@ -36,6 +36,7 @@ class PDFColumnWrapSectionObject: PDFObject {
 
             return leftInsetObjects + rightInsetObjects + pageBreakObjects
         } else {
+            generator.wrapColumnsHeight = generator.layout.heights.content
             generator.maxColumns = columns
             generator.currentColumn = 1
 
