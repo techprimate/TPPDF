@@ -10,6 +10,8 @@
  */
 class PDFPageBreakObject: PDFObject {
 
+    private var stayOnSamePage: Bool = false
+
     /**
      Modifies the layout and page count of the given `generator`.
      The parameter `container` is unused, as page breaks are container-independent.
@@ -25,7 +27,25 @@ class PDFPageBreakObject: PDFObject {
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         generator.layout.heights.content = 0
 
-        return [(container, self)]
+        stayOnSamePage = false
+
+        var result: [(PDFContainer, PDFObject)] = [(container, self)]
+        if let maxColumns = generator.maxColumns {
+            generator.currentColumn += 1
+            if generator.currentColumn <= maxColumns {
+                stayOnSamePage = true
+            } else {
+                generator.currentColumn = 1
+            }
+            let leftColumns = generator.currentColumn - 1
+            let rightColumns = maxColumns - generator.currentColumn
+            result += try PDFIndentationObject(indentation: CGFloat(leftColumns) * generator.columnWidth, left: true)
+                .calculate(generator: generator, container: container)
+            result += try PDFIndentationObject(indentation: CGFloat(rightColumns) * generator.columnWidth, left: false)
+                .calculate(generator: generator, container: container)
+        }
+
+        return result
     }
 
     /**
@@ -38,8 +58,10 @@ class PDFPageBreakObject: PDFObject {
      - throws: None
      */
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        UIGraphicsBeginPDFPage()
-        generator.drawDebugPageOverlay()
+        if !stayOnSamePage {
+            UIGraphicsBeginPDFPage()
+            generator.drawDebugPageOverlay()
+        }
     }
 
     override var copy: PDFObject {

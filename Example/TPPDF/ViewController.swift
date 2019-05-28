@@ -12,25 +12,35 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        generateTestPDF()
-        generateExamplePDF()
+        generateTestPDF()
+        // generateExamplePDF()
     }
 
     func generateTestPDF() {
         let document = PDFDocument(format: .a4)
 
-        let logoImage = PDFImage(image: UIImage(named: "Icon.png")!,
-                                 size: CGSize(width: 512, height: 512),
-                                 options: [.none, .rounded],
-                                 cornerRadius: nil)
-        document.addImage(.contentCenter, image: logoImage)
+        document.addText(text: "Text 123")
+        document.enable(columns: 10);
+        for i in 0..<200 {
+            document.addText(text: "Row - \(i) - \(i) - \(i) - \(i)")
+        }
+        document.disableColumns();
+        document.enable(columns: 3);
+        for i in 0..<200 {
+            document.addText(text: "Row - \(i) - \(i) - \(i) - \(i)")
+        }
+        document.disableColumns();
+        document.addText(text: "Text 123")
 
         do {
+            let startTime = CFAbsoluteTimeGetCurrent() * 1000
             // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
             let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: {
                 (progressValue: CGFloat) in
                 print("progress: ", progressValue)
             }, debug: false)
+            let endTime = CFAbsoluteTimeGetCurrent() * 1000
+            print("Duration: \(floor(endTime - startTime)) ms")
 
             // Load PDF into a webview from the temporary file
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))

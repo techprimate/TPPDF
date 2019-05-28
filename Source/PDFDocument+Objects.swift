@@ -199,4 +199,16 @@ public extension PDFDocument {
         objects += [(.contentLeft, PDFPageBreakObject())]
     }
 
+    // MARK: - Column Wrapping
+
+    /**
+     Starts a column
+     */
+    func enable(_ container: PDFContainer = PDFContainer.contentLeft, columns: Int) {
+        objects += [(container, PDFColumnObject(columns: columns, isDisable: false))]
+    }
+
+    func disableColumns(_ container: PDFContainer = PDFContainer.contentLeft) {
+        objects += [(container, PDFColumnObject(columns: 0, isDisable: true))]
+    }
 }

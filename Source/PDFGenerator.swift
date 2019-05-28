@@ -39,6 +39,11 @@ public class PDFGenerator {
      */
     public var totalPages: Int = 1
 
+
+    public var maxColumns: Int?
+    public var currentColumn = 1
+    public var columnWidth: CGFloat = 0
+    
     var progressValue: CGFloat = 0
 
     /**
