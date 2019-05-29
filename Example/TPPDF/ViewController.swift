@@ -24,9 +24,9 @@ class ViewController: UIViewController {
         document.addText(text: "Text 3")
         document.addText(text: "Text 4")
         document.addText(text: "Text 5")
-        document.enable(columns: 4, widths: [0.2, 0.3, 0.4, 0.1], spacings: [10, 20, 30]);
+        document.enable(columns: 4, widths: [0.2, 0.3, 0.4, 0.1], spacings: [10, 50, 20]);
         for i in 0..<200 {
-            document.addText(text: "\(i)-\(i)-\(i)-\(i)")
+            document.addText(text: "\(i) -A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R")
         }
         document.disableColumns();
         document.addText(text: "Text 123")
@@ -36,8 +36,8 @@ class ViewController: UIViewController {
             // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
             let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: {
                 (progressValue: CGFloat) in
-                print("progress: ", progressValue)
-            }, debug: false)
+                // print("progress: ", progressValue)
+            }, debug: true)
             let endTime = CFAbsoluteTimeGetCurrent() * 1000
             print("Duration: \(floor(endTime - startTime)) ms")
 

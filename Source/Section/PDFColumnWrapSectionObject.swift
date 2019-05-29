@@ -42,19 +42,27 @@ class PDFColumnWrapSectionObject: PDFObject {
         } else {
             generator.wrapColumnsHeight = generator.layout.heights.content
             generator.maxColumns = columns
-            generator.currentColumn = 1
+            generator.currentColumn = 0
+            generator.columnSpacings = spacings
 
-            let availableWidth = PDFCalculations.calculateAvailableFrame(for: generator, in: container).width
+            var availableWidth = PDFCalculations.calculateAvailableFrame(for: generator, in: container).width
+            let totalSpacing = spacings.reduce(0, +)
+            availableWidth -= totalSpacing
             generator.columnWidths = widths.map { return $0 * availableWidth }
 
             if generator.columnWidths.isEmpty {
                 generator.columnWidths = [availableWidth]
             }
 
-            let insetObjects = try PDFIndentationObject(indentation: CGFloat(columns - 1) * generator.columnWidths[0],
-                                                        left: false).calculate(generator: generator, container: container)
+            let inset = PDFCalculations.calculateColumnWrapInset(generator: generator)
+            let spacing = PDFCalculations.calculateColumnWrapSpacing(generator: generator)
 
-            return [(container, self)] + insetObjects
+            let lefInsetObjects = try PDFIndentationObject(indentation: inset.left + spacing.left, left: false)
+                .calculate(generator: generator, container: container)
+            let rightInsetObjects = try PDFIndentationObject(indentation: inset.right + spacing.right, left: false)
+                .calculate(generator: generator, container: container)
+
+            return [(container, self)] + lefInsetObjects + rightInsetObjects
         }
     }
 

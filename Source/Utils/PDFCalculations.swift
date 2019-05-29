@@ -363,4 +363,43 @@ class PDFCalculations {
         return (imageSize, CGSize(width: imageSize.width, height: 0))
     }
 
+    static func calculateColumnWrapInset(generator: PDFGenerator) -> (left: CGFloat, right: CGFloat) {
+        guard let maxColumn = generator.maxColumns else {
+            return (0, 0)
+        }
+
+        var left: CGFloat = 0
+        var right: CGFloat = 0
+
+        if generator.currentColumn < maxColumn {
+            for i in 0..<generator.currentColumn {
+                left += generator.columnWidths[i]
+            }
+            for i in (generator.currentColumn + 1)..<maxColumn {
+                right += generator.columnWidths[i]
+            }
+        }
+
+        return (left: left, right: right)
+    }
+
+    static func calculateColumnWrapSpacing(generator: PDFGenerator) -> (left: CGFloat, right: CGFloat) {
+        guard let maxColumn = generator.maxColumns else {
+            return (0, 0)
+        }
+
+        var left: CGFloat = 0
+        var right: CGFloat = 0
+
+        for i in 0..<generator.currentColumn {
+            left += generator.columnSpacings[i]
+        }
+
+        if generator.currentColumn < maxColumn - 1 {
+            for i in generator.currentColumn..<(maxColumn - 1) {
+                right += generator.columnSpacings[i]
+            }
+        }
+        return (left: left, right: right)
+    }
 }

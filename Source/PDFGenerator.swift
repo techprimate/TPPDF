@@ -40,7 +40,7 @@ public class PDFGenerator {
     public var totalPages: Int = 1
 
     public var maxColumns: Int?
-    public var currentColumn = 1
+    public var currentColumn = 0
     public var columnWidths: [CGFloat] = []
     public var columnSpacings: [CGFloat] = []
     public var wrapColumnsHeight: CGFloat = 0

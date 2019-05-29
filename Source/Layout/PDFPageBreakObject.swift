@@ -32,24 +32,23 @@ class PDFPageBreakObject: PDFObject {
         var result: [(PDFContainer, PDFObject)] = [(container, self)]
         if let maxColumns = generator.maxColumns {
             generator.currentColumn += 1
+
             if generator.currentColumn >= maxColumns {
                 generator.wrapColumnsHeight = 0
                 generator.layout.heights.content = 0
             }
-            if generator.currentColumn <= maxColumns {
+            if generator.currentColumn < maxColumns {
                 stayOnSamePage = true
             } else {
-                generator.currentColumn = 1
+                generator.currentColumn = 0
             }
-            let leftColumns = generator.currentColumn - 1 - 1
-            let rightColumns = generator.currentColumn
 
-            let leftInset = generator.columnWidths[...leftColumns].reduce(0, +)
-            let rightInset = generator.columnWidths[rightColumns...].reduce(0, +)
+            let inset = PDFCalculations.calculateColumnWrapInset(generator: generator)
+            let spacing = PDFCalculations.calculateColumnWrapSpacing(generator: generator)
 
-            result += try PDFIndentationObject(indentation: leftInset, left: true)
+            result += try PDFIndentationObject(indentation: inset.left + spacing.left, left: true)
                 .calculate(generator: generator, container: container)
-            result += try PDFIndentationObject(indentation: rightInset, left: false)
+            result += try PDFIndentationObject(indentation: inset.right + spacing.right, left: false)
                 .calculate(generator: generator, container: container)
         }
 

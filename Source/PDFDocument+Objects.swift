@@ -206,6 +206,8 @@ public extension PDFDocument {
      */
     func enable(_ container: PDFContainer = PDFContainer.contentLeft, columns: Int, widths: [CGFloat], spacings: [CGFloat]) {
         assert(columns > 1, "A column wrap section must have more than one column")
+        assert(widths.count >= columns, "A colum wrap section must have at least the same amount of width values as columns")
+        assert(spacings.count == widths.count - 1, "A colum wrap section must have exactly one less spacing value than the widths")
         objects += [(container, PDFColumnWrapSectionObject(columns: columns, widths: widths, spacings: spacings, isDisable: false))]
     }
 
