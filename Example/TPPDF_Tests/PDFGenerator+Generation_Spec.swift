@@ -36,7 +36,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             }.toNot(throwError())
                         expect(writtenData).toEventuallyNot(beNil())
 
-//                        let expectedBase64 = ""
+                        //                        let expectedBase64 = ""
                         // TODO: implement correct base64
                         //                    expect(writtenData.base64EncodedString()).toEventually(equal(expectedBase64))
                     }
@@ -57,7 +57,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             }.toNot(throwError())
                         expect(writtenData).toEventuallyNot(beNil())
 
-//                        let expectedBase64 = ""
+                        //                        let expectedBase64 = ""
                         // TODO: implement correct base64
                         //                    expect(writtenData.base64EncodedString()).toEventually(equal(expectedBase64))
                     }
@@ -78,7 +78,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             }.toNot(throwError())
                         expect(writtenData).toEventuallyNot(beNil())
 
-//                        let expectedBase64 = ""
+                        //                        let expectedBase64 = ""
                         // TODO: implement correct base64
                         //                    expect(writtenData.base64EncodedString()).toEventually(equal(expectedBase64))
                     }
@@ -87,7 +87,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                 describe("data") {
 
                     it("should generate") {
-//                        let filename = "FILENAME"
+                        //                        let filename = "FILENAME"
 
                         var data: Data!
                         expect {
@@ -95,13 +95,13 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             return nil
                             }.toNot(throwError())
                         expect(data).toEventuallyNot(beNil())
-//                        let expectedBase64 = ""
+                        //                        let expectedBase64 = ""
                         // TODO: implement correct base64
                         // expect(data()).toEventually(equal(expectedBase64))
                     }
 
                     it("should generate with debug") {
-//                        let filename = "FILENAME"
+                        //                        let filename = "FILENAME"
 
                         var data: Data!
                         expect {
@@ -109,7 +109,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             return nil
                             }.toNot(throwError())
                         expect(data).toEventuallyNot(beNil())
-//                        let expectedBase64 = ""
+                        //                        let expectedBase64 = ""
                         // TODO: implement correct base64
                         // expect(data()).toEventually(equal(expectedBase64))
                     }
@@ -203,9 +203,80 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         expect(resultObjs.count) == contentObjs.count
                     }
+
+                    it("can extract content objects") {
+                        let resultObjs = PDFGenerator.extractContentObjects(objects: objs)
+
+                        expect(resultObjs.count) == contentObjs.count
+                    }
+                }
+
+                describe("table of content") {
+
+                    let headingStyle1 = document.add(style: PDFTextStyle(name: "Heading 1", font: UIFont.systemFont(ofSize: 25), color: UIColor.green))
+                    let headingStyle2 = document.add(style: PDFTextStyle(name: "Heading 2", font: UIFont.systemFont(ofSize: 20), color: UIColor.red))
+                    let headingStyle3 = document.add(style: PDFTextStyle(name: "Heading 3", font: UIFont.systemFont(ofSize: 18), color: UIColor.blue))
+                    let bodyStyle = document.add(style: PDFTextStyle(name: "Body", font: UIFont.systemFont(ofSize: 12), color: UIColor.orange))
+
+                    let styles = [
+                        headingStyle1,
+                        headingStyle2,
+                        headingStyle3
+                        ].map { return WeakPDFTextStyleRef(value: $0) }
+
+                    let textObjects = [
+                        PDFSimpleText(text: "Heading 1", style: headingStyle1),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+
+                        PDFSimpleText(text: "Heading 1.1", style: headingStyle2),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+
+                        PDFSimpleText(text: "Heading 2", style: headingStyle1),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+
+                        PDFSimpleText(text: "Heading 2.1", style: headingStyle2),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+
+                        PDFSimpleText(text: "Heading 2.1.1", style: headingStyle3),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+
+                        PDFSimpleText(text: "Heading 3", style: headingStyle1),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+
+                        PDFSimpleText(text: "Heading 3.1.1", style: headingStyle3),
+                        PDFSimpleText(text: "Body", style: bodyStyle),
+                        PDFSimpleText(text: "Body", style: bodyStyle)
+                    ]
+                    let objs: [(PDFContainer, PDFObject)] = textObjects.map { return (PDFContainer.contentLeft, PDFAttributedTextObject(simpleText: $0)) }
+
+                    it("should create list based on styles") {
+                        let list = PDFGenerator.createTableOfContentList(objects: objs, styles: styles)
+                        let expectedList = PDFList(indentations: [
+                            (pre: CGFloat(10), past: CGFloat(10)),
+                            (pre: CGFloat(20), past: CGFloat(10)),
+                            (pre: CGFloat(30), past: CGFloat(10))
+                        ])
+                        expectedList.addItems([
+                            PDFListItem(symbol: .dot, content: textObjects[0].text)
+                                .addItem(PDFListItem(symbol: .dot, content: textObjects[3].text)),
+                            PDFListItem(symbol: .dot, content: textObjects[6].text)
+                                .addItem(PDFListItem(symbol: .dot, content: textObjects[9].text)
+                                    .addItem(PDFListItem(symbol: .dot, content: textObjects[12].text))),
+                            PDFListItem(symbol: .dot, content: textObjects[15].text)
+                                .addItem(PDFListItem(symbol: .none, content: nil)
+                                    .addItem(PDFListItem(symbol: .dot, content: textObjects[18].text))),
+                            ])
+
+                        expect(list).to(equal(expectedList))
+                    }
                 }
             }
         }
     }
-
 }

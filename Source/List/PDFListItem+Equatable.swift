@@ -8,10 +8,6 @@
 extension PDFListItem: Equatable {
 
     public static func == (lhs: PDFListItem, rhs: PDFListItem) -> Bool {
-        if lhs.parent !== rhs.parent {
-            return false
-        }
-
         if lhs.content != rhs.content {
             return false
         }

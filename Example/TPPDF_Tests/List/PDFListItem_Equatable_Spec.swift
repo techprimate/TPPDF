@@ -28,15 +28,6 @@ class PDFListItem_Equatable_Spec: QuickSpec {
                     expect(object) == otherObject
                 }
 
-                it("is not equal with different parents") {
-                    let otherObject = PDFListItem()
-                    let otherParent = PDFListItem()
-                    
-                    otherObject.parent = otherParent
-
-                    expect(object) != otherObject
-                }
-
                 it("is not equal with different content") {
                     let otherObject = PDFListItem()
 

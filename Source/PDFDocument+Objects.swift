@@ -206,4 +206,11 @@ public extension PDFDocument {
         self.styles.append(style)
         return style
     }
+
+    /**
+     Adds a table of content
+     */
+    func add(tableOfContent: PDFTableOfContent) {
+        objects += [(.contentLeft, PDFTableOfContentObject(list: PDFList(indentations: []), options: tableOfContent))]
+    }
 }

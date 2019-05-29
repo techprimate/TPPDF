@@ -24,15 +24,37 @@ class ViewController: UIViewController {
         let headingStyle3 = document.add(style: PDFTextStyle(name: "Heading 3", font: UIFont.systemFont(ofSize: 18), color: UIColor.blue))
         let bodyStyle = document.add(style: PDFTextStyle(name: "Body", font: UIFont.systemFont(ofSize: 12), color: UIColor.orange))
 
+        document.add(tableOfContent: PDFTableOfContent(styles: [
+            headingStyle1,
+            headingStyle2,
+            headingStyle3
+            ]))
+
         document.addText(textObject: PDFSimpleText(text: "Heading 1", style: headingStyle1))
         document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
         document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
 
-        document.addText(textObject: PDFSimpleText(text: "Heading 2", style: headingStyle2))
+        document.addText(textObject: PDFSimpleText(text: "Heading 1.1", style: headingStyle2))
         document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
         document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
 
-        document.addText(textObject: PDFSimpleText(text: "Heading 3", style: headingStyle3))
+        document.addText(textObject: PDFSimpleText(text: "Heading 2", style: headingStyle1))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+
+        document.addText(textObject: PDFSimpleText(text: "Heading 2.1", style: headingStyle2))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+
+        document.addText(textObject: PDFSimpleText(text: "Heading 2.1.1", style: headingStyle3))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+
+        document.addText(textObject: PDFSimpleText(text: "Heading 3", style: headingStyle1))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
+
+        document.addText(textObject: PDFSimpleText(text: "Heading 3.1.1", style: headingStyle3))
         document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
         document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
 
