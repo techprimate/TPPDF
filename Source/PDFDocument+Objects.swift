@@ -204,15 +204,15 @@ public extension PDFDocument {
     /**
      Starts a column section with automatic wrapping
      */
-    func enable(_ container: PDFContainer = PDFContainer.contentLeft, columns: Int) {
+    func enable(_ container: PDFContainer = PDFContainer.contentLeft, columns: Int, widths: [CGFloat], spacings: [CGFloat]) {
         assert(columns > 1, "A column wrap section must have more than one column")
-        objects += [(container, PDFColumnWrapSectionObject(columns: columns, isDisable: false))]
+        objects += [(container, PDFColumnWrapSectionObject(columns: columns, widths: widths, spacings: spacings, isDisable: false))]
     }
 
     /**
      Finishes a column section
      */
     func disableColumns(_ container: PDFContainer = PDFContainer.contentLeft) {
-        objects += [(container, PDFColumnWrapSectionObject(columns: 0, isDisable: true))]
+        objects += [(container, PDFColumnWrapSectionObject(columns: 0, widths: [], spacings: [], isDisable: true))]
     }
 }

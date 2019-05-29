@@ -8,10 +8,14 @@
 class PDFColumnWrapSectionObject: PDFObject {
 
     var columns: Int
+    var widths: [CGFloat]
+    var spacings: [CGFloat]
     var isDisable: Bool
 
-    init(columns: Int, isDisable: Bool) {
+    init(columns: Int, widths: [CGFloat], spacings: [CGFloat], isDisable: Bool) {
         self.columns = columns
+        self.widths = widths
+        self.spacings = spacings
         self.isDisable = isDisable
     }
 
@@ -28,7 +32,7 @@ class PDFColumnWrapSectionObject: PDFObject {
         if isDisable {
             generator.maxColumns = nil
             generator.currentColumn = 0
-            generator.columnWidth = 0
+            generator.columnWidths = []
 
             let leftInsetObjects = try PDFIndentationObject(indentation: 0, left: false).calculate(generator: generator, container: container)
             let rightInsetObjects = try PDFIndentationObject(indentation: 0, left: true).calculate(generator: generator, container: container)
@@ -41,9 +45,13 @@ class PDFColumnWrapSectionObject: PDFObject {
             generator.currentColumn = 1
 
             let availableWidth = PDFCalculations.calculateAvailableFrame(for: generator, in: container).width
-            generator.columnWidth = availableWidth / CGFloat(columns)
+            generator.columnWidths = widths.map { return $0 * availableWidth }
 
-            let insetObjects = try PDFIndentationObject(indentation: CGFloat(columns - 1) * generator.columnWidth,
+            if generator.columnWidths.isEmpty {
+                generator.columnWidths = [availableWidth]
+            }
+
+            let insetObjects = try PDFIndentationObject(indentation: CGFloat(columns - 1) * generator.columnWidths[0],
                                                         left: false).calculate(generator: generator, container: container)
 
             return [(container, self)] + insetObjects
@@ -51,6 +59,6 @@ class PDFColumnWrapSectionObject: PDFObject {
     }
 
     override var copy: PDFObject {
-        return PDFColumnWrapSectionObject(columns: self.columns, isDisable: self.isDisable)
+        return PDFColumnWrapSectionObject(columns: self.columns, widths: self.widths, spacings: self.spacings, isDisable: self.isDisable)
     }
 }

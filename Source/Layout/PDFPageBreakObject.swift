@@ -41,11 +41,15 @@ class PDFPageBreakObject: PDFObject {
             } else {
                 generator.currentColumn = 1
             }
-            let leftColumns = generator.currentColumn - 1
-            let rightColumns = maxColumns - generator.currentColumn
-            result += try PDFIndentationObject(indentation: CGFloat(leftColumns) * generator.columnWidth, left: true)
+            let leftColumns = generator.currentColumn - 1 - 1
+            let rightColumns = generator.currentColumn
+
+            let leftInset = generator.columnWidths[...leftColumns].reduce(0, +)
+            let rightInset = generator.columnWidths[rightColumns...].reduce(0, +)
+
+            result += try PDFIndentationObject(indentation: leftInset, left: true)
                 .calculate(generator: generator, container: container)
-            result += try PDFIndentationObject(indentation: CGFloat(rightColumns) * generator.columnWidth, left: false)
+            result += try PDFIndentationObject(indentation: rightInset, left: false)
                 .calculate(generator: generator, container: container)
         }
 

@@ -41,7 +41,8 @@ public class PDFGenerator {
 
     public var maxColumns: Int?
     public var currentColumn = 1
-    public var columnWidth: CGFloat = 0
+    public var columnWidths: [CGFloat] = []
+    public var columnSpacings: [CGFloat] = []
     public var wrapColumnsHeight: CGFloat = 0
 
     var progressValue: CGFloat = 0
