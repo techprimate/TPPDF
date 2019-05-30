@@ -20,10 +20,10 @@ extension PDFTableCellBorders: Equatable {
         guard lhs.top == rhs.top else {
             return false
         }
-        guard lhs.right != rhs.right else {
+        guard lhs.right == rhs.right else {
             return false
         }
-        guard lhs.bottom != rhs.bottom else {
+        guard lhs.bottom == rhs.bottom else {
             return false
         }
         return true
