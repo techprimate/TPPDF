@@ -123,9 +123,7 @@ class PDFCalculations {
         } else {
             return pageLayout.contentSize.height
                 - layout.heights.maxHeaderHeight()
-                - pageLayout.space.header
                 - layout.heights.content
-                - pageLayout.space.footer
                 - layout.heights.maxFooterHeight()
         }
     }
