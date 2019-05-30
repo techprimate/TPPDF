@@ -5,14 +5,18 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 extension PDFAttributedText: Equatable {
 
+    /**
+     TODO: Documentation
+     */
     public static func == (lhs: PDFAttributedText, rhs: PDFAttributedText) -> Bool {
-        if lhs.text != rhs.text {
+        guard lhs.text == rhs.text else {
             return false
         }
-
         return true
     }
-
 }

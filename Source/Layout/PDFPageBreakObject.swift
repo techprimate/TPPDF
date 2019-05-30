@@ -23,7 +23,6 @@ class PDFPageBreakObject: PDFObject {
 
      - returns: Self
      */
-    @discardableResult
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         generator.layout.heights.content = generator.wrapColumnsHeight
 
@@ -71,8 +70,10 @@ class PDFPageBreakObject: PDFObject {
         }
     }
 
+    /**
+     Creates a new `PDFPageBreakObject`
+     */
     override var copy: PDFObject {
         return PDFPageBreakObject()
     }
-
 }

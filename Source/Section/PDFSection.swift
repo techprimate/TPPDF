@@ -5,6 +5,9 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
+/**
+ TODO: Documentation
+ */
 public class PDFSection: PDFJSONSerializable {
 
 	/**
@@ -37,6 +40,9 @@ public class PDFSection: PDFJSONSerializable {
 		self.columns = columns
 	}
 
+    /**
+     Creates a new `PDFSection` with the same properties
+     */
 	var copy: PDFSection {
 		return PDFSection(columns.map { $0.copy })
 	}

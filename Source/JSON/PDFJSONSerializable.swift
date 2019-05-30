@@ -7,22 +7,6 @@
 
 public protocol PDFJSONSerializable: PDFJSONRepresentable {}
 
-public extension PDFJSONSerializable {
-
-    func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
-        let representation = JSONRepresentation
-
-        guard JSONSerialization.isValidJSONObject(representation),
-            let data = try? JSONSerialization.data(withJSONObject: representation, options: options) else {
-            print("Invalid JSON from representation.")
-            return nil
-        }
-
-        return String(data: data, encoding: .utf8)
-    }
-
-}
-
 extension PDFJSONSerializable {
 
     public var JSONRepresentation: AnyObject {
@@ -34,10 +18,21 @@ extension PDFJSONSerializable {
 
         return representation as AnyObject
     }
-
 }
 
-extension PDFJSONSerializable {
+public extension PDFJSONSerializable {
+
+    func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
+        let representation = JSONRepresentation
+
+        guard JSONSerialization.isValidJSONObject(representation),
+            let data = try? JSONSerialization.data(withJSONObject: representation, options: options) else {
+                print("Invalid JSON from representation.")
+                return nil
+        }
+
+        return String(data: data, encoding: .utf8)
+    }
 
     func convertValue(_ value: Any) -> AnyObject {
         if let value = value as? PDFJSONSerializable {
@@ -69,64 +64,4 @@ extension PDFJSONSerializable {
         }
         return result.JSONRepresentation
     }
-
-}
-
-extension Array: PDFJSONSerializable {
-
-    public var JSONRepresentation: AnyObject {
-        var representation: [Any] = []
-
-        for (value) in self {
-            representation.append(convertValue(value))
-        }
-
-        return representation as NSArray
-    }
-
-}
-
-extension Dictionary: PDFJSONSerializable {
-
-    public var JSONRepresentation: AnyObject {
-        let representation: NSMutableDictionary = [:]
-
-        for (key, value) in self {
-            representation[key] = convertValue(value)
-        }
-
-        return representation as NSDictionary
-    }
-
-}
-
-extension CGRect: PDFJSONSerializable {}
-extension CGPoint: PDFJSONSerializable {}
-extension CGSize: PDFJSONSerializable {}
-
-extension NSAttributedString: PDFJSONSerializable {}
-extension UIFont: PDFJSONSerializable {}
-
-extension UIImage: PDFJSONSerializable {
-
-    public var JSONRepresentation: AnyObject {
-        return self.jpegData(compressionQuality: 1.0)?.JSONRepresentation ?? NSNull()
-    }
-
-}
-
-extension Data: PDFJSONSerializable {
-
-    public var JSONRepresentation: AnyObject {
-        return self.base64EncodedString() as AnyObject
-    }
-
-}
-
-extension UIColor: PDFJSONSerializable {
-
-    public var JSONRepresentation: AnyObject {
-        return self.hex as AnyObject
-    }
-
 }

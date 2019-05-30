@@ -10,8 +10,19 @@
  */
 public enum PDFImageSizeFit {
 
+    /**
+     TODO: documentation
+     */
     case width
+
+    /**
+     TODO: documentation
+     */
     case height
+
+    /**
+     TODO: documentation
+     */
     case widthHeight
 
 }

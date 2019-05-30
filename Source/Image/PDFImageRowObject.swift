@@ -5,31 +5,50 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+/**
+ TODO: documentation
+ */
 class PDFImageRowObject: PDFObject {
 
+    /**
+     TODO: documentation
+     */
     var images: [PDFImage]
+
+    /**
+     TODO: documentation
+     */
     var spacing: CGFloat
+
+    /**
+     TODO: documentation
+     */
     var captionSpacing: CGFloat
 
+    /**
+     TODO: documentation
+     */
     init(images: [PDFImage], spacing: CGFloat = 1.0, captionSpacing: CGFloat = 5.0) {
         self.images = images
         self.spacing = spacing
         self.captionSpacing = captionSpacing
     }
 
+    /**
+     TODO: documentation
+     */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
         let originalInsetLeft = generator.layout.indentation.leftIn(container: container)
         let originalInsetRight = generator.layout.indentation.rightIn(container: container)
+        var originalHeight = generator.layout.heights.value(for: container)
 
         var additionInset: CGFloat = 0
 
-        var originalHeight = generator.layout.heights.value(for: container)
-
-        let totalImagesWidth = generator.document.layout.contentSize.width
+        let availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         let totalSpacing = CGFloat(images.count - 1) * spacing
-        let imageWidth = (totalImagesWidth - totalSpacing) / CGFloat(images.count)
+        let imageWidth = (availableSize.width - totalSpacing) / CGFloat(images.count)
 
         var maxHeight: CGFloat = 0
 
@@ -41,9 +60,10 @@ class PDFImageRowObject: PDFObject {
 
             let imageObject = PDFImageObject(image: image, captionSpacing: captionSpacing)
 
-            generator.layout.indentation.setLeft(indentation: originalInsetLeft + additionInset + spacing * CGFloat(idx), in: container)
-            generator.layout.indentation.setRight(indentation: originalInsetRight
-                + (imageWidth + spacing) * CGFloat(images.count - idx - 1), in: container)
+            generator.layout.indentation.setLeft(indentation: originalInsetLeft + additionInset + spacing * CGFloat(idx),
+                                                 in: container)
+            generator.layout.indentation.setRight(indentation: originalInsetRight + (imageWidth + spacing) * CGFloat(images.count - idx - 1),
+                                                  in: container)
 
             let res = try imageObject.calculate(generator: generator, container: container)
             for obj in res where obj.1 is PDFPageBreakObject {
@@ -65,6 +85,9 @@ class PDFImageRowObject: PDFObject {
         return result
     }
 
+    /**
+     TODO: documentation
+     */
     override var copy: PDFObject {
         return PDFImageRowObject(images: self.images, spacing: self.spacing, captionSpacing: self.captionSpacing)
     }

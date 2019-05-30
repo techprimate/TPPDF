@@ -1,49 +1,46 @@
 //
-//  PDFTableStyle+Equatable.swift
+//  PDFTableStyle+Equatable.swguardt
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 extension PDFTableStyle: Equatable {
 
+    /**
+     TODO: Documentation
+     */
     public static func == (lhs: PDFTableStyle, rhs: PDFTableStyle) -> Bool {
-        if lhs.rowHeaderCount != rhs.rowHeaderCount {
+        guard lhs.rowHeaderCount == rhs.rowHeaderCount else {
             return false
         }
-
-        if lhs.columnHeaderCount != rhs.columnHeaderCount {
+        guard lhs.columnHeaderCount == rhs.columnHeaderCount else {
             return false
         }
-
-        if lhs.footerCount != rhs.footerCount {
+        guard lhs.footerCount == rhs.footerCount else {
             return false
         }
-
-        if lhs.outline != rhs.outline {
+        guard lhs.outline == rhs.outline else {
             return false
         }
-
-        if lhs.rowHeaderStyle != rhs.rowHeaderStyle {
+        guard lhs.rowHeaderStyle == rhs.rowHeaderStyle else {
             return false
         }
-
-        if lhs.columnHeaderStyle != rhs.columnHeaderStyle {
+        guard lhs.columnHeaderStyle == rhs.columnHeaderStyle else {
             return false
         }
-
-        if lhs.footerStyle != rhs.footerStyle {
+        guard lhs.footerStyle == rhs.footerStyle else {
             return false
         }
-
-        if lhs.contentStyle != rhs.contentStyle {
+        guard lhs.contentStyle == rhs.contentStyle else {
             return false
         }
-
-        if lhs.alternatingContentStyle != rhs.alternatingContentStyle {
+        guard lhs.alternatingContentStyle == rhs.alternatingContentStyle else {
             return false
         }
-
         return true
     }
 

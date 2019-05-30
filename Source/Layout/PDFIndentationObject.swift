@@ -51,6 +51,9 @@ class PDFIndentationObject: PDFObject {
         return [(container, self)]
     }
 
+    /**
+     Creates a new `PDFIndentationObject` with the same properties
+     */
     override var copy: PDFObject {
         return PDFIndentationObject(indentation: self.indentation, left: self.left)
     }

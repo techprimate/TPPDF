@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ TODO: Documentation
+ */
 extension PDFTableCellPosition: Hashable {
 
     /**
@@ -21,6 +24,9 @@ extension PDFTableCellPosition: Hashable {
     }
 }
 
+/**
+ TODO: Documentation
+ */
 extension PDFTableCellPosition: Equatable {
 
     /**
@@ -34,15 +40,12 @@ extension PDFTableCellPosition: Equatable {
      - rhs: Another value to compare.
      */
     public static func == (lhs: PDFTableCellPosition, rhs: PDFTableCellPosition) -> Bool {
-        if lhs.row != rhs.row {
+        guard lhs.row == rhs.row else {
             return false
         }
-
-        if lhs.column != rhs.column {
+        guard lhs.column == rhs.column else {
             return false
         }
-
         return true
     }
-
 }

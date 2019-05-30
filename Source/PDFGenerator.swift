@@ -45,6 +45,11 @@ public class PDFGenerator {
     public var columnSpacings: [CGFloat] = []
     public var wrapColumnsHeight: CGFloat = 0
 
+=======
+    /**
+     Relative value tracking progress
+     */
+>>>>>>> feature/CalculationsCleanup
     var progressValue: CGFloat = 0
 
     /**
@@ -53,7 +58,7 @@ public class PDFGenerator {
      */
     lazy var fonts: [PDFContainer: UIFont] = {
         var defaults = [PDFContainer: UIFont]()
-        for container in PDFContainer.all + [PDFContainer.none] {
+        for container in PDFContainer.allCases {
             defaults[container] = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         }
         return defaults
@@ -70,7 +75,7 @@ public class PDFGenerator {
      */
     lazy var textColor: [PDFContainer: UIColor] = {
         var defaults = [PDFContainer: UIColor]()
-        for container in PDFContainer.all + [PDFContainer.none] {
+        for container in PDFContainer.allCases {
             defaults[container] = UIColor.black
         }
         return defaults
