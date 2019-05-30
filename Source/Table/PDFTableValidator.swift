@@ -5,6 +5,9 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 class PDFTableValidator {
 
     /**

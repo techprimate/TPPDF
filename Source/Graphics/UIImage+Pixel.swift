@@ -5,12 +5,21 @@
 //  Created by Philip Niedertscheider on 05/11/2017.
 //
 
+/**
+ TODO: documentation
+ */
 extension UIImage {
 
+    /**
+     TODO: documentation
+     */
     var pixelExtractor: PixelExtractor {
         return PixelExtractor(img: self.cgImage!)
     }
 
+    /**
+     TODO: documentation
+     */
     func pixelColor(at location: CGPoint) -> UIColor {
         return PixelExtractor(img: self.cgImage!).colorAt(x: Int(location.x), y: Int(location.y))
     }
@@ -19,25 +28,45 @@ extension UIImage {
 
 /**
  https://stackoverflow.com/questions/35029672/getting-pixel-color-from-an-image-using-cgpoint
+ TODO: documentation
  */
 class PixelExtractor: NSObject {
 
+    /**
+     TODO: documentation
+     */
     let image: CGImage
+
+    /**
+     TODO: documentation
+     */
     let context: CGContext?
 
+    /**
+     TODO: documentation
+     */
     var width: Int {
         return image.width
     }
 
+    /**
+     TODO: documentation
+     */
     var height: Int {
         return image.height
     }
 
+    /**
+     TODO: documentation
+     */
     init(img: CGImage) {
         image = img
         context = PixelExtractor.createBitmapContext(cgImage: img)
     }
 
+    /**
+     TODO: documentation
+     */
     class func createBitmapContext(cgImage: CGImage) -> CGContext {
         // Get image width, height
         let pixelsWide = cgImage.width
@@ -66,6 +95,9 @@ class PixelExtractor: NSObject {
         return context!
     }
 
+    /**
+     TODO: documentation
+     */
     func colorAt(x: Int, y: Int) -> UIColor {
         assert(0<=x && x<width)
         assert(0<=y && y<height)
@@ -83,5 +115,4 @@ class PixelExtractor: NSObject {
 
         return color
     }
-
 }

@@ -5,16 +5,36 @@
 //  Created by Philip Niedertscheider on 30/10/2017.
 //
 
+/**
+ TODO: documentation
+ */
 struct PDFLayoutHeights {
 
+    /**
+     TODO: documentation
+     */
     var header: [PDFContainer: CGFloat] = [:]
+
+    /**
+     TODO: documentation
+     */
     var footer: [PDFContainer: CGFloat] = [:]
+
+    /**
+     TODO: documentation
+     */
     var content: CGFloat = 0
 
+    /**
+     TODO: documentation
+     */
     init() {
         resetHeaderFooterHeight()
     }
 
+    /**
+     TODO: documentation
+     */
     mutating func resetHeaderFooterHeight() {
         header[.headerLeft] = 0
         header[.headerCenter] = 0
@@ -25,6 +45,9 @@ struct PDFLayoutHeights {
         footer[.footerRight] = 0
     }
 
+    /**
+     TODO: documentation
+     */
     mutating func add(_ value: CGFloat, to container: PDFContainer) {
         if container.isHeader {
             header[container] = (header[container] ?? 0) + value
@@ -35,14 +58,23 @@ struct PDFLayoutHeights {
         }
     }
 
+    /**
+     TODO: documentation
+     */
     func maxHeaderHeight() -> CGFloat {
         return header.values.max() ?? 0
     }
 
+    /**
+     TODO: documentation
+     */
     func maxFooterHeight() -> CGFloat {
         return footer.values.max() ?? 0
     }
 
+    /**
+     TODO: documentation
+     */
     func value(for container: PDFContainer) -> CGFloat {
         if container.isHeader {
             return header[container] ?? 0
@@ -53,6 +85,9 @@ struct PDFLayoutHeights {
         }
     }
 
+    /**
+     TODO: documentation
+     */
     mutating func set(_ value: CGFloat, to container: PDFContainer) {
         if container.isHeader {
             header[container] = value
@@ -62,5 +97,4 @@ struct PDFLayoutHeights {
             content = value
         }
     }
-
 }

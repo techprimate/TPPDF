@@ -7,6 +7,9 @@
 
 extension UIColor {
 
+    /**
+     TODO: documentation
+     */
     convenience init(hex: String) throws {
         var red: CGFloat = 0.0
         var green: CGFloat = 0.0
@@ -48,6 +51,9 @@ extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
+    /**
+     TODO: documentation
+     */
     var hex: String {
         var red: CGFloat = 0
         var green: CGFloat = 0

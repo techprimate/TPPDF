@@ -5,14 +5,26 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+/**
+ TODO: documentation
+ */
 class PDFListObject: PDFObject {
 
+    /**
+     TODO: documentation
+     */
     var list: PDFList
 
+    /**
+     TODO: documentation
+     */
     init(list: PDFList) {
         self.list = list
     }
 
+    /**
+     TODO: documentation
+     */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
@@ -50,6 +62,9 @@ class PDFListObject: PDFObject {
         return result
     }
 
+    /**
+     Creates a new `PDFListObject` with the same properties
+     */
     override var copy: PDFObject {
         return PDFListObject(list: self.list.copy)
     }

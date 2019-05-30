@@ -5,18 +5,38 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+/**
+ TODO: documentation
+ */
 class PDFImageRowObject: PDFObject {
 
+    /**
+     TODO: documentation
+     */
     var images: [PDFImage]
+
+    /**
+     TODO: documentation
+     */
     var spacing: CGFloat
+
+    /**
+     TODO: documentation
+     */
     var captionSpacing: CGFloat
 
+    /**
+     TODO: documentation
+     */
     init(images: [PDFImage], spacing: CGFloat = 1.0, captionSpacing: CGFloat = 5.0) {
         self.images = images
         self.spacing = spacing
         self.captionSpacing = captionSpacing
     }
 
+    /**
+     TODO: documentation
+     */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
@@ -65,6 +85,9 @@ class PDFImageRowObject: PDFObject {
         return result
     }
 
+    /**
+     TODO: documentation
+     */
     override var copy: PDFObject {
         return PDFImageRowObject(images: self.images, spacing: self.spacing, captionSpacing: self.captionSpacing)
     }

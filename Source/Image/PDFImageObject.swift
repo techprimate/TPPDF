@@ -24,6 +24,7 @@ class PDFImageObject: PDFObject {
      Initalizer
 
      - parameter image: Image object
+     - parameter captionSpacing: Spacing to caption, defaults to zero
      */
     init(image: PDFImage, captionSpacing: CGFloat = 0) {
         self.image = image
@@ -32,6 +33,13 @@ class PDFImageObject: PDFObject {
 
     /**
      Calculates the frame of the image and additionally returns one or multiple caption objects.
+
+     - parameter generator: Current instance handling the calculations
+     - parameter container: Container where the image is placed in
+
+     - throws: Caption calculation errors, see ```PDFAttributedTextObject.calculate(_:,_:)```
+
+     - returns: Calculated objects and their corresponding container, created by this calculation
      */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
@@ -69,6 +77,12 @@ class PDFImageObject: PDFObject {
         return result
     }
 
+    /**
+     Modifies the image and draws it in the previously calculated frame
+
+     - parameter generator: Current instance handling the drawing
+     - parameter container: Container where the image is placed in
+     */
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         var roundedCorners: UIRectCorner = []
         if image.options.contains(.rounded) {
@@ -98,10 +112,19 @@ class PDFImageObject: PDFObject {
         modifiedImage.draw(in: self.frame)
     }
 
+    /**
+     Adds the image and caption height to the content height
+
+     - parameter generator: Current instance handling the calculations
+     - parameter container: Container where the image is placed in
+     */
     func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         generator.layout.heights.add(frame.height + (self.image.caption != nil ? captionSpacing : 0), to: container)
     }
 
+    /**
+     Creates a new `PDFImageObject` with the same properties
+     */
     override var copy: PDFObject {
         return PDFImageObject(image: self.image.copy, captionSpacing: self.captionSpacing)
     }

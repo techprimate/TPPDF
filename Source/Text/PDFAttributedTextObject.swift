@@ -218,6 +218,9 @@ class PDFAttributedTextObject: PDFObject {
         ]
     }
 
+    /**
+     TODO: Documentation
+     */
     override var copy: PDFObject {
         return PDFAttributedTextObject(text: (self.attributedText ?? self.simpleText)!)
     }
