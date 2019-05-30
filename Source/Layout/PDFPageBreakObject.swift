@@ -28,7 +28,6 @@ class PDFPageBreakObject: PDFObject {
 
         stayOnSamePage = false
 
-        var result: [(PDFContainer, PDFObject)] = [(container, self)]
         if let maxColumns = generator.columnState.maxColumns {
             generator.columnState.currentColumn += 1
 
@@ -48,7 +47,7 @@ class PDFPageBreakObject: PDFObject {
             generator.columnState.inset = (left: inset.left + spacing.left, right: inset.right + spacing.right)
         }
 
-        return result
+        return [(container, self)]
     }
 
     /**
