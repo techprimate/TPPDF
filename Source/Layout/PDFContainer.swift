@@ -88,6 +88,13 @@ public enum PDFContainer: CaseIterable {
     }
 
     /**
+     Checks if this container is neither in header nor in footer, therefore in the center area
+     */
+    var isCenter: Bool {
+        return !isHeader && !isFooter
+    }
+
+    /**
      Checks if this container is on the left side
      */
     var isLeft: Bool {
