@@ -129,17 +129,15 @@ class PDFSectionObject: PDFObject {
 			}
 
 			// does any of the columns request a page break?
-			let isPageBreakNeeded = objectsPerColumn.keys.reduce(false) { isNeeded, columnIndex in
-				return isNeeded || stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject
-			}
+            let isPageBreakNeeded = objectsPerColumn.keys.contains { columnIndex -> Bool in
+                return stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject
+            }
 			guard isPageBreakNeeded else { continue }
 
 			// do all columns requesting a page break or if not, do they not contain any further objects?
-			let isPageBreakAllowed = objectsPerColumn.keys.reduce(true) { isAllowed, columnIndex in
-				return isAllowed && (
-					stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject ||
+			let isPageBreakAllowed = objectsPerColumn.keys.allSatisfy { columnIndex in
+				return stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject ||
 					(objectsPerColumn[columnIndex]?.count ?? 0) < objectIndex
-				)
 			}
 			guard isPageBreakAllowed else { continue }
 
