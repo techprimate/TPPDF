@@ -5,8 +5,6 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-// swiftlint:disable function_body_length
-
 /**
  Calculates the given image and a caption if necessary
  */
@@ -44,70 +42,30 @@ class PDFImageObject: PDFObject {
                                                                            size: image.size,
                                                                            sizeFit: image.sizeFit)
 
-        let y: CGFloat = {
-            if container.isHeader {
-                return generator.document.layout.margin.top
-                    + generator.layout.heights.header[container]!
-            } else if container.isFooter {
-                return generator.document.layout.contentSize.height
-                    + generator.document.layout.margin.top
-                    + generator.layout.heights.maxHeaderHeight()
-                    + generator.layout.heights.footer[container]!
-            } else {
-                if generator.layout.heights.content + imageSize.height + captionSize.height > generator.document.layout.contentSize.height ||
-                    (image.sizeFit == .height && imageSize.height < image.size.height) {
+        if container.isCenter {
+            if generator.layout.heights.content + imageSize.height + captionSize.height > generator.document.layout.contentSize.height ||
+                (image.sizeFit == .height && imageSize.height < image.size.height) {
 
-                    result += [(container, PDFPageBreakObject())]
-                    generator.layout.heights.content = 0
+                result += [(container, PDFPageBreakObject())]
+                generator.layout.heights.content = 0
 
-                    (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(
-                        generator: generator,
-                        container: container,
-                        image: image,
-                        size: image.size,
-                        sizeFit: image.sizeFit)
-                }
-                return generator.document.layout.margin.top
-                    + generator.layout.heights.maxHeaderHeight()
-                    + generator.document.layout.space.header
-                    + generator.layout.heights.content
+                (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(
+                    generator: generator,
+                    container: container,
+                    image: image,
+                    size: image.size,
+                    sizeFit: image.sizeFit)
             }
-            }()
-
-        let x: CGFloat = {
-            switch container {
-            case .headerLeft, .contentLeft, .footerLeft:
-                return generator.document.layout.margin.left
-                    + generator.layout.indentation.leftIn(container: container)
-            case .headerCenter, .contentCenter, .footerCenter:
-                return generator.document.layout.margin.left
-					+ generator.layout.indentation.leftIn(container: container)
-                    + (generator.document.layout.contentSize.width
-                        - generator.layout.indentation.leftIn(container: container)
-                        - generator.layout.indentation.rightIn(container: container)
-                        ) / 2
-                    - imageSize.width / 2
-            case .headerRight, .contentRight, .footerRight:
-                return generator.document.layout.width
-                    - generator.document.layout.margin.right
-                    - generator.layout.indentation.rightIn(container: container)
-                    - imageSize.width
-            default:
-                return 0
-            }
-        }()
-
-        self.frame = CGRect(x: x, y: y, width: imageSize.width, height: imageSize.height)
-
+        }
+        let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: imageSize)
+        self.frame = CGRect(origin: position, size: imageSize)
         updateHeights(generator: generator, container: container)
 
         result.append((container, self))
 
         if let caption = image.caption {
-            let text = PDFAttributedTextObject(text: caption)
-            result += try text.calculate(generator: generator, container: PDFContainer.contentCenter)
+            result += try PDFAttributedTextObject(text: caption).calculate(generator: generator, container: PDFContainer.contentCenter)
         }
-
         return result
     }
 
@@ -129,7 +87,6 @@ class PDFImageObject: PDFObject {
                 roundedCorners.formUnion(.bottomLeft)
             }
         }
-
 
         let modifiedImage = PDFGraphics.resizeAndCompressImage(image: image.image,
                                                                frame: frame,
