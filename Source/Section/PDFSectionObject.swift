@@ -91,7 +91,8 @@ class PDFSectionObject: PDFObject {
      **BUT** if the text is too long to fit the space, then it will be split up into two text objects with a `PDFPageBreakObject` in-between.
 
      During the render process whenever a page break object is found, it will create a new pdf page and continue there.
-     In order to render multi columns correctly, we need to merge the page breaks of all columns and make sure the page break occurs at the right time:
+     In order to render multi columns correctly, we need to merge the page breaks of all columns and make sure
+     the page break occurs at the right time:
 
      ```
      All objects of column 1 before the first pagebreak

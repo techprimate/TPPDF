@@ -45,11 +45,9 @@ public class PDFGenerator {
     public var columnSpacings: [CGFloat] = []
     public var wrapColumnsHeight: CGFloat = 0
 
-=======
     /**
      Relative value tracking progress
      */
->>>>>>> feature/CalculationsCleanup
     var progressValue: CGFloat = 0
 
     /**
