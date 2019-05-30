@@ -89,6 +89,17 @@ class PDFCalculations {
     }
 
     /**
+     TODO: documentation
+     */
+    static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
+        let pageLayout = generator.document.layout
+
+        return pageLayout.contentSize.width
+            - generator.layout.indentation.leftIn(container: container)
+            - generator.layout.indentation.rightIn(container: container)
+    }
+
+    /**
      Calculates the position of an element with given `size` in the given `container
 
      - parameter generator: Generator doing the calculations
@@ -105,14 +116,6 @@ class PDFCalculations {
     }
 
     // MARK: - PRIVATE STATIC FUNCS
-
-    private static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
-        let pageLayout = generator.document.layout
-
-        return pageLayout.contentSize.width
-            - generator.layout.indentation.leftIn(container: container)
-            - generator.layout.indentation.rightIn(container: container)
-    }
 
     private static func calculateAvailableFrameHeight(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
         let layout = generator.layout
