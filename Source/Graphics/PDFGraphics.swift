@@ -226,7 +226,8 @@ class PDFGraphics {
 
      - parameter image: Image to edit
      - parameter size: Size of final image, used to calculate correct radii limits
-     - parameter cornerRadius: Optional value used as radius, if null half of the minimum of the size width or height is used, resulting in a round image
+     - parameter cornerRadius: Optional value used as radius, if null half of the minimum of the size width or height is used,
+                               resulting in a round image
 
      - returns: Manipulated image
      */

@@ -39,6 +39,9 @@ public class PDFGenerator {
      */
     public var totalPages: Int = 1
 
+    /**
+     Relative value tracking progress
+     */
     var progressValue: CGFloat = 0
 
     /**
