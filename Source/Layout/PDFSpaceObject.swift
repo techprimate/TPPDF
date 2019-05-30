@@ -38,9 +38,8 @@ class PDFSpaceObject: PDFObject {
         var size = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         size.height = min(space, size.height)
         let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: frame.size)
-
         self.frame = CGRect(origin: position, size: size)
-        generator.layout.heights.add(self.frame.height, to: container)
+        generator.layout.heights.add(space, to: container)
 
         return [(container, self)]
     }
