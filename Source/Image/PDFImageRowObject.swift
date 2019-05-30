@@ -46,9 +46,9 @@ class PDFImageRowObject: PDFObject {
 
         var additionInset: CGFloat = 0
 
-        let bounds = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
+        let availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         let totalSpacing = CGFloat(images.count - 1) * spacing
-        let imageWidth = (bounds.width - totalSpacing) / CGFloat(images.count)
+        let imageWidth = (availableSize.width - totalSpacing) / CGFloat(images.count)
 
         var maxHeight: CGFloat = 0
 

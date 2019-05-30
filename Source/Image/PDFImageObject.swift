@@ -45,16 +45,14 @@ class PDFImageObject: PDFObject {
         var result: [(PDFContainer, PDFObject)] = []
 
         var (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(generator: generator,
-                                                                           container: container,
-                                                                           image: image,
-                                                                           size: image.size,
-                                                                           sizeFit: image.sizeFit)
-
+                                                                                 container: container,
+                                                                                 image: image,
+                                                                                 size: image.size,
+                                                                                 sizeFit: image.sizeFit)
+        let availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         if container.isCenter {
-            if generator.layout.heights.content + imageSize.height + captionSize.height > generator.document.layout.contentSize.height ||
-                (image.sizeFit == .height && imageSize.height < image.size.height) {
-
-                result += [(container, PDFPageBreakObject())]
+            if imageSize.height + captionSize.height > availableSize.height || (image.sizeFit == .height && imageSize.height < image.size.height) {
+                result += try PDFPageBreakObject().calculate(generator: generator, container: container)
                 generator.layout.heights.content = 0
 
                 (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(
