@@ -208,6 +208,7 @@
 		D23E12A8442B150AE14C5CA122D350FB /* PDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4647E2F4CA39AC5DBFDA014D0AFC647 /* PDFDocument.swift */; };
 		D36FA865D05376D577917408B1957E26 /* Data+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A3E74E135E2010BC9296160C6E8800 /* Data+PDFJSONSerializable.swift */; };
 		D3A571F180E2A2D8A1248890490C9E36 /* BeEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5096B75F86417D2500DD3E22CD83C5 /* BeEmpty.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
+		D472940522A0481200F99B37 /* PDFColumnLayoutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D472940422A0481200F99B37 /* PDFColumnLayoutState.swift */; };
 		D4FF0990DB524278EB20490C5311E19B /* AllPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B764100A35680567D74DEAAC37CD583 /* AllPass.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		D6268B65D14979F4A99AB6B7274FE054 /* UIImage+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313D9C33E226B48AF9525AF0082BA39 /* UIImage+Pixel.swift */; };
 		D806C3A0C83A8F2C9ECB1C5A9E59A8EC /* PDFTableCellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836DF35F9D3191A8217F2DD59291090C /* PDFTableCellStyle.swift */; };
@@ -636,6 +637,7 @@
 		D4108261CBD310E4B21DCF9371C1D506 /* PDFTableCellBorders.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFTableCellBorders.swift; sourceTree = "<group>"; };
 		D436A79990315954176240671AD94710 /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4647E2F4CA39AC5DBFDA014D0AFC647 /* PDFDocument.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFDocument.swift; path = Source/PDFDocument.swift; sourceTree = "<group>"; };
+		D472940422A0481200F99B37 /* PDFColumnLayoutState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFColumnLayoutState.swift; sourceTree = "<group>"; };
 		D4CCBF5C6A43834EC498EB6560E2BC51 /* PDFJSONSerializable.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = PDFJSONSerializable.html; path = docs/Protocols/PDFJSONSerializable.html; sourceTree = "<group>"; };
 		D5047ABD94F173DD85E3F569A7F33ABB /* PDFTableCellPosition+Equatable-Hashable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "PDFTableCellPosition+Equatable-Hashable.swift"; sourceTree = "<group>"; };
 		D50A972FE3A98EAF480518D229B76664 /* PDFLayout.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = PDFLayout.html; path = docs/Extensions/PDFLayout.html; sourceTree = "<group>"; };
@@ -1374,6 +1376,7 @@
 				E99E2D9212144C57DBC1AF45256AE606 /* PDFPageLayout+Equatable.swift */,
 				01BFDBBADBEB4AC67AB3AD01291891F8 /* PDFSectionColumnContainer.swift */,
 				036F373A4DBB6E2774749C53A4600B83 /* PDFSpaceObject.swift */,
+				D472940422A0481200F99B37 /* PDFColumnLayoutState.swift */,
 			);
 			name = Layout;
 			path = Source/Layout;
@@ -1793,6 +1796,7 @@
 				04B9018E758BC03E7BC19E22DC15FDE8 /* PDFTableCellPosition+Equatable-Hashable.swift in Sources */,
 				72134AD975CB707A1BEFD776C5DAAD38 /* PDFTableCellPosition.swift in Sources */,
 				EB977233831237D86343AF69F631FCC3 /* PDFTableCellStyle+Equatable.swift in Sources */,
+				D472940522A0481200F99B37 /* PDFColumnLayoutState.swift in Sources */,
 				D806C3A0C83A8F2C9ECB1C5A9E59A8EC /* PDFTableCellStyle.swift in Sources */,
 				A1AFC51C3C7A56AAA9897B8E20EF9AB0 /* PDFTableContent+Equatable.swift in Sources */,
 				1E46EABFAF5FEEA8928D5E7E5466C590 /* PDFTableContent.swift in Sources */,

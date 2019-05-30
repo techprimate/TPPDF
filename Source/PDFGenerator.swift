@@ -39,11 +39,10 @@ public class PDFGenerator {
      */
     public var totalPages: Int = 1
 
-    public var maxColumns: Int?
-    public var currentColumn = 0
-    public var columnWidths: [CGFloat] = []
-    public var columnSpacings: [CGFloat] = []
-    public var wrapColumnsHeight: CGFloat = 0
+    /**
+     Layout information used for columns layout
+     */
+    var columnState = PDFColumnLayoutState()
 
     /**
      Relative value tracking progress

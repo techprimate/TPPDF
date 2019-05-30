@@ -47,6 +47,8 @@ class PDFCalculations {
      */
     static func calculateTextSizeAndRemainder(of text: NSAttributedString,
                                               in bounds: CGSize) -> (text: NSAttributedString, size: CGSize, remainder: NSAttributedString?) {
+        assert(bounds.width > 0, "Can't render text if no space available")
+
         let framesetter = CTFramesetterCreateWithAttributedString(text)
         let framePath = UIBezierPath(rect: CGRect(origin: .zero, size: bounds)).cgPath
 
@@ -96,7 +98,9 @@ class PDFCalculations {
 
         return pageLayout.contentSize.width
             - generator.layout.indentation.leftIn(container: container)
+            - generator.columnState.inset.left
             - generator.layout.indentation.rightIn(container: container)
+            - generator.columnState.inset.right
     }
 
     /**
@@ -144,17 +148,22 @@ class PDFCalculations {
         if container.isLeft {
             return pageLayout.margin.left
                 + layout.indentation.leftIn(container: container)
+                + generator.columnState.inset.left
         } else if container.isRight {
             return pageLayout.width
                 - pageLayout.margin.right
                 - layout.indentation.rightIn(container: container)
                 - size.width
+                - generator.columnState.inset.right
         } else {
             return pageLayout.margin.left
                 + layout.indentation.leftIn(container: container)
+                + generator.columnState.inset.left
                 + (pageLayout.contentSize.width
                     - layout.indentation.leftIn(container: container)
+                    - generator.columnState.inset.left
                     - layout.indentation.rightIn(container: container)
+                    - generator.columnState.inset.right
                     - size.width
                 ) / 2
         }
@@ -395,19 +404,19 @@ class PDFCalculations {
     }
 
     static func calculateColumnWrapInset(generator: PDFGenerator) -> (left: CGFloat, right: CGFloat) {
-        guard let maxColumn = generator.maxColumns else {
+        guard let maxColumn = generator.columnState.maxColumns else {
             return (0, 0)
         }
 
         var left: CGFloat = 0
         var right: CGFloat = 0
 
-        if generator.currentColumn < maxColumn {
-            for i in 0..<generator.currentColumn {
-                left += generator.columnWidths[i]
+        if generator.columnState.currentColumn < maxColumn {
+            for i in 0..<generator.columnState.currentColumn {
+                left += generator.columnState.columnWidths[i]
             }
-            for i in (generator.currentColumn + 1)..<maxColumn {
-                right += generator.columnWidths[i]
+            for i in (generator.columnState.currentColumn + 1)..<maxColumn {
+                right += generator.columnState.columnWidths[i]
             }
         }
 
@@ -415,20 +424,20 @@ class PDFCalculations {
     }
 
     static func calculateColumnWrapSpacing(generator: PDFGenerator) -> (left: CGFloat, right: CGFloat) {
-        guard let maxColumn = generator.maxColumns else {
+        guard let maxColumn = generator.columnState.maxColumns else {
             return (0, 0)
         }
 
         var left: CGFloat = 0
         var right: CGFloat = 0
 
-        for i in 0..<generator.currentColumn {
-            left += generator.columnSpacings[i]
+        for i in 0..<generator.columnState.currentColumn {
+            left += generator.columnState.columnSpacings[i]
         }
 
-        if generator.currentColumn < maxColumn - 1 {
-            for i in generator.currentColumn..<(maxColumn - 1) {
-                right += generator.columnSpacings[i]
+        if generator.columnState.currentColumn < maxColumn - 1 {
+            for i in generator.columnState.currentColumn..<(maxColumn - 1) {
+                right += generator.columnState.columnSpacings[i]
             }
         }
         return (left: left, right: right)

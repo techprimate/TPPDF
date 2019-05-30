@@ -24,31 +24,28 @@ class PDFPageBreakObject: PDFObject {
      - returns: Self
      */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
-        generator.layout.heights.content = generator.wrapColumnsHeight
+        generator.layout.heights.content = generator.columnState.wrapColumnsHeight
 
         stayOnSamePage = false
 
         var result: [(PDFContainer, PDFObject)] = [(container, self)]
-        if let maxColumns = generator.maxColumns {
-            generator.currentColumn += 1
+        if let maxColumns = generator.columnState.maxColumns {
+            generator.columnState.currentColumn += 1
 
-            if generator.currentColumn >= maxColumns {
-                generator.wrapColumnsHeight = 0
+            if generator.columnState.currentColumn >= maxColumns {
+                generator.columnState.wrapColumnsHeight = 0
                 generator.layout.heights.content = 0
             }
-            if generator.currentColumn < maxColumns {
+            if generator.columnState.currentColumn < maxColumns {
                 stayOnSamePage = true
             } else {
-                generator.currentColumn = 0
+                generator.columnState.currentColumn = 0
             }
 
             let inset = PDFCalculations.calculateColumnWrapInset(generator: generator)
             let spacing = PDFCalculations.calculateColumnWrapSpacing(generator: generator)
 
-            result += try PDFIndentationObject(indentation: inset.left + spacing.left, left: true)
-                .calculate(generator: generator, container: container)
-            result += try PDFIndentationObject(indentation: inset.right + spacing.right, left: false)
-                .calculate(generator: generator, container: container)
+            generator.columnState.inset = (left: inset.left + spacing.left, right: inset.right + spacing.right)
         }
 
         return result

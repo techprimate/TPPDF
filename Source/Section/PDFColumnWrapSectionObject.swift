@@ -30,9 +30,10 @@ class PDFColumnWrapSectionObject: PDFObject {
     @discardableResult
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         if isDisable {
-            generator.maxColumns = nil
-            generator.currentColumn = 0
-            generator.columnWidths = []
+            generator.columnState.maxColumns = nil
+            generator.columnState.currentColumn = 0
+            generator.columnState.columnWidths = []
+            generator.columnState.inset = (0, 0)
 
             let leftInsetObjects = try PDFIndentationObject(indentation: 0, left: false).calculate(generator: generator, container: container)
             let rightInsetObjects = try PDFIndentationObject(indentation: 0, left: true).calculate(generator: generator, container: container)
@@ -40,29 +41,27 @@ class PDFColumnWrapSectionObject: PDFObject {
 
             return leftInsetObjects + rightInsetObjects + pageBreakObjects
         } else {
-            generator.wrapColumnsHeight = generator.layout.heights.content
-            generator.maxColumns = columns
-            generator.currentColumn = 0
-            generator.columnSpacings = spacings
+            generator.columnState.wrapColumnsHeight = generator.layout.heights.content
+            generator.columnState.maxColumns = columns
+            generator.columnState.currentColumn = 0
+            generator.columnState.columnSpacings = spacings
+            generator.columnState.inset = (0, 0)
 
             var availableWidth = PDFCalculations.calculateAvailableFrame(for: generator, in: container).width
             let totalSpacing = spacings.reduce(0, +)
             availableWidth -= totalSpacing
-            generator.columnWidths = widths.map { return $0 * availableWidth }
+            generator.columnState.columnWidths = widths.map { return $0 * availableWidth }
 
-            if generator.columnWidths.isEmpty {
-                generator.columnWidths = [availableWidth]
+            if generator.columnState.columnWidths.isEmpty {
+                generator.columnState.columnWidths = [availableWidth]
             }
 
             let inset = PDFCalculations.calculateColumnWrapInset(generator: generator)
             let spacing = PDFCalculations.calculateColumnWrapSpacing(generator: generator)
 
-            let lefInsetObjects = try PDFIndentationObject(indentation: inset.left + spacing.left, left: false)
-                .calculate(generator: generator, container: container)
-            let rightInsetObjects = try PDFIndentationObject(indentation: inset.right + spacing.right, left: false)
-                .calculate(generator: generator, container: container)
+            generator.columnState.inset = (left: inset.left + spacing.left, right: inset.right + spacing.right)
 
-            return [(container, self)] + lefInsetObjects + rightInsetObjects
+            return [(container, self)]
         }
     }
 
