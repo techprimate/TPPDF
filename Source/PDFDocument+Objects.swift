@@ -217,4 +217,8 @@ public extension PDFDocument {
     func disableColumns(_ container: PDFContainer = PDFContainer.contentLeft) {
         objects += [(container, PDFColumnWrapSectionObject(columns: 0, widths: [], spacings: [], isDisable: true))]
     }
+
+    func add(_ container: PDFContainer = PDFContainer.contentLeft, group: PDFGroup) {
+        objects += [(container, PDFGroupObject(allowsBreaks: group.allowsBreaks, objects: group.objects))]
+    }
 }

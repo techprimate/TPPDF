@@ -10,7 +10,7 @@
  */
 class PDFPageBreakObject: PDFObject {
 
-    private var stayOnSamePage: Bool = false
+    var stayOnSamePage: Bool = false
 
     /**
      Modifies the layout and page count of the given `generator`.
