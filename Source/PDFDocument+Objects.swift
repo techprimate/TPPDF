@@ -208,18 +208,20 @@ public extension PDFDocument {
         assert(columns > 1, "A column wrap section must have more than one column")
         assert(widths.count >= columns, "A colum wrap section must have at least the same amount of width values as columns")
         assert(spacings.count == widths.count - 1, "A colum wrap section must have exactly one less spacing value than the widths")
-        objects += [(container, PDFColumnWrapSectionObject(columns: columns, widths: widths, spacings: spacings, isDisable: false))]
+        objects += [(container, PDFColumnWrapSectionObject(columns: columns, widths: widths, spacings: spacings))]
     }
 
     /**
      Finishes a column section
      */
-    func disableColumns(_ container: PDFContainer = PDFContainer.contentLeft) {
-        objects += [(container, PDFColumnWrapSectionObject(columns: 0, widths: [], spacings: [], isDisable: true))]
+    func disableColumns(_ container: PDFContainer = PDFContainer.contentLeft, addPageBreak: Bool = true) {
+        objects += [(container, PDFColumnWrapSectionObject(isDisable: true, addPageBreak: addPageBreak))]
     }
 
     func add(_ container: PDFContainer = PDFContainer.contentLeft, group: PDFGroup) {
-        objects += [(container, PDFGroupObject(allowsBreaks: group.allowsBreaks, objects: group.objects))]
+        objects += [(container, PDFGroupObject(allowsBreaks: group.allowsBreaks, objects: group.objects, backgroundColor: group.backgroundColor))]
+    }
+
     func set(master group: PDFGroup) {
         self.masterGroup = PDFGroupObject(allowsBreaks: group.allowsBreaks,
                                           objects: group.objects,

@@ -11,12 +11,22 @@ class PDFColumnWrapSectionObject: PDFObject {
     var widths: [CGFloat]
     var spacings: [CGFloat]
     var isDisable: Bool
+    var addPageBreak: Bool
 
-    init(columns: Int, widths: [CGFloat], spacings: [CGFloat], isDisable: Bool) {
+    convenience init(columns: Int, widths: [CGFloat], spacings: [CGFloat]) {
+        self.init(columns: columns, widths: widths, spacings: spacings, isDisable: false, addPageBreak: false)
+    }
+
+    convenience init(isDisable: Bool, addPageBreak: Bool) {
+        self.init(columns: 0, widths: [], spacings: [], isDisable: isDisable, addPageBreak: addPageBreak)
+    }
+
+    init(columns: Int, widths: [CGFloat], spacings: [CGFloat], isDisable: Bool, addPageBreak: Bool) {
         self.columns = columns
         self.widths = widths
         self.spacings = spacings
         self.isDisable = isDisable
+        self.addPageBreak = addPageBreak
     }
 
     /**
@@ -35,11 +45,7 @@ class PDFColumnWrapSectionObject: PDFObject {
             generator.columnState.columnWidths = []
             generator.columnState.inset = (0, 0)
 
-            let leftInsetObjects = try PDFIndentationObject(indentation: 0, left: false).calculate(generator: generator, container: container)
-            let rightInsetObjects = try PDFIndentationObject(indentation: 0, left: true).calculate(generator: generator, container: container)
-            let pageBreakObjects = try PDFPageBreakObject().calculate(generator: generator, container: container)
-
-            return leftInsetObjects + rightInsetObjects + pageBreakObjects
+            return addPageBreak ? try PDFPageBreakObject().calculate(generator: generator, container: container) : []
         } else {
             generator.columnState.wrapColumnsHeight = generator.layout.heights.content
             generator.columnState.maxColumns = columns
@@ -66,6 +72,6 @@ class PDFColumnWrapSectionObject: PDFObject {
     }
 
     override var copy: PDFObject {
-        return PDFColumnWrapSectionObject(columns: self.columns, widths: self.widths, spacings: self.spacings, isDisable: self.isDisable)
+        return PDFColumnWrapSectionObject(columns: self.columns, widths: self.widths, spacings: self.spacings, isDisable: self.isDisable, addPageBreak: self.addPageBreak)
     }
 }
