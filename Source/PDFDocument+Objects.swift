@@ -220,5 +220,9 @@ public extension PDFDocument {
 
     func add(_ container: PDFContainer = PDFContainer.contentLeft, group: PDFGroup) {
         objects += [(container, PDFGroupObject(allowsBreaks: group.allowsBreaks, objects: group.objects))]
+    func set(master group: PDFGroup) {
+        self.masterGroup = PDFGroupObject(allowsBreaks: group.allowsBreaks,
+                                          objects: group.objects,
+                                          backgroundColor: group.backgroundColor)
     }
 }
