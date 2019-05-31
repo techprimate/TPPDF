@@ -11,7 +11,9 @@ public class PDFGroup: PDFJSONSerializable {
 
     // MARK: - PUBLIC VARS
 
-    public private(set) var allowsBreaks: Bool
+    public var allowsBreaks: Bool
+
+    public var backgroundColor: UIColor?
 
     // MARK: - INTERNAL VARS
 
@@ -22,14 +24,15 @@ public class PDFGroup: PDFJSONSerializable {
 
     // MARK: - PUBLIC INITIALIZERS
 
-    public init(allowsBreaks: Bool = false) {
+    public init(allowsBreaks: Bool = false, backgroundColor: UIColor? = nil) {
         self.allowsBreaks = allowsBreaks
+        self.backgroundColor = backgroundColor
     }
 
     /**
      Creates a new `PDFSectionColumn` with the same properties
      */
     var copy: PDFGroup {
-        return PDFGroup(allowsBreaks: self.allowsBreaks)
+        return PDFGroup(allowsBreaks: self.allowsBreaks, backgroundColor: self.backgroundColor)
     }
 }

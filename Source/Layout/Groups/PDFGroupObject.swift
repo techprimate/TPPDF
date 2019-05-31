@@ -22,12 +22,15 @@ class PDFGroupObject: PDFObject {
      */
     var objects: [(container: PDFGroupContainer, object: PDFObject)]
 
+    var backgroundColor: UIColor?
+
     /**
      TODO: Documentation
      */
-    init(allowsBreaks: Bool, objects: [(container: PDFGroupContainer, object: PDFObject)]) {
+    init(allowsBreaks: Bool, objects: [(container: PDFGroupContainer, object: PDFObject)], backgroundColor: UIColor?) {
         self.allowsBreaks = allowsBreaks
         self.objects = objects
+        self.backgroundColor = backgroundColor
     }
 
     /**
@@ -52,29 +55,55 @@ class PDFGroupObject: PDFObject {
             }
             result += calcResult
         }
+
+        self.frame = calculateFrame(objects: result)
+
         guard let pbObj = pageBreakObject else {
             return result
         }
 
         generator.layout.heights = heights
         generator.columnState = columnState
+        frame = CGRect.null
 
         result = [(container, self)]
         result += try pbObj.calculate(generator: generator, container: container)
+
         for (container, object) in objects {
             result += try object.calculate(generator: generator, container: container.contentContainer)
         }
 
-        self.frame = result.reduce(CGRect.zero, { (prev, arg) -> CGRect in prev.union(arg.1.frame) })
+        self.frame = calculateFrame(objects: result)
 
         return result
+    }
+
+    private func calculateFrame(objects: [(container: PDFContainer, object: PDFObject)]) -> CGRect {
+        return objects.reduce(CGRect.null, { (prev, arg) -> CGRect in
+            if arg.object is PDFSpaceObject {
+                var spaceFrame = arg.object.frame
+                spaceFrame.size.width = 0
+                return prev.union(spaceFrame)
+            }
+            return prev.union(arg.object.frame)
+        })
+    }
+
+    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+        guard let backgroundColor = backgroundColor else {
+            return
+        }
+        PDFGraphics.drawRect(rect: self.frame,
+                             outline: .none, fill: backgroundColor)
     }
 
     /**
      Creates a new `PDFGroupObject` with the same properties
      */
     override var copy: PDFObject {
-        return PDFGroupObject(allowsBreaks: self.allowsBreaks, objects: objects.map { ($0, $1.copy)})
+        return PDFGroupObject(allowsBreaks: self.allowsBreaks,
+                              objects: self.objects.map { ($0, $1.copy)},
+                              backgroundColor: self.backgroundColor)
     }
 }
 
