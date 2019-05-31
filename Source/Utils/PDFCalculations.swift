@@ -94,9 +94,9 @@ class PDFCalculations {
      TODO: documentation
      */
     static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
-        let pageLayout = generator.document.layout
-
-        return pageLayout.contentSize.width
+        return generator.document.layout.width
+            - generator.layout.margin.left
+            - generator.layout.margin.right
             - generator.layout.indentation.leftIn(container: container)
             - generator.columnState.inset.left
             - generator.layout.indentation.rightIn(container: container)
@@ -131,10 +131,12 @@ class PDFCalculations {
         if container.isHeader || container.isFooter {
             return pageLayout.height
         } else {
-            return pageLayout.contentSize.height
+            return pageLayout.height
+                - layout.margin.top
                 - layout.heights.maxHeaderHeight()
                 - layout.heights.content
                 - layout.heights.maxFooterHeight()
+                - layout.margin.bottom
         }
     }
 
@@ -143,27 +145,28 @@ class PDFCalculations {
      */
     private static func calculatePositionX(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
-        let pageLayout = generator.document.layout
 
         if container.isLeft {
-            return pageLayout.margin.left
+            return generator.layout.margin.left
                 + layout.indentation.leftIn(container: container)
                 + generator.columnState.inset.left
         } else if container.isRight {
-            return pageLayout.width
-                - pageLayout.margin.right
+            return generator.document.layout.width
+                - generator.layout.margin.right
                 - layout.indentation.rightIn(container: container)
                 - size.width
                 - generator.columnState.inset.right
         } else {
-            return pageLayout.margin.left
+            return generator.layout.margin.left
                 + layout.indentation.leftIn(container: container)
                 + generator.columnState.inset.left
-                + (pageLayout.contentSize.width
+                + (generator.document.layout.width
+                    - generator.layout.margin.left
                     - layout.indentation.leftIn(container: container)
                     - generator.columnState.inset.left
-                    - layout.indentation.rightIn(container: container)
                     - generator.columnState.inset.right
+                    - layout.indentation.rightIn(container: container)
+                    - generator.layout.margin.right
                     - size.width
                 ) / 2
         }
@@ -177,15 +180,15 @@ class PDFCalculations {
         let pageLayout = generator.document.layout
 
         if container.isHeader {
-            return pageLayout.margin.top
+            return layout.margin.top
                 + layout.heights.value(for: container)
         } else if container.isFooter {
             return pageLayout.height
-                - pageLayout.margin.bottom
+                - layout.margin.bottom
                 - layout.heights.value(for: container)
                 - size.height
         } else {
-            return pageLayout.margin.top
+            return layout.margin.top
                 + layout.heights.maxHeaderHeight()
                 + pageLayout.space.header
                 + layout.heights.content
@@ -286,8 +289,8 @@ class PDFCalculations {
                                                         currentRange: CFRange,
                                                         textMaxWidth: CGFloat) -> (CGRect, CTFrame, CGSize) {
         let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : (generator.document.layout.width
-            - generator.document.layout.margin.left
-            - generator.document.layout.margin.right
+            - generator.layout.margin.left
+            - generator.layout.margin.right
             - generator.layout.indentation.leftIn(container: container)
             - generator.layout.indentation.rightIn(container: container))
 
@@ -296,7 +299,7 @@ class PDFCalculations {
                 return generator.document.layout.height
                     - generator.layout.heights.header[container]!
             } else if container.isFooter {
-                return generator.document.layout.margin.bottom
+                return generator.layout.margin.bottom
             } else {
                 return generator.document.layout.height
                     - generator.layout.heights.maxHeaderHeight()
@@ -311,14 +314,14 @@ class PDFCalculations {
         let x: CGFloat = {
             switch container {
             case .headerLeft, .contentLeft, .footerLeft:
-                return generator.document.layout.margin.left
+                return generator.layout.margin.left
                     + generator.layout.indentation.leftIn(container: container)
             case .headerCenter, .contentCenter, .footerCenter:
                 return generator.document.layout.bounds.midX
                     - textMaxWidth / 2
             case .headerRight, .contentRight, .footerRight:
                 return generator.document.layout.width
-                    - generator.document.layout.margin.right
+                    - generator.layout.margin.right
                     - textMaxWidth
             default:
                 return 0

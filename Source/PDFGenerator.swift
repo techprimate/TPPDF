@@ -45,6 +45,11 @@ public class PDFGenerator {
     var columnState = PDFColumnLayoutState()
 
     /**
+     TODO: Documentation
+     */
+    var masterGroup: PDFGroupObject?
+
+    /**
      Relative value tracking progress
      */
     var progressValue: CGFloat = 0
@@ -96,6 +101,7 @@ public class PDFGenerator {
      */
     func resetGenerator() {
         layout.reset()
+        columnState.reset()
         currentPage = 1
     }
 }

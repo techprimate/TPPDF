@@ -35,6 +35,10 @@ class PDFSectionObject: PDFObject {
         var columnWidthSum: CGFloat = 0.0
         var objectsPerColumn: [Int: [(PDFContainer, PDFObject)]] = [:]
 
+        let contentWidth = generator.document.layout.width
+            - generator.layout.margin.left
+            - generator.layout.margin.right
+
         for (columnIndex, column) in section.columns.enumerated() {
             columnWidthSum += column.width
 
@@ -44,15 +48,15 @@ class PDFSectionObject: PDFObject {
             for container in [PDFContainer.contentLeft, .contentCenter, .contentRight] {
                 generator.setContentOffset(in: container, to: originalContentOffset)
                 generator.layout.indentation.setLeft(indentation: indentationLeft + columnLeftMargin, in: container)
-                generator.layout.indentation.setRight(indentation: generator.document.layout.contentSize.width
-                    - columnWidthSum * generator.document.layout.contentSize.width
+                generator.layout.indentation.setRight(indentation: contentWidth
+                    - columnWidthSum * contentWidth
                     + columnRightMargin, in: container)
             }
 
             let object = PDFSectionColumnObject(column: column)
             objectsPerColumn[columnIndex] = try object.calculate(generator: generator, container: container)
 
-            indentationLeft += column.width * generator.document.layout.contentSize.width
+            indentationLeft += column.width * contentWidth
         }
         result += calulatePageBreakPositions(objectsPerColumn)
         generator.layout.indentation.content = originalIndent

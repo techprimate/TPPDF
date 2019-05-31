@@ -110,6 +110,17 @@ extension PDFGenerator {
      - returns: List of renderable objects
      */
     public func createRenderObjects(progress: ((CGFloat) -> Void)?) throws -> [(PDFContainer, PDFObject)] {
+        layout.margin = document.layout.margin
+
+        // First calculate master objects
+        var masterObjects: [(PDFContainer, PDFObject)] = []
+        if let masterGroup = document.masterGroup {
+            masterObjects = try masterGroup.calculate(generator: self, container: .contentLeft)
+        }
+        resetGenerator()
+
+        layout.margin = document.layout.margin
+
         // Extract content objects
         let contentObjects = PDFGenerator.extractContentObjects(objects: document.objects)
         let numContentObjects = contentObjects.count
@@ -158,7 +169,9 @@ extension PDFGenerator {
 
         // Reset all changes made by metrics calculation to generator
         resetGenerator()
-        allObjects = []
+        layout.margin = document.layout.margin
+
+        allObjects = masterObjects
 
         // Only calculate render header & footer metrics if page has content.
         if contentObjects.count > 0 {
@@ -169,7 +182,12 @@ extension PDFGenerator {
         for (container, pdfObject) in contentObjects {
             let objects = try pdfObject.calculate(generator: self, container: container)
             for obj in objects {
+
                 allObjects.append(obj)
+
+                if let pageBreak = obj.1 as? PDFPageBreakObject, !pageBreak.stayOnSamePage {
+                    allObjects.append(contentsOf: masterObjects)
+                }
 
                 if obj.1 is PDFPageBreakObject {
                     currentPage += 1
@@ -220,10 +238,10 @@ extension PDFGenerator {
         let headerFooterDebugLineStyle = PDFLineStyle(type: .dashed, color: .orange, width: 1)
 
         let yPositions = [
-            document.layout.margin.top + layout.heights.maxHeaderHeight(),
-            document.layout.margin.top + layout.heights.maxHeaderHeight() + document.layout.space.header,
-            document.layout.height - document.layout.margin.bottom - layout.heights.maxFooterHeight(),
-            document.layout.height - document.layout.margin.bottom - layout.heights.maxFooterHeight() - document.layout.space.footer
+            layout.margin.top + layout.heights.maxHeaderHeight(),
+            layout.margin.top + layout.heights.maxHeaderHeight() + document.layout.space.header,
+            document.layout.height - layout.margin.bottom - layout.heights.maxFooterHeight(),
+            document.layout.height - layout.margin.bottom - layout.heights.maxFooterHeight() - document.layout.space.footer
         ]
 
         var lines: [PDFLineObject] = []

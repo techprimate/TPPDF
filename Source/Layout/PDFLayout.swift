@@ -20,6 +20,12 @@ class PDFLayout: PDFJSONSerializable {
      */
     var indentation = PDFLayoutIndentations()
 
+
+    /**
+     TODO: documentation
+     */
+    var margin: UIEdgeInsets = .zero
+
     // MARK: - INTERNAL FUNCS
 
     /**
@@ -53,5 +59,6 @@ class PDFLayout: PDFJSONSerializable {
     func reset() {
         heights = PDFLayoutHeights()
         indentation = PDFLayoutIndentations()
+        margin = .zero
     }
 }

@@ -18,6 +18,14 @@ class PDFColumnLayoutState {
 
     var inset: (left: CGFloat, right: CGFloat) = (0,0)
 
+    func reset() {
+        maxColumns = nil
+        currentColumn = 0
+        columnWidths = []
+        columnSpacings = []
+        wrapColumnsHeight = 0
+        inset = (0,0)
+    }
 }
 
 extension PDFColumnLayoutState: NSCopying {
