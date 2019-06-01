@@ -50,6 +50,11 @@ public class PDFGenerator {
     var masterGroup: PDFGroupObject?
 
     /**
+     TODO: Documentation
+     */
+    var currentPadding = UIEdgeInsets.zero
+
+    /**
      Relative value tracking progress
      */
     var progressValue: CGFloat = 0
@@ -92,6 +97,8 @@ public class PDFGenerator {
      */
     public init(document: PDFDocument) {
         self.document = document
+
+        layout.margin = document.layout.margin
     }
 
     // MARK: - INTERNAL FUNCS
