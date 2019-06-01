@@ -5,38 +5,57 @@
 //  Created by Philip Niedertscheider on 04/11/2017.
 //
 
-/**
- Adds two points together, by adding their components.
+import Foundation
+import UIKit
 
- - parameter lhs: CGPoint
- - parameter rhs: CGPoint
+extension CGPoint {
 
- - returns: Added point
- */
-public func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
-    return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
-}
+    /**
+     Adds a vector to a point
 
-/**
- Subtracts two points from each other, by subtracting their components.
+     - parameter lhs: CGPoint
+     - parameter rhs: CGVector
 
- - parameter lhs: CGPoint
- - parameter rhs: CGPoint
+     - returns: Translated point
+     */
+    public static func + (lhs: CGPoint, rhs: CGVector) -> CGPoint {
+        return CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
+    }
 
- - returns: Subtracted point
- */
-public func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
-    return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
-}
+    /**
+     Adds two points together, by adding their components.
 
-/**
- Adds a value to both components of a point
+     - parameter lhs: CGPoint
+     - parameter rhs: CGPoint
 
- - parameter lhs: Point
- - parameter value: Value
+     - returns: Added point
+     */
+    public static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+        return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
 
- - returns: Moved point
- */
-public func + (lhs: CGPoint, value: CGFloat) -> CGPoint {
-    return CGPoint(x: lhs.x + value, y: lhs.y + value)
+    /**
+     Subtracts two points from each other, by subtracting their components.
+
+     - parameter lhs: CGPoint
+     - parameter rhs: CGPoint
+
+     - returns: Subtracted point
+     */
+    public static func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+        return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
+
+    /**
+     Adds a value to both components of a point
+
+     - parameter lhs: Point
+     - parameter value: Value
+
+     - returns: Moved point
+     */
+    public static func + (lhs: CGPoint, value: CGFloat) -> CGPoint {
+        return CGPoint(x: lhs.x + value, y: lhs.y + value)
+    }
+
 }
