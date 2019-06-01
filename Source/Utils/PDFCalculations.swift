@@ -101,6 +101,8 @@ class PDFCalculations {
             - generator.columnState.inset.left
             - generator.layout.indentation.rightIn(container: container)
             - generator.columnState.inset.right
+            - generator.currentPadding.left
+            - generator.currentPadding.right
     }
 
     /**
@@ -150,16 +152,19 @@ class PDFCalculations {
             return generator.layout.margin.left
                 + layout.indentation.leftIn(container: container)
                 + generator.columnState.inset.left
+                + generator.currentPadding.left
         } else if container.isRight {
             return generator.document.layout.width
                 - generator.layout.margin.right
                 - layout.indentation.rightIn(container: container)
                 - size.width
                 - generator.columnState.inset.right
+                - generator.currentPadding.right
         } else {
             return generator.layout.margin.left
                 + layout.indentation.leftIn(container: container)
                 + generator.columnState.inset.left
+                + generator.currentPadding.left
                 + (generator.document.layout.width
                     - generator.layout.margin.left
                     - layout.indentation.leftIn(container: container)
@@ -167,6 +172,8 @@ class PDFCalculations {
                     - generator.columnState.inset.right
                     - layout.indentation.rightIn(container: container)
                     - generator.layout.margin.right
+                    - generator.currentPadding.left
+                    - generator.currentPadding.right
                     - size.width
                 ) / 2
         }
