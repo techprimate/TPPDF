@@ -14,6 +14,10 @@ public class PDFGroup: PDFJSONSerializable {
     public var allowsBreaks: Bool
 
     public var backgroundColor: UIColor?
+    public var backgroundImage: PDFImage?
+    public var backgroundShape: PDFDynamicGeometryShape?
+
+    public var padding: UIEdgeInsets
 
     // MARK: - INTERNAL VARS
 
@@ -24,15 +28,26 @@ public class PDFGroup: PDFJSONSerializable {
 
     // MARK: - PUBLIC INITIALIZERS
 
-    public init(allowsBreaks: Bool = false, backgroundColor: UIColor? = nil) {
+    public init(allowsBreaks: Bool = false,
+                backgroundColor: UIColor? = nil,
+                backgroundImage: PDFImage? = nil,
+                backgroundShape: PDFDynamicGeometryShape? = nil,
+                padding: UIEdgeInsets = .zero) {
         self.allowsBreaks = allowsBreaks
         self.backgroundColor = backgroundColor
+        self.backgroundImage = backgroundImage
+        self.backgroundShape = backgroundShape
+        self.padding = padding
     }
 
     /**
      Creates a new `PDFSectionColumn` with the same properties
      */
     var copy: PDFGroup {
-        return PDFGroup(allowsBreaks: self.allowsBreaks, backgroundColor: self.backgroundColor)
+        return PDFGroup(allowsBreaks: self.allowsBreaks,
+                        backgroundColor: self.backgroundColor,
+                        backgroundImage: self.backgroundImage,
+                        backgroundShape: self.backgroundShape,
+                        padding: self.padding)
     }
 }
