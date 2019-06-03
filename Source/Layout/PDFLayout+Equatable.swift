@@ -5,18 +5,21 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
+/**
+ TODO: documentation
+ */
 extension PDFLayout: Equatable {
 
+    /**
+     TODO: documentation
+     */
     public static func == (lhs: PDFLayout, rhs: PDFLayout) -> Bool {
-        if lhs.heights != rhs.heights {
+        guard lhs.heights == rhs.heights else {
             return false
         }
-
-        if lhs.indentation != rhs.indentation {
+        guard lhs.indentation == rhs.indentation else {
             return false
         }
-
         return true
     }
-
 }

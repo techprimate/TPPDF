@@ -89,6 +89,17 @@ class PDFCalculations {
     }
 
     /**
+     TODO: documentation
+     */
+    static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
+        let pageLayout = generator.document.layout
+
+        return pageLayout.contentSize.width
+            - generator.layout.indentation.leftIn(container: container)
+            - generator.layout.indentation.rightIn(container: container)
+    }
+
+    /**
      Calculates the position of an element with given `size` in the given `container
 
      - parameter generator: Generator doing the calculations
@@ -106,14 +117,9 @@ class PDFCalculations {
 
     // MARK: - PRIVATE STATIC FUNCS
 
-    private static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
-        let pageLayout = generator.document.layout
-
-        return pageLayout.contentSize.width
-            - generator.layout.indentation.leftIn(container: container)
-            - generator.layout.indentation.rightIn(container: container)
-    }
-
+    /**
+     TODO: Documentation
+     */
     private static func calculateAvailableFrameHeight(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
@@ -128,6 +134,9 @@ class PDFCalculations {
         }
     }
 
+    /**
+     TODO: Documentation
+     */
     private static func calculatePositionX(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
@@ -151,6 +160,9 @@ class PDFCalculations {
         }
     }
 
+    /**
+     TODO: Documentation
+     */
     private static func calculatePositionY(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
@@ -171,6 +183,9 @@ class PDFCalculations {
         }
     }
 
+    /**
+     TODO: Documentation
+     */
     static func calculateContentOffset(for generator: PDFGenerator, of element: PDFObject, in container: PDFContainer) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
@@ -192,6 +207,9 @@ class PDFCalculations {
         }
     }
 
+    /**
+     TODO: Documentation
+     */
     static func calculateContentOffset(for generator: PDFGenerator, of offset: CGFloat, in container: PDFContainer) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
@@ -214,6 +232,9 @@ class PDFCalculations {
 
     // MARK: - LEGACY
 
+    /**
+     TODO: Documentation
+     */
     static func calculateCellFrame(generator: PDFGenerator,
                                    container: PDFContainer,
                                    position: (origin: CGPoint, width: CGFloat),
@@ -237,6 +258,9 @@ class PDFCalculations {
         return CGRect(origin: CGPoint(x: x, y: position.origin.y), size: CGSize(width: drawnSize.width, height: drawnSize.height))
     }
 
+    /**
+     TODO: Documentation
+     */
     static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
         let imageSize = image.size
         let height = imageSize.height / imageSize.width * width
@@ -244,6 +268,9 @@ class PDFCalculations {
         return CGRect(x: origin.x, y: origin.y, width: width, height: height)
     }
 
+    /**
+     TODO: Documentation
+     */
     static func calculateTextFrameAndDrawnSizeInOnePage(generator: PDFGenerator,
                                                         container: PDFContainer,
                                                         text: CFAttributedString,
@@ -314,6 +341,9 @@ class PDFCalculations {
         return calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
     }
 
+    /**
+     TODO: Documentation
+     */
     static func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect, text: CFAttributedString, currentRange: CFRange) -> (CGRect, CTFrame, CGSize) {
         let framesetter = CTFramesetterCreateWithAttributedString(text)
         let framePath = UIBezierPath(rect: frame).cgPath
@@ -332,6 +362,9 @@ class PDFCalculations {
         return (frame, frameRef, drawnSize)
     }
 
+    /**
+     TODO: Documentation
+     */
     static func calculateImageCaptionSize(generator: PDFGenerator,
                                           container: PDFContainer,
                                           image: PDFImage,

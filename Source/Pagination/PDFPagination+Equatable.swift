@@ -5,13 +5,27 @@
 //  Created by Philip Niedertscheider on 04/11/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 extension PDFPagination: Equatable {
 
+    /**
+     TODO: Documentation
+     */
     public static func == (lhs: PDFPagination, rhs: PDFPagination) -> Bool {
-        return lhs.container == rhs.container
-            && lhs.style == rhs.style
-            && lhs.range == rhs.range
-            && lhs.hiddenPages == rhs.hiddenPages
+        guard lhs.container == rhs.container else {
+            return false
+        }
+        guard lhs.style == rhs.style else {
+            return false
+        }
+        guard lhs.range == rhs.range else {
+            return false
+        }
+        guard lhs.hiddenPages == rhs.hiddenPages else {
+            return false
+        }
+        return true
     }
-
 }

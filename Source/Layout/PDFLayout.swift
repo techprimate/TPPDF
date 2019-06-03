@@ -10,11 +10,21 @@
  */
 class PDFLayout: PDFJSONSerializable {
 
+    /**
+     TODO: documentation
+     */
     var heights = PDFLayoutHeights()
+
+    /**
+     TODO: documentation
+     */
     var indentation = PDFLayoutIndentations()
 
     // MARK: - INTERNAL FUNCS
 
+    /**
+     TODO: documentation
+     */
     func getContentOffset(in container: PDFContainer) -> CGFloat {
         if container.isHeader {
             return heights.header[container]!
@@ -24,6 +34,9 @@ class PDFLayout: PDFJSONSerializable {
         return heights.content
     }
 
+    /**
+     TODO: documentation
+     */
     func setContentOffset(in container: PDFContainer, to value: CGFloat) {
         if container.isHeader {
             heights.header[container] = value
@@ -34,9 +47,11 @@ class PDFLayout: PDFJSONSerializable {
         }
     }
 
+    /**
+     TODO: documentation
+     */
     func reset() {
         heights = PDFLayoutHeights()
         indentation = PDFLayoutIndentations()
     }
-
 }

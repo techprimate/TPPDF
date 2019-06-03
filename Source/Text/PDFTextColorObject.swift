@@ -40,6 +40,9 @@ class PDFTextColorObject: PDFObject {
         return [(container, self)]
     }
 
+    /**
+     Creates a new `PDFTextColorObject` with the same properties
+     */
     override var copy: PDFObject {
         return PDFTextColorObject(color: self.color)
     }

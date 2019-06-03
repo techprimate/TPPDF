@@ -21,7 +21,6 @@ class PDFPageBreakObject: PDFObject {
 
      - returns: Self
      */
-    @discardableResult
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         generator.layout.heights.content = 0
 
@@ -42,8 +41,10 @@ class PDFPageBreakObject: PDFObject {
         generator.drawDebugPageOverlay()
     }
 
+    /**
+     Creates a new `PDFPageBreakObject`
+     */
     override var copy: PDFObject {
         return PDFPageBreakObject()
     }
-
 }

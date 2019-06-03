@@ -71,14 +71,16 @@ class PDFLineObject: PDFObject {
         PDFGraphics.drawLine(
             start: startPoint,
             end: endPoint,
-            style: style
-        )
+            style: style)
 
         if generator.debug && (style.type == .none) {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
         }
     }
 
+    /**
+     Creates a copy of this `PDFLineObject` with the same properties
+     */
     override var copy: PDFObject {
         return PDFLineObject(style: self.style, startPoint: self.startPoint, endPoint: self.endPoint)
     }

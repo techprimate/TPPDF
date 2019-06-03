@@ -33,6 +33,9 @@ public class PDFSimpleText: PDFText {
         self.spacing = spacing
     }
 
+    /**
+     Creates a new `PDFSimpleText` with the same properties
+     */
     override var copy: PDFText {
         return PDFSimpleText(text: self.text, spacing: self.spacing)
     }

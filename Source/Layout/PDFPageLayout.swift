@@ -88,5 +88,4 @@ public struct PDFPageLayout: PDFJSONSerializable {
                 - margin.bottom
         )
     }
-
 }

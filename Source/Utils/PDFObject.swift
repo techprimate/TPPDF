@@ -41,6 +41,9 @@ public class PDFObject: PDFJSONSerializable {
      */
     func draw(generator: PDFGenerator, container: PDFContainer) throws {}
 
+    /**
+     TODO: Documentation
+     */
     var copy: PDFObject {
         fatalError()
     }

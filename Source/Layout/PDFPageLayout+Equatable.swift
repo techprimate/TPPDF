@@ -5,22 +5,24 @@
 //  Created by Philip Niedertscheider on 04/11/2017.
 //
 
+/**
+ TODO: documentation
+ */
 extension PDFPageLayout: Equatable {
 
+    /**
+     TODO: documentation
+     */
     public static func == (lhs: PDFPageLayout, rhs: PDFPageLayout) -> Bool {
-        if lhs.size != rhs.size {
+        guard lhs.size == rhs.size else {
             return false
         }
-
-        if lhs.margin != rhs.margin {
+        guard lhs.margin == rhs.margin else {
             return false
         }
-
-        if lhs.space != rhs.space {
+        guard lhs.space == rhs.space else {
             return false
         }
-
         return true
     }
-
 }

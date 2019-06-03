@@ -11,7 +11,7 @@
  Generally a document is vertically split up into a header, a content and a footer area.
  Also each part is horizontally split up into a left, a center and a right area.
  */
-public enum PDFContainer {
+public enum PDFContainer: CaseIterable {
 
     /**
      Element is in no container, only real use is as a default value
@@ -85,6 +85,13 @@ public enum PDFContainer {
         default:
             return false
         }
+    }
+
+    /**
+     Checks if this container is neither in header nor in footer, therefore in the center area
+     */
+    var isCenter: Bool {
+        return !isHeader && !isFooter
     }
 
     /**

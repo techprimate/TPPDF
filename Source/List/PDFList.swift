@@ -67,9 +67,12 @@ public class PDFList: PDFJSONSerializable {
         self.items = []
     }
 
+    /**
+
+     */
     var copy: PDFList {
         let list = PDFList(indentations: self.levelIndentations)
-        list.items = items
+        list.items = items.map { $0.copy }
         return list
     }
 

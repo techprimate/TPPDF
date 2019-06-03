@@ -172,7 +172,7 @@ class PDFGraphics {
             finalImage = compress(image: finalImage, quality: quality)
         }
         if !roundCorners.isEmpty {
-            finalImage = round(image: finalImage, frame: frame, corners: roundCorners, cornerRadius: cornerRadius)
+            finalImage = round(image: finalImage, frameSize: frame.size, corners: roundCorners, cornerRadius: cornerRadius)
         }
 
         return finalImage
@@ -208,6 +208,8 @@ class PDFGraphics {
 
      - parameter image: Image to compress
      - parameter quality: Value between 0.0 and 1.0, where 1.0 is maximum quality/least compression
+
+     - returns: Compressed image
      */
     static func compress(image: UIImage, quality: CGFloat) -> UIImage {
         guard let data = image.jpegData(compressionQuality: quality) else {
@@ -219,15 +221,25 @@ class PDFGraphics {
         return compressed
     }
 
-    static func round(image: UIImage, frame: CGRect, corners: UIRectCorner, cornerRadius: CGFloat?) -> UIImage {
+    /**
+     Clips an image to add round corners
+
+     - parameter image: Image to edit
+     - parameter size: Size of final image, used to calculate correct radii limits
+     - parameter cornerRadius: Optional value used as radius, if null half of the minimum of the size width or height is used,
+                               resulting in a round image
+
+     - returns: Manipulated image
+     */
+    static func round(image: UIImage, frameSize: CGSize, corners: UIRectCorner, cornerRadius: CGFloat?) -> UIImage {
         let size = image.size
 
         var cornerRadii = CGSize.zero
         if var radius = cornerRadius {
-            radius = radius * (frame.width > frame.height ? size.width / frame.width : size.height / frame.height)
+            radius = radius * (frameSize.width > frameSize.height ? size.width / frameSize.width : size.height / frameSize.height)
             cornerRadii = CGSize(width: radius, height: radius)
         } else {
-            let radius = size.width < size.height ? frame.width / 2 : frame.height / 2
+            let radius = size.width < size.height ? frameSize.width / 2 : frameSize.height / 2
             cornerRadii = CGSize(width: radius, height: radius)
         }
 
