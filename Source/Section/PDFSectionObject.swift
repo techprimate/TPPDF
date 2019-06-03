@@ -8,24 +8,24 @@
 /**
  TODO: Documentation
  */
-class PDFSectionObject: PDFObject {
+internal class PDFSectionObject: PDFObject {
 
     /**
      TODO: Documentation
      */
-    var section: PDFSection
+    internal var section: PDFSection
 
     /**
      TODO: Documentation
      */
-    init(section: PDFSection) {
+    internal init(section: PDFSection) {
         self.section = section
     }
 
     /**
      TODO: Documentation
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
         let originalIndent = generator.layout.indentation.content
@@ -110,9 +110,9 @@ class PDFSectionObject: PDFObject {
      ...
      ```
      */
-    func calulatePageBreakPositions(_ objectsPerColumn: [Int: [(PDFContainer, PDFObject)]]) -> [(PDFContainer, PDFObject)] {
+    internal func calulatePageBreakPositions(_ objectsPerColumn: [Int: [(PDFContainer, PDFObject)]]) -> [(PDFContainer, PDFObject)] {
         // stores how many objects are in one column at max
-        let maxObjectsPerColumn = objectsPerColumn.reduce(0) { return max($0, $1.value.count) }
+        let maxObjectsPerColumn = objectsPerColumn.reduce(0) { max($0, $1.value.count) }
 
         /* as soon as a column requests a page break, we need to stack subsequent objects of the very same column until the following is `true`:
          * one or more columns do not have more objects and all other columns, which have more objects left, are requesting a page break
@@ -147,13 +147,13 @@ class PDFSectionObject: PDFObject {
 
             // does any of the columns request a page break?
             let isPageBreakNeeded = objectsPerColumn.keys.contains { columnIndex -> Bool in
-                return stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject
+                stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject
             }
             guard isPageBreakNeeded else { continue }
 
             // do all columns requesting a page break or if not, do they not contain any further objects?
             let isPageBreakAllowed = objectsPerColumn.keys.allSatisfy { columnIndex in
-                return stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject ||
+                stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject ||
                     (objectsPerColumn[columnIndex]?.count ?? 0) < objectIndex
             }
             guard isPageBreakAllowed else { continue }
@@ -187,7 +187,7 @@ class PDFSectionObject: PDFObject {
     /**
      Creates a new `PDFSectionObject` with the same properties
      */
-    override var copy: PDFObject {
+    override internal var copy: PDFObject {
         return PDFSectionObject(section: self.section.copy)
     }
 }

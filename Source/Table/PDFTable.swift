@@ -87,7 +87,7 @@ public class PDFTable: PDFJSONSerializable {
     /**
      Creates a new `PDFTable` with the same properties
      */
-    var copy: PDFTable {
+    internal var copy: PDFTable {
         let table = PDFTable()
         table.style = self.style
         table.cells = self.cells

@@ -8,22 +8,22 @@
 /**
  Holds indentations of header, content and footer.
  */
-struct PDFLayoutIndentations {
+internal struct PDFLayoutIndentations {
 
     /**
      Left and right indentation of header containers
      */
-    var header: (left: CGFloat, right: CGFloat) = (0, 0)
+    internal var header: (left: CGFloat, right: CGFloat) = (0, 0)
 
     /**
      Left and right indentation of content containers
      */
-    var content: (left: CGFloat, right: CGFloat) = (0, 0)
+    internal var content: (left: CGFloat, right: CGFloat) = (0, 0)
 
     /**
      Left and right indentation of footer containers
      */
-    var footer: (left: CGFloat, right: CGFloat) = (0, 0)
+    internal var footer: (left: CGFloat, right: CGFloat) = (0, 0)
 
     // MARK: - INTERNAL FUNCS
 
@@ -34,7 +34,7 @@ struct PDFLayoutIndentations {
 
      - returns: Left indentation of given container
      */
-    func leftIn(container: PDFContainer) -> CGFloat {
+    internal func leftIn(container: PDFContainer) -> CGFloat {
         if container.isHeader {
             return header.left
         } else if container.isFooter {
@@ -50,7 +50,7 @@ struct PDFLayoutIndentations {
 
      - returns: Right indentation of given container
      */
-    func rightIn(container: PDFContainer) -> CGFloat {
+    internal func rightIn(container: PDFContainer) -> CGFloat {
         if container.isHeader {
             return header.right
         } else if container.isFooter {
@@ -65,7 +65,7 @@ struct PDFLayoutIndentations {
      - parameter indentation: Distance of points
      - parameter container: Corresponding container
      */
-    mutating func setLeft(indentation: CGFloat, in container: PDFContainer) {
+    internal mutating func setLeft(indentation: CGFloat, in container: PDFContainer) {
         if container.isHeader {
             header.left = indentation
         } else if container.isFooter {
@@ -81,7 +81,7 @@ struct PDFLayoutIndentations {
      - parameter indentation: Distance of points
      - parameter container: Corresponding container
      */
-    mutating func setRight(indentation: CGFloat, in container: PDFContainer) {
+    internal mutating func setRight(indentation: CGFloat, in container: PDFContainer) {
         if container.isHeader {
             header.right = indentation
         } else if container.isFooter {

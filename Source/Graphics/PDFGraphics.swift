@@ -15,7 +15,7 @@
 
  - Image resizing and compression
  */
-class PDFGraphics {
+internal enum PDFGraphics {
 
     // MARK: - INTERNAL STATIC FUNCS
 
@@ -28,7 +28,7 @@ class PDFGraphics {
      - parameter end: End point of line
      - parameter style: Style of drawn line
      */
-    static func drawLine(start: CGPoint, end: CGPoint, style: PDFLineStyle) {
+    internal static func drawLine(start: CGPoint, end: CGPoint, style: PDFLineStyle) {
         if let path = createLinePath(start: start, end: end, style: style) {
             style.color.setStroke()
 
@@ -45,7 +45,7 @@ class PDFGraphics {
 
      - returns: Bezier path of line, `nil` if line type in `style` was `PDFLineType.none`
      */
-    static func createLinePath(start: CGPoint, end: CGPoint, style: PDFLineStyle) -> UIBezierPath? {
+    internal static func createLinePath(start: CGPoint, end: CGPoint, style: PDFLineStyle) -> UIBezierPath? {
         if style.type == .none {
             return nil
         }
@@ -70,7 +70,7 @@ class PDFGraphics {
      - parameter outline: Style of border lines
      - parameter fill: Inner color
      */
-    static func drawRect(rect: CGRect, outline: PDFLineStyle, fill: UIColor = .clear) {
+    internal static func drawRect(rect: CGRect, outline: PDFLineStyle, fill: UIColor = .clear) {
         let path = createRectPath(rect: rect, outline: outline)
 
         outline.color.setStroke()
@@ -87,7 +87,7 @@ class PDFGraphics {
      - parameter outline: Style of border lines
      - parameter fill: Inner color
      */
-    static func drawRect(rect: CGRect, outline: PDFLineStyle, pattern: FillPattern) {
+    internal static func drawRect(rect: CGRect, outline: PDFLineStyle, pattern: FillPattern) {
         let path = createRectPath(rect: rect, outline: outline)
 
         outline.color.setStroke()
@@ -103,7 +103,7 @@ class PDFGraphics {
      - parameter rect: Frame of rectangle
      - parameter outline: Style of border lines
      */
-    static func createRectPath(rect: CGRect, outline: PDFLineStyle) -> UIBezierPath {
+    internal static func createRectPath(rect: CGRect, outline: PDFLineStyle) -> UIBezierPath {
         var path = UIBezierPath(rect: rect)
         if let radius = outline.radius {
             path = UIBezierPath.init(roundedRect: rect, cornerRadius: radius)
@@ -127,7 +127,7 @@ class PDFGraphics {
 
      - returns: Array with dash values
      */
-    static func createDashes(style: PDFLineStyle, path: inout UIBezierPath) -> [CGFloat] {
+    internal static func createDashes(style: PDFLineStyle, path: inout UIBezierPath) -> [CGFloat] {
         var dashes: [CGFloat] = []
 
         switch style.type {
@@ -147,7 +147,7 @@ class PDFGraphics {
     /**
      TODO: Documentation
      */
-    static func drawPath(path: UIBezierPath, outline: PDFLineStyle, fillColor: UIColor) {
+    internal static func drawPath(path: UIBezierPath, outline: PDFLineStyle, fillColor: UIColor) {
         var path = path.copy() as! UIBezierPath
         let dashes = createDashes(style: outline, path: &path)
         path.setLineDash(dashes, count: dashes.count, phase: 0.0)
@@ -175,10 +175,10 @@ class PDFGraphics {
 
      - returns: Resized, compressed and rounded copy of `image`
      */
-    static func resizeAndCompressImage(image: UIImage, frame: CGRect,
-                                       shouldResize: Bool, shouldCompress: Bool,
-                                       quality: CGFloat,
-                                       roundCorners: UIRectCorner = [], cornerRadius: CGFloat? = nil) -> UIImage {
+    internal static func resizeAndCompressImage(image: UIImage, frame: CGRect,
+                                                shouldResize: Bool, shouldCompress: Bool,
+                                                quality: CGFloat,
+                                                roundCorners: UIRectCorner = [], cornerRadius: CGFloat? = nil) -> UIImage {
         var finalImage = image
 
         if shouldResize {
@@ -203,7 +203,7 @@ class PDFGraphics {
 
      - returns: Resized version of `image`
      */
-    static func resize(image: UIImage, frame: CGRect, quality: CGFloat) -> UIImage {
+    internal static func resize(image: UIImage, frame: CGRect, quality: CGFloat) -> UIImage {
         let factor: CGFloat = min(3 * quality, 1)
         let resizeFactor = factor.isZero ? 0.2 : factor
 
@@ -227,7 +227,7 @@ class PDFGraphics {
 
      - returns: Compressed image
      */
-    static func compress(image: UIImage, quality: CGFloat) -> UIImage {
+    internal static func compress(image: UIImage, quality: CGFloat) -> UIImage {
         guard let data = image.jpegData(compressionQuality: quality) else {
             return image
         }
@@ -243,11 +243,11 @@ class PDFGraphics {
      - parameter image: Image to edit
      - parameter size: Size of final image, used to calculate correct radii limits
      - parameter cornerRadius: Optional value used as radius, if null half of the minimum of the size width or height is used,
-                               resulting in a round image
+     resulting in a round image
 
      - returns: Manipulated image
      */
-    static func round(image: UIImage, frameSize: CGSize, corners: UIRectCorner, cornerRadius: CGFloat?) -> UIImage {
+    internal static func round(image: UIImage, frameSize: CGSize, corners: UIRectCorner, cornerRadius: CGFloat?) -> UIImage {
         let size = image.size
 
         var cornerRadii = CGSize.zero
@@ -273,7 +273,7 @@ class PDFGraphics {
     /**
      Constants for filling, mostly used for debugging elements
      */
-    enum FillPattern {
+    internal enum FillPattern {
 
         /**
          TODO: Documentation
@@ -283,7 +283,7 @@ class PDFGraphics {
         /**
          TODO: Documentation
          */
-        func setFill() {
+        internal func setFill() {
             switch self {
             case .dotted(let foreColor, let backColor):
                 UIGraphicsBeginImageContext(CGSize(width: 5, height: 5))

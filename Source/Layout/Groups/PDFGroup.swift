@@ -50,7 +50,7 @@ public class PDFGroup: PDFJSONSerializable {
     /**
      All objects inside the document and the container they are located in
      */
-    var objects: [(PDFGroupContainer, PDFObject)] = []
+    internal var objects: [(PDFGroupContainer, PDFObject)] = []
 
     // MARK: - PUBLIC INITIALIZERS
 
@@ -74,7 +74,7 @@ public class PDFGroup: PDFJSONSerializable {
     /**
      Creates a new `PDFSectionColumn` with the same properties
      */
-    var copy: PDFGroup {
+    internal var copy: PDFGroup {
         return PDFGroup(allowsBreaks: self.allowsBreaks,
                         backgroundColor: self.backgroundColor,
                         backgroundImage: self.backgroundImage,

@@ -10,19 +10,19 @@
 
  Separator line is drawn between left and right indentation.
  */
-class PDFLineSeparatorObject: PDFObject {
+internal class PDFLineSeparatorObject: PDFObject {
 
     /**
      Defines the style of the separator line
      */
-    var style: PDFLineStyle
+    internal var style: PDFLineStyle
 
     /**
      Initializer
 
      - parameter style: Style of line, defaults to `PDFLineStyle` defaults
      */
-    init(style: PDFLineStyle = PDFLineStyle()) {
+    internal init(style: PDFLineStyle = PDFLineStyle()) {
         self.style = style
     }
 
@@ -36,7 +36,7 @@ class PDFLineSeparatorObject: PDFObject {
 
      - returns: Self
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         let width = PDFCalculations.calculateAvailableFrameWidth(for: generator, in: container)
         let size = CGSize(width: width, height: style.width)
         let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: size)
@@ -53,7 +53,7 @@ class PDFLineSeparatorObject: PDFObject {
 
      - throws: None
      */
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
         PDFGraphics.drawLine(
             start: CGPoint(x: self.frame.minX, y: self.frame.midY),
             end: CGPoint(x: self.frame.maxX, y: self.frame.midY),
@@ -68,7 +68,7 @@ class PDFLineSeparatorObject: PDFObject {
     /**
      TODO: Documentation
      */
-    override var copy: PDFObject {
+    override internal var copy: PDFObject {
         return PDFLineSeparatorObject(style: self.style)
     }
 }

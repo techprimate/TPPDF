@@ -6,57 +6,58 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  TODO: Documentation
  */
-class PDFGroupObject: PDFObject {
+internal class PDFGroupObject: PDFObject {
 
     /**
      TODO: Documentation
      */
-    var allowsBreaks: Bool
+    internal var allowsBreaks: Bool
 
     /**
      TODO: Documentation
      */
-    var objects: [(container: PDFGroupContainer, object: PDFObject)]
+    internal var objects: [(container: PDFGroupContainer, object: PDFObject)]
 
     /**
      TODO: Documentation
      */
-    var backgroundColor: UIColor?
+    internal var backgroundColor: UIColor?
 
     /**
      TODO: Documentation
      */
-    var backgroundImage: PDFImage?
+    internal var backgroundImage: PDFImage?
 
     /**
      TODO: Documentation
      */
-    var backgroundShape: PDFDynamicGeometryShape?
+    internal var backgroundShape: PDFDynamicGeometryShape?
 
     /**
      TODO: Documentation
      */
-    var outline: PDFLineStyle
+    internal var outline: PDFLineStyle
 
     /**
      TODO: Documentation
      */
-    var padding: UIEdgeInsets
+    internal var padding: UIEdgeInsets
 
     /**
      TODO: Documentation
      */
-    init(objects: [(container: PDFGroupContainer, object: PDFObject)],
-         allowsBreaks: Bool,
-         backgroundColor: UIColor?,
-         backgroundImage: PDFImage?,
-         backgroundShape: PDFDynamicGeometryShape?,
-         outline: PDFLineStyle,
-         padding: UIEdgeInsets) {
+    internal init(objects: [(container: PDFGroupContainer, object: PDFObject)],
+                  allowsBreaks: Bool,
+                  backgroundColor: UIColor?,
+                  backgroundImage: PDFImage?,
+                  backgroundShape: PDFDynamicGeometryShape?,
+                  outline: PDFLineStyle,
+                  padding: UIEdgeInsets) {
         self.objects = objects
         self.allowsBreaks = allowsBreaks
         self.backgroundColor = backgroundColor
@@ -69,7 +70,7 @@ class PDFGroupObject: PDFObject {
     /**
      TODO: Documentation
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
         let heights = generator.layout.heights
@@ -152,7 +153,7 @@ class PDFGroupObject: PDFObject {
     /**
      TODO: Documentation
      */
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
         if let color = backgroundColor {
             let path = PDFGraphics.createRectPath(rect: self.frame, outline: self.outline)
             PDFGraphics.drawPath(path: path, outline: self.outline, fillColor: color)
@@ -172,8 +173,8 @@ class PDFGroupObject: PDFObject {
     /**
      Creates a new `PDFGroupObject` with the same properties
      */
-    override var copy: PDFObject {
-        return PDFGroupObject(objects: self.objects.map { ($0, $1.copy)},
+    override internal var copy: PDFObject {
+        return PDFGroupObject(objects: self.objects.map { ($0, $1.copy) },
                               allowsBreaks: self.allowsBreaks,
                               backgroundColor: self.backgroundColor,
                               backgroundImage: self.backgroundImage?.copy,

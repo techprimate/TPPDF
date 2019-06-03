@@ -8,12 +8,12 @@
 /**
  Used in the rendering to create a new page
  */
-class PDFPageBreakObject: PDFObject {
+internal class PDFPageBreakObject: PDFObject {
 
     /**
      TODO: Documentation
      */
-    var stayOnSamePage: Bool = false
+    internal var stayOnSamePage: Bool = false
 
     /**
      Modifies the layout and page count of the given `generator`.
@@ -26,7 +26,7 @@ class PDFPageBreakObject: PDFObject {
 
      - returns: Self
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         generator.layout.heights.content = generator.columnState.wrapColumnsHeight
 
         stayOnSamePage = false
@@ -62,7 +62,7 @@ class PDFPageBreakObject: PDFObject {
 
      - throws: None
      */
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
         if !stayOnSamePage {
             UIGraphicsBeginPDFPage()
             generator.drawDebugPageOverlay()
@@ -72,21 +72,21 @@ class PDFPageBreakObject: PDFObject {
     /**
      Creates a new `PDFPageBreakObject`
      */
-    override var copy: PDFObject {
+    override internal var copy: PDFObject {
         return PDFPageBreakObject()
     }
 }
 
 extension PDFPageBreakObject: CustomDebugStringConvertible {
 
-    var debugDescription: String {
+    internal var debugDescription: String {
         return "PDFPageBreakObject(frame: \(self.frame))"
     }
 }
 
 extension PDFPageBreakObject: CustomStringConvertible {
 
-    var description: String {
+    internal var description: String {
         return "PDFPageBreakObject(frame: \(self.frame))"
     }
 }

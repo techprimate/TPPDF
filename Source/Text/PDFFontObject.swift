@@ -8,19 +8,19 @@
 /**
  Changes the font of the container, where this object is in.
  */
-class PDFFontObject: PDFObject {
+internal class PDFFontObject: PDFObject {
 
     /**
      New font of container after calculation
      */
-    var font: UIFont
+    internal var font: UIFont
 
     /**
      Initalizer
 
      - parameter font: New font
      */
-    init(font: UIFont) {
+    internal init(font: UIFont) {
         self.font = font
     }
 
@@ -34,7 +34,7 @@ class PDFFontObject: PDFObject {
 
      - returns: Self
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         generator.fonts[container] = font
 
         return [(container, self)]
@@ -43,21 +43,21 @@ class PDFFontObject: PDFObject {
     /**
      Creates a new `PDFFontObject` with the same properties
      */
-    override var copy: PDFObject {
+    override internal var copy: PDFObject {
         return PDFFontObject(font: self.font)
     }
 }
 
 extension PDFFontObject: CustomDebugStringConvertible {
 
-    var debugDescription: String {
+    internal var debugDescription: String {
         return "PDFFontObject(font: \(font.debugDescription))"
     }
 }
 
 extension PDFFontObject: CustomStringConvertible {
 
-    var description: String {
+    internal var description: String {
         return "PDFFontObject(font: \(font.description))"
     }
 }

@@ -13,7 +13,7 @@ public class PDFTableContent: PDFJSONSerializable {
     /**
      TODO: Documentation
      */
-    enum ContentType: PDFJSONSerializable {
+    internal enum ContentType: PDFJSONSerializable {
 
         /**
          TODO: Documentation
@@ -38,7 +38,7 @@ public class PDFTableContent: PDFJSONSerializable {
         /**
          TODO: Documentation
          */
-        var JSONRepresentation: AnyObject {
+        internal var JSONRepresentation: AnyObject {
             switch self {
             case .none:
                 return 0 as AnyObject
@@ -55,12 +55,12 @@ public class PDFTableContent: PDFJSONSerializable {
     /**
      TODO: Documentation
      */
-    var type: ContentType = ContentType.none
+    internal var type: ContentType = ContentType.none
 
     /**
      TODO: Documentation
      */
-    var content: Any?
+    internal var content: Any?
 
     /**
      TODO: Documentation
@@ -80,7 +80,7 @@ public class PDFTableContent: PDFJSONSerializable {
     /**
      TODO: Documentation
      */
-    func setContent(content: Any?) throws {
+    internal func setContent(content: Any?) throws {
         if content == nil {
             self.type = .none
             self.content = nil
@@ -104,42 +104,42 @@ public class PDFTableContent: PDFJSONSerializable {
     /**
      TODO: Documentation
      */
-    var isString: Bool {
+    internal var isString: Bool {
         return type == .string
     }
 
     /**
      TODO: Documentation
      */
-    var isAttributedString: Bool {
+    internal var isAttributedString: Bool {
         return type == .attributedString
     }
 
     /**
      TODO: Documentation
      */
-    var isImage: Bool {
+    internal var isImage: Bool {
         return type == .image
     }
 
     /**
      TODO: Documentation
      */
-    var stringValue: String? {
+    internal var stringValue: String? {
         return type == .string ? content as? String : nil
     }
 
     /**
      TODO: Documentation
      */
-    var attributedStringValue: NSAttributedString? {
+    internal var attributedStringValue: NSAttributedString? {
         return type == .attributedString ? content as? NSAttributedString : nil
     }
 
     /**
      TODO: Documentation
      */
-    var imageValue: UIImage? {
+    internal var imageValue: UIImage? {
         return type == .image ? content as? UIImage : nil
     }
 }
@@ -175,6 +175,9 @@ public extension NSAttributedString {
  */
 public extension UIImage {
 
+    /**
+     TODO: Documentation
+     */
     func toPDFTableContent() -> PDFTableContent {
         return PDFTableContent(type: .image, content: self)
     }

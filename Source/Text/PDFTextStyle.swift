@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 
+/**
+ TODO: Documentation
+ */
 public class PDFTextStyle {
 
     /**

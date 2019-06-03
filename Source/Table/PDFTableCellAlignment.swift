@@ -13,14 +13,52 @@ public enum PDFTableCellAlignment {
     /**
      TODO: Documentation
      */
-    case topLeft, top, topRight
-    case left, center, right
-    case bottomLeft, bottom, bottomRight
+    case topLeft
+
+    /**
+     TODO: Documentation
+     */
+    case top
+
+    /**
+     TODO: Documentation
+     */
+    case topRight
+
+    /**
+     TODO: Documentation
+     */
+    case left
+
+    /**
+     TODO: Documentation
+     */
+    case center
+
+    /**
+     TODO: Documentation
+     */
+    case right
+
+    /**
+     TODO: Documentation
+     */
+    case bottomLeft
+
+    /**
+     TODO: Documentation
+     */
+    case bottom
+
+    /**
+     TODO: Documentation
+     */
+    case bottomRight
 
     /**
      Alignment is at the top side
      */
-    var isTop: Bool {
+    internal var isTop: Bool {
         switch self {
         case .topLeft, .top, .topRight:
             return true
@@ -32,7 +70,7 @@ public enum PDFTableCellAlignment {
     /**
      Alignment is at the bottom side
      */
-    var isBottom: Bool {
+    internal var isBottom: Bool {
         switch self {
         case .bottomLeft, .bottom, .bottomRight:
             return true
@@ -44,7 +82,7 @@ public enum PDFTableCellAlignment {
     /**
      Alignment is on the left side
      */
-    var isLeft: Bool {
+    internal var isLeft: Bool {
         switch self {
         case .topLeft, .left, .bottomLeft:
             return true
@@ -56,7 +94,7 @@ public enum PDFTableCellAlignment {
     /**
      Alignment is on the right side
      */
-    var isRight: Bool {
+    internal var isRight: Bool {
         switch self {
         case .topRight, .right, .bottomRight:
             return true

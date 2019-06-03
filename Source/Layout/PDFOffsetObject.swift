@@ -8,19 +8,19 @@
 /**
  Used to modify the offset of a container
  */
-class PDFOffsetObject: PDFObject {
+internal class PDFOffsetObject: PDFObject {
 
     /**
      Offset from top edge of container
      */
-    var offset: CGFloat
+    internal var offset: CGFloat
 
     /**
      Initializer with point offset
 
      - parameter offset: Points from the top edge of the container
      */
-    init(offset: CGFloat) {
+    internal init(offset: CGFloat) {
         self.offset = offset
     }
 
@@ -33,7 +33,7 @@ class PDFOffsetObject: PDFObject {
      - returns: Self
      */
     @discardableResult
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         generator.layout.setContentOffset(in: container, to: offset)
 
         return [(container, self)]
@@ -42,7 +42,7 @@ class PDFOffsetObject: PDFObject {
     /**
      Creates a news `PDFOffsetObject` with the same properties
      */
-    override var copy: PDFObject {
+    override internal var copy: PDFObject {
         return PDFOffsetObject(offset: self.offset)
     }
 }

@@ -8,22 +8,22 @@
 /**
  Calculates and draws a text
  */
-class PDFAttributedTextObject: PDFObject {
+internal class PDFAttributedTextObject: PDFObject {
 
     /**
      Instance of attributed text object, holds instance of `NSAttributedString`
      */
-    var attributedText: PDFAttributedText?
+    internal var attributedText: PDFAttributedText?
 
     /**
      Instance of simple text object, will be converted into a attributed string
      */
-    var simpleText: PDFSimpleText?
+    internal var simpleText: PDFSimpleText?
 
     /**
      Attributed string which will be drawn
      */
-    var attributedString: NSAttributedString!
+    internal var attributedString: NSAttributedString!
 
     /**
 
@@ -33,7 +33,7 @@ class PDFAttributedTextObject: PDFObject {
 
      - parameter text: Subclass of `PDFText`
      */
-    convenience init<T: PDFText>(text: T) {
+    internal convenience init<T: PDFText>(text: T) {
         if let attributedText = text as? PDFAttributedText {
             self.init(attributedText: attributedText)
         } else if let simpleText = text as? PDFSimpleText {
@@ -48,7 +48,7 @@ class PDFAttributedTextObject: PDFObject {
 
      - parameter attributedText: Object holding instance of `NSAttributedString`
      */
-    init(attributedText: PDFAttributedText) {
+    internal init(attributedText: PDFAttributedText) {
         self.attributedText = attributedText
     }
 
@@ -58,7 +58,7 @@ class PDFAttributedTextObject: PDFObject {
 
      - parameter simpleText: Simple text object
      */
-    init(simpleText: PDFSimpleText) {
+    internal init(simpleText: PDFSimpleText) {
         self.simpleText = simpleText
     }
 
@@ -71,7 +71,7 @@ class PDFAttributedTextObject: PDFObject {
 
      - throws: None
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
         // Generate attributed string if simple text, otherwise uses given attributedText
@@ -114,7 +114,7 @@ class PDFAttributedTextObject: PDFObject {
 
      - throws: None
      */
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
         if attributedString == nil {
             throw PDFError.textObjectNotCalculated
         }
@@ -169,9 +169,9 @@ class PDFAttributedTextObject: PDFObject {
      - throws: PDFError.textObjectIsNil, if neither `simpleText` nor `attributedText` is set
 
      - returns: `NSAttributedString`, either created from `PDFAttributedTextObject.simpleText` or
-                from extracted from `PDFAttributedTextObject.attributedText`
+     from extracted from `PDFAttributedTextObject.attributedText`
      */
-    func generateAttributedText(generator: PDFGenerator, container: PDFContainer) throws -> NSAttributedString {
+    internal func generateAttributedText(generator: PDFGenerator, container: PDFContainer) throws -> NSAttributedString {
         if let simple = self.simpleText {
             let attributes = PDFAttributedTextObject.generateDefaultTextAttributes(
                 container: container,
@@ -199,11 +199,11 @@ class PDFAttributedTextObject: PDFObject {
 
      - returns: Attributes dictionary, used for `NSAttributedString` creation
      */
-    static func generateDefaultTextAttributes(container: PDFContainer,
-                                              fonts: inout [PDFContainer: UIFont],
-                                              textColor: inout [PDFContainer: UIColor],
-                                              spacing: CGFloat,
-                                              style: PDFTextStyle?) -> [NSAttributedString.Key: NSObject] {
+    internal static func generateDefaultTextAttributes(container: PDFContainer,
+                                                       fonts: inout [PDFContainer: UIFont],
+                                                       textColor: inout [PDFContainer: UIColor],
+                                                       spacing: CGFloat,
+                                                       style: PDFTextStyle?) -> [NSAttributedString.Key: NSObject] {
         let paragraphStyle = NSMutableParagraphStyle()
         if container.isLeft {
             paragraphStyle.alignment = .left
@@ -224,21 +224,25 @@ class PDFAttributedTextObject: PDFObject {
     /**
      TODO: Documentation
      */
-    override var copy: PDFObject {
+    override internal var copy: PDFObject {
         return PDFAttributedTextObject(text: (self.attributedText ?? self.simpleText)!)
     }
 }
 
 extension PDFAttributedTextObject: CustomDebugStringConvertible {
 
-    var debugDescription: String {
-        return "PDFAttributedTextObject(frame: \(frame.debugDescription), simpleText: \(simpleText.debugDescription), attributedText: \(attributedText.debugDescription))"
+    internal var debugDescription: String {
+        return "PDFAttributedTextObject(frame: \(frame.debugDescription), "
+            + "simpleText: \(simpleText.debugDescription), "
+            + "attributedText: \(attributedText.debugDescription))"
     }
 }
 
 extension PDFAttributedTextObject: CustomStringConvertible {
 
-    var description: String {
-        return "PDFAttributedTextObject(frame: \(frame.debugDescription), simpleText: \(simpleText.debugDescription), attributedText: \(attributedText.debugDescription))"
+    internal var description: String {
+        return "PDFAttributedTextObject(frame: \(frame.debugDescription), "
+            + "simpleText: \(simpleText.debugDescription), "
+            + "attributedText: \(attributedText.debugDescription))"
     }
 }

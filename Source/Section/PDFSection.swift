@@ -43,7 +43,7 @@ public class PDFSection: PDFJSONSerializable {
     /**
      Creates a new `PDFSection` with the same properties
      */
-	var copy: PDFSection {
+	internal var copy: PDFSection {
 		return PDFSection(columns.map { $0.copy })
 	}
 }

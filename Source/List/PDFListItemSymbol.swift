@@ -48,7 +48,7 @@ public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
     /**
      TODO: documentation
      */
-    var stringValue: String {
+    public var stringValue: String {
         switch self {
         case .dot:
             return "\u{00B7}"

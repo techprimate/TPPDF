@@ -8,17 +8,17 @@
 /**
  Calculates the given image and a caption if necessary
  */
-class PDFImageObject: PDFObject {
+internal class PDFImageObject: PDFObject {
 
     /**
      Image object holding all information
      */
-    var image: PDFImage
+    internal var image: PDFImage
 
     /**
      Spacing between image and caption
      */
-    var captionSpacing: CGFloat
+    internal var captionSpacing: CGFloat
 
     /**
      Initalizer
@@ -26,7 +26,7 @@ class PDFImageObject: PDFObject {
      - parameter image: Image object
      - parameter captionSpacing: Spacing to caption, defaults to zero
      */
-    init(image: PDFImage, captionSpacing: CGFloat = 0) {
+    internal init(image: PDFImage, captionSpacing: CGFloat = 0) {
         self.image = image
         self.captionSpacing = captionSpacing
     }
@@ -41,7 +41,7 @@ class PDFImageObject: PDFObject {
 
      - returns: Calculated objects and their corresponding container, created by this calculation
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
         var (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(generator: generator,
@@ -81,7 +81,7 @@ class PDFImageObject: PDFObject {
      - parameter generator: Current instance handling the drawing
      - parameter container: Container where the image is placed in
      */
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
         var roundedCorners: UIRectCorner = []
         if image.options.contains(.rounded) {
             roundedCorners = .allCorners
@@ -116,14 +116,14 @@ class PDFImageObject: PDFObject {
      - parameter generator: Current instance handling the calculations
      - parameter container: Container where the image is placed in
      */
-    func updateHeights(generator: PDFGenerator, container: PDFContainer) {
+    internal func updateHeights(generator: PDFGenerator, container: PDFContainer) {
         generator.layout.heights.add(frame.height + (self.image.caption != nil ? captionSpacing : 0), to: container)
     }
 
     /**
      Creates a new `PDFImageObject` with the same properties
      */
-    override var copy: PDFObject {
+    override internal var copy: PDFObject {
         return PDFImageObject(image: self.image.copy, captionSpacing: self.captionSpacing)
     }
 }

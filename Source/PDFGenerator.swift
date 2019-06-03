@@ -17,22 +17,22 @@ public class PDFGenerator {
     /**
      Document which will be converted
      */
-    var document: PDFDocument
+    internal var document: PDFDocument
 
     /**
      List of header and footer objects extracted from the document
      */
-    var headerFooterObjects: [(PDFContainer, PDFObject)] = []
+    internal var headerFooterObjects: [(PDFContainer, PDFObject)] = []
 
     /**
      Layout which holds current state
      */
-    var layout = PDFLayout()
+    internal var layout = PDFLayout()
 
     /**
      Current page which increments during preparation
      */
-    var currentPage: Int = 1
+    internal var currentPage: Int = 1
 
     /**
      Total page count used for displaying in rendered PDF
@@ -42,28 +42,28 @@ public class PDFGenerator {
     /**
      Layout information used for columns layout
      */
-    var columnState = PDFColumnLayoutState()
+    internal var columnState = PDFColumnLayoutState()
 
     /**
      TODO: Documentation
      */
-    var masterGroup: PDFGroupObject?
+    internal var masterGroup: PDFGroupObject?
 
     /**
      TODO: Documentation
      */
-    var currentPadding = UIEdgeInsets.zero
+    internal var currentPadding = UIEdgeInsets.zero
 
     /**
      Relative value tracking progress
      */
-    var progressValue: CGFloat = 0
+    internal var progressValue: CGFloat = 0
 
     /**
      Font of each container.
      These values are used for simple text objects
      */
-    lazy var fonts: [PDFContainer: UIFont] = {
+    internal lazy var fonts: [PDFContainer: UIFont] = {
         var defaults = [PDFContainer: UIFont]()
         for container in PDFContainer.allCases {
             defaults[container] = UIFont.systemFont(ofSize: UIFont.systemFontSize)
@@ -74,13 +74,13 @@ public class PDFGenerator {
     /**
      Enables debugging on all generator instance
      */
-    var debug: Bool = false
+    internal var debug: Bool = false
 
     /**
      Text color of each container.
      These values are used for simple text objects
      */
-    lazy var textColor: [PDFContainer: UIColor] = {
+    internal lazy var textColor: [PDFContainer: UIColor] = {
         var defaults = [PDFContainer: UIColor]()
         for container in PDFContainer.allCases {
             defaults[container] = UIColor.black
@@ -106,7 +106,7 @@ public class PDFGenerator {
     /**
      Resets the generator
      */
-    func resetGenerator() {
+    internal func resetGenerator() {
         layout.reset()
         columnState.reset()
         currentPage = 1

@@ -8,51 +8,51 @@
 /**
  TODO: Documentation
  */
-class PDFColumnWrapSectionObject: PDFObject {
+internal class PDFColumnWrapSectionObject: PDFObject {
 
     /**
      TODO: Documentation
      */
-    var columns: Int
+    internal var columns: Int
 
     /**
      TODO: Documentation
      */
-    var widths: [CGFloat]
+    internal var widths: [CGFloat]
 
     /**
      TODO: Documentation
      */
-    var spacings: [CGFloat]
+    internal var spacings: [CGFloat]
 
     /**
      TODO: Documentation
      */
-    var isDisable: Bool
+    internal var isDisable: Bool
 
     /**
      TODO: Documentation
      */
-    var addPageBreak: Bool
+    internal var addPageBreak: Bool
 
     /**
      TODO: Documentation
      */
-    convenience init(columns: Int, widths: [CGFloat], spacings: [CGFloat]) {
+    internal convenience init(columns: Int, widths: [CGFloat], spacings: [CGFloat]) {
         self.init(columns: columns, widths: widths, spacings: spacings, isDisable: false, addPageBreak: false)
     }
 
     /**
      TODO: Documentation
      */
-    convenience init(isDisable: Bool, addPageBreak: Bool) {
+    internal convenience init(isDisable: Bool, addPageBreak: Bool) {
         self.init(columns: 0, widths: [], spacings: [], isDisable: isDisable, addPageBreak: addPageBreak)
     }
 
     /**
      TODO: Documentation
      */
-    init(columns: Int, widths: [CGFloat], spacings: [CGFloat], isDisable: Bool, addPageBreak: Bool) {
+    internal init(columns: Int, widths: [CGFloat], spacings: [CGFloat], isDisable: Bool, addPageBreak: Bool) {
         self.columns = columns
         self.widths = widths
         self.spacings = spacings
@@ -69,7 +69,7 @@ class PDFColumnWrapSectionObject: PDFObject {
      - returns: Self
      */
     @discardableResult
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         if isDisable {
             generator.columnState.maxColumns = nil
             generator.columnState.currentColumn = 0
@@ -87,7 +87,7 @@ class PDFColumnWrapSectionObject: PDFObject {
             var availableWidth = PDFCalculations.calculateAvailableFrame(for: generator, in: container).width
             let totalSpacing = spacings.reduce(0, +)
             availableWidth -= totalSpacing
-            generator.columnState.columnWidths = widths.map { return $0 * availableWidth }
+            generator.columnState.columnWidths = widths.map { $0 * availableWidth }
 
             if generator.columnState.columnWidths.isEmpty {
                 generator.columnState.columnWidths = [availableWidth]
@@ -105,7 +105,11 @@ class PDFColumnWrapSectionObject: PDFObject {
     /**
      TODO: Documentation
      */
-    override var copy: PDFObject {
-        return PDFColumnWrapSectionObject(columns: self.columns, widths: self.widths, spacings: self.spacings, isDisable: self.isDisable, addPageBreak: self.addPageBreak)
+    override internal var copy: PDFObject {
+        return PDFColumnWrapSectionObject(columns: self.columns,
+                                          widths: self.widths,
+                                          spacings: self.spacings,
+                                          isDisable: self.isDisable,
+                                          addPageBreak: self.addPageBreak)
     }
 }

@@ -11,48 +11,48 @@ import UIKit
 /**
  TODO: Documentation
  */
-class PDFColumnLayoutState {
+internal class PDFColumnLayoutState {
 
     /**
      TODO: Documentation
      */
-    var maxColumns: Int?
+    internal var maxColumns: Int?
 
     /**
      TODO: Documentation
      */
-    var currentColumn = 0
+    internal var currentColumn = 0
 
     /**
      TODO: Documentation
      */
-    var columnWidths: [CGFloat] = []
+    internal var columnWidths: [CGFloat] = []
 
     /**
      TODO: Documentation
      */
-    var columnSpacings: [CGFloat] = []
+    internal var columnSpacings: [CGFloat] = []
 
     /**
      TODO: Documentation
      */
-    var wrapColumnsHeight: CGFloat = 0
+    internal var wrapColumnsHeight: CGFloat = 0
 
     /**
      TODO: Documentation
      */
-    var inset: (left: CGFloat, right: CGFloat) = (0,0)
+    internal var inset: (left: CGFloat, right: CGFloat) = (0, 0)
 
     /**
      TODO: Documentation
      */
-    func reset() {
+    internal func reset() {
         maxColumns = nil
         currentColumn = 0
         columnWidths = []
         columnSpacings = []
         wrapColumnsHeight = 0
-        inset = (0,0)
+        inset = (0, 0)
     }
 }
 
@@ -64,7 +64,7 @@ extension PDFColumnLayoutState: NSCopying {
     /**
      TODO: Documentation
      */
-    func copy(with zone: NSZone? = nil) -> Any {
+    internal func copy(with zone: NSZone? = nil) -> Any {
         let state = PDFColumnLayoutState()
         state.maxColumns = self.maxColumns
         state.currentColumn = self.currentColumn

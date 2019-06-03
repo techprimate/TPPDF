@@ -40,13 +40,13 @@ public class PDFDocument: PDFJSONSerializable {
     /**
      All objects inside the document and the container they are located in
      */
-    var objects: [(PDFContainer, PDFObject)] = []
+    internal var objects: [(PDFContainer, PDFObject)] = []
 
     /**
      TODO: Documentation
      */
-    var masterGroup: PDFGroupObject?
-    
+    internal var masterGroup: PDFGroupObject?
+
     // MARK: - PUBLIC INITIALIZERS
 
     /**

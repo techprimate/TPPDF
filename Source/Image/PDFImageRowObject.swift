@@ -8,27 +8,27 @@
 /**
  TODO: documentation
  */
-class PDFImageRowObject: PDFObject {
+internal class PDFImageRowObject: PDFObject {
 
     /**
      TODO: documentation
      */
-    var images: [PDFImage]
+    internal var images: [PDFImage]
 
     /**
      TODO: documentation
      */
-    var spacing: CGFloat
+    internal var spacing: CGFloat
 
     /**
      TODO: documentation
      */
-    var captionSpacing: CGFloat
+    internal var captionSpacing: CGFloat
 
     /**
      TODO: documentation
      */
-    init(images: [PDFImage], spacing: CGFloat = 1.0, captionSpacing: CGFloat = 5.0) {
+    internal init(images: [PDFImage], spacing: CGFloat = 1.0, captionSpacing: CGFloat = 5.0) {
         self.images = images
         self.spacing = spacing
         self.captionSpacing = captionSpacing
@@ -37,7 +37,7 @@ class PDFImageRowObject: PDFObject {
     /**
      TODO: documentation
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
         let originalInsetLeft = generator.layout.indentation.leftIn(container: container)
@@ -88,7 +88,7 @@ class PDFImageRowObject: PDFObject {
     /**
      TODO: documentation
      */
-    override var copy: PDFObject {
+    override internal var copy: PDFObject {
         return PDFImageRowObject(images: self.images, spacing: self.spacing, captionSpacing: self.captionSpacing)
     }
 }

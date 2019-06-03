@@ -78,7 +78,7 @@ public class PDFImage: PDFJSONSerializable {
     /**
      Creates a new `PDFImage` with the same properties
      */
-    var copy: PDFImage {
+    public var copy: PDFImage {
         return PDFImage(image: self.image,
                         caption: self.caption?.copy,
                         size: self.size,

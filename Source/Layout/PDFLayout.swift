@@ -8,30 +8,29 @@
 /**
  Contains all relevant layout informations of a pdf document
  */
-class PDFLayout: PDFJSONSerializable {
+internal class PDFLayout: PDFJSONSerializable {
 
     /**
      TODO: documentation
      */
-    var heights = PDFLayoutHeights()
+    internal var heights = PDFLayoutHeights()
 
     /**
      TODO: documentation
      */
-    var indentation = PDFLayoutIndentations()
-
+    internal var indentation = PDFLayoutIndentations()
 
     /**
      TODO: documentation
      */
-    var margin: UIEdgeInsets = .zero
+    internal var margin: UIEdgeInsets = .zero
 
     // MARK: - INTERNAL FUNCS
 
     /**
      TODO: documentation
      */
-    func getContentOffset(in container: PDFContainer) -> CGFloat {
+    internal func getContentOffset(in container: PDFContainer) -> CGFloat {
         if container.isHeader {
             return heights.header[container]!
         } else if container.isFooter {
@@ -43,7 +42,7 @@ class PDFLayout: PDFJSONSerializable {
     /**
      TODO: documentation
      */
-    func setContentOffset(in container: PDFContainer, to value: CGFloat) {
+    internal func setContentOffset(in container: PDFContainer, to value: CGFloat) {
         if container.isHeader {
             heights.header[container] = value
         } else if container.isFooter {
@@ -56,7 +55,7 @@ class PDFLayout: PDFJSONSerializable {
     /**
      TODO: documentation
      */
-    func reset() {
+    internal func reset() {
         heights = PDFLayoutHeights()
         indentation = PDFLayoutIndentations()
         margin = .zero

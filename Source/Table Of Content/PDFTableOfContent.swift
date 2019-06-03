@@ -10,7 +10,7 @@ import Foundation
 /**
  TODO: Documentation
  */
-typealias WeakPDFTextStyleRef = WeakRef<PDFTextStyle>
+internal typealias WeakPDFTextStyleRef = WeakRef<PDFTextStyle>
 
 /**
  TODO: Documentation
@@ -38,9 +38,9 @@ public class PDFTableOfContent: PDFJSONSerializable {
     /**
      TODO: Documentation
      */
-    var copy: PDFTableOfContent {
+    internal var copy: PDFTableOfContent {
         let object = PDFTableOfContent(styles: [], symbol: symbol)
-        object.styles = self.styles.map { $0 }
+        object.styles = Array(styles)
         return object
     }
 }

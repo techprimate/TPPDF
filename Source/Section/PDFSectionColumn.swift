@@ -22,7 +22,7 @@ public class PDFSectionColumn: PDFJSONSerializable {
 	/**
 	All objects inside the document and the container they are located in
 	*/
-	var objects: [(PDFSectionColumnContainer, PDFObject)] = []
+	internal var objects: [(PDFSectionColumnContainer, PDFObject)] = []
 
 	// MARK: - PUBLIC INITIALIZERS
 
@@ -38,7 +38,7 @@ public class PDFSectionColumn: PDFJSONSerializable {
     /**
      Creates a new `PDFSectionColumn` with the same properties
      */
-	var copy: PDFSectionColumn {
+	internal var copy: PDFSectionColumn {
 		return PDFSectionColumn(width: self.width)
 	}
 }

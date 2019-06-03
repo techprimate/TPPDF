@@ -8,24 +8,24 @@
 /**
  TODO: documentation
  */
-class PDFListObject: PDFObject {
+internal class PDFListObject: PDFObject {
 
     /**
      TODO: documentation
      */
-    var list: PDFList
+    internal var list: PDFList
 
     /**
      TODO: documentation
      */
-    init(list: PDFList) {
+    internal init(list: PDFList) {
         self.list = list
     }
 
     /**
      TODO: documentation
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
         let originalLeftIndent = generator.layout.indentation.leftIn(container: container)
@@ -56,14 +56,14 @@ class PDFListObject: PDFObject {
         let symbolTextObject = PDFAttributedTextObject(simpleText: symbolText)
         let toAdd = try symbolTextObject.calculate(generator: generator, container: container)
 
-        if toAdd.count > 0 {
-            let symbolTextElement = (toAdd.count > 1 && toAdd[0].1 is PDFPageBreakObject) ? toAdd[1].1 : toAdd[0].1
-            let offset = PDFCalculations.calculateContentOffset(for: generator, of: symbolTextElement, in: container)
-            generator.setContentOffset(in: container, to: offset)
-
-            return toAdd
+        if toAdd.isEmpty {
+            return []
         }
-        return []
+        let symbolTextElement = (toAdd.count > 1 && toAdd[0].1 is PDFPageBreakObject) ? toAdd[1].1 : toAdd[0].1
+        let offset = PDFCalculations.calculateContentOffset(for: generator, of: symbolTextElement, in: container)
+        generator.setContentOffset(in: container, to: offset)
+
+        return toAdd
     }
 
     private func createTextItem(generator: PDFGenerator, container: PDFContainer, text: String) throws -> [(PDFContainer, PDFObject)] {
@@ -75,7 +75,7 @@ class PDFListObject: PDFObject {
     /**
      Creates a new `PDFListObject` with the same properties
      */
-    override var copy: PDFObject {
+    override internal var copy: PDFObject {
         return PDFListObject(list: self.list.copy)
     }
 }

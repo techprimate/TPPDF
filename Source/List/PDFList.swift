@@ -13,12 +13,12 @@ public class PDFList: PDFJSONSerializable {
     /**
      TODO: Documentation
      */
-    var items: [PDFListItem] = []
+    internal var items: [PDFListItem] = []
 
     /**
      TODO: Documentation
      */
-    var levelIndentations: [(pre: CGFloat, past: CGFloat)] = []
+    internal var levelIndentations: [(pre: CGFloat, past: CGFloat)] = []
 
     /**
      TODO: Documentation
@@ -91,14 +91,14 @@ public class PDFList: PDFJSONSerializable {
         return result
     }
 
-    func clear() {
+    internal func clear() {
         self.items = []
     }
 
     /**
      TODO: Documentation
      */
-    var copy: PDFList {
+    internal var copy: PDFList {
         let list = PDFList(indentations: self.levelIndentations)
         list.items = items.map { $0.copy }
         return list

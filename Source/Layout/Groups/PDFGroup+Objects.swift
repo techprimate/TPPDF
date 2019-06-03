@@ -182,6 +182,6 @@ public extension PDFGroup {
      - parameter offset: Points from the top
      */
     func set(_ container: PDFGroupContainer = PDFGroupContainer.left, absoluteOffset: CGFloat) {
-        objects += [(container, PDFOffsetObject(offset:  absoluteOffset))]
+        objects += [(container, PDFOffsetObject(offset: absoluteOffset))]
     }
 }

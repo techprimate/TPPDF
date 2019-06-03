@@ -201,7 +201,7 @@ class PDFJSONSerialization_Spec : QuickSpec {
 
             it("can not represent unknown object") {
                 let objects = [
-                    PDFGraphics()
+                    UIViewController()
                 ] as [AnyObject]
 
                 expect((objects.JSONRepresentation as? [String])?[0]) == "UNKNOWN"
@@ -217,7 +217,7 @@ class PDFJSONSerialization_Spec : QuickSpec {
 
             it("can be converted into a JSON string if content is invalid") {
                 let examples = [
-                    PDFGraphics()
+                    UIViewController()
                 ]
 
                 expect(examples.toJSON()) == "[\"UNKNOWN\"]"

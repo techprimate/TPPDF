@@ -15,7 +15,7 @@ extension PDFGenerator {
     /**
      Overlays horizontal and vertical lines at margin insets
      */
-    func drawDebugPageOverlay() {
+    internal func drawDebugPageOverlay() {
         // Only render if debugging is enabled
         guard debug else {
             return

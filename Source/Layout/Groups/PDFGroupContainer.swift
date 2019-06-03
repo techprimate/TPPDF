@@ -34,14 +34,14 @@ public enum PDFGroupContainer {
      Array of all possible containers, expect `.none`.
      Useful for initalizing default values for each container
      */
-    static var all: [PDFGroupContainer] {
+    internal static var all: [PDFGroupContainer] {
         return [.left, .center, .right]
     }
 
     /**
      Returns the mapped `PDFContainer`
      */
-    var contentContainer: PDFContainer {
+    internal var contentContainer: PDFContainer {
         switch self {
         case .left: return PDFContainer.contentLeft
         case .center: return PDFContainer.contentCenter

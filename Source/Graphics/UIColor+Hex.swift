@@ -10,7 +10,7 @@ extension UIColor {
     /**
      TODO: documentation
      */
-    convenience init(hex: String) throws {
+    internal convenience init(hex: String) throws {
         var red: CGFloat = 0.0
         var green: CGFloat = 0.0
         var blue: CGFloat = 0.0
@@ -54,7 +54,7 @@ extension UIColor {
     /**
      TODO: documentation
      */
-    var hex: String {
+    internal var hex: String {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0

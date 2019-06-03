@@ -132,12 +132,12 @@ extension PDFGenerator {
         headerFooterObjects = headers + footers
 
         // Only add space between content and footer if there are objects in footer.
-        if footers.count == 0 {
+        if footers.isEmpty {
             document.layout.space.footer = 0
         }
 
         // Only add space between content and header if there are objects in header.
-        if headers.count == 0 {
+        if headers.isEmpty {
             document.layout.space.header = 0
         }
 
@@ -180,7 +180,7 @@ extension PDFGenerator {
         allObjects = masterObjects
 
         // Only calculate render header & footer metrics if page has content.
-        if contentObjects.count > 0 {
+        if contentObjects.isEmpty {
             allObjects += try addHeaderFooterObjects()
         }
 
@@ -214,7 +214,7 @@ extension PDFGenerator {
 
      - returns: List of renderable objects
      */
-    func addHeaderFooterObjects() throws -> [(PDFContainer, PDFObject)] {
+    private func addHeaderFooterObjects() throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
         layout.heights.resetHeaderFooterHeight()
@@ -275,7 +275,7 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    func render(objects: [(PDFContainer, PDFObject)], progress: ((CGFloat) -> Void)?) throws {
+    internal func render(objects: [(PDFContainer, PDFObject)], progress: ((CGFloat) -> Void)?) throws {
         UIGraphicsBeginPDFPageWithInfo(document.layout.bounds, nil)
 
         drawDebugPageOverlay()
@@ -293,7 +293,7 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    func render(object: PDFObject, in container: PDFContainer) throws {
+    internal func render(object: PDFObject, in container: PDFContainer) throws {
         try object.draw(generator: self, container: container)
     }
 
@@ -306,8 +306,8 @@ extension PDFGenerator {
 
      - returns: List of all header objects
      */
-    static func extractHeaderObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
-        return objects.filter { return $0.0.isHeader }
+    internal static func extractHeaderObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
+        return objects.filter { $0.0.isHeader }
     }
 
     /**
@@ -317,8 +317,8 @@ extension PDFGenerator {
 
      - returns: List of all footer objects
      */
-    static func extractFooterObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
-        return objects.filter { return $0.0.isFooter }
+    internal static func extractFooterObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
+        return objects.filter { $0.0.isFooter }
     }
 
     /**
@@ -328,14 +328,16 @@ extension PDFGenerator {
 
      - returns: List of all content objects
      */
-    static func extractContentObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
-        return objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
+    internal static func extractContentObjects(objects: [(PDFContainer, PDFObject)]) -> [(PDFContainer, PDFObject)] {
+        return objects.filter { !$0.0.isFooter && !$0.0.isHeader }
     }
 
     /**
      TODO: Documentation
      */
-    static func createTableOfContentList(objects: [(PDFContainer, PDFObject)], styles: [WeakPDFTextStyleRef], symbol: PDFListItemSymbol) -> PDFList {
+    internal static func createTableOfContentList(objects: [(PDFContainer, PDFObject)],
+                                                  styles: [WeakPDFTextStyleRef],
+                                                  symbol: PDFListItemSymbol) -> PDFList {
         var elements: [(Int, PDFAttributedTextObject)] = []
         for (_, obj) in objects {
             if let textObj = obj as? PDFAttributedTextObject,
@@ -344,7 +346,7 @@ extension PDFGenerator {
                 elements.append((styleIndex, textObj))
             }
         }
-        let list = PDFList(indentations: styles.enumerated().map { return (pre: CGFloat($0.offset + 1) * 10, past: 10) })
+        let list = PDFList(indentations: styles.enumerated().map { (pre: CGFloat($0.offset + 1) * 10, past: 10) })
         var stack = Stack<PDFListItem>()
         for (index, element) in elements {
             let item = PDFListItem(symbol: symbol, content: element.simpleText?.text)

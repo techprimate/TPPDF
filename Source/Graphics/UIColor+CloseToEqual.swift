@@ -10,7 +10,7 @@ extension UIColor {
     /**
      TODO: documentation
      */
-    func isClose(to color: UIColor, decimals: Int) -> Bool {
+    internal func isClose(to color: UIColor, decimals: Int) -> Bool {
         var r1: CGFloat = 0
         var g1: CGFloat = 0
         var b1: CGFloat = 0

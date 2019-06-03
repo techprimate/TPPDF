@@ -8,19 +8,19 @@
 /**
  Empty space between two elements
  */
-class PDFSpaceObject: PDFObject {
+internal class PDFSpaceObject: PDFObject {
 
     /**
      Height of space object in points
      */
-    var space: CGFloat
+    internal var space: CGFloat
 
     /**
      Initializer
 
      - parameter space: Height of space object
      */
-    init(space: CGFloat) {
+    internal init(space: CGFloat) {
         self.space = space
     }
 
@@ -34,7 +34,7 @@ class PDFSpaceObject: PDFObject {
 
      - returns: Self
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var size = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         size.height = min(space, size.height)
         let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: frame.size)
@@ -52,7 +52,7 @@ class PDFSpaceObject: PDFObject {
 
      - throws: None
      */
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
         if generator.debug {
             PDFGraphics.drawRect(rect: self.frame,
                                  outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0),
@@ -63,21 +63,21 @@ class PDFSpaceObject: PDFObject {
     /**
      Creates a new `PDFSpaceObject` with the same properties
      */
-    override var copy: PDFObject {
+    override internal var copy: PDFObject {
         return PDFSpaceObject(space: self.space)
     }
 }
 
 extension PDFSpaceObject: CustomDebugStringConvertible {
 
-    var debugDescription: String {
+    internal var debugDescription: String {
         return "PDFSpaceObject(frame: \(self.frame), space: \(space))"
     }
 }
 
 extension PDFSpaceObject: CustomStringConvertible {
 
-    var description: String {
+    internal var description: String {
         return "PDFSpaceObject(frame: \(self.frame), space: \(space))"
     }
 }

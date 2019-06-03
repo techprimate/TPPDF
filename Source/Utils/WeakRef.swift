@@ -10,17 +10,17 @@ import Foundation
 /**
  TODO: Documentation
  */
-class WeakRef<T> where T: AnyObject {
+internal class WeakRef<T> where T: AnyObject {
 
     /**
      TODO: Documentation
      */
-    private(set) weak var value: T?
+    internal private(set) weak var value: T?
 
     /**
      TODO: Documentation
      */
-    init(value: T?) {
+    internal init(value: T?) {
         self.value = value
     }
 }

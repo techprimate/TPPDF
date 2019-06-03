@@ -16,7 +16,7 @@ public class PDFBezierPath {
     /**
      TODO: Documentation
      */
-    enum ElementType {
+    internal enum ElementType {
 
         /**
          TODO: Documentation
