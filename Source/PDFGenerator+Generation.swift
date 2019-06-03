@@ -150,6 +150,12 @@ extension PDFGenerator {
 
         // Iterate all objects and let them calculate the required rendering
         for (container, pdfObject) in contentObjects {
+            if let tocObject = pdfObject as? PDFTableOfContentObject {
+                // Create table of content from objects
+                tocObject.list = PDFGenerator.createTableOfContentList(objects: contentObjects,
+                                                                       styles: tocObject.options.styles,
+                                                                       symbol: tocObject.options.symbol)
+            }
             let objects = try pdfObject.calculate(generator: self, container: container)
             for obj in objects {
                 allObjects.append(obj)
@@ -323,4 +329,39 @@ extension PDFGenerator {
         return objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
     }
 
+    static func createTableOfContentList(objects: [(PDFContainer, PDFObject)], styles: [WeakPDFTextStyleRef], symbol: PDFListItemSymbol) -> PDFList {
+        var elements: [(Int, PDFAttributedTextObject)] = []
+        for (_, obj) in objects {
+            if let textObj = obj as? PDFAttributedTextObject,
+                let style = textObj.simpleText?.style,
+                let styleIndex = styles.firstIndex(where: { $0.value === style }) {
+                elements.append((styleIndex, textObj))
+            }
+        }
+        let list = PDFList(indentations: styles.enumerated().map { return (pre: CGFloat($0.offset + 1) * 10, past: 10) })
+        var stack = Stack<PDFListItem>()
+        for (index, element) in elements {
+            let item = PDFListItem(symbol: symbol, content: element.simpleText?.text)
+
+            stack.pop(to: index)
+            if index == 0 {
+                list.addItem(item)
+                stack.push(item)
+            } else {
+                if let parent = stack.peek(at: index - 1) {
+                    parent.addItem(item)
+                    stack.push(item)
+                } else {
+                    for i in stack.count..<index {
+                        let placeholderItem = PDFListItem(symbol: .none, content: nil)
+                        stack.push(placeholderItem)
+                        stack.peek(at: i - 1)?.addItem(placeholderItem)
+                    }
+                    stack.peek(at: index - 1)?.addItem(item)
+                    stack.push(item)
+                }
+            }
+        }
+        return list
+    }
 }

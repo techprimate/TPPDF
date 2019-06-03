@@ -199,6 +199,21 @@ public extension PDFDocument {
         objects += [(.contentLeft, PDFPageBreakObject())]
     }
 
+    /**
+     Adds a style to the index
+     */
+    func add(style: PDFTextStyle) -> PDFTextStyle {
+        self.styles.append(style)
+        return style
+    }
+
+    /**
+     Adds a table of content
+     */
+    func add(tableOfContent: PDFTableOfContent) {
+        objects += [(.contentLeft, PDFTableOfContentObject(list: PDFList(indentations: []), options: tableOfContent))]
+    }
+
     // MARK: - Column Wrapping
 
     /**

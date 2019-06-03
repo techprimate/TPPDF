@@ -102,3 +102,21 @@ extension PDFListItem: PDFJSONSerializable {
         return representation as AnyObject
     }
 }
+
+extension PDFListItem: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        let content = self.content ?? "nil"
+        let children = self.children?.debugDescription ?? "nil"
+        return "PDFListItem(symbol: \(symbol), content: \(content): children: \(children))"
+    }
+}
+
+extension PDFListItem: CustomStringConvertible {
+
+    public var description: String {
+        let content = self.content ?? "nil"
+        let children = self.children?.description ?? "nil"
+        return "PDFListItem(symbol: \(symbol), content: \(content): children: \(children))"
+    }
+}

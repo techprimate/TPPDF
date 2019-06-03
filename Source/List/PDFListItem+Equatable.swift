@@ -14,9 +14,6 @@ extension PDFListItem: Equatable {
      TODO: documentation
      */
     public static func == (lhs: PDFListItem, rhs: PDFListItem) -> Bool {
-        guard lhs.parent === rhs.parent else {
-            return false
-        }
         guard lhs.content == rhs.content else {
             return false
         }
