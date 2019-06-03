@@ -148,7 +148,9 @@ internal enum PDFGraphics {
      TODO: Documentation
      */
     internal static func drawPath(path: UIBezierPath, outline: PDFLineStyle, fillColor: UIColor) {
-        var path = path.copy() as! UIBezierPath
+        guard var path = path.copy() as? UIBezierPath else {
+            fatalError("Copy of UIBezierPath is invalid!")
+        }
         let dashes = createDashes(style: outline, path: &path)
         path.setLineDash(dashes, count: dashes.count, phase: 0.0)
         path.lineWidth = CGFloat(outline.width)

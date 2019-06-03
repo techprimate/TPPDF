@@ -34,9 +34,25 @@ public class PDFTableStyle: PDFJSONSerializable {
      The cell style of row headers. Horizontal border lines are ignored, as these are defined in
      */
     public var rowHeaderStyle: PDFTableCellStyle
+
+    /**
+     TODO: Documentation
+     */
     public var columnHeaderStyle: PDFTableCellStyle
+
+    /**
+     TODO: Documentation
+     */
     public var footerStyle: PDFTableCellStyle
+
+    /**
+     TODO: Documentation
+     */
     public var contentStyle: PDFTableCellStyle
+
+    /**
+     TODO: Documentation
+     */
     public var alternatingContentStyle: PDFTableCellStyle?
 
     /**
