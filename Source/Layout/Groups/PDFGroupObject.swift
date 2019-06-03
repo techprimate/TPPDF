@@ -40,6 +40,11 @@ class PDFGroupObject: PDFObject {
     /**
      TODO: Documentation
      */
+    var outline: PDFLineStyle
+
+    /**
+     TODO: Documentation
+     */
     var padding: UIEdgeInsets
 
     /**
@@ -50,12 +55,14 @@ class PDFGroupObject: PDFObject {
          backgroundColor: UIColor?,
          backgroundImage: PDFImage?,
          backgroundShape: PDFDynamicGeometryShape?,
+         outline: PDFLineStyle,
          padding: UIEdgeInsets) {
         self.objects = objects
         self.allowsBreaks = allowsBreaks
         self.backgroundColor = backgroundColor
         self.backgroundImage = backgroundImage
         self.backgroundShape = backgroundShape
+        self.outline = outline
         self.padding = padding
     }
 
@@ -63,7 +70,7 @@ class PDFGroupObject: PDFObject {
      TODO: Documentation
      */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
-        var result: [(PDFContainer, PDFObject)] = [(container, self)]
+        var result: [(PDFContainer, PDFObject)] = []
 
         let heights = generator.layout.heights
         guard let columnState = generator.columnState.copy() as? PDFColumnLayoutState else {
@@ -73,6 +80,10 @@ class PDFGroupObject: PDFObject {
         var pageBreakObject: PDFPageBreakObject?
 
         generator.layout.heights.add(padding.top, to: container)
+        if PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container) < 0 {
+            result += try PDFPageBreakObject().calculate(generator: generator, container: container)
+        }
+        result += [(container, self)]
         generator.currentPadding = padding
 
         for (container, object) in objects {
@@ -97,8 +108,9 @@ class PDFGroupObject: PDFObject {
         generator.columnState = columnState
         frame = CGRect.null
 
-        result = [(container, self)]
+        result = []
         result += try pbObj.calculate(generator: generator, container: container)
+        result += [(container, self)]
 
         generator.layout.heights.add(padding.top, to: container)
         generator.currentPadding = padding
@@ -136,9 +148,8 @@ class PDFGroupObject: PDFObject {
 
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         if let color = backgroundColor {
-            PDFGraphics.drawRect(rect: self.frame,
-                                 outline: .none,
-                                 fill: color)
+            let path = PDFGraphics.createRectPath(rect: self.frame, outline: self.outline)
+            PDFGraphics.drawPath(path: path, outline: self.outline, fillColor: color)
         }
         if let shape = backgroundShape {
             PDFGraphics.drawPath(path: shape.path.bezierPath(in: self.frame),
@@ -161,6 +172,7 @@ class PDFGroupObject: PDFObject {
                               backgroundColor: self.backgroundColor,
                               backgroundImage: self.backgroundImage?.copy,
                               backgroundShape: self.backgroundShape,
+                              outline: self.outline,
                               padding: self.padding)
     }
 }

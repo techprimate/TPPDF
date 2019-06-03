@@ -17,6 +17,8 @@ public class PDFGroup: PDFJSONSerializable {
     public var backgroundImage: PDFImage?
     public var backgroundShape: PDFDynamicGeometryShape?
 
+    public var outline: PDFLineStyle
+
     public var padding: UIEdgeInsets
 
     // MARK: - INTERNAL VARS
@@ -32,11 +34,13 @@ public class PDFGroup: PDFJSONSerializable {
                 backgroundColor: UIColor? = nil,
                 backgroundImage: PDFImage? = nil,
                 backgroundShape: PDFDynamicGeometryShape? = nil,
+                outline: PDFLineStyle = .none,
                 padding: UIEdgeInsets = .zero) {
         self.allowsBreaks = allowsBreaks
         self.backgroundColor = backgroundColor
         self.backgroundImage = backgroundImage
         self.backgroundShape = backgroundShape
+        self.outline = outline
         self.padding = padding
     }
 
@@ -48,6 +52,7 @@ public class PDFGroup: PDFJSONSerializable {
                         backgroundColor: self.backgroundColor,
                         backgroundImage: self.backgroundImage,
                         backgroundShape: self.backgroundShape,
+                        outline: self.outline,
                         padding: self.padding)
     }
 }

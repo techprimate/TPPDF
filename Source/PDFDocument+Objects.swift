@@ -218,21 +218,29 @@ public extension PDFDocument {
         objects += [(container, PDFColumnWrapSectionObject(isDisable: true, addPageBreak: addPageBreak))]
     }
 
+    /**
+     TODO: Documentation
+     */
     func add(_ container: PDFContainer = PDFContainer.contentLeft, group: PDFGroup) {
         objects += [(container, PDFGroupObject(objects: group.objects,
                                                allowsBreaks: group.allowsBreaks,
                                                backgroundColor: group.backgroundColor,
                                                backgroundImage: group.backgroundImage,
                                                backgroundShape: group.backgroundShape,
+                                               outline: group.outline,
                                                padding: group.padding))]
     }
 
+    /**
+     TODO: Documentation
+     */
     func set(master group: PDFGroup) {
         self.masterGroup = PDFGroupObject(objects: group.objects,
                                           allowsBreaks: group.allowsBreaks,
                                           backgroundColor: group.backgroundColor,
                                           backgroundImage: group.backgroundImage,
                                           backgroundShape: group.backgroundShape,
+                                          outline: group.outline,
                                           padding: group.padding)
     }
 }
