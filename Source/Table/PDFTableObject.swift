@@ -7,6 +7,9 @@
 
 // swiftlint:disable function_body_length function_parameter_count line_length
 
+/**
+ TODO: Documentation
+ */
 class PDFTableObject: PDFObject {
 
     /**
@@ -23,6 +26,9 @@ class PDFTableObject: PDFObject {
         self.table = table
     }
 
+    /**
+     TODO: Documentation
+     */
     var styleIndexOffset: Int = 0
 
     /**
@@ -133,6 +139,9 @@ class PDFTableObject: PDFObject {
         return renderObjects.objects
     }
 
+    /**
+     TODO: Documentation
+     */
     func calculateRow(cells: [PDFTableCell],
                       rowIndex: Int,
                       availableSize: CGSize,
@@ -153,6 +162,9 @@ class PDFTableObject: PDFObject {
         return repositionRow(row: cells, frames: calculationResult)
     }
 
+    /**
+     TODO: Documentation
+     */
     func calculateFrames(row: [PDFTableCell],
                          rowIdx: Int,
                          availableSize: CGSize,
@@ -230,6 +242,9 @@ class PDFTableObject: PDFObject {
         return frames
     }
 
+    /**
+     TODO: Documentation
+     */
     func repositionRow(row: [PDFTableCell], frames originalFrames: [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))]) -> [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] {
         var frames: [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] = originalFrames
 
@@ -270,6 +285,9 @@ class PDFTableObject: PDFObject {
         return frames
     }
 
+    /**
+     TODO: Documentation
+     */
     func createAttributedCellText(text: String, cellStyle: PDFTableCellStyle, alignment: PDFTableCellAlignment) -> NSAttributedString {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = {
@@ -290,6 +308,9 @@ class PDFTableObject: PDFObject {
         return NSAttributedString(string: text, attributes: attributes)
     }
 
+    /**
+     TODO: Documentation
+     */
     func createRenderObjects(generator: PDFGenerator,
                              container: PDFContainer,
                              cellItems: [[(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))]],
@@ -352,12 +373,18 @@ class PDFTableObject: PDFObject {
         return (objects: compactObjects, offset: pageEnd.y)
     }
 
+    /**
+     TODO: Documentation
+     */
     func createCellBackgroundObject(cellStyle: PDFTableCellStyle, frame: CGRect) -> PDFObject {
         let object = PDFRectangleObject(lineStyle: .none, size: .zero, fillColor: cellStyle.colors.fill)
         object.frame = frame
         return object
     }
 
+    /**
+     TODO: Documentation
+     */
     func createCellContentObject(content: PDFTableContent?,
                                  cellStyle: PDFTableCellStyle,
                                  alignment: PDFTableCellAlignment, frame: CGRect) -> PDFObject? {
@@ -387,6 +414,9 @@ class PDFTableObject: PDFObject {
         return contentObject
     }
 
+    /**
+     TODO: Documentation
+     */
     func createCellOutlineObjects(borders: PDFTableCellBorders, cellFrame: CGRect) -> [PDFLineObject] {
         return [
             PDFLineObject(style: borders.top,
@@ -404,6 +434,9 @@ class PDFTableObject: PDFObject {
         ]
     }
 
+    /**
+     TODO: Documentation
+     */
     func stylesForRow(tableStyle: PDFTableStyle,
                       isHeader: Bool,
                       isFooter: Bool,
@@ -433,6 +466,9 @@ class PDFTableObject: PDFObject {
         return result
     }
 
+    /**
+     Creates a new `PDFTableObject` with the same properties
+     */
     override var copy: PDFObject {
         return PDFTableObject(table: table.copy)
     }

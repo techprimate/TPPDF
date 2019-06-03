@@ -5,32 +5,27 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-// swiftlint:disable for_where
-
+/**
+ TODO: documentation
+ */
 extension PDFList: Equatable {
 
+    /**
+     TODO: documentation
+     */
     public static func == (lhs: PDFList, rhs: PDFList) -> Bool {
-        if lhs.levelIndentations.count != rhs.levelIndentations.count {
+        guard lhs.levelIndentations.count == rhs.levelIndentations.count else {
             return false
         }
-
-        for (idx, indentation) in lhs.levelIndentations.enumerated() {
-            if rhs.levelIndentations[idx] != indentation {
-                return false
-            }
-        }
-
-        if lhs.items.count != rhs.items.count {
+        for (idx, indentation) in lhs.levelIndentations.enumerated() where rhs.levelIndentations[idx] != indentation {
             return false
         }
-
-        for (idx, item) in lhs.items.enumerated() {
-            if rhs.items[idx] != item {
-                return false
-            }
+        guard lhs.items.count == rhs.items.count else {
+            return false
         }
-
+        for (idx, item) in lhs.items.enumerated() where rhs.items[idx] != item {
+            return false
+        }
         return true
     }
-
 }

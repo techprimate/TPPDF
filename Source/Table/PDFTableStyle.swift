@@ -5,12 +5,29 @@
 //  Created by Philip Niedertscheider on 19/01/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 public class PDFTableStyle: PDFJSONSerializable {
 
+    /**
+     TODO: Documentation
+     */
     public var rowHeaderCount: Int
+
+    /**
+     TODO: Documentation
+     */
     public var columnHeaderCount: Int
+
+    /**
+     TODO: Documentation
+     */
     public var footerCount: Int
 
+    /**
+     TODO: Documentation
+     */
     public var outline: PDFLineStyle
 
     /**

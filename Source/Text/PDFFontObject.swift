@@ -40,7 +40,24 @@ class PDFFontObject: PDFObject {
         return [(container, self)]
     }
 
+    /**
+     Creates a new `PDFFontObject` with the same properties
+     */
     override var copy: PDFObject {
         return PDFFontObject(font: self.font)
+    }
+}
+
+extension PDFFontObject: CustomDebugStringConvertible {
+
+    var debugDescription: String {
+        return "PDFFontObject(font: \(font.debugDescription))"
+    }
+}
+
+extension PDFFontObject: CustomStringConvertible {
+
+    var description: String {
+        return "PDFFontObject(font: \(font.description))"
     }
 }

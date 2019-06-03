@@ -32,6 +32,9 @@ public class PDFSectionColumn: PDFJSONSerializable {
 		self.width = width
 	}
 
+    /**
+     Creates a new `PDFSectionColumn` with the same properties
+     */
 	var copy: PDFSectionColumn {
 		return PDFSectionColumn(width: self.width)
 	}

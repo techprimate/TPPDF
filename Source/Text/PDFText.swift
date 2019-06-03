@@ -10,16 +10,24 @@
  */
 public class PDFText {
 
+    /**
+     TODO: Documentation
+     */
     var copy: PDFText {
         fatalError()
     }
-
 }
 
+/**
+ TODO: Documentation
+ */
 public func != (lhs: PDFText, rhs: PDFText) -> Bool {
     return !(lhs == rhs)
 }
 
+/**
+ TODO: Documentation
+ */
 public func == (lhs: PDFText, rhs: PDFText) -> Bool {
     if let attributedLhs = lhs as? PDFAttributedText, let attributedRhs = rhs as? PDFAttributedText {
         return attributedLhs == attributedRhs

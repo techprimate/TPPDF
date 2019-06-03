@@ -1,38 +1,36 @@
 //
-//  PDFImage+Equatable.swift
+//  PDFImage+Equatable.swguardt
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
+/**
+ TODO: documentation
+ */
 extension PDFImage: Equatable {
 
+    /**
+     TODO: documentation
+     */
     public static func == (lhs: PDFImage, rhs: PDFImage) -> Bool {
-        if lhs.image != rhs.image {
+        guard lhs.image == rhs.image else {
             return false
         }
-
         if let lhsCaption = lhs.caption, let rhsCaption = rhs.caption, lhsCaption != rhsCaption {
             return false
-        }
-
-        if (lhs.caption == nil && rhs.caption != nil) || (lhs.caption != nil && rhs.caption == nil) {
+        } else if (lhs.caption == nil && rhs.caption != nil) || (lhs.caption != nil && rhs.caption == nil) {
             return false
         }
-
-        if lhs.size != rhs.size {
+        guard lhs.size == rhs.size else {
             return false
         }
-
-        if lhs.sizeFit != rhs.sizeFit {
+        guard lhs.sizeFit == rhs.sizeFit else {
             return false
         }
-
-        if lhs.quality != rhs.quality {
+        guard lhs.quality == rhs.quality else {
             return false
         }
-
         return true
     }
-
 }

@@ -37,17 +37,10 @@ class PDFLineSeparatorObject: PDFObject {
      - returns: Self
      */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
-        let x = generator.document.layout.margin.left
-            + generator.layout.indentation.leftIn(container: container)
-        let y = generator.layout.heights.maxHeaderHeight()
-            + generator.document.layout.margin.top
-            + generator.layout.heights.content
-
-        let width = generator.document.layout.contentSize.width
-            - generator.layout.indentation.leftIn(container: container)
-            - generator.layout.indentation.rightIn(container: container)
-
-        self.frame = CGRect(x: x, y: y, width: width, height: style.width)
+        let width = PDFCalculations.calculateAvailableFrameWidth(for: generator, in: container)
+        let size = CGSize(width: width, height: style.width)
+        let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: size)
+        self.frame = CGRect(origin: position, size: size)
 
         return [(container, self)]
     }

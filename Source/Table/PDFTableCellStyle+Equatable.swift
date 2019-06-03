@@ -5,21 +5,24 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 extension PDFTableCellStyle: Equatable {
 
+    /**
+     TODO: Documentation
+     */
     public static func == (lhs: PDFTableCellStyle, rhs: PDFTableCellStyle) -> Bool {
-        if lhs.colors != rhs.colors {
+        guard lhs.colors == rhs.colors else {
             return false
         }
-
-        if lhs.borders != rhs.borders {
+        guard lhs.borders == rhs.borders else {
             return false
         }
-
-        if lhs.font != rhs.font {
+        guard lhs.font == rhs.font else {
             return false
         }
-
         return true
     }
 

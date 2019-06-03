@@ -41,9 +41,26 @@ public class PDFSimpleText: PDFText {
         self.style = style
     }
 
+    /**
+     Creates a new `PDFSimpleText` with the same properties
+     */
     override var copy: PDFText {
         return PDFSimpleText(text: self.text, spacing: self.spacing, style: self.style)
     }
 }
 
 extension PDFSimpleText: PDFJSONSerializable {}
+
+extension PDFSimpleText: CustomStringConvertible {
+
+    public var description: String {
+        return "PDFSimpleText(text: \(text), spacing: \(spacing))"
+    }
+}
+
+extension PDFSimpleText: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return "PDFSimpleText(text: \(text), spacing: \(spacing))"
+    }
+}

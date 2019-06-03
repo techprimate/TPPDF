@@ -58,12 +58,60 @@ class ViewController: UIViewController {
         document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
         document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
 
+        let size = CGSize(width: 400, height: 50)
+        let radius: CGFloat = 20
+
+        let path = PDFBezierPath(ref: CGRect(origin: .zero, size: size))
+        path.move(to: PDFBezierPathVertex(position: CGPoint.zero,
+                                          anchor: .topLeft))
+        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width - radius, y: 0),
+                                             anchor: .topRight))
+        path.addQuadCurve(to: PDFBezierPathVertex(position: CGPoint(x: size.width, y: radius),
+                                                  anchor: .topRight),
+                          controlPoint: PDFBezierPathVertex(position: CGPoint(x: size.width, y: 0),
+                                                            anchor: .topRight))
+        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width, y: size.height - radius),
+                                             anchor: .bottomRight))
+        path.addQuadCurve(to: PDFBezierPathVertex(position: CGPoint(x: size.width - radius, y: size.height),
+                                                  anchor: .bottomRight),
+                          controlPoint: PDFBezierPathVertex(position: CGPoint(x: size.width, y: size.height),
+                                                            anchor: .bottomRight))
+        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: 20 + radius, y: size.height),
+                                             anchor: .bottomLeft))
+        path.addQuadCurve(to: PDFBezierPathVertex(position: CGPoint(x: 20, y: size.height - radius),
+                                                  anchor: .bottomLeft),
+                          controlPoint: PDFBezierPathVertex(position: CGPoint(x: 20, y: size.height),
+                                                            anchor: .bottomLeft))
+        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: 20, y: 20),
+                                            anchor: .topLeft))
+        path.close()
+
+        let shape = PDFDynamicGeometryShape(path: path, fillColor: .orange, stroke: .none)
+
+        let group = PDFGroup(allowsBreaks: false,
+                             backgroundColor: .green,
+                             backgroundShape: shape,
+                             padding: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 180))
+        for i in 0..<10 {
+            group.set(font: UIFont.systemFont(ofSize: 25))
+            group.set(indentation: 30 * CGFloat(i % 5), left: true)
+            group.set(indentation: 30 * CGFloat(i % 3), left: false)
+            group.add(text: "Text \(i)-\(i)-\(i)-\(i)-\(i)")
+        }
+        document.add(group: group)
+        document.setIndentation(indent: 0, left: true)
+        document.setIndentation(indent: 0, left: false)
+        document.addText(text: "asdf")
+
         do {
+            let startTime = CFAbsoluteTimeGetCurrent() * 1000
             // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
             let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: {
                 (progressValue: CGFloat) in
-                print("progress: ", progressValue)
-            }, debug: false)
+                // print("progress: ", progressValue)
+            }, debug: true)
+            let endTime = CFAbsoluteTimeGetCurrent() * 1000
+            print("Duration: \(floor(endTime - startTime)) ms")
 
             // Load PDF into a webview from the temporary file
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
@@ -389,7 +437,6 @@ class ViewController: UIViewController {
         // Add a floating multisection
 
         let floatingSection = PDFSection(columnWidths: [0.33, 0.34, 0.33])
-//        floatingSection.floating = true
         floatingSection.columns[0].addText(.left, text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
         document.addSection(floatingSection)
 		
@@ -431,7 +478,7 @@ class ViewController: UIViewController {
             let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: {
                 (progressValue: CGFloat) in
                 print("progress: ", progressValue)
-            }, debug: false)
+            }, debug: true)
 
             // Load PDF into a webview from the temporary file
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))

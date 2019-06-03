@@ -39,6 +39,24 @@ public class PDFGenerator {
      */
     public var totalPages: Int = 1
 
+    /**
+     Layout information used for columns layout
+     */
+    var columnState = PDFColumnLayoutState()
+
+    /**
+     TODO: Documentation
+     */
+    var masterGroup: PDFGroupObject?
+
+    /**
+     TODO: Documentation
+     */
+    var currentPadding = UIEdgeInsets.zero
+
+    /**
+     Relative value tracking progress
+     */
     var progressValue: CGFloat = 0
 
     /**
@@ -47,7 +65,7 @@ public class PDFGenerator {
      */
     lazy var fonts: [PDFContainer: UIFont] = {
         var defaults = [PDFContainer: UIFont]()
-        for container in PDFContainer.all + [PDFContainer.none] {
+        for container in PDFContainer.allCases {
             defaults[container] = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         }
         return defaults
@@ -64,7 +82,7 @@ public class PDFGenerator {
      */
     lazy var textColor: [PDFContainer: UIColor] = {
         var defaults = [PDFContainer: UIColor]()
-        for container in PDFContainer.all + [PDFContainer.none] {
+        for container in PDFContainer.allCases {
             defaults[container] = UIColor.black
         }
         return defaults
@@ -79,6 +97,8 @@ public class PDFGenerator {
      */
     public init(document: PDFDocument) {
         self.document = document
+
+        layout.margin = document.layout.margin
     }
 
     // MARK: - INTERNAL FUNCS
@@ -88,6 +108,7 @@ public class PDFGenerator {
      */
     func resetGenerator() {
         layout.reset()
+        columnState.reset()
         currentPage = 1
     }
 }

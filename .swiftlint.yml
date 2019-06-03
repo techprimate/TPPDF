@@ -4,7 +4,30 @@ disabled_rules:
 excluded: 
   - Carthage
   - Pods
-file_length: 
+opt_in:
+- array_init
+- closure_body_length
+- closure_spacing
+- collection_alignment
+- convenience_type
+- empty_count
+- empty_string
+- explicit_acl
+- explicit_self
+- file_header
+- first_where
+- last_where
+- implicit_return
+- joined_default_parameter
+- let_var_whitespace
+- lower_acl_than_parent
+- mark
+- missing_docs
+- modifier_order
+- multiline_function_chains
+- redundant_nil_coalescing
+- static_operator
+file_length:
   error: 1200
   warning: 500
 force_cast: warning

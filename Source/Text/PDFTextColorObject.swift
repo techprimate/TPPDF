@@ -40,7 +40,24 @@ class PDFTextColorObject: PDFObject {
         return [(container, self)]
     }
 
+    /**
+     Creates a new `PDFTextColorObject` with the same properties
+     */
     override var copy: PDFObject {
         return PDFTextColorObject(color: self.color)
+    }
+}
+
+extension PDFTextColorObject: CustomDebugStringConvertible {
+
+    var debugDescription: String {
+        return "PDFTextColorObject(color: \(color.hex))"
+    }
+}
+
+extension PDFTextColorObject: CustomStringConvertible {
+
+    var description: String {
+        return "PDFTextColorObject(color: \(color.hex))"
     }
 }

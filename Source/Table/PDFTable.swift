@@ -7,9 +7,7 @@
 
 /**
  A table is a two dimensional list.
- It can be styled and can contain different data:
-
- -
+ It can be styled and can contain different data.
  */
 public class PDFTable: PDFJSONSerializable {
 
@@ -86,6 +84,9 @@ public class PDFTable: PDFJSONSerializable {
         cell.style = cellStyle
     }
 
+    /**
+     Creates a new `PDFTable` with the same properties
+     */
     var copy: PDFTable {
         let table = PDFTable()
         table.style = self.style

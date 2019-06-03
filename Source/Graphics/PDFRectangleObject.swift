@@ -70,6 +70,9 @@ class PDFRectangleObject: PDFObject {
         PDFGraphics.drawRect(rect: self.frame, outline: lineStyle, fill: fillColor)
     }
 
+    /**
+     Creates new `PDFRectangleObject` with the same properties
+     */
     override var copy: PDFObject {
         return PDFRectangleObject(lineStyle: self.lineStyle, size: self.size, fillColor: self.fillColor)
     }

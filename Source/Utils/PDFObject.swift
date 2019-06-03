@@ -14,7 +14,7 @@ public class PDFObject: PDFJSONSerializable {
     /**
      Frame of this object
      */
-    var frame: CGRect = .zero
+    var frame: CGRect = CGRect.null
 
     /**
      Calculates the object and returns all calculated objects which are created by this calculated.
@@ -41,6 +41,9 @@ public class PDFObject: PDFJSONSerializable {
      */
     func draw(generator: PDFGenerator, container: PDFContainer) throws {}
 
+    /**
+     TODO: Documentation
+     */
     var copy: PDFObject {
         fatalError()
     }
