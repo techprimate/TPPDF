@@ -106,6 +106,27 @@ class PDFCalculations {
     }
 
     /**
+     TODO: Documentation
+     */
+    static func calculateAvailableFrameHeight(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
+        let layout = generator.layout
+        let pageLayout = generator.document.layout
+
+        if container.isHeader || container.isFooter {
+            return pageLayout.height
+        } else {
+            return pageLayout.height
+                - layout.margin.top
+                - layout.heights.maxHeaderHeight()
+                - layout.heights.content
+                - generator.currentPadding.bottom
+                - layout.heights.maxFooterHeight()
+                - layout.margin.bottom
+        }
+    }
+
+
+    /**
      Calculates the position of an element with given `size` in the given `container
 
      - parameter generator: Generator doing the calculations
@@ -122,26 +143,6 @@ class PDFCalculations {
     }
 
     // MARK: - PRIVATE STATIC FUNCS
-
-    /**
-     TODO: Documentation
-     */
-    private static func calculateAvailableFrameHeight(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
-        let layout = generator.layout
-        let pageLayout = generator.document.layout
-
-        if container.isHeader || container.isFooter {
-            return pageLayout.height
-        } else {
-            return pageLayout.height
-                - layout.margin.top
-                - layout.heights.maxHeaderHeight()
-                - layout.heights.content
-                - layout.heights.maxFooterHeight()
-                - layout.margin.bottom
-        }
-    }
-
     /**
      TODO: Documentation
      */
