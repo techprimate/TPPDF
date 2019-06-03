@@ -19,8 +19,8 @@ public class PDFBezierPath {
         case close
     }
 
-    private var refFrame: CGRect
-    private var elements: [ElementType] = []
+    internal var refFrame: CGRect
+    internal var elements: [ElementType] = []
 
     public init(ref: CGRect) {
         self.refFrame = ref
