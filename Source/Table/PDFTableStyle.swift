@@ -81,7 +81,6 @@ public class PDFTableStyle: PDFJSONSerializable {
                 footerStyle: PDFTableCellStyle = PDFTableCellStyle(),
                 contentStyle: PDFTableCellStyle = PDFTableCellStyle(),
                 alternatingContentStyle: PDFTableCellStyle? = nil) {
-
         self.rowHeaderCount = rowHeaderCount
         self.columnHeaderCount = columnHeaderCount
         self.footerCount = footerCount

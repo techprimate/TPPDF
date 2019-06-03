@@ -121,27 +121,27 @@ class ViewController: UIViewController {
                                  size: CGSize(width: 150, height: 150),
                                  options: [.rounded],
                                  cornerRadius: 25)
-        document.addImage(.contentCenter, image: logoImage)
+        document.add(.contentCenter, image: logoImage)
 
         // Add a string using the title style
-        document.addText(.contentCenter, textObject: PDFSimpleText(text: "TPPDF", style: titleStyle))
+        document.add(.contentCenter, textObject: PDFSimpleText(text: "TPPDF", style: titleStyle))
 
         // Add some spacing below title
-        document.addSpace(space: 15.0)
+        document.add(space: 15.0)
 
         // Create and add a subtitle as an attributed string for more customization possibilities
         let title = NSMutableAttributedString(string: "Create PDF documents easily", attributes: [
             .font: UIFont.systemFont(ofSize: 18.0),
             .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
             ])
-        document.addAttributedText(.contentCenter, text: title)
+        document.add(.contentCenter, attributedText: title)
 
         // Add some spacing below subtitle
-        document.addSpace(space: 10.0)
+        document.add(space: 10.0)
 
         // Create a automatic table of content based on used styles
-        document.addText(text: "Table of Contents")
-        document.addSpace(space: 5.0)
+        document.add(text: "Table of Contents")
+        document.add(space: 5.0)
 
         // Add a table of content, the content will be calculated based on the usages of the styles
         document.add(tableOfContent: PDFTableOfContent(styles: [
@@ -150,19 +150,19 @@ class ViewController: UIViewController {
             ], symbol: .none))
 
         // Add headline with extra spacing
-        document.addSpace(space: 10)
-        document.addText(textObject: PDFSimpleText(text: "1. Introduction", style: headingStyle1))
-        document.addSpace(space: 10)
+        document.add(space: 10)
+        document.add(textObject: PDFSimpleText(text: "1. Introduction", style: headingStyle1))
+        document.add(space: 10)
 
         // Set font for text
-        document.setFont(font: UIFont.systemFont(ofSize: 13.0))
+        document.set(font: UIFont.systemFont(ofSize: 13.0))
 
         // Add long simple text. This will automatically word wrap if content width is not enough.
-        document.addText(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
-        document.addSpace(space: 10)
+        document.add(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
+        document.add(space: 10)
 
-        document.addText(text: "TPPDF includes many different features:")
-        document.addSpace(space: 10)
+        document.add(text: "TPPDF includes many different features:")
+        document.add(space: 10)
 
         // Simple bullet point list
         
@@ -184,18 +184,18 @@ class ViewController: UIViewController {
                 PDFListItem(content: "Simple image positioning and rendering"),
                 PDFListItem(content: "Image captions")
                 ]))
-        document.addList(list: featureList)
+        document.add(list: featureList)
 
         // Create a line separator
 
-        document.addSpace(space: 10)
+        document.add(space: 10)
         document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
 
         // Insert page break
 
-        document.addSpace(space: 10)
-        document.addText(textObject: PDFSimpleText(text: "2. Images", style: headingStyle1))
-        document.addSpace(space: 10)
+        document.add(space: 10)
+        document.add(textObject: PDFSimpleText(text: "2. Images", style: headingStyle1))
+        document.add(space: 10)
 
         // Create attributes for captions
         let captionAttributes: [NSAttributedString.Key: AnyObject] = [
@@ -234,33 +234,33 @@ class ViewController: UIViewController {
 
         // Add first row of images
 
-        document.addImagesInRow(images: images[0], spacing: 10)
+        document.add(imagesInRow: images[0], spacing: 10)
 
         // Add spacing between image rows
 
-        document.addSpace(space: 10)
+        document.add(space: 10)
 
         // Add second row of images
 
-        document.addImagesInRow(images: images[1], spacing: 10)
+        document.add(imagesInRow: images[1], spacing: 10)
         
         // Add many rows of images to test break a page
-        document.addImagesInRow(images: images[1], spacing: 10)
-        document.addImagesInRow(images: images[1], spacing: 10)
-        document.addImagesInRow(images: images[1], spacing: 10)
-        document.addImagesInRow(images: images[1], spacing: 10)
-        document.addImagesInRow(images: images[1], spacing: 10)
+        document.add(imagesInRow: images[1], spacing: 10)
+        document.add(imagesInRow: images[1], spacing: 10)
+        document.add(imagesInRow: images[1], spacing: 10)
+        document.add(imagesInRow: images[1], spacing: 10)
+        document.add(imagesInRow: images[1], spacing: 10)
 
         // Finish image collage with another line separator
 
-        document.addSpace(space: 10)
+        document.add(space: 10)
         document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
-        document.addSpace(space: 10)
+        document.add(space: 10)
 
 
-        document.addSpace(space: 10)
-        document.addText(textObject: PDFSimpleText(text: "3. Tables", style: headingStyle1))
-        document.addSpace(space: 10)
+        document.add(space: 10)
+        document.add(textObject: PDFSimpleText(text: "3. Tables", style: headingStyle1))
+        document.add(space: 10)
 
         // Create a table
         let table = PDFTable()
@@ -361,58 +361,58 @@ class ViewController: UIViewController {
 
         table.showHeadersOnEveryPage = true
 
-        document.addTable(table: table)
+        document.add(table: table)
 
         // Add more text after the table
-        document.addText(text: "Just adding more text here...")
+        document.add(text: "Just adding more text here...")
 		
 		// Add multi column section
 		let section = PDFSection(columnWidths: [0.33, 0.34, 0.33])
-		section.columns[0].addText(.left, text: "left")
-		section.columns[0].addText(.center, text: "center")
-		section.columns[0].addText(.right, text: "right")
-		section.columns[0].addText(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
-		section.columns[0].addImage(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
-		section.columns[0].addText(text: "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
-		section.columns[1].addText(.left, text: "left")
-		section.columns[1].addText(.center, text: "center")
-		section.columns[1].addText(.right, text: "right")
-		section.columns[1].addText(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
-		section.columns[1].addText(.center, text: "center")
-		section.columns[1].addImage(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
-		section.columns[2].addImage(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
-		section.columns[2].addText(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
-		section.columns[2].addText(.left, text: "left")
-		section.columns[2].addText(.center, text: "center")
-		section.columns[2].addText(.right, text: "right")
-		section.columns[2].addText(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
-		document.addSection(section)
+		section.columns[0].add(.left, text: "left")
+		section.columns[0].add(.center, text: "center")
+		section.columns[0].add(.right, text: "right")
+		section.columns[0].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
+		section.columns[0].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
+		section.columns[0].add(text: "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
+		section.columns[1].add(.left, text: "left")
+		section.columns[1].add(.center, text: "center")
+		section.columns[1].add(.right, text: "right")
+		section.columns[1].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
+		section.columns[1].add(.center, text: "center")
+		section.columns[1].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
+		section.columns[2].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
+		section.columns[2].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
+		section.columns[2].add(.left, text: "left")
+		section.columns[2].add(.center, text: "center")
+		section.columns[2].add(.right, text: "right")
+		section.columns[2].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
+        document.add(section: section)
 
         // Add a floating multisection
 
         document.enable(columns: 3, widths: [0.3, 0.5, 0.2], spacings: [10, 10])
-        document.addText(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
+        document.add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
         document.disableColumns()
 
         // Add text to footer
 
-        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 1"))
-        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 2"))
-        document.addText(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 3"))
+        document.add(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 1"))
+        document.add(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 2"))
+        document.add(.footerLeft, textObject: PDFSimpleText(text: "Footer Left 3"))
 
-        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 1"))
-        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 2"))
-        document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 3"))
+        document.add(.footerRight, textObject: PDFSimpleText(text: "Footer Right 1"))
+        document.add(.footerRight, textObject: PDFSimpleText(text: "Footer Right 2"))
+        document.add(.footerRight, textObject: PDFSimpleText(text: "Footer Right 3"))
 
         // Add text to header
 
-        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 1"))
-        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 2"))
-        document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 3"))
+        document.add(.headerLeft, textObject: PDFSimpleText(text: "Header Left 1"))
+        document.add(.headerLeft, textObject: PDFSimpleText(text: "Header Left 2"))
+        document.add(.headerLeft, textObject: PDFSimpleText(text: "Header Left 3"))
 
-        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 1"))
-        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
-        document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
+        document.add(.headerRight, textObject: PDFSimpleText(text: "Header Right 1"))
+        document.add(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
+        document.add(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
 
         /* ---- Execution Metrics ---- */
         print("Preparation took: " + stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
