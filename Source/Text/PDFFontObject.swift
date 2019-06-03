@@ -47,3 +47,17 @@ class PDFFontObject: PDFObject {
         return PDFFontObject(font: self.font)
     }
 }
+
+extension PDFFontObject: CustomDebugStringConvertible {
+
+    var debugDescription: String {
+        return "PDFFontObject(font: \(font.debugDescription))"
+    }
+}
+
+extension PDFFontObject: CustomStringConvertible {
+
+    var description: String {
+        return "PDFFontObject(font: \(font.description))"
+    }
+}
