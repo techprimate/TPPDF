@@ -199,4 +199,48 @@ public extension PDFDocument {
         objects += [(.contentLeft, PDFPageBreakObject())]
     }
 
+    // MARK: - Column Wrapping
+
+    /**
+     Starts a column section with automatic wrapping
+     */
+    func enable(_ container: PDFContainer = PDFContainer.contentLeft, columns: Int, widths: [CGFloat], spacings: [CGFloat]) {
+        assert(columns > 1, "A column wrap section must have more than one column")
+        assert(widths.count >= columns, "A colum wrap section must have at least the same amount of width values as columns")
+        assert(spacings.count == widths.count - 1, "A colum wrap section must have exactly one less spacing value than the widths")
+        objects += [(container, PDFColumnWrapSectionObject(columns: columns, widths: widths, spacings: spacings))]
+    }
+
+    /**
+     Finishes a column section
+     */
+    func disableColumns(_ container: PDFContainer = PDFContainer.contentLeft, addPageBreak: Bool = true) {
+        objects += [(container, PDFColumnWrapSectionObject(isDisable: true, addPageBreak: addPageBreak))]
+    }
+
+    /**
+     TODO: Documentation
+     */
+    func add(_ container: PDFContainer = PDFContainer.contentLeft, group: PDFGroup) {
+        objects += [(container, PDFGroupObject(objects: group.objects,
+                                               allowsBreaks: group.allowsBreaks,
+                                               backgroundColor: group.backgroundColor,
+                                               backgroundImage: group.backgroundImage,
+                                               backgroundShape: group.backgroundShape,
+                                               outline: group.outline,
+                                               padding: group.padding))]
+    }
+
+    /**
+     TODO: Documentation
+     */
+    func set(master group: PDFGroup) {
+        self.masterGroup = PDFGroupObject(objects: group.objects,
+                                          allowsBreaks: group.allowsBreaks,
+                                          backgroundColor: group.backgroundColor,
+                                          backgroundImage: group.backgroundImage,
+                                          backgroundShape: group.backgroundShape,
+                                          outline: group.outline,
+                                          padding: group.padding)
+    }
 }

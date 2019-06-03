@@ -144,6 +144,22 @@ class PDFGraphics {
         return dashes
     }
 
+    /**
+     TODO: Documentation
+     */
+    static func drawPath(path: UIBezierPath, outline: PDFLineStyle, fillColor: UIColor) {
+        var path = path.copy() as! UIBezierPath
+        let dashes = createDashes(style: outline, path: &path)
+        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
+        path.lineWidth = CGFloat(outline.width)
+
+        outline.color.setStroke()
+        fillColor.setFill()
+
+        path.fill()
+        path.stroke()
+    }
+
     // MARK: - Image Manipulation
 
     /**
@@ -281,7 +297,5 @@ class PDFGraphics {
                 UIColor(patternImage: image!).setFill()
             }
         }
-
     }
-
 }

@@ -40,6 +40,21 @@ public class PDFGenerator {
     public var totalPages: Int = 1
 
     /**
+     Layout information used for columns layout
+     */
+    var columnState = PDFColumnLayoutState()
+
+    /**
+     TODO: Documentation
+     */
+    var masterGroup: PDFGroupObject?
+
+    /**
+     TODO: Documentation
+     */
+    var currentPadding = UIEdgeInsets.zero
+
+    /**
      Relative value tracking progress
      */
     var progressValue: CGFloat = 0
@@ -82,6 +97,8 @@ public class PDFGenerator {
      */
     public init(document: PDFDocument) {
         self.document = document
+
+        layout.margin = document.layout.margin
     }
 
     // MARK: - INTERNAL FUNCS
@@ -91,6 +108,7 @@ public class PDFGenerator {
      */
     func resetGenerator() {
         layout.reset()
+        columnState.reset()
         currentPage = 1
     }
 }

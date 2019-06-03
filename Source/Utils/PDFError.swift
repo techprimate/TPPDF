@@ -58,6 +58,11 @@ public enum PDFError: Error {
     /**
      TODO: Documentation
      */
+    case copyingFailed
+
+    /**
+     TODO: Documentation
+     */
     public var localizedDescription: String {
         switch self {
         case .tableContentInvalid(let value):
@@ -78,6 +83,8 @@ public enum PDFError: Error {
             return "Hex color string has invalid length: \(length)"
         case .invalidHex(let hex):
             return "Invalid hexdecimal string: " + hex
+        case .copyingFailed:
+            return "Failed to create a copy of an object"
         }
     }
 }

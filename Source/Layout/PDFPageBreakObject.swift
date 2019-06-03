@@ -10,6 +10,8 @@
  */
 class PDFPageBreakObject: PDFObject {
 
+    var stayOnSamePage: Bool = false
+
     /**
      Modifies the layout and page count of the given `generator`.
      The parameter `container` is unused, as page breaks are container-independent.
@@ -22,7 +24,28 @@ class PDFPageBreakObject: PDFObject {
      - returns: Self
      */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
-        generator.layout.heights.content = 0
+        generator.layout.heights.content = generator.columnState.wrapColumnsHeight
+
+        stayOnSamePage = false
+
+        if let maxColumns = generator.columnState.maxColumns {
+            generator.columnState.currentColumn += 1
+
+            if generator.columnState.currentColumn >= maxColumns {
+                generator.columnState.wrapColumnsHeight = 0
+                generator.layout.heights.content = 0
+            }
+            if generator.columnState.currentColumn < maxColumns {
+                stayOnSamePage = true
+            } else {
+                generator.columnState.currentColumn = 0
+            }
+
+            let inset = PDFCalculations.calculateColumnWrapInset(generator: generator)
+            let spacing = PDFCalculations.calculateColumnWrapSpacing(generator: generator)
+
+            generator.columnState.inset = (left: inset.left + spacing.left, right: inset.right + spacing.right)
+        }
 
         return [(container, self)]
     }
@@ -37,8 +60,10 @@ class PDFPageBreakObject: PDFObject {
      - throws: None
      */
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        UIGraphicsBeginPDFPage()
-        generator.drawDebugPageOverlay()
+        if !stayOnSamePage {
+            UIGraphicsBeginPDFPage()
+            generator.drawDebugPageOverlay()
+        }
     }
 
     /**
@@ -46,5 +71,19 @@ class PDFPageBreakObject: PDFObject {
      */
     override var copy: PDFObject {
         return PDFPageBreakObject()
+    }
+}
+
+extension PDFPageBreakObject: CustomDebugStringConvertible {
+
+    var debugDescription: String {
+        return "PDFPageBreakObject(frame: \(self.frame))"
+    }
+}
+
+extension PDFPageBreakObject: CustomStringConvertible {
+
+    var description: String {
+        return "PDFPageBreakObject(frame: \(self.frame))"
     }
 }

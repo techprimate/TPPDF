@@ -5,8 +5,6 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-// swiftlint:disable for_where
-
 /**
  TODO: documentation
  */

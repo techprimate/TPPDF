@@ -52,7 +52,7 @@ class PDFRectangleObject: PDFObject {
      */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: size)
-        
+
         self.frame = CGRect(origin: position, size: size)
 
         return [(container, self)]

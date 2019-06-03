@@ -37,6 +37,8 @@ public class PDFDocument: PDFJSONSerializable {
      */
     var objects: [(PDFContainer, PDFObject)] = []
 
+    var masterGroup: PDFGroupObject?
+    
     // MARK: - PUBLIC INITIALIZERS
 
     /**

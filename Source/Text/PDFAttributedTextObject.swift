@@ -225,3 +225,17 @@ class PDFAttributedTextObject: PDFObject {
         return PDFAttributedTextObject(text: (self.attributedText ?? self.simpleText)!)
     }
 }
+
+extension PDFAttributedTextObject: CustomDebugStringConvertible {
+
+    var debugDescription: String {
+        return "PDFAttributedTextObject(frame: \(frame.debugDescription), simpleText: \(simpleText.debugDescription), attributedText: \(attributedText.debugDescription))"
+    }
+}
+
+extension PDFAttributedTextObject: CustomStringConvertible {
+
+    var description: String {
+        return "PDFAttributedTextObject(frame: \(frame.debugDescription), simpleText: \(simpleText.debugDescription), attributedText: \(attributedText.debugDescription))"
+    }
+}
