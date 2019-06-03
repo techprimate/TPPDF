@@ -73,3 +73,17 @@ class PDFPageBreakObject: PDFObject {
         return PDFPageBreakObject()
     }
 }
+
+extension PDFPageBreakObject: CustomDebugStringConvertible {
+
+    var debugDescription: String {
+        return "PDFPageBreakObject(frame: \(self.frame))"
+    }
+}
+
+extension PDFPageBreakObject: CustomStringConvertible {
+
+    var description: String {
+        return "PDFPageBreakObject(frame: \(self.frame))"
+    }
+}
