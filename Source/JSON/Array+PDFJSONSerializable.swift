@@ -5,8 +5,14 @@
 //  Created by Philip Niedertscheider on 30.05.19.
 //
 
+/**
+ TODO: Documentation
+ */
 extension Array: PDFJSONSerializable {
 
+    /**
+     TODO: Documentation
+     */
     public var JSONRepresentation: AnyObject {
         var representation: [Any] = []
 

@@ -7,28 +7,49 @@
 
 import Foundation
 
+/**
+ TODO: Documentation
+ */
 public struct Stack<T> {
 
+    /**
+     TODO: Documentation
+     */
     fileprivate var array = [T]()
 
+    /**
+     TODO: Documentation
+     */
     public init(values: T...) {
         array.append(contentsOf: values)
     }
 
+    /**
+     TODO: Documentation
+     */
     public var isEmpty: Bool {
         return array.isEmpty
     }
 
+    /**
+     TODO: Documentation
+     */
     public var count: Int {
         return array.count
     }
 
+    /**
+     TODO: Documentation
+     */
     @discardableResult
     public mutating func push(_ element: T) -> Stack<T> {
         array.append(element)
         return self
     }
 
+    /**
+     TODO: Documentation
+     */
     @discardableResult
     public mutating func pop(to count: Int? = nil) -> T? {
         if let count = count {
@@ -41,6 +62,9 @@ public struct Stack<T> {
         return array.popLast()
     }
 
+    /**
+     TODO: Documentation
+     */
     public func peek(at index: Int) -> T? {
         guard index >= 0 && index < count else {
             return nil
@@ -48,10 +72,16 @@ public struct Stack<T> {
         return array[index]
     }
 
+    /**
+     TODO: Documentation
+     */
     public var top: T? {
         return array.last
     }
 
+    /**
+     TODO: Documentation
+     */
     public func fromTop(index: Int) -> T? {
         let i = array.count - 1 - index
         return i < 0 ? nil : array[i]

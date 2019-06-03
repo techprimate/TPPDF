@@ -6,19 +6,43 @@
 //
 
 import Foundation
+import UIKit
 
+/**
+ TODO: Documentation
+ */
 public class PDFGroup: PDFJSONSerializable {
 
     // MARK: - PUBLIC VARS
 
+    /**
+     TODO: Documentation
+     */
     public var allowsBreaks: Bool
 
+    /**
+     TODO: Documentation
+     */
     public var backgroundColor: UIColor?
+
+    /**
+     TODO: Documentation
+     */
     public var backgroundImage: PDFImage?
+
+    /**
+     TODO: Documentation
+     */
     public var backgroundShape: PDFDynamicGeometryShape?
 
+    /**
+     TODO: Documentation
+     */
     public var outline: PDFLineStyle
 
+    /**
+     TODO: Documentation
+     */
     public var padding: UIEdgeInsets
 
     // MARK: - INTERNAL VARS
@@ -30,6 +54,9 @@ public class PDFGroup: PDFJSONSerializable {
 
     // MARK: - PUBLIC INITIALIZERS
 
+    /**
+     TODO: Documentation
+     */
     public init(allowsBreaks: Bool = false,
                 backgroundColor: UIColor? = nil,
                 backgroundImage: PDFImage? = nil,

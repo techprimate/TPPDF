@@ -65,6 +65,9 @@ class PDFLineSeparatorObject: PDFObject {
         }
     }
 
+    /**
+     TODO: Documentation
+     */
     override var copy: PDFObject {
         return PDFLineSeparatorObject(style: self.style)
     }

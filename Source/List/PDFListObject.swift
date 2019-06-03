@@ -47,6 +47,9 @@ class PDFListObject: PDFObject {
         return result
     }
 
+    /**
+     TODO: Documentation
+     */
     private func createSymbolItem(generator: PDFGenerator, container: PDFContainer, symbol: PDFListItemSymbol) throws -> [(PDFContainer, PDFObject)] {
         let symbol: String = symbol.stringValue
         let symbolText = PDFSimpleText(text: symbol)

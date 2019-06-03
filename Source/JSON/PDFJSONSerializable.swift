@@ -5,10 +5,19 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 public protocol PDFJSONSerializable: PDFJSONRepresentable {}
 
+/**
+ TODO: Documentation
+ */
 extension PDFJSONSerializable {
 
+    /**
+     TODO: Documentation
+     */
     public var JSONRepresentation: AnyObject {
         var representation = [String: AnyObject]()
 
@@ -20,8 +29,14 @@ extension PDFJSONSerializable {
     }
 }
 
+/**
+ TODO: Documentation
+ */
 public extension PDFJSONSerializable {
 
+    /**
+     TODO: Documentation
+     */
     func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
         let representation = JSONRepresentation
 
@@ -34,6 +49,9 @@ public extension PDFJSONSerializable {
         return String(data: data, encoding: .utf8)
     }
 
+    /**
+     TODO: Documentation
+     */
     func convertValue(_ value: Any) -> AnyObject {
         if let value = value as? PDFJSONSerializable {
             return value.JSONRepresentation
@@ -49,10 +67,16 @@ public extension PDFJSONSerializable {
         return "UNKNOWN" as AnyObject
     }
 
+    /**
+     TODO: Documentation
+     */
     func isTuple(value: Any) -> Bool {
         return Mirror(reflecting: value).displayStyle == .tuple
     }
 
+    /**
+     TODO: Documentation
+     */
     func serializeTuple(_ value: Any) -> AnyObject {
         let mirror = Mirror(reflecting: value)
         var i = 0

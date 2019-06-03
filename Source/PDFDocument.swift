@@ -42,6 +42,9 @@ public class PDFDocument: PDFJSONSerializable {
      */
     var objects: [(PDFContainer, PDFObject)] = []
 
+    /**
+     TODO: Documentation
+     */
     var masterGroup: PDFGroupObject?
     
     // MARK: - PUBLIC INITIALIZERS

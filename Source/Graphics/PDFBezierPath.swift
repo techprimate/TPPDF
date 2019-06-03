@@ -8,48 +8,109 @@
 import Foundation
 import UIKit
 
+/**
+ TODO: Documentation
+ */
 public class PDFBezierPath {
 
+    /**
+     TODO: Documentation
+     */
     enum ElementType {
+
+        /**
+         TODO: Documentation
+         */
         case move(point: PDFBezierPathVertex)
+
+        /**
+         TODO: Documentation
+         */
         case line(point: PDFBezierPathVertex)
+
+        /**
+         TODO: Documentation
+         */
         case curve(endPoint: PDFBezierPathVertex, controlPoint1: PDFBezierPathVertex, controlPoint2: PDFBezierPathVertex)
+
+        /**
+         TODO: Documentation
+         */
         case quadCurve(endPoint: PDFBezierPathVertex, controlPoint: PDFBezierPathVertex)
+
+        /**
+         TODO: Documentation
+         */
         case arc(center: PDFBezierPathVertex, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool)
+
+        /**
+         TODO: Documentation
+         */
         case close
     }
 
+    /**
+     TODO: Documentation
+     */
     internal var refFrame: CGRect
+
+    /**
+     TODO: Documentation
+     */
     internal var elements: [ElementType] = []
 
+    /**
+     TODO: Documentation
+     */
     public init(ref: CGRect) {
         self.refFrame = ref
     }
 
+    /**
+     TODO: Documentation
+     */
     public func move(to point: PDFBezierPathVertex) {
         elements.append(.move(point: point))
     }
 
+    /**
+     TODO: Documentation
+     */
     public func addLine(to point: PDFBezierPathVertex) {
         elements.append(.line(point: point))
     }
 
+    /**
+     TODO: Documentation
+     */
     public func addCurve(to endPoint: PDFBezierPathVertex, controlPoint1: PDFBezierPathVertex, controlPoint2: PDFBezierPathVertex) {
         elements.append(.curve(endPoint: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2))
     }
 
+    /**
+     TODO: Documentation
+     */
     public func addQuadCurve(to endPoint: PDFBezierPathVertex, controlPoint: PDFBezierPathVertex) {
         elements.append(.quadCurve(endPoint: endPoint, controlPoint: controlPoint))
     }
 
+    /**
+     TODO: Documentation
+     */
     public func addArc(withCenter center: PDFBezierPathVertex, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool) {
         elements.append(.arc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise))
     }
 
+    /**
+     TODO: Documentation
+     */
     public func close() {
         elements.append(.close)
     }
 
+    /**
+     TODO: Documentation
+     */
     public func bezierPath(in frame: CGRect) -> UIBezierPath {
         let bezierPath = UIBezierPath()
         for element in elements {
@@ -78,28 +139,40 @@ public class PDFBezierPath {
         return bezierPath
     }
 
+    /**
+     TODO: Documentation
+     */
     private func calculate(point: PDFBezierPathVertex, in frame: CGRect) -> CGPoint {
-        let diffX: CGFloat = {
-            switch point.anchor {
-            case .topLeft, .middleLeft, .bottomLeft:
-                return frame.minX - refFrame.minX
-            case .topCenter, .middleCenter, .bottomCenter:
-                return frame.midX - refFrame.midX
-            case .topRight, .middleRight, .bottomRight:
-                return frame.maxX - refFrame.maxX
-            }
-        }()
-        let diffY: CGFloat = {
-            switch point.anchor {
-            case .topLeft, .topCenter, .topRight:
-                return frame.minY - refFrame.minY
-            case .middleLeft, .middleCenter, .middleRight:
-                return frame.midY - refFrame.midY
-            case .bottomLeft, .bottomCenter, .bottomRight:
-                return frame.maxY - refFrame.maxY
-            }
-        }()
-        let diff = CGVector(dx: diffX, dy: diffY)
+        let diff = CGVector(dx: calculateDiffX(point: point, in: frame),
+                            dy: calculateDiffY(point: point, in: frame))
         return point.position + diff
+    }
+
+    /**
+     TODO: Documentation
+     */
+    private func calculateDiffX(point: PDFBezierPathVertex, in frame: CGRect) -> CGFloat {
+        switch point.anchor {
+        case .topLeft, .middleLeft, .bottomLeft:
+            return frame.minX - refFrame.minX
+        case .topCenter, .middleCenter, .bottomCenter:
+            return frame.midX - refFrame.midX
+        case .topRight, .middleRight, .bottomRight:
+            return frame.maxX - refFrame.maxX
+        }
+    }
+
+    /**
+     TODO: Documentation
+     */
+    private func calculateDiffY(point: PDFBezierPathVertex, in frame: CGRect) -> CGFloat {
+        switch point.anchor {
+        case .topLeft, .topCenter, .topRight:
+            return frame.minY - refFrame.minY
+        case .middleLeft, .middleCenter, .middleRight:
+            return frame.midY - refFrame.midY
+        case .bottomLeft, .bottomCenter, .bottomRight:
+            return frame.maxY - refFrame.maxY
+        }
     }
 }

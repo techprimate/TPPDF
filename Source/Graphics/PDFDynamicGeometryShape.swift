@@ -8,14 +8,29 @@
 import Foundation
 import UIKit
 
+/**
+ TODO: Documentation
+ */
 public class PDFDynamicGeometryShape {
 
+    /**
+     TODO: Documentation
+     */
     public var path: PDFBezierPath
 
+    /**
+     TODO: Documentation
+     */
     public var fillColor: UIColor = .black
 
+    /**
+     TODO: Documentation
+     */
     public var stroke: PDFLineStyle = .none
 
+    /**
+     TODO: Documentation
+     */
     public init(path: PDFBezierPath, fillColor: UIColor, stroke: PDFLineStyle) {
         self.path = path
         self.fillColor = fillColor

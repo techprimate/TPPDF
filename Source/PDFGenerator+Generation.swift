@@ -240,6 +240,9 @@ extension PDFGenerator {
         return result
     }
 
+    /**
+     TODO: Documentation
+     */
     private func headerFooterDebugLines() throws -> [(PDFContainer, PDFObject)] {
         let headerFooterDebugLineStyle = PDFLineStyle(type: .dashed, color: .orange, width: 1)
 
@@ -329,6 +332,9 @@ extension PDFGenerator {
         return objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
     }
 
+    /**
+     TODO: Documentation
+     */
     static func createTableOfContentList(objects: [(PDFContainer, PDFObject)], styles: [WeakPDFTextStyleRef], symbol: PDFListItemSymbol) -> PDFList {
         var elements: [(Int, PDFAttributedTextObject)] = []
         for (_, obj) in objects {
@@ -347,19 +353,17 @@ extension PDFGenerator {
             if index == 0 {
                 list.addItem(item)
                 stack.push(item)
+            } else if let parent = stack.peek(at: index - 1) {
+                parent.addItem(item)
+                stack.push(item)
             } else {
-                if let parent = stack.peek(at: index - 1) {
-                    parent.addItem(item)
-                    stack.push(item)
-                } else {
-                    for i in stack.count..<index {
-                        let placeholderItem = PDFListItem(symbol: .none, content: nil)
-                        stack.push(placeholderItem)
-                        stack.peek(at: i - 1)?.addItem(placeholderItem)
-                    }
-                    stack.peek(at: index - 1)?.addItem(item)
-                    stack.push(item)
+                for i in stack.count..<index {
+                    let placeholderItem = PDFListItem(symbol: .none, content: nil)
+                    stack.push(placeholderItem)
+                    stack.peek(at: i - 1)?.addItem(placeholderItem)
                 }
+                stack.peek(at: index - 1)?.addItem(item)
+                stack.push(item)
             }
         }
         return list

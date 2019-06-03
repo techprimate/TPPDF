@@ -10,6 +10,9 @@
  */
 class PDFPageBreakObject: PDFObject {
 
+    /**
+     TODO: Documentation
+     */
     var stayOnSamePage: Bool = false
 
     /**

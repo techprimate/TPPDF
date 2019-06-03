@@ -414,6 +414,9 @@ class PDFCalculations {
         return (imageSize, CGSize(width: imageSize.width, height: 0))
     }
 
+    /**
+     TODO: Documentation
+     */
     static func calculateColumnWrapInset(generator: PDFGenerator) -> (left: CGFloat, right: CGFloat) {
         guard let maxColumn = generator.columnState.maxColumns else {
             return (0, 0)
@@ -434,6 +437,9 @@ class PDFCalculations {
         return (left: left, right: right)
     }
 
+    /**
+     TODO: Documentation
+     */
     static func calculateColumnWrapSpacing(generator: PDFGenerator) -> (left: CGFloat, right: CGFloat) {
         guard let maxColumn = generator.columnState.maxColumns else {
             return (0, 0)

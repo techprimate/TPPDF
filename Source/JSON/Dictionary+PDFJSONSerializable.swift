@@ -7,8 +7,14 @@
 
 import Foundation
 
+/**
+ TODO: Documentation
+ */
 extension Dictionary: PDFJSONSerializable {
 
+    /**
+     TODO: Documentation
+     */
     public var JSONRepresentation: AnyObject {
         let representation: NSMutableDictionary = [:]
 

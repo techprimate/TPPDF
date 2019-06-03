@@ -7,16 +7,32 @@
 
 import Foundation
 
+/**
+ TODO: Documentation
+ */
 class PDFTableOfContentObject: PDFObject {
 
+    /**
+     TODO: Documentation
+     */
     var list: PDFList
+
+    /**
+     TODO: Documentation
+     */
     var options: PDFTableOfContent
 
+    /**
+     TODO: Documentation
+     */
     init(list: PDFList, options: PDFTableOfContent) {
         self.list = list
         self.options = options
     }
 
+    /**
+     TODO: Documentation
+     */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
@@ -25,6 +41,9 @@ class PDFTableOfContentObject: PDFObject {
         return result
     }
 
+    /**
+     TODO: Documentation
+     */
     override var copy: PDFObject {
         return PDFListObject(list: self.list.copy)
     }

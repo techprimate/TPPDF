@@ -7,10 +7,15 @@
 
 import Foundation
 
+/**
+ TODO: Documentation
+ */
 extension Data: PDFJSONSerializable {
 
+    /**
+     TODO: Documentation
+     */
     public var JSONRepresentation: AnyObject {
         return self.base64EncodedString() as AnyObject
     }
-
 }

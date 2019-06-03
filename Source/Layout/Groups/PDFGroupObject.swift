@@ -126,6 +126,9 @@ class PDFGroupObject: PDFObject {
         return result
     }
 
+    /**
+     TODO: Documentation
+     */
     private func calculateFrame(objects: [(container: PDFContainer, object: PDFObject)]) -> CGRect {
         let resultFrame = objects.reduce(CGRect.null, { (prev, arg) -> CGRect in
             if arg.object is PDFSpaceObject {
@@ -146,6 +149,9 @@ class PDFGroupObject: PDFObject {
         return paddedFrame
     }
 
+    /**
+     TODO: Documentation
+     */
     override func draw(generator: PDFGenerator, container: PDFContainer) throws {
         if let color = backgroundColor {
             let path = PDFGraphics.createRectPath(rect: self.frame, outline: self.outline)

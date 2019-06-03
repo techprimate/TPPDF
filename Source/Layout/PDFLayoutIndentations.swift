@@ -90,5 +90,4 @@ struct PDFLayoutIndentations {
             content.right = indentation
         }
     }
-
 }

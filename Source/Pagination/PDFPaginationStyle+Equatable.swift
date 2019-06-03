@@ -5,8 +5,14 @@
 //  Created by Philip Niedertscheider on 04/11/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 extension PDFPaginationStyle: Equatable {
 
+    /**
+     TODO: Documentation
+     */
     public static func == (lhs: PDFPaginationStyle, rhs: PDFPaginationStyle) -> Bool {
         if case PDFPaginationStyle.default = lhs, case PDFPaginationStyle.default = rhs {
             return true

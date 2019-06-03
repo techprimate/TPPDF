@@ -5,22 +5,53 @@
 //  Created by Philip Niedertscheider on 28.05.19.
 //
 
+/**
+ TODO: Documentation
+ */
 class PDFColumnWrapSectionObject: PDFObject {
 
+    /**
+     TODO: Documentation
+     */
     var columns: Int
+
+    /**
+     TODO: Documentation
+     */
     var widths: [CGFloat]
+
+    /**
+     TODO: Documentation
+     */
     var spacings: [CGFloat]
+
+    /**
+     TODO: Documentation
+     */
     var isDisable: Bool
+
+    /**
+     TODO: Documentation
+     */
     var addPageBreak: Bool
 
+    /**
+     TODO: Documentation
+     */
     convenience init(columns: Int, widths: [CGFloat], spacings: [CGFloat]) {
         self.init(columns: columns, widths: widths, spacings: spacings, isDisable: false, addPageBreak: false)
     }
 
+    /**
+     TODO: Documentation
+     */
     convenience init(isDisable: Bool, addPageBreak: Bool) {
         self.init(columns: 0, widths: [], spacings: [], isDisable: isDisable, addPageBreak: addPageBreak)
     }
 
+    /**
+     TODO: Documentation
+     */
     init(columns: Int, widths: [CGFloat], spacings: [CGFloat], isDisable: Bool, addPageBreak: Bool) {
         self.columns = columns
         self.widths = widths
@@ -71,6 +102,9 @@ class PDFColumnWrapSectionObject: PDFObject {
         }
     }
 
+    /**
+     TODO: Documentation
+     */
     override var copy: PDFObject {
         return PDFColumnWrapSectionObject(columns: self.columns, widths: self.widths, spacings: self.spacings, isDisable: self.isDisable, addPageBreak: self.addPageBreak)
     }

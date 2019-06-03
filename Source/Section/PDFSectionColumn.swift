@@ -5,6 +5,9 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
+/**
+ TODO: Documentation
+ */
 public class PDFSectionColumn: PDFJSONSerializable {
 
 	// MARK: - PUBLIC VARS

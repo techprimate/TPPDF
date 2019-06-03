@@ -275,8 +275,14 @@ class PDFGraphics {
      */
     enum FillPattern {
 
+        /**
+         TODO: Documentation
+         */
         case dotted(foreColor: UIColor, backColor: UIColor)
 
+        /**
+         TODO: Documentation
+         */
         func setFill() {
             switch self {
             case .dotted(let foreColor, let backColor):

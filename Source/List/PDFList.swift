@@ -5,31 +5,56 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 public class PDFList: PDFJSONSerializable {
 
+    /**
+     TODO: Documentation
+     */
     var items: [PDFListItem] = []
+
+    /**
+     TODO: Documentation
+     */
     var levelIndentations: [(pre: CGFloat, past: CGFloat)] = []
 
+    /**
+     TODO: Documentation
+     */
     public init(indentations: [(pre: CGFloat, past: CGFloat)]) {
         self.levelIndentations = indentations
     }
 
+    /**
+     TODO: Documentation
+     */
     @discardableResult public func addItem(_ item: PDFListItem) -> PDFList {
         self.items.append(item)
 
         return self
     }
 
+    /**
+     TODO: Documentation
+     */
     @discardableResult public func addItems(_ items: [PDFListItem]) -> PDFList {
         self.items += items
 
         return self
     }
 
+    /**
+     TODO: Documentation
+     */
     public var count: Int {
         return items.count
     }
 
+    /**
+     TODO: Documentation
+     */
     public func flatted() -> [(level: Int, text: String, symbol: PDFListItemSymbol)] {
         var result: [(level: Int, text: String, symbol: PDFListItemSymbol)] = []
         for (idx, item) in self.items.enumerated() {
@@ -38,6 +63,9 @@ public class PDFList: PDFJSONSerializable {
         return result
     }
 
+    /**
+     TODO: Documentation
+     */
     private func flatItem(item: PDFListItem, level: Int, index: Int) -> [(level: Int, text: String, symbol: PDFListItemSymbol)] {
         var result: [(level: Int, text: String, symbol: PDFListItemSymbol)] = []
         if let content = item.content {
@@ -68,7 +96,7 @@ public class PDFList: PDFJSONSerializable {
     }
 
     /**
-
+     TODO: Documentation
      */
     var copy: PDFList {
         let list = PDFList(indentations: self.levelIndentations)

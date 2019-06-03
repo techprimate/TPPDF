@@ -8,4 +8,7 @@
 import Foundation
 import UIKit
 
+/**
+ TODO: Documentation
+ */
 extension CGSize: PDFJSONSerializable {}
