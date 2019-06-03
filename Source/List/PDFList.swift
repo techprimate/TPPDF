@@ -75,5 +75,18 @@ public class PDFList: PDFJSONSerializable {
         list.items = items.map { $0.copy }
         return list
     }
+}
 
+extension PDFList: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return "PDFList(levels: \(levelIndentations.debugDescription), items: \(items.debugDescription))"
+    }
+}
+
+extension PDFList: CustomStringConvertible {
+
+    public var description: String {
+        return "PDFList(levels: \(levelIndentations), items: \(items))"
+    }
 }
