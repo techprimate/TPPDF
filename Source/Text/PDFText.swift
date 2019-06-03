@@ -16,7 +16,6 @@ public class PDFText {
     var copy: PDFText {
         fatalError()
     }
-
 }
 
 /**
