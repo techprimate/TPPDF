@@ -152,7 +152,9 @@ extension PDFGenerator {
         for (container, pdfObject) in contentObjects {
             if let tocObject = pdfObject as? PDFTableOfContentObject {
                 // Create table of content from objects
-                tocObject.list = PDFGenerator.createTableOfContentList(objects: contentObjects, styles: tocObject.options.styles)
+                tocObject.list = PDFGenerator.createTableOfContentList(objects: contentObjects,
+                                                                       styles: tocObject.options.styles,
+                                                                       symbol: tocObject.options.symbol)
             }
             let objects = try pdfObject.calculate(generator: self, container: container)
             for obj in objects {
@@ -327,7 +329,7 @@ extension PDFGenerator {
         return objects.filter { return !$0.0.isFooter && !$0.0.isHeader }
     }
 
-    static func createTableOfContentList(objects: [(PDFContainer, PDFObject)], styles: [WeakPDFTextStyleRef]) -> PDFList {
+    static func createTableOfContentList(objects: [(PDFContainer, PDFObject)], styles: [WeakPDFTextStyleRef], symbol: PDFListItemSymbol) -> PDFList {
         var elements: [(Int, PDFAttributedTextObject)] = []
         for (_, obj) in objects {
             if let textObj = obj as? PDFAttributedTextObject,
@@ -339,7 +341,7 @@ extension PDFGenerator {
         let list = PDFList(indentations: styles.enumerated().map { return (pre: CGFloat($0.offset + 1) * 10, past: 10) })
         var stack = Stack<PDFListItem>()
         for (index, element) in elements {
-            let item = PDFListItem(symbol: .dot, content: element.simpleText?.text)
+            let item = PDFListItem(symbol: symbol, content: element.simpleText?.text)
 
             stack.pop(to: index)
             if index == 0 {

@@ -20,9 +20,8 @@ class PDFTableOfContentObject: PDFObject {
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         var result: [(PDFContainer, PDFObject)] = []
 
-        let titleText = PDFAttributedTextObject(simpleText: PDFSimpleText(text: "Table Of Contents"))
-        result += try titleText.calculate(generator: generator, container: container)
         result += try PDFListObject(list: list).calculate(generator: generator, container: container)
+
         return result
     }
 

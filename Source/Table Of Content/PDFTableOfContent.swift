@@ -13,12 +13,15 @@ public class PDFTableOfContent: PDFJSONSerializable {
 
     internal var styles: [WeakPDFTextStyleRef]
 
-    public init(styles: [PDFTextStyle]) {
+    public var symbol: PDFListItemSymbol
+
+    public init(styles: [PDFTextStyle], symbol: PDFListItemSymbol) {
         self.styles = styles.map { WeakPDFTextStyleRef(value: $0) }
+        self.symbol = symbol
     }
 
     var copy: PDFTableOfContent {
-        let object = PDFTableOfContent(styles: [])
+        let object = PDFTableOfContent(styles: [], symbol: symbol)
         object.styles = self.styles.map { $0 }
         return object
     }

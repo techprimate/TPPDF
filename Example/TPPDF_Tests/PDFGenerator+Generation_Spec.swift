@@ -256,7 +256,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                     let objs: [(PDFContainer, PDFObject)] = textObjects.map { return (PDFContainer.contentLeft, PDFAttributedTextObject(simpleText: $0)) }
 
                     it("should create list based on styles") {
-                        let list = PDFGenerator.createTableOfContentList(objects: objs, styles: styles)
+                        let list = PDFGenerator.createTableOfContentList(objects: objs, styles: styles, symbol: .dot)
                         let expectedList = PDFList(indentations: [
                             (pre: CGFloat(10), past: CGFloat(10)),
                             (pre: CGFloat(20), past: CGFloat(10)),

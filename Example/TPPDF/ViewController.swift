@@ -12,51 +12,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateTestPDF()
-//        generateExamplePDF()
+//        generateTestPDF()
+        generateExamplePDF()
     }
 
     func generateTestPDF() {
         let document = PDFDocument(format: .a4)
-
-        let headingStyle1 = document.add(style: PDFTextStyle(name: "Heading 1", font: UIFont.systemFont(ofSize: 25), color: UIColor.green))
-        let headingStyle2 = document.add(style: PDFTextStyle(name: "Heading 2", font: UIFont.systemFont(ofSize: 20), color: UIColor.red))
-        let headingStyle3 = document.add(style: PDFTextStyle(name: "Heading 3", font: UIFont.systemFont(ofSize: 18), color: UIColor.blue))
-        let bodyStyle = document.add(style: PDFTextStyle(name: "Body", font: UIFont.systemFont(ofSize: 12), color: UIColor.orange))
-
-        document.add(tableOfContent: PDFTableOfContent(styles: [
-            headingStyle1,
-            headingStyle2,
-            headingStyle3
-            ]))
-
-        document.addText(textObject: PDFSimpleText(text: "Heading 1", style: headingStyle1))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-
-        document.addText(textObject: PDFSimpleText(text: "Heading 1.1", style: headingStyle2))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-
-        document.addText(textObject: PDFSimpleText(text: "Heading 2", style: headingStyle1))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-
-        document.addText(textObject: PDFSimpleText(text: "Heading 2.1", style: headingStyle2))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-
-        document.addText(textObject: PDFSimpleText(text: "Heading 2.1.1", style: headingStyle3))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-
-        document.addText(textObject: PDFSimpleText(text: "Heading 3", style: headingStyle1))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-
-        document.addText(textObject: PDFSimpleText(text: "Heading 3.1.1", style: headingStyle3))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
-        document.addText(textObject: PDFSimpleText(text: "Body", style: bodyStyle))
 
         let size = CGSize(width: 400, height: 50)
         let radius: CGFloat = 20
@@ -99,17 +60,14 @@ class ViewController: UIViewController {
             group.add(text: "Text \(i)-\(i)-\(i)-\(i)-\(i)")
         }
         document.add(group: group)
-        document.setIndentation(indent: 0, left: true)
-        document.setIndentation(indent: 0, left: false)
-        document.addText(text: "asdf")
 
         do {
             let startTime = CFAbsoluteTimeGetCurrent() * 1000
             // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
             let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: {
                 (progressValue: CGFloat) in
-                // print("progress: ", progressValue)
-            }, debug: true)
+                 print("progress: ", progressValue)
+            })
             let endTime = CFAbsoluteTimeGetCurrent() * 1000
             print("Duration: \(floor(endTime - startTime)) ms")
 
@@ -122,7 +80,7 @@ class ViewController: UIViewController {
     
     func generateExamplePDF() {
         /* ---- Execution Metrics ---- */
-        var startTime = Date()
+        var startTime = CFAbsoluteTimeGetCurrent()
         /* ---- Execution Metrics ---- */
         
         let document = PDFDocument(format: .a4)
@@ -135,14 +93,25 @@ class ViewController: UIViewController {
         // Set spacing of header and footer
         document.layout.space.header = 5
         document.layout.space.footer = 5
-        
+
         // Add custom pagination, starting at page 1 and excluding page 3
         document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure { (page, total) -> String in
             return "\(page) / \(total)"
             }, range: (1, 20), hiddenPages: [3, 7], textAttributes: [
-            .font: UIFont.boldSystemFont(ofSize: 15.0),
-            .foregroundColor: UIColor.green
-        ])
+                .font: UIFont.boldSystemFont(ofSize: 15.0),
+                .foregroundColor: UIColor.green
+            ])
+
+        // Define doccument wide styles
+        let titleStyle = document.add(style: PDFTextStyle(name: "Title",
+                                                          font: UIFont.boldSystemFont(ofSize: 50.0),
+                                                          color: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)))
+        let headingStyle1 = document.add(style: PDFTextStyle(name: "Heading 1",
+                                                             font: UIFont.systemFont(ofSize: 15),
+                                                             color: UIColor.black))
+        let headingStyle2 = document.add(style: PDFTextStyle(name: "Heading 2",
+                                                             font: UIFont.systemFont(ofSize: 20),
+                                                             color: UIColor.red))
 
         // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
         // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality. This is applied if the option `compress` is set.
@@ -154,58 +123,41 @@ class ViewController: UIViewController {
                                  cornerRadius: 25)
         document.addImage(.contentCenter, image: logoImage)
 
-        // Create and add an title as an attributed string for more customization possibilities
-        let title = NSMutableAttributedString(string: "TPPDF", attributes: [
-            .font: UIFont.boldSystemFont(ofSize: 50.0),
-            .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
-            ])
-        document.addAttributedText(.contentCenter, text: title)
+        // Add a string using the title style
+        document.addText(.contentCenter, textObject: PDFSimpleText(text: "TPPDF", style: titleStyle))
 
         // Add some spacing below title
         document.addSpace(space: 15.0)
 
-        // Set document font and document color. This will be used only for simple text until it is reset.
-        document.setFont(font: UIFont.systemFont(ofSize: 18.0))
-        document.setTextColor(color: UIColor.red)
-
-        document.addText(.contentCenter, text: "Create PDF documents easily.")
-
-        // Reset font and text color
-        document.resetFont()
-        document.resetTextColor()
+        // Create and add a subtitle as an attributed string for more customization possibilities
+        let title = NSMutableAttributedString(string: "Create PDF documents easily", attributes: [
+            .font: UIFont.systemFont(ofSize: 18.0),
+            .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
+            ])
+        document.addAttributedText(.contentCenter, text: title)
 
         // Add some spacing below subtitle
         document.addSpace(space: 10.0)
 
-        // Create a list with level indentations
-        let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
+        // Create a automatic table of content based on used styles
+        document.addText(text: "Table of Contents")
+        document.addSpace(space: 5.0)
 
-        list.addItem(PDFListItem(symbol: .numbered(value: nil))
-            .addItem(PDFListItem(content: "Introduction")
-                .addItem(PDFListItem(symbol: .numbered(value: nil))
-                    .addItem(PDFListItem(content: "Text"))
-                    .addItem(PDFListItem(content: "Attributed Text"))
-            ))
-            .addItem(PDFListItem(content: "Usage")))
-
-        document.addList(list: list)
-
-        // Set Font for headline
-        
-        document.setFont(font: UIFont.systemFont(ofSize: 20.0))
+        // Add a table of content, the content will be calculated based on the usages of the styles
+        document.add(tableOfContent: PDFTableOfContent(styles: [
+            headingStyle1,
+            headingStyle2,
+            ], symbol: .none))
 
         // Add headline with extra spacing
-        
-        document.addSpace(space: 20)
-        document.addText(text: "1. Introduction")
+        document.addSpace(space: 10)
+        document.addText(textObject: PDFSimpleText(text: "1. Introduction", style: headingStyle1))
         document.addSpace(space: 10)
 
         // Set font for text
-        
         document.setFont(font: UIFont.systemFont(ofSize: 13.0))
 
         // Add long simple text. This will automatically word wrap if content width is not enough.
-        
         document.addText(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
         document.addSpace(space: 10)
 
@@ -214,7 +166,11 @@ class ViewController: UIViewController {
 
         // Simple bullet point list
         
-        let featureList = PDFList(indentations: [(pre: 10.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
+        let featureList = PDFList(indentations: [
+            (pre: 10.0, past: 20.0),
+            (pre: 20.0, past: 20.0),
+            (pre: 40.0, past: 20.0)
+        ])
         
         featureList.addItem(PDFListItem(symbol: .dot)
             .addItems([
@@ -229,23 +185,19 @@ class ViewController: UIViewController {
                 PDFListItem(content: "Image captions")
                 ]))
         document.addList(list: featureList)
-        document.addList(list: featureList)
-        document.addList(list: featureList)
-        document.addList(list: featureList)
 
         // Create a line separator
 
         document.addSpace(space: 10)
         document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
-        document.addSpace(space: 10)
 
         // Insert page break
 
-        document.createNewPage()
-
+        document.addSpace(space: 10)
+        document.addText(textObject: PDFSimpleText(text: "2. Images", style: headingStyle1))
+        document.addSpace(space: 10)
 
         // Create attributes for captions
-
         let captionAttributes: [NSAttributedString.Key: AnyObject] = [
             .font: UIFont.italicSystemFont(ofSize: 15.0),
             .paragraphStyle: { () -> NSMutableParagraphStyle in
@@ -305,8 +257,12 @@ class ViewController: UIViewController {
         document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
         document.addSpace(space: 10)
 
-        // Create a table
 
+        document.addSpace(space: 10)
+        document.addText(textObject: PDFSimpleText(text: "3. Tables", style: headingStyle1))
+        document.addSpace(space: 10)
+
+        // Create a table
         let table = PDFTable()
 
         // Tables can contain Strings, Numbers, Images or nil, in case you need an empty cell. If you add a unknown content type, an error will be thrown and the rendering will stop.
@@ -408,11 +364,9 @@ class ViewController: UIViewController {
         document.addTable(table: table)
 
         // Add more text after the table
-
         document.addText(text: "Just adding more text here...")
 		
 		// Add multi column section
-		
 		let section = PDFSection(columnWidths: [0.33, 0.34, 0.33])
 		section.columns[0].addText(.left, text: "left")
 		section.columns[0].addText(.center, text: "center")
@@ -436,10 +390,9 @@ class ViewController: UIViewController {
 
         // Add a floating multisection
 
-        let floatingSection = PDFSection(columnWidths: [0.33, 0.34, 0.33])
-        floatingSection.columns[0].addText(.left, text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
-        document.addSection(floatingSection)
-		
+        document.enable(columns: 3, widths: [0.3, 0.5, 0.2], spacings: [10, 10])
+        document.addText(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
+        document.disableColumns()
 
         // Add text to footer
 
@@ -451,6 +404,8 @@ class ViewController: UIViewController {
         document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 2"))
         document.addText(.footerRight, textObject: PDFSimpleText(text: "Footer Right 3"))
 
+        // Add text to header
+
         document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 1"))
         document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 2"))
         document.addText(.headerLeft, textObject: PDFSimpleText(text: "Header Left 3"))
@@ -459,18 +414,13 @@ class ViewController: UIViewController {
         document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
         document.addText(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
 
-        // Add  even more text
-
-        document.createNewPage()
-        document.addText(text: "Even more text!")
-
         /* ---- Execution Metrics ---- */
-        print("Preparation took: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
-        startTime = Date()
+        print("Preparation took: " + stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
+        startTime = CFAbsoluteTimeGetCurrent()
         /* ---- Execution Metrics ---- */
         
         // Convert document to JSON String for debugging
-        let _ = document.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
+//        let _ = document.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
 //        print(json)
 
         do {
@@ -487,8 +437,7 @@ class ViewController: UIViewController {
         }
         
         /* ---- Execution Metrics ---- */
-        print("Generation took: " + stringFromTimeInterval(interval: Date().timeIntervalSince(startTime)))
-        startTime = Date()
+        print("Generation took: " + stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
         /* ---- Execution Metrics ---- */
     }
     
