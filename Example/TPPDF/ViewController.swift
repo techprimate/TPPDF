@@ -19,32 +19,16 @@ class ViewController: UIViewController {
     func generateTestPDF() {
         let document = PDFDocument(format: .a4)
 
-        let size = CGSize(width: 400, height: 50)
-        let radius: CGFloat = 20
+        let size = CGSize(width: 100, height: 100)
 
         let path = PDFBezierPath(ref: CGRect(origin: .zero, size: size))
-        path.move(to: PDFBezierPathVertex(position: CGPoint.zero,
-                                          anchor: .topLeft))
-        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width - radius, y: 0),
-                                             anchor: .topRight))
-        path.addQuadCurve(to: PDFBezierPathVertex(position: CGPoint(x: size.width, y: radius),
-                                                  anchor: .topRight),
-                          controlPoint: PDFBezierPathVertex(position: CGPoint(x: size.width, y: 0),
-                                                            anchor: .topRight))
-        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width, y: size.height - radius),
-                                             anchor: .bottomRight))
-        path.addQuadCurve(to: PDFBezierPathVertex(position: CGPoint(x: size.width - radius, y: size.height),
-                                                  anchor: .bottomRight),
-                          controlPoint: PDFBezierPathVertex(position: CGPoint(x: size.width, y: size.height),
-                                                            anchor: .bottomRight))
-        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: 20 + radius, y: size.height),
-                                             anchor: .bottomLeft))
-        path.addQuadCurve(to: PDFBezierPathVertex(position: CGPoint(x: 20, y: size.height - radius),
-                                                  anchor: .bottomLeft),
-                          controlPoint: PDFBezierPathVertex(position: CGPoint(x: 20, y: size.height),
-                                                            anchor: .bottomLeft))
-        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: 20, y: 20),
-                                            anchor: .topLeft))
+        path.move(to: PDFBezierPathVertex(position: CGPoint(x: size.width / 2, y: 0), anchor: .topCenter))
+        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width, y: size.height / 2),
+                                             anchor: .middleRight))
+        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width / 2, y: size.height),
+                                             anchor: .bottomCenter))
+        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: 0, y: size.height / 2),
+                                             anchor: .middleLeft))
         path.close()
 
         let shape = PDFDynamicGeometryShape(path: path, fillColor: .orange, stroke: .none)
@@ -393,6 +377,36 @@ class ViewController: UIViewController {
         document.enable(columns: 3, widths: [0.3, 0.5, 0.2], spacings: [10, 10])
         document.add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
         document.disableColumns()
+
+        // Add a group
+
+        document.add(textObject: PDFSimpleText(text: "4. Groups", style: headingStyle1))
+        
+        let size = CGSize(width: 100, height: 100)
+
+        let path = PDFBezierPath(ref: CGRect(origin: .zero, size: size))
+        path.move(to: PDFBezierPathVertex(position: CGPoint(x: size.width / 2, y: 0), anchor: .topCenter))
+        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width, y: size.height / 2),
+                                             anchor: .middleRight))
+        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width / 2, y: size.height),
+                                             anchor: .bottomCenter))
+        path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: 0, y: size.height / 2),
+                                             anchor: .middleLeft))
+        path.close()
+
+        let shape = PDFDynamicGeometryShape(path: path, fillColor: .orange, stroke: .none)
+
+        let group = PDFGroup(allowsBreaks: false,
+                             backgroundColor: .green,
+                             backgroundShape: shape,
+                             padding: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 180))
+        for i in 0..<10 {
+            group.set(font: UIFont.systemFont(ofSize: 25))
+            group.set(indentation: 30 * CGFloat(i % 5), left: true)
+            group.set(indentation: 30 * CGFloat(i % 3), left: false)
+            group.add(text: "Text \(i)-\(i)-\(i)-\(i)-\(i)")
+        }
+        document.add(group: group)
 
         // Add text to footer
 
