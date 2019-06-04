@@ -180,7 +180,7 @@ extension PDFGenerator {
         allObjects = masterObjects
 
         // Only calculate render header & footer metrics if page has content.
-        if contentObjects.isEmpty {
+        if !contentObjects.isEmpty {
             allObjects += try addHeaderFooterObjects()
         }
 
