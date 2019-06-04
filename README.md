@@ -506,15 +506,16 @@ document.add(sectiion: section)
 
 #### Column Wrap Sections
 
-A column wrap section allows you to split your page into multiple columns and fill it up starting at the left. All you have to do is enable it, add content, and then disable it.
+A column wrap section allows you to split your page into multiple columns and fill it up starting at the left. All you have to do is enable it, add content, and then disable it. When disabling it you can set the flag `addPageBreak` if you want it to continue on a fresh page (defaults to true).
 
 ```swift
 document.enable(columns: 4, widths: [0.2, 0.3, 0.4, 0.1], spacings: [10, 50, 20]);
 for i in 0..<200 { // This is an example for the content
     document.add(text: "\(i)-A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R")
 }
-document.disableColumns();
+document.disableColumns(addPageBreak: false);
 ```
+
 
 #### Groups
 

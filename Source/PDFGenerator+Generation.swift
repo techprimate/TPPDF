@@ -160,7 +160,7 @@ extension PDFGenerator {
             for obj in objects {
                 allObjects.append(obj)
 
-                if obj.1 is PDFPageBreakObject {
+                if let pageObj = obj.1 as? PDFPageBreakObject, !pageObj.stayOnSamePage {
                     currentPage += 1
                     totalPages += 1
                     allObjects += try addHeaderFooterObjects()
