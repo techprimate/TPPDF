@@ -70,36 +70,35 @@ internal class PDFColumnWrapSectionObject: PDFObject {
      */
     @discardableResult
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+        generator.columnState.set(currentColumn: 0, for: container)
+        generator.columnState.set(inset: (0, 0), for: container)
+
         if isDisable {
-            generator.columnState.maxColumns = nil
-            generator.columnState.currentColumn = 0
-            generator.columnState.columnWidths = []
-            generator.columnState.inset = (0, 0)
+            generator.columnState.set(maxColumns: nil, for: container)
+            generator.columnState.set(columnWidths: [], for: container)
 
             return addPageBreak ? try PDFPageBreakObject().calculate(generator: generator, container: container) : []
-        } else {
-            generator.columnState.wrapColumnsHeight = generator.layout.heights.content
-            generator.columnState.maxColumns = columns
-            generator.columnState.currentColumn = 0
-            generator.columnState.columnSpacings = spacings
-            generator.columnState.inset = (0, 0)
-
-            var availableWidth = PDFCalculations.calculateAvailableFrame(for: generator, in: container).width
-            let totalSpacing = spacings.reduce(0, +)
-            availableWidth -= totalSpacing
-            generator.columnState.columnWidths = widths.map { $0 * availableWidth }
-
-            if generator.columnState.columnWidths.isEmpty {
-                generator.columnState.columnWidths = [availableWidth]
-            }
-
-            let inset = PDFCalculations.calculateColumnWrapInset(generator: generator)
-            let spacing = PDFCalculations.calculateColumnWrapSpacing(generator: generator)
-
-            generator.columnState.inset = (left: inset.left + spacing.left, right: inset.right + spacing.right)
-
-            return [(container, self)]
         }
+
+        generator.columnState.set(wrapColumnsHeight: generator.layout.heights.content, for: container)
+        generator.columnState.set(maxColumns: columns, for: container)
+        generator.columnState.set(columnSpacings: spacings, for: container)
+
+        var availableWidth = PDFCalculations.calculateAvailableFrame(for: generator, in: container).width
+        availableWidth -= spacings.reduce(0, +)
+        generator.columnState.set(columnWidths: widths.map { $0 * availableWidth }, for: container)
+
+        if generator.columnState.getColumnWidths(for: container).isEmpty {
+            generator.columnState.set(columnWidths: [availableWidth], for: container)
+        }
+
+        let inset = PDFCalculations.calculateColumnWrapInset(generator: generator, container: container)
+        let spacing = PDFCalculations.calculateColumnWrapSpacing(generator: generator, container: container)
+
+        generator.columnState.set(inset: (left: inset.left + spacing.left,
+                                          right: inset.right + spacing.right), for: container)
+
+        return [(container, self)]
     }
 
     /**

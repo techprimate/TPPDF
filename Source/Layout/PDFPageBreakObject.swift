@@ -27,27 +27,28 @@ internal class PDFPageBreakObject: PDFObject {
      - returns: Self
      */
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
-        generator.layout.heights.content = generator.columnState.wrapColumnsHeight
+        generator.layout.heights.content = generator.columnState.getWrapColumnsHeight(for: container)
 
         stayOnSamePage = false
 
-        if let maxColumns = generator.columnState.maxColumns {
-            generator.columnState.currentColumn += 1
+        if let maxColumns = generator.columnState.getMaxColumns(for: container) {
+            let currentColumn = generator.columnState.getCurrentColumn(for: container)
+            generator.columnState.set(currentColumn: currentColumn + 1, for: container)
 
-            if generator.columnState.currentColumn >= maxColumns {
-                generator.columnState.wrapColumnsHeight = 0
-                generator.layout.heights.content = 0
+            if generator.columnState.getCurrentColumn(for: container) >= maxColumns {
+                generator.columnState.set(wrapColumnsHeight: 0, for: container)
+                generator.layout.heights.set(0, to: container)
             }
-            if generator.columnState.currentColumn < maxColumns {
+            if generator.columnState.getCurrentColumn(for: container) < maxColumns {
                 stayOnSamePage = true
             } else {
-                generator.columnState.currentColumn = 0
+                generator.columnState.set(currentColumn: 0, for: container)
             }
 
-            let inset = PDFCalculations.calculateColumnWrapInset(generator: generator)
-            let spacing = PDFCalculations.calculateColumnWrapSpacing(generator: generator)
+            let inset = PDFCalculations.calculateColumnWrapInset(generator: generator, container: container)
+            let spacing = PDFCalculations.calculateColumnWrapSpacing(generator: generator, container: container)
 
-            generator.columnState.inset = (left: inset.left + spacing.left, right: inset.right + spacing.right)
+            generator.columnState.set(inset: (left: inset.left + spacing.left, right: inset.right + spacing.right), for: container)
         }
 
         return [(container, self)]

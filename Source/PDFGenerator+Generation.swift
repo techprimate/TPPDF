@@ -195,7 +195,7 @@ extension PDFGenerator {
                     allObjects.append(contentsOf: masterObjects)
                 }
 
-                if obj.1 is PDFPageBreakObject {
+                if let pageObj = obj.1 as? PDFPageBreakObject, !pageObj.stayOnSamePage {
                     currentPage += 1
                     allObjects += try addHeaderFooterObjects()
                 }
