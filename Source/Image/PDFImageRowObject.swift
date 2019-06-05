@@ -66,7 +66,7 @@ internal class PDFImageRowObject: PDFObject {
                                                   in: container)
 
             let res = try imageObject.calculate(generator: generator, container: container)
-            for obj in res where obj.1 is PDFPageBreakObject {
+            if res.contains(where: { $0.1 is PDFPageBreakObject }) {
                 originalHeight = 0
             }
             result += res
