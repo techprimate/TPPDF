@@ -420,10 +420,10 @@ internal enum PDFCalculations {
         }()
 
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
-        var captionHeight: CGFloat = 0
-        if let caption = image.caption {
-            // TODO: Fix caption height calculations
-        }
+        let captionHeight: CGFloat = 0
+        // if let _ = image.caption {
+        // TODO: Fix caption height calculations
+        // }
         return (imageSize, CGSize(width: imageSize.width, height: captionHeight))
     }
 

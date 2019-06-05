@@ -28,7 +28,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     let value: CGFloat = 20
 
                     it("is possible to add into default container") {
-                        document.addSpace(space: value)
+                        document.add(space: value)
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.contentLeft
 
@@ -37,7 +37,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     it("is possible to add into specific container") {
-                        document.addSpace(.footerLeft, space: value)
+                        document.add(.footerLeft, space: value)
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.footerLeft
 
@@ -80,7 +80,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     let pdfImage = PDFImage(image: image)
 
                     it("is possible to add an image to the default container") {
-                        document.addImage(image: pdfImage)
+                        document.add(image: pdfImage)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.contentLeft
@@ -90,7 +90,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     it("is possible to add an image to a specific container") {
-                        document.addImage(.headerRight, image: pdfImage)
+                        document.add(.headerRight, image: pdfImage)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.headerRight
@@ -105,7 +105,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                         let spacing: CGFloat = 10.0
 
                         it("is possible to add an image row to the default container") {
-                            document.addImage(image: pdfImage)
+                            document.add(image: pdfImage)
 
                             expect(document.objects).to(haveCount(1))
                             expect(document.objects[0].0) == PDFContainer.contentLeft
@@ -115,7 +115,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                         }
 
                         it("is possible to add an image row with a specific spacing to a specific container") {
-                            document.addImagesInRow(.headerRight, images: images, spacing: spacing)
+                            document.add(.headerRight, imagesInRow: images, spacing: spacing)
 
                             expect(document.objects).to(haveCount(1))
                             expect(document.objects[0].0) == PDFContainer.headerRight
@@ -137,7 +137,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     let spacing: CGFloat = 2.5
 
                     it("is possible to add a text with default spacing to the default container") {
-                        document.addText(text: text)
+                        document.add(text: text)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.contentLeft
@@ -148,7 +148,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     it("is possible to add a text with specific spacing to a specific container") {
-                        document.addText(.headerRight, text: text, lineSpacing: spacing)
+                        document.add(.headerRight, text: text, lineSpacing: spacing)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.headerRight
@@ -165,7 +165,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     let text = NSAttributedString(string: "EXAMPLE")
 
                     it("is possible to add an attributed text to the default container") {
-                        document.addAttributedText(text: text)
+                        document.add(attributedText: text)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.contentLeft
@@ -176,7 +176,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     it("is possible to add an attributed text to a specific container") {
-                        document.addAttributedText(.headerRight, text: text)
+                        document.add(.headerRight, attributedText: text)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.headerRight
@@ -192,7 +192,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     let font = UIFont.systemFont(ofSize: 20, weight: .bold)
 
                     it("is possible to set the text color of the default container") {
-                        document.setFont(font: font)
+                        document.set(font: font)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.contentLeft
@@ -202,7 +202,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     it("is possible to set the text color a specific container") {
-                        document.setFont(.headerRight, font: font)
+                        document.set(.headerRight, font: font)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.headerRight
@@ -237,7 +237,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     let color = UIColor.orange
 
                     it("is possible to set the text color of the default container") {
-                        document.setTextColor(color: color)
+                        document.set(textColor: color)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.contentLeft
@@ -247,7 +247,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     it("is possible to set the text color a specific container") {
-                        document.setTextColor(.headerRight, color: color)
+                        document.set(.headerRight, textColor: color)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.headerRight
@@ -282,7 +282,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     let table = PDFTable()
 
                     it("is possible to add a table into the default container") {
-                        document.addTable(table: table)
+                        document.add(table: table)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.contentLeft
@@ -292,7 +292,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     it("is possible to add a table into a specific container") {
-                        document.addTable(.headerRight, table: table)
+                        document.add(.headerRight, table: table)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.headerRight
@@ -308,7 +308,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     let list = PDFList(indentations: indentations)
 
                     it("is possible to add a list into the default container") {
-                        document.addList(list: list)
+                        document.add(list: list)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.contentLeft
@@ -318,7 +318,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     it("is possible add a list into a specific container") {
-                        document.addList(.headerRight, list: list)
+                        document.add(.headerRight, list: list)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.headerRight
@@ -334,7 +334,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     let leftSide = true
 
                     it("is possible to set indentation of default container") {
-                        document.setIndentation(indent: indentation, left: leftSide)
+                        document.set(indent: indentation, left: leftSide)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.contentLeft
@@ -345,7 +345,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     it("is possible to set indentation of specific container") {
-                        document.setIndentation(.headerRight, indent: indentation, left: leftSide)
+                        document.set(.headerRight, indent: indentation, left: leftSide)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.headerRight
@@ -361,7 +361,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     let offset: CGFloat = 20.0
 
                     it("is possible to set absolute offset of default container") {
-                        document.setAbsoluteOffset(offset: offset)
+                        document.set(absoluteOffset: offset)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.contentLeft
@@ -371,7 +371,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     it("is possible to set absolute offset of specific container") {
-                        document.setAbsoluteOffset(.headerRight, offset: offset)
+                        document.set(.headerRight, absoluteOffset: offset)
 
                         expect(document.objects).to(haveCount(1))
                         expect(document.objects[0].0) == PDFContainer.headerRight
