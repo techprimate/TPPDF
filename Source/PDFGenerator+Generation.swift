@@ -64,18 +64,9 @@ extension PDFGenerator {
         let name = filename.lowercased().hasSuffix(".pdf") ? filename : (filename + ".pdf")
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(name)
         UIGraphicsBeginPDFContextToFile(url.path, documents.first?.layout.bounds ?? .zero, info.generate())
-        var totalProgress: CGFloat = 0
-        for (idx, document) in documents.enumerated() {
-            let generator = PDFGenerator(document: document)
 
-            generator.progressValue = 0
-            generator.debug = debug
+        try process(documents: documents, progress: progress, debug: debug)
 
-            try generator.generatePDFContext(progress: { value in
-                totalProgress += value
-                progress?(idx, value, totalProgress)
-            })
-        }
         UIGraphicsEndPDFContext()
         return url
     }
@@ -122,18 +113,7 @@ extension PDFGenerator {
         assert(!documents.isEmpty, "At least one document is required!")
 
         UIGraphicsBeginPDFContextToFile(url.path, documents.first?.layout.bounds ?? .zero, info.generate())
-        var totalProgress: CGFloat = 0
-        for (idx, document) in documents.enumerated() {
-            let generator = PDFGenerator(document: document)
-
-            generator.progressValue = 0
-            generator.debug = debug
-
-            try generator.generatePDFContext(progress: { value in
-                totalProgress += value
-                progress?(idx, value, totalProgress)
-            })
-        }
+        try process(documents: documents, progress: progress, debug: debug)
         UIGraphicsEndPDFContext()
     }
 
@@ -183,18 +163,7 @@ extension PDFGenerator {
 
         let data = NSMutableData()
         UIGraphicsBeginPDFContextToData(data, documents.first?.layout.bounds ?? .zero, info.generate())
-        var totalProgress: CGFloat = 0
-        for (idx, document) in documents.enumerated() {
-            let generator = PDFGenerator(document: document)
-
-            generator.progressValue = 0
-            generator.debug = debug
-
-            try generator.generatePDFContext(progress: { value in
-                totalProgress += value
-                progress?(idx, value, totalProgress)
-            })
-        }
+        try process(documents: documents, progress: progress, debug: debug)
         UIGraphicsEndPDFContext()
 
         return data as Data
@@ -202,6 +171,34 @@ extension PDFGenerator {
 
     // MARK: - INTERNAL FUNCS
 
+    /**
+     Processes multiple documents and renders them into the current PDFContext
+
+     - parameter documents: List of PDFDocument to be processed
+     - parameter progress:  Optional closure for progress handling, showing the current document index, the current document progress and the total progress.
+     - parameter debug:     Enables debugging
+     
+     - throws:              PDFError
+     */
+    internal static func process(documents: [PDFDocument], progress: ((Int, CGFloat, CGFloat) -> Void)?, debug: Bool) throws {
+        let objCounts = documents.map { $0.objects.count }
+        let objSum = CGFloat(objCounts.reduce(0, +))
+        let weights = objCounts.map { CGFloat($0) / objSum }
+
+        var progressValues = [CGFloat](repeating: 0, count: documents.count)
+        for (idx, document) in documents.enumerated() {
+            let generator = PDFGenerator(document: document)
+
+            generator.progressValue = 0
+            generator.debug = debug
+
+            try generator.generatePDFContext(progress: { value in
+                progressValues[idx] = value * weights[idx]
+                let totalProgress = progressValues.reduce(0, +)
+                progress?(idx, value, totalProgress)
+            })
+        }
+    }
     /**
      Generate PDF Context from PDFCommands
 
