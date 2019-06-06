@@ -16,6 +16,7 @@
 
 **Implemented enhancements:**
 
+- Changed framework methods to be "more Swift(y)"
 - Added groups
 - Added dynamic shapes for group background
 - Added column with automatic wrapping (Issue #113)
