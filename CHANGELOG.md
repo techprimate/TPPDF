@@ -18,9 +18,9 @@
 
 - Added groups
 - Added dynamic shapes for group background
-- Added column with automatic wrapping 
-- Added document wide text styles
-- Added automatic table of content based on text styles
+- Added column with automatic wrapping (Issue #113)
+- Added document wide text styles (Issue #57)
+- Added automatic table of content based on text styles (Issue #58)
 
 **Fixed bugs:**
 
@@ -31,6 +31,7 @@
 
 - #9
 - #57
+- #58
 - #88
 - #113
 - #118
