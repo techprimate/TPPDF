@@ -421,7 +421,7 @@
 
 <p>A good example would be the following:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">document</span> <span class="o">=</span> <span class="kt">PDFDocument</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span> <span class="o">.</span><span class="n">a4</span><span class="p">)</span>
-<span class="n">document</span><span class="o">.</span><span class="nf">addText</span><span class="p">(</span><span class="o">.</span><span class="n">footerCenter</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="s">"Created using TPPDF for iOS."</span><span class="p">)</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="o">.</span><span class="n">footerCenter</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="s">"Created using TPPDF for iOS."</span><span class="p">)</span>
 </code></pre>
 
 <p>This command adds the text <strong>Created using TPPDF for iOS</strong> to the footer of all pages, because elements in the header and footer containers are placed on every page.</p>
@@ -445,11 +445,11 @@
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">text</span> <span class="o">=</span> <span class="s">"Some text!"</span>
 <span class="k">let</span> <span class="nv">spacing</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">10.0</span>
 <span class="k">let</span> <span class="nv">textElement</span> <span class="o">=</span> <span class="kt">PDFSimpleText</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span> <span class="nv">spacing</span><span class="p">:</span> <span class="n">spacing</span><span class="p">)</span>
-<span class="n">document</span><span class="o">.</span><span class="nf">addText</span><span class="p">(</span><span class="nv">textObject</span><span class="p">:</span> <span class="n">textElement</span><span class="p">)</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">textObject</span><span class="p">:</span> <span class="n">textElement</span><span class="p">)</span>
 </code></pre>
 
 <p>For convenience you are also able to add an attributed string directly, and TPPDF will wrap it in a <code><a href="Classes/PDFSimpleText.html">PDFSimpleText</a></code> for you.</p>
-<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">addText</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span> <span class="nv">lineSpacing</span><span class="p">:</span> <span class="n">spacing</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span> <span class="nv">lineSpacing</span><span class="p">:</span> <span class="n">spacing</span><span class="p">)</span>
 </code></pre>
 
 <p>During the render process it will create an attributed string using the font set by <code>setFont(font:)</code> and the text color set by <code>setTextColor(color:)</code>. </p>
@@ -461,18 +461,18 @@
     <span class="kt">NSForegroundColorAttributeName</span> <span class="p">:</span> <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">219.0</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mf">100.0</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mf">58.0</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="p">])</span>
 <span class="k">let</span> <span class="nv">textElement</span> <span class="o">=</span> <span class="kt">PDFAttributedText</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="n">title</span><span class="p">)</span>
-<span class="n">document</span><span class="o">.</span><span class="nf">addAttributedText</span><span class="p">(</span><span class="nv">textObject</span><span class="p">:</span> <span class="n">attributedTitle</span><span class="p">)</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">attributedTextObject</span><span class="p">:</span> <span class="n">attributedTitle</span><span class="p">)</span>
 </code></pre>
 
 <p>For convenience you are also able to add an attributed string directly, and TPPDF will wrap it in a <code><a href="Classes/PDFAttributedText.html">PDFAttributedText</a></code> for you.</p>
-<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">addAttributedText</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="n">attributedTitle</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">attributedText</span><span class="p">:</span> <span class="n">attributedTitle</span><span class="p">)</span>
 </code></pre>
 <h4 id='image' class='heading'>Image</h4>
 
 <p>To add an image to the document, you first need to create a <code><a href="Classes/PDFImage.html">PDFImage</a></code> which wraps the image and the customization.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"awesome-image"</span><span class="p">)</span><span class="o">!</span>
 <span class="k">let</span> <span class="nv">imageElement</span> <span class="o">=</span> <span class="kt">PDFImage</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="n">image</span><span class="p">)</span>
-<span class="n">document</span><span class="o">.</span><span class="nf">addImage</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="n">imageElement</span><span class="p">)</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="n">imageElement</span><span class="p">)</span>
 </code></pre>
 
 <p>A <code><a href="Classes/PDFImage.html">PDFImage</a></code> can also include a optional <code>caption</code> which is either a <code><a href="Classes/PDFSimpleText.html">PDFSimpleText</a></code> or <code><a href="Classes/PDFAttributedText.html">PDFAttributedText</a></code>. 
@@ -518,7 +518,7 @@ The corner radius is set to <code>15pt</code>, therefore the image will first be
              <span class="nv">caption</span><span class="p">:</span> <span class="kt">PDFAttributedText</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"Forrest"</span><span class="p">,</span> <span class="nv">attributes</span><span class="p">:</span> <span class="n">captionAttributes</span><span class="p">))),</span>
 <span class="p">]</span>
 
-<span class="n">document</span><span class="o">.</span><span class="nf">addImagesInRow</span><span class="p">(</span><span class="nv">images</span><span class="p">:</span> <span class="n">images</span><span class="p">,</span> <span class="nv">spacing</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">imagesInRow</span><span class="p">:</span> <span class="n">images</span><span class="p">,</span> <span class="nv">spacing</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
 </code></pre>
 <h4 id='list' class='heading'>List</h4>
 
@@ -580,7 +580,7 @@ If you provide <code>value</code> this will be used for the parent item, in case
 </code></pre>
 
 <p>Now you have created a multi-level list element, you can add to the document:</p>
-<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">addList</span><span class="p">(</span><span class="nv">list</span><span class="p">:</span> <span class="n">list</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">list</span><span class="p">:</span> <span class="n">list</span><span class="p">)</span>
 </code></pre>
 <h4 id='table' class='heading'>Table</h4>
 
@@ -721,7 +721,7 @@ The width of each column is set by a relative width, defined in an array of valu
 <p>Also each cell can have a <code>margin</code> which is the distance between the cell frame and its inner borders and the <code>padding</code> as the distance between the inner borders and the content.</p>
 
 <p>&hellip;and finally you add the table to the document:</p>
-<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">addTable</span><span class="p">(</span><span class="nv">table</span><span class="p">:</span> <span class="n">table</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">table</span><span class="p">:</span> <span class="n">table</span><span class="p">)</span>
 </code></pre>
 <h4 id='multi-column-sections' class='heading'>Multi-Column Sections</h4>
 
@@ -732,48 +732,109 @@ The width of each column is set by a relative width, defined in an array of valu
 <span class="n">section</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="nf">addText</span><span class="p">(</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="s">"right"</span><span class="p">)</span>
 <span class="n">section</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="nf">addText</span><span class="p">(</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="s">"left"</span><span class="p">)</span>
 <span class="n">section</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="nf">addText</span><span class="p">(</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="s">"center"</span><span class="p">)</span>
-<span class="n">document</span><span class="o">.</span><span class="nf">addSection</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">sectiion</span><span class="p">:</span> <span class="n">section</span><span class="p">)</span>
+</code></pre>
+<h4 id='column-wrap-sections' class='heading'>Column Wrap Sections</h4>
+
+<p>A column wrap section allows you to split your page into multiple columns and fill it up starting at the left. All you have to do is enable it, add content, and then disable it. When disabling it you can set the flag <code>addPageBreak</code> if you want it to continue on a fresh page (defaults to true).</p>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">enable</span><span class="p">(</span><span class="nv">columns</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nv">widths</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="nv">spacings</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">]);</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="mi">200</span> <span class="p">{</span> <span class="c1">// This is an example for the content</span>
+    <span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"</span><span class="se">\(</span><span class="n">i</span><span class="se">)</span><span class="s">-A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">disableColumns</span><span class="p">(</span><span class="nv">addPageBreak</span><span class="p">:</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre>
+<h4 id='groups' class='heading'>Groups</h4>
+
+<p>Groups give you the option to dynamically add elements to your document, but calculate them as one.
+This way it is possible to add e.g. multiple <code><a href="Classes/PDFText.html">PDFText</a></code> elements and if the calculations require a page break, it can be disabled. </p>
+
+<p>Additionally groups allow to set either an <code>UIColor</code> as the <code>backgroundColor</code> or even create a complex <code><a href="Classes/PDFDynamicGeometryShape.html">PDFDynamicGeometryShape</a></code> which adapts to the group frame (see <a href="#Dynamic-Geometry-Shapes">Dynamic Geometry Shapes</a> for more details). You are also able to add a padding to the group to add additional space around the content.</p>
+
+<p><strong>Example:</strong></p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">shape</span> <span class="o">=</span> <span class="kt">PDFDynamicGeometryShape</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">group</span> <span class="o">=</span> <span class="kt">PDFGroup</span><span class="p">(</span><span class="nv">allowsBreaks</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                     <span class="nv">backgroundColor</span><span class="p">:</span> <span class="o">.</span><span class="n">green</span><span class="p">,</span>
+                     <span class="nv">backgroundShape</span><span class="p">:</span> <span class="n">shape</span><span class="p">,</span>
+                     <span class="nv">padding</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">(</span><span class="nv">top</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nv">bottom</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nv">right</span><span class="p">:</span> <span class="mi">180</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="mi">10</span> <span class="p">{</span>
+    <span class="n">group</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">font</span><span class="p">:</span> <span class="kt">UIFont</span><span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mi">25</span><span class="p">))</span>
+    <span class="n">group</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">indentation</span><span class="p">:</span> <span class="mi">30</span> <span class="o">*</span> <span class="kt">CGFloat</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">5</span><span class="p">),</span> <span class="nv">left</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">indentation</span><span class="p">:</span> <span class="mi">30</span> <span class="o">*</span> <span class="kt">CGFloat</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">3</span><span class="p">),</span> <span class="nv">left</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"Text </span><span class="se">\(</span><span class="n">i</span><span class="se">)</span><span class="s">-</span><span class="se">\(</span><span class="n">i</span><span class="se">)</span><span class="s">-</span><span class="se">\(</span><span class="n">i</span><span class="se">)</span><span class="s">-</span><span class="se">\(</span><span class="n">i</span><span class="se">)</span><span class="s">-</span><span class="se">\(</span><span class="n">i</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">group</span><span class="p">:</span> <span class="n">group</span><span class="p">)</span>
+</code></pre>
+<h4 id='dynamic-geometry-shapes' class='heading'>Dynamic Geometry Shapes</h4>
+
+<p>Shapes are very closely related to simple geometric paths, but with the difference, that they adapt to frame changes dynamically.</p>
+
+<p>A <code><a href="Classes/PDFDynamicGeometryShape.html">PDFDynamicGeometryShape</a></code> holds three properties: </p>
+
+<ul>
+<li><code><a href="Classes/PDFBezierPath.html">PDFBezierPath</a></code> in <code>path</code>, defining how the shape looks like</li>
+<li><code>UIColor</code> in <code>fillColor</code> for the content color</li>
+<li>and a <code><a href="Structs/PDFLineStyle.html">PDFLineStyle</a></code> in <code>stroke</code> for the look of the lines</li>
+</ul>
+
+<p><strong>Example:</strong></p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">shape</span> <span class="o">=</span> <span class="kt">PDFDynamicGeometryShape</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span> <span class="nv">fillColor</span><span class="p">:</span> <span class="o">.</span><span class="n">orange</span><span class="p">,</span> <span class="nv">stroke</span><span class="p">:</span> <span class="o">.</span><span class="k">none</span><span class="p">)</span>
+</code></pre>
+
+<p><code><a href="Classes/PDFBezierPath.html">PDFBezierPath</a></code> is heavily related to <code>UIBezierPath</code> matching all its functions (e.g. <code>move(to:)</code>, <code>addLine(to:)</code>). The main difference is that all vertices are of type <code><a href="Classes/PDFBezierPathVertex.html">PDFBezierPathVertex</a></code> and hold a reference to an anchor of the group frame. Using the reference frame of the path, it will resize the shape to fit the group frame, but the vertices will keep their position relative to their anchor.</p>
+
+<p>The following example draws a diamond shape in a <code>100pt</code> square.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">size</span> <span class="o">=</span> <span class="kt">CGSize</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">path</span> <span class="o">=</span> <span class="kt">PDFBezierPath</span><span class="p">(</span><span class="nv">ref</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">origin</span><span class="p">:</span> <span class="o">.</span><span class="n">zero</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="n">size</span><span class="p">))</span>
+<span class="n">path</span><span class="o">.</span><span class="nf">move</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">PDFBezierPathVertex</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">size</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> 
+                                  <span class="nv">anchor</span><span class="p">:</span> <span class="o">.</span><span class="n">topCenter</span><span class="p">))</span>
+<span class="n">path</span><span class="o">.</span><span class="nf">addLine</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">PDFBezierPathVertex</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">size</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="n">size</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+                                     <span class="nv">anchor</span><span class="p">:</span> <span class="o">.</span><span class="n">middleRight</span><span class="p">))</span>
+<span class="n">path</span><span class="o">.</span><span class="nf">addLine</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">PDFBezierPathVertex</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">size</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="n">size</span><span class="o">.</span><span class="n">height</span><span class="p">),</span>
+                                     <span class="nv">anchor</span><span class="p">:</span> <span class="o">.</span><span class="n">bottomCenter</span><span class="p">))</span>
+<span class="n">path</span><span class="o">.</span><span class="nf">addLine</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">PDFBezierPathVertex</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="n">size</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+                                     <span class="nv">anchor</span><span class="p">:</span> <span class="o">.</span><span class="n">middleLeft</span><span class="p">))</span>
+<span class="n">path</span><span class="o">.</span><span class="nf">close</span><span class="p">()</span>
 </code></pre>
 <h3 id='helpers' class='heading'>Helpers</h3>
 
 <p>The following methods of <code><a href="Classes/PDFDocument.html">PDFDocument</a></code> are not considered as elements, as they are only runtime changes to the calculations and rendering.</p>
-<h4 id='space-code-addspace-_-container-pdfcontainer-space-cgfloat-code' class='heading'>Space - <code>addSpace(_ container: PDFContainer, space: CGFloat)</code></h4>
+<h4 id='space-code-add-_-container-pdfcontainer-space-cgfloat-code' class='heading'>Space - <code>add(_ container: PDFContainer, space: CGFloat)</code></h4>
 
 <p>Adds a space with the height of <code>space</code> between the previous element and the next element.</p>
-<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">setSpace</span><span class="p">(</span><span class="nv">space</span><span class="p">:</span> <span class="mf">32.0</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">space</span><span class="p">:</span> <span class="mf">32.0</span><span class="p">)</span>
 </code></pre>
-<h4 id='simple-text-font-code-setfont-_-container-pdfcontainer-font-uifont-code' class='heading'>Simple Text Font - <code>setFont(_ container: PDFContainer, font: UIFont)</code></h4>
+<h4 id='simple-text-font-code-set-_-container-pdfcontainer-font-uifont-code' class='heading'>Simple Text Font - <code>set(_ container: PDFContainer, font: UIFont)</code></h4>
 
 <p>Sets the font of a container. This font will be used in all following elements of type <code><a href="Classes/PDFSimpleText.html">PDFSimpleText</a></code> in the given container, until the font is changed. This font does not affect <code><a href="Classes/PDFAttributedText.html">PDFAttributedText</a></code> elements.</p>
-<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">setFont</span><span class="p">(</span><span class="nv">font</span><span class="p">:</span> <span class="kt">UIFont</span><span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">))</span>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">font</span><span class="p">:</span> <span class="kt">UIFont</span><span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">))</span>
 </code></pre>
 <h4 id='reset-simple-text-font-code-resetfont-_-container-pdfcontainer-code' class='heading'>Reset Simple Text Font - <code>resetFont(_ container: PDFContainer)</code></h4>
 
 <p>This resets the font to the default font, which is <code>UIFont.systemFont(ofSize: UIFont.systemFontSize)</code></p>
 <pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">resetFont</span><span class="p">(</span><span class="o">.</span><span class="n">contentLeft</span><span class="p">)</span>
 </code></pre>
-<h4 id='simple-text-color-code-settextcolor-_-container-pdfcontainer-color-uicolor-code' class='heading'>Simple Text Color - <code>setTextColor(_ container: PDFContainer, color: UIColor)</code></h4>
+<h4 id='simple-text-color-code-set-_-container-pdfcontainer-textcolor-uicolor-code' class='heading'>Simple Text Color - <code>set(_ container: PDFContainer, textColor: UIColor)</code></h4>
 
-<p>Sets the font of a container. This font will be used in the next commands in the given container, if there is not a different font specified.</p>
-<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">setFont</span><span class="p">(</span><span class="kt">UIFont</span><span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">))</span>
+<p>Sets the text color of a container. This text color will be used in the next commands in the given container, if there is not a different color specified.</p>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">textColor</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">green</span><span class="p">)</span>
 </code></pre>
 <h4 id='reset-simple-text-color-code-resettextcolor-_-container-pdfcontainer-code' class='heading'>Reset Simple Text Color - <code>resetTextColor(_ container: PDFContainer)</code></h4>
 
-<p>This resets the font to the default font, which is <code>UIFont.systemFont(ofSize: UIFont.systemFontSize)</code></p>
-<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">resetFont</span><span class="p">(</span><span class="o">.</span><span class="n">contentLeft</span><span class="p">)</span>
+<p>This resets the text color to the default text color, which is <code>UIColor.black</code></p>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">resetTextColor</span><span class="p">(</span><span class="o">.</span><span class="n">contentLeft</span><span class="p">)</span>
 </code></pre>
-<h4 id='code-setindentation-_-container-pdfcontainer-indent-cgfloat-left-bool-code' class='heading'><code>setIndentation(_ container: PDFContainer, indent: CGFloat, left: Bool)</code></h4>
+<h4 id='code-set-_-container-pdfcontainer-indent-cgfloat-left-bool-code' class='heading'><code>set(_ container: PDFContainer, indent: CGFloat, left: Bool)</code></h4>
 
 <p>Set the indentation to a given <code>indent</code> in the container. By setting <code>left</code> to <code>false</code> you will change the indentation from the right edge.</p>
-<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">setIndentation</span><span class="p">(</span><span class="nv">indent</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
-<span class="n">document</span><span class="o">.</span><span class="nf">setIndentation</span><span class="p">(</span><span class="nv">indent</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">indent</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+<span class="n">document</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">indent</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
 </code></pre>
 
 <p>Now the document has an indentation of <code>50</code> points from left and right edge.
 If you need to reset the indentation, call the function with <code>0.0</code> as parameter</p>
-<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">setIndentation</span><span class="p">(</span><span class="nv">indent</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">document</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">indent</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">)</span>
 </code></pre>
-<h4 id='code-setabsoluteoffset-_-container-pdfcontainer-offset-cgfloat-code' class='heading'><code>setAbsoluteOffset(_ container: PDFContainer, offset: CGFloat)</code></h4>
+<h4 id='code-set-_-container-pdfcontainer-absoluteoffset-cgfloat-code' class='heading'><code>set(_ container: PDFContainer, absoluteOffset: CGFloat)</code></h4>
 
 <p>Sets the offset in points from the top edge of a <code>container</code> to the given parameter <code>offset</code>.</p>
 
@@ -977,7 +1038,7 @@ You are able to set a <code>title</code>, <code>author</code>, <code>subject</co
 </code></pre>
 
 <p>To integrate TPPDF into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
-<pre class="highlight plaintext"><code>github "techprimate/TPPDF" ~&gt; 1.3
+<pre class="highlight plaintext"><code>github "techprimate/TPPDF" ~&gt; 1.4
 </code></pre>
 
 <p>Run <code>carthage update</code> to build the framework and drag the built <code>TPPDF.framework</code> into your Xcode project</p>
@@ -1044,7 +1105,7 @@ If you still want to add TPPDF manually, please see issue <a href="https://githu
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2019-06-04)</p>
+      <p>&copy; 2019 <a class="link" href="https://www.github.com/techprimate-phil" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2019-06-06)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

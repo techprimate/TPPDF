@@ -1,33 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Volumes/Developer/TPPDF/Source/Table/PDFTableStyle.swift",
-      "line": 37,
-      "symbol": "PDFTableStyle.columnHeaderStyle",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Volumes/Developer/TPPDF/Source/Table/PDFTableStyle.swift",
-      "line": 38,
-      "symbol": "PDFTableStyle.footerStyle",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Volumes/Developer/TPPDF/Source/Table/PDFTableStyle.swift",
-      "line": 39,
-      "symbol": "PDFTableStyle.contentStyle",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Volumes/Developer/TPPDF/Source/Table/PDFTableStyle.swift",
-      "line": 40,
-      "symbol": "PDFTableStyle.alternatingContentStyle",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Volumes/Developer/TPPDF"
 }
