@@ -65,7 +65,7 @@ internal class PDFPageBreakObject: PDFObject {
      */
     override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
         if !stayOnSamePage {
-            UIGraphicsBeginPDFPage()
+            UIGraphicsBeginPDFPageWithInfo(generator.document.layout.bounds, nil)
             generator.drawDebugPageOverlay()
         }
     }

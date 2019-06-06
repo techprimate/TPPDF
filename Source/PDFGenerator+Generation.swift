@@ -24,7 +24,10 @@ extension PDFGenerator {
 
      - throws:              PDFError
      */
-    public static func generateURL(document: PDFDocument, filename: String, progress: ((CGFloat) -> Void)? = nil, debug: Bool = false) throws -> URL {
+    public static func generateURL(document: PDFDocument,
+                                   filename: String,
+                                   progress: ((CGFloat) -> Void)? = nil,
+                                   debug: Bool = false) throws -> URL {
         let name = filename.lowercased().hasSuffix(".pdf") ? filename : (filename + ".pdf")
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(name)
         let generator = PDFGenerator(document: document)
@@ -42,16 +45,55 @@ extension PDFGenerator {
     /**
      Generates PDF data and writes it to a temporary file.
 
-     - parameter document:  PDFDocument which should be converted into a PDF file.
-     - parameter to url:    URL where file should be saved.
-     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
+     - parameter document:  List of PDFDocument which should be concatenated and then converted into a PDF file.
+     - parameter filename:  Name of temporary file.
+     - parameter progress:  Optional closure for progress handling, showing the current document index, the current document progress and the total progress.
      - parameter debug:     Enables debugging
 
      - returns:             URL to temporary file.
 
      - throws:              PDFError
      */
-    public static func generate(document: PDFDocument, to url: URL, progress: ((CGFloat) -> Void)? = nil, debug: Bool = false) throws {
+    public static func generateURL(documents: [PDFDocument],
+                                   filename: String,
+                                   info: PDFInfo = PDFInfo(),
+                                   progress: ((Int, CGFloat, CGFloat) -> Void)? = nil,
+                                   debug: Bool = false) throws -> URL {
+        assert(!documents.isEmpty, "At least one document is required!")
+
+        let name = filename.lowercased().hasSuffix(".pdf") ? filename : (filename + ".pdf")
+        let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(name)
+        UIGraphicsBeginPDFContextToFile(url.path, documents.first?.layout.bounds ?? .zero, info.generate())
+        var totalProgress: CGFloat = 0
+        for (idx, document) in documents.enumerated() {
+            let generator = PDFGenerator(document: document)
+
+            generator.progressValue = 0
+            generator.debug = debug
+
+            try generator.generatePDFContext(progress: { value in
+                totalProgress += value
+                progress?(idx, value, totalProgress)
+            })
+        }
+        UIGraphicsEndPDFContext()
+        return url
+    }
+
+    /**
+     Generates PDF data and writes it to a temporary file.
+
+     - parameter document:  PDFDocument which should be converted into a PDF file.
+     - parameter to url:    URL where file should be saved.
+     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
+     - parameter debug:     Enables debugging
+
+     - throws:              PDFError
+     */
+    public static func generate(document: PDFDocument,
+                                to url: URL,
+                                progress: ((CGFloat) -> Void)? = nil,
+                                debug: Bool = false) throws {
         let generator = PDFGenerator(document: document)
 
         generator.progressValue = 0
@@ -59,6 +101,39 @@ extension PDFGenerator {
 
         UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, document.info.generate())
         try generator.generatePDFContext(progress: progress)
+        UIGraphicsEndPDFContext()
+    }
+
+    /**
+     Generates PDF data and writes it to a temporary file.
+
+     - parameter document:  List of PDFDocuments which should be concatenated and then converted into a PDF file.
+     - parameter to url:    URL where file should be saved.
+     - parameter progress:  Optional closure for progress handling, showing the current document index, the current document progress and the total progress.
+     - parameter debug:     Enables debugging
+
+     - throws:              PDFError
+     */
+    public static func generate(documents: [PDFDocument],
+                                to url: URL,
+                                info: PDFInfo = PDFInfo(),
+                                progress: ((Int, CGFloat, CGFloat) -> Void)? = nil,
+                                debug: Bool = false) throws {
+        assert(!documents.isEmpty, "At least one document is required!")
+
+        UIGraphicsBeginPDFContextToFile(url.path, documents.first?.layout.bounds ?? .zero, info.generate())
+        var totalProgress: CGFloat = 0
+        for (idx, document) in documents.enumerated() {
+            let generator = PDFGenerator(document: document)
+
+            generator.progressValue = 0
+            generator.debug = debug
+
+            try generator.generatePDFContext(progress: { value in
+                totalProgress += value
+                progress?(idx, value, totalProgress)
+            })
+        }
         UIGraphicsEndPDFContext()
     }
 
@@ -72,9 +147,10 @@ extension PDFGenerator {
      - returns:             PDF Data
 
      - throws:              PDFError
-
      */
-    public static func generateData(document: PDFDocument, progress: ((CGFloat) -> Void)? = nil, debug: Bool = false) throws -> Data {
+    public static func generateData(document: PDFDocument,
+                                    progress: ((CGFloat) -> Void)? = nil,
+                                    debug: Bool = false) throws -> Data {
         let data = NSMutableData()
         let generator = PDFGenerator(document: document)
 
@@ -83,6 +159,42 @@ extension PDFGenerator {
 
         UIGraphicsBeginPDFContextToData(data, document.layout.bounds, document.info.generate())
         try generator.generatePDFContext(progress: progress)
+        UIGraphicsEndPDFContext()
+
+        return data as Data
+    }
+
+    /**
+     Generates PDF data and returns it
+
+     - parameter documents: List of PDFDocument which should be concatenated and then converted into a PDF file.
+     - parameter progress:  Optional closure for progress handling, showing the current document index, the current document progress and the total progress.
+     - parameter debug:     Enables debugging
+
+     - returns:             PDF Data
+
+     - throws:              PDFError
+     */
+    public static func generateData(documents: [PDFDocument],
+                                    info: PDFInfo = PDFInfo(),
+                                    progress: ((Int, CGFloat, CGFloat) -> Void)? = nil,
+                                    debug: Bool = false) throws -> Data {
+        assert(!documents.isEmpty, "At least one document is required!")
+
+        let data = NSMutableData()
+        UIGraphicsBeginPDFContextToData(data, documents.first?.layout.bounds ?? .zero, info.generate())
+        var totalProgress: CGFloat = 0
+        for (idx, document) in documents.enumerated() {
+            let generator = PDFGenerator(document: document)
+
+            generator.progressValue = 0
+            generator.debug = debug
+
+            try generator.generatePDFContext(progress: { value in
+                totalProgress += value
+                progress?(idx, value, totalProgress)
+            })
+        }
         UIGraphicsEndPDFContext()
 
         return data as Data
