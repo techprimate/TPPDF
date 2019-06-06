@@ -772,6 +772,26 @@ try PDFGenerator.generate(document: document, to: url, progress: { progress in
 }, debug: false)
 ```
 
+#### Multiple Documents
+
+If you want to combine multiple `PDFDocument` into a single PDF file, use the alternative methods to the ones in the previous section, taking multiple `documents` as a parameter. 
+
+The progress will now return three values: 
+
+ - the current document index
+ - the progress of the current document 
+ - sum of total progress
+
+**Example:**
+
+```swift
+let url = try PDFGenerator.generateURL(documents: [
+	document1, document2
+], filename: "Example.pdf", progress: { (docIndex: Int, progressValue: CGFloat, totalProgressValue: CGFloat) in
+    print("doc:", docIndex, "progress:", progressValue, "total:", totalProgressValue)
+})
+```
+
 #### Debug
 
 If you want to enable a debug overlay, set the flag `debug` in `PDFGenerator.generate(..)`, `PDFGenerator.generateURL(..)` or `PDFGenerator.generateData(..)` to `true` and it will add colored outlines of the elements in you document.
