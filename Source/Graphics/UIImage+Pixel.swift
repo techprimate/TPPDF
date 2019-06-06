@@ -5,40 +5,68 @@
 //  Created by Philip Niedertscheider on 05/11/2017.
 //
 
+/**
+ TODO: documentation
+ */
 extension UIImage {
 
-    var pixelExtractor: PixelExtractor {
+    /**
+     TODO: documentation
+     */
+    internal var pixelExtractor: PixelExtractor {
         return PixelExtractor(img: self.cgImage!)
     }
 
-    func pixelColor(at location: CGPoint) -> UIColor {
+    /**
+     TODO: documentation
+     */
+    internal func pixelColor(at location: CGPoint) -> UIColor {
         return PixelExtractor(img: self.cgImage!).colorAt(x: Int(location.x), y: Int(location.y))
     }
-
 }
 
 /**
  https://stackoverflow.com/questions/35029672/getting-pixel-color-from-an-image-using-cgpoint
+ TODO: documentation
  */
-class PixelExtractor: NSObject {
+internal class PixelExtractor: NSObject {
 
-    let image: CGImage
-    let context: CGContext?
+    /**
+     TODO: documentation
+     */
+    internal let image: CGImage
 
-    var width: Int {
+    /**
+     TODO: documentation
+     */
+    internal let context: CGContext?
+
+    /**
+     TODO: documentation
+     */
+    internal var width: Int {
         return image.width
     }
 
-    var height: Int {
+    /**
+     TODO: documentation
+     */
+    internal var height: Int {
         return image.height
     }
 
-    init(img: CGImage) {
+    /**
+     TODO: documentation
+     */
+    internal init(img: CGImage) {
         image = img
         context = PixelExtractor.createBitmapContext(cgImage: img)
     }
 
-    class func createBitmapContext(cgImage: CGImage) -> CGContext {
+    /**
+     TODO: documentation
+     */
+    internal class func createBitmapContext(cgImage: CGImage) -> CGContext {
         // Get image width, height
         let pixelsWide = cgImage.width
         let pixelsHigh = cgImage.height
@@ -66,7 +94,10 @@ class PixelExtractor: NSObject {
         return context!
     }
 
-    func colorAt(x: Int, y: Int) -> UIColor {
+    /**
+     TODO: documentation
+     */
+    internal func colorAt(x: Int, y: Int) -> UIColor {
         assert(0<=x && x<width)
         assert(0<=y && y<height)
 
@@ -83,5 +114,4 @@ class PixelExtractor: NSObject {
 
         return color
     }
-
 }

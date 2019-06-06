@@ -26,9 +26,15 @@ public class PDFAttributedText: PDFText {
         self.text = text
     }
 
-    override var copy: PDFText {
+    /**
+     Creats a new `PDFAttributedText` with the same properties
+     */
+    override internal var copy: PDFText {
         return PDFAttributedText(text: text)
     }
 }
 
+/**
+ TODO: Documentation
+ */
 extension PDFAttributedText: PDFJSONSerializable {}

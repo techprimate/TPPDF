@@ -7,19 +7,19 @@
 
 extension PDFLineStyle: Equatable {
 
+    /**
+     TODO: Documentation
+     */
     public static func == (lhs: PDFLineStyle, rhs: PDFLineStyle) -> Bool {
-        if lhs.type != rhs.type {
+        guard lhs.type == rhs.type else {
             return false
         }
-
-        if lhs.color != rhs.color {
+        guard lhs.color == rhs.color else {
             return false
         }
-
-        if lhs.width != rhs.width {
+        guard lhs.width == rhs.width else {
             return false
         }
-
         return true
     }
 

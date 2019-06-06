@@ -10,22 +10,22 @@
 
  Sqaure line is drawn between left and right indentation.
  */
-class PDFRectangleObject: PDFObject {
+internal class PDFRectangleObject: PDFObject {
 
     /**
      Defines the style of the outline
      */
-    var lineStyle: PDFLineStyle
+    internal var lineStyle: PDFLineStyle
 
     /**
      Defines the size of the rectangle
      */
-    var size: CGSize
+    internal var size: CGSize
 
     /**
      Defines the fill color the rectangle
      */
-    var fillColor: UIColor
+    internal var fillColor: UIColor
 
     /**
      Initializer
@@ -34,7 +34,7 @@ class PDFRectangleObject: PDFObject {
      - parameter size: Size of rectangle, defaults to `CGSize.zero`
      - parameter fillColor: Fill color, defaults to `UIColor.clear`
      */
-    init(lineStyle: PDFLineStyle = PDFLineStyle(), size: CGSize = CGSize.zero, fillColor: UIColor = UIColor.clear) {
+    internal init(lineStyle: PDFLineStyle = PDFLineStyle(), size: CGSize = CGSize.zero, fillColor: UIColor = UIColor.clear) {
         self.lineStyle = lineStyle
         self.size = size
         self.fillColor = fillColor
@@ -50,7 +50,7 @@ class PDFRectangleObject: PDFObject {
 
      - returns: Self
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: size)
 
         self.frame = CGRect(origin: position, size: size)
@@ -66,11 +66,14 @@ class PDFRectangleObject: PDFObject {
 
      - throws: None
      */
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
         PDFGraphics.drawRect(rect: self.frame, outline: lineStyle, fill: fillColor)
     }
 
-    override var copy: PDFObject {
+    /**
+     Creates new `PDFRectangleObject` with the same properties
+     */
+    override internal var copy: PDFObject {
         return PDFRectangleObject(lineStyle: self.lineStyle, size: self.size, fillColor: self.fillColor)
     }
 }

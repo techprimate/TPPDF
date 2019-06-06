@@ -11,7 +11,7 @@
  Generally a document is vertically split up into a header, a content and a footer area.
  Also each part is horizontally split up into a left, a center and a right area.
  */
-public enum PDFContainer {
+public enum PDFContainer: CaseIterable {
 
     /**
      Element is in no container, only real use is as a default value
@@ -66,7 +66,7 @@ public enum PDFContainer {
     /**
      Checks if this container is in the header area
      */
-    var isHeader: Bool {
+    internal var isHeader: Bool {
         switch self {
         case .headerLeft, .headerCenter, .headerRight:
             return true
@@ -78,7 +78,7 @@ public enum PDFContainer {
     /**
      Checks if this container is in the footer area
      */
-    var isFooter: Bool {
+    internal var isFooter: Bool {
         switch self {
         case .footerLeft, .footerCenter, .footerRight:
             return true
@@ -88,9 +88,16 @@ public enum PDFContainer {
     }
 
     /**
+     Checks if this container is neither in header nor in footer, therefore in the center area
+     */
+    internal var isCenter: Bool {
+        return !isHeader && !isFooter
+    }
+
+    /**
      Checks if this container is on the left side
      */
-    var isLeft: Bool {
+    internal var isLeft: Bool {
         switch self {
         case .headerLeft, .contentLeft, .footerLeft:
             return true
@@ -102,7 +109,7 @@ public enum PDFContainer {
     /**
      Checks if this container is on the right side
      */
-    var isRight: Bool {
+    internal var isRight: Bool {
         switch self {
         case .headerRight, .contentRight, .footerRight:
             return true
@@ -115,7 +122,7 @@ public enum PDFContainer {
      Array of all possible containers, expect `.none`.
      Useful for initalizing default values for each container
      */
-    static var all: [PDFContainer] {
+    internal static var all: [PDFContainer] {
         return [
             .headerLeft, .headerCenter, .headerRight,
             .contentLeft, .contentCenter, .contentRight,

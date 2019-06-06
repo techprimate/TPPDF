@@ -23,19 +23,43 @@ public class PDFSimpleText: PDFText {
     public var spacing: CGFloat
 
     /**
+     Weak reference to style used by this text object
+     */
+    public weak var style: PDFTextStyle?
+
+    /**
      Initalizer
 
      - parameter text: Text to be drawn
      - parameter spacing: Spacing between text lines, defaults to 0
+     - parameter style: Reference to style, defaults to nil
      */
-    public init(text: String, spacing: CGFloat = 0) {
+    public init(text: String, spacing: CGFloat = 0, style: PDFTextStyle? = nil) {
         self.text = text
         self.spacing = spacing
+        self.style = style
     }
 
-    override var copy: PDFText {
-        return PDFSimpleText(text: self.text, spacing: self.spacing)
+    /**
+     Creates a new `PDFSimpleText` with the same properties
+     */
+    override internal var copy: PDFText {
+        return PDFSimpleText(text: self.text, spacing: self.spacing, style: self.style)
     }
 }
 
 extension PDFSimpleText: PDFJSONSerializable {}
+
+extension PDFSimpleText: CustomStringConvertible {
+
+    public var description: String {
+        return "PDFSimpleText(text: \(text), spacing: \(spacing))"
+    }
+}
+
+extension PDFSimpleText: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return "PDFSimpleText(text: \(text), spacing: \(spacing))"
+    }
+}

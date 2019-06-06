@@ -5,16 +5,50 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
+/**
+ TODO: documentation
+ */
 public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
 
+    /**
+     TODO: documentation
+     */
+    public typealias RawValue = String
+
+    /**
+     TODO: documentation
+     */
     case none
+
+    /**
+     TODO: documentation
+     */
     case inherit
+
+    /**
+     TODO: documentation
+     */
     case dot
+
+    /**
+     TODO: documentation
+     */
     case dash
+
+    /**
+     TODO: documentation
+     */
     case custom(value: String)
+
+    /**
+     TODO: documentation
+     */
     case numbered(value: String?)
 
-    var stringValue: String {
+    /**
+     TODO: documentation
+     */
+    public var stringValue: String {
         switch self {
         case .dot:
             return "\u{00B7}"
@@ -29,8 +63,9 @@ public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
         }
     }
 
-    public typealias RawValue = String
-
+    /**
+     TODO: documentation
+     */
     public var rawValue: String {
         switch self {
         case .none:
@@ -48,6 +83,9 @@ public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
         }
     }
 
+    /**
+     TODO: documentation
+     */
     public init?(rawValue: PDFListItemSymbol.RawValue) {
         switch rawValue {
         case "none":
@@ -75,6 +113,9 @@ public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
         }
     }
 
+    /**
+     TODO: documentation
+     */
     public var JSONRepresentation: AnyObject {
         return self.rawValue as AnyObject
     }

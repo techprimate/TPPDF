@@ -8,17 +8,17 @@
 /**
  Used to modify the indentation of a container
  */
-class PDFIndentationObject: PDFObject {
+internal class PDFIndentationObject: PDFObject {
 
     /**
      Offset from edge of container
      */
-    var indentation: CGFloat
+    internal var indentation: CGFloat
 
     /**
      Offset is from left edge if `true`, right if `false`
      */
-    var left: Bool
+    internal var left: Bool
 
     /**
      Initializer
@@ -26,7 +26,7 @@ class PDFIndentationObject: PDFObject {
      - parameter indentation: Offset in points from edge
      - parameter left: Offset is from left side if `true`, from right if `false`
      */
-    init(indentation: CGFloat, left: Bool) {
+    internal init(indentation: CGFloat, left: Bool) {
         self.indentation = indentation
         self.left = left
     }
@@ -41,7 +41,7 @@ class PDFIndentationObject: PDFObject {
 
      - returns: Self
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         if left {
             generator.layout.indentation.setLeft(indentation: indentation, in: container)
         } else {
@@ -51,7 +51,10 @@ class PDFIndentationObject: PDFObject {
         return [(container, self)]
     }
 
-    override var copy: PDFObject {
+    /**
+     Creates a new `PDFIndentationObject` with the same properties
+     */
+    override internal var copy: PDFObject {
         return PDFIndentationObject(indentation: self.indentation, left: self.left)
     }
 }

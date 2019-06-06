@@ -7,11 +7,13 @@
 
 extension PDFLineSeparatorObject: Equatable {
 
+    /**
+     TODO: Documentation
+     */
     public static func == (lhs: PDFLineSeparatorObject, rhs: PDFLineSeparatorObject) -> Bool {
-        if lhs.style != rhs.style {
+        guard lhs.style == rhs.style else {
             return false
         }
-
         return true
     }
 

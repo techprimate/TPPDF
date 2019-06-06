@@ -5,26 +5,24 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
+/**
+ TODO: documentation
+ */
 extension PDFListItem: Equatable {
 
+    /**
+     TODO: documentation
+     */
     public static func == (lhs: PDFListItem, rhs: PDFListItem) -> Bool {
-        if lhs.parent !== rhs.parent {
+        guard lhs.content == rhs.content else {
             return false
         }
-
-        if lhs.content != rhs.content {
+        guard (lhs.children ?? []) == (rhs.children ?? []) else {
             return false
         }
-
-        if (lhs.children ?? []) != (rhs.children ?? []) {
+        guard lhs.symbol == rhs.symbol else {
             return false
         }
-
-        if lhs.symbol != rhs.symbol {
-            return false
-        }
-
         return true
     }
-
 }

@@ -5,22 +5,24 @@
 //  Created by Philip Niedertscheider on 12/11/2017.
 //
 
+/**
+ TODO: documentation
+ */
 extension PDFLayoutIndentations: Equatable {
 
+    /**
+     TODO: documentation
+     */
     public static func == (lhs: PDFLayoutIndentations, rhs: PDFLayoutIndentations) -> Bool {
-        if lhs.header != rhs.header {
+        guard lhs.header == rhs.header else {
             return false
         }
-
-        if lhs.content != rhs.content {
+        guard lhs.content == rhs.content else {
             return false
         }
-
-        if lhs.footer != rhs.footer {
+        guard lhs.footer == rhs.footer else {
             return false
         }
-
         return true
     }
-
 }

@@ -8,19 +8,19 @@
 /**
  Changes the text color in the container, where this object is in.
  */
-class PDFTextColorObject: PDFObject {
+internal class PDFTextColorObject: PDFObject {
 
     /**
      New text color in container after calculation
      */
-    var color: UIColor
+    internal var color: UIColor
 
     /**
      Initalizer
 
      - parameter textColor: New text color
      */
-    init(color: UIColor) {
+    internal init(color: UIColor) {
         self.color = color
     }
 
@@ -34,13 +34,30 @@ class PDFTextColorObject: PDFObject {
 
      - returns: Self
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         generator.textColor[container] = color
 
         return [(container, self)]
     }
 
-    override var copy: PDFObject {
+    /**
+     Creates a new `PDFTextColorObject` with the same properties
+     */
+    override internal var copy: PDFObject {
         return PDFTextColorObject(color: self.color)
+    }
+}
+
+extension PDFTextColorObject: CustomDebugStringConvertible {
+
+    internal var debugDescription: String {
+        return "PDFTextColorObject(color: \(color.hex))"
+    }
+}
+
+extension PDFTextColorObject: CustomStringConvertible {
+
+    internal var description: String {
+        return "PDFTextColorObject(color: \(color.hex))"
     }
 }

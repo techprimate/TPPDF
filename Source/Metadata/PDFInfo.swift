@@ -70,7 +70,7 @@ public class PDFInfo: PDFJSONSerializable {
      - Owner Password
      - User Password
      */
-    func generate() -> [AnyHashable: Any] {
+    internal func generate() -> [AnyHashable: Any] {
         var documentInfo: [AnyHashable: Any] = [
             kCGPDFContextTitle as String: title,
             kCGPDFContextAuthor as String: author,

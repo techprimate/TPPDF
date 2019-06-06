@@ -7,7 +7,10 @@
 
 extension UIColor {
 
-    func isClose(to color: UIColor, decimals: Int) -> Bool {
+    /**
+     TODO: documentation
+     */
+    internal func isClose(to color: UIColor, decimals: Int) -> Bool {
         var r1: CGFloat = 0
         var g1: CGFloat = 0
         var b1: CGFloat = 0
@@ -34,6 +37,9 @@ extension UIColor {
         return true
     }
 
+    /**
+     TODO: documentation
+     */
     private func outOfBounds(val1: CGFloat, val2: CGFloat, decimals: Int) -> Bool {
         let value1 = Decimal(Double(val1))
         let value2 = Decimal(Double(val2))

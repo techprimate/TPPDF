@@ -14,7 +14,7 @@ public class PDFObject: PDFJSONSerializable {
     /**
      Frame of this object
      */
-    var frame: CGRect = .zero
+    internal var frame: CGRect = CGRect.null
 
     /**
      Calculates the object and returns all calculated objects which are created by this calculated.
@@ -27,7 +27,7 @@ public class PDFObject: PDFJSONSerializable {
      - returns: List of objects and the container they are located in
      */
     @discardableResult
-    func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         return []
     }
 
@@ -39,9 +39,12 @@ public class PDFObject: PDFJSONSerializable {
 
      - throws: None
      */
-    func draw(generator: PDFGenerator, container: PDFContainer) throws {}
+    internal func draw(generator: PDFGenerator, container: PDFContainer) throws {}
 
-    var copy: PDFObject {
+    /**
+     TODO: Documentation
+     */
+    internal var copy: PDFObject {
         fatalError()
     }
 }

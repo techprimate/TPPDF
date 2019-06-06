@@ -5,21 +5,54 @@
 //  Created by Philip Niedertscheider on 19/01/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 public class PDFTableStyle: PDFJSONSerializable {
 
+    /**
+     TODO: Documentation
+     */
     public var rowHeaderCount: Int
+
+    /**
+     TODO: Documentation
+     */
     public var columnHeaderCount: Int
+
+    /**
+     TODO: Documentation
+     */
     public var footerCount: Int
 
+    /**
+     TODO: Documentation
+     */
     public var outline: PDFLineStyle
 
     /**
      The cell style of row headers. Horizontal border lines are ignored, as these are defined in
      */
     public var rowHeaderStyle: PDFTableCellStyle
+
+    /**
+     TODO: Documentation
+     */
     public var columnHeaderStyle: PDFTableCellStyle
+
+    /**
+     TODO: Documentation
+     */
     public var footerStyle: PDFTableCellStyle
+
+    /**
+     TODO: Documentation
+     */
     public var contentStyle: PDFTableCellStyle
+
+    /**
+     TODO: Documentation
+     */
     public var alternatingContentStyle: PDFTableCellStyle?
 
     /**
@@ -48,7 +81,6 @@ public class PDFTableStyle: PDFJSONSerializable {
                 footerStyle: PDFTableCellStyle = PDFTableCellStyle(),
                 contentStyle: PDFTableCellStyle = PDFTableCellStyle(),
                 alternatingContentStyle: PDFTableCellStyle? = nil) {
-
         self.rowHeaderCount = rowHeaderCount
         self.columnHeaderCount = columnHeaderCount
         self.footerCount = footerCount

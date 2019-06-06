@@ -5,6 +5,9 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
+/**
+ TODO: Documentation
+ */
 public class PDFSectionColumn: PDFJSONSerializable {
 
 	// MARK: - PUBLIC VARS
@@ -19,7 +22,7 @@ public class PDFSectionColumn: PDFJSONSerializable {
 	/**
 	All objects inside the document and the container they are located in
 	*/
-	var objects: [(PDFSectionColumnContainer, PDFObject)] = []
+	internal var objects: [(PDFSectionColumnContainer, PDFObject)] = []
 
 	// MARK: - PUBLIC INITIALIZERS
 
@@ -32,7 +35,10 @@ public class PDFSectionColumn: PDFJSONSerializable {
 		self.width = width
 	}
 
-	var copy: PDFSectionColumn {
+    /**
+     Creates a new `PDFSectionColumn` with the same properties
+     */
+	internal var copy: PDFSectionColumn {
 		return PDFSectionColumn(width: self.width)
 	}
 }

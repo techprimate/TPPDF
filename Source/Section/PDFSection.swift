@@ -5,6 +5,9 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
+/**
+ TODO: Documentation
+ */
 public class PDFSection: PDFJSONSerializable {
 
 	/**
@@ -16,11 +19,6 @@ public class PDFSection: PDFJSONSerializable {
 	Horizontal margin between columns in points.
 	*/
 	public var columnMargin: CGFloat = 10.0
-
-    /**
-     Text should be floating, therefore continuing in next column if column is full.
-    */
-//    public var floating = false
 
 	// MARK: - PUBLIC INITIALIZERS
 
@@ -42,7 +40,10 @@ public class PDFSection: PDFJSONSerializable {
 		self.columns = columns
 	}
 
-	var copy: PDFSection {
+    /**
+     Creates a new `PDFSection` with the same properties
+     */
+	internal var copy: PDFSection {
 		return PDFSection(columns.map { $0.copy })
 	}
 }

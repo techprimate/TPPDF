@@ -10,7 +10,7 @@
 
   Enums using a template String as parameter will replace the first instance of `%@` with the index and the second one with the total amount of pages.
  */
-public enum PDFPaginationStyle: PDFJSONSerializable {
+public enum PDFPaginationStyle {
 
     /**
      Default format, concats current page and total pages with a dash.
@@ -65,30 +65,4 @@ public enum PDFPaginationStyle: PDFJSONSerializable {
             return closure(page, total)
         }
     }
-
-}
-
-// MARK: - JSON Serialization
-
-extension PDFPaginationStyle {
-
-    /**
-     Creates a representable object
-     */
-    public var JSONRepresentation: AnyObject {
-        let result: String = {
-            switch self {
-            case .default:
-                return "PDFPaginationStyle.default"
-            case .roman(let template):
-                return "PDFPaginationStyle.roman(" + template + ")"
-            case .customNumberFormat(let template, _):
-                return "PDFPaginationStyle.customNumberFormat(" + template + ")"
-            case .customClosure:
-                return "PDFPaginationStyle.customClosure"
-            }
-        }()
-        return result as AnyObject
-    }
-
 }

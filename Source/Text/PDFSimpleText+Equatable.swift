@@ -5,18 +5,21 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 extension PDFSimpleText: Equatable {
 
+    /**
+     TODO: Documentation
+     */
     public static func == (lhs: PDFSimpleText, rhs: PDFSimpleText) -> Bool {
-        if lhs.text != rhs.text {
+        guard lhs.text == rhs.text else {
             return false
         }
-
-        if lhs.spacing != rhs.spacing {
+        guard lhs.spacing == rhs.spacing else {
             return false
         }
-
         return true
     }
-
 }

@@ -17,8 +17,8 @@ class PDFObject_Spec: QuickSpec {
 
             let object = PDFObject()
 
-            it("should have a zero frame as default") {
-                expect(object.frame) == CGRect.zero
+            it("should have a null frame as default") {
+                expect(object.frame) == CGRect.null
             }
 
             context("generator") {

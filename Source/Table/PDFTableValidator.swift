@@ -5,7 +5,10 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
-class PDFTableValidator {
+/**
+ TODO: Documentation
+ */
+internal enum PDFTableValidator {
 
     /**
      Validates a given `table`.
@@ -17,9 +20,9 @@ class PDFTableValidator {
         - `PDFError.tableIsEmpty`, if cells count is zero - should be avoided.
         - `PDFError`tableStructureInvalid`, if a row could not validated, see `PDFTableValidator.validateTableData(::)`
      */
-    public static func validateTable(table: PDFTable) throws {
+    internal static func validateTable(table: PDFTable) throws {
         // Throw error when empty. Signalizes developer he tries to render an empty table. Might cause format errors
-        if table.cells.count == 0 {
+        if table.cells.isEmpty {
             throw PDFError.tableIsEmpty
         }
 
@@ -44,9 +47,9 @@ class PDFTableValidator {
             - data column count and alignment column count do not equal
             - data column count and column count do not equal
      */
-    public static func validateTableData(data: [[Any?]], alignments: [[PDFTableCellAlignment]]? = nil, columnWidths: [CGFloat]? = nil) throws {
+    internal static func validateTableData(data: [[Any?]], alignments: [[PDFTableCellAlignment]]? = nil, columnWidths: [CGFloat]? = nil) throws {
         // Throw error when empty. Signalizes developer he tries to render an empty table. Might cause format errors
-        if data.count == 0 {
+        if data.isEmpty {
             throw PDFError.tableIsEmpty
         }
 
@@ -68,5 +71,4 @@ class PDFTableValidator {
             }
         }
     }
-
 }

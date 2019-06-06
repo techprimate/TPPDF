@@ -8,7 +8,7 @@
 /**
  A collection of table style defaults
  */
-public struct PDFTableStyleDefaults {
+public enum PDFTableStyleDefaults {
 
     /**
      Simple table:

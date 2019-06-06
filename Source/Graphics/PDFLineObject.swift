@@ -10,29 +10,29 @@
 
  Line is drawn from startPoint and endPoint.
  */
-class PDFLineObject: PDFObject {
+internal class PDFLineObject: PDFObject {
 
     /**
      Defines the style of the line
      */
-    var style: PDFLineStyle
+    internal var style: PDFLineStyle
 
     /**
      Starting point of line
      */
-    var startPoint: CGPoint
+    internal var startPoint: CGPoint
 
     /**
      Ending point of line
      */
-    var endPoint: CGPoint
+    internal var endPoint: CGPoint
 
     /**
      Initializer
 
      - parameter style: Style of line, defaults to `PDFLineStyle` defaults
      */
-    init(style: PDFLineStyle = PDFLineStyle(), startPoint: CGPoint = CGPoint.zero, endPoint: CGPoint = CGPoint.zero) {
+    internal init(style: PDFLineStyle = PDFLineStyle(), startPoint: CGPoint = CGPoint.zero, endPoint: CGPoint = CGPoint.zero) {
         self.style = style
         self.startPoint = startPoint
         self.endPoint = endPoint
@@ -48,7 +48,7 @@ class PDFLineObject: PDFObject {
 
      - returns: Self
      */
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         let origin = CGPoint(x: min(startPoint.x, endPoint.x),
                              y: min(startPoint.x, endPoint.x))
         let size = CGSize(width: max(startPoint.x, endPoint.x) - origin.x,
@@ -67,19 +67,21 @@ class PDFLineObject: PDFObject {
 
      - throws: None
      */
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
         PDFGraphics.drawLine(
             start: startPoint,
             end: endPoint,
-            style: style
-        )
+            style: style)
 
         if generator.debug && (style.type == .none) {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
         }
     }
 
-    override var copy: PDFObject {
+    /**
+     Creates a copy of this `PDFLineObject` with the same properties
+     */
+    override internal var copy: PDFObject {
         return PDFLineObject(style: self.style, startPoint: self.startPoint, endPoint: self.endPoint)
     }
 }

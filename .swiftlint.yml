@@ -1,33 +1,57 @@
---- 
-disabled_rules: 
+---
+disabled_rules:
   - large_tuple
-excluded: 
+  - todo
+excluded:
   - Carthage
   - Pods
-file_length: 
-  error: 1200
-  warning: 500
-force_cast: warning
-force_try: 
-  severity: warning
-identifier_name: 
-  excluded: 
+opt_in_rules:
+  - array_init
+  - closure_body_length
+  - closure_spacing
+  - collection_alignment
+  - convenience_type
+  - empty_count
+  - empty_string
+  - explicit_acl
+  - explicit_self
+  - file_header
+  - first_where
+  - last_where
+  - implicit_return
+  - joined_default_parameter
+  - let_var_whitespace
+  - lower_acl_than_parent
+  - mark
+  - missing_docs
+  - modifier_order
+  - multiline_function_chains
+  - redundant_nil_coalescing
+  - static_operator
+file_length:
+  error:          1200
+  warning:        500
+force_cast:       warning
+force_try:
+  severity:       warning
+identifier_name:
+  excluded:
     - id
     - x
     - y
     - i
-  min_length: 
-    error: 2
-    warning: 2
-included: 
+  min_length:
+    error:        2
+    warning:      2
+included:
   - ../Source
-line_length: 150
-reporter: xcode
-type_body_length: 
+line_length:      150
+reporter:         xcode
+type_body_length:
   - 300
   - 400
-type_name: 
-  max_length: 
-    error: 60
-    warning: 50
-  min_length: 2
+type_name:
+  max_length:
+    error:        60
+    warning:      50
+  min_length:     2

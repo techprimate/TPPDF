@@ -8,7 +8,12 @@
 /**
  Used in the rendering to create a new page
  */
-class PDFPageBreakObject: PDFObject {
+internal class PDFPageBreakObject: PDFObject {
+
+    /**
+     TODO: Documentation
+     */
+    internal var stayOnSamePage: Bool = false
 
     /**
      Modifies the layout and page count of the given `generator`.
@@ -21,9 +26,30 @@ class PDFPageBreakObject: PDFObject {
 
      - returns: Self
      */
-    @discardableResult
-    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
-        generator.layout.heights.content = 0
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
+        generator.layout.heights.content = generator.columnState.getWrapColumnsHeight(for: container)
+
+        stayOnSamePage = false
+
+        if let maxColumns = generator.columnState.getMaxColumns(for: container) {
+            let currentColumn = generator.columnState.getCurrentColumn(for: container)
+            generator.columnState.set(currentColumn: currentColumn + 1, for: container)
+
+            if generator.columnState.getCurrentColumn(for: container) >= maxColumns {
+                generator.columnState.set(wrapColumnsHeight: 0, for: container)
+                generator.layout.heights.set(0, to: container)
+            }
+            if generator.columnState.getCurrentColumn(for: container) < maxColumns {
+                stayOnSamePage = true
+            } else {
+                generator.columnState.set(currentColumn: 0, for: container)
+            }
+
+            let inset = PDFCalculations.calculateColumnWrapInset(generator: generator, container: container)
+            let spacing = PDFCalculations.calculateColumnWrapSpacing(generator: generator, container: container)
+
+            generator.columnState.set(inset: (left: inset.left + spacing.left, right: inset.right + spacing.right), for: container)
+        }
 
         return [(container, self)]
     }
@@ -37,13 +63,31 @@ class PDFPageBreakObject: PDFObject {
 
      - throws: None
      */
-    override func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        UIGraphicsBeginPDFPage()
-        generator.drawDebugPageOverlay()
+    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
+        if !stayOnSamePage {
+            UIGraphicsBeginPDFPage()
+            generator.drawDebugPageOverlay()
+        }
     }
 
-    override var copy: PDFObject {
+    /**
+     Creates a new `PDFPageBreakObject`
+     */
+    override internal var copy: PDFObject {
         return PDFPageBreakObject()
     }
+}
 
+extension PDFPageBreakObject: CustomDebugStringConvertible {
+
+    internal var debugDescription: String {
+        return "PDFPageBreakObject(frame: \(self.frame))"
+    }
+}
+
+extension PDFPageBreakObject: CustomStringConvertible {
+
+    internal var description: String {
+        return "PDFPageBreakObject(frame: \(self.frame))"
+    }
 }

@@ -15,19 +15,19 @@ extension PDFGenerator {
     /**
      Overlays horizontal and vertical lines at margin insets
      */
-    func drawDebugPageOverlay() {
+    internal func drawDebugPageOverlay() {
         // Only render if debugging is enabled
         guard debug else {
             return
         }
 
         // Draw vertical lines at left and right margin inset
-        drawVerticalMarginLines(positionX: document.layout.margin.left)
-        drawVerticalMarginLines(positionX: document.layout.width - document.layout.margin.right)
+        drawVerticalMarginLines(positionX: layout.margin.left)
+        drawVerticalMarginLines(positionX: document.layout.width - layout.margin.right)
 
         // Draw horizontal lines at top and bottom margin inset
-        drawHorizontalMarginLines(positionY: document.layout.margin.top)
-        drawHorizontalMarginLines(positionY: document.layout.height - document.layout.margin.bottom)
+        drawHorizontalMarginLines(positionY: layout.margin.top)
+        drawHorizontalMarginLines(positionY: document.layout.height - layout.margin.bottom)
     }
 
     // MARK: - PRIVATE COMPUTED VARS

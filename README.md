@@ -154,7 +154,7 @@ A good example would be the following:
 
 ```swift
 let document = PDFDocument(format: .a4)
-document.addText(.footerCenter, text: "Created using TPPDF for iOS.")
+document.add(.footerCenter, text: "Created using TPPDF for iOS.")
 ```
 
 This command adds the text **Created using TPPDF for iOS** to the footer of all pages, because elements in the header and footer containers are placed on every page.
@@ -186,13 +186,13 @@ To add a simple string `text` with a custom `lineSpacing`, you first need to cre
 let text = "Some text!"
 let spacing: CGFloat = 10.0
 let textElement = PDFSimpleText(text: text, spacing: spacing)
-document.addText(textObject: textElement)
+document.add(textObject: textElement)
 ```
 
 For convenience you are also able to add an attributed string directly, and TPPDF will wrap it in a `PDFSimpleText` for you.
 
 ```swift
-document.addText(text: text, lineSpacing: spacing)
+document.add(text: text, lineSpacing: spacing)
 ```
 
 During the render process it will create an attributed string using the font set by `setFont(font:)` and the text color set by `setTextColor(color:)`. 
@@ -207,13 +207,13 @@ let attributedTitle = NSMutableAttributedString(string: "Awesome attributed titl
 	NSForegroundColorAttributeName : UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0, alpha: 1.0)
 ])
 let textElement = PDFAttributedText(text: title)
-document.addAttributedText(textObject: attributedTitle)
+document.add(attributedTextObject: attributedTitle)
 ```
 
 For convenience you are also able to add an attributed string directly, and TPPDF will wrap it in a `PDFAttributedText` for you.
 
 ```swift
-document.addAttributedText(text: attributedTitle)
+document.add(attributedText: attributedTitle)
 ```
 
 #### Image
@@ -223,7 +223,7 @@ To add an image to the document, you first need to create a `PDFImage` which wra
 ```swift
 let image = UIImage(named: "awesome-image")!
 let imageElement = PDFImage(image: image)
-document.addImage(image: imageElement)
+document.add(image: imageElement)
 ```
 
 A `PDFImage` can also include a optional `caption` which is either a `PDFSimpleText` or `PDFAttributedText`. 
@@ -273,7 +273,7 @@ let images = [
              caption: PDFAttributedText(text: NSAttributedString(string: "Forrest", attributes: captionAttributes))),
 ]
 
-document.addImagesInRow(images: images, spacing: 10)
+document.add(imagesInRow: images, spacing: 10)
 ```
 
 #### List
@@ -330,7 +330,7 @@ list.addItem(PDFListItem(symbol: .numbered(value: nil))
 Now you have created a multi-level list element, you can add to the document:
 
 ```swift
-document.addList(list: list)
+document.add(list: list)
 ```
 
 #### Table
@@ -487,7 +487,7 @@ Also each cell can have a `margin` which is the distance between the cell frame 
 ...and finally you add the table to the document:
 
 ```swift
-document.addTable(table: table)
+document.add(table: table)
 ```
 
 #### Multi-Column Sections
@@ -501,27 +501,98 @@ let section = PDFSection(columnWidths: [0.3, 0.4, 0.3])
 section.columns[0].addText(.right, text: "right")
 section.columns[1].addText(.left, text: "left")
 section.columns[2].addText(.center, text: "center")
-document.addSection(section)
+document.add(sectiion: section)
+```
+
+#### Column Wrap Sections
+
+A column wrap section allows you to split your page into multiple columns and fill it up starting at the left. All you have to do is enable it, add content, and then disable it. When disabling it you can set the flag `addPageBreak` if you want it to continue on a fresh page (defaults to true).
+
+```swift
+document.enable(columns: 4, widths: [0.2, 0.3, 0.4, 0.1], spacings: [10, 50, 20]);
+for i in 0..<200 { // This is an example for the content
+    document.add(text: "\(i)-A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R")
+}
+document.disableColumns(addPageBreak: false);
+```
+
+
+#### Groups
+
+Groups give you the option to dynamically add elements to your document, but calculate them as one.
+This way it is possible to add e.g. multiple `PDFText` elements and if the calculations require a page break, it can be disabled. 
+
+Additionally groups allow to set either an `UIColor` as the `backgroundColor` or even create a complex `PDFDynamicGeometryShape` which adapts to the group frame (see [Dynamic Geometry Shapes](#Dynamic-Geometry-Shapes) for more details). You are also able to add a padding to the group to add additional space around the content.
+
+**Example:**
+
+```swift
+let shape = PDFDynamicGeometryShape(...)
+let group = PDFGroup(allowsBreaks: false,
+                     backgroundColor: .green,
+                     backgroundShape: shape,
+                     padding: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 180))
+for i in 0..<10 {
+    group.set(font: UIFont.systemFont(ofSize: 25))
+    group.set(indentation: 30 * CGFloat(i % 5), left: true)
+    group.set(indentation: 30 * CGFloat(i % 3), left: false)
+    group.add(text: "Text \(i)-\(i)-\(i)-\(i)-\(i)")
+}
+document.add(group: group)
+```
+
+#### Dynamic Geometry Shapes
+
+Shapes are very closely related to simple geometric paths, but with the difference, that they adapt to frame changes dynamically.
+
+A `PDFDynamicGeometryShape` holds three properties: 
+
+- `PDFBezierPath` in `path`, defining how the shape looks like
+- `UIColor` in `fillColor` for the content color 
+- and a `PDFLineStyle` in `stroke` for the look of the lines
+
+**Example:**
+
+```swift
+let shape = PDFDynamicGeometryShape(path: path, fillColor: .orange, stroke: .none)
+```
+
+`PDFBezierPath` is heavily related to `UIBezierPath` matching all its functions (e.g. `move(to:)`, `addLine(to:)`). The main difference is that all vertices are of type `PDFBezierPathVertex` and hold a reference to an anchor of the group frame. Using the reference frame of the path, it will resize the shape to fit the group frame, but the vertices will keep their position relative to their anchor.
+
+The following example draws a diamond shape in a `100pt` square.
+
+```swift
+let size = CGSize(width: 100, height: 100)
+let path = PDFBezierPath(ref: CGRect(origin: .zero, size: size))
+path.move(to: PDFBezierPathVertex(position: CGPoint(x: size.width / 2, y: 0), 
+                                  anchor: .topCenter))
+path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width, y: size.height / 2),
+                                     anchor: .middleRight))
+path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width / 2, y: size.height),
+                                     anchor: .bottomCenter))
+path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: 0, y: size.height / 2),
+                                     anchor: .middleLeft))
+path.close()
 ```
 
 ### Helpers
 
 The following methods of `PDFDocument` are not considered as elements, as they are only runtime changes to the calculations and rendering.
 
-#### Space - `addSpace(_ container: PDFContainer, space: CGFloat)`
+#### Space - `add(_ container: PDFContainer, space: CGFloat)`
 
 Adds a space with the height of `space` between the previous element and the next element.
 
 ```swift
-document.setSpace(space: 32.0)
+document.set(space: 32.0)
 ```
 
-#### Simple Text Font - `setFont(_ container: PDFContainer, font: UIFont)`
+#### Simple Text Font - `set(_ container: PDFContainer, font: UIFont)`
 
 Sets the font of a container. This font will be used in all following elements of type `PDFSimpleText` in the given container, until the font is changed. This font does not affect `PDFAttributedText` elements.
 
 ```swift
-document.setFont(font: UIFont.systemFont(ofSize: 20.0))
+document.set(font: UIFont.systemFont(ofSize: 20.0))
 ```
 
 #### Reset Simple Text Font - `resetFont(_ container: PDFContainer)`
@@ -532,39 +603,39 @@ This resets the font to the default font, which is `UIFont.systemFont(ofSize: UI
 document.resetFont(.contentLeft)
 ```
 
-#### Simple Text Color - `setTextColor(_ container: PDFContainer, color: UIColor)`
+#### Simple Text Color - `set(_ container: PDFContainer, textColor: UIColor)`
 
-Sets the font of a container. This font will be used in the next commands in the given container, if there is not a different font specified.
+Sets the text color of a container. This text color will be used in the next commands in the given container, if there is not a different color specified.
 
 ```swift
-document.setFont(UIFont.systemFont(ofSize: 20.0))
+document.set(textColor: UIColor.green)
 ```
 
 #### Reset Simple Text Color - `resetTextColor(_ container: PDFContainer)`
 
-This resets the font to the default font, which is `UIFont.systemFont(ofSize: UIFont.systemFontSize)`
+This resets the text color to the default text color, which is `UIColor.black`
 
 ```swift
-document.resetFont(.contentLeft)
+document.resetTextColor(.contentLeft)
 ```
 
-#### `setIndentation(_ container: PDFContainer, indent: CGFloat, left: Bool)` 
+#### `set(_ container: PDFContainer, indent: CGFloat, left: Bool)` 
 
 Set the indentation to a given `indent` in the container. By setting `left` to `false` you will change the indentation from the right edge.
 
 ```swift
-document.setIndentation(indent: 50.0, left: true)
-document.setIndentation(indent: 50.0, left: false)
+document.set(indent: 50.0, left: true)
+document.set(indent: 50.0, left: false)
 ```
 
 Now the document has an indentation of `50` points from left and right edge.
 If you need to reset the indentation, call the function with `0.0` as parameter
 
 ```swift
-document.setIndentation(indent: 0.0)
+document.set(indent: 0.0)
 ```
 
-#### `setAbsoluteOffset(_ container: PDFContainer, offset: CGFloat)`
+#### `set(_ container: PDFContainer, absoluteOffset: CGFloat)`
 
 Sets the offset in points from the top edge of a `container` to the given parameter `offset`.
 
@@ -760,7 +831,7 @@ $ brew install carthage
 To integrate TPPDF into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "techprimate/TPPDF" ~> 1.3
+github "techprimate/TPPDF" ~> 1.4
 ```
 
 Run `carthage update` to build the framework and drag the built `TPPDF.framework` into your Xcode project

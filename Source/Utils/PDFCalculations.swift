@@ -10,7 +10,7 @@
 /**
  A collection of static calculations
  */
-class PDFCalculations {
+internal enum PDFCalculations {
 
     // MARK: - INTERNAL STATIC FUNCS
 
@@ -23,18 +23,24 @@ class PDFCalculations {
 
      - returns: Tuple of text `frame`, text which fits in frame and the remainding text which did not fit
      */
-    static func calculateText(generator: PDFGenerator,
-                              container: PDFContainer,
-                              text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString, remainder: NSAttributedString?) {
+    internal static func calculateText(generator: PDFGenerator,
+                                       container: PDFContainer,
+                                       text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString, remainder: NSAttributedString?) {
         let availableSize = calculateAvailableFrame(for: generator, in: container)
-        let (fittingText, textSize, remainder) = calculateTextSizeAndRemainder(of: text, in: availableSize)
-        let origin = calculateElementPosition(for: generator, in: container, with: textSize)
+        let calcResult = calculateTextSizeAndRemainder(of: text, in: availableSize)
+        let origin = calculateElementPosition(for: generator, in: container, with: calcResult.size)
 
         return (
-            CGRect(origin: origin, size: textSize),
-            fittingText,
-            remainder
+            CGRect(origin: origin, size: calcResult.size),
+            calcResult.text,
+            calcResult.remainder
         )
+    }
+
+    internal struct TextCalculationResult {
+        internal var text: NSAttributedString
+        internal var size: CGSize
+        internal var remainder: NSAttributedString?
     }
 
     /**
@@ -45,8 +51,10 @@ class PDFCalculations {
 
      - returns: Tuple of `text`, real `size of the text and the `remainder`
      */
-    static func calculateTextSizeAndRemainder(of text: NSAttributedString,
-                                              in bounds: CGSize) -> (text: NSAttributedString, size: CGSize, remainder: NSAttributedString?) {
+    internal static func calculateTextSizeAndRemainder(of text: NSAttributedString,
+                                                       in bounds: CGSize) -> TextCalculationResult {
+        assert(bounds.width > 0, "Can't render text if no space available")
+
         let framesetter = CTFramesetterCreateWithAttributedString(text)
         let framePath = UIBezierPath(rect: CGRect(origin: .zero, size: bounds)).cgPath
 
@@ -70,7 +78,7 @@ class PDFCalculations {
             remainder = text.attributedSubstring(from: remainderRange)
         }
 
-        return (result, drawnSize, remainder)
+        return TextCalculationResult(text: result, size: drawnSize, remainder: remainder)
     }
 
     /**
@@ -81,11 +89,47 @@ class PDFCalculations {
 
      - returns: Available bounds size
      */
-    static func calculateAvailableFrame(for generator: PDFGenerator, in container: PDFContainer) -> CGSize {
+    internal static func calculateAvailableFrame(for generator: PDFGenerator, in container: PDFContainer) -> CGSize {
         return CGSize(
             width: calculateAvailableFrameWidth(for: generator, in: container),
             height: calculateAvailableFrameHeight(for: generator, in: container)
         )
+    }
+
+    /**
+     TODO: documentation
+     */
+    internal static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
+        let columnInset = generator.columnState.getInset(for: container)
+        return generator.document.layout.width
+            - generator.layout.margin.left
+            - generator.layout.margin.right
+            - generator.layout.indentation.leftIn(container: container)
+            - columnInset.left
+            - generator.layout.indentation.rightIn(container: container)
+            - columnInset.right
+            - generator.currentPadding.left
+            - generator.currentPadding.right
+    }
+
+    /**
+     TODO: Documentation
+     */
+    internal static func calculateAvailableFrameHeight(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
+        let layout = generator.layout
+        let pageLayout = generator.document.layout
+
+        if container.isHeader || container.isFooter {
+            return pageLayout.height
+        } else {
+            return pageLayout.height
+                - layout.margin.top
+                - layout.heights.maxHeaderHeight()
+                - layout.heights.content
+                - generator.currentPadding.bottom
+                - layout.heights.maxFooterHeight()
+                - layout.margin.bottom
+        }
     }
 
     /**
@@ -97,7 +141,7 @@ class PDFCalculations {
 
      - returns: Position of element
      */
-    static func calculateElementPosition(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGPoint {
+    internal static func calculateElementPosition(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGPoint {
         return CGPoint(
             x: calculatePositionX(for: generator, in: container, with: size),
             y: calculatePositionY(for: generator, in: container, with: size)
@@ -105,75 +149,71 @@ class PDFCalculations {
     }
 
     // MARK: - PRIVATE STATIC FUNCS
-
-    private static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
-        let pageLayout = generator.document.layout
-
-        return pageLayout.contentSize.width
-            - generator.layout.indentation.leftIn(container: container)
-            - generator.layout.indentation.rightIn(container: container)
-    }
-
-    private static func calculateAvailableFrameHeight(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
-        let layout = generator.layout
-        let pageLayout = generator.document.layout
-
-        if container.isHeader || container.isFooter {
-            return pageLayout.height
-        } else {
-            return pageLayout.contentSize.height
-                - layout.heights.maxHeaderHeight()
-                - pageLayout.space.header
-                - layout.heights.content
-                - pageLayout.space.footer
-                - layout.heights.maxFooterHeight()
-        }
-    }
-
+    /**
+     TODO: Documentation
+     */
     private static func calculatePositionX(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
-        let pageLayout = generator.document.layout
+        let columnInset = generator.columnState.getInset(for: container)
 
         if container.isLeft {
-            return pageLayout.margin.left
+            return generator.layout.margin.left
                 + layout.indentation.leftIn(container: container)
+                + columnInset.left
+                + generator.currentPadding.left
         } else if container.isRight {
-            return pageLayout.width
-                - pageLayout.margin.right
+            return generator.document.layout.width
+                - generator.layout.margin.right
                 - layout.indentation.rightIn(container: container)
                 - size.width
+                - columnInset.right
+                - generator.currentPadding.right
         } else {
-            return pageLayout.margin.left
+            return generator.layout.margin.left
                 + layout.indentation.leftIn(container: container)
-                + (pageLayout.contentSize.width
+                + columnInset.left
+                + generator.currentPadding.left
+                + (generator.document.layout.width
+                    - generator.layout.margin.left
                     - layout.indentation.leftIn(container: container)
+                    - columnInset.left
+                    - columnInset.right
                     - layout.indentation.rightIn(container: container)
+                    - generator.layout.margin.right
+                    - generator.currentPadding.left
+                    - generator.currentPadding.right
                     - size.width
                 ) / 2
         }
     }
 
+    /**
+     TODO: Documentation
+     */
     private static func calculatePositionY(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
 
         if container.isHeader {
-            return pageLayout.margin.top
+            return layout.margin.top
                 + layout.heights.value(for: container)
         } else if container.isFooter {
             return pageLayout.height
-                - pageLayout.margin.bottom
+                - layout.margin.bottom
                 - layout.heights.value(for: container)
                 - size.height
         } else {
-            return pageLayout.margin.top
+            return layout.margin.top
                 + layout.heights.maxHeaderHeight()
                 + pageLayout.space.header
                 + layout.heights.content
         }
     }
 
-    static func calculateContentOffset(for generator: PDFGenerator, of element: PDFObject, in container: PDFContainer) -> CGFloat {
+    /**
+     TODO: Documentation
+     */
+    internal static func calculateContentOffset(for generator: PDFGenerator, of element: PDFObject, in container: PDFContainer) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
 
@@ -194,7 +234,10 @@ class PDFCalculations {
         }
     }
 
-    static func calculateContentOffset(for generator: PDFGenerator, of offset: CGFloat, in container: PDFContainer) -> CGFloat {
+    /**
+     TODO: Documentation
+     */
+    internal static func calculateContentOffset(for generator: PDFGenerator, of offset: CGFloat, in container: PDFContainer) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
 
@@ -216,11 +259,14 @@ class PDFCalculations {
 
     // MARK: - LEGACY
 
-    static func calculateCellFrame(generator: PDFGenerator,
-                                   container: PDFContainer,
-                                   position: (origin: CGPoint, width: CGFloat),
-                                   text: NSAttributedString,
-                                   alignment: PDFTableCellAlignment) -> CGRect {
+    /**
+     TODO: Documentation
+     */
+    internal static func calculateCellFrame(generator: PDFGenerator,
+                                            container: PDFContainer,
+                                            position: (origin: CGPoint, width: CGFloat),
+                                            text: NSAttributedString,
+                                            alignment: PDFTableCellAlignment) -> CGRect {
         let textMaxHeight = PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container)
         let frame: CGRect = CGRect(x: position.origin.x, y: position.origin.y, width: position.width, height: textMaxHeight)
 
@@ -239,21 +285,27 @@ class PDFCalculations {
         return CGRect(origin: CGPoint(x: x, y: position.origin.y), size: CGSize(width: drawnSize.width, height: drawnSize.height))
     }
 
-    static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
+    /**
+     TODO: Documentation
+     */
+    internal static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
         let imageSize = image.size
         let height = imageSize.height / imageSize.width * width
 
         return CGRect(x: origin.x, y: origin.y, width: width, height: height)
     }
 
-    static func calculateTextFrameAndDrawnSizeInOnePage(generator: PDFGenerator,
-                                                        container: PDFContainer,
-                                                        text: CFAttributedString,
-                                                        currentRange: CFRange,
-                                                        textMaxWidth: CGFloat) -> (CGRect, CTFrame, CGSize) {
+    /**
+     TODO: Documentation
+     */
+    internal static func calculateTextFrameAndDrawnSizeInOnePage(generator: PDFGenerator,
+                                                                 container: PDFContainer,
+                                                                 text: CFAttributedString,
+                                                                 currentRange: CFRange,
+                                                                 textMaxWidth: CGFloat) -> (CGRect, CTFrame, CGSize) {
         let textMaxWidth = (textMaxWidth > 0) ? textMaxWidth : (generator.document.layout.width
-            - generator.document.layout.margin.left
-            - generator.document.layout.margin.right
+            - generator.layout.margin.left
+            - generator.layout.margin.right
             - generator.layout.indentation.leftIn(container: container)
             - generator.layout.indentation.rightIn(container: container))
 
@@ -262,7 +314,7 @@ class PDFCalculations {
                 return generator.document.layout.height
                     - generator.layout.heights.header[container]!
             } else if container.isFooter {
-                return generator.document.layout.margin.bottom
+                return generator.layout.margin.bottom
             } else {
                 return generator.document.layout.height
                     - generator.layout.heights.maxHeaderHeight()
@@ -277,14 +329,14 @@ class PDFCalculations {
         let x: CGFloat = {
             switch container {
             case .headerLeft, .contentLeft, .footerLeft:
-                return generator.document.layout.margin.left
+                return generator.layout.margin.left
                     + generator.layout.indentation.leftIn(container: container)
             case .headerCenter, .contentCenter, .footerCenter:
                 return generator.document.layout.bounds.midX
                     - textMaxWidth / 2
             case .headerRight, .contentRight, .footerRight:
                 return generator.document.layout.width
-                    - generator.document.layout.margin.right
+                    - generator.layout.margin.right
                     - textMaxWidth
             default:
                 return 0
@@ -316,7 +368,12 @@ class PDFCalculations {
         return calculateTextFrameAndDrawnSizeInOnePage(frame: frame, text: text, currentRange: currentRange)
     }
 
-    static func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect, text: CFAttributedString, currentRange: CFRange) -> (CGRect, CTFrame, CGSize) {
+    /**
+     TODO: Documentation
+     */
+    internal static func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect,
+                                                                 text: CFAttributedString,
+                                                                 currentRange: CFRange) -> (CGRect, CTFrame, CGSize) {
         let framesetter = CTFramesetterCreateWithAttributedString(text)
         let framePath = UIBezierPath(rect: frame).cgPath
 
@@ -334,11 +391,14 @@ class PDFCalculations {
         return (frame, frameRef, drawnSize)
     }
 
-    static func calculateImageCaptionSize(generator: PDFGenerator,
-                                          container: PDFContainer,
-                                          image: PDFImage,
-                                          size: CGSize,
-                                          sizeFit: PDFImageSizeFit) -> (CGSize, CGSize) {
+    /**
+     TODO: Documentation
+     */
+    internal static func calculateImageCaptionSize(generator: PDFGenerator,
+                                                   container: PDFContainer,
+                                                   image: PDFImage,
+                                                   size: CGSize,
+                                                   sizeFit: PDFImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         let size = (size == CGSize.zero) ? image.size : size
 
@@ -360,7 +420,60 @@ class PDFCalculations {
         }()
 
         let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
-        return (imageSize, CGSize(width: imageSize.width, height: 0))
+        let captionHeight: CGFloat = 0
+        // if let _ = image.caption {
+        // TODO: Fix caption height calculations
+        // }
+        return (imageSize, CGSize(width: imageSize.width, height: captionHeight))
     }
 
+    /**
+     TODO: Documentation
+     */
+    internal static func calculateColumnWrapInset(generator: PDFGenerator, container: PDFContainer) -> (left: CGFloat, right: CGFloat) {
+        guard let maxColumn = generator.columnState.getMaxColumns(for: container) else {
+            return (0, 0)
+        }
+
+        var left: CGFloat = 0
+        var right: CGFloat = 0
+
+        let currentColumn = generator.columnState.getCurrentColumn(for: container)
+        if currentColumn < maxColumn {
+            let widths = generator.columnState.getColumnWidths(for: container)
+            for i in 0..<currentColumn {
+                left += widths[i]
+            }
+            for i in (currentColumn + 1)..<maxColumn {
+                right += widths[i]
+            }
+        }
+
+        return (left: left, right: right)
+    }
+
+    /**
+     TODO: Documentation
+     */
+    internal static func calculateColumnWrapSpacing(generator: PDFGenerator, container: PDFContainer) -> (left: CGFloat, right: CGFloat) {
+        guard let maxColumn = generator.columnState.getMaxColumns(for: container) else {
+            return (0, 0)
+        }
+
+        var left: CGFloat = 0
+        var right: CGFloat = 0
+
+        let currentColumn = generator.columnState.getCurrentColumn(for: container)
+        let columnSpacings = generator.columnState.getColumnSpacings(for: container)
+        for i in 0..<currentColumn {
+            left += columnSpacings[i]
+        }
+
+        if currentColumn < maxColumn - 1 {
+            for i in currentColumn..<(maxColumn - 1) {
+                right += columnSpacings[i]
+            }
+        }
+        return (left: left, right: right)
+    }
 }

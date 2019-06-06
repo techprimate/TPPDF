@@ -5,16 +5,40 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
+/**
+ TODO: Documentation
+ */
 public class PDFTableContent: PDFJSONSerializable {
 
-    enum ContentType: PDFJSONSerializable {
+    /**
+     TODO: Documentation
+     */
+    internal enum ContentType: PDFJSONSerializable {
 
+        /**
+         TODO: Documentation
+         */
         case none
+
+        /**
+         TODO: Documentation
+         */
         case string
+
+        /**
+         TODO: Documentation
+         */
         case attributedString
+
+        /**
+         TODO: Documentation
+         */
         case image
 
-        var JSONRepresentation: AnyObject {
+        /**
+         TODO: Documentation
+         */
+        internal var JSONRepresentation: AnyObject {
             switch self {
             case .none:
                 return 0 as AnyObject
@@ -28,19 +52,35 @@ public class PDFTableContent: PDFJSONSerializable {
         }
     }
 
-    var type: ContentType = ContentType.none
-    var content: Any?
+    /**
+     TODO: Documentation
+     */
+    internal var type: ContentType = ContentType.none
 
+    /**
+     TODO: Documentation
+     */
+    internal var content: Any?
+
+    /**
+     TODO: Documentation
+     */
     public init(content: Any?) throws {
         try self.setContent(content: content)
     }
 
+    /**
+     TODO: Documentation
+     */
     internal init(type: ContentType, content: Any?) {
         self.type = type
         self.content = content
     }
 
-    func setContent(content: Any?) throws {
+    /**
+     TODO: Documentation
+     */
+    internal func setContent(content: Any?) throws {
         if content == nil {
             self.type = .none
             self.content = nil
@@ -61,52 +101,84 @@ public class PDFTableContent: PDFJSONSerializable {
         }
     }
 
-    var isString: Bool {
+    /**
+     TODO: Documentation
+     */
+    internal var isString: Bool {
         return type == .string
     }
 
-    var isAttributedString: Bool {
+    /**
+     TODO: Documentation
+     */
+    internal var isAttributedString: Bool {
         return type == .attributedString
     }
 
-    var isImage: Bool {
+    /**
+     TODO: Documentation
+     */
+    internal var isImage: Bool {
         return type == .image
     }
 
-    var stringValue: String? {
+    /**
+     TODO: Documentation
+     */
+    internal var stringValue: String? {
         return type == .string ? content as? String : nil
     }
 
-    var attributedStringValue: NSAttributedString? {
+    /**
+     TODO: Documentation
+     */
+    internal var attributedStringValue: NSAttributedString? {
         return type == .attributedString ? content as? NSAttributedString : nil
     }
 
-    var imageValue: UIImage? {
+    /**
+     TODO: Documentation
+     */
+    internal var imageValue: UIImage? {
         return type == .image ? content as? UIImage : nil
     }
-
 }
 
+/**
+ TODO: Documentation
+ */
 public extension String {
 
+    /**
+     TODO: Documentation
+     */
     func toPDFTableContent() -> PDFTableContent {
         return PDFTableContent(type: .string, content: self)
     }
-
 }
 
+/**
+ TODO: Documentation
+ */
 public extension NSAttributedString {
 
+    /**
+     TODO: Documentation
+     */
     func toPDFTableContent() -> PDFTableContent {
         return PDFTableContent(type: .attributedString, content: self)
     }
-
 }
 
+/**
+ TODO: Documentation
+ */
 public extension UIImage {
 
+    /**
+     TODO: Documentation
+     */
     func toPDFTableContent() -> PDFTableContent {
         return PDFTableContent(type: .image, content: self)
     }
-
 }

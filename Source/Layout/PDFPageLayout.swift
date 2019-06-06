@@ -72,21 +72,4 @@ public struct PDFPageLayout: PDFJSONSerializable {
     public var height: CGFloat {
         return size.height
     }
-
-    /**
-     Size of content area of each page
-     */
-    public var contentSize: CGSize {
-        return CGSize(
-            width: size.width
-                - margin.left
-                - margin.right,
-            height: size.height
-                - margin.top
-                - space.header
-                - space.footer
-                - margin.bottom
-        )
-    }
-
 }

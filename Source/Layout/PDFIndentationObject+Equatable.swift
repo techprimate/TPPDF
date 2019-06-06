@@ -5,18 +5,21 @@
 //  Created by Philip Niedertscheider on 14/11/2017.
 //
 
+/**
+ TODO: documentation
+ */
 extension PDFIndentationObject: Equatable {
 
+    /**
+     TODO: documentation
+     */
     public static func == (lhs: PDFIndentationObject, rhs: PDFIndentationObject) -> Bool {
-        if lhs.indentation != rhs.indentation {
+        guard lhs.indentation == rhs.indentation else {
             return false
         }
-
-        if lhs.left != rhs.left {
+        guard lhs.left == rhs.left else {
             return false
         }
-
         return true
     }
-
 }

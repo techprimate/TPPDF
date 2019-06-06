@@ -48,7 +48,7 @@ class PDFTextColorObject_Spec: QuickSpec {
                         }.toNot(throwError())
                     expect(generator.textColor[container]).toEventually(equal(color))
 
-                    expect(object.frame) == CGRect.zero
+                    expect(object.frame) == CGRect.null
 
                     expect(result).toEventually(haveCount(1))
                     expect(result.first?.0).toEventually(equal(container))

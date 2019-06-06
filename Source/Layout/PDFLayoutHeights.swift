@@ -5,17 +5,37 @@
 //  Created by Philip Niedertscheider on 30/10/2017.
 //
 
-struct PDFLayoutHeights {
+/**
+ TODO: documentation
+ */
+internal struct PDFLayoutHeights {
 
-    var header: [PDFContainer: CGFloat] = [:]
-    var footer: [PDFContainer: CGFloat] = [:]
-    var content: CGFloat = 0
+    /**
+     TODO: documentation
+     */
+    internal var header: [PDFContainer: CGFloat] = [:]
 
-    init() {
+    /**
+     TODO: documentation
+     */
+    internal var footer: [PDFContainer: CGFloat] = [:]
+
+    /**
+     TODO: documentation
+     */
+    internal var content: CGFloat = 0
+
+    /**
+     TODO: documentation
+     */
+    internal init() {
         resetHeaderFooterHeight()
     }
 
-    mutating func resetHeaderFooterHeight() {
+    /**
+     TODO: documentation
+     */
+    internal mutating func resetHeaderFooterHeight() {
         header[.headerLeft] = 0
         header[.headerCenter] = 0
         header[.headerRight] = 0
@@ -25,7 +45,10 @@ struct PDFLayoutHeights {
         footer[.footerRight] = 0
     }
 
-    mutating func add(_ value: CGFloat, to container: PDFContainer) {
+    /**
+     TODO: documentation
+     */
+    internal mutating func add(_ value: CGFloat, to container: PDFContainer) {
         if container.isHeader {
             header[container] = (header[container] ?? 0) + value
         } else if container.isFooter {
@@ -35,15 +58,24 @@ struct PDFLayoutHeights {
         }
     }
 
-    func maxHeaderHeight() -> CGFloat {
+    /**
+     TODO: documentation
+     */
+    internal func maxHeaderHeight() -> CGFloat {
         return header.values.max() ?? 0
     }
 
-    func maxFooterHeight() -> CGFloat {
+    /**
+     TODO: documentation
+     */
+    internal func maxFooterHeight() -> CGFloat {
         return footer.values.max() ?? 0
     }
 
-    func value(for container: PDFContainer) -> CGFloat {
+    /**
+     TODO: documentation
+     */
+    internal func value(for container: PDFContainer) -> CGFloat {
         if container.isHeader {
             return header[container] ?? 0
         } else if container.isFooter {
@@ -53,7 +85,10 @@ struct PDFLayoutHeights {
         }
     }
 
-    mutating func set(_ value: CGFloat, to container: PDFContainer) {
+    /**
+     TODO: documentation
+     */
+    internal mutating func set(_ value: CGFloat, to container: PDFContainer) {
         if container.isHeader {
             header[container] = value
         } else if container.isFooter {
@@ -62,5 +97,4 @@ struct PDFLayoutHeights {
             content = value
         }
     }
-
 }

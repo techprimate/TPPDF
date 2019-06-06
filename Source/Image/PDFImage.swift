@@ -57,7 +57,7 @@ public class PDFImage: PDFJSONSerializable {
      - parameter sizeFit: Defines how the image will fit if not enough space is given, defaults to `PDFImageSizeFit.widthHeight`
      - parameter quality: JPEG quality between 0.0 and 1.0, defaults to 0.85
      - parameter options: Defines if the image will be modified before rendering
-     - parameter cornerRadius: Defines if the
+     - parameter cornerRadius: Defines the radius of the corners
      */
     public init(image: UIImage,
                 caption: PDFText? = nil,
@@ -75,7 +75,10 @@ public class PDFImage: PDFJSONSerializable {
         self.cornerRadius = cornerRadius
     }
 
-    var copy: PDFImage {
+    /**
+     Creates a new `PDFImage` with the same properties
+     */
+    public var copy: PDFImage {
         return PDFImage(image: self.image,
                         caption: self.caption?.copy,
                         size: self.size,
