@@ -13,10 +13,14 @@ import UIKit
  */
 public class PDFMasterGroup: PDFGroup {
 
+    public var isFullPage: Bool
+
     /**
      TODO: Documentation
      */
-    public init() {
+    public init(isFullPage: Bool = false) {
+        self.isFullPage = isFullPage
+        
         super.init(allowsBreaks: false)
     }
 
