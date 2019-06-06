@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2019-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.1...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -11,7 +11,38 @@
 
 **Merged pull requests:**
 
-## [1.4.0](https://github.com/techprimate/TPPDF/tree/1.4.1) (2019-05-19)
+## [1.5.0](https://github.com/techprimate/TPPDF/tree/1.5.0) (2019-06-05)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.1...1.5.0)
+
+**Implemented enhancements:**
+
+- Added groups
+- Added dynamic shapes for group background
+- Added column with automatic wrapping 
+- Added document wide text styles
+- Added automatic table of content based on text styles
+
+**Fixed bugs:**
+
+- Fixed line separator in header and footer (Issue #88)
+- Fixed image in footer layout calcuations (Issue #132)
+
+**Closed issues:**
+
+- #9
+- #57
+- #88
+- #113
+- #118
+- #127
+- #132
+- #136
+- #137
+- #138
+
+**Merged pull requests:**
+
+## [1.4.1](https://github.com/techprimate/TPPDF/tree/1.4.1) (2019-05-19)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.0...1.4.1)
 
 **Fixed bugs:**
