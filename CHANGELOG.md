@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2019-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.0...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.1...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,17 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [1.5.1](https://github.com/techprimate/TPPDF/tree/1.5.1) (2019-06-06)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.0...1.5.1)
+
+**Implemented enhancements:**
+
+- Added merge/combining of multiple documents (Issue #67)
+
+**Closed issues:**
+
+- #67
 
 ## [1.5.0](https://github.com/techprimate/TPPDF/tree/1.5.0) (2019-06-05)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.1...1.5.0)

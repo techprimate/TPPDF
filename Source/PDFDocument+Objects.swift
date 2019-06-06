@@ -343,6 +343,7 @@ public extension PDFDocument {
     func add(_ container: PDFContainer = PDFContainer.contentLeft, group: PDFGroup) {
         objects += [(container, PDFGroupObject(objects: group.objects,
                                                allowsBreaks: group.allowsBreaks,
+                                               isFullPage: false,
                                                backgroundColor: group.backgroundColor,
                                                backgroundImage: group.backgroundImage,
                                                backgroundShape: group.backgroundShape,
@@ -353,9 +354,10 @@ public extension PDFDocument {
     /**
      TODO: Documentation
      */
-    func set(master group: PDFGroup) {
+    func set(master group: PDFMasterGroup) {
         self.masterGroup = PDFGroupObject(objects: group.objects,
                                           allowsBreaks: group.allowsBreaks,
+                                          isFullPage: group.isFullPage,
                                           backgroundColor: group.backgroundColor,
                                           backgroundImage: group.backgroundImage,
                                           backgroundShape: group.backgroundShape,

@@ -17,14 +17,21 @@ class ViewController: UIViewController {
     }
 
     func generateTestPDF() {
-        let document = PDFDocument(format: .a4)
+        let document1 = PDFDocument(format: .a4)
+        for i in 0..<100 {
+            document1.add(text: "DOC 1 - \(i)")
+        }
+
+        let document2 = PDFDocument(format: .a5)
+        for i in 0..<100 {
+            document2.add(text: "DOC 2 - \(i)")
+        }
 
         do {
             let startTime = CFAbsoluteTimeGetCurrent() * 1000
             // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
-            let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: {
-                (progressValue: CGFloat) in
-                 print("progress: ", progressValue)
+            let url = try PDFGenerator.generateURL(documents: [document1, document2], filename: "Example.pdf", progress: { (docIndex: Int, progressValue: CGFloat, totalProgressValue: CGFloat) in
+                print("doc:", docIndex, "progress:", progressValue, "total:", totalProgressValue)
             })
             let endTime = CFAbsoluteTimeGetCurrent() * 1000
             print("Duration: \(floor(endTime - startTime)) ms")
@@ -402,6 +409,11 @@ class ViewController: UIViewController {
         document.add(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
         document.add(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
 
+        // Create a second document and combine them
+
+        let secondDocument = PDFDocument(format: .a6)
+        secondDocument.add(text: "This is a brand new document with a different format!")
+
         /* ---- Execution Metrics ---- */
         print("Preparation took: " + stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
         startTime = CFAbsoluteTimeGetCurrent()
@@ -413,10 +425,11 @@ class ViewController: UIViewController {
 
         do {
             // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
-            let url = try PDFGenerator.generateURL(document: document, filename: "Example.pdf", progress: {
-                (progressValue: CGFloat) in
-                print("progress: ", progressValue)
-            }, debug: true)
+            let url = try PDFGenerator.generateURL(documents: [document, secondDocument],
+                                                   filename: "Example.pdf",
+                                                   progress: { (docIndex: Int, progressValue: CGFloat, totalProgressValue: CGFloat) in
+                                                    print("doc:", docIndex, "progress:", progressValue, "total:", totalProgressValue)
+            })
 
             // Load PDF into a webview from the temporary file
             (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))

@@ -26,6 +26,11 @@ internal class PDFGroupObject: PDFObject {
     /**
      TODO: Documentation
      */
+    internal var isFullPage: Bool
+
+    /**
+     TODO: Documentation
+     */
     internal var backgroundColor: UIColor?
 
     /**
@@ -53,6 +58,7 @@ internal class PDFGroupObject: PDFObject {
      */
     internal init(objects: [(container: PDFGroupContainer, object: PDFObject)],
                   allowsBreaks: Bool,
+                  isFullPage: Bool,
                   backgroundColor: UIColor?,
                   backgroundImage: PDFImage?,
                   backgroundShape: PDFDynamicGeometryShape?,
@@ -60,6 +66,7 @@ internal class PDFGroupObject: PDFObject {
                   padding: UIEdgeInsets) {
         self.objects = objects
         self.allowsBreaks = allowsBreaks
+        self.isFullPage = isFullPage
         self.backgroundColor = backgroundColor
         self.backgroundImage = backgroundImage
         self.backgroundShape = backgroundShape
@@ -97,7 +104,14 @@ internal class PDFGroupObject: PDFObject {
             result += calcResult
         }
 
-        self.frame = calculateFrame(objects: result)
+        if isFullPage {
+            self.frame = generator.document.layout.bounds.inset(by: UIEdgeInsets(top: generator.layout.margin.top,
+                                                                                 left: generator.layout.margin.left,
+                                                                                 bottom: generator.layout.margin.bottom,
+                                                                                 right: generator.layout.margin.right))
+        } else {
+            self.frame = calculateFrame(objects: result)
+        }
         generator.layout.heights.add(padding.bottom, to: container)
         generator.currentPadding = .zero
 
@@ -120,7 +134,14 @@ internal class PDFGroupObject: PDFObject {
             result += try object.calculate(generator: generator, container: container.contentContainer)
         }
 
-        self.frame = calculateFrame(objects: result)
+        if isFullPage {
+            self.frame = generator.document.layout.bounds.inset(by: UIEdgeInsets(top: generator.layout.margin.top,
+                                                                                 left: generator.layout.margin.left,
+                                                                                 bottom: generator.layout.margin.bottom,
+                                                                                 right: generator.layout.margin.right))
+        } else {
+            self.frame = calculateFrame(objects: result)
+        }
         generator.layout.heights.add(padding.bottom, to: container)
         generator.currentPadding = .zero
 
@@ -176,6 +197,7 @@ internal class PDFGroupObject: PDFObject {
     override internal var copy: PDFObject {
         return PDFGroupObject(objects: self.objects.map { ($0, $1.copy) },
                               allowsBreaks: self.allowsBreaks,
+                              isFullPage: self.isFullPage,
                               backgroundColor: self.backgroundColor,
                               backgroundImage: self.backgroundImage?.copy,
                               backgroundShape: self.backgroundShape,
