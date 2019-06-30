@@ -9,13 +9,14 @@ import Foundation
 
 extension CustomStringConvertible {
 
+    /**
+     TODO: docs
+     */
     public var description: String {
         var description: String = ""
-        if self is AnyObject {
-            description = String(format: "%@<%@>", String(describing: type(of: self)), Unmanaged.passUnretained(self as AnyObject).toOpaque().debugDescription)
-        } else {
-            description = String(describing: type(of: self))
-        }
+        description = String(format: "%@<%@>",
+                             String(describing: type(of: self)),
+                             Unmanaged.passUnretained(self as AnyObject).toOpaque().debugDescription)
         let selfMirror = Mirror(reflecting: self)
         return String(format: "%@(%@)",
                       description,
@@ -32,13 +33,14 @@ extension CustomStringConvertible {
 
 extension CustomDebugStringConvertible {
 
+    /**
+     TODO: docs
+     */
     public var debugDescription: String {
         var description: String = ""
-        if self is AnyObject {
-            description = String(format: "%@<%@>", String(describing: type(of: self)), Unmanaged.passUnretained(self as AnyObject).toOpaque().debugDescription)
-        } else {
-            description = String(describing: type(of: self))
-        }
+        description = String(format: "%@<%@>",
+                             String(describing: type(of: self)),
+                             Unmanaged.passUnretained(self as AnyObject).toOpaque().debugDescription)
         let selfMirror = Mirror(reflecting: self)
         return String(format: "%@(%@)",
                       description,
