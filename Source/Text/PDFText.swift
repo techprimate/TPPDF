@@ -8,7 +8,7 @@
 /**
  Protocol all text objects should implement
  */
-public class PDFText {
+public class PDFText: CustomStringConvertible {
 
     /**
      TODO: Documentation

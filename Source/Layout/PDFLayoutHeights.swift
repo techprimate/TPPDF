@@ -8,7 +8,7 @@
 /**
  TODO: documentation
  */
-internal struct PDFLayoutHeights {
+internal struct PDFLayoutHeights: CustomStringConvertible {
 
     /**
      TODO: documentation

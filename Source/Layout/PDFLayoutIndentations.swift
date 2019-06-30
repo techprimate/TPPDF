@@ -8,7 +8,7 @@
 /**
  Holds indentations of header, content and footer.
  */
-internal struct PDFLayoutIndentations {
+internal struct PDFLayoutIndentations: CustomStringConvertible {
 
     /**
      Left and right indentation of header containers

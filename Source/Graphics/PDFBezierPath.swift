@@ -11,7 +11,7 @@ import UIKit
 /**
  TODO: Documentation
  */
-public class PDFBezierPath {
+public class PDFBezierPath: CustomStringConvertible {
 
     /**
      TODO: Documentation

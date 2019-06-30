@@ -49,17 +49,3 @@ public class PDFSimpleText: PDFText {
 }
 
 extension PDFSimpleText: PDFJSONSerializable {}
-
-extension PDFSimpleText: CustomStringConvertible {
-
-    public var description: String {
-        return "PDFSimpleText(text: \(text), spacing: \(spacing))"
-    }
-}
-
-extension PDFSimpleText: CustomDebugStringConvertible {
-
-    public var debugDescription: String {
-        return "PDFSimpleText(text: \(text), spacing: \(spacing))"
-    }
-}
