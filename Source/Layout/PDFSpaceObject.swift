@@ -67,17 +67,3 @@ internal class PDFSpaceObject: PDFObject {
         return PDFSpaceObject(space: self.space)
     }
 }
-
-extension PDFSpaceObject: CustomDebugStringConvertible {
-
-    internal var debugDescription: String {
-        return "PDFSpaceObject(frame: \(self.frame), space: \(space))"
-    }
-}
-
-extension PDFSpaceObject: CustomStringConvertible {
-
-    internal var description: String {
-        return "PDFSpaceObject(frame: \(self.frame), space: \(space))"
-    }
-}

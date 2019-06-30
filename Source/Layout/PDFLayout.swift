@@ -8,7 +8,7 @@
 /**
  Contains all relevant layout informations of a pdf document
  */
-internal class PDFLayout: PDFJSONSerializable {
+internal class PDFLayout: PDFJSONSerializable, CustomStringConvertible {
 
     /**
      TODO: documentation

@@ -47,17 +47,3 @@ internal class PDFTextColorObject: PDFObject {
         return PDFTextColorObject(color: self.color)
     }
 }
-
-extension PDFTextColorObject: CustomDebugStringConvertible {
-
-    internal var debugDescription: String {
-        return "PDFTextColorObject(color: \(color.hex))"
-    }
-}
-
-extension PDFTextColorObject: CustomStringConvertible {
-
-    internal var description: String {
-        return "PDFTextColorObject(color: \(color.hex))"
-    }
-}

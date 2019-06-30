@@ -11,7 +11,7 @@ import UIKit
 /**
  TODO: Documentation
  */
-internal class PDFColumnLayoutState {
+internal class PDFColumnLayoutState: CustomStringConvertible {
 
     /**
      TODO: Documentation

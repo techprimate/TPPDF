@@ -30,6 +30,17 @@ public enum PDFGroupContainer {
      */
     case right
 
+
+    internal init(from container: PDFContainer) {
+        if container.isLeft {
+            self = .left
+        } else if container.isRight {
+            self = .right
+        } else {
+            self = .center
+        }
+    }
+
     /**
      Array of all possible containers, expect `.none`.
      Useful for initalizing default values for each container

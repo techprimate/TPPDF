@@ -10,7 +10,7 @@ import UIKit
 /**
  Factory which converts a document into a PDF file
  */
-public class PDFGenerator {
+public class PDFGenerator: CustomStringConvertible {
 
     // MARK: - INTERNAL VARS
 

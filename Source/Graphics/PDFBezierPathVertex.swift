@@ -11,7 +11,7 @@ import UIKit
 /**
  TODO: Documentation
  */
-public class PDFBezierPathVertex {
+public class PDFBezierPathVertex: CustomStringConvertible {
 
     /**
      TODO: Documentation

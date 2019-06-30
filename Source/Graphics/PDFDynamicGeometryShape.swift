@@ -11,7 +11,7 @@ import UIKit
 /**
  TODO: Documentation
  */
-public class PDFDynamicGeometryShape {
+public class PDFDynamicGeometryShape: CustomStringConvertible {
 
     /**
      TODO: Documentation

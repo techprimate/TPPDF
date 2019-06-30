@@ -11,7 +11,7 @@
 
  It is possible to create a JSON representation using the `PDFJSONSerializable` protocol.
  */
-public class PDFDocument: PDFJSONSerializable {
+public class PDFDocument: CustomStringConvertible, PDFJSONSerializable {
 
     // MARK: - PUBLIC VARS
 
