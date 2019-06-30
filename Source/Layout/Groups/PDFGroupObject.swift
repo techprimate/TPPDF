@@ -82,7 +82,7 @@ internal class PDFGroupObject: PDFObject {
         guard let columnState = generator.columnState.copy() as? PDFColumnLayoutState else {
             throw PDFError.copyingFailed
         }
-        let padding = generator.currentPadding
+        let cPadding = generator.currentPadding
 
         // Top Padding
         generator.layout.heights.add(padding.top, to: container)
@@ -120,11 +120,10 @@ internal class PDFGroupObject: PDFObject {
             if pageBreaks.count == 1 && !allowsBreaks { // If one pagebreak, start group on next page.
                 generator.layout.heights = heights
                 generator.columnState = columnState
-                return try calculateOnNextPage(generator: generator,
-                                               container: container,
-                                               pbObj: pageBreaks[0].1)
+                return try calculateOnNextPage(generator: generator, container: container, pbObj: pageBreaks[0].1)
             }
         }
+
         for (idx, grouped) in groupedResult.enumerated() {
             let group = idx == 0 ? self : PDFGroupObject(objects: [],
                                                          allowsBreaks: allowsBreaks,
@@ -134,11 +133,14 @@ internal class PDFGroupObject: PDFObject {
                                                          backgroundShape: backgroundShape,
                                                          outline: outline,
                                                          padding: padding)
+
             group.frame = isFullPage ? calculateBoundsFrame(generator: generator) : calculateFrame(objects: grouped)
             result.append((container, group))
             result += grouped
         }
-        generator.currentPadding = padding
+
+        generator.layout.heights.add(padding.bottom, to: container)
+        generator.currentPadding = cPadding
 
         return result
     }
@@ -160,16 +162,12 @@ internal class PDFGroupObject: PDFObject {
         }
 
         self.frame  = isFullPage ? calculateBoundsFrame(generator: generator) : calculateFrame(objects: result)
+        generator.layout.heights.add(padding.bottom, to: container)
         return result
     }
 
     private func calculateBoundsFrame(generator: PDFGenerator) -> CGRect {
         return generator.document.layout.bounds.inset(by: generator.layout.margin)
-    }
-
-    private func addBottomPadding(generator: PDFGenerator, container: PDFContainer) {
-        generator.layout.heights.add(padding.bottom, to: container)
-        generator.currentPadding = .zero
     }
 
     /**
