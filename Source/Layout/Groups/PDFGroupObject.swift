@@ -89,16 +89,25 @@ internal class PDFGroupObject: PDFObject {
         if PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container) < 0 {
             result += try PDFPageBreakObject().calculate(generator: generator, container: container)
         }
-        result += [(container, self)]
+
+        var groupedResult = [
+            [(PDFContainer, PDFObject)]()
+        ]
 
         // Set padding
         generator.currentPadding = padding
 
         // Calculate content
-        var hasMultiplePageBreaks = false
         for (idx, arg) in objects.enumerated() {
             let (groupContainer, object) = arg
             let calcResult = try object.calculate(generator: generator, container: groupContainer.contentContainer)
+
+            for calResult in calcResult {
+                groupedResult[groupedResult.count - 1].append(calResult)
+                if calResult.1 is PDFPageBreakObject {
+                    groupedResult.append([])
+                }
+            }
 
             // Check for page breaks
             let pageBreaks: [(Int, PDFPageBreakObject)] = calcResult.enumerated()
@@ -111,40 +120,20 @@ internal class PDFGroupObject: PDFObject {
                 return try calculateOnNextPage(generator: generator,
                                                container: container,
                                                pbObj: pageBreaks[0].1)
-            } else if pageBreaks.count >= 1 { // If multiple page breaks, keep going and add multiple groups
-                hasMultiplePageBreaks = true
-                var groupedResult = [
-                    [(PDFContainer, PDFObject)]()
-                ]
-                for calResult in calcResult {
-                    groupedResult[groupedResult.count - 1].append(calResult)
-                    if calResult.1 is PDFPageBreakObject {
-                        groupedResult.append([])
-                    }
-                }
-                for (idx, grouped) in groupedResult.enumerated() {
-                    if idx == 0 {
-                        self.frame = isFullPage ? calculateBoundsFrame(generator: generator) : calculateFrame(objects: result + grouped)
-                    } else {
-                        let group = PDFGroupObject(objects: [],
-                                                   allowsBreaks: allowsBreaks,
-                                                   isFullPage: isFullPage,
-                                                   backgroundColor: backgroundColor,
-                                                   backgroundImage: backgroundImage,
-                                                   backgroundShape: backgroundShape,
-                                                   outline: outline,
-                                                   padding: padding)
-                        group.frame = calculateFrame(objects: grouped)
-                        result.append((container, group))
-                    }
-                    result += grouped
-                }
-            } else {
-                result += calcResult
             }
         }
-        if !hasMultiplePageBreaks {
-            self.frame  = isFullPage ? calculateBoundsFrame(generator: generator) : calculateFrame(objects: result)
+        for (idx, grouped) in groupedResult.enumerated() {
+            let group = idx == 0 ? self : PDFGroupObject(objects: [],
+                                                         allowsBreaks: allowsBreaks,
+                                                         isFullPage: isFullPage,
+                                                         backgroundColor: backgroundColor,
+                                                         backgroundImage: backgroundImage,
+                                                         backgroundShape: backgroundShape,
+                                                         outline: outline,
+                                                         padding: padding)
+            group.frame = isFullPage ? calculateBoundsFrame(generator: generator) : calculateFrame(objects: grouped)
+            result.append((container, group))
+            result += grouped
         }
         return result
     }
