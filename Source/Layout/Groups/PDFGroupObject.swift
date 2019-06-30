@@ -12,47 +12,47 @@ import UIKit
  TODO: Documentation
  */
 internal class PDFGroupObject: PDFObject {
-    
+
     /**
      TODO: Documentation
      */
     internal var allowsBreaks: Bool
-    
+
     /**
      TODO: Documentation
      */
     internal var objects: [(container: PDFGroupContainer, object: PDFObject)]
-    
+
     /**
      TODO: Documentation
      */
     internal var isFullPage: Bool
-    
+
     /**
      TODO: Documentation
      */
     internal var backgroundColor: UIColor?
-    
+
     /**
      TODO: Documentation
      */
     internal var backgroundImage: PDFImage?
-    
+
     /**
      TODO: Documentation
      */
     internal var backgroundShape: PDFDynamicGeometryShape?
-    
+
     /**
      TODO: Documentation
      */
     internal var outline: PDFLineStyle
-    
+
     /**
      TODO: Documentation
      */
     internal var padding: UIEdgeInsets
-    
+
     /**
      TODO: Documentation
      */
@@ -73,17 +73,20 @@ internal class PDFGroupObject: PDFObject {
         self.outline = outline
         self.padding = padding
     }
-    
+
     /**
      TODO: Documentation
      */
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFObject)] {
         let heights = generator.layout.heights
-        let columnState = generator.columnState.copy() as! PDFColumnLayoutState
+        guard let columnState = generator.columnState.copy() as? PDFColumnLayoutState else {
+            throw PDFError.copyingFailed
+        }
+        let padding = generator.currentPadding
 
         // Top Padding
         generator.layout.heights.add(padding.top, to: container)
-        
+
         // Fix if not enough space left
         var result: [(PDFContainer, PDFObject)] = []
         if PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container) < 0 {
@@ -98,7 +101,7 @@ internal class PDFGroupObject: PDFObject {
         generator.currentPadding = padding
 
         // Calculate content
-        for (idx, arg) in objects.enumerated() {
+        for arg in objects {
             let (groupContainer, object) = arg
             let calcResult = try object.calculate(generator: generator, container: groupContainer.contentContainer)
 
@@ -112,7 +115,7 @@ internal class PDFGroupObject: PDFObject {
             // Check for page breaks
             let pageBreaks: [(Int, PDFPageBreakObject)] = calcResult.enumerated()
                 .compactMap({ ($0.offset, $0.element.1 as? PDFPageBreakObject) })
-                .compactMap({ $0.1 == nil ? nil : ($0.0, $0.1!)})
+                .compactMap({ $0.1 == nil ? nil : ($0.0, $0.1!) })
 
             if pageBreaks.count == 1 && !allowsBreaks { // If one pagebreak, start group on next page.
                 generator.layout.heights = heights
@@ -135,12 +138,14 @@ internal class PDFGroupObject: PDFObject {
             result.append((container, group))
             result += grouped
         }
+        generator.currentPadding = padding
+
         return result
     }
 
-    func calculateOnNextPage(generator: PDFGenerator,
-                             container: PDFContainer,
-                             pbObj: PDFPageBreakObject) throws -> [(PDFContainer, PDFObject)] {
+    private func calculateOnNextPage(generator: PDFGenerator,
+                                     container: PDFContainer,
+                                     pbObj: PDFPageBreakObject) throws -> [(PDFContainer, PDFObject)] {
         frame = CGRect.null
 
         var result: [(PDFContainer, PDFObject)] = []
@@ -157,16 +162,16 @@ internal class PDFGroupObject: PDFObject {
         self.frame  = isFullPage ? calculateBoundsFrame(generator: generator) : calculateFrame(objects: result)
         return result
     }
-    
-    func calculateBoundsFrame(generator: PDFGenerator) -> CGRect {
+
+    private func calculateBoundsFrame(generator: PDFGenerator) -> CGRect {
         return generator.document.layout.bounds.inset(by: generator.layout.margin)
     }
-    
-    func addBottomPadding(generator: PDFGenerator, container: PDFContainer) {
+
+    private func addBottomPadding(generator: PDFGenerator, container: PDFContainer) {
         generator.layout.heights.add(padding.bottom, to: container)
         generator.currentPadding = .zero
     }
-    
+
     /**
      TODO: Documentation
      */
@@ -190,7 +195,7 @@ internal class PDFGroupObject: PDFObject {
         resultFrame.size.width += (padding.left + padding.right)
         return resultFrame
     }
-    
+
     /**
      TODO: Documentation
      */
@@ -204,13 +209,13 @@ internal class PDFGroupObject: PDFObject {
                                  outline: shape.stroke,
                                  fillColor: shape.fillColor)
         }
-        
+
         if generator.debug {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0), fill: .clear)
             PDFGraphics.drawRect(rect: self.frame.inset(by: padding), outline: PDFLineStyle(type: .full, color: .purple, width: 1.0), fill: .clear)
         }
     }
-    
+
     /**
      Creates a new `PDFGroupObject` with the same properties
      */
