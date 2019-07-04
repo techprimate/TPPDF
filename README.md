@@ -871,7 +871,7 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 [ChatHistory](https://itunes.apple.com/app/id1464880768) - by techprimate
 
-<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/ChatHistory.png" alt="ChatHistory"/>
+<img src="https://raw.githubusercontent.com/techprimate/TPPDF/master/resources/apps/ChatHistory.png" alt="ChatHistory"/>
 
 [Hikingbook](https://itunes.apple.com/app/id1067838748) - by Zheng-Xiang Ke
 
