@@ -16,13 +16,13 @@ DerivedData
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
 
 ## Other
 *.xccheckout
 *.moved-aside
 *.xcuserstate
 *.xcscmblueprint
+xcuserdata
 
 ## Obj-C/Swift specific
 *.hmap
@@ -37,5 +37,15 @@ playground.xcworkspace
 
 # Carthage
 Carthage/Build
-Example/Pods
 derived_data
+
+# Cocoapods
+Example/Pods/Local Podspecs
+Example/Pods/Nimble
+Example/Pods/Quick
+Example/Pods/Swiftlint
+
+# Xcode Schemes, so Carthage doesn't complain
+!Example/Pods/Pods.xcodeproj/xcshareddata/xcschemes/TPPDF.xcscheme
+!Example/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF-Example.xcscheme
+!Example/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF_Tests.xcscheme
