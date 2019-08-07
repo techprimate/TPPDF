@@ -2,7 +2,7 @@ PODS:
   - Nimble (8.0.2)
   - Quick (2.1.0)
   - SwiftLint (0.34.0)
-  - TPPDF (1.5.3):
+  - TPPDF (1.5.4):
     - SwiftLint
 
 DEPENDENCIES:
@@ -24,7 +24,7 @@ SPEC CHECKSUMS:
   Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
   SwiftLint: 79d48a17c6565dc286c37efb8322c7b450f95c67
-  TPPDF: 4fdeb5e280eb6d97479312c6d60526a381ae606d
+  TPPDF: 775e9780261879da1af7c802f9e4bf7feb877677
 
 PODFILE CHECKSUM: 72831a7ced7b912394f864c2ffd8f8f0fac7bfd5
 
