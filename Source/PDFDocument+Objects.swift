@@ -240,14 +240,14 @@ public extension PDFDocument {
         add(container, list: list)
     }
 
-	// MARK: - Section
+    // MARK: - Section
 
-	/**
-	 Adds a section object to the document
-	 */
+    /**
+     Adds a section object to the document
+     */
     func add(section: PDFSection) {
-		objects += [(.contentLeft, PDFSectionObject(section: section))]
-	}
+        objects += [(.contentLeft, PDFSectionObject(section: section))]
+    }
 
     /**
      TODO: Documentation
@@ -363,5 +363,13 @@ public extension PDFDocument {
                                           backgroundShape: group.backgroundShape,
                                           outline: group.outline,
                                           padding: group.padding)
+    }
+
+    /**
+     TODO: Documentation
+     */
+    func add(externalDocument doc: PDFExternalDocument) {
+        objects += [(.none, PDFExternalDocumentObject(url: doc.url,
+                                                      pages: doc.pages))]
     }
 }

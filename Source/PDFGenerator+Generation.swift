@@ -273,6 +273,9 @@ extension PDFGenerator {
                     currentPage += 1
                     totalPages += 1
                     allObjects += try addHeaderFooterObjects()
+                } else if obj.1 is PDFExternalPageObject {
+                    currentPage += 1
+                    totalPages += 1
                 }
             }
             progressValue += 0.5 / CGFloat(2 * numContentObjects)

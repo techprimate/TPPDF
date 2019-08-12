@@ -7,6 +7,7 @@
 
 import UIKit
 import TPPDF
+import PDFKit
 
 class ViewController: UIViewController {
     
@@ -388,6 +389,8 @@ class ViewController: UIViewController {
             group.add(text: "Text \(i)-\(i)-\(i)-\(i)-\(i)")
         }
         document.add(group: group)
+        document.set(indent: 0, left: true)
+        document.set(indent: 0, left: false)
 
         // Add text to footer
 
@@ -408,6 +411,15 @@ class ViewController: UIViewController {
         document.add(.headerRight, textObject: PDFSimpleText(text: "Header Right 1"))
         document.add(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
         document.add(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
+
+        // Add a PDF page from a different PDF file
+
+        let externalDocument = PDFExternalDocument(url: Bundle.main.url(forResource: "sample", withExtension: "pdf")!, pages: 1, 3)
+        document.add(externalDocument: externalDocument)
+
+        // Add more text after externalDocument
+
+        document.add(text: "This is more text after the external pdf file and the second PDFDocument")
 
         // Create a second document and combine them
 
