@@ -50,7 +50,7 @@
   • <a href="#license">License</a>
 </p>
 
-<p align="center" style='color: #2ECC71'>
+<p align="center" style='color: #28B463'>
 	<b>
 	For high-priority, hands-on support and individual feature requests, feel free to contact us at our business email <a href="mailto:office@techprimate.com">office@techprimate.com</a> for our professional help.
 	</b>
