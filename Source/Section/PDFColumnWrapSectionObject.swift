@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 28.05.19.
 //
+import CoreGraphics
 
 /**
  TODO: Documentation

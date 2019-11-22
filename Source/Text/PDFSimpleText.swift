@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 31/10/2017.
 //
+import CoreGraphics
 
 /**
  Text and spacing of a text object.

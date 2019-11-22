@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreGraphics
+import UIKit
 
 /**
  This extension contains all functions to modify the objects of a group

@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
+import CoreGraphics
 
 /**
  Extends the generator with shorthand methods for accessing and modifying the layout

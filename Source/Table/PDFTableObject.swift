@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
+import UIKit
 
 // swiftlint:disable function_body_length function_parameter_count line_length
 

@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
+import CoreGraphics
 
 /**
  Calculates and draws a horizontal separator line.

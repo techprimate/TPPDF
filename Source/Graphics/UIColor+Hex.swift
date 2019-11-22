@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 04/11/2017.
 //
+import UIKit
 
 extension UIColor {
 

@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
+import Foundation
 
 /**
   Use predefined pagination styles or create a custom one, using `.CustomNumberFormat` or `.CustomClosure`.

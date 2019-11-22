@@ -4,6 +4,8 @@
 //
 //  Created by Zheng-Xiang Ke on 2016/12/15.
 //
+import CoreGraphics
+import Foundation
 
 /**
  Information saved in PDF file metadata.

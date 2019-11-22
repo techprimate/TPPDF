@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
+import UIKit
 
 /**
  Used in the rendering to create a new page

@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 19/01/2017.
 //
+import UIKit
 
 /**
  A collection of table style defaults

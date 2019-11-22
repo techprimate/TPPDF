@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
+import UIKit
 
 /**
  TODO: Documentation

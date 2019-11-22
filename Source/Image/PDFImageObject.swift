@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
+import UIKit
 
 /**
  Calculates the given image and a caption if necessary

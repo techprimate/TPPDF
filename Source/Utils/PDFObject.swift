@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
+import CoreGraphics
 
 /**
  All renderable objects subclass from this object.

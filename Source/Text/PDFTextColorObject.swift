@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
+import UIKit
 
 /**
  Changes the text color in the container, where this object is in.

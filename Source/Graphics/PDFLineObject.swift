@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 06.12.17.
 //
+import CoreGraphics
 
 /**
  Calculates and draws a line.

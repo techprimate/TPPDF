@@ -4,6 +4,7 @@
 //
 //  Created by Philip Niedertscheider on 30/10/2017.
 //
+import CoreGraphics
 
 /**
  Holds indentations of header, content and footer.
