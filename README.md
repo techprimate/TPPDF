@@ -50,6 +50,12 @@
   • <a href="#license">License</a>
 </p>
 
+<p align="center" style='color: #28B463'>
+	<b>
+	For high-priority, hands-on support and individual feature requests, feel free to contact us at our business email <a href="mailto:office@techprimate.com">office@techprimate.com</a> for our professional help.
+	</b>
+</p>
+
 ## Features
 
 - Page header and footer
@@ -869,6 +875,10 @@ If you still want to add TPPDF manually, please see issue [#97](https://github.c
 
 If you are using TPPDF in your app and want to be listed here, simply create a pull request or let me know on twitter or via github. I am always curious who is using my projects :)
 
+[ChatHistory](https://itunes.apple.com/app/id1464880768) - by techprimate
+
+<img src="https://raw.githubusercontent.com/techprimate/TPPDF/master/resources/apps/ChatHistory.png" alt="ChatHistory"/>
+
 [Hikingbook](https://itunes.apple.com/app/id1067838748) - by Zheng-Xiang Ke
 
 <img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/Hikingbook.png" alt="Hikingbook"/>
@@ -883,7 +893,7 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 ## Credits
 
-TPPDF is created and maintained by Philip Niedertscheider, owned by [techprimate](https://www.github.com/techprimate).
+TPPDF is created and maintained by Philip Niedertscheider, founder of [techprimate](https://www.github.com/techprimate).
 
 <p align="center">
 	<a href="https://www.techprimate.com">
