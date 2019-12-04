@@ -57,7 +57,7 @@ public class PDFGenerator: CustomStringConvertible {
     /**
      Relative value tracking progress
      */
-    public private(set) var progress = Progress()
+    public let progress = Progress(totalUnitCount: 2)
 
     /**
      Font of each container.

@@ -17,9 +17,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateTestPDF()
-//        generateExamplePDF()
+        //        generateTestPDF()
+        generateExamplePDF()
     }
+
+    private var observer: NSObjectProtocol!
 
     func generateTestPDF() {
         let document1 = PDFDocument(format: .a4)
@@ -28,15 +30,17 @@ class ViewController: UIViewController {
         }
 
         let document2 = PDFDocument(format: .a5)
-        for i in 0..<10000 {
+        for i in 0..<1000 {
             document2.add(text: "DOC 2 - \(i)")
         }
 
         let startTime = CFAbsoluteTimeGetCurrent() * 1000
         // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
-        let generator = PDFMultiDocumentGenerator(documents: [document1, document2])
+        let generator = PDFMultiDocumentGenerator(documents: [document1, document2, document1, document2])
         self.progressView.observedProgress = generator.progress
-
+        observer = generator.progress.observe(\.fractionCompleted) { (p, _) in
+            print(p.completedUnitCount, p.totalUnitCount, p.fractionCompleted)
+        }
         DispatchQueue.global(qos: .background).async {
             do {
                 let url = try generator.generateURL(filename: "Example.pdf")
@@ -44,6 +48,7 @@ class ViewController: UIViewController {
                 print("Duration: \(floor(endTime - startTime)) ms")
 
                 DispatchQueue.main.async {
+                    self.progressView.isHidden = true
                     // Load PDF into a webview from the temporary file
                     self.webView.loadRequest(URLRequest(url: url))
                 }
@@ -75,7 +80,7 @@ class ViewController: UIViewController {
             }, range: (1, 20), hiddenPages: [3, 7], textAttributes: [
                 .font: UIFont.boldSystemFont(ofSize: 15.0),
                 .foregroundColor: UIColor.green
-            ])
+        ])
 
         // Define doccument wide styles
         let titleStyle = document.add(style: PDFTextStyle(name: "Title",
@@ -108,7 +113,7 @@ class ViewController: UIViewController {
         let title = NSMutableAttributedString(string: "Create PDF documents easily", attributes: [
             .font: UIFont.systemFont(ofSize: 18.0),
             .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
-            ])
+        ])
         document.add(.contentCenter, attributedText: title)
 
         // Add some spacing below subtitle
@@ -122,7 +127,7 @@ class ViewController: UIViewController {
         document.add(tableOfContent: PDFTableOfContent(styles: [
             headingStyle1,
             headingStyle2,
-            ], symbol: .none))
+        ], symbol: .none))
 
         // Add headline with extra spacing
         document.add(space: 10)
@@ -158,7 +163,7 @@ class ViewController: UIViewController {
                 PDFListItem(content: "Fully editable header and footer"),
                 PDFListItem(content: "Simple image positioning and rendering"),
                 PDFListItem(content: "Image captions")
-                ]))
+            ]))
         document.add(list: featureList)
 
         // Create a line separator
@@ -196,7 +201,7 @@ class ViewController: UIViewController {
                 PDFImage(image: UIImage(named: "Image-3.jpg")!,
                          caption: PDFAttributedText(text: NSAttributedString(string: "Fireworks",
                                                                              attributes: captionAttributes)))
-                ],
+            ],
             [
                 PDFImage(image: UIImage(named: "Image-3.jpg")!,
                          caption: PDFAttributedText(text: NSAttributedString(string: "Fireworks",
@@ -204,7 +209,7 @@ class ViewController: UIViewController {
                 PDFImage(image: UIImage(named: "Image-4.jpg")!,
                          caption: PDFAttributedText(text: NSAttributedString(string: "Field",
                                                                              attributes: captionAttributes))),
-                ]
+            ]
         ]
 
         // Add first row of images
@@ -269,7 +274,7 @@ class ViewController: UIViewController {
                     [.center, .left, .center, .right],
                     [.center, .left, .center, .right],
                     [.center, .left, .center, .right],
-                ])
+            ])
         } catch PDFError.tableContentInvalid(let value) {
             // In case invalid input is provided, this error will be thrown.
 
@@ -300,9 +305,9 @@ class ViewController: UIViewController {
                 text: UIColor.white
             ),
             borders: PDFTableCellBorders(left: PDFLineStyle(type: .full),
-                      top: PDFLineStyle(type: .full),
-                      right: PDFLineStyle(type: .full),
-                      bottom: PDFLineStyle(type: .full)),
+                                         top: PDFLineStyle(type: .full),
+                                         right: PDFLineStyle(type: .full),
+                                         bottom: PDFLineStyle(type: .full)),
 
             font: UIFont.systemFont(ofSize: 10)
         )
@@ -340,27 +345,27 @@ class ViewController: UIViewController {
 
         // Add more text after the table
         document.add(text: "Just adding more text here...")
-		
-		// Add multi column section
-		let section = PDFSection(columnWidths: [0.33, 0.34, 0.33])
-		section.columns[0].add(.left, text: "left")
-		section.columns[0].add(.center, text: "center")
-		section.columns[0].add(.right, text: "right")
-		section.columns[0].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
-		section.columns[0].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
-		section.columns[0].add(text: "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
-		section.columns[1].add(.left, text: "left")
-		section.columns[1].add(.center, text: "center")
-		section.columns[1].add(.right, text: "right")
-		section.columns[1].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
-		section.columns[1].add(.center, text: "center")
-		section.columns[1].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
-		section.columns[2].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
-		section.columns[2].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
-		section.columns[2].add(.left, text: "left")
-		section.columns[2].add(.center, text: "center")
-		section.columns[2].add(.right, text: "right")
-		section.columns[2].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
+
+        // Add multi column section
+        let section = PDFSection(columnWidths: [0.33, 0.34, 0.33])
+        section.columns[0].add(.left, text: "left")
+        section.columns[0].add(.center, text: "center")
+        section.columns[0].add(.right, text: "right")
+        section.columns[0].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
+        section.columns[0].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
+        section.columns[0].add(text: "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
+        section.columns[1].add(.left, text: "left")
+        section.columns[1].add(.center, text: "center")
+        section.columns[1].add(.right, text: "right")
+        section.columns[1].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
+        section.columns[1].add(.center, text: "center")
+        section.columns[1].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
+        section.columns[2].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
+        section.columns[2].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
+        section.columns[2].add(.left, text: "left")
+        section.columns[2].add(.center, text: "center")
+        section.columns[2].add(.right, text: "right")
+        section.columns[2].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
         document.add(section: section)
 
         // Add a floating multisection
@@ -430,26 +435,33 @@ class ViewController: UIViewController {
         /* ---- Execution Metrics ---- */
         
         // Convert document to JSON String for debugging
-//        let _ = document.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
-//        print(json)
+        //        let _ = document.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
+        //        print(json)
 
-        do {
-            // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
-//            let url = try PDFGenerator.generateURL(documents: [document, secondDocument],
-//                                                   filename: "Example.pdf",
-//                                                   progress: { (docIndex: Int, progressValue: CGFloat, totalProgressValue: CGFloat) in
-//                                                    print("doc:", docIndex, "progress:", progressValue, "total:", totalProgressValue)
-//            })
 
-            // Load PDF into a webview from the temporary file
-//            (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
-        } catch {
-            print("Error while generating PDF: " + error.localizedDescription)
+        // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
+        let generator = PDFGenerator(document: document)
+        self.progressView.observedProgress = generator.progress
+        observer = generator.progress.observe(\.fractionCompleted) { (p, _) in
+            print(p.localizedDescription ?? "")
         }
-        
-        /* ---- Execution Metrics ---- */
-        print("Generation took: " + stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
-        /* ---- Execution Metrics ---- */
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let url = try generator.generateURL(filename: "Example.pdf")
+
+                /* ---- Execution Metrics ---- */
+                print("Generation took: " + self.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
+                /* ---- Execution Metrics ---- */
+
+                DispatchQueue.main.async {
+                    self.progressView.isHidden = true
+                    // Load PDF into a webview from the temporary file
+                    self.webView.loadRequest(URLRequest(url: url))
+                }
+            } catch {
+                print("Error while generating PDF: " + error.localizedDescription)
+            }
+        }
     }
     
     /**

@@ -9,15 +9,12 @@ public class PDFMultiDocumentGenerator {
 
     private var documents: [PDFDocument]
 
-    public let progress = Progress()
+    public let progress: Progress
     public var debug = false
 
     public init(documents: [PDFDocument] = []) {
         self.documents = documents
-    }
-
-    public func add(document: PDFDocument) {
-        self.documents.append(document)
+        progress = Progress()
     }
 
     public func generateURL(filename: String, info: PDFInfo = PDFInfo()) throws -> URL {
@@ -43,12 +40,12 @@ public class PDFMultiDocumentGenerator {
     }
 
     internal func processDocuments() throws {
-        let objCounts = documents.map { $0.objects.count }
-
-        for (idx, document) in documents.enumerated() {
+        progress.totalUnitCount = Int64(documents.count)
+        for document in documents {
             let generator = PDFGenerator(document: document)
-            progress.addChild(generator.progress, withPendingUnitCount: Int64(objCounts[idx]))
             generator.debug = debug
+
+            progress.addChild(generator.progress, withPendingUnitCount: 1)
             try generator.generatePDFContext()
         }
     }
