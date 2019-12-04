@@ -25,7 +25,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         var url: URL!
                         expect {
-                            url = try PDFGenerator.generateURL(document: document, filename: filename, debug: false)
+                            url = try PDFGenerator(document: document).generateURL(filename: filename)
                             return nil
                             }.toNot(throwError())
                         expect(url).toEventuallyNot(beNil())
@@ -46,7 +46,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         var url: URL!
                         expect {
-                            url = try PDFGenerator.generateURL(document: document, filename: filename, debug: false)
+                            url = try PDFGenerator(document: document).generateURL(filename: filename)
                             return nil
                             }.toNot(throwError())
                         expect(url).toEventuallyNot(beNil())
@@ -67,7 +67,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         var url: URL!
                         expect {
-                            url = try PDFGenerator.generateURL(document: document, filename: filename, debug: true)
+                            url = try PDFGenerator(document: document).generateURL(filename: filename)
                             return nil
                             }.toNot(throwError())
                         expect(url).toEventuallyNot(beNil())
@@ -91,7 +91,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         var data: Data!
                         expect {
-                            data = try PDFGenerator.generateData(document: document, debug: false)
+                            data = try PDFGenerator(document: document).generateData()
                             return nil
                             }.toNot(throwError())
                         expect(data).toEventuallyNot(beNil())
@@ -105,7 +105,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         var data: Data!
                         expect {
-                            data = try PDFGenerator.generateData(document: document, debug: true)
+                            data = try PDFGenerator(document: document).generateData()
                             return nil
                             }.toNot(throwError())
                         expect(data).toEventuallyNot(beNil())

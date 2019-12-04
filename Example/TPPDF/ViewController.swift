@@ -10,36 +10,46 @@ import TPPDF
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var progressView: UIProgressView!
+
+    var progressObserver: NSObjectProtocol!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-//        generateTestPDF()
-        generateExamplePDF()
+        generateTestPDF()
+//        generateExamplePDF()
     }
 
     func generateTestPDF() {
         let document1 = PDFDocument(format: .a4)
-        for i in 0..<100 {
+        for i in 0..<1000 {
             document1.add(text: "DOC 1 - \(i)")
         }
 
         let document2 = PDFDocument(format: .a5)
-        for i in 0..<100 {
+        for i in 0..<10000 {
             document2.add(text: "DOC 2 - \(i)")
         }
 
-        do {
-            let startTime = CFAbsoluteTimeGetCurrent() * 1000
-            // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
-            let url = try PDFGenerator.generateURL(documents: [document1, document2], filename: "Example.pdf", progress: { (docIndex: Int, progressValue: CGFloat, totalProgressValue: CGFloat) in
-                print("doc:", docIndex, "progress:", progressValue, "total:", totalProgressValue)
-            })
-            let endTime = CFAbsoluteTimeGetCurrent() * 1000
-            print("Duration: \(floor(endTime - startTime)) ms")
+        let startTime = CFAbsoluteTimeGetCurrent() * 1000
+        // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
+        let generator = PDFMultiDocumentGenerator(documents: [document1, document2])
+        self.progressView.observedProgress = generator.progress
 
-            // Load PDF into a webview from the temporary file
-            (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
-        } catch {
-            print("Error while generating PDF: " + error.localizedDescription)
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let url = try generator.generateURL(filename: "Example.pdf")
+                let endTime = CFAbsoluteTimeGetCurrent() * 1000
+                print("Duration: \(floor(endTime - startTime)) ms")
+
+                DispatchQueue.main.async {
+                    // Load PDF into a webview from the temporary file
+                    self.webView.loadRequest(URLRequest(url: url))
+                }
+            } catch {
+                print("Error while generating PDF: " + error.localizedDescription)
+            }
         }
     }
     
@@ -425,14 +435,14 @@ class ViewController: UIViewController {
 
         do {
             // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
-            let url = try PDFGenerator.generateURL(documents: [document, secondDocument],
-                                                   filename: "Example.pdf",
-                                                   progress: { (docIndex: Int, progressValue: CGFloat, totalProgressValue: CGFloat) in
-                                                    print("doc:", docIndex, "progress:", progressValue, "total:", totalProgressValue)
-            })
+//            let url = try PDFGenerator.generateURL(documents: [document, secondDocument],
+//                                                   filename: "Example.pdf",
+//                                                   progress: { (docIndex: Int, progressValue: CGFloat, totalProgressValue: CGFloat) in
+//                                                    print("doc:", docIndex, "progress:", progressValue, "total:", totalProgressValue)
+//            })
 
             // Load PDF into a webview from the temporary file
-            (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
+//            (self.view as? UIWebView)?.loadRequest(URLRequest(url: url))
         } catch {
             print("Error while generating PDF: " + error.localizedDescription)
         }
