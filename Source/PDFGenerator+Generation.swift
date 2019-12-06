@@ -116,8 +116,8 @@ extension PDFGenerator {
             allObjects += try addHeaderFooterObjects()
         }
 
-        let createProgress = Progress.discreteProgress(totalUnitCount: Int64(2 * contentObjects.count))
-        progress.addChild(createProgress, withPendingUnitCount: 1)
+        var calculationProgress = Progress.discreteProgress(totalUnitCount: Int64(contentObjects.count))
+        progress.addChild(calculationProgress, withPendingUnitCount: 1)
 
         // Iterate all objects and let them calculate the required rendering
         for (container, pdfObject) in contentObjects {
@@ -137,7 +137,7 @@ extension PDFGenerator {
                     allObjects += try addHeaderFooterObjects()
                 }
             }
-            createProgress.completedUnitCount += 1
+            calculationProgress.completedUnitCount += 1
         }
 
         // Save calculated page count from reseting
@@ -153,6 +153,9 @@ extension PDFGenerator {
         if !contentObjects.isEmpty {
             allObjects += try addHeaderFooterObjects()
         }
+
+        calculationProgress = Progress.discreteProgress(totalUnitCount: Int64(contentObjects.count))
+        progress.addChild(calculationProgress, withPendingUnitCount: 1)
 
         // Iterate all objects and let them calculate the required rendering
         for (container, pdfObject) in contentObjects {
@@ -170,7 +173,7 @@ extension PDFGenerator {
                     allObjects += try addHeaderFooterObjects()
                 }
             }
-            createProgress.completedUnitCount += 1
+            calculationProgress.completedUnitCount += 1
         }
         return allObjects
     }
