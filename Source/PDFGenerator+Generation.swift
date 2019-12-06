@@ -65,8 +65,6 @@ extension PDFGenerator {
     /**
      Generate PDF Context from PDFCommands
 
-     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
-
      - throws: PDFError
      */
     public func generatePDFContext() throws {
@@ -118,7 +116,7 @@ extension PDFGenerator {
             allObjects += try addHeaderFooterObjects()
         }
 
-        let createProgress = Progress(totalUnitCount: Int64(2 * contentObjects.count))
+        let createProgress = Progress.discreteProgress(totalUnitCount: Int64(2 * contentObjects.count))
         progress.addChild(createProgress, withPendingUnitCount: 1)
 
         // Iterate all objects and let them calculate the required rendering
@@ -251,7 +249,7 @@ extension PDFGenerator {
 
         drawDebugPageOverlay()
 
-        let renderProgress = Progress(totalUnitCount: Int64(objects.count))
+        let renderProgress = Progress.discreteProgress(totalUnitCount: Int64(objects.count))
         progress.addChild(renderProgress, withPendingUnitCount: 1)
 
         for (container, object) in objects {

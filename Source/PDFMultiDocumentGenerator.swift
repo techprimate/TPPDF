@@ -14,7 +14,7 @@ public class PDFMultiDocumentGenerator {
 
     public init(documents: [PDFDocument] = []) {
         self.documents = documents
-        progress = Progress()
+        progress = Progress.discreteProgress(totalUnitCount: Int64(documents.count))
     }
 
     public func generateURL(filename: String, info: PDFInfo = PDFInfo()) throws -> URL {
@@ -40,7 +40,6 @@ public class PDFMultiDocumentGenerator {
     }
 
     internal func processDocuments() throws {
-        progress.totalUnitCount = Int64(documents.count)
         for document in documents {
             let generator = PDFGenerator(document: document)
             generator.debug = debug
