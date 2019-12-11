@@ -1,15 +1,42 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2019-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.1...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.4...HEAD)
 
 **Implemented enhancements:**
+
+- Added progress reporting using iOS internal `Foundation.Progress` (Issue #155)
 
 **Fixed bugs:**
 
 **Closed issues:**
 
+- #155
+
 **Merged pull requests:**
+
+- #171
+
+## [1.5.4](https://github.com/techprimate/TPPDF/tree/1.5.4) (2019-06-06)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.3...1.5.4)
+
+**Implemented enhancements:**
+
+- Fixed carthage support once again
+
+## [1.5.3](https://github.com/techprimate/TPPDF/tree/1.5.3) (2019-06-06)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.2...1.5.3)
+
+**Implemented enhancements:**
+
+- Fixed padding in groups 
+
+## [1.5.2](https://github.com/techprimate/TPPDF/tree/1.5.2) (2019-06-06)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.1...1.5.2)
+
+**Implemented enhancements:**
+
+- Added group breaking
 
 ## [1.5.1](https://github.com/techprimate/TPPDF/tree/1.5.1) (2019-06-06)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.0...1.5.1)
@@ -52,8 +79,6 @@
 - #136
 - #137
 - #138
-
-**Merged pull requests:**
 
 ## [1.4.1](https://github.com/techprimate/TPPDF/tree/1.4.1) (2019-05-19)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.0...1.4.1)

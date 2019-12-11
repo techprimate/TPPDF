@@ -222,7 +222,6 @@
 		D49CB34321C7EB5E00CDCE70 /* PDFGenerator+Generation_Spec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+Generation_Spec.swift"; sourceTree = "<group>"; };
 		D49CB34421C7EB5E00CDCE70 /* PDFDocument+Objects_Spec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFDocument+Objects_Spec.swift"; sourceTree = "<group>"; };
 		D49CB34521C7EB5E00CDCE70 /* PDFDocument_Spec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocument_Spec.swift; sourceTree = "<group>"; };
-		D4B97A2A1F94B8BC00F83D1F /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".swift-version"; path = "../.swift-version"; sourceTree = "<group>"; };
 		D4B97A2B1F94B8BC00F83D1F /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		D4E6F9AA1FA7633D0049890F /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .jazzy.yaml; path = ../.jazzy.yaml; sourceTree = "<group>"; };
 		D4E6F9AC1FA765080049890F /* Gemfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; };
@@ -314,7 +313,6 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				D4B97A2A1F94B8BC00F83D1F /* .swift-version */,
 				D4E6F9AC1FA765080049890F /* Gemfile */,
 				5B33C61EC58DBAB629433DE7 /* LICENSE */,
 				D418D71E1EF16FA4009FAF56 /* CHANGELOG.md */,
