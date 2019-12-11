@@ -20,7 +20,6 @@ public class PDFMasterGroup: PDFGroup {
      */
     public init(isFullPage: Bool = false) {
         self.isFullPage = isFullPage
-        
         super.init(allowsBreaks: false)
     }
 
