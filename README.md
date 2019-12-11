@@ -775,7 +775,24 @@ let generator = PDFMultiDocumentGenerator(documents: [document1, document2])
 generator.progress.observe(\.fractionCompleted) { (p, _) in
     print(p.localizedDescription ?? "")
 }
+generator.progress.observe(\.fractionCompleted) { (p, _) in
+    print(p.localizedDescription ?? "")
+}
+generator.progress.observe(\.completedUnitCount) { (p, _) in
+    print(p.completedUnitCount ?? "", " of ", p.totalUnitCount)
+}
 let url = try generator.generateURL(filename: "Example.pdf")
+```
+
+Also you are able to track the generation of each individual document using the `progresses` array:
+
+**Example:**
+
+```swift
+let generator = PDFMultiDocumentGenerator(documents: [document1, document2])
+generator.progresses[0].observe(\.fractionCompleted) { (p, _) in
+    print(p.localizedDescription ?? "")
+}
 ```
 
 #### Debug

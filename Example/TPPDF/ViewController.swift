@@ -442,7 +442,7 @@ class ViewController: UIViewController {
         // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
         let generator = PDFGenerator(document: document)
         self.progressView.observedProgress = generator.progress
-        observer = generator.progress.observe(\.fractionCompleted) { (p, _) in
+        observer = generator.progress.observe(\.completedUnitCount) { (p, _) in
             print(p.localizedDescription ?? "")
         }
         DispatchQueue.global(qos: .background).async {
