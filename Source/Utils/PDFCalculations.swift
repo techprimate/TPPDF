@@ -8,7 +8,7 @@
 // swiftlint:disable function_body_length
 
 /**
- A collection of static calculations
+ A collection of static calculations utilities
  */
 internal enum PDFCalculations {
 
@@ -87,7 +87,7 @@ internal enum PDFCalculations {
      - parameter generator: Generator doing the calculations
      - parameter container: Container which size is calculated
 
-     - returns: Available bounds size
+     - returns: Available bounds size in points
      */
     internal static func calculateAvailableFrame(for generator: PDFGenerator, in container: PDFContainer) -> CGSize {
         return CGSize(
@@ -97,7 +97,12 @@ internal enum PDFCalculations {
     }
 
     /**
-     TODO: documentation
+     Calculates the available width in a given `container`
+
+     - parameter generator: Generator used for calculations
+     - parameter container: Container in question
+
+     - returns: Available width in points
      */
     internal static func calculateAvailableFrameWidth(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
         let columnInset = generator.columnState.getInset(for: container)
@@ -113,7 +118,13 @@ internal enum PDFCalculations {
     }
 
     /**
-     TODO: Documentation
+     Calculates the available height in a given `container` on the current page.
+     If the container is a header or a footer container, it has no limits and therefore returns the full page layout height
+
+     - parameter generator: Generator used for calculations
+     - parameter container: Container in question
+
+     - returns: Available height in points
      */
     internal static func calculateAvailableFrameHeight(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
         let layout = generator.layout
@@ -369,7 +380,15 @@ internal enum PDFCalculations {
     }
 
     /**
-     TODO: Documentation
+     Calculates how much of a given attributed text can be drawn in the given `frame`.
+     First it uses`CoreText` to create a `CTFramesetter`, then calculates the visible range in the given `frame` and returns the range of text,
+     actually fitting the frame.
+
+     - parameter frame: Rectangle used as limitation bounds of text
+     - parameter text: Attributed string that will be rendered
+     - parameter currentRange: Character offset, used to select substring
+
+     - returns: Tuple holding the given frame, the calculated framesetter reference and the draw size
      */
     internal static func calculateTextFrameAndDrawnSizeInOnePage(frame: CGRect,
                                                                  text: CFAttributedString,
