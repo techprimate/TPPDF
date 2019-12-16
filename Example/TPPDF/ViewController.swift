@@ -18,69 +18,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //        generateTestPDF()
-        generateExamplePDF()
+//        generateExamplePDF()
     }
 
     private var observer: NSObjectProtocol!
 
-    func generateTestPDF() {
-        let document1 = PDFDocument(format: .a4)
-        for i in 0..<1000 {
-            document1.add(text: "DOC 1 - \(i)")
-        }
-
-        let document2 = PDFDocument(format: .a5)
-        for i in 0..<1000 {
-            document2.add(text: "DOC 2 - \(i)")
-        }
-
-        let startTime = CFAbsoluteTimeGetCurrent() * 1000
-        // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
-        let generator = PDFMultiDocumentGenerator(documents: [document1, document2, document1, document2])
-        self.progressView.observedProgress = generator.progress
-        observer = generator.progress.observe(\.fractionCompleted) { (p, _) in
-            print(p.completedUnitCount, p.totalUnitCount, p.fractionCompleted)
-        }
-        DispatchQueue.global(qos: .background).async {
-            do {
-                let url = try generator.generateURL(filename: "Example.pdf")
-                let endTime = CFAbsoluteTimeGetCurrent() * 1000
-                print("Duration: \(floor(endTime - startTime)) ms")
-
-                DispatchQueue.main.async {
-                    self.progressView.isHidden = true
-                    // Load PDF into a webview from the temporary file
-                    self.webView.loadRequest(URLRequest(url: url))
-                }
-            } catch {
-                print("Error while generating PDF: " + error.localizedDescription)
-            }
-        }
-    }
-    
     func generateExamplePDF() {
         /* ---- Execution Metrics ---- */
         var startTime = CFAbsoluteTimeGetCurrent()
         /* ---- Execution Metrics ---- */
         
         let document = PDFDocument(format: .a4)
-        
-        // Set document meta data
-        document.info.title = "TPPDF Example"
-        document.info.subject = "Building a PDF easily"
-        document.info.ownerPassword = "Password123"
-        
-        // Set spacing of header and footer
-        document.layout.space.header = 5
-        document.layout.space.footer = 5
-
-        // Add custom pagination, starting at page 1 and excluding page 3
-        document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure { (page, total) -> String in
-            return "\(page) / \(total)"
-            }, range: (1, 20), hiddenPages: [3, 7], textAttributes: [
-                .font: UIFont.boldSystemFont(ofSize: 15.0),
-                .foregroundColor: UIColor.green
-        ])
 
         // Define doccument wide styles
         let titleStyle = document.add(style: PDFTextStyle(name: "Title",
@@ -143,28 +91,6 @@ class ViewController: UIViewController {
 
         document.add(text: "TPPDF includes many different features:")
         document.add(space: 10)
-
-        // Simple bullet point list
-        
-        let featureList = PDFList(indentations: [
-            (pre: 10.0, past: 20.0),
-            (pre: 20.0, past: 20.0),
-            (pre: 40.0, past: 20.0)
-        ])
-        
-        featureList.addItem(PDFListItem(symbol: .dot)
-            .addItems([
-                PDFListItem(content: "Simple text drawing"),
-                PDFListItem(content: "Advanced text drawing using AttributedString"),
-                PDFListItem(content: "Multi-layer rendering by simply setting the offset"),
-                PDFListItem(content: "Fully calculated content sizing"),
-                PDFListItem(content: "Automatic page wrapping"),
-                PDFListItem(content: "Customizable pagination"),
-                PDFListItem(content: "Fully editable header and footer"),
-                PDFListItem(content: "Simple image positioning and rendering"),
-                PDFListItem(content: "Image captions")
-            ]))
-        document.add(list: featureList)
 
         // Create a line separator
 
@@ -242,137 +168,8 @@ class ViewController: UIViewController {
         document.add(textObject: PDFSimpleText(text: "3. Tables", style: headingStyle1))
         document.add(space: 10)
 
-        // Create a table
-        let table = PDFTable()
-
-        // Tables can contain Strings, Numbers, Images or nil, in case you need an empty cell. If you add a unknown content type, an error will be thrown and the rendering will stop.
-
-        do {
-            try table.generateCells(
-                data:
-                [
-                    [nil, "Name", "Image", "Description"],
-                    [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
-                    [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
-                    [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
-                    [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
-                    [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
-                    [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
-                    [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
-                    [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
-                    [nil, nil, nil, "Many beautiful places"]
-                ],
-                alignments:
-                [
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-            ])
-        } catch PDFError.tableContentInvalid(let value) {
-            // In case invalid input is provided, this error will be thrown.
-
-            print("This type of object is not supported as table content: " + String(describing: (type(of: value))))
-        } catch {
-            // General error handling in case something goes wrong.
-
-            print("Error while creating table: " + error.localizedDescription)
-        }
-
-        // The widths of each column is proportional to the total width, set by a value between 0.0 and 1.0, representing percentage.
-
-        table.widths = [
-            0.1, 0.25, 0.35, 0.3
-        ]
-
-        // To speed up table styling, use a default and change it
-
-        let style = PDFTableStyleDefaults.simple
-
-        // Change standardized styles
-        style.footerStyle = PDFTableCellStyle(
-            colors: (
-                fill: UIColor(red: 0.171875,
-                              green: 0.2421875,
-                              blue: 0.3125,
-                              alpha: 1.0),
-                text: UIColor.white
-            ),
-            borders: PDFTableCellBorders(left: PDFLineStyle(type: .full),
-                                         top: PDFLineStyle(type: .full),
-                                         right: PDFLineStyle(type: .full),
-                                         bottom: PDFLineStyle(type: .full)),
-
-            font: UIFont.systemFont(ofSize: 10)
-        )
-
-        // Simply set the amount of footer and header rows
-
-        style.columnHeaderCount = 1
-        style.footerCount = 1
-
-        table.style = style
-
-        do {
-            // Style each cell individually
-            try table.setCellStyle(row: 1, column: 1, style: PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black)))
-        } catch PDFError.tableIndexOutOfBounds(let index, let length){
-            // In case the index is out of bounds
-
-            print("Requested cell is out of bounds! \(index) / \(length)")
-        } catch {
-            // General error handling in case something goes wrong.
-
-            print("Error while setting cell style: " + error.localizedDescription)
-        }
-
-        // Set table padding and margin
-
-        table.padding = 5.0
-        table.margin = 10.0
-
-        // In case of a linebreak during rendering we want to have table headers on each page.
-
-        table.showHeadersOnEveryPage = true
-
-        document.add(table: table)
-
         // Add more text after the table
         document.add(text: "Just adding more text here...")
-
-        // Add multi column section
-        let section = PDFSection(columnWidths: [0.33, 0.34, 0.33])
-        section.columns[0].add(.left, text: "left")
-        section.columns[0].add(.center, text: "center")
-        section.columns[0].add(.right, text: "right")
-        section.columns[0].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
-        section.columns[0].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
-        section.columns[0].add(text: "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
-        section.columns[1].add(.left, text: "left")
-        section.columns[1].add(.center, text: "center")
-        section.columns[1].add(.right, text: "right")
-        section.columns[1].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
-        section.columns[1].add(.center, text: "center")
-        section.columns[1].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
-        section.columns[2].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
-        section.columns[2].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
-        section.columns[2].add(.left, text: "left")
-        section.columns[2].add(.center, text: "center")
-        section.columns[2].add(.right, text: "right")
-        section.columns[2].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
-        document.add(section: section)
-
-        // Add a floating multisection
-
-        document.enable(columns: 3, widths: [0.3, 0.5, 0.2], spacings: [10, 10])
-        document.add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea.")
-        document.disableColumns(addPageBreak: false)
 
         // Add a group
 
