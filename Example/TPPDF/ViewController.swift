@@ -15,10 +15,11 @@ class ViewController: UIViewController {
 
     var progressObserver: NSObjectProtocol!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //        generateTestPDF()
-//        generateExamplePDF()
+    public var exampleFactory: ExampleFactory?
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        generateExamplePDF()
     }
 
     private var observer: NSObjectProtocol!
@@ -235,28 +236,54 @@ class ViewController: UIViewController {
         //        let _ = document.toJSON(options: JSONSerialization.WritingOptions.prettyPrinted) ?? "nil"
         //        print(json)
 
-
-        // Generate PDF file and save it in a temporary file. This returns the file URL to the temporary file
-        let generator = PDFGenerator(document: document)
-        self.progressView.observedProgress = generator.progress
-        observer = generator.progress.observe(\.completedUnitCount) { (p, _) in
-            print(p.localizedDescription ?? "")
+        guard let documents = exampleFactory?.generateDocument() else {
+            return
         }
-        DispatchQueue.global(qos: .background).async {
-            do {
-                let url = try generator.generateURL(filename: "Example.pdf")
+        if documents.count > 1 {
+            let generator = PDFMultiDocumentGenerator(documents: documents)
+            self.progressView.observedProgress = generator.progress
+            observer = generator.progress.observe(\.completedUnitCount) { (p, _) in
+                print(p.localizedDescription ?? "")
+            }
+            DispatchQueue.global(qos: .background).async {
+                do {
+                    let url = try generator.generateURL(filename: "Example.pdf")
 
-                /* ---- Execution Metrics ---- */
-                print("Generation took: " + self.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
-                /* ---- Execution Metrics ---- */
+                    /* ---- Execution Metrics ---- */
+                    print("Generation took: " + self.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
+                    /* ---- Execution Metrics ---- */
 
-                DispatchQueue.main.async {
-                    self.progressView.isHidden = true
-                    // Load PDF into a webview from the temporary file
-                    self.webView.loadRequest(URLRequest(url: url))
+                    DispatchQueue.main.async {
+                        self.progressView.isHidden = true
+                        // Load PDF into a webview from the temporary file
+                        self.webView.loadRequest(URLRequest(url: url))
+                    }
+                } catch {
+                    print("Error while generating PDF: " + error.localizedDescription)
                 }
-            } catch {
-                print("Error while generating PDF: " + error.localizedDescription)
+            }
+        } else {
+            let generator = PDFGenerator(document: documents.first!)
+            self.progressView.observedProgress = generator.progress
+            observer = generator.progress.observe(\.completedUnitCount) { (p, _) in
+                print(p.localizedDescription ?? "")
+            }
+            DispatchQueue.global(qos: .background).async {
+                do {
+                    let url = try generator.generateURL(filename: "Example.pdf")
+
+                    /* ---- Execution Metrics ---- */
+                    print("Generation took: " + self.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
+                    /* ---- Execution Metrics ---- */
+
+                    DispatchQueue.main.async {
+                        self.progressView.isHidden = true
+                        // Load PDF into a webview from the temporary file
+                        self.webView.loadRequest(URLRequest(url: url))
+                    }
+                } catch {
+                    print("Error while generating PDF: " + error.localizedDescription)
+                }
             }
         }
     }
