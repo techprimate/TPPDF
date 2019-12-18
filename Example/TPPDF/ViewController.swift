@@ -239,51 +239,32 @@ class ViewController: UIViewController {
         guard let documents = exampleFactory?.generateDocument() else {
             return
         }
+        let generator: PDFGenerator
         if documents.count > 1 {
-            let generator = PDFMultiDocumentGenerator(documents: documents)
-            self.progressView.observedProgress = generator.progress
-            observer = generator.progress.observe(\.completedUnitCount) { (p, _) in
-                print(p.localizedDescription ?? "")
-            }
-            DispatchQueue.global(qos: .background).async {
-                do {
-                    let url = try generator.generateURL(filename: "Example.pdf")
-
-                    /* ---- Execution Metrics ---- */
-                    print("Generation took: " + self.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
-                    /* ---- Execution Metrics ---- */
-
-                    DispatchQueue.main.async {
-                        self.progressView.isHidden = true
-                        // Load PDF into a webview from the temporary file
-                        self.webView.loadRequest(URLRequest(url: url))
-                    }
-                } catch {
-                    print("Error while generating PDF: " + error.localizedDescription)
-                }
-            }
+            generator = PDFMultiDocumentGenerator(documents: documents)
         } else {
-            let generator = PDFGenerator(document: documents.first!)
-            self.progressView.observedProgress = generator.progress
-            observer = generator.progress.observe(\.completedUnitCount) { (p, _) in
-                print(p.localizedDescription ?? "")
-            }
-            DispatchQueue.global(qos: .background).async {
-                do {
-                    let url = try generator.generateURL(filename: "Example.pdf")
+            generator = PDFGenerator(document: documents.first!)
+        }
 
-                    /* ---- Execution Metrics ---- */
-                    print("Generation took: " + self.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
-                    /* ---- Execution Metrics ---- */
+        self.progressView.observedProgress = generator.progress
+        observer = generator.progress.observe(\.completedUnitCount) { (p, _) in
+            print(p.localizedDescription ?? "")
+        }
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let url = try generator.generateURL(filename: "Example.pdf")
 
-                    DispatchQueue.main.async {
-                        self.progressView.isHidden = true
-                        // Load PDF into a webview from the temporary file
-                        self.webView.loadRequest(URLRequest(url: url))
-                    }
-                } catch {
-                    print("Error while generating PDF: " + error.localizedDescription)
+                /* ---- Execution Metrics ---- */
+                print("Generation took: " + self.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
+                /* ---- Execution Metrics ---- */
+
+                DispatchQueue.main.async {
+                    self.progressView.isHidden = true
+                    // Load PDF into a webview from the temporary file
+                    self.webView.loadRequest(URLRequest(url: url))
                 }
+            } catch {
+                print("Error while generating PDF: " + error.localizedDescription)
             }
         }
     }

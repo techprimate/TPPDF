@@ -8,12 +8,17 @@
 /**
  Generates a PDF from multiple `PDFDocument` by appending them.
  */
-public class PDFMultiDocumentGenerator {
+public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
 
     /**
      Bounds of first document, set on initialisation
      */
     private let bounds: CGRect
+
+    /**
+     Metadata information of first document, set on initialisation
+     */
+    private let info: PDFInfo
 
     /**
      Generator instances for each document
@@ -49,6 +54,7 @@ public class PDFMultiDocumentGenerator {
         self.progresses = self.generators.map { $0.progress }
 
         self.bounds = documents.first?.layout.bounds ?? .zero
+        self.info = documents.first?.info ?? PDFInfo()
 
         progress = Progress.discreteProgress(totalUnitCount: Int64(documents.count))
     }
@@ -65,9 +71,9 @@ public class PDFMultiDocumentGenerator {
 
      - throws: Exception, if something went wrong
      */
-    public func generateURL(filename: String, info: PDFInfo = PDFInfo()) throws -> URL {
+    public func generateURL(filename: String, info: PDFInfo? = nil) throws -> URL {
         let url = FileManager.generateTemporaryOutputURL(for: filename)
-        try generate(into: url, info: info)
+        try generate(to: url, info: info)
         return url
     }
 
@@ -79,9 +85,9 @@ public class PDFMultiDocumentGenerator {
 
     - throws: Exception, if something went wrong
     */
-    public func generate(into target: URL, info: PDFInfo = PDFInfo()) throws {
+    public func generate(to target: URL, info: PDFInfo? = nil) throws {
         assert(!generators.isEmpty, "At least one document is required!")
-        UIGraphicsBeginPDFContextToFile(target.path, bounds, info.generate())
+        UIGraphicsBeginPDFContextToFile(target.path, bounds, (info ?? self.info).generate())
         try processDocuments()
         UIGraphicsEndPDFContext()
     }
@@ -95,10 +101,10 @@ public class PDFMultiDocumentGenerator {
 
     - returns:PDF data
     */
-    public func generateData(info: PDFInfo = PDFInfo()) throws -> Data {
+    public func generateData(info: PDFInfo? = nil) throws -> Data {
         assert(!generators.isEmpty, "At least one document is required!")
         let data = NSMutableData()
-        UIGraphicsBeginPDFContextToData(data, bounds, info.generate())
+        UIGraphicsBeginPDFContextToData(data, bounds, (info ?? self.info).generate())
         try processDocuments()
         UIGraphicsEndPDFContext()
         return data as Data
