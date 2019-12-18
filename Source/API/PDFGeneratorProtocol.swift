@@ -86,3 +86,24 @@ public protocol PDFGeneratorProtocol {
     func generateData() throws -> Data
 
 }
+
+extension PDFGeneratorProtocol {
+
+    /**
+     Creates a file in a guaranteed temporary folder with the given filename, generates the PDF context data and writes the result into the file.
+
+     Keep in mind, the output file is in a temporary folder of the OS and should be persisted by your own logic.
+
+     - parameter filename: Name of output file, `.pdf` will be appended if not given
+     - parameter info: Instance of `PDFInfo` with meta file information, defaults to default initialiser of `PDFInfo`
+
+     - returns: Temporary URL to the output file
+
+     - throws: Exception, if something went wrong
+     */
+    public func generateURL(filename: String, info: PDFInfo?) throws -> URL {
+        let url = FileManager.generateTemporaryOutputURL(for: filename)
+        try generate(to: url, info: info)
+        return url
+    }
+}

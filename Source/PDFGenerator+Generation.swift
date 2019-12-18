@@ -12,35 +12,12 @@ extension PDFGenerator {
 
     // MARK: - PUBLIC STATIC FUNCS
 
-    /**
-     Generates PDF data and writes it to a temporary file.
-
-     - parameter filename:  Name of temporary file.
-
-     - returns:             URL to temporary file.
-
-     - throws:              PDFError
-     */
+    /// nodoc
     public func generateURL(filename: String) throws -> URL {
         return try self.generateURL(filename: filename, info: nil)
     }
 
-    /**
-     Generates PDF data and writes it to a temporary file.
-
-     - parameter filename:  Name of temporary file.
-
-     - returns:             URL to temporary file.
-
-     - throws:              PDFError
-     */
-    public func generateURL(filename: String, info: PDFInfo?) throws -> URL {
-        let url = FileManager.generateTemporaryOutputURL(for: filename)
-        try generate(to: url, info: info)
-        return url
-    }
-
-
+    /// nodoc
     public func generate(to url: URL) throws {
         return try self.generate(to: url, info: nil)
     }
@@ -59,6 +36,7 @@ extension PDFGenerator {
         UIGraphicsEndPDFContext()
     }
 
+    /// nodoc
     public func generateData() throws -> Data {
         return try self.generateData(info: nil)
     }
