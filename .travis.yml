@@ -14,7 +14,7 @@ env:
   - EXAMPLE_SCHEME="TPPDF-Example"
   - SOURCE_FOLDER="Source"
   matrix:
-  - DESTINATION="OS=13.2,name=iPhone 11 Pro"
+  - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
 install:
 - bundle install
 - bundle exec pod repo update
