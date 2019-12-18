@@ -59,6 +59,10 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
         progress = Progress.discreteProgress(totalUnitCount: Int64(documents.count))
     }
 
+    public func generateURL(filename: String) throws -> URL {
+        return try self.generateURL(filename: filename, info: nil)
+    }
+
     /**
      Creates a file in a guaranteed temporary folder with the given filename, generates the PDF context data and writes the result into the file.
 
@@ -71,10 +75,14 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
 
      - throws: Exception, if something went wrong
      */
-    public func generateURL(filename: String, info: PDFInfo? = nil) throws -> URL {
+    public func generateURL(filename: String, info: PDFInfo?) throws -> URL {
         let url = FileManager.generateTemporaryOutputURL(for: filename)
         try generate(to: url, info: info)
         return url
+    }
+
+    public func generate(to target: URL) throws {
+        return try self.generate(to: target, info: nil)
     }
 
     /**
@@ -85,11 +93,15 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
 
     - throws: Exception, if something went wrong
     */
-    public func generate(to target: URL, info: PDFInfo? = nil) throws {
+    public func generate(to target: URL, info: PDFInfo?) throws {
         assert(!generators.isEmpty, "At least one document is required!")
         UIGraphicsBeginPDFContextToFile(target.path, bounds, (info ?? self.info).generate())
         try processDocuments()
         UIGraphicsEndPDFContext()
+    }
+
+    public func generateData() throws -> Data {
+        return try self.generateData(info: nil)
     }
 
     /**

@@ -239,7 +239,7 @@ class ViewController: UIViewController {
         guard let documents = exampleFactory?.generateDocument() else {
             return
         }
-        let generator: PDFGenerator
+        let generator: PDFGeneratorProtocol
         if documents.count > 1 {
             generator = PDFMultiDocumentGenerator(documents: documents)
         } else {

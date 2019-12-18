@@ -21,10 +21,28 @@ extension PDFGenerator {
 
      - throws:              PDFError
      */
-    public func generateURL(filename: String, info: PDFInfo? = nil) throws -> URL {
+    public func generateURL(filename: String) throws -> URL {
+        return try self.generateURL(filename: filename, info: nil)
+    }
+
+    /**
+     Generates PDF data and writes it to a temporary file.
+
+     - parameter filename:  Name of temporary file.
+
+     - returns:             URL to temporary file.
+
+     - throws:              PDFError
+     */
+    public func generateURL(filename: String, info: PDFInfo?) throws -> URL {
         let url = FileManager.generateTemporaryOutputURL(for: filename)
         try generate(to: url, info: info)
         return url
+    }
+
+
+    public func generate(to url: URL) throws {
+        return try self.generate(to: url, info: nil)
     }
 
     /**
@@ -35,10 +53,14 @@ extension PDFGenerator {
 
      - throws:          PDFError
      */
-    public func generate(to url: URL, info: PDFInfo? = nil) throws {
+    public func generate(to url: URL, info: PDFInfo?) throws {
         UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, (info ?? document.info).generate())
         try generatePDFContext()
         UIGraphicsEndPDFContext()
+    }
+
+    public func generateData() throws -> Data {
+        return try self.generateData(info: nil)
     }
 
     /**
@@ -51,7 +73,7 @@ extension PDFGenerator {
 
      - throws:              PDFError
      */
-    public func generateData(info: PDFInfo? = nil) throws -> Data {
+    public func generateData(info: PDFInfo?) throws -> Data {
         let data = NSMutableData()
         UIGraphicsBeginPDFContextToData(data, document.layout.bounds, (info ?? document.info).generate())
         try generatePDFContext()
