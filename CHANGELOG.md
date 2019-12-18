@@ -6,6 +6,7 @@
 **Implemented enhancements:**
 
 - Added progress reporting using iOS internal `Foundation.Progress` (Issue #155)
+- Added a better test example experience
 
 **Fixed bugs:**
 
