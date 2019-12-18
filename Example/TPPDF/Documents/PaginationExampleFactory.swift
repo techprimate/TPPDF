@@ -12,12 +12,18 @@ class PaginationExampleFactory: ExampleFactory {
 
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
+
+        for i in 1...10 {
+            document.add(text: "This is page: \(i)")
+            document.createNewPage()
+        }
+
         // Add custom pagination, starting at page 1 and excluding page 3
         document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure { (page, total) -> String in
             return "\(page) / \(total)"
             }, range: (1, 20), hiddenPages: [3, 7], textAttributes: [
-                .font: UIFont.boldSystemFont(ofSize: 15.0),
-                .foregroundColor: UIColor.green
+                .font: UIFont.boldSystemFont(ofSize: 30.0),
+                .foregroundColor: UIColor.blue
         ])
         
         return [document]

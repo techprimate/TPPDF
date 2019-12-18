@@ -13,9 +13,17 @@ class ExamplesListViewController: UITableViewController {
 
     let factories: [[(String, ExampleFactory)]] = [
         [
-            ("Table", ListExampleFactory()),
             ("List", ListExampleFactory()),
+            ("Images", ImageExampleFactory()),
+            ("Groups", GroupExampleFactory()),
+            ("Table", ListExampleFactory()),
+            ("Lines", LineSeparatorExampleFactory()),
+            ("Text", TextExampleFactory()),
+            ("Table of Contents", TableOfContentsExampleFactory()),
+            ("Header & Footer", HeaderFooterExampleFactory()),
             ("Multi Section", MultiSectionExampleFactory()),
+            ("Multi Documents", MultipleDocumentsExampleFactory()),
+            ("Metadata", MetadataExampleFactory()),
             ("Pagination", PaginationExampleFactory()),
             ("Text Styles", TextStylesExampleFactory()),
         ],
