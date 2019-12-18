@@ -701,7 +701,7 @@
 		D3B3B16C3D66A4B91F50726197A09A5E /* PDFLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFLayout.swift; sourceTree = "<group>"; };
 		D3DFF77D53D830E855EC9E2B941D655E /* PostNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PostNotification.swift; path = Sources/Nimble/Matchers/PostNotification.swift; sourceTree = "<group>"; };
 		D460DAF4D1EB723D868F6483436E7A83 /* PDFImageObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFImageObject.swift; sourceTree = "<group>"; };
-		D4D28D2423AA1F6400028D5A /* PDFGeneratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PDFGeneratorProtocol.swift; path = Source/PDFGeneratorProtocol.swift; sourceTree = "<group>"; };
+		D4D28D2423AA1F6400028D5A /* PDFGeneratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGeneratorProtocol.swift; sourceTree = "<group>"; };
 		D6DBA068436520DA3A26217B841E8F46 /* PDFTextColorObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFTextColorObject.swift; sourceTree = "<group>"; };
 		D709FECB94DF162C13794F2B089765E3 /* PDFSectionColumnObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PDFSectionColumnObject.swift; sourceTree = "<group>"; };
 		D810E672048E21A256B6FE0D483B16F6 /* PDFContainer.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = PDFContainer.html; path = docs/Enums/PDFContainer.html; sourceTree = "<group>"; };
@@ -1175,9 +1175,9 @@
 		972F2815B10667E6E1D090CEC6B91689 /* TPPDF */ = {
 			isa = PBXGroup;
 			children = (
+				D4D28D2823AA24A800028D5A /* API */,
 				D1745F332FD7764AB9A34826817D040F /* PDFDocument.swift */,
 				DA6A9C80ADCBF7053E4E75EB1D20619F /* PDFDocument+Objects.swift */,
-				D4D28D2423AA1F6400028D5A /* PDFGeneratorProtocol.swift */,
 				65764D2519767C3F424E4AAE4E548BF1 /* PDFMultiDocumentGenerator.swift */,
 				6AD0EA49C6FB5B72ACEEDB6448F031BB /* PDFGenerator.swift */,
 				F64C8E8FE138F93074A0A24347D982CE /* PDFGenerator+Debug.swift */,
@@ -1501,6 +1501,15 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Nimble";
+			sourceTree = "<group>";
+		};
+		D4D28D2823AA24A800028D5A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D4D28D2423AA1F6400028D5A /* PDFGeneratorProtocol.swift */,
+			);
+			name = API;
+			path = Source/API;
 			sourceTree = "<group>";
 		};
 		D9E6A2CCFA937C39340C2A8AD55011F4 /* Section */ = {
