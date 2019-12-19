@@ -12,19 +12,14 @@ extension PDFGenerator {
 
     // MARK: - PUBLIC STATIC FUNCS
 
-    /**
-     Generates PDF data and writes it to a temporary file.
+    /// nodoc
+    public func generateURL(filename: String) throws -> URL {
+        return try self.generateURL(filename: filename, info: nil)
+    }
 
-     - parameter filename:  Name of temporary file.
-
-     - returns:             URL to temporary file.
-
-     - throws:              PDFError
-     */
-    public func generateURL(filename: String, info: PDFInfo = PDFInfo()) throws -> URL {
-        let url = FileManager.generateTemporaryOutputURL(for: filename)
-        try generate(to: url, info: info)
-        return url
+    /// nodoc
+    public func generate(to url: URL) throws {
+        return try self.generate(to: url, info: nil)
     }
 
     /**
@@ -35,26 +30,30 @@ extension PDFGenerator {
 
      - throws:          PDFError
      */
-    public func generate(to url: URL, info: PDFInfo = PDFInfo()) throws {
-        UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, info.generate())
+    public func generate(to url: URL, info: PDFInfo?) throws {
+        UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, (info ?? document.info).generate())
         try generatePDFContext()
         UIGraphicsEndPDFContext()
+    }
+
+    /// nodoc
+    public func generateData() throws -> Data {
+        return try self.generateData(info: nil)
     }
 
     /**
      Generates PDF data and returns it
 
      - parameter document:  PDFDocument which should be converted into a PDF file.
-     - parameter progress:  Optional closure for progress handling. Parameter is between 0.0 and 1.0
-     - parameter debug:     Enables debugging
+     - parameter info:      Metadata Information added to file
 
      - returns:             PDF Data
 
      - throws:              PDFError
      */
-    public func generateData() throws -> Data {
+    public func generateData(info: PDFInfo?) throws -> Data {
         let data = NSMutableData()
-        UIGraphicsBeginPDFContextToData(data, document.layout.bounds, document.info.generate())
+        UIGraphicsBeginPDFContextToData(data, document.layout.bounds, (info ?? document.info).generate())
         try generatePDFContext()
         UIGraphicsEndPDFContext()
         return data as Data

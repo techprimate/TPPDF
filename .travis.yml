@@ -1,8 +1,10 @@
 os: osx
-osx_image: xcode10.2
+osx_image: xcode11.2
+language: objective-c
 cache:
-- bundler
-- cocoapods
+  bundler: true
+  cocoapods: true
+podfile: Example/Podfile
 notifications:
   slack:
     secure: zqgyogEkMEjTfIZqbSOfG8SWE3+93tDyPt+Q/aRe4xO/Bd/IKcUrn0XtLDeZf38Q5Xkb3oZzg+8NMcwj0EPEbV+iO/drmJd3keAHWlLwc1Lyzq7mjibfOgwtXRuahC6z5VxPooGFH3dXz0ZWPrk4oDTv6p9uJ+8efPxZMY55lMnJvvYRVBHwIfK9pxNkOt/dC7Sflh6/46JUIefJGuSr3rgG+ImE+exp/us6lA2wu/XDDyMyAqMQPBLa2L4OL/CKqLP6NFLy00QlRtlPKW/AvyIXPI2x/k9porkK+cueGK0n3ZnZcsINdf8YKIVuTpOATmd9igXX7d2oW7FGJwlU7ttZ6gaa/zQxfHwVHKYbXdQYdfpXrB6u/tb1qpfj/CbDVgxVHEr7vXXJQdMJVnWqzXJiLlai4S3tRrLHyD86IeyhWj28jMp0JT6A9bkhrMy30Fyx3L2QMzZf17/xRI3ZJdl+Exj/f5xEngdO5yk2B98K4YWFkfJO80kmegXnH178OolaOnhHTLW/1q6l/ZBD7LVtRq1hFgcPIR0JxgsvWzX6+0dE4cZ6pb1Ulq0uj90T8ryBV+jaHdHPKxOORCkOLHfsem+5Tw5GzMBVhVNKdV7ajX1SvZmIMyoczfCsKXdU5zk5vbjigjm0fqdKY2/1AJAXDAHB7QMeQSR/WDEXNbc=
@@ -14,7 +16,7 @@ env:
   - EXAMPLE_SCHEME="TPPDF-Example"
   - SOURCE_FOLDER="Source"
   matrix:
-  - DESTINATION="OS=12.2,name=iPhone XS Max"
+  - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
 install:
 - bundle install
 - bundle exec pod repo update

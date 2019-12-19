@@ -8,12 +8,17 @@
 /**
  Generates a PDF from multiple `PDFDocument` by appending them.
  */
-public class PDFMultiDocumentGenerator {
+public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
 
     /**
      Bounds of first document, set on initialisation
      */
     private let bounds: CGRect
+
+    /**
+     Metadata information of first document, set on initialisation
+     */
+    private let info: PDFInfo
 
     /**
      Generator instances for each document
@@ -49,26 +54,19 @@ public class PDFMultiDocumentGenerator {
         self.progresses = self.generators.map { $0.progress }
 
         self.bounds = documents.first?.layout.bounds ?? .zero
+        self.info = documents.first?.info ?? PDFInfo()
 
         progress = Progress.discreteProgress(totalUnitCount: Int64(documents.count))
     }
 
-    /**
-     Creates a file in a guaranteed temporary folder with the given filename, generates the PDF context data and writes the result into the file.
+    /// nodoc
+    public func generateURL(filename: String) throws -> URL {
+        return try self.generateURL(filename: filename, info: nil)
+    }
 
-     Keep in mind, the output file is in a temporary folder of the OS and should be persisted by your own logic.
-
-     - parameter filename: Name of output file, `.pdf` will be appended if not given
-     - parameter info: Instance of `PDFInfo` with meta file information, defaults to default initialiser of `PDFInfo`
-
-     - returns: Temporary URL to the output file
-
-     - throws: Exception, if something went wrong
-     */
-    public func generateURL(filename: String, info: PDFInfo = PDFInfo()) throws -> URL {
-        let url = FileManager.generateTemporaryOutputURL(for: filename)
-        try generate(into: url, info: info)
-        return url
+    /// nodoc
+    public func generate(to target: URL) throws {
+        return try self.generate(to: target, info: nil)
     }
 
     /**
@@ -79,11 +77,15 @@ public class PDFMultiDocumentGenerator {
 
     - throws: Exception, if something went wrong
     */
-    public func generate(into target: URL, info: PDFInfo = PDFInfo()) throws {
+    public func generate(to target: URL, info: PDFInfo?) throws {
         assert(!generators.isEmpty, "At least one document is required!")
-        UIGraphicsBeginPDFContextToFile(target.path, bounds, info.generate())
+        UIGraphicsBeginPDFContextToFile(target.path, bounds, (info ?? self.info).generate())
         try processDocuments()
         UIGraphicsEndPDFContext()
+    }
+
+    public func generateData() throws -> Data {
+        return try self.generateData(info: nil)
     }
 
     /**
@@ -95,10 +97,10 @@ public class PDFMultiDocumentGenerator {
 
     - returns:PDF data
     */
-    public func generateData(info: PDFInfo = PDFInfo()) throws -> Data {
+    public func generateData(info: PDFInfo? = nil) throws -> Data {
         assert(!generators.isEmpty, "At least one document is required!")
         let data = NSMutableData()
-        UIGraphicsBeginPDFContextToData(data, bounds, info.generate())
+        UIGraphicsBeginPDFContextToData(data, bounds, (info ?? self.info).generate())
         try processDocuments()
         UIGraphicsEndPDFContext()
         return data as Data

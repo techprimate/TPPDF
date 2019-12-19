@@ -10,8 +10,8 @@ import UIKit
 /**
  Factory which converts a document into a PDF file
  */
-public class PDFGenerator: CustomStringConvertible {
-
+public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
+    
     // MARK: - INTERNAL VARS
 
     /**
@@ -74,7 +74,7 @@ public class PDFGenerator: CustomStringConvertible {
     /**
      Enables debugging on all generator instance
      */
-    internal var debug: Bool = false
+    public var debug: Bool = false
 
     /**
      Text color of each container.
