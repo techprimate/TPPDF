@@ -1,6 +1,6 @@
-source "https://github.com/CocoaPods/Specs.git"
+source 'https://cdn.cocoapods.org/'
 
-platform :ios, "8.3"
+platform :ios, "9.0"
 use_frameworks!
 
 target "TPPDF_Example" do

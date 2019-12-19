@@ -26,9 +26,6 @@
 	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-master">
 		<img src="https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de" alt="codebeat">
 	</a>
-	<a href="https://bettercodehub.com/results/Techprimate/TPPDF">
-		<img src="https://bettercodehub.com/edge/badge/Techprimate/TPPDF" alt="bettercodehub">
-	</a>
 	<a href="https://codecov.io/gh/techprimate/TPPDF">
 		<img src="https://img.shields.io/codecov/c/github/techprimate/TPPDF.svg?style=flat-square" alt="codecov">
 	</a>
@@ -48,12 +45,6 @@
   • <a href="#installation">Installation</a>
   • <a href="#credits">Credits</a>
   • <a href="#license">License</a>
-</p>
-
-<p align="center" style='color: #28B463'>
-	<b>
-	For high-priority, hands-on support and individual feature requests, feel free to contact us at our business email <a href="mailto:office@techprimate.com">office@techprimate.com</a> for our professional help.
-	</b>
 </p>
 
 ## Features
@@ -110,7 +101,8 @@ document.addText(.contentCenter, text: "Create PDF documents easily.")
 ...then you render the document...
  
 ```swift 
-PDFGenerator.generateURL(document: document, filename: "Example.pdf")
+let generator = PDFGenerator(document: document)
+let url  = try generator.generateURL(document: document, filename: "Example.pdf")
 ```
 
 **...done!**
@@ -748,10 +740,8 @@ You can generate the PDF file using the following method:
 ```swift
 let document: PDFDocument
 let filename = "awesome.pdf"
-
-let url = try PDFGenerator.generateURL(document: document, filename: String, progress: { progress in
-    print(progress)
-}, debug: false)
+let generator = PDFGenerator(document: document)
+let url = try generator.generateURL(document: document, filename: filename)
 ```
 
 This will render the document to a temporary file and return the URL. Be sure to wrap it a `try-catch` block, as it might throw an error!
@@ -761,10 +751,8 @@ It is also possible to render the file and return the data, using `generateData`
 ```swift
 let document: PDFDocument
 let filename = "awesome.pdf"
-
-let data = try PDFGenerator.generateData(document: document, progress: { progress in
-    print(progress)
-}, debug: false)
+let generator = PDFGenerator(document: document)
+let data = try generator.generateData(document: document, filename: filename)
 ```
 
 And if you want to directly save it to a specific file, pass an URL to `generate(document:, to: )`:
@@ -772,35 +760,44 @@ And if you want to directly save it to a specific file, pass an URL to `generate
 ```swift
 let document: PDFDocument
 let url = URL(string: "file://~/Desktop/awesome.pdf")!
-
-try PDFGenerator.generate(document: document, to: url, progress: { progress in
-    print(progress)
-}, debug: false)
+let generator = PDFGenerator(document: document)
+try generator.generate(to: url)
 ```
 
 #### Multiple Documents
 
 If you want to combine multiple `PDFDocument` into a single PDF file, use the alternative methods to the ones in the previous section, taking multiple `documents` as a parameter. 
 
-The progress will now return three values: 
+**Example:**
 
- - the current document index
- - the progress of the current document 
- - sum of total progress
+```swift
+let generator = PDFMultiDocumentGenerator(documents: [document1, document2])
+generator.progress.observe(\.fractionCompleted) { (p, _) in
+    print(p.localizedDescription ?? "")
+}
+generator.progress.observe(\.fractionCompleted) { (p, _) in
+    print(p.localizedDescription ?? "")
+}
+generator.progress.observe(\.completedUnitCount) { (p, _) in
+    print(p.completedUnitCount ?? "", " of ", p.totalUnitCount)
+}
+let url = try generator.generateURL(filename: "Example.pdf")
+```
+
+Also you are able to track the generation of each individual document using the `progresses` array:
 
 **Example:**
 
 ```swift
-let url = try PDFGenerator.generateURL(documents: [
-	document1, document2
-], filename: "Example.pdf", progress: { (docIndex: Int, progressValue: CGFloat, totalProgressValue: CGFloat) in
-    print("doc:", docIndex, "progress:", progressValue, "total:", totalProgressValue)
-})
+let generator = PDFMultiDocumentGenerator(documents: [document1, document2])
+generator.progresses[0].observe(\.fractionCompleted) { (p, _) in
+    print(p.localizedDescription ?? "")
+}
 ```
 
 #### Debug
 
-If you want to enable a debug overlay, set the flag `debug` in `PDFGenerator.generate(..)`, `PDFGenerator.generateURL(..)` or `PDFGenerator.generateData(..)` to `true` and it will add colored outlines of the elements in you document.
+If you want to enable a debug overlay, set the flag `debug` in `PDFGenerator::generate(..)`, `PDFGenerator::generateURL(..)` or `PDFGenerator::generateData(..)` to `true` and it will add colored outlines of the elements in you document.
 
 ## Installation
 
@@ -920,10 +917,6 @@ Please consider backing this project by using the following link:
 </a>
 
 We want to thank all [contributors](https://github.com/techprimate/TPPDF/graphs/contributors) for their effort!
-
-### Thank You
-
-Special thanks goes to **Nutchaphon Rewik** for his project [SimplePDF](https://github.com/nRewik/SimplePDF) as the inspiration.
 
 ## License
 
