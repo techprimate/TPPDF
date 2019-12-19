@@ -63,6 +63,16 @@ public enum PDFError: Error {
     /**
      TODO: Documentation
      */
+    case externalDocumentURLInvalid(url: URL)
+
+    /**
+     TODO: Documentation
+     */
+    case pageOutOfBounds(index: Int)
+
+    /**
+     TODO: Documentation
+     */
     public var localizedDescription: String {
         switch self {
         case .tableContentInvalid(let value):
@@ -85,6 +95,10 @@ public enum PDFError: Error {
             return "Invalid hexdecimal string: " + hex
         case .copyingFailed:
             return "Failed to create a copy of an object"
+        case .externalDocumentURLInvalid(let url):
+            return "Could not open PDF document at url: " + url.absoluteString
+        case .pageOutOfBounds(let index):
+            return "Page \(index) in external document is out of bounds"
         }
     }
 }

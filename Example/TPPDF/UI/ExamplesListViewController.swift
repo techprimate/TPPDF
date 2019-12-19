@@ -26,6 +26,7 @@ class ExamplesListViewController: UITableViewController {
             ("Metadata", MetadataExampleFactory()),
             ("Pagination", PaginationExampleFactory()),
             ("Text Styles", TextStylesExampleFactory()),
+            ("External Documents", ExternalDocumentExampleFactory()),
         ],
         [
             ("Experiment", ExperimentFactory()),

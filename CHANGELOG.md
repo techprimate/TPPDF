@@ -7,6 +7,7 @@
 
 - Added progress reporting using iOS internal `Foundation.Progress` (Issue #155)
 - Added a better test example experience
+- Added support to embed external PDF document (Issue #31)
 
 **Fixed bugs:**
 
@@ -15,11 +16,13 @@
 **Closed issues:**
 
 - #155
+- #31
 
 **Merged pull requests:**
 
 - #171
 - #172
+- #174
 
 ## [1.5.4](https://github.com/techprimate/TPPDF/tree/1.5.4) (2019-06-06)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.3...1.5.4)

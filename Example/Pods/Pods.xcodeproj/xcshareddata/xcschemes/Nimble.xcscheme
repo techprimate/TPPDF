@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20C3D02EDAA6B704305176D70E9E143C"
-               BuildableName = "TPPDF.framework"
-               BlueprintName = "TPPDF"
+               BlueprintIdentifier = "6F13695E06195A78EA8A95F8C7ED0D2F"
+               BuildableName = "Nimble.framework"
+               BlueprintName = "Nimble"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20C3D02EDAA6B704305176D70E9E143C"
-            BuildableName = "TPPDF.framework"
-            BlueprintName = "TPPDF"
+            BlueprintIdentifier = "6F13695E06195A78EA8A95F8C7ED0D2F"
+            BuildableName = "Nimble.framework"
+            BlueprintName = "Nimble"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

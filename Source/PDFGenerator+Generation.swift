@@ -134,6 +134,9 @@ extension PDFGenerator {
                     currentPage += 1
                     totalPages += 1
                     allObjects += try addHeaderFooterObjects()
+                } else if obj.1 is PDFExternalPageObject {
+                    currentPage += 1
+                    totalPages += 1
                 }
             }
             calculationProgress.completedUnitCount += 1

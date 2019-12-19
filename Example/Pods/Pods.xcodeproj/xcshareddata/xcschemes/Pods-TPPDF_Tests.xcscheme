@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20C3D02EDAA6B704305176D70E9E143C"
-               BuildableName = "TPPDF.framework"
-               BlueprintName = "TPPDF"
+               BlueprintIdentifier = "26F942324460958B69105891D86E3286"
+               BuildableName = "Pods_TPPDF_Tests.framework"
+               BlueprintName = "Pods-TPPDF_Tests"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20C3D02EDAA6B704305176D70E9E143C"
-            BuildableName = "TPPDF.framework"
-            BlueprintName = "TPPDF"
+            BlueprintIdentifier = "26F942324460958B69105891D86E3286"
+            BuildableName = "Pods_TPPDF_Tests.framework"
+            BlueprintName = "Pods-TPPDF_Tests"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

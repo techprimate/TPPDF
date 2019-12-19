@@ -364,4 +364,12 @@ public extension PDFDocument {
                                           outline: group.outline,
                                           padding: group.padding)
     }
+
+    /**
+     TODO: Documentation
+     */
+    func add(externalDocument doc: PDFExternalDocument) {
+        objects += [(.none, PDFExternalDocumentObject(url: doc.url,
+                                                      pages: doc.pages))]
+    }
 }
