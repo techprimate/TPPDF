@@ -10,6 +10,8 @@
 
 **Fixed bugs:**
 
+- Fixed TravisCI configuration
+
 **Closed issues:**
 
 - #155
@@ -17,6 +19,7 @@
 **Merged pull requests:**
 
 - #171
+- #172
 
 ## [1.5.4](https://github.com/techprimate/TPPDF/tree/1.5.4) (2019-06-06)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.3...1.5.4)
