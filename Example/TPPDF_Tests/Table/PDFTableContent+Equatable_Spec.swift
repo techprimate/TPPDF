@@ -52,7 +52,7 @@ class PDFTableContent_Equatable_Spec: QuickSpec {
                     content.type = .image
                     content.content = UIImage()
 
-                    let otherContent = PDFTableContent(type: .image, content: UIImage())
+                    let otherContent = PDFTableContent(type: .image, content: UIImage(named: "Icon.png")!)
                     expect(content) != otherContent
                 }
 

@@ -10,7 +10,9 @@ import Foundation
 extension CustomStringConvertible {
 
     /**
-     TODO: docs
+     Default implementation for `description` using class reflection to create a comma concatenated list of properties and values
+
+     - Returns: String of comma-separated key/value pairs
      */
     public var description: String {
         var description: String = ""
@@ -34,7 +36,9 @@ extension CustomStringConvertible {
 extension CustomDebugStringConvertible {
 
     /**
-     TODO: docs
+     Default implementation for `debugDescription` using class reflection to create a comma concatenated list of properties and values
+
+     - Returns: String of comma-separated key/value pairs
      */
     public var debugDescription: String {
         var description: String = ""
