@@ -53,6 +53,7 @@ class ViewController: UIViewController {
         DispatchQueue.global(qos: .background).async {
             do {
                 let url = try generator.generateURL(filename: "Example.pdf")
+                print("Output URL:", url)
 
                 /* ---- Execution Metrics ---- */
                 print("Generation took: " + TimeUtils.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))

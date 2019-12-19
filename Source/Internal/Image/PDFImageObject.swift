@@ -69,6 +69,10 @@ internal class PDFImageObject: PDFRenderObject {
 
         result.append((container, self))
 
+        for attribute in image.attributes {
+            self.attributes.append((attribute: attribute, frame: self.frame))
+        }
+
         if let caption = image.caption {
             result += try PDFAttributedTextObject(text: caption).calculate(generator: generator, container: PDFContainer.contentCenter)
         }

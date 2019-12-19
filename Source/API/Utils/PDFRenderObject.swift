@@ -66,7 +66,7 @@ public class PDFRenderObject: CustomStringConvertible, PDFJSONSerializable {
         for (attribute, frame) in attributes {
             switch attribute {
             case .link(let url):
-                context.setURL(url as CFURL, for: frame)
+                context.setURL(url as CFURL, for: frame.applying(context.userSpaceToDeviceSpaceTransform))
             }
         }
     }
