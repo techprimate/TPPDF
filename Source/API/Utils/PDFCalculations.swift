@@ -77,7 +77,6 @@ internal enum PDFCalculations {
             let remainderRange = NSRange(location: visibleRange.length, length: textRange.length - visibleRange.length)
             remainder = text.attributedSubstring(from: remainderRange)
         }
-
         return TextCalculationResult(text: result, size: drawnSize, remainder: remainder)
     }
 

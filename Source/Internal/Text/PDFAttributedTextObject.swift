@@ -156,7 +156,40 @@ internal class PDFAttributedTextObject: PDFRenderObject {
         if generator.debug {
             PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0), fill: .clear)
         }
+
+        let allRange = NSRange(location: 0, length: attributedString.length)
+        attributedString.enumerateAttribute(.link, in: allRange) { (obj, range, _) in
+            if let url = obj as? String {
+                calculateLinkAttributes(with: url, range: range, in: frameRef, in: allRange, context: currentContext)
+            }
+        }
+
         applyAttributes()
+    }
+
+    private func calculateLinkAttributes(with url: String, range: NSRange, in frameRef: CTFrame, in allRange: NSRange, context: CGContext) {
+        guard let lines = CTFrameGetLines(frameRef) as? [CTLine] else {
+            return
+        }
+        for line in lines {
+            let lineRange = CTLineGetStringRange(line)
+            let lineBounds = CTLineGetImageBounds(line, context)
+            if let intersection = NSRange(location: lineRange.location,
+                                          length: lineRange.length).intersection(range) {
+                let startOffset = CTLineGetOffsetForStringIndex(line, intersection.location, nil)
+                let endOffset = CTLineGetOffsetForStringIndex(line, intersection.location + intersection.length, nil)
+
+                var linkFrame = CGRect.zero
+                linkFrame.origin.y = self.frame.origin.y + lineBounds.origin.y
+                linkFrame.origin.x = self.frame.origin.x + startOffset
+                linkFrame.size.width = endOffset - startOffset
+                linkFrame.size.height = lineBounds.height
+                attributes.append((attribute: .link(url: URL(string: url)!), frame: linkFrame))
+
+                PDFGraphics.drawRect(rect: lineBounds, outline: .none, fill: UIColor.blue.withAlphaComponent(0.4))
+                PDFGraphics.drawRect(rect: linkFrame, outline: .none, fill: UIColor.red.withAlphaComponent(0.4))
+            }
+        }
     }
 
     /**

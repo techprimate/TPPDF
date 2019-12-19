@@ -18,6 +18,16 @@ class ObjectAttributesExampleFactory: ExampleFactory {
         logoImage.add(attribute: .link(url: URL(string: "https://www.github.com/techprimate/TPPDF")!))
         document.add(.contentCenter, image: logoImage)
 
+        let count = 20
+        let text = (0..<count).reduce("", { (prev, _) in prev + "Word Link Word - " })
+        let attributedString = NSMutableAttributedString(string: text)
+        for i in 0..<20 {
+            attributedString.addAttribute(.link,
+                                          value: "https://www.github.com/techprimate/TPPDF",
+                                          range: NSRange(location: 17 * i + 5, length: 4))
+        }
+        document.add(attributedText: attributedString)
+        
         return [document]
     }
 }
