@@ -15,7 +15,7 @@ class PDFObject_Spec: QuickSpec {
 
         describe("PDFObject") {
 
-            let object = PDFRenderObject()
+            let object = PDFObject()
 
             it("should have a null frame as default") {
                 expect(object.frame) == CGRect.null
@@ -33,7 +33,7 @@ class PDFObject_Spec: QuickSpec {
                 }
 
                 it("should return a empty subobjects array when calculating") {
-                    var objects: [(PDFContainer, PDFRenderObject)]?
+                    var objects: [(PDFContainer, PDFObject)]?
                     expect {
                         objects = try object.calculate(generator: generator, container: container)
                     }.toNot(throwError())
