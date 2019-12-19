@@ -8,6 +8,7 @@
 - Added progress reporting using iOS internal `Foundation.Progress` (Issue #155)
 - Added a better test example experience
 - Added support to embed external PDF document (Issue #31)
+- Added clickable URL support for images (Issue #170)
 
 **Fixed bugs:**
 
@@ -17,6 +18,7 @@
 
 - #155
 - #31
+- #170
 
 **Merged pull requests:**
 
