@@ -173,11 +173,8 @@ internal class PDFAttributedTextObject: PDFRenderObject {
         guard let lines = CTFrameGetLines(frameRef) as? [CTLine] else {
             return
         }
-        var lineMetrics: [(bounds: CGRect, range: CFRange)] = []
-        var lineOffset: CGFloat = 0
+        var lineMetrics: [(line: CTLine, bounds: CGRect, range: CFRange)] = []
         for (i, line) in lines.enumerated() {
-            let lineRange = CTLineGetStringRange(line)
-
             var ascent: CGFloat = 0
             var descent: CGFloat = 0
             var leading: CGFloat = 0
@@ -186,31 +183,27 @@ internal class PDFAttributedTextObject: PDFRenderObject {
             var lineOrigin = CGPoint.zero
             CTFrameGetLineOrigins(frameRef, CFRange(location: lines.count - i - 1, length: 1), &lineOrigin)
 
-            print(lineOrigin)
             let lineBounds = CGRect(x: self.frame.origin.x,
                                     y: self.frame.origin.y + lineOrigin.y,
                                     width: typoBounds,
                                     height: ascent + descent + leading)
-            lineOffset = lineBounds.maxY
-
-            lineMetrics.append((bounds: lineBounds, range: lineRange))
+            lineMetrics.append((line: line, bounds: lineBounds, range: CTLineGetStringRange(line)))
             PDFGraphics.drawRect(rect: lineBounds,
                                  outline: PDFLineStyle(type: .full, color: .red, width: 0.4),
                                  fill: UIColor.blue.withAlphaComponent(0.2))
         }
         for link in links {
-            for (idx, metric) in lineMetrics.enumerated() {
-                let line = lines[idx]
+            for metric in lineMetrics {
                 if let intersection = NSRange(location: metric.range.location,
                                               length: metric.range.length).intersection(link.range) {
-                    let startOffset = CTLineGetOffsetForStringIndex(line, intersection.location, nil)
-                    let endOffset = CTLineGetOffsetForStringIndex(line, intersection.location + intersection.length, nil)
+                    let startOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location, nil)
+                    let endOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location + intersection.length, nil)
 
-                    var linkFrame = CGRect.zero
-                    linkFrame.origin.y = metric.bounds.origin.y
-                    linkFrame.origin.x = self.frame.origin.x + startOffset
-                    linkFrame.size.width = endOffset - startOffset
-                    linkFrame.size.height = metric.bounds.height
+                    let linkFrame = CGRect(
+                        x: self.frame.origin.x + startOffset,
+                        y: metric.bounds.origin.y,
+                        width: endOffset - startOffset,
+                        height: metric.bounds.height)
                     attributes.append((attribute: .link(url: URL(string: link.url)!), frame: linkFrame))
 
                     PDFGraphics.drawRect(rect: linkFrame, outline: .none, fill: UIColor.red.withAlphaComponent(0.4))
