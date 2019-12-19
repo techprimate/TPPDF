@@ -18,13 +18,19 @@ class ObjectAttributesExampleFactory: ExampleFactory {
         logoImage.add(attribute: .link(url: URL(string: "https://www.github.com/techprimate/TPPDF")!))
         document.add(.contentCenter, image: logoImage)
 
+        let veryLongLink = "This is a very long link i guess"
+        let pattern = "Word Link Word - " + veryLongLink + " - "
         let count = 20
-        let text = (0..<count).reduce("", { (prev, _) in prev + "Word Link Word - " })
+        let text = (0..<count).reduce("", { (prev, _) in prev + pattern})
         let attributedString = NSMutableAttributedString(string: text)
         for i in 0..<20 {
             attributedString.addAttribute(.link,
                                           value: "https://www.github.com/techprimate/TPPDF",
-                                          range: NSRange(location: 17 * i + 5, length: 4))
+                                          range: NSRange(location: pattern.count * i + 5, length: 4))
+
+            attributedString.addAttribute(.link,
+                                          value: "https://www.github.com/techprimate/TPPDF",
+                                          range: NSRange(location: pattern.count * i + 17, length: veryLongLink.count))
         }
         document.add(attributedText: attributedString)
         
