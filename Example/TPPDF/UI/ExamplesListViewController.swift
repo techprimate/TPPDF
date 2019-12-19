@@ -16,7 +16,7 @@ class ExamplesListViewController: UITableViewController {
             ("List", ListExampleFactory()),
             ("Images", ImageExampleFactory()),
             ("Groups", GroupExampleFactory()),
-            ("Table", ListExampleFactory()),
+            ("Table", TableExampleFactory()),
             ("Lines", LineSeparatorExampleFactory()),
             ("Text", TextExampleFactory()),
             ("Table of Contents", TableOfContentsExampleFactory()),

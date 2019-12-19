@@ -24,6 +24,8 @@ class ImageExampleFactory: ExampleFactory {
                                  cornerRadius: 25)
         document.add(.contentCenter, image: logoImage)
 
+        // Add spacing after image
+        document.add(space: 10)
 
         // Create attributes for captions
         let captionAttributes: [NSAttributedString.Key: AnyObject] = [
@@ -66,7 +68,6 @@ class ImageExampleFactory: ExampleFactory {
         document.add(imagesInRow: images[0], spacing: 10)
 
         // Add spacing between image rows
-
         document.add(space: 10)
 
         // Add second row of images

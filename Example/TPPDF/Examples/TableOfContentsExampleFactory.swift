@@ -22,10 +22,8 @@ class TableOfContentsExampleFactory: ExampleFactory {
                                                              font: UIFont.systemFont(ofSize: 15),
                                                              color: UIColor.black))
         let headingStyle2 = document.add(style: PDFTextStyle(name: "Heading 2",
-                                                             font: UIFont.systemFont(ofSize: 20),
-                                                             color: UIColor.red))
-
-
+                                                             font: UIFont.systemFont(ofSize: 10),
+                                                             color: UIColor.black))
 
         // Add a string using the title style
         document.add(.contentCenter, textObject: PDFSimpleText(text: "TPPDF", style: titleStyle))
@@ -48,27 +46,25 @@ class TableOfContentsExampleFactory: ExampleFactory {
         document.add(textObject: PDFSimpleText(text: "1. Introduction", style: headingStyle1))
         document.add(space: 10)
 
-        // Set font for text
-        document.set(font: UIFont.systemFont(ofSize: 13.0))
-
-        // Add long simple text. This will automatically word wrap if content width is not enough.
-        document.add(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
-        document.add(space: 10)
-
-        document.add(text: "TPPDF includes many different features:")
-        document.add(space: 10)
+        document.add(text: LoremIpsum.get(words: 10))
 
         document.add(space: 10)
         document.add(textObject: PDFSimpleText(text: "2. Images", style: headingStyle1))
         document.add(space: 10)
 
-        document.add(text: "It does support images! Checkout the image example!")
+        document.add(text: LoremIpsum.get(words: 10))
+
+        document.add(space: 10)
+        document.add(textObject: PDFSimpleText(text: "2.1 Special Images", style: headingStyle2))
+        document.add(space: 10)
+
+        document.add(text: LoremIpsum.get(words: 10))
 
         document.add(space: 10)
         document.add(textObject: PDFSimpleText(text: "3. Tables", style: headingStyle1))
         document.add(space: 10)
 
-        document.add(text: "Creating tables is a breeze!")
+        document.add(text: LoremIpsum.get(words: 10))
         
         return [document]
     }

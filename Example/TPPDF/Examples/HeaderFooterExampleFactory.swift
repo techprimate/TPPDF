@@ -34,6 +34,8 @@ class HeaderFooterExampleFactory: ExampleFactory {
         document.add(.headerRight, textObject: PDFSimpleText(text: "Header Right 2"))
         document.add(.headerRight, textObject: PDFSimpleText(text: "Header Right 3"))
 
+
+        document.add(text: "Random text, otherwise the headers and footers won't be visible")
         
         return [document]
     }

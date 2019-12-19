@@ -566,18 +566,18 @@
 			isa = PBXGroup;
 			children = (
 				D4E6099D23A239C20051BEC9 /* ExperimentFactory.swift */,
-				D42D7E0E23A773350044E0E8 /* ListExampleFactory.swift */,
-				D4D28D2923AA252300028D5A /* ImageExampleFactory.swift */,
 				D4D28D2B23AA256700028D5A /* GroupExampleFactory.swift */,
-				D42D7E1023A773C80044E0E8 /* TableExampleFactory.swift */,
-				D4D28D2D23AA25EE00028D5A /* LineSeparatorExampleFactory.swift */,
-				D4D28D3323AA26B200028D5A /* TextExampleFactory.swift */,
-				D4D28D3523AA26F500028D5A /* TableOfContentsExampleFactory.swift */,
 				D4D28D2F23AA261E00028D5A /* HeaderFooterExampleFactory.swift */,
-				D42D7E1223A774330044E0E8 /* MultiSectionExampleFactory.swift */,
-				D4D28D3123AA265100028D5A /* MultipleDocumentsExampleFactory.swift */,
+				D4D28D2923AA252300028D5A /* ImageExampleFactory.swift */,
+				D4D28D2D23AA25EE00028D5A /* LineSeparatorExampleFactory.swift */,
+				D42D7E0E23A773350044E0E8 /* ListExampleFactory.swift */,
 				D42D7E1423A774E50044E0E8 /* MetadataExampleFactory.swift */,
+				D4D28D3123AA265100028D5A /* MultipleDocumentsExampleFactory.swift */,
+				D42D7E1223A774330044E0E8 /* MultiSectionExampleFactory.swift */,
 				D42D7E1623A7754F0044E0E8 /* PaginationExampleFactory.swift */,
+				D42D7E1023A773C80044E0E8 /* TableExampleFactory.swift */,
+				D4D28D3523AA26F500028D5A /* TableOfContentsExampleFactory.swift */,
+				D4D28D3323AA26B200028D5A /* TextExampleFactory.swift */,
 				D47963CB23AA14780011A364 /* TextStylesExampleFactory.swift */,
 			);
 			path = Examples;

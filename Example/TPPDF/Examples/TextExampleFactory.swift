@@ -14,21 +14,10 @@ class TextExampleFactory: ExampleFactory {
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
-        // Define doccument wide styles
-        let titleStyle = document.add(style: PDFTextStyle(name: "Title",
-                                                          font: UIFont.boldSystemFont(ofSize: 50.0),
-                                                          color: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)))
-        let headingStyle1 = document.add(style: PDFTextStyle(name: "Heading 1",
-                                                             font: UIFont.systemFont(ofSize: 15),
-                                                             color: UIColor.black))
-        let headingStyle2 = document.add(style: PDFTextStyle(name: "Heading 2",
-                                                             font: UIFont.systemFont(ofSize: 20),
-                                                             color: UIColor.red))
-
-
-
+        document.set(.contentCenter, font: UIFont.boldSystemFont(ofSize: 50.0))
+        document.set(.contentCenter, textColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0))
         // Add a string using the title style
-        document.add(.contentCenter, textObject: PDFSimpleText(text: "TPPDF", style: titleStyle))
+        document.add(.contentCenter, textObject: PDFSimpleText(text: "TPPDF"))
 
         // Add some spacing below title
         document.add(space: 15.0)
@@ -43,19 +32,12 @@ class TextExampleFactory: ExampleFactory {
         // Add some spacing below subtitle
         document.add(space: 10.0)
 
-        // Create a automatic table of content based on used styles
-        document.add(text: "Table of Contents")
-        document.add(space: 5.0)
-
-        // Add a table of content, the content will be calculated based on the usages of the styles
-        document.add(tableOfContent: PDFTableOfContent(styles: [
-            headingStyle1,
-            headingStyle2,
-        ], symbol: .none))
-
         // Add headline with extra spacing
         document.add(space: 10)
-        document.add(textObject: PDFSimpleText(text: "1. Introduction", style: headingStyle1))
+        document.set(font: UIFont.systemFont(ofSize: 15))
+        document.set(textColor: UIColor.black)
+
+        document.add(textObject: PDFSimpleText(text: "1. Introduction"))
         document.add(space: 10)
 
         // Set font for text
@@ -68,30 +50,19 @@ class TextExampleFactory: ExampleFactory {
         document.add(text: "TPPDF includes many different features:")
         document.add(space: 10)
 
-        // Create a line separator
-
-        document.add(space: 10)
-        document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
-
-        // Insert page break
-
-        document.add(space: 10)
-        document.add(textObject: PDFSimpleText(text: "2. Images", style: headingStyle1))
-        document.add(space: 10)
-
-        // Finish image collage with another line separator
-
-        document.add(space: 10)
-        document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
-        document.add(space: 10)
-
-        document.add(space: 10)
-        document.add(textObject: PDFSimpleText(text: "3. Tables", style: headingStyle1))
-        document.add(space: 10)
-
         // Add more text after the table
         document.add(text: "Just adding more text here...")
-        
+
+        document.add(space: 50)
+
+        // Set indentation now
+        document.set(indent: 50, left: true)
+        document.set(indent: 100, left: false)
+
+        // Set font
+        document.set(font: UIFont.italicSystemFont(ofSize: 13))
+        document.add(text: LoremIpsum.get(words: 100))
+
         return [document]
     }
 }

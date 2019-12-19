@@ -14,10 +14,22 @@ class LineSeparatorExampleFactory: ExampleFactory {
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
-        document.add(text: "Text before a separator")
-        document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5))
-        document.add(text: "Text after a separator")
-        
+        document.add(text: "A full separator:")
+        document.add(space: 10)
+        document.addLineSeparator(style: PDFLineStyle(type: .full, color: UIColor.darkGray, width: 10))
+
+        document.add(space: 30)
+
+        document.add(text: "A dashed separator:")
+        document.add(space: 10)
+        document.addLineSeparator(style: PDFLineStyle(type: .dashed, color: UIColor.darkGray, width: 10))
+
+        document.add(space: 30)
+
+        document.add(text: "A dotted separator:")
+        document.add(space: 10)
+        document.addLineSeparator(style: PDFLineStyle(type: .dotted, color: UIColor.darkGray, width: 10))
+
         return [document]
     }
 }

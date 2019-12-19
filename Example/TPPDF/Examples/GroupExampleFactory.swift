@@ -14,8 +14,8 @@ class GroupExampleFactory: ExampleFactory {
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
+        // Create sample bezier path
         let size = CGSize(width: 100, height: 100)
-
         let path = PDFBezierPath(ref: CGRect(origin: .zero, size: size))
         path.move(to: PDFBezierPathVertex(position: CGPoint(x: size.width / 2, y: 0), anchor: .topCenter))
         path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width, y: size.height / 2),
@@ -26,8 +26,10 @@ class GroupExampleFactory: ExampleFactory {
                                              anchor: .middleLeft))
         path.close()
 
+        // Create a dynamic shape using the defined cache in reference to its size
         let shape = PDFDynamicGeometryShape(path: path, fillColor: .orange, stroke: .none)
 
+        // Create the group object and set the background color and shape
         let group = PDFGroup(allowsBreaks: false,
                              backgroundColor: .green,
                              backgroundShape: shape,
