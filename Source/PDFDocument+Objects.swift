@@ -240,14 +240,14 @@ public extension PDFDocument {
         add(container, list: list)
     }
 
-    // MARK: - Section
+	// MARK: - Section
 
-    /**
-     Adds a section object to the document
-     */
+	/**
+	 Adds a section object to the document
+	 */
     func add(section: PDFSection) {
-        objects += [(.contentLeft, PDFSectionObject(section: section))]
-    }
+		objects += [(.contentLeft, PDFSectionObject(section: section))]
+	}
 
     /**
      TODO: Documentation

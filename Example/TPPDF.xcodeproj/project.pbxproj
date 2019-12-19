@@ -266,6 +266,7 @@
 				9B32C9EC6C346E3B5A08F590 /* Pods-TPPDF_Tests.debug.xcconfig */,
 				795EE608FC6F693B5717A6AF /* Pods-TPPDF_Tests.release.xcconfig */,
 			);
+			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -612,9 +613,10 @@
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "TPPDF" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = en;
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
