@@ -165,11 +165,11 @@ internal class PDFAttributedTextObject: PDFRenderObject {
             }
         }
 
-        calculateLinkAttributes(with: links, in: frameRef, in: allRange, context: currentContext)
+        calculateLinkAttributes(with: links, in: frameRef, in: allRange, context: currentContext, debug: generator.debug)
         applyAttributes()
     }
 
-    private func calculateLinkAttributes(with links: [(url: String, range: NSRange)], in frameRef: CTFrame, in allRange: NSRange, context: CGContext) {
+    private func calculateLinkAttributes(with links: [(url: String, range: NSRange)], in frameRef: CTFrame, in allRange: NSRange, context: CGContext, debug: Bool) {
         guard let lines = CTFrameGetLines(frameRef) as? [CTLine] else {
             return
         }
@@ -188,9 +188,6 @@ internal class PDFAttributedTextObject: PDFRenderObject {
                                     width: typoBounds,
                                     height: ascent + descent + leading)
             lineMetrics.append((line: line, bounds: lineBounds, range: CTLineGetStringRange(line)))
-            PDFGraphics.drawRect(rect: lineBounds,
-                                 outline: PDFLineStyle(type: .full, color: .red, width: 0.4),
-                                 fill: UIColor.blue.withAlphaComponent(0.2))
         }
         for link in links {
             for metric in lineMetrics {
@@ -206,7 +203,9 @@ internal class PDFAttributedTextObject: PDFRenderObject {
                         height: metric.bounds.height)
                     attributes.append((attribute: .link(url: URL(string: link.url)!), frame: linkFrame))
 
-                    PDFGraphics.drawRect(rect: linkFrame, outline: .none, fill: UIColor.red.withAlphaComponent(0.4))
+                    if debug {
+                        PDFGraphics.drawRect(rect: linkFrame, outline: .none, fill: UIColor.red.withAlphaComponent(0.4))
+                    }
                 }
             }
         }
