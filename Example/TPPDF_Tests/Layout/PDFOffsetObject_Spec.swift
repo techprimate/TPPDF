@@ -35,7 +35,7 @@ class PDFOffsetObject_Spec: QuickSpec {
                 var generator: PDFGenerator!
 
                 let container = PDFContainer.contentLeft
-                var result: [(PDFContainer, PDFObject)]!
+                var result: [(PDFContainer, PDFRenderObject)]!
 
                 beforeEach {
                     generator = PDFGenerator(document: document)
