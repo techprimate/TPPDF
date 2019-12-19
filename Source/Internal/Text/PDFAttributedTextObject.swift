@@ -158,36 +158,63 @@ internal class PDFAttributedTextObject: PDFRenderObject {
         }
 
         let allRange = NSRange(location: 0, length: attributedString.length)
+        var links: [(String, NSRange)] = []
         attributedString.enumerateAttribute(.link, in: allRange) { (obj, range, _) in
             if let url = obj as? String {
-                calculateLinkAttributes(with: url, range: range, in: frameRef, in: allRange, context: currentContext)
+                links.append((url, range))
             }
         }
 
+        calculateLinkAttributes(with: links, in: frameRef, in: allRange, context: currentContext)
         applyAttributes()
     }
 
-    private func calculateLinkAttributes(with url: String, range: NSRange, in frameRef: CTFrame, in allRange: NSRange, context: CGContext) {
+    private func calculateLinkAttributes(with links: [(url: String, range: NSRange)], in frameRef: CTFrame, in allRange: NSRange, context: CGContext) {
         guard let lines = CTFrameGetLines(frameRef) as? [CTLine] else {
             return
         }
-        for line in lines {
+        var lineMetrics: [(bounds: CGRect, range: CFRange)] = []
+        var lineOffset: CGFloat = 0
+        for (i, line) in lines.enumerated() {
             let lineRange = CTLineGetStringRange(line)
-            let lineBounds = CTLineGetImageBounds(line, context)
-            if let intersection = NSRange(location: lineRange.location,
-                                          length: lineRange.length).intersection(range) {
-                let startOffset = CTLineGetOffsetForStringIndex(line, intersection.location, nil)
-                let endOffset = CTLineGetOffsetForStringIndex(line, intersection.location + intersection.length, nil)
 
-                var linkFrame = CGRect.zero
-                linkFrame.origin.y = self.frame.origin.y + lineBounds.origin.y
-                linkFrame.origin.x = self.frame.origin.x + startOffset
-                linkFrame.size.width = endOffset - startOffset
-                linkFrame.size.height = lineBounds.height
-                attributes.append((attribute: .link(url: URL(string: url)!), frame: linkFrame))
+            var ascent: CGFloat = 0
+            var descent: CGFloat = 0
+            var leading: CGFloat = 0
+            let typoBounds = CGFloat(CTLineGetTypographicBounds(line, &ascent, &descent, &leading))
 
-                PDFGraphics.drawRect(rect: lineBounds, outline: .none, fill: UIColor.blue.withAlphaComponent(0.4))
-                PDFGraphics.drawRect(rect: linkFrame, outline: .none, fill: UIColor.red.withAlphaComponent(0.4))
+            var lineOrigin = CGPoint.zero
+            CTFrameGetLineOrigins(frameRef, CFRange(location: lines.count - i - 1, length: 1), &lineOrigin)
+
+            print(lineOrigin)
+            let lineBounds = CGRect(x: self.frame.origin.x,
+                                    y: self.frame.origin.y + lineOrigin.y,
+                                    width: typoBounds,
+                                    height: ascent + descent + leading)
+            lineOffset = lineBounds.maxY
+
+            lineMetrics.append((bounds: lineBounds, range: lineRange))
+            PDFGraphics.drawRect(rect: lineBounds,
+                                 outline: PDFLineStyle(type: .full, color: .red, width: 0.4),
+                                 fill: UIColor.blue.withAlphaComponent(0.2))
+        }
+        for link in links {
+            for (idx, metric) in lineMetrics.enumerated() {
+                let line = lines[idx]
+                if let intersection = NSRange(location: metric.range.location,
+                                              length: metric.range.length).intersection(link.range) {
+                    let startOffset = CTLineGetOffsetForStringIndex(line, intersection.location, nil)
+                    let endOffset = CTLineGetOffsetForStringIndex(line, intersection.location + intersection.length, nil)
+
+                    var linkFrame = CGRect.zero
+                    linkFrame.origin.y = metric.bounds.origin.y
+                    linkFrame.origin.x = self.frame.origin.x + startOffset
+                    linkFrame.size.width = endOffset - startOffset
+                    linkFrame.size.height = metric.bounds.height
+                    attributes.append((attribute: .link(url: URL(string: link.url)!), frame: linkFrame))
+
+                    PDFGraphics.drawRect(rect: linkFrame, outline: .none, fill: UIColor.red.withAlphaComponent(0.4))
+                }
             }
         }
     }
