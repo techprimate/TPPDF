@@ -257,6 +257,9 @@
 		D46AB46923ACFB7100E87043 /* PDFTableRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB46823ACFB7100E87043 /* PDFTableRows.swift */; };
 		D46AB46B23AD0F7D00E87043 /* PDFTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB46A23AD0F7D00E87043 /* PDFTableSection.swift */; };
 		D46AB46D23AD12CA00E87043 /* PDFTableMergeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB46C23AD12CA00E87043 /* PDFTableMergeable.swift */; };
+		D46AB47123AD197100E87043 /* UIImage+PDFTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB47023AD197100E87043 /* UIImage+PDFTableContent.swift */; };
+		D46AB47323AD198600E87043 /* NSAttributedString+PDFTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB47223AD198600E87043 /* NSAttributedString+PDFTableContent.swift */; };
+		D46AB47523AD199400E87043 /* String+PDFTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB47423AD199400E87043 /* String+PDFTableContent.swift */; };
 		D9CFB8E5E354D7BE61D092259779F437 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44710FCE801C5308FE56878A3AB45087 /* Equal.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		D9D6150D329A87CBB415FD349F0C50FD /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896BA60C22451D5FF2BA97DD3AA8BCE /* SourceLocation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		DB84342A0C0DEABBF7F729DE55225D82 /* XCTestObservationCenter+Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9ABB374A15F7CEDA9E08540EA43D46 /* XCTestObservationCenter+Register.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -747,6 +750,9 @@
 		D46AB46823ACFB7100E87043 /* PDFTableRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableRows.swift; sourceTree = "<group>"; };
 		D46AB46A23AD0F7D00E87043 /* PDFTableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableSection.swift; sourceTree = "<group>"; };
 		D46AB46C23AD12CA00E87043 /* PDFTableMergeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableMergeable.swift; sourceTree = "<group>"; };
+		D46AB47023AD197100E87043 /* UIImage+PDFTableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+PDFTableContent.swift"; sourceTree = "<group>"; };
+		D46AB47223AD198600E87043 /* NSAttributedString+PDFTableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+PDFTableContent.swift"; sourceTree = "<group>"; };
+		D46AB47423AD199400E87043 /* String+PDFTableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PDFTableContent.swift"; sourceTree = "<group>"; };
 		D46B0EBD82B19E38EA6B44475067EA5D /* Functions.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = Functions.html; path = docs/Functions.html; sourceTree = "<group>"; };
 		D4BE9107E348E1F687BA545819DC388F /* PDFTableStyleDefaults.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = PDFTableStyleDefaults.html; path = docs/Enums/PDFTableStyleDefaults.html; sourceTree = "<group>"; };
 		D57007DDE089E3FC1E430647E481926F /* PDFMasterGroup.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = PDFMasterGroup.html; path = docs/Classes/PDFMasterGroup.html; sourceTree = "<group>"; };
@@ -1436,24 +1442,14 @@
 		D447ED0123ABA7D0005B505B /* Table */ = {
 			isa = PBXGroup;
 			children = (
-				D447ED0223ABA7D0005B505B /* PDFTableStyle.swift */,
-				D447ED0323ABA7D0005B505B /* PDFTable+Equatable.swift */,
-				D447ED0423ABA7D0005B505B /* PDFTableContent+Equatable.swift */,
-				D447ED0523ABA7D0005B505B /* PDFTableStyle+Defaults.swift */,
-				D447ED0623ABA7D0005B505B /* PDFTableCellStyle+Equatable.swift */,
-				D447ED0723ABA7D0005B505B /* PDFTableCellBorders+Equatable.swift */,
-				D447ED0823ABA7D0005B505B /* PDFTableCellPosition+Equatable-Hashable.swift */,
-				D447ED0923ABA7D0005B505B /* PDFTableCellBorders.swift */,
-				D447ED0A23ABA7D0005B505B /* PDFTableStyle+Equatable.swift */,
-				D447ED0B23ABA7D0005B505B /* PDFTableCell+Equatable.swift */,
-				D447ED0C23ABA7D0005B505B /* PDFTableCell.swift */,
-				D447ED0D23ABA7D0005B505B /* PDFTableCellStyle.swift */,
-				D447ED0E23ABA7D0005B505B /* PDFTableContent.swift */,
-				D447ED0F23ABA7D0005B505B /* PDFTableCellPosition.swift */,
-				D447ED1023ABA7D0005B505B /* PDFTableCellAlignment.swift */,
 				D447ED1123ABA7D0005B505B /* PDFTable.swift */,
-				D46AB45D23ACD6B500E87043 /* PDFTable+Subscripts.swift */,
+				D447ED0323ABA7D0005B505B /* PDFTable+Equatable.swift */,
+				D447ED0C23ABA7D0005B505B /* PDFTableCell.swift */,
+				D447ED1023ABA7D0005B505B /* PDFTableCellAlignment.swift */,
+				D447ED0F23ABA7D0005B505B /* PDFTableCellPosition.swift */,
+				D46AB46F23AD190700E87043 /* Content */,
 				D46AB46123ACFB3200E87043 /* Sections */,
+				D46AB46E23AD18EF00E87043 /* Style */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -1671,14 +1667,43 @@
 		D46AB46123ACFB3200E87043 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				D46AB45D23ACD6B500E87043 /* PDFTable+Subscripts.swift */,
 				D46AB46223ACFB4400E87043 /* PDFTableColumn.swift */,
 				D46AB46423ACFB5600E87043 /* PDFTableColumns.swift */,
-				D46AB46623ACFB6300E87043 /* PDFTableRow.swift */,
-				D46AB46A23AD0F7D00E87043 /* PDFTableSection.swift */,
-				D46AB46823ACFB7100E87043 /* PDFTableRows.swift */,
 				D46AB46C23AD12CA00E87043 /* PDFTableMergeable.swift */,
+				D46AB46623ACFB6300E87043 /* PDFTableRow.swift */,
+				D46AB46823ACFB7100E87043 /* PDFTableRows.swift */,
+				D46AB46A23AD0F7D00E87043 /* PDFTableSection.swift */,
 			);
 			path = Sections;
+			sourceTree = "<group>";
+		};
+		D46AB46E23AD18EF00E87043 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				D447ED0B23ABA7D0005B505B /* PDFTableCell+Equatable.swift */,
+				D447ED0923ABA7D0005B505B /* PDFTableCellBorders.swift */,
+				D447ED0723ABA7D0005B505B /* PDFTableCellBorders+Equatable.swift */,
+				D447ED0823ABA7D0005B505B /* PDFTableCellPosition+Equatable-Hashable.swift */,
+				D447ED0D23ABA7D0005B505B /* PDFTableCellStyle.swift */,
+				D447ED0623ABA7D0005B505B /* PDFTableCellStyle+Equatable.swift */,
+				D447ED0223ABA7D0005B505B /* PDFTableStyle.swift */,
+				D447ED0523ABA7D0005B505B /* PDFTableStyle+Defaults.swift */,
+				D447ED0A23ABA7D0005B505B /* PDFTableStyle+Equatable.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		D46AB46F23AD190700E87043 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				D46AB47223AD198600E87043 /* NSAttributedString+PDFTableContent.swift */,
+				D447ED0E23ABA7D0005B505B /* PDFTableContent.swift */,
+				D447ED0423ABA7D0005B505B /* PDFTableContent+Equatable.swift */,
+				D46AB47423AD199400E87043 /* String+PDFTableContent.swift */,
+				D46AB47023AD197100E87043 /* UIImage+PDFTableContent.swift */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 		E57455C4C4AA316EA6B38A3182097E7A /* Support Files */ = {
@@ -2137,6 +2162,7 @@
 				D447EDF323ABA7D1005B505B /* PDFTextColorObject.swift in Sources */,
 				D447EDF123ABA7D1005B505B /* PDFFontObject.swift in Sources */,
 				D447ED8E23ABA7D0005B505B /* PDFBezierPathVertex.swift in Sources */,
+				D46AB47323AD198600E87043 /* NSAttributedString+PDFTableContent.swift in Sources */,
 				D447EDDD23ABA7D1005B505B /* PDFOffsetObject.swift in Sources */,
 				D447ED7223ABA7D0005B505B /* PDFDocument.swift in Sources */,
 				D447ED9123ABA7D0005B505B /* PDFLineStyle.swift in Sources */,
@@ -2174,6 +2200,7 @@
 				D447EDD223ABA7D1005B505B /* PDFGenerator+Layout.swift in Sources */,
 				D447EDC823ABA7D1005B505B /* UIFont+PDFJSONSerializable.swift in Sources */,
 				D447EDA323ABA7D0005B505B /* PDFTableCell.swift in Sources */,
+				D46AB47123AD197100E87043 /* UIImage+PDFTableContent.swift in Sources */,
 				D447EDD823ABA7D1005B505B /* UIImage+Pixel.swift in Sources */,
 				D447ED7323ABA7D0005B505B /* PDFGeneratorProtocol.swift in Sources */,
 				D447EDBE23ABA7D1005B505B /* Int+RomanNumerals.swift in Sources */,
@@ -2195,6 +2222,7 @@
 				D447EDDC23ABA7D1005B505B /* PDFLayoutHeights.swift in Sources */,
 				D447EDD623ABA7D1005B505B /* PDFLineObject.swift in Sources */,
 				D447EDA223ABA7D0005B505B /* PDFTableCell+Equatable.swift in Sources */,
+				D46AB47523AD199400E87043 /* String+PDFTableContent.swift in Sources */,
 				D447EDC623ABA7D1005B505B /* PDFJSONRepresentable.swift in Sources */,
 				D447EDE523ABA7D1005B505B /* PDFSpaceObject.swift in Sources */,
 				D447EDD723ABA7D1005B505B /* UIColor+Hex.swift in Sources */,

@@ -23,6 +23,18 @@ extension PDFTable {
         return self.cells[row][column]
     }
 
+    /**
+     Accessor for a specific cell at the given position
+
+     - parameter row: Index of row
+     - parameter column: Index of column
+
+     - returns: cell at given indicies
+     */
+    public subscript(position: PDFTableCellPosition) -> PDFTableCell {
+        return self.cells[position.row][position.column]
+    }
+
     // MARK: - Single line of cells accessors
 
     /**
