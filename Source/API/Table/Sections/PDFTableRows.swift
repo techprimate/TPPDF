@@ -20,3 +20,25 @@ public class PDFTableRows {
         self.range = range
     }
 }
+
+extension PDFTableRows: PDFTableMergable {
+
+    /// nodoc
+    public func merge() {
+        self.merge(with: nil)
+    }
+
+    /**
+     Merges all cells by replacing them with the same reference.
+
+     If no parameter `cell` is given, the first cell in the first row will be used.
+
+     - parameter cell: Cell to use after merge, may be nil
+     */
+    public func merge(with cell: PDFTableCell? = nil) {
+        for row in rows {
+            row.merge(with: cell)
+        }
+    }
+}
+

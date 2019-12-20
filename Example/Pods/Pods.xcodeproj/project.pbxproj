@@ -256,6 +256,7 @@
 		D46AB46723ACFB6300E87043 /* PDFTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB46623ACFB6300E87043 /* PDFTableRow.swift */; };
 		D46AB46923ACFB7100E87043 /* PDFTableRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB46823ACFB7100E87043 /* PDFTableRows.swift */; };
 		D46AB46B23AD0F7D00E87043 /* PDFTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB46A23AD0F7D00E87043 /* PDFTableSection.swift */; };
+		D46AB46D23AD12CA00E87043 /* PDFTableMergeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB46C23AD12CA00E87043 /* PDFTableMergeable.swift */; };
 		D9CFB8E5E354D7BE61D092259779F437 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44710FCE801C5308FE56878A3AB45087 /* Equal.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		D9D6150D329A87CBB415FD349F0C50FD /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896BA60C22451D5FF2BA97DD3AA8BCE /* SourceLocation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		DB84342A0C0DEABBF7F729DE55225D82 /* XCTestObservationCenter+Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9ABB374A15F7CEDA9E08540EA43D46 /* XCTestObservationCenter+Register.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -745,6 +746,7 @@
 		D46AB46623ACFB6300E87043 /* PDFTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableRow.swift; sourceTree = "<group>"; };
 		D46AB46823ACFB7100E87043 /* PDFTableRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableRows.swift; sourceTree = "<group>"; };
 		D46AB46A23AD0F7D00E87043 /* PDFTableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableSection.swift; sourceTree = "<group>"; };
+		D46AB46C23AD12CA00E87043 /* PDFTableMergeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableMergeable.swift; sourceTree = "<group>"; };
 		D46B0EBD82B19E38EA6B44475067EA5D /* Functions.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = Functions.html; path = docs/Functions.html; sourceTree = "<group>"; };
 		D4BE9107E348E1F687BA545819DC388F /* PDFTableStyleDefaults.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = PDFTableStyleDefaults.html; path = docs/Enums/PDFTableStyleDefaults.html; sourceTree = "<group>"; };
 		D57007DDE089E3FC1E430647E481926F /* PDFMasterGroup.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = PDFMasterGroup.html; path = docs/Classes/PDFMasterGroup.html; sourceTree = "<group>"; };
@@ -1674,6 +1676,7 @@
 				D46AB46623ACFB6300E87043 /* PDFTableRow.swift */,
 				D46AB46A23AD0F7D00E87043 /* PDFTableSection.swift */,
 				D46AB46823ACFB7100E87043 /* PDFTableRows.swift */,
+				D46AB46C23AD12CA00E87043 /* PDFTableMergeable.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -2085,6 +2088,7 @@
 				D447EDC923ABA7D1005B505B /* Dictionary+PDFJSONSerializable.swift in Sources */,
 				D447EDAC23ABA7D0005B505B /* PDFAttributedText.swift in Sources */,
 				D447EDB323ABA7D1005B505B /* PDFAttributableObject.swift in Sources */,
+				D46AB46D23AD12CA00E87043 /* PDFTableMergeable.swift in Sources */,
 				D447ED7D23ABA7D0005B505B /* PDFGenerator.swift in Sources */,
 				D447EDE223ABA7D1005B505B /* PDFSectionColumnContainer.swift in Sources */,
 				D447EDF223ABA7D1005B505B /* PDFAttributedTextObject.swift in Sources */,

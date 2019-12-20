@@ -22,3 +22,26 @@ public class PDFTableSection {
         self.columnsRange = columnsRange
     }
 }
+
+extension PDFTableSection {
+
+    /// nodoc
+    public func merge() {
+        self.merge(with: nil)
+    }
+
+    /**
+     Merges all cells by replacing them with the same reference.
+
+     If no parameter `cell` is given, the first cell in the first row and the first column will be used.
+
+     - parameter cell: Cell to use after merge, may be nil
+     */
+    public func merge(with cell: PDFTableCell? = nil) {
+        for row in rowsRange {
+            for column in columnsRange {
+                table.cells[row][column] = cell ?? table.cells[rowsRange.first!][columnsRange.first!]
+            }
+        }
+    }
+}

@@ -59,3 +59,24 @@ public class PDFTableColumn {
         }
     }
 }
+
+extension PDFTableColumn: PDFTableMergable {
+
+    /// nodoc
+    public func merge() {
+        self.merge(with: nil)
+    }
+
+    /**
+     Merges all cells by replacing them with the same reference.
+
+     If no parameter `cell` is given, the first cell in the column will be used.
+
+     - parameter cell: Cell to use after merge, may be nil
+     */
+    public func merge(with cell: PDFTableCell? = nil) {
+        for row in 0..<table.size.rows {
+            table.cells[row][position] = cell ?? table.cells[row][0]
+        }
+    }
+}
