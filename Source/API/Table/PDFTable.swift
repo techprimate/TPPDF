@@ -80,16 +80,9 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
     /**
      Modify the cell style of at the position defined by `row` and `column`
      */
+    @available(*, deprecated, message: "Use subscript accessor [row:column:] instead")
     public func setCellStyle(row rowIndex: Int, column columnIndex: Int, style cellStyle: PDFTableCellStyle?) throws {
-        if rowIndex < 0 || rowIndex >= cells.count {
-            throw PDFError.tableIndexOutOfBounds(index: rowIndex, length: cells.count)
-        }
-        if columnIndex < 0 || columnIndex >= cells[rowIndex].count {
-            throw PDFError.tableIndexOutOfBounds(index: columnIndex, length: cells[rowIndex].count)
-        }
-
-        let cell = cells[rowIndex][columnIndex]
-        cell.style = cellStyle
+        self[rowIndex, columnIndex].style = cellStyle
     }
 
     /**

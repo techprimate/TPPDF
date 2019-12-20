@@ -44,8 +44,8 @@ extension PDFTable {
 
      - returns: `PDFTableRow` with references to cells of this table
      */
-    public subscript(row: Int) -> PDFTableRow {
-        return PDFTableRow(cells: self.cells[row], of: self, at: row)
+    public subscript(row index: Int) -> PDFTableRow {
+        return PDFTableRow(cells: self.cells[index], of: self, at: index)
     }
 
     /**
@@ -55,8 +55,8 @@ extension PDFTable {
 
      - returns: `PDFTableColumn` with references to cells of this table
      */
-    public subscript(column: Int) -> PDFTableColumn {
-        return PDFTableColumn(cells: self.cells.map({ row in row[column] }), of: self, at: column)
+    public subscript(column index: Int) -> PDFTableColumn {
+        return PDFTableColumn(cells: self.cells.map({ row in row[index] }), of: self, at: index)
     }
 
     // MARK: - Multiple rows accessors

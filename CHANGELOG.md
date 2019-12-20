@@ -10,6 +10,7 @@
 - Added support to embed external PDF document (Issue #31)
 - Added clickable URL support for images (Issue #170)
 - Added support for NSAttributedString link attributes (Issue #71)
+- Added subscript range access to PDFTable and deprecated `PDFTable.setCellStyle`
 
 **Fixed bugs:**
 
