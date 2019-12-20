@@ -41,6 +41,17 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
      */
     public var showHeadersOnEveryPage: Bool = false
 
+    public private(set) var size: (rows: Int, columns: Int)
+
+    public convenience init(size: (rows: Int, columns: Int) = (0, 0)) {
+        self.init(rows: size.rows, columns: size.columns)
+    }
+
+    public init(rows: Int = 0, columns: Int = 0) {
+        self.size = (rows: rows, columns: columns)
+        self.cells = (0..<rows).map({ _ in (0..<columns).map({ _ in PDFTableCell() }) })
+    }
+
     /**
      Generates cells from given `data` and `alignments` and stores the result in the instance variable `cells`
 
@@ -49,9 +60,11 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
     public func generateCells(data: [[Any?]], alignments: [[PDFTableCellAlignment]]) throws {
         try PDFTableValidator.validateTableData(data: data, alignments: alignments)
 
+        self.size.rows = data.count
         self.cells = []
 
         for (rowIndex, row) in data.enumerated() {
+            self.size.columns = row.count
             var contentRow = [PDFTableCell]()
             for (colIndex, col) in row.enumerated() {
                 let content = try PDFTableContent(content: col)
