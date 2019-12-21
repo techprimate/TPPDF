@@ -11,16 +11,18 @@ import TPPDF
 class ExperimentFactory: ExampleFactory {
 
     func generateDocument() -> [PDFDocument] {
-        let document1 = PDFDocument(format: .a4)
-        for i in 0..<1000 {
-            document1.add(text: "DOC 1 - \(i)")
-        }
+        let document = PDFDocument(format: .a4)
 
-        let document2 = PDFDocument(format: .a5)
-        for i in 0..<1000 {
-            document2.add(text: "DOC 2 - \(i)")
-        }
+        let table = PDFTable(rows: 5, columns: 5)
 
-        return [document1, document2]
+        for row in 0..<table.size.rows {
+            for column in 0..<table.size.columns {
+                table[row, column].content = "\(row),\(column)".toPDFTableContent()
+            }
+        }
+        table[0...1, 0...3].merge()
+
+        document.add(table: table)
+        return [document]
     }
 }

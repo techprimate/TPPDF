@@ -50,6 +50,7 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
     public init(rows: Int = 0, columns: Int = 0) {
         self.size = (rows: rows, columns: columns)
         self.cells = (0..<rows).map({ _ in (0..<columns).map({ _ in PDFTableCell() }) })
+        self.widths = (0..<columns).map({ _ in 1.0 / CGFloat(columns) })
     }
 
     /**
