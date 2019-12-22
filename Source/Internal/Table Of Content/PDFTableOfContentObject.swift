@@ -33,8 +33,8 @@ internal class PDFTableOfContentObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         result += try PDFListObject(list: list).calculate(generator: generator, container: container)
 

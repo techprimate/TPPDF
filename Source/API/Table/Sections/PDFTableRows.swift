@@ -7,8 +7,14 @@
 
 import Foundation
 
+/**
+ References to multiple rows of a `PDFTable`
+ */
 public class PDFTableRows {
 
+    /**
+     List of row references
+     */
     public let rows: [PDFTableRow]
 
     private let table: PDFTable
@@ -41,4 +47,3 @@ extension PDFTableRows: PDFTableMergable {
         }
     }
 }
-

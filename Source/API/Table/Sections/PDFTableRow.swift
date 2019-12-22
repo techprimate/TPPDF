@@ -7,8 +7,14 @@
 
 import Foundation
 
+/**
+ Reference to a single row of cells in a `PDFTable`
+ */
 public class PDFTableRow {
 
+    /**
+     References to the cells in the row
+     */
     public let cells: [PDFTableCell]
 
     private let table: PDFTable

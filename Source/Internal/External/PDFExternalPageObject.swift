@@ -15,7 +15,7 @@ internal class PDFExternalPageObject: PDFRenderObject {
         self.page = page
     }
 
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         return [(container, self)]
     }
 

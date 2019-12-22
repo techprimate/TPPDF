@@ -41,8 +41,8 @@ internal class PDFImageObject: PDFRenderObject {
 
      - returns: Calculated objects and their corresponding container, created by this calculation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         var (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(generator: generator,
                                                                                  container: container,

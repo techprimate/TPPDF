@@ -33,7 +33,7 @@ class PDFObject_Spec: QuickSpec {
                 }
 
                 it("should return a empty subobjects array when calculating") {
-                    var objects: [(PDFContainer, PDFRenderObject)]?
+                    var objects: [PDFLocatedRenderObject]?
                     expect {
                         objects = try object.calculate(generator: generator, container: container)
                     }.toNot(throwError())

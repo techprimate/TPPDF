@@ -32,7 +32,7 @@ public class PDFRenderObject: CustomStringConvertible, PDFJSONSerializable {
      - returns: List of objects and the container they are located in
      */
     @discardableResult
-    internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         return []
     }
 

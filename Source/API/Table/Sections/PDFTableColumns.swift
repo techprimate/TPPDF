@@ -7,8 +7,14 @@
 
 import Foundation
 
+/**
+ References to multiple columns of a `PDFTable`
+ */
 public class PDFTableColumns {
 
+    /**
+     List of column references
+     */
     public let columns: [PDFTableColumn]
 
     private let table: PDFTable

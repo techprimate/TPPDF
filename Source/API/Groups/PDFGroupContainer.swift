@@ -30,7 +30,6 @@ public enum PDFGroupContainer {
      */
     case right
 
-
     internal init(from container: PDFContainer) {
         if container.isLeft {
             self = .left

@@ -16,5 +16,5 @@ public enum PDFObjectAttribute {
      Adds a clickable link with a redirection to the given URL
      */
     case link(url: URL)
-    
+
 }

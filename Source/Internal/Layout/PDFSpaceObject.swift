@@ -34,7 +34,7 @@ internal class PDFSpaceObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var size = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         size.height = min(space, size.height)
         let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: frame.size)

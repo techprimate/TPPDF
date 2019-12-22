@@ -41,6 +41,9 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
      */
     public var showHeadersOnEveryPage: Bool = false
 
+    /**
+     Count of rows and columns in this table
+     */
     public private(set) var size: (rows: Int, columns: Int)
 
     public convenience init(size: (rows: Int, columns: Int) = (0, 0)) {

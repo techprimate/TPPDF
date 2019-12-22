@@ -69,7 +69,7 @@ internal class PDFColumnWrapSectionObject: PDFRenderObject {
      - returns: Self
      */
     @discardableResult
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.columnState.set(currentColumn: 0, for: container)
         generator.columnState.set(inset: (0, 0), for: container)
 

@@ -71,8 +71,8 @@ internal class PDFAttributedTextObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         // Generate attributed string if simple text, otherwise uses given attributedText
         attributedString = try generateAttributedText(generator: generator, container: container)
