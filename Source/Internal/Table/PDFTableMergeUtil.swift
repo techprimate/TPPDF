@@ -23,6 +23,9 @@ internal enum PDFTableMergeUtil {
             for (colIdx, cell) in row.enumerated() where !found[rowIdx][colIdx] {
                 let node = PDFTableNode(cell: cell, position: PDFTableCellPosition(row: rowIdx, column: colIdx))
                 found[rowIdx][colIdx] = true
+                rowNodes.append(node)
+
+                // Check cells next to current one --> get width of merged cell
                 for adjacentColumnIdx in (colIdx + 1)..<table.size.columns {
                     guard row[adjacentColumnIdx] === cell else {
                         break
@@ -30,23 +33,23 @@ internal enum PDFTableMergeUtil {
                     found[rowIdx][adjacentColumnIdx] = true
                     node.moreColumnsSpan += 1
                 }
+                // Check rows underneath and right of cell
                 for adjacentRowIdx in (rowIdx + 1)..<table.size.rows {
                     // Cell underneath current cell in next row
-                    guard table.cells[adjacentRowIdx][colIdx] === cell else {
-                        break
-                    }
-                    // Check if all statisfy identical
-                    guard table.cells[adjacentRowIdx][0...node.moreColumnsSpan].allSatisfy({ $0 === cell }) else {
+                    let startColIdx = colIdx
+                    let endColIdx = colIdx + node.moreColumnsSpan
+                    guard table.cells[adjacentRowIdx][startColIdx...endColIdx].allSatisfy({ $0 === cell }) else {
                         break
                     }
                     node.moreRowsSpan += 1
-                    for columnIdxInAdjacentRow in colIdx..<(colIdx + node.moreColumnsSpan) {
+                    for columnIdxInAdjacentRow in startColIdx...endColIdx {
                         found[adjacentRowIdx][columnIdxInAdjacentRow] = true
                     }
                 }
-                rowNodes.append(node)
             }
-            rows.append(rowNodes)
+            if !rowNodes.isEmpty {
+                rows.append(rowNodes)
+            }
         }
         return rows
     }

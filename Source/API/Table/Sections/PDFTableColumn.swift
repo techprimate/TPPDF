@@ -82,7 +82,7 @@ extension PDFTableColumn: PDFTableMergable {
      */
     public func merge(with cell: PDFTableCell? = nil) {
         for row in 0..<table.size.rows {
-            table.cells[row][position] = cell ?? table.cells[row][0]
+            table.cells[row][position] = cell ?? table.cells[0][position]
         }
     }
 }
