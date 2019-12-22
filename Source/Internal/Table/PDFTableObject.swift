@@ -34,7 +34,7 @@ internal class PDFTableObject: PDFRenderObject {
     /**
      - throws: `PDFError` if table validation fails. See `PDFTableValidator.validateTableData(::)` for details
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         try PDFTableValidator.validateTable(table: table)
 
         let mergedCells = PDFTableMergeUtil.calculateMerged(table: table)
@@ -318,7 +318,7 @@ internal class PDFTableObject: PDFRenderObject {
     internal func createRenderObjects(generator: PDFGenerator,
                                       container: PDFContainer,
                                       cellItems: [[(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))]],
-                                      pageBreakIndicies: [Int]) throws -> (objects: [(PDFContainer, PDFRenderObject)], offset: CGFloat) {
+                                      pageBreakIndicies: [Int]) throws -> (objects: [PDFLocatedRenderObject], offset: CGFloat) {
         var result: [PDFRenderObject?] = []
 
         var pageStart: CGPoint! = nil
@@ -367,7 +367,7 @@ internal class PDFTableObject: PDFRenderObject {
             }
         }
 
-        let compactObjects = result.compactMap { (obj) -> (PDFContainer, PDFRenderObject)? in
+        let compactObjects = result.compactMap { (obj) -> PDFLocatedRenderObject? in
             if let obj = obj {
                 return (container, obj)
             } else {

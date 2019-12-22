@@ -26,7 +26,7 @@ internal class PDFPageBreakObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.layout.heights.content = generator.columnState.getWrapColumnsHeight(for: container)
 
         stayOnSamePage = false

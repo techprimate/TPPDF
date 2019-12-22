@@ -33,7 +33,7 @@ internal class PDFOffsetObject: PDFRenderObject {
      - returns: Self
      */
     @discardableResult
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.layout.setContentOffset(in: container, to: offset)
 
         return [(container, self)]

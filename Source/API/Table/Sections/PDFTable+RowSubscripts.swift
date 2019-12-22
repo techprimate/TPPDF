@@ -24,7 +24,7 @@ extension PDFTable {
             self.cells[index] = newValue.cells
         }
     }
-    
+
     /**
      Accessors of rows in the given range.
 

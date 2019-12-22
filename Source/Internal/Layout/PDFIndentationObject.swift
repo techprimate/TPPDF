@@ -41,7 +41,7 @@ internal class PDFIndentationObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         if left {
             generator.layout.indentation.setLeft(indentation: indentation, in: container)
         } else {

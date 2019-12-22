@@ -156,7 +156,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                 context("extract") {
 
-                    let objs: [(PDFContainer, PDFRenderObject)] = [
+                    let objs: [PDFLocatedRenderObject] = [
                         (PDFContainer.headerLeft, PDFSpaceObject(space: 10)),
                         (PDFContainer.headerLeft, PDFSpaceObject(space: 10)),
                         (PDFContainer.headerLeft, PDFSpaceObject(space: 10)),
@@ -253,7 +253,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         PDFSimpleText(text: "Body", style: bodyStyle),
                         PDFSimpleText(text: "Body", style: bodyStyle)
                     ]
-                    let objs: [(PDFContainer, PDFRenderObject)] = textObjects.map { return (PDFContainer.contentLeft, PDFAttributedTextObject(simpleText: $0)) }
+                    let objs: [PDFLocatedRenderObject] = textObjects.map { return (PDFContainer.contentLeft, PDFAttributedTextObject(simpleText: $0)) }
 
                     it("should create list based on styles") {
                         let list = PDFGenerator.createTableOfContentList(objects: objs, styles: styles, symbol: .dot)

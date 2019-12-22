@@ -76,11 +76,11 @@ extension PDFGenerator {
 
      - returns: List of renderable objects
      */
-    public func createRenderObjects() throws -> [(PDFContainer, PDFRenderObject)] {
+    public func createRenderObjects() throws -> [PDFLocatedRenderObject] {
         layout.margin = document.layout.margin
 
         // First calculate master objects
-        var masterObjects: [(PDFContainer, PDFRenderObject)] = []
+        var masterObjects: [PDFLocatedRenderObject] = []
         if let masterGroup = document.masterGroup {
             masterObjects = try masterGroup.calculate(generator: self, container: .contentLeft)
         }
@@ -108,7 +108,7 @@ extension PDFGenerator {
             document.layout.space.header = 0
         }
 
-        var allObjects: [(PDFContainer, PDFRenderObject)] = []
+        var allObjects: [PDFLocatedRenderObject] = []
 
         // Only calculate render header & footer metrics if page has content.
         if numContentObjects > 0 {
@@ -188,8 +188,8 @@ extension PDFGenerator {
 
      - returns: List of renderable objects
      */
-    private func addHeaderFooterObjects() throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    private func addHeaderFooterObjects() throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         layout.heights.resetHeaderFooterHeight()
 
@@ -217,7 +217,7 @@ extension PDFGenerator {
     /**
      TODO: Documentation
      */
-    private func headerFooterDebugLines() throws -> [(PDFContainer, PDFRenderObject)] {
+    private func headerFooterDebugLines() throws -> [PDFLocatedRenderObject] {
         let headerFooterDebugLineStyle = PDFLineStyle(type: .dashed, color: .orange, width: 1)
 
         let yPositions = [
@@ -236,7 +236,7 @@ extension PDFGenerator {
             lines.append(PDFLineObject(style: headerFooterDebugLineStyle, startPoint: start, endPoint: end))
         }
 
-        var result: [(PDFContainer, PDFRenderObject)] = []
+        var result: [PDFLocatedRenderObject] = []
         for line in lines {
             result += try line.calculate(generator: self, container: .contentLeft)
         }
@@ -249,7 +249,7 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    internal func render(objects: [(PDFContainer, PDFRenderObject)]) throws {
+    internal func render(objects: [PDFLocatedRenderObject]) throws {
         UIGraphicsBeginPDFPageWithInfo(document.layout.bounds, nil)
 
         drawDebugPageOverlay()
@@ -281,7 +281,7 @@ extension PDFGenerator {
 
      - returns: List of all header objects
      */
-    internal static func extractHeaderObjects(objects: [(PDFContainer, PDFRenderObject)]) -> [(PDFContainer, PDFRenderObject)] {
+    internal static func extractHeaderObjects(objects: [PDFLocatedRenderObject]) -> [PDFLocatedRenderObject] {
         return objects.filter { $0.0.isHeader }
     }
 
@@ -292,7 +292,7 @@ extension PDFGenerator {
 
      - returns: List of all footer objects
      */
-    internal static func extractFooterObjects(objects: [(PDFContainer, PDFRenderObject)]) -> [(PDFContainer, PDFRenderObject)] {
+    internal static func extractFooterObjects(objects: [PDFLocatedRenderObject]) -> [PDFLocatedRenderObject] {
         return objects.filter { $0.0.isFooter }
     }
 
@@ -303,14 +303,14 @@ extension PDFGenerator {
 
      - returns: List of all content objects
      */
-    internal static func extractContentObjects(objects: [(PDFContainer, PDFRenderObject)]) -> [(PDFContainer, PDFRenderObject)] {
+    internal static func extractContentObjects(objects: [PDFLocatedRenderObject]) -> [PDFLocatedRenderObject] {
         return objects.filter { !$0.0.isFooter && !$0.0.isHeader }
     }
 
     /**
      TODO: Documentation
      */
-    internal static func createTableOfContentList(objects: [(PDFContainer, PDFRenderObject)],
+    internal static func createTableOfContentList(objects: [PDFLocatedRenderObject],
                                                   styles: [WeakPDFTextStyleRef],
                                                   symbol: PDFListItemSymbol) -> PDFList {
         var elements: [(Int, PDFAttributedTextObject)] = []

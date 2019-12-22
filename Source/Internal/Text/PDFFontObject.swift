@@ -34,7 +34,7 @@ internal class PDFFontObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.fonts[container] = font
 
         return [(container, self)]

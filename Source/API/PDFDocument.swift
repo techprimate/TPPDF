@@ -40,7 +40,7 @@ public class PDFDocument: CustomStringConvertible, PDFJSONSerializable {
     /**
      All objects inside the document and the container they are located in
      */
-    internal var objects: [(PDFContainer, PDFRenderObject)] = []
+    internal var objects: [PDFLocatedRenderObject] = []
 
     /**
      TODO: Documentation

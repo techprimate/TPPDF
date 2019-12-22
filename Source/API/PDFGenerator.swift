@@ -11,7 +11,7 @@ import UIKit
  Factory which converts a document into a PDF file
  */
 public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
-    
+
     // MARK: - INTERNAL VARS
 
     /**
@@ -22,7 +22,7 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
     /**
      List of header and footer objects extracted from the document
      */
-    internal var headerFooterObjects: [(PDFContainer, PDFRenderObject)] = []
+    internal var headerFooterObjects: [PDFLocatedRenderObject] = []
 
     /**
      Layout which holds current state

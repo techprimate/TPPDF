@@ -27,7 +27,7 @@ class PDFPageBreakObject_Spec: QuickSpec {
                 var generator: PDFGenerator!
 
                 let container = PDFContainer.contentLeft
-                var result: [(PDFContainer, PDFRenderObject)]!
+                var result: [PDFLocatedRenderObject]!
 
                 beforeEach {
                     generator = PDFGenerator(document: document)

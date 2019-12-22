@@ -34,7 +34,7 @@ internal class PDFTextColorObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.textColor[container] = color
 
         return [(container, self)]

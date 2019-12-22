@@ -44,7 +44,7 @@ class PDFListItemObject_Spec: QuickSpec {
                 }
 
                 it("can be calculated") {
-                    var result: [(PDFContainer, PDFRenderObject)]?
+                    var result: [PDFLocatedRenderObject]?
 
                     expect {
                         result = try? object.calculate(generator: generator, container: container)
@@ -134,7 +134,7 @@ class PDFListItemObject_Spec: QuickSpec {
 
                 it("should use zero indentation") {
                     object.list.levelIndentations = []
-                    var result: [(PDFContainer, PDFRenderObject)]?
+                    var result: [PDFLocatedRenderObject]?
 
                     expect {
                         result = try? object.calculate(generator: generator, container: container)

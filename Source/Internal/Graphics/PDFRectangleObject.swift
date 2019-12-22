@@ -50,7 +50,7 @@ internal class PDFRectangleObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: size)
 
         self.frame = CGRect(origin: position, size: size)

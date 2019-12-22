@@ -37,8 +37,8 @@ internal class PDFImageRowObject: PDFRenderObject {
     /**
      TODO: documentation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         let originalInsetLeft = generator.layout.indentation.leftIn(container: container)
         let originalInsetRight = generator.layout.indentation.rightIn(container: container)

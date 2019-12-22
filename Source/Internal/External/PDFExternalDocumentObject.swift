@@ -17,8 +17,8 @@ internal class PDFExternalDocumentObject: PDFRenderObject {
         self.pages = pages
     }
 
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         guard let cgPDF = CGPDFDocument(url as CFURL) else {
             throw PDFError.externalDocumentURLInvalid(url: url)

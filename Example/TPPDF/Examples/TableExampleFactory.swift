@@ -89,21 +89,10 @@ class TableExampleFactory: ExampleFactory {
 
         table.style = style
 
-        do {
-            // Style each cell individually
-            try table[1,1].style = PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black))
-        } catch PDFError.tableIndexOutOfBounds(let index, let length){
-            // In case the index is out of bounds
-
-            print("Requested cell is out of bounds! \(index) / \(length)")
-        } catch {
-            // General error handling in case something goes wrong.
-
-            print("Error while setting cell style: " + error.localizedDescription)
-        }
+        // Style each cell individually
+        table[1,1].style = PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black))
 
         // Set table padding and margin
-
         table.padding = 5.0
         table.margin = 10.0
 

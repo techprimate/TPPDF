@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PDFTableMergeUtil {
+internal enum PDFTableMergeUtil {
 
     internal static func calculateMerged(table: PDFTable) -> [[PDFTableNode]] {
         guard table.size.rows > 0 && table.size.columns > 0 else {

@@ -7,8 +7,14 @@
 
 import Foundation
 
+/**
+ Reference to multiple rows and columns in a `PDFTable`
+ */
 public class PDFTableSection {
 
+    /**
+     References to cells in these rows and columns
+     */
     public let cells: [[PDFTableCell]]
 
     private let table: PDFTable

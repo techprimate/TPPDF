@@ -9,13 +9,13 @@
  Object implementing this protocol should offer the functionality to merge itself into a single value
  */
 public protocol PDFTableMergable {
-    
+
     /**
      Merges all cells by replacing them with the same reference.
      See `merge(with cell:)` for more.
      */
     func merge()
-    
+
     /**
      Merges all cells by replacing them with the same reference.
      

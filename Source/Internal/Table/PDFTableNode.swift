@@ -7,15 +7,15 @@
 
 import Foundation
 
-class PDFTableNode {
+internal class PDFTableNode {
 
-    let cell: PDFTableCell
-    let position: PDFTableCellPosition
+    internal let cell: PDFTableCell
+    internal let position: PDFTableCellPosition
 
-    var moreRowsSpan: Int = 0
-    var moreColumnsSpan: Int = 0
+    internal var moreRowsSpan: Int = 0
+    internal var moreColumnsSpan: Int = 0
 
-    init(cell: PDFTableCell, position: PDFTableCellPosition) {
+    internal init(cell: PDFTableCell, position: PDFTableCellPosition) {
         self.cell = cell
         self.position = position
     }
