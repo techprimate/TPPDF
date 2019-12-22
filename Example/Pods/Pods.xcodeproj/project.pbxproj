@@ -265,6 +265,7 @@
 		D47B02CA23AF77EB00A890CF /* PDFTable+RowSubscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B02C923AF77EB00A890CF /* PDFTable+RowSubscripts.swift */; };
 		D47B02CC23AF782000A890CF /* PDFTable+SectionSubscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B02CB23AF782000A890CF /* PDFTable+SectionSubscripts.swift */; };
 		D47B02CE23AF782A00A890CF /* PDFTable+ColumnSubscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B02CD23AF782A00A890CF /* PDFTable+ColumnSubscripts.swift */; };
+		D47B02D023AF78B300A890CF /* PDFTableContent+ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B02CF23AF78B300A890CF /* PDFTableContent+ContentType.swift */; };
 		D9CFB8E5E354D7BE61D092259779F437 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44710FCE801C5308FE56878A3AB45087 /* Equal.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		D9D6150D329A87CBB415FD349F0C50FD /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896BA60C22451D5FF2BA97DD3AA8BCE /* SourceLocation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		DB84342A0C0DEABBF7F729DE55225D82 /* XCTestObservationCenter+Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9ABB374A15F7CEDA9E08540EA43D46 /* XCTestObservationCenter+Register.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -764,6 +765,7 @@
 		D47B02C923AF77EB00A890CF /* PDFTable+RowSubscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFTable+RowSubscripts.swift"; sourceTree = "<group>"; };
 		D47B02CB23AF782000A890CF /* PDFTable+SectionSubscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFTable+SectionSubscripts.swift"; sourceTree = "<group>"; };
 		D47B02CD23AF782A00A890CF /* PDFTable+ColumnSubscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFTable+ColumnSubscripts.swift"; sourceTree = "<group>"; };
+		D47B02CF23AF78B300A890CF /* PDFTableContent+ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFTableContent+ContentType.swift"; sourceTree = "<group>"; };
 		D4BE9107E348E1F687BA545819DC388F /* PDFTableStyleDefaults.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = PDFTableStyleDefaults.html; path = docs/Enums/PDFTableStyleDefaults.html; sourceTree = "<group>"; };
 		D57007DDE089E3FC1E430647E481926F /* PDFMasterGroup.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = PDFMasterGroup.html; path = docs/Classes/PDFMasterGroup.html; sourceTree = "<group>"; };
 		D61EEC3986608F70E9C5D02F685B43E6 /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; name = jazzy.js; path = docs/docsets/TPPDF.docset/Contents/Resources/Documents/js/jazzy.js; sourceTree = "<group>"; };
@@ -1714,6 +1716,7 @@
 			children = (
 				D46AB47223AD198600E87043 /* NSAttributedString+PDFTableContent.swift */,
 				D447ED0E23ABA7D0005B505B /* PDFTableContent.swift */,
+				D47B02CF23AF78B300A890CF /* PDFTableContent+ContentType.swift */,
 				D447ED0423ABA7D0005B505B /* PDFTableContent+Equatable.swift */,
 				D46AB47423AD199400E87043 /* String+PDFTableContent.swift */,
 				D46AB47023AD197100E87043 /* UIImage+PDFTableContent.swift */,
@@ -2219,6 +2222,7 @@
 				D447EDC823ABA7D1005B505B /* UIFont+PDFJSONSerializable.swift in Sources */,
 				D447EDA323ABA7D0005B505B /* PDFTableCell.swift in Sources */,
 				D46AB47723AE3CB400E87043 /* PDFTableNode.swift in Sources */,
+				D47B02D023AF78B300A890CF /* PDFTableContent+ContentType.swift in Sources */,
 				D46AB47123AD197100E87043 /* UIImage+PDFTableContent.swift in Sources */,
 				D447EDD823ABA7D1005B505B /* UIImage+Pixel.swift in Sources */,
 				D447ED7323ABA7D0005B505B /* PDFGeneratorProtocol.swift in Sources */,

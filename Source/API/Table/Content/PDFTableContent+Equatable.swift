@@ -17,11 +17,17 @@ extension PDFTableContent: Equatable {
         guard lhs.type == rhs.type else {
             return false
         }
-        if let lhsString = lhs.content as? String, let rhsString = rhs.content as? String, lhsString != rhsString {
+        if let lhsString = lhs.content as? String,
+            let rhsString = rhs.content as? String,
+            lhsString != rhsString {
             return false
-        } else if let lhsString = lhs.content as? NSAttributedString, let rhsString = rhs.content as? NSAttributedString, lhsString != rhsString {
+        } else if let lhsString = lhs.content as? NSAttributedString,
+            let rhsString = rhs.content as? NSAttributedString,
+            lhsString != rhsString {
             return false
-        } else if let lhsImage = lhs.content as? UIImage, let rhsImage = rhs.content as? UIImage, lhsImage != rhsImage {
+        } else if let lhsImage = lhs.content as? UIImage,
+            let rhsImage = rhs.content as? UIImage,
+            lhsImage != rhsImage {
             return false
         } else if (lhs.content == nil && rhs.content != nil) || (lhs.content != nil && rhs.content == nil) {
             return false

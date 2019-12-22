@@ -100,41 +100,13 @@ class PDFTable_Spec: QuickSpec {
 
             context("cell style") {
 
-                it("can not set style of row out of bounds") {
-                    let table = PDFTable()
-
-                    expect {
-                        try table.setCellStyle(row: 1, column: 2, style: nil)
-                        }.to(throwError(PDFError.tableIndexOutOfBounds(index: 1, length: 0)))
-
-                    expect {
-                        try table.setCellStyle(row: -1, column: 2, style: nil)
-                        }.to(throwError(PDFError.tableIndexOutOfBounds(index: -1, length: 0)))
-                }
-
-                it("can not set style of column out of bounds") {
-                    let table = PDFTable()
-                    table.cells = [[]]
-
-                    expect {
-                        try table.setCellStyle(row: 0, column: 1, style: nil)
-                        }.to(throwError(PDFError.tableIndexOutOfBounds(index: 1, length: 0)))
-
-                    expect {
-                        try table.setCellStyle(row: 0, column: -1, style: nil)
-                        }.to(throwError(PDFError.tableIndexOutOfBounds(index: -1, length: 0)))
-                }
-
                 it("can set style of cell") {
                     let table = PDFTable()
                     table.cells = [[PDFTableCell()]]
 
                     let style = PDFTableCellStyle(colors: (fill: UIColor.green, text: UIColor.orange))
 
-                    expect {
-                        try table.setCellStyle(row: 0, column: 0, style: style)
-                    }.toNot(throwError())
-
+                    table[0, 0].style = style
                     expect(table.cells[0][0].style).toEventually(equal(style))
 
                 }
