@@ -91,7 +91,7 @@ class TableExampleFactory: ExampleFactory {
 
         do {
             // Style each cell individually
-            try table.setCellStyle(row: 1, column: 1, style: PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black)))
+            try table[1,1].style = PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black))
         } catch PDFError.tableIndexOutOfBounds(let index, let length){
             // In case the index is out of bounds
 
