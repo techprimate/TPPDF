@@ -43,7 +43,7 @@ internal class PDFTableObject: PDFRenderObject {
         var tableOrigin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
 
         let mergeNodes = PDFTableMergeUtil.calculateMerged(table: table)
-        var verticalOrigins = [tableOrigin.y] + mergeNodes.indices.map { _ in tableOrigin.y }
+        var verticalOrigins = [tableOrigin.y] + table.cells.indices.map { _ in tableOrigin.y }
         var cellItems: [[PDFTableCalculatedCell]] = []
 
         for (rowIdx, row) in mergeNodes.enumerated() {
@@ -90,48 +90,6 @@ internal class PDFTableObject: PDFRenderObject {
         return renderObjects.objects
     }
 
-    internal func getStyle(for node: PDFTableNode, in table: PDFTable, at rowIdx: Int) -> PDFTableCellStyle {
-        getStyle(for: node.cell,
-                 tableStyle: table.style,
-                 isHeader: rowIdx < table.style.columnHeaderCount,
-                 isFooter: rowIdx >= table.cells.count - table.style.footerCount,
-                 rowHeaderCount: table.style.rowHeaderCount,
-                 isAlternatingRow: rowIdx % 2 == 1,
-                 colIdx: node.position.column)
-    }
-
-    /**
-     TODO: Documentation
-     */
-    internal func calculateFrames(row: [PDFTableCell],
-                                  rowIdx: Int,
-                                  availableSize: CGSize,
-                                  origin: CGPoint,
-                                  tableHeight: Int,
-                                  styles: [PDFTableCellStyle],
-                                  generator: PDFGenerator,
-                                  container: PDFContainer) -> [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] {
-        var frames: [(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))] = []
-        var newOrigin = origin
-
-        // Calcuate X, Y position and size
-        for (colIdx, cell) in row.enumerated() {
-            let columnWidth = table.widths[colIdx] * availableSize.width
-
-            let frame = calculate(generator: generator,
-                                  container: container,
-                                  cell: cell,
-                                  style: styles[colIdx],
-                                  origin: newOrigin,
-                                  width: columnWidth)
-
-            frames.append(frame)
-
-            newOrigin.x += columnWidth
-        }
-        return frames
-    }
-
     internal func calculate(generator: PDFGenerator,
                             container: PDFContainer,
                             cell: PDFTableCell,
@@ -162,39 +120,54 @@ internal class PDFTableObject: PDFRenderObject {
             return frame
         }
 
-        var result = CGRect.zero
-
-        if content.isAttributedString || content.isString {
-            let text: NSAttributedString! = {
-                if let attributedString = content.attributedStringValue {
-                    return attributedString
-                } else if let text = content.stringValue {
-                    return createAttributedCellText(text: text, cellStyle: style, alignment: cell.alignment)
-                } else {
-                    return nil
-                }
-            }()
-            if text != nil {
-                result = PDFCalculations
-                    .calculateCellFrame(generator: generator,
-                                        container: container,
-                                        position: (origin: frame.frames.content.origin, width: frame.frames.content.width),
-                                        text: text,
-                                        alignment: cell.alignment)
-            }
-        } else if let image = content.imageValue {
-            result = PDFCalculations
-                .calculateCellFrame(generator: generator,
-                                    origin: frame.frames.content.origin,
-                                    width: frame.frames.content.width,
-                                    image: image)
-        }
+        let result = calculate(content: content,
+                               style: style,
+                               cell: cell,
+                               generator: generator,
+                               container: container,
+                               contentOrigin: frame.frames.content.origin,
+                               contentWidth: frame.frames.content.width)
 
         frame.frames.content.size = result.size
         frame.frames.cell.size.height = result.height + 2 * table.padding
 
         return frame
     }
+
+    internal func calculate(content: PDFTableContent,
+                            style: PDFTableCellStyle,
+                            cell: PDFTableCell,
+                            generator: PDFGenerator,
+                            container: PDFContainer,
+                            contentOrigin: CGPoint,
+                            contentWidth: CGFloat) -> CGRect {
+        if let text = getAttributedStringOfTable(content: content, style: style, alignment: cell.alignment) {
+            return PDFCalculations
+                .calculateCellFrame(generator: generator,
+                                    container: container,
+                                    position: (origin: contentOrigin, width: contentWidth),
+                                    text: text,
+                                    alignment: cell.alignment)
+        }
+        if let image = content.imageValue {
+            return PDFCalculations
+                .calculateCellFrame(generator: generator,
+                                    origin: contentOrigin,
+                                    width: contentWidth,
+                                    image: image)
+        }
+        return CGRect.zero
+    }
+
+    internal func getAttributedStringOfTable(content: PDFTableContent,
+                                             style: PDFTableCellStyle,
+                                             alignment: PDFTableCellAlignment) -> NSAttributedString? {
+        if let stringText = content.stringValue {
+            return createAttributedCellText(text: stringText, cellStyle: style, alignment: alignment)
+        }
+        return content.attributedStringValue
+    }
+
     /**
      TODO: Documentation
      */
@@ -206,21 +179,21 @@ internal class PDFTableObject: PDFRenderObject {
         result.frames.content.origin.x = {
             if alignment.isLeft {
                 return frame.content.minX
-            } else if alignment.isRight {
-                return frame.content.minX + frame.cell.width - 2 * table.padding - frame.content.width
-            } else {
-                return frame.content.minX + (frame.cell.width - 2 * table.padding - frame.content.width) / 2
             }
+            if alignment.isRight {
+                return frame.content.minX + frame.cell.width - 2 * table.padding - frame.content.width
+            }
+            return frame.content.minX + (frame.cell.width - 2 * table.padding - frame.content.width) / 2
         }()
 
         result.frames.content.origin.y = {
             if alignment.isTop {
                 return frame.content.minY
-            } else if alignment.isBottom {
-                return frame.content.minY + frame.cell.height - 2 * table.padding - frame.content.height
-            } else { 
-                return frame.content.minY + (frame.cell.height - 2 * table.padding - frame.content.height) / 2
             }
+            if alignment.isBottom {
+                return frame.content.minY + frame.cell.height - 2 * table.padding - frame.content.height
+            }
+            return frame.content.minY + (frame.cell.height - 2 * table.padding - frame.content.height) / 2
         }()
 
         return result
@@ -233,18 +206,18 @@ internal class PDFTableObject: PDFRenderObject {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = {
             if alignment.isLeft {
-                return NSTextAlignment.left
-            } else if alignment.isRight {
-                return NSTextAlignment.right
-            } else {
-                return NSTextAlignment.center
+                return .left
             }
+            if alignment.isRight {
+                return .right
+            }
+                return .center
         }()
 
         let attributes: [NSAttributedString.Key: AnyObject] = [
-            NSAttributedString.Key.foregroundColor: cellStyle.colors.text,
-            NSAttributedString.Key.font: cellStyle.font,
-            NSAttributedString.Key.paragraphStyle: paragraph
+            .foregroundColor: cellStyle.colors.text,
+            .font: cellStyle.font,
+            .paragraphStyle: paragraph
         ]
         return NSAttributedString(string: text, attributes: attributes)
     }
@@ -329,18 +302,18 @@ internal class PDFTableObject: PDFRenderObject {
     internal func createCellContentObject(content: PDFTableContent?,
                                           cellStyle: PDFTableCellStyle,
                                           alignment: PDFTableCellAlignment, frame: CGRect) -> PDFRenderObject? {
-        if content == nil {
+        guard let content = content else {
             return nil
         }
         var contentObject: PDFRenderObject?
 
-        if let contentImage = content?.imageValue {
+        if let contentImage = content.imageValue {
             contentObject = PDFImageObject(image: PDFImage(image: contentImage, options: [.none]))
         } else {
             var attributedString: NSAttributedString?
-            if let contentText = content?.stringValue {
+            if let contentText = content.stringValue {
                 attributedString = createAttributedCellText(text: contentText, cellStyle: cellStyle, alignment: alignment)
-            } else if let contentText = content?.attributedStringValue {
+            } else if let contentText = content.attributedStringValue {
                 attributedString = contentText
             }
 
@@ -375,24 +348,14 @@ internal class PDFTableObject: PDFRenderObject {
         ]
     }
 
-    /**
-     TODO: Documentation
-     */
-    internal func stylesForRow(tableStyle: PDFTableStyle,
-                               isHeader: Bool,
-                               isFooter: Bool,
-                               rowHeaderCount: Int,
-                               isAlternatingRow: Bool,
-                               cells: [PDFTableCell]) -> [PDFTableCellStyle] {
-        return cells.enumerated().map({ arg in
-            getStyle(for: arg.element,
-                     tableStyle: tableStyle,
-                     isHeader: isHeader,
-                     isFooter: isFooter,
-                     rowHeaderCount: rowHeaderCount,
-                     isAlternatingRow: isAlternatingRow,
-                     colIdx: arg.offset)
-        })
+    internal func getStyle(for node: PDFTableNode, in table: PDFTable, at rowIdx: Int) -> PDFTableCellStyle {
+        getStyle(for: node.cell,
+                 tableStyle: table.style,
+                 isHeader: rowIdx < table.style.columnHeaderCount,
+                 isFooter: rowIdx >= table.cells.count - table.style.footerCount,
+                 rowHeaderCount: table.style.rowHeaderCount,
+                 isAlternatingRow: rowIdx % 2 == 1,
+                 colIdx: node.position.column)
     }
 
     /**

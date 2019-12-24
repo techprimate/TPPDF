@@ -11,6 +11,27 @@
 public enum PDFTableStyleDefaults {
 
     /**
+     None:
+
+     - No header rows
+     - No header columns
+     - No footer row
+     - No alternating rows
+     - Simple outline
+     - Simple borders
+     */
+    public static var none: PDFTableStyle {
+        return PDFTableStyle(rowHeaderCount: 0,
+                             columnHeaderCount: 0,
+                             footerCount: 0,
+                             outline: PDFLineStyle(),
+                             rowHeaderStyle: PDFTableCellStyle(),
+                             columnHeaderStyle: PDFTableCellStyle(),
+                             footerStyle: PDFTableCellStyle(),
+                             contentStyle: PDFTableCellStyle(),
+                             alternatingContentStyle: nil)
+    }
+    /**
      Simple table:
 
      - One header row
