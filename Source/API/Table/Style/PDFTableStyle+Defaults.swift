@@ -21,15 +21,21 @@ public enum PDFTableStyleDefaults {
      - Simple borders
      */
     public static var none: PDFTableStyle {
-        return PDFTableStyle(rowHeaderCount: 0,
-                             columnHeaderCount: 0,
-                             footerCount: 0,
-                             outline: PDFLineStyle(),
-                             rowHeaderStyle: PDFTableCellStyle(),
-                             columnHeaderStyle: PDFTableCellStyle(),
-                             footerStyle: PDFTableCellStyle(),
-                             contentStyle: PDFTableCellStyle(),
-                             alternatingContentStyle: nil)
+        return PDFTableStyle(
+            rowHeaderCount: 0,
+            columnHeaderCount: 0,
+            footerCount: 0,
+            outline: PDFLineStyle(),
+            rowHeaderStyle: PDFTableCellStyle(),
+            columnHeaderStyle: PDFTableCellStyle(),
+            footerStyle: PDFTableCellStyle(),
+            contentStyle: PDFTableCellStyle(
+                borders: PDFTableCellBorders(
+                    left: PDFLineStyle(type: .full, color: .black, width: 1),
+                    top: PDFLineStyle(type: .full, color: .black, width: 1),
+                    right: PDFLineStyle(type: .full, color: .black, width: 1),
+                    bottom: PDFLineStyle(type: .full, color: .black, width: 1))),
+            alternatingContentStyle: nil)
     }
     /**
      Simple table:
@@ -37,10 +43,10 @@ public enum PDFTableStyleDefaults {
      - One header row
      - One header column
      - Row Header:
-        - Text color white
-        - No border, only light gray border at bottom
+     - Text color white
+     - No border, only light gray border at bottom
      - Column Header:
-        - Bold font
+     - Bold font
      - Alternating content rows
      */
     public static var simple: PDFTableStyle {
@@ -56,9 +62,9 @@ public enum PDFTableStyleDefaults {
             rowHeaderStyle: PDFTableCellStyle(
                 colors: (fill: UIColor.white, text: darkGray),
                 borders: PDFTableCellBorders(bottom: PDFLineStyle(
-                            type: .full,
-                            color: UIColor.lightGray,
-                            width: 0.5
+                    type: .full,
+                    color: UIColor.lightGray,
+                    width: 0.5
                 )),
                 font: UIFont.boldSystemFont(ofSize: 12.0)
             ),

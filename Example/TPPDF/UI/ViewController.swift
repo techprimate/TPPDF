@@ -39,12 +39,13 @@ class ViewController: UIViewController {
         startTime = CFAbsoluteTimeGetCurrent()
         /* ---- Execution Metrics ---- */
         
-        let generator: PDFGeneratorProtocol
+        var generator: PDFGeneratorProtocol
         if documents.count > 1 {
             generator = PDFMultiDocumentGenerator(documents: documents)
         } else {
             generator = PDFGenerator(document: documents.first!)
         }
+        generator.debug = exampleFactory is ExperimentFactory
 
         self.progressView.observedProgress = generator.progress
         observer = generator.progress.observe(\.completedUnitCount) { (p, _) in

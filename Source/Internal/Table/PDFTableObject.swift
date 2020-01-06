@@ -5,9 +5,9 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-// swiftlint:disable function_body_length function_parameter_count line_length
+// swiftlint:disable function_parameter_count line_length
 
-typealias PDFTableCalculatedCell = (cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))
+internal typealias PDFTableCalculatedCell = (cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))
 
 /**
  TODO: Documentation
