@@ -142,6 +142,21 @@ internal enum PDFCalculations {
         }
     }
 
+    internal static func calculateTopMinimum(for generator: PDFGenerator) -> CGFloat {
+        let layout = generator.layout
+        return layout.margin.top
+            + layout.heights.maxHeaderHeight()
+    }
+
+    internal static func calculateBottomMaximum(for generator: PDFGenerator) -> CGFloat {
+        let layout = generator.layout
+        let pageLayout = generator.document.layout
+
+        return pageLayout.height
+            - layout.margin.top
+            - layout.heights.maxHeaderHeight()
+    }
+
     /**
      Calculates the position of an element with given `size` in the given `container
 

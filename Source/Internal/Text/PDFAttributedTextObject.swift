@@ -169,7 +169,11 @@ internal class PDFAttributedTextObject: PDFRenderObject {
         applyAttributes()
     }
 
-    private func calculateLinkAttributes(with links: [(url: String, range: NSRange)], in frameRef: CTFrame, in allRange: NSRange, context: CGContext, debug: Bool) {
+    private func calculateLinkAttributes(with links: [(url: String, range: NSRange)],
+                                         in frameRef: CTFrame,
+                                         in allRange: NSRange,
+                                         context: CGContext,
+                                         debug: Bool) {
         guard let lines = CTFrameGetLines(frameRef) as? [CTLine] else {
             return
         }
