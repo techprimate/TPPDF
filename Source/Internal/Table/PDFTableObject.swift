@@ -39,8 +39,8 @@ internal class PDFTableObject: PDFRenderObject {
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         try PDFTableValidator.validateTable(table: table)
 
-        var availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
-        var tableOrigin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
+        let availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
+        let tableOrigin = PDFCalculations.calculateElementPosition(for: generator, in: container, with: availableSize)
 
         let mergeNodes = PDFTableMergeUtil.calculateMerged(table: table)
         var verticalOrigins = [tableOrigin.y] + table.cells.indices.map { _ in tableOrigin.y }
@@ -69,12 +69,17 @@ internal class PDFTableObject: PDFRenderObject {
             cellItems.append(frames)
         }
 
+        // Iterate each row of merged cells
         for (rowIdx, row) in mergeNodes.enumerated() {
+            // Iterate each merged cell
             for (colIdx, node) in row.enumerated() {
-                let bottomIndex = node.position.row + node.moreRowsSpan + 1
                 var frame = cellItems[rowIdx][colIdx]
+                // Align bottom border with other columns
+                let bottomIndex = node.position.row + node.moreRowsSpan + 1
                 let diffY = verticalOrigins[bottomIndex] - frame.frames.cell.maxY
                 frame.frames.cell.size.height += diffY
+
+                // Reposition cell content
                 cellItems[rowIdx][colIdx] = reposition(cell: frame)
             }
         }
@@ -82,8 +87,7 @@ internal class PDFTableObject: PDFRenderObject {
         // Create render objects
         let renderObjects = try createRenderObjects(generator: generator,
                                                     container: container,
-                                                    cellItems: cellItems,
-                                                    pageBreakIndicies: [])
+                                                    cellItems: cellItems.reduce([], +))
         let finalOffset = PDFCalculations.calculateContentOffset(for: generator, of: renderObjects.offset, in: container)
         try PDFOffsetObject(offset: finalOffset).calculate(generator: generator, container: container)
 
@@ -173,30 +177,37 @@ internal class PDFTableObject: PDFRenderObject {
      */
     internal func reposition(cell: PDFTableCalculatedCell) -> PDFTableCalculatedCell {
         var result = cell
+
+        result.frames.content.origin.x = repositionX(cell: cell)
+        result.frames.content.origin.y = repositionY(cell: cell)
+
+        return result
+    }
+
+    internal func repositionX(cell: PDFTableCalculatedCell) -> CGFloat {
         let alignment = cell.cell.alignment
         let frame = cell.frames
 
-        result.frames.content.origin.x = {
-            if alignment.isLeft {
-                return frame.content.minX
-            }
-            if alignment.isRight {
-                return frame.content.minX + frame.cell.width - 2 * table.padding - frame.content.width
-            }
-            return frame.content.minX + (frame.cell.width - 2 * table.padding - frame.content.width) / 2
-        }()
+        if alignment.isLeft {
+            return frame.content.minX
+        }
+        if alignment.isRight {
+            return frame.content.minX + frame.cell.width - 2 * table.padding - frame.content.width
+        }
+        return frame.content.minX + (frame.cell.width - 2 * table.padding - frame.content.width) / 2
+    }
 
-        result.frames.content.origin.y = {
-            if alignment.isTop {
-                return frame.content.minY
-            }
-            if alignment.isBottom {
-                return frame.content.minY + frame.cell.height - 2 * table.padding - frame.content.height
-            }
-            return frame.content.minY + (frame.cell.height - 2 * table.padding - frame.content.height) / 2
-        }()
+    internal func repositionY(cell: PDFTableCalculatedCell ) -> CGFloat {
+        let alignment = cell.cell.alignment
+        let frame = cell.frames
 
-        return result
+        if alignment.isTop {
+            return frame.content.minY
+        }
+        if alignment.isBottom {
+            return frame.content.minY + frame.cell.height - 2 * table.padding - frame.content.height
+        }
+        return frame.content.minY + (frame.cell.height - 2 * table.padding - frame.content.height) / 2
     }
 
     /**
@@ -211,7 +222,7 @@ internal class PDFTableObject: PDFRenderObject {
             if alignment.isRight {
                 return .right
             }
-                return .center
+            return .center
         }()
 
         let attributes: [NSAttributedString.Key: AnyObject] = [
@@ -227,38 +238,76 @@ internal class PDFTableObject: PDFRenderObject {
      */
     internal func createRenderObjects(generator: PDFGenerator,
                                       container: PDFContainer,
-                                      cellItems: [[(cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))]],
-                                      pageBreakIndicies: [Int]) throws -> (objects: [PDFLocatedRenderObject], offset: CGFloat) {
-        var result: [PDFRenderObject?] = []
+                                      cellItems: [PDFTableCalculatedCell]) throws -> (objects: [PDFLocatedRenderObject], offset: CGFloat) {
+        var result: [PDFLocatedRenderObject] = []
 
         var pageStart: CGPoint! = nil
         var pageEnd: CGPoint = CGPoint.zero
 
-        for (rowIdx, row) in cellItems.enumerated() {
-            for item in row {
-                let cellFrame = item.frames.cell
-                let contentFrame = item.frames.content
+        let layout = generator.layout
+        let pageLayout = generator.document.layout
+        let minOffset = layout.margin.top
+            + layout.heights.maxHeaderHeight()
+        let maxOffset = pageLayout.height
+            - layout.margin.top
+            - layout.heights.maxHeaderHeight()
+        let contentHeight = maxOffset - minOffset
 
-                if pageStart == nil {
-                    pageStart = cellFrame.origin - CGPoint(x: table.margin, y: table.margin)
+        var cells: [PDFTableCalculatedCell] = []
+        var nextPageCells: [PDFTableCalculatedCell] = []
+
+        for item in cellItems {
+            let cellFrame = item.frames.cell
+            if cellFrame.maxY < maxOffset {
+                cells.append(item)
+            } else {
+                if cellFrame.minY < maxOffset {
+                    cells.append(item)
                 }
-                pageEnd = CGPoint(x: cellFrame.maxX, y: cellFrame.maxY) + CGPoint(x: table.margin, y: table.margin)
+                var nextPageCell = item
+                nextPageCell.frames.cell.origin.y -= contentHeight
+                nextPageCell.frames.content.origin.y -= contentHeight
+                nextPageCells.append(nextPageCell)
+            }
+        }
 
-                // Background
-                result.append(createCellBackgroundObject(cellStyle: item.style,
-                                                         frame: cellFrame))
+        for (idx, item) in cells.enumerated() {
+            var cellFrame = item.frames.cell
+            let contentFrame = item.frames.content
 
-                // Content
-                result.append(createCellContentObject(content: item.cell.content,
-                                                      cellStyle: item.style,
-                                                      alignment: item.cell.alignment,
-                                                      frame: contentFrame))
+            if pageStart == nil {
+                pageStart = cellFrame.origin - CGPoint(x: table.margin, y: table.margin)
+            }
+            pageEnd = CGPoint(x: cellFrame.maxX, y: cellFrame.maxY) + CGPoint(x: table.margin, y: table.margin)
 
-                // Grid
-                result += createCellOutlineObjects(borders: item.style.borders, cellFrame: cellFrame) as [PDFRenderObject?]
+            // Background
+            var cellElements: [PDFRenderObject] = [createCellBackgroundObject(cellStyle: item.style, frame: cellFrame)]
+
+            // Content
+            if let contentObj = createCellContentObject(content: item.cell.content,
+                                                        cellStyle: item.style,
+                                                        alignment: item.cell.alignment,
+                                                        frame: contentFrame) {
+                cellElements.append(contentObj)
             }
 
-            if pageBreakIndicies.contains(rowIdx) || rowIdx == cellItems.count - 1 {
+            // Grid
+            cellElements += createCellOutlineObjects(borders: item.style.borders, cellFrame: cellFrame)
+
+            let sliceObject = PDFSlicedObject()
+            sliceObject.children = cellElements
+            sliceObject.frame = cellFrame
+            if cellFrame.maxY > maxOffset {
+                sliceObject.frame.size.height -= sliceObject.frame.maxY - maxOffset
+                sliceObject.frame.size.height = min(sliceObject.frame.size.height, contentHeight)
+            }
+            if cellFrame.minY < minOffset {
+                sliceObject.frame.origin.y += minOffset - sliceObject.frame.origin.y
+                sliceObject.frame.size.height -= minOffset - sliceObject.frame.origin.y
+            }
+            result += try sliceObject.calculate(generator: generator, container: container)
+
+            if nextPageCells.isEmpty && idx == cells.count - 1 {
                 let tableOutlineObject = PDFRectangleObject(lineStyle: table.style.outline, size: CGSize.zero)
                 tableOutlineObject.frame = CGRect(
                     x: pageStart.x,
@@ -266,25 +315,15 @@ internal class PDFTableObject: PDFRenderObject {
                     width: pageEnd.x - pageStart.x,
                     height: pageEnd.y - pageStart.y
                 )
-                result.append(tableOutlineObject)
-            }
-
-            // Page break
-            if pageBreakIndicies.contains(rowIdx) {
-                result.append(PDFPageBreakObject())
-
-                pageStart = nil
+                result += try tableOutlineObject.calculate(generator: generator, container: container)
             }
         }
-
-        let compactObjects = result.compactMap { (obj) -> PDFLocatedRenderObject? in
-            if let obj = obj {
-                return (container, obj)
-            } else {
-                return nil
-            }
+        if !nextPageCells.isEmpty {
+            result += try PDFPageBreakObject().calculate(generator: generator, container: container)
+            let nestedResult = try createRenderObjects(generator: generator, container: container, cellItems: nextPageCells)
+            return (objects: result + nestedResult.objects, offset: nestedResult.offset)
         }
-        return (objects: compactObjects, offset: pageEnd.y)
+        return (objects: result, offset: pageEnd.y)
     }
 
     /**

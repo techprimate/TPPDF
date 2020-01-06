@@ -261,6 +261,7 @@
 		D46AB47523AD199400E87043 /* String+PDFTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB47423AD199400E87043 /* String+PDFTableContent.swift */; };
 		D46AB47723AE3CB400E87043 /* PDFTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB47623AE3CB400E87043 /* PDFTableNode.swift */; };
 		D46AB47923AF735A00E87043 /* PDFTableMergeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46AB47823AF735A00E87043 /* PDFTableMergeUtil.swift */; };
+		D478552D23C399AB00CE453B /* PDFSlicedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478552B23C3998D00CE453B /* PDFSlicedObject.swift */; };
 		D47B02C823AF77D000A890CF /* PDFTable+CellSubscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B02C723AF77D000A890CF /* PDFTable+CellSubscripts.swift */; };
 		D47B02CA23AF77EB00A890CF /* PDFTable+RowSubscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B02C923AF77EB00A890CF /* PDFTable+RowSubscripts.swift */; };
 		D47B02CC23AF782000A890CF /* PDFTable+SectionSubscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B02CB23AF782000A890CF /* PDFTable+SectionSubscripts.swift */; };
@@ -762,6 +763,7 @@
 		D46AB47623AE3CB400E87043 /* PDFTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableNode.swift; sourceTree = "<group>"; };
 		D46AB47823AF735A00E87043 /* PDFTableMergeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableMergeUtil.swift; sourceTree = "<group>"; };
 		D46B0EBD82B19E38EA6B44475067EA5D /* Functions.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = Functions.html; path = docs/Functions.html; sourceTree = "<group>"; };
+		D478552B23C3998D00CE453B /* PDFSlicedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFSlicedObject.swift; sourceTree = "<group>"; };
 		D47B02C723AF77D000A890CF /* PDFTable+CellSubscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFTable+CellSubscripts.swift"; sourceTree = "<group>"; };
 		D47B02C923AF77EB00A890CF /* PDFTable+RowSubscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFTable+RowSubscripts.swift"; sourceTree = "<group>"; };
 		D47B02CB23AF782000A890CF /* PDFTable+SectionSubscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFTable+SectionSubscripts.swift"; sourceTree = "<group>"; };
@@ -1353,7 +1355,6 @@
 		D447ECD323ABA7D0005B505B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				D447ECD423ABA7D0005B505B /* PDFCalculations.swift */,
 				D447ECD523ABA7D0005B505B /* PDFDocumentObject.swift */,
 				D447ECD623ABA7D0005B505B /* PDFError.swift */,
 				D447ECD723ABA7D0005B505B /* PDFRenderObject.swift */,
@@ -1525,12 +1526,14 @@
 		D447ED1F23ABA7D0005B505B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D447ECD423ABA7D0005B505B /* PDFCalculations.swift */,
 				D447ED2023ABA7D0005B505B /* CustomStringConvertible+AutoDescribing.swift */,
 				D447ED2123ABA7D0005B505B /* Attributes */,
 				D447ED2423ABA7D0005B505B /* WeakRef.swift */,
 				D447ED2523ABA7D0005B505B /* FileManager+TemporaryFiles.swift */,
 				D447ED2623ABA7D0005B505B /* Stack.swift */,
 				D47B02D123AFAA9100A890CF /* PDFLocatedRenderObject.swift */,
+				D478552B23C3998D00CE453B /* PDFSlicedObject.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2196,6 +2199,7 @@
 				D447EDCA23ABA7D1005B505B /* PDFJSONSerializable.swift in Sources */,
 				D447ED8D23ABA7D0005B505B /* PDFTableOfContent.swift in Sources */,
 				D447EDAA23ABA7D0005B505B /* PDFSimpleText.swift in Sources */,
+				D478552D23C399AB00CE453B /* PDFSlicedObject.swift in Sources */,
 				D447EDBA23ABA7D1005B505B /* PDFSectionObject.swift in Sources */,
 				D447EDC023ABA7D1005B505B /* PDFPaginationClosure.swift in Sources */,
 				D447ED9B23ABA7D0005B505B /* PDFTableContent+Equatable.swift in Sources */,

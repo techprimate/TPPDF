@@ -277,7 +277,7 @@ internal enum PDFCalculations {
                                             position: (origin: CGPoint, width: CGFloat),
                                             text: NSAttributedString,
                                             alignment: PDFTableCellAlignment) -> CGRect {
-        let textMaxHeight = PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container)
+        let textMaxHeight = CGFloat.greatestFiniteMagnitude //PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container)
         let frame: CGRect = CGRect(x: position.origin.x, y: position.origin.y, width: position.width, height: textMaxHeight)
 
         let currentRange = CFRange(location: 0, length: 0)
