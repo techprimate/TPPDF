@@ -11,7 +11,7 @@ DEPENDENCIES:
   - TPPDF (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Nimble
     - Quick
     - SwiftLint
