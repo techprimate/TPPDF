@@ -1,7 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2019-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.1...HEAD)
+## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.6.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,56 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [1.6.0](https://github.com/techprimate/TPPDF/tree/1.6.0) (2020-03-23)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.4...1.6.0)
+
+**Implemented enhancements:**
+
+- Added progress reporting using iOS internal `Foundation.Progress` (Issue #155)
+- Added a better test example experience
+- Added support to embed external PDF document (Issue #31)
+- Added clickable URL support for images (Issue #170)
+- Added support for NSAttributedString link attributes (Issue #71)
+
+**Fixed bugs:**
+
+- Fixed TravisCI configuration
+
+**Closed issues:**
+
+- #155
+- #31
+- #170
+- #71
+
+**Merged pull requests:**
+
+- #171
+- #172
+- #174
+- #177
+
+## [1.5.4](https://github.com/techprimate/TPPDF/tree/1.5.4) (2019-06-06)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.3...1.5.4)
+
+**Implemented enhancements:**
+
+- Fixed carthage support once again
+
+## [1.5.3](https://github.com/techprimate/TPPDF/tree/1.5.3) (2019-06-06)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.2...1.5.3)
+
+**Implemented enhancements:**
+
+- Fixed padding in groups 
+
+## [1.5.2](https://github.com/techprimate/TPPDF/tree/1.5.2) (2019-06-06)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.1...1.5.2)
+
+**Implemented enhancements:**
+
+- Added group breaking
 
 ## [1.5.1](https://github.com/techprimate/TPPDF/tree/1.5.1) (2019-06-06)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.0...1.5.1)
@@ -52,8 +102,6 @@
 - #136
 - #137
 - #138
-
-**Merged pull requests:**
 
 ## [1.4.1](https://github.com/techprimate/TPPDF/tree/1.4.1) (2019-05-19)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.0...1.4.1)
