@@ -50,12 +50,6 @@
   • <a href="#license">License</a>
 </p>
 
-<p align="center" style='color: #28B463'>
-	<b>
-	For high-priority, hands-on support and individual feature requests, feel free to contact us at our business email <a href="mailto:office@techprimate.com">office@techprimate.com</a> for our professional help.
-	</b>
-</p>
-
 ## Features
 
 - Page header and footer
@@ -918,6 +912,7 @@ Please consider backing this project by using the following link:
 <a href="https://paypal.me/tprm8" target="_blank">
 	<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/back-this-project.png" alt="Back This Project">
 </a>
+
 
 We want to thank all [contributors](https://github.com/techprimate/TPPDF/graphs/contributors) for their effort!
 
