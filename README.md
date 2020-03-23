@@ -590,7 +590,7 @@ The following methods of `PDFDocument` are not considered as elements, as they a
 Adds a space with the height of `space` between the previous element and the next element.
 
 ```swift
-document.set(space: 32.0)
+document.add(space: 32.0)
 ```
 
 #### Simple Text Font - `set(_ container: PDFContainer, font: UIFont)`
