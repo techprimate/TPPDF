@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.5...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.6.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -11,8 +11,8 @@
 
 **Merged pull requests:**
 
-## [1.5.5](https://github.com/techprimate/TPPDF/tree/1.5.5) (2019-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.4...1.5.5)
+## [1.6.0](https://github.com/techprimate/TPPDF/tree/1.6.0) (2020-03-23)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.4...1.6.0)
 
 **Implemented enhancements:**
 
