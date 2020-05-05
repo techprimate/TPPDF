@@ -10,7 +10,7 @@
  */
 extension PDFGenerator {
 
-    // MARK: - PUBLIC STATIC FUNCS
+    // MARK: - PUBLIC FUNCS
 
     /// nodoc
     public func generateURL(filename: String) throws -> URL {
