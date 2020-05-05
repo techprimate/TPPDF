@@ -16,9 +16,9 @@ extension CustomStringConvertible {
      */
     public var description: String {
         var description: String = ""
-        description = String(format: "%@<%@>",
-                             String(describing: type(of: self)),
-                             Unmanaged.passUnretained(self as AnyObject).toOpaque().debugDescription)
+        description = withUnsafePointer(to: self) { pointer in
+            String(format: "%@<%p>", String(describing: type(of: self)), pointer)
+        }
         let selfMirror = Mirror(reflecting: self)
         return String(format: "%@(%@)",
                       description,
