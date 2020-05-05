@@ -44,7 +44,7 @@ public class PDFSimpleText: PDFText {
      Creates a new `PDFSimpleText` with the same properties
      */
     override internal var copy: PDFText {
-        return PDFSimpleText(text: self.text, spacing: self.spacing, style: self.style)
+        PDFSimpleText(text: self.text, spacing: self.spacing, style: self.style)
     }
 }
 

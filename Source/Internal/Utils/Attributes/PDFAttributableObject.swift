@@ -5,6 +5,7 @@
 //  Created by Philip Niedertscheider on 19.12.19.
 //
 
+
 public protocol PDFAttributableObject {
 
     var attributes: [PDFObjectAttribute] { get }
