@@ -43,7 +43,7 @@ public class PDFDocument: CustomStringConvertible, PDFJSONSerializable {
     internal var objects: [PDFLocatedRenderObject] = []
 
     /**
-     TODO: Documentation
+     Group holding a template or elements which will be rendered on all pages behind the actual content
      */
     internal var masterGroup: PDFGroupObject?
 
