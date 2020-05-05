@@ -45,12 +45,12 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
     internal var columnState = PDFColumnLayoutState()
 
     /**
-     TODO: Documentation
+     Group holding elements which will be rendered on each page if not nil
      */
     internal var masterGroup: PDFGroupObject?
 
     /**
-     TODO: Documentation
+     Generator wide padding used for calculations of groups
      */
     internal var currentPadding = UIEdgeInsets.zero
 
@@ -63,13 +63,9 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
      Font of each container.
      These values are used for simple text objects
      */
-    internal lazy var fonts: [PDFContainer: UIFont] = {
-        var defaults = [PDFContainer: UIFont]()
-        for container in PDFContainer.allCases {
-            defaults[container] = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        }
-        return defaults
-    }()
+    internal lazy var fonts: [PDFContainer: UIFont] = .init(uniqueKeysWithValues: PDFContainer.allCases.map({ container in
+        (container, UIFont.systemFont(ofSize: UIFont.systemFontSize))
+    }))
 
     /**
      Enables debugging on all generator instance
@@ -80,13 +76,9 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
      Text color of each container.
      These values are used for simple text objects
      */
-    internal lazy var textColor: [PDFContainer: UIColor] = {
-        var defaults = [PDFContainer: UIColor]()
-        for container in PDFContainer.allCases {
-            defaults[container] = UIColor.black
-        }
-        return defaults
-    }()
+    internal lazy var textColor: [PDFContainer: UIColor] = .init(uniqueKeysWithValues: PDFContainer.allCases.map({ container in
+        (container, UIColor.black)
+    }))
 
     // MARK: - PUBLIC INITS
 
