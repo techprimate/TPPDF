@@ -1,19 +1,13 @@
 PODS:
-  - Nimble (8.0.7)
-  - Quick (2.2.0)
   - SwiftLint (0.39.2)
   - TPPDF (1.6.0):
     - SwiftLint
 
 DEPENDENCIES:
-  - Nimble
-  - Quick
   - TPPDF (from `../`)
 
 SPEC REPOS:
   trunk:
-    - Nimble
-    - Quick
     - SwiftLint
 
 EXTERNAL SOURCES:
@@ -21,11 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
-  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   TPPDF: 271b0c08c7ee8b7cb4839c850af8591e6abc746d
 
-PODFILE CHECKSUM: 60d568ec70654ff80bb88db361c460c1ab610be5
+PODFILE CHECKSUM: fdad0ca4746128739f5535e093d3a4e370c924f0
 
 COCOAPODS: 1.8.4
