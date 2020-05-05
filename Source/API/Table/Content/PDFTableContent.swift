@@ -63,41 +63,80 @@ public class PDFTableContent: PDFJSONSerializable {
      TODO: Documentation
      */
     internal var isString: Bool {
-        return type == .string
+        type == .string
     }
 
     /**
      TODO: Documentation
      */
     internal var isAttributedString: Bool {
-        return type == .attributedString
+        type == .attributedString
     }
 
     /**
      TODO: Documentation
      */
     internal var isImage: Bool {
-        return type == .image
+        type == .image
     }
 
     /**
      TODO: Documentation
      */
     internal var stringValue: String? {
-        return type == .string ? content as? String : nil
+        type == .string ? content as? String : nil
     }
 
     /**
      TODO: Documentation
      */
     internal var attributedStringValue: NSAttributedString? {
-        return type == .attributedString ? content as? NSAttributedString : nil
+        type == .attributedString ? content as? NSAttributedString : nil
     }
 
     /**
      TODO: Documentation
      */
     internal var imageValue: UIImage? {
-        return type == .image ? content as? UIImage : nil
+        type == .image ? content as? UIImage : nil
+    }
+}
+
+/**
+ TODO: Documentation
+ */
+public extension String {
+
+    /**
+     TODO: Documentation
+     */
+    func toPDFTableContent() -> PDFTableContent {
+        PDFTableContent(type: .string, content: self)
+    }
+}
+
+/**
+ TODO: Documentation
+ */
+public extension NSAttributedString {
+
+    /**
+     TODO: Documentation
+     */
+    func toPDFTableContent() -> PDFTableContent {
+        PDFTableContent(type: .attributedString, content: self)
+    }
+}
+
+/**
+ TODO: Documentation
+ */
+public extension UIImage {
+
+    /**
+     TODO: Documentation
+     */
+    func toPDFTableContent() -> PDFTableContent {
+        PDFTableContent(type: .image, content: self)
     }
 }
