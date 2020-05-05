@@ -98,7 +98,7 @@ public class PDFTableStyle: PDFJSONSerializable {
      Creates a identical copy of this style
      */
     public func copy() -> PDFTableStyle {
-        return PDFTableStyle(
+        PDFTableStyle(
             rowHeaderCount: self.rowHeaderCount,
             columnHeaderCount: self.columnHeaderCount,
             footerCount: self.footerCount,

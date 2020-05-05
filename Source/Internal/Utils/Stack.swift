@@ -28,14 +28,14 @@ public struct Stack<T> {
      TODO: Documentation
      */
     public var isEmpty: Bool {
-        return array.isEmpty
+        array.isEmpty
     }
 
     /**
      TODO: Documentation
      */
     public var count: Int {
-        return array.count
+        array.count
     }
 
     /**
@@ -76,7 +76,7 @@ public struct Stack<T> {
      TODO: Documentation
      */
     public var top: T? {
-        return array.last
+        array.last
     }
 
     /**
@@ -91,13 +91,13 @@ public struct Stack<T> {
 extension Stack: CustomStringConvertible where T: CustomStringConvertible {
 
     public var description: String {
-        return array.map({ $0.description }).joined(separator: "\n")
+        array.map({ $0.description }).joined(separator: "\n")
     }
 }
 
 extension Stack: CustomDebugStringConvertible where T: CustomDebugStringConvertible {
 
     public var debugDescription: String {
-        return array.map({ $0.debugDescription }).joined(separator: "\n")
+        array.map({ $0.debugDescription }).joined(separator: "\n")
     }
 }

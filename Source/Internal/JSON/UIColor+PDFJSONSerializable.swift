@@ -16,6 +16,6 @@ extension UIColor: PDFJSONSerializable {
      TODO: Documentation
      */
     public var JSONRepresentation: AnyObject {
-        return self.hex as AnyObject
+        self.hex as AnyObject
     }
 }

@@ -16,6 +16,6 @@ public extension UIImage {
      TODO: Documentation
      */
     func toPDFTableContent() -> PDFTableContent {
-        return PDFTableContent(type: .image, content: self)
+        PDFTableContent(type: .image, content: self)
     }
 }

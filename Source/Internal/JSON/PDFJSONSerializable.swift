@@ -71,7 +71,7 @@ public extension PDFJSONSerializable {
      TODO: Documentation
      */
     func isTuple(value: Any) -> Bool {
-        return Mirror(reflecting: value).displayStyle == .tuple
+        Mirror(reflecting: value).displayStyle == .tuple
     }
 
     /**

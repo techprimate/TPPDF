@@ -75,11 +75,11 @@ public class PDFGroup: PDFJSONSerializable {
      Creates a new `PDFSectionColumn` with the same properties
      */
     internal var copy: PDFGroup {
-        return PDFGroup(allowsBreaks: self.allowsBreaks,
-                        backgroundColor: self.backgroundColor,
-                        backgroundImage: self.backgroundImage,
-                        backgroundShape: self.backgroundShape,
-                        outline: self.outline,
-                        padding: self.padding)
+        PDFGroup(allowsBreaks: self.allowsBreaks,
+                 backgroundColor: self.backgroundColor,
+                 backgroundImage: self.backgroundImage,
+                 backgroundShape: self.backgroundShape,
+                 outline: self.outline,
+                 padding: self.padding)
     }
 }

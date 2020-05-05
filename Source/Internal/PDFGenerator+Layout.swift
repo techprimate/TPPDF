@@ -18,7 +18,7 @@ extension PDFGenerator {
      - returns: Offset in points
      */
     internal func getContentOffset(in container: PDFContainer) -> CGFloat {
-        return layout.getContentOffset(in: container)
+        layout.getContentOffset(in: container)
     }
 
     /**

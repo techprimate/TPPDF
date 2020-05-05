@@ -39,6 +39,6 @@ public class PDFSectionColumn: PDFDocumentObject, PDFJSONSerializable {
      Creates a new `PDFSectionColumn` with the same properties
      */
 	internal var copy: PDFSectionColumn {
-		return PDFSectionColumn(width: self.width)
+		PDFSectionColumn(width: self.width)
 	}
 }

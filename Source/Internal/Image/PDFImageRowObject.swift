@@ -89,6 +89,6 @@ internal class PDFImageRowObject: PDFRenderObject {
      TODO: documentation
      */
     override internal var copy: PDFRenderObject {
-        return PDFImageRowObject(images: self.images, spacing: self.spacing, captionSpacing: self.captionSpacing)
+        PDFImageRowObject(images: self.images, spacing: self.spacing, captionSpacing: self.captionSpacing)
     }
 }

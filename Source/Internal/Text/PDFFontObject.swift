@@ -44,6 +44,6 @@ internal class PDFFontObject: PDFRenderObject {
      Creates a new `PDFFontObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFFontObject(font: self.font)
+        PDFFontObject(font: self.font)
     }
 }

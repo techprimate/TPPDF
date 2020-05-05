@@ -282,6 +282,6 @@ internal class PDFAttributedTextObject: PDFRenderObject {
      TODO: Documentation
      */
     override internal var copy: PDFRenderObject {
-        return PDFAttributedTextObject(text: (self.attributedText ?? self.simpleText)!)
+        PDFAttributedTextObject(text: (self.attributedText ?? self.simpleText)!)
     }
 }

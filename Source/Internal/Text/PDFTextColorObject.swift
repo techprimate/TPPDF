@@ -44,6 +44,6 @@ internal class PDFTextColorObject: PDFRenderObject {
      Creates a new `PDFTextColorObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFTextColorObject(color: self.color)
+        PDFTextColorObject(color: self.color)
     }
 }

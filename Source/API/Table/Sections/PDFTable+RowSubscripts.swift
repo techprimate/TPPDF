@@ -18,7 +18,7 @@ extension PDFTable {
      */
     public subscript(row index: Int) -> PDFTableRow {
         get {
-            return PDFTableRow(cells: self.cells[index], of: self, at: index)
+            PDFTableRow(cells: self.cells[index], of: self, at: index)
         }
         set {
             self.cells[index] = newValue.cells
@@ -34,7 +34,7 @@ extension PDFTable {
      */
     public subscript(rows range: ClosedRange<Int>) -> PDFTableRows {
         get {
-            return self[rows: range.relative(to: cells)]
+            self[rows: range.relative(to: cells)]
         }
         set {
             self[rows: range.relative(to: cells)] = newValue
@@ -50,7 +50,7 @@ extension PDFTable {
      */
     public subscript(rows range: PartialRangeFrom<Int>) -> PDFTableRows {
         get {
-            return self[rows: range.relative(to: cells)]
+            self[rows: range.relative(to: cells)]
         }
         set {
             self[rows: range.relative(to: cells)] = newValue
@@ -66,7 +66,7 @@ extension PDFTable {
      */
     public subscript(rows range: PartialRangeThrough<Int>) -> PDFTableRows {
         get {
-            return self[rows: range.relative(to: cells)]
+            self[rows: range.relative(to: cells)]
         }
         set {
             self[rows: range.relative(to: cells)] = newValue
@@ -82,7 +82,7 @@ extension PDFTable {
      */
     public subscript(rows range: PartialRangeUpTo<Int>) -> PDFTableRows {
         get {
-            return self[rows: range.relative(to: cells)]
+            self[rows: range.relative(to: cells)]
         }
         set {
             self[rows: range.relative(to: cells)] = newValue
@@ -98,7 +98,7 @@ extension PDFTable {
      */
     public subscript(rows range: Range<Int>) -> PDFTableRows {
         get {
-            return PDFTableRows(
+            PDFTableRows(
                 rows: range
                     .map({ (position: $0, cells: self.cells[$0]) })
                     .map({ PDFTableRow.init(cells: $0.cells, of: self, at: $0.position) }),

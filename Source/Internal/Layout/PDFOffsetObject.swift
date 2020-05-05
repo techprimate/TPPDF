@@ -43,6 +43,6 @@ internal class PDFOffsetObject: PDFRenderObject {
      Creates a news `PDFOffsetObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFOffsetObject(offset: self.offset)
+        PDFOffsetObject(offset: self.offset)
     }
 }

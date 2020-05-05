@@ -83,6 +83,6 @@ internal class PDFLineObject: PDFRenderObject {
      Creates a copy of this `PDFLineObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFLineObject(style: self.style, startPoint: self.startPoint, endPoint: self.endPoint)
+        PDFLineObject(style: self.style, startPoint: self.startPoint, endPoint: self.endPoint)
     }
 }

@@ -75,6 +75,6 @@ internal class PDFRectangleObject: PDFRenderObject {
      Creates new `PDFRectangleObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFRectangleObject(lineStyle: self.lineStyle, size: self.size, fillColor: self.fillColor)
+        PDFRectangleObject(lineStyle: self.lineStyle, size: self.size, fillColor: self.fillColor)
     }
 }

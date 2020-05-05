@@ -14,12 +14,12 @@ extension PDFGenerator {
 
     /// nodoc
     public func generateURL(filename: String) throws -> URL {
-        return try self.generateURL(filename: filename, info: nil)
+        try self.generateURL(filename: filename, info: nil)
     }
 
     /// nodoc
     public func generate(to url: URL) throws {
-        return try self.generate(to: url, info: nil)
+        try self.generate(to: url, info: nil)
     }
 
     /**
@@ -38,7 +38,7 @@ extension PDFGenerator {
 
     /// nodoc
     public func generateData() throws -> Data {
-        return try self.generateData(info: nil)
+        try self.generateData(info: nil)
     }
 
     /**
@@ -282,7 +282,7 @@ extension PDFGenerator {
      - returns: List of all header objects
      */
     internal static func extractHeaderObjects(objects: [PDFLocatedRenderObject]) -> [PDFLocatedRenderObject] {
-        return objects.filter { $0.0.isHeader }
+        objects.filter { $0.0.isHeader }
     }
 
     /**
@@ -293,7 +293,7 @@ extension PDFGenerator {
      - returns: List of all footer objects
      */
     internal static func extractFooterObjects(objects: [PDFLocatedRenderObject]) -> [PDFLocatedRenderObject] {
-        return objects.filter { $0.0.isFooter }
+        objects.filter { $0.0.isFooter }
     }
 
     /**
@@ -304,7 +304,7 @@ extension PDFGenerator {
      - returns: List of all content objects
      */
     internal static func extractContentObjects(objects: [PDFLocatedRenderObject]) -> [PDFLocatedRenderObject] {
-        return objects.filter { !$0.0.isFooter && !$0.0.isHeader }
+        objects.filter { !$0.0.isFooter && !$0.0.isHeader }
     }
 
     /**

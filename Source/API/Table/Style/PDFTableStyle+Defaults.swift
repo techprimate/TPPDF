@@ -21,7 +21,7 @@ public enum PDFTableStyleDefaults {
      - Simple borders
      */
     public static var none: PDFTableStyle {
-        return PDFTableStyle(
+        PDFTableStyle(
             rowHeaderCount: 0,
             columnHeaderCount: 0,
             footerCount: 0,

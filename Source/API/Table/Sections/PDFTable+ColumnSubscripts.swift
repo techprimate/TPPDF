@@ -18,7 +18,7 @@ extension PDFTable {
      */
     public subscript(column index: Int) -> PDFTableColumn {
         get {
-            return PDFTableColumn(cells: self.cells.map({ row in row[index] }), of: self, at: index)
+            PDFTableColumn(cells: self.cells.map({ row in row[index] }), of: self, at: index)
         }
         set {
             for idx in self.cells.indices {
@@ -36,7 +36,7 @@ extension PDFTable {
      */
     public subscript(columns range: ClosedRange<Int>) -> PDFTableColumns {
         get {
-            return self[columns: range.relative(to: cells[0])]
+            self[columns: range.relative(to: cells[0])]
         }
         set {
             self[columns: range.relative(to: cells[0])] = newValue
@@ -52,7 +52,7 @@ extension PDFTable {
      */
     public subscript(columns range: PartialRangeFrom<Int>) -> PDFTableColumns {
         get {
-            return self[columns: range.relative(to: cells[0])]
+            self[columns: range.relative(to: cells[0])]
         }
         set {
             self[columns: range.relative(to: cells[0])] = newValue
@@ -68,7 +68,7 @@ extension PDFTable {
      */
     public subscript(columns range: PartialRangeThrough<Int>) -> PDFTableColumns {
         get {
-            return self[columns: range.relative(to: cells[0])]
+            self[columns: range.relative(to: cells[0])]
         }
         set {
             self[columns: range.relative(to: cells[0])] = newValue
@@ -84,7 +84,7 @@ extension PDFTable {
      */
     public subscript(columns range: PartialRangeUpTo<Int>) -> PDFTableColumns {
         get {
-            return self[columns: range.relative(to: cells[0])]
+            self[columns: range.relative(to: cells[0])]
         }
         set {
             self[columns: range.relative(to: cells[0])] = newValue
@@ -100,7 +100,7 @@ extension PDFTable {
      */
     public subscript(columns range: Range<Int>) -> PDFTableColumns {
         get {
-            return PDFTableColumns(
+            PDFTableColumns(
                 columns: range
                     .map({ column in
                         (position: column, cells: self.cells.map({ $0[column] }))

@@ -62,14 +62,14 @@ internal struct PDFLayoutHeights: CustomStringConvertible {
      TODO: documentation
      */
     internal func maxHeaderHeight() -> CGFloat {
-        return header.values.max() ?? 0
+        header.values.max() ?? 0
     }
 
     /**
      TODO: documentation
      */
     internal func maxFooterHeight() -> CGFloat {
-        return footer.values.max() ?? 0
+        footer.values.max() ?? 0
     }
 
     /**

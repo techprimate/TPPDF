@@ -45,6 +45,6 @@ internal class PDFTableOfContentObject: PDFRenderObject {
      TODO: Documentation
      */
     override internal var copy: PDFRenderObject {
-        return PDFListObject(list: self.list.copy)
+        PDFListObject(list: self.list.copy)
     }
 }

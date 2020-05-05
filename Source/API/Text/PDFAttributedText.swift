@@ -30,7 +30,7 @@ public class PDFAttributedText: PDFText {
      Creats a new `PDFAttributedText` with the same properties
      */
     override internal var copy: PDFText {
-        return PDFAttributedText(text: text)
+        PDFAttributedText(text: text)
     }
 }
 

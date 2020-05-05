@@ -55,6 +55,6 @@ internal class PDFIndentationObject: PDFRenderObject {
      Creates a new `PDFIndentationObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFIndentationObject(indentation: self.indentation, left: self.left)
+        PDFIndentationObject(indentation: self.indentation, left: self.left)
     }
 }

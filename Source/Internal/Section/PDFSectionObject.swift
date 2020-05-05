@@ -188,6 +188,6 @@ internal class PDFSectionObject: PDFRenderObject {
      Creates a new `PDFSectionObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFSectionObject(section: self.section.copy)
+        PDFSectionObject(section: self.section.copy)
     }
 }

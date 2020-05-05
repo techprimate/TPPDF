@@ -16,6 +16,6 @@ public extension NSAttributedString {
      TODO: Documentation
      */
     func toPDFTableContent() -> PDFTableContent {
-        return PDFTableContent(type: .attributedString, content: self)
+        PDFTableContent(type: .attributedString, content: self)
     }
 }

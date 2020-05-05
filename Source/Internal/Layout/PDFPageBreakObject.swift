@@ -75,6 +75,6 @@ internal class PDFPageBreakObject: PDFRenderObject {
      Creates a new `PDFPageBreakObject`
      */
     override internal var copy: PDFRenderObject {
-        return PDFPageBreakObject()
+        PDFPageBreakObject()
     }
 }

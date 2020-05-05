@@ -39,6 +39,6 @@ internal class PDFSectionColumnObject: PDFRenderObject {
      Creates a new `PDFSectionColumnObject` with the same properties
      */
 	override internal var copy: PDFRenderObject {
-		return PDFSectionColumnObject(column: self.column.copy)
+		PDFSectionColumnObject(column: self.column.copy)
 	}
 }

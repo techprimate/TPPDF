@@ -21,7 +21,7 @@ public class PDFText: PDFDocumentObject, CustomStringConvertible {
      TODO: Documentation
      */
     public static func != (lhs: PDFText, rhs: PDFText) -> Bool {
-        return !(lhs == rhs)
+        !(lhs == rhs)
     }
 
     /**

@@ -33,7 +33,7 @@ public class PDFRenderObject: CustomStringConvertible, PDFJSONSerializable {
      */
     @discardableResult
     internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
-        return []
+        []
     }
 
     /**

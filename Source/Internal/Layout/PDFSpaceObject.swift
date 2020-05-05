@@ -65,6 +65,6 @@ internal class PDFSpaceObject: PDFRenderObject {
      Creates a new `PDFSpaceObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFSpaceObject(space: self.space)
+        PDFSpaceObject(space: self.space)
     }
 }

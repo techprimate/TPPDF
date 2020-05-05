@@ -71,6 +71,6 @@ internal class PDFLineSeparatorObject: PDFRenderObject {
      TODO: Documentation
      */
     override internal var copy: PDFRenderObject {
-        return PDFLineSeparatorObject(style: self.style)
+        PDFLineSeparatorObject(style: self.style)
     }
 }

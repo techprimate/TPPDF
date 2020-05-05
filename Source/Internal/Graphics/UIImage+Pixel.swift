@@ -14,14 +14,14 @@ extension UIImage {
      TODO: documentation
      */
     internal var pixelExtractor: PixelExtractor {
-        return PixelExtractor(img: self.cgImage!)
+        PixelExtractor(img: self.cgImage!)
     }
 
     /**
      TODO: documentation
      */
     internal func pixelColor(at location: CGPoint) -> UIColor {
-        return PixelExtractor(img: self.cgImage!).colorAt(x: Int(location.x), y: Int(location.y))
+        PixelExtractor(img: self.cgImage!).colorAt(x: Int(location.x), y: Int(location.y))
     }
 }
 
@@ -45,14 +45,14 @@ internal class PixelExtractor: NSObject {
      TODO: documentation
      */
     internal var width: Int {
-        return image.width
+        image.width
     }
 
     /**
      TODO: documentation
      */
     internal var height: Int {
-        return image.height
+        image.height
     }
 
     /**

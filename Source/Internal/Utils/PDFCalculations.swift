@@ -89,7 +89,7 @@ internal enum PDFCalculations {
      - returns: Available bounds size in points
      */
     internal static func calculateAvailableFrame(for generator: PDFGenerator, in container: PDFContainer) -> CGSize {
-        return CGSize(
+        CGSize(
             width: calculateAvailableFrameWidth(for: generator, in: container),
             height: calculateAvailableFrameHeight(for: generator, in: container)
         )
@@ -167,7 +167,7 @@ internal enum PDFCalculations {
      - returns: Position of element
      */
     internal static func calculateElementPosition(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGPoint {
-        return CGPoint(
+        CGPoint(
             x: calculatePositionX(for: generator, in: container, with: size),
             y: calculatePositionY(for: generator, in: container, with: size)
         )

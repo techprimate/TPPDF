@@ -35,7 +35,7 @@ public enum PDFSectionColumnContainer {
      Useful for initalizing default values for each container
      */
     internal static var all: [PDFSectionColumnContainer] {
-        return [.left, .center, .right]
+        [.left, .center, .right]
     }
 
     /**

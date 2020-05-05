@@ -435,7 +435,7 @@ internal class PDFTableObject: PDFRenderObject {
      - returns: Array of `PDFLineObject`
      */
     internal func createCellOutlineObjects(borders: PDFTableCellBorders, frame: CGRect) -> [PDFLineObject] {
-        return [
+        [
             PDFLineObject(style: borders.top,
                           startPoint: CGPoint(x: frame.minX, y: frame.minY),
                           endPoint: CGPoint(x: frame.maxX, y: frame.minY)),
@@ -455,6 +455,6 @@ internal class PDFTableObject: PDFRenderObject {
      Creates a new `PDFTableObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFTableObject(table: table.copy)
+        PDFTableObject(table: table.copy)
     }
 }

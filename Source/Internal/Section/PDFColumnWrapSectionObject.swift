@@ -105,10 +105,10 @@ internal class PDFColumnWrapSectionObject: PDFRenderObject {
      TODO: Documentation
      */
     override internal var copy: PDFRenderObject {
-        return PDFColumnWrapSectionObject(columns: self.columns,
-                                          widths: self.widths,
-                                          spacings: self.spacings,
-                                          isDisable: self.isDisable,
-                                          addPageBreak: self.addPageBreak)
+        PDFColumnWrapSectionObject(columns: self.columns,
+                                   widths: self.widths,
+                                   spacings: self.spacings,
+                                   isDisable: self.isDisable,
+                                   addPageBreak: self.addPageBreak)
     }
 }

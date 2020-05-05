@@ -44,6 +44,6 @@ public class PDFSection: PDFDocumentObject, PDFJSONSerializable {
      Creates a new `PDFSection` with the same properties
      */
 	internal var copy: PDFSection {
-		return PDFSection(columns.map { $0.copy })
+		PDFSection(columns.map { $0.copy })
 	}
 }

@@ -117,6 +117,6 @@ public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
      TODO: documentation
      */
     public var JSONRepresentation: AnyObject {
-        return self.rawValue as AnyObject
+        self.rawValue as AnyObject
     }
 }

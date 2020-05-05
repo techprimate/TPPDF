@@ -73,10 +73,10 @@ internal class PDFMarginObject: PDFRenderObject {
      TODO: Documentation
      */
     override internal var copy: PDFRenderObject {
-        return PDFMarginObject(left: self.values.left,
-                               right: self.values.right,
-                               top: self.values.top,
-                               bottom: self.values.bottom,
-                               reset: self.reset)
+        PDFMarginObject(left: self.values.left,
+                        right: self.values.right,
+                        top: self.values.top,
+                        bottom: self.values.bottom,
+                        reset: self.reset)
     }
 }

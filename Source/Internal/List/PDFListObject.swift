@@ -78,6 +78,6 @@ internal class PDFListObject: PDFRenderObject {
      Creates a new `PDFListObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFListObject(list: self.list.copy)
+        PDFListObject(list: self.list.copy)
     }
 }

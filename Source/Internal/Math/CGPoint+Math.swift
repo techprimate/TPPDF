@@ -19,7 +19,7 @@ extension CGPoint {
      - returns: Translated point
      */
     public static func + (lhs: CGPoint, rhs: CGVector) -> CGPoint {
-        return CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
+        CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
     }
 
     /**
@@ -31,7 +31,7 @@ extension CGPoint {
      - returns: Added point
      */
     public static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
-        return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+        CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }
 
     /**
@@ -43,7 +43,7 @@ extension CGPoint {
      - returns: Subtracted point
      */
     public static func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
-        return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+        CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
     }
 
     /**
@@ -55,7 +55,7 @@ extension CGPoint {
      - returns: Moved point
      */
     public static func + (lhs: CGPoint, value: CGFloat) -> CGPoint {
-        return CGPoint(x: lhs.x + value, y: lhs.y + value)
+        CGPoint(x: lhs.x + value, y: lhs.y + value)
     }
 
 }

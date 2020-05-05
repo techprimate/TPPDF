@@ -39,6 +39,6 @@ internal class PDFExternalDocumentObject: PDFRenderObject {
      TODO: documentation
      */
     override internal var copy: PDFRenderObject {
-       return PDFExternalDocumentObject(url: self.url, pages: self.pages)
+       PDFExternalDocumentObject(url: self.url, pages: self.pages)
     }
 }

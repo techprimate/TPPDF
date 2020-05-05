@@ -91,7 +91,7 @@ public enum PDFContainer: CaseIterable {
      Checks if this container is neither in header nor in footer, therefore in the center area
      */
     internal var isCenter: Bool {
-        return !isHeader && !isFooter
+        !isHeader && !isFooter
     }
 
     /**
@@ -123,7 +123,7 @@ public enum PDFContainer: CaseIterable {
      Useful for initalizing default values for each container
      */
     internal static var all: [PDFContainer] {
-        return [
+        [
             .headerLeft, .headerCenter, .headerRight,
             .contentLeft, .contentCenter, .contentRight,
             .footerLeft, .footerCenter, .footerRight

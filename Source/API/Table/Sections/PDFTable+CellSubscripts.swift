@@ -19,7 +19,7 @@ extension PDFTable {
      */
     public subscript(position: PDFTableCellPosition) -> PDFTableCell {
         get {
-            return self[position.row, position.column]
+            self[position.row, position.column]
         }
         set {
             self[position.row, position.column] = newValue
@@ -36,7 +36,7 @@ extension PDFTable {
      */
     public subscript(row: Int, column: Int) -> PDFTableCell {
         get {
-            return self.cells[row][column]
+            self.cells[row][column]
         }
         set {
             self.cells[row][column] = newValue

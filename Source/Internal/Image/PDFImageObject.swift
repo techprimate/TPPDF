@@ -129,6 +129,6 @@ internal class PDFImageObject: PDFRenderObject {
      Creates a new `PDFImageObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFImageObject(image: self.image.copy, captionSpacing: self.captionSpacing)
+        PDFImageObject(image: self.image.copy, captionSpacing: self.captionSpacing)
     }
 }

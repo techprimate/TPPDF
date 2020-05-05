@@ -167,7 +167,7 @@ internal class PDFGroupObject: PDFRenderObject {
     }
 
     private func calculateBoundsFrame(generator: PDFGenerator) -> CGRect {
-        return generator.document.layout.bounds.inset(by: generator.layout.margin)
+        generator.document.layout.bounds.inset(by: generator.layout.margin)
     }
 
     /**
@@ -219,13 +219,13 @@ internal class PDFGroupObject: PDFRenderObject {
      Creates a new `PDFGroupObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFGroupObject(objects: self.objects.map { ($0, $1.copy) },
-                              allowsBreaks: self.allowsBreaks,
-                              isFullPage: self.isFullPage,
-                              backgroundColor: self.backgroundColor,
-                              backgroundImage: self.backgroundImage?.copy,
-                              backgroundShape: self.backgroundShape,
-                              outline: self.outline,
-                              padding: self.padding)
+        PDFGroupObject(objects: self.objects.map { ($0, $1.copy) },
+                       allowsBreaks: self.allowsBreaks,
+                       isFullPage: self.isFullPage,
+                       backgroundColor: self.backgroundColor,
+                       backgroundImage: self.backgroundImage?.copy,
+                       backgroundShape: self.backgroundShape,
+                       outline: self.outline,
+                       padding: self.padding)
     }
 }
