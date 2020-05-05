@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 16/11/2017.
 //
 
+import UIKit
+
 extension UIColor {
 
     /**

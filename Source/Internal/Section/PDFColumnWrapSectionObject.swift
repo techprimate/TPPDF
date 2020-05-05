@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 28.05.19.
 //
 
+import UIKit
+
 /**
  TODO: Documentation
  */

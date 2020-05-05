@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 04.12.2019
 //
 
+import UIKit
+
 /**
  Generates a PDF from multiple `PDFDocument` by appending them.
  */

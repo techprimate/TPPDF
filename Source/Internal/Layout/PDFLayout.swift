@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 31/10/2017.
 //
 
+import UIKit
+
 /**
  Contains all relevant layout informations of a pdf document
  */

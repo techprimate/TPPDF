@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 31/10/2017.
 //
 
+import UIKit
+
 /**
  Text and spacing of a text object.
 

@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 24/08/2017.
 //
 
+import UIKit
+
 /**
  Adds UI debugging information while rendering.
  */

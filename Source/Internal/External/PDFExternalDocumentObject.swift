@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 internal class PDFExternalDocumentObject: PDFRenderObject {
 

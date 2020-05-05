@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 12.08.19.
 //
 
-import Foundation
+import UIKit
 
 internal class PDFExternalPageObject: PDFRenderObject {
 

@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 // swiftlint:disable function_parameter_count
 
 internal typealias PDFTableCalculatedCell = (cell: PDFTableCell, style: PDFTableCellStyle, frames: (cell: CGRect, content: CGRect))

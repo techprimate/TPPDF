@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 06.12.17.
 //
 
+import UIKit
+
 /**
  Calculates and draws a rectangle.
 

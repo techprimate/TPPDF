@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 06.01.20.
 //
 
+import UIKit
+
 extension CGPoint {
 
     internal static var null: CGPoint {

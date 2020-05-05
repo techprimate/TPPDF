@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+import UIKit
+
 /**
  Extends the PDF page format with pdf layout methods
  */

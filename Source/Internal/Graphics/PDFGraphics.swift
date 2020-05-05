@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 13/08/2017.
 //
 
+import UIKit
+
 /**
  Contains a collection methods to render the following shapes:
 

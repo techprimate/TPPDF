@@ -5,6 +5,8 @@
 //  Created by Zheng-Xiang Ke on 2016/12/15.
 //
 
+import UIKit
+
 /**
  Information saved in PDF file metadata.
  */

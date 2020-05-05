@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 05/06/2017.
 //
 
+import UIKit
+
 /**
  Gives the generator the functionality to convert a `PDFDocument` into a `PDF`
  */

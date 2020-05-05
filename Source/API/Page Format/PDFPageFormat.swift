@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/16.
 //
 
+import UIKit
+
 /**
  * Source for page sizes: https://www.papersizes.org
  * All sizes are calculated using 72 points/inch

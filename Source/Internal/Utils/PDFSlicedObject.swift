@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 06.01.20.
 //
 
-import Foundation
+import UIKit
 
 internal class PDFSlicedObject: PDFRenderObject {
 

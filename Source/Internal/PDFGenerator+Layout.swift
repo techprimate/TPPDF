@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
+import UIKit
+
 /**
  Extends the generator with shorthand methods for accessing and modifying the layout
  */

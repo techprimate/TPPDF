@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  All renderable objects subclass from this object.
  Each object is first calculated and then drawn.

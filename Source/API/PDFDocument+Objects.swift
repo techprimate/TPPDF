@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  This extension contains all functions to modify the objects of a document
  */
