@@ -11,41 +11,18 @@ import UIKit
 
 class ExamplesListViewController: UITableViewController {
 
-    let factories: [[(String, ExampleFactory)]] = [
-        [
-            ("List", ListExampleFactory()),
-            ("Images", ImageExampleFactory()),
-            ("Groups", GroupExampleFactory()),
-            ("Table", TableExampleFactory()),
-            ("Lines", LineSeparatorExampleFactory()),
-            ("Text", TextExampleFactory()),
-            ("Table of Contents", TableOfContentsExampleFactory()),
-            ("Header & Footer", HeaderFooterExampleFactory()),
-            ("Multi Section", MultiSectionExampleFactory()),
-            ("Multi Documents", MultipleDocumentsExampleFactory()),
-            ("Metadata", MetadataExampleFactory()),
-            ("Pagination", PaginationExampleFactory()),
-            ("Text Styles", TextStylesExampleFactory()),
-            ("External Documents", ExternalDocumentExampleFactory()),
-            ("Object Attributes", ObjectAttributesExampleFactory())
-        ],
-        [
-            ("Experiment", ExperimentFactory()),
-        ]
-    ]
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return factories.count
+        return Examples.factories.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return factories[section].count
+        return Examples.factories[section].count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "example-cell", for: indexPath)
 
-        let section = factories[indexPath.section]
+        let section = Examples.factories[indexPath.section]
         let item = section[indexPath.row]
 
         cell.textLabel?.text = item.0
@@ -60,7 +37,7 @@ class ExamplesListViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show-example", let dest = segue.destination as? ViewController, let index = sender as? IndexPath  {
-            let section = factories[index.section]
+            let section = Examples.factories[index.section]
             let item = section[index.row]
 
             dest.exampleFactory = item.1
