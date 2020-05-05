@@ -100,7 +100,7 @@ public class PDFList: PDFDocumentObject, PDFJSONSerializable {
      */
     internal var copy: PDFList {
         let list = PDFList(indentations: self.levelIndentations)
-        list.items = items.map { $0.copy }
+        list.items = items.map(\.copy)
         return list
     }
 }

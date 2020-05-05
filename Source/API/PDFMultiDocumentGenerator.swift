@@ -51,7 +51,7 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     public init(documents: [PDFDocument] = []) {
         assert(!documents.isEmpty, "At least one document is required!")
         self.generators = documents.map(PDFGenerator.init(document:))
-        self.progresses = self.generators.map { $0.progress }
+        self.progresses = self.generators.map(\.progress)
 
         self.bounds = documents.first?.layout.bounds ?? .zero
         self.info = documents.first?.info ?? PDFInfo()

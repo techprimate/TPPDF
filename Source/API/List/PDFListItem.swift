@@ -93,9 +93,7 @@ extension PDFListItem: PDFJSONSerializable {
         representation["symbol"] = symbol.JSONRepresentation
 
         if let children = children {
-            let result = children.map { child -> AnyObject in
-                 child.JSONRepresentation
-                } as AnyObject
+            let result = children.map(\.JSONRepresentation) as AnyObject
 
             representation["children"] = result
         }

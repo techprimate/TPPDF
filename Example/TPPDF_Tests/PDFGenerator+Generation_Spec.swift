@@ -222,7 +222,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         headingStyle1,
                         headingStyle2,
                         headingStyle3
-                        ].map { return WeakPDFTextStyleRef(value: $0) }
+                        ].map(WeakPDFTextStyleRef.init(value:))
 
                     let textObjects = [
                         PDFSimpleText(text: "Heading 1", style: headingStyle1),

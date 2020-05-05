@@ -31,7 +31,7 @@ public class PDFTableOfContent: PDFDocumentObject, PDFJSONSerializable {
      TODO: Documentation
      */
     public init(styles: [PDFTextStyle], symbol: PDFListItemSymbol) {
-        self.styles = styles.map { WeakPDFTextStyleRef(value: $0) }
+        self.styles = styles.map(WeakPDFTextStyleRef.init(value:))
         self.symbol = symbol
     }
 

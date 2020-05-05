@@ -91,13 +91,13 @@ public struct Stack<T> {
 extension Stack: CustomStringConvertible where T: CustomStringConvertible {
 
     public var description: String {
-        array.map({ $0.description }).joined(separator: "\n")
+        array.map(\.description).joined(separator: "\n")
     }
 }
 
 extension Stack: CustomDebugStringConvertible where T: CustomDebugStringConvertible {
 
     public var debugDescription: String {
-        array.map({ $0.debugDescription }).joined(separator: "\n")
+        array.map(\.debugDescription).joined(separator: "\n")
     }
 }
