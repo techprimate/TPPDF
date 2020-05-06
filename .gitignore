@@ -34,11 +34,14 @@ playground.xcworkspace
 
 # Swift Package Manager
 .build/
-
+Example*/ManifestLoading
+Example*/checkouts
+Example*/dependencies-state.json
+Example*/manifest.db
+Exampl*/repositories
 # Carthage
-Example iOS-Carthage/Carthage
-Carthage/Build
-derived_data
+Example*/Carthage
+Example*/derived_data
 
 # Cocoapods
 Example*/Pods/Local Podspecs
