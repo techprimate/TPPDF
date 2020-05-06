@@ -36,6 +36,7 @@ playground.xcworkspace
 .build/
 
 # Carthage
+Example iOS-Carthage/Carthage
 Carthage/Build
 derived_data
 

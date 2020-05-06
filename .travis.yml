@@ -41,7 +41,7 @@ jobs:
       script:
       - set -o pipefail
       - ls -la
-      - cd ${ROOT_FOLDER}
+      - cd "${ROOT_FOLDER}"
       - xcodebuild -resolvePackageDependencies
                    -project ${PROJECT}
                    -scheme ${EXAMPLE_SCHEME}
