@@ -4,19 +4,17 @@ language: objective-c
 cache:
   bundler: true
   cocoapods: true
-podfile: Example iOS-Cocoapods/Podfile
 jobs:
   include:
     - language: objective-c
+      podfile: "Example iOS-Cocoapods/Podfile"
       env:
-        global:
-          - WORKSPACE=Example iOS-Cocoapods/TPPDF.xcworkspace
-          - PROJECT=Example iOS-Cocoapods/TPPDF.xcodeproj
-          - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
-          - EXAMPLE_SCHEME="TPPDF-Example"
-          - SOURCE_FOLDER="Source"
-        matrix:
-          - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
+      - WORKSPACE="Example iOS-Cocoapods/TPPDF.xcworkspace"
+      - PROJECT="Example iOS-Cocoapods/TPPDF.xcodeproj"
+      - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
+      - EXAMPLE_SCHEME="TPPDF-Example"
+      - SOURCE_FOLDER="Source"
+      - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
       install:
       - bundle install
       - bundle exec pod install --project-directory=Example
