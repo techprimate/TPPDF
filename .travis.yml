@@ -1,14 +1,13 @@
 os: osx
 osx_image: xcode11.4
-language: objective-c
-cache:
-  bundler: true
-  cocoapods: true
 env:
   - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
 jobs:
   include:
     - language: objective-c
+      cache:
+        bundler: true
+        cocoapods: true
       podfile: "Example iOS-Cocoapods/Podfile"
       env:
       - ROOT_FOLDER="Example iOS-Cocoapods"
