@@ -50,6 +50,7 @@ jobs:
       - EXAMPLE_SCHEME="TPPDF-Example"
       script:
       - set -o pipefail
+      - set -ex
       - cd "${ROOT_FOLDER}"
       - xcodebuild -resolvePackageDependencies
                    -project ${PROJECT}
