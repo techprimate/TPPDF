@@ -31,7 +31,7 @@ jobs:
       - bundle exec pod lib lint --allow-warnings
     - language: objective-c
       env:
-      - ROOT_FOLDER=Example iOS-SwiftPM
+      - ROOT_FOLDER="Example iOS-SwiftPM"
       - PROJECT="TPPDF.xcodeproj"
       - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
       - EXAMPLE_SCHEME="TPPDF-Example"
