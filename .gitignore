@@ -41,15 +41,14 @@ Carthage/Build
 derived_data
 
 # Cocoapods
-Example/Pods/Local Podspecs
-Example/Pods/Nimble
-Example/Pods/Quick
-Example/Pods/Swiftlint
+Example*/Pods/Local Podspecs
+Example*/Pods/Nimble
+Example*/Pods/Quick
+Example*/Pods/Swiftlint
 
 # Swift Package Manager
 .swiftpm
 
 # Xcode Schemes, so Carthage doesn't complain
-!Example/Pods/Pods.xcodeproj/xcshareddata/xcschemes/TPPDF.xcscheme
-!Example/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF-Example.xcscheme
-!Example/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF_Tests.xcscheme
+!Example iOS-SwiftPM/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF_Tests.xcscheme
+!Example iOS-SwiftPM/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF-Example.xcscheme
