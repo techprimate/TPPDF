@@ -1,7 +1,11 @@
 os: osx
 osx_image: xcode11.4
+language: objective-c
+
 env:
-  - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
+  global:
+    - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
+
 jobs:
   include:
     - language: objective-c
@@ -36,6 +40,7 @@ jobs:
       - EXAMPLE_SCHEME="TPPDF-Example"
       script:
       - set -o pipefail
+      - ls -la
       - cd ${ROOT_FOLDER}
       - xcodebuild -resolvePackageDependencies
                    -project ${PROJECT}
