@@ -4,29 +4,56 @@ language: objective-c
 cache:
   bundler: true
   cocoapods: true
+env:
+  - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
 jobs:
   include:
     - language: objective-c
       podfile: "Example iOS-Cocoapods/Podfile"
       env:
-      - WORKSPACE="Example iOS-Cocoapods/TPPDF.xcworkspace"
-      - PROJECT="Example iOS-Cocoapods/TPPDF.xcodeproj"
-      - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
+      - ROOT_FOLDER="Example iOS-Cocoapods"
+      - WORKSPACE="${ROOT_FOLDER}/TPPDF.xcworkspace"
+      - PROJECT="${ROOT_FOLDER}/TPPDF.xcodeproj"
       - EXAMPLE_SCHEME="TPPDF-Example"
-      - SOURCE_FOLDER="Source"
-      - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
       install:
       - bundle install
       - bundle exec pod install --project-directory=Example
       script:
       - set -o pipefail
-      - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data ONLY_ACTIVE_ARCH=YES build | xcpretty
+      - xcodebuild -workspace "$WORKSPACE"
+                   -scheme "$EXAMPLE_SCHEME"
+                   -sdk iphonesimulator
+                   -destination "$DESTINATION"
+                   -configuration Debug
+                   -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                   ONLY_ACTIVE_ARCH=YES
+                   build | xcpretty
       - bundle exec pod lib lint --allow-warnings
     - language: objective-c
+      env:
+      - ROOT_FOLDER=Example iOS-SwiftPM
+      - PROJECT="TPPDF.xcodeproj"
+      - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
+      - EXAMPLE_SCHEME="TPPDF-Example"
       script:
       - set -o pipefail
-      - echo "HI"
+      - cd ${ROOT_FOLDER}
+      - xcodebuild -resolvePackageDependencies
+                   -project ${PROJECT}
+                   -scheme ${EXAMPLE_SCHEME}
+                   -clonedSourcePackagesDirPath .
+                   -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                   -configuration Debug
+      - xcodebuild -project ${PROJECT}
+                   -scheme ${EXAMPLE_SCHEME}
+                   -clonedSourcePackagesDirPath .
+                   -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                   -sdk iphonesimulator
+                   -destination ${DESTINATION}
+                   -configuration Debug
+                   ONLY_ACTIVE_ARCH=YES
+                   build | xcpretty
+
 after_success:
 - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verbose
-- bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X
-  xcode
+- bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X xcode
