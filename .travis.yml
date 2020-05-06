@@ -17,7 +17,7 @@ jobs:
       - EXAMPLE_SCHEME="TPPDF-Example"
       install:
       - bundle install
-      - bundle exec pod install --project-directory=Example
+      - bundle exec pod install --project-directory=${ROOT_FOLDER}
       script:
       - set -o pipefail
       - xcodebuild -workspace "$WORKSPACE"
