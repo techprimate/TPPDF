@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/techprimate/TPPDF'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Philip Niedertscheider' => 'phil@techprimate.com' }
+  s.author           = { 'Philip Niedertscheider' => 'me@philpri.me' }
   s.source           = { :git => 'https://github.com/Techprimate/TPPDF.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/techprimate'
 
