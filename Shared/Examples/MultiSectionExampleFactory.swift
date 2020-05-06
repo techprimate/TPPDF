@@ -7,6 +7,7 @@
 //
 
 import TPPDF
+import UIKit
 
 class MultiSectionExampleFactory: ExampleFactory {
 

@@ -16,6 +16,6 @@ public extension String {
      TODO: Documentation
      */
     func toPDFTableContent() -> PDFTableContent {
-        return PDFTableContent(type: .string, content: self)
+        PDFTableContent(type: .string, content: self)
     }
 }

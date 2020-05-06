@@ -6,6 +6,7 @@
 //  Copyright © 2019 techprimate GmbH & Co. KG. All rights reserved.
 //
 
+import UIKit
 import TPPDF
 
 class PaginationExampleFactory: ExampleFactory {
