@@ -14,7 +14,6 @@ import Nimble
 class PDFGraphics_Spec : QuickSpec {
 
     override func spec() {
-
         describe("PDFGraphics") {
 
             it("can not create an none path") {
