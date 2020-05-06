@@ -39,6 +39,7 @@ jobs:
       - brew update
       - brew outdated carthage || brew upgrade carthage
       before_script:
+      - cd "${ROOT_FOLDER}"
       - carthage bootstrap
       script:
       - set -o pipefail
@@ -50,7 +51,6 @@ jobs:
       - EXAMPLE_SCHEME="TPPDF-Example"
       script:
       - set -o pipefail
-      - set -ex
       - cd "${ROOT_FOLDER}"
       - xcodebuild -resolvePackageDependencies
                    -project ${PROJECT}
