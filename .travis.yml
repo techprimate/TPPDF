@@ -47,7 +47,7 @@ jobs:
       env:
       - ROOT_FOLDER="Example iOS-SwiftPM"
       - PROJECT="TPPDF.xcodeproj"
-      - TEST_FRAMEWORK_SCHEME="TPPDF"
+      - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
       - EXAMPLE_SCHEME="TPPDF-Example"
       script:
       - set -o pipefail
