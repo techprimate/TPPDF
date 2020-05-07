@@ -56,10 +56,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D49CB2DC21C7EAD200CDCE70"
-               BuildableName = "TPPDF_Tests.xctest"
-               BlueprintName = "TPPDF_Tests"
-               ReferencedContainer = "container:TPPDF.xcodeproj">
+               BlueprintIdentifier = "TPPDFTests"
+               BuildableName = "TPPDFTests"
+               BlueprintName = "TPPDFTests"
+               ReferencedContainer = "container:..">
             </BuildableReference>
          </TestableReference>
       </Testables>
