@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- TODO: Documentation
+ Type alias for weak references to document wide text styles
  */
 internal typealias WeakPDFTextStyleRef = WeakRef<PDFTextStyle>
 
