@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

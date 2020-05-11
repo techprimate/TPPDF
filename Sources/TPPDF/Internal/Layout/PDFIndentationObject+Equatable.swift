@@ -1,0 +1,28 @@
+//
+//  PDFIndentationObject+Equatable.swift
+//  TPPDF
+//
+//  Created by Philip Niedertscheider on 14/11/2017.
+//
+import Foundation
+import UIKit
+import CoreGraphics
+
+/**
+ TODO: documentation
+ */
+extension PDFIndentationObject: Equatable {
+
+    /**
+     TODO: documentation
+     */
+    public static func == (lhs: PDFIndentationObject, rhs: PDFIndentationObject) -> Bool {
+        guard lhs.indentation == rhs.indentation else {
+            return false
+        }
+        guard lhs.left == rhs.left else {
+            return false
+        }
+        return true
+    }
+}

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreGraphics
 
 class ExamplesListViewController: UITableViewController {
 

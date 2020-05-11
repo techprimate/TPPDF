@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreGraphics
 import TPPDF
 
 class ViewController: UIViewController {
