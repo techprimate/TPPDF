@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AE6039D65546B2A47BFAE42 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CBAD4B39E24EF1764F1983 /* Pods_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		CF47E2C896755EEBB565F599 /* Pods_TPPDF_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 228315A696D0090B5599B3C4 /* Pods_TPPDF_Example.framework */; };
 		D49855392461FB0B00D54270 /* ExampleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855182461FB0B00D54270 /* ExampleFactory.swift */; };
 		D498553A2461FB0B00D54270 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855192461FB0B00D54270 /* TimeUtils.swift */; };
 		D498553B2461FB0B00D54270 /* LoremIpsum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D498551A2461FB0B00D54270 /* LoremIpsum.swift */; };
@@ -45,16 +45,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		228315A696D0090B5599B3C4 /* Pods_TPPDF_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPPDF_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A563E64F9EAA2CFA08F14DB /* Pods-TPPDF_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.release.xcconfig"; path = "Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.release.xcconfig"; sourceTree = "<group>"; };
 		53E4A2A5504D7EA42E9FAB88 /* Pods-TPPDF_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPPDF_Example.debug.xcconfig"; path = "Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		607FACD01AFB9204008FA782 /* TPPDF_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPPDF_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD01AFB9204008FA782 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		92CBAD4B39E24EF1764F1983 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D49855182461FB0B00D54270 /* ExampleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleFactory.swift; sourceTree = "<group>"; };
 		D49855192461FB0B00D54270 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		D498551A2461FB0B00D54270 /* LoremIpsum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoremIpsum.swift; sourceTree = "<group>"; };
@@ -84,6 +84,8 @@
 		D49855382461FB0B00D54270 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D49855552461FB9A00D54270 /* Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
 		D4D28D2223AA1A6D00028D5A /* ExamplesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesListViewController.swift; sourceTree = "<group>"; };
+		D64C495E25CC3359766E02CE /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		EFCAB3FEC631A49F5625B2A1 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF47E2C896755EEBB565F599 /* Pods_TPPDF_Example.framework in Frameworks */,
+				1AE6039D65546B2A47BFAE42 /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +105,8 @@
 			children = (
 				53E4A2A5504D7EA42E9FAB88 /* Pods-TPPDF_Example.debug.xcconfig */,
 				4A563E64F9EAA2CFA08F14DB /* Pods-TPPDF_Example.release.xcconfig */,
+				EFCAB3FEC631A49F5625B2A1 /* Pods-Example.debug.xcconfig */,
+				D64C495E25CC3359766E02CE /* Pods-Example.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -120,7 +124,7 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD01AFB9204008FA782 /* TPPDF_Example.app */,
+				607FACD01AFB9204008FA782 /* Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,8 +137,7 @@
 				D4B0D6C524629CBB00493C91 /* Assets */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
-			name = Example;
-			path = TPPDF;
+			path = Example;
 			sourceTree = "<group>";
 		};
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
@@ -148,7 +151,7 @@
 		9B6E20EC5D56BBD192BCBFFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				228315A696D0090B5599B3C4 /* Pods_TPPDF_Example.framework */,
+				92CBAD4B39E24EF1764F1983 /* Pods_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -254,9 +257,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		607FACCF1AFB9204008FA782 /* TPPDF_Example */ = {
+		607FACCF1AFB9204008FA782 /* Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "TPPDF_Example" */;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
 				E638F0EEF355F6576E268BF8 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
@@ -269,9 +272,9 @@
 			);
 			dependencies = (
 			);
-			name = TPPDF_Example;
+			name = Example;
 			productName = TPPDF;
-			productReference = 607FACD01AFB9204008FA782 /* TPPDF_Example.app */;
+			productReference = 607FACD01AFB9204008FA782 /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -291,7 +294,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "TPPDF" */;
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Example" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -304,7 +307,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				607FACCF1AFB9204008FA782 /* TPPDF_Example */,
+				607FACCF1AFB9204008FA782 /* Example */,
 			);
 		};
 /* End PBXProject section */
@@ -337,7 +340,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/TPPDF/TPPDF.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -346,7 +349,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TPPDF_Example/Pods-TPPDF_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D4E6F9A21FA732720049890F /* Swift Lint */ = {
@@ -378,7 +381,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TPPDF_Example-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -549,7 +552,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53E4A2A5504D7EA42E9FAB88 /* Pods-TPPDF_Example.debug.xcconfig */;
+			baseConfigurationReference = EFCAB3FEC631A49F5625B2A1 /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -558,7 +561,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
-				INFOPLIST_FILE = TPPDF/Info.plist;
+				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techprimate.tppdf.example;
@@ -570,7 +573,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A563E64F9EAA2CFA08F14DB /* Pods-TPPDF_Example.release.xcconfig */;
+			baseConfigurationReference = D64C495E25CC3359766E02CE /* Pods-Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -579,7 +582,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
-				INFOPLIST_FILE = TPPDF/Info.plist;
+				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techprimate.tppdf.example;
@@ -592,7 +595,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "TPPDF" */ = {
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACED1AFB9204008FA782 /* Debug */,
@@ -601,7 +604,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "TPPDF_Example" */ = {
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,

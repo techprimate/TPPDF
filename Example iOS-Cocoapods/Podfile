@@ -3,6 +3,6 @@ source 'https://cdn.cocoapods.org/'
 platform :ios, "9.0"
 use_frameworks!
 
-target "TPPDF_Example" do
+target "Example" do
     pod "TPPDF", :path => "../"
 end

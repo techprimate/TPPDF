@@ -44,7 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		607FACD01AFB9204008FA782 /* TPPDF_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPPDF_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD01AFB9204008FA782 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD01AFB9204008FA782 /* TPPDF_Example.app */,
+				607FACD01AFB9204008FA782 /* Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,8 +117,7 @@
 				D4B0D6C524629CBB00493C91 /* Assets */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
-			name = Example;
-			path = TPPDF;
+			path = Example;
 			sourceTree = "<group>";
 		};
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
@@ -127,6 +126,7 @@
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = Example;
 			sourceTree = "<group>";
 		};
 		D49855162461FB0B00D54270 /* Shared */ = {
@@ -230,9 +230,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		607FACCF1AFB9204008FA782 /* TPPDF_Example */ = {
+		607FACCF1AFB9204008FA782 /* Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "TPPDF_Example" */;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
 				607FACCC1AFB9204008FA782 /* Sources */,
 				D4E6F9A21FA732720049890F /* Swift Lint */,
@@ -243,11 +243,11 @@
 			);
 			dependencies = (
 			);
-			name = TPPDF_Example;
+			name = Example;
 			packageProductDependencies = (
 			);
 			productName = TPPDF;
-			productReference = 607FACD01AFB9204008FA782 /* TPPDF_Example.app */;
+			productReference = 607FACD01AFB9204008FA782 /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -267,7 +267,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "TPPDF" */;
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Example" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -282,7 +282,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				607FACCF1AFB9204008FA782 /* TPPDF_Example */,
+				607FACCF1AFB9204008FA782 /* Example */,
 			);
 		};
 /* End PBXProject section */
@@ -495,7 +495,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
-				INFOPLIST_FILE = TPPDF/Info.plist;
+				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techprimate.tppdf.example;
@@ -515,7 +515,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
-				INFOPLIST_FILE = TPPDF/Info.plist;
+				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techprimate.tppdf.example;
@@ -528,7 +528,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "TPPDF" */ = {
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACED1AFB9204008FA782 /* Debug */,
@@ -537,7 +537,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "TPPDF_Example" */ = {
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,

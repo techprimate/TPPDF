@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1100"
+   LastUpgradeVersion = "1140"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20C3D02EDAA6B704305176D70E9E143C"
-               BuildableName = "TPPDF.framework"
+               BlueprintIdentifier = "TPPDF"
+               BuildableName = "TPPDF"
                BlueprintName = "TPPDF"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+               ReferencedContainer = "container:..">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,6 +47,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "TPPDF"
+            BuildableName = "TPPDF"
+            BlueprintName = "TPPDF"
+            ReferencedContainer = "container:..">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
