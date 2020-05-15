@@ -43,6 +43,7 @@ Exampl*/repositories
 # Carthage
 Example*/Carthage
 Example*/derived_data
+Example*/Cartfile.resolved
 
 # Cocoapods
 Example*/Pods
