@@ -15,9 +15,9 @@ jobs:
       podfile: "Example iOS-Cocoapods/Podfile"
       env:
       - ROOT_FOLDER="Example iOS-Cocoapods"
-      - WORKSPACE="${ROOT_FOLDER}/TPPDF.xcworkspace"
-      - PROJECT="${ROOT_FOLDER}/TPPDF.xcodeproj"
-      - EXAMPLE_SCHEME="TPPDF-Example"
+      - WORKSPACE="${ROOT_FOLDER}/Example.xcworkspace"
+      - PROJECT="${ROOT_FOLDER}/Examplexcodeproj"
+      - EXAMPLE_SCHEME="Example"
       install:
       - bundle install
       - bundle exec pod install --project-directory="${ROOT_FOLDER}"
@@ -40,7 +40,7 @@ jobs:
       - brew outdated carthage || brew upgrade carthage
       before_script:
       - cd "${ROOT_FOLDER}"
-      - ./update_cartfile_ci.sh
+      - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
       - carthage update
       - carthage bootstrap
       script:
@@ -48,9 +48,9 @@ jobs:
     - language: objective-c
       env:
       - ROOT_FOLDER="Example iOS-SwiftPM"
-      - PROJECT="TPPDF.xcodeproj"
-      - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
-      - EXAMPLE_SCHEME="TPPDF-Example"
+      - PROJECT="Example.xcodeproj"
+      - TEST_FRAMEWORK_SCHEME="Example"
+      - EXAMPLE_SCHEME="Example"
       script:
       - set -o pipefail
       - cd "${ROOT_FOLDER}"
