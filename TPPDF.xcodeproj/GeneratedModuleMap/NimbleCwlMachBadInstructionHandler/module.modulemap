@@ -1,4 +1,4 @@
 module NimbleCwlMachBadInstructionHandler {
-    umbrella "/Volumes/Developer/TPPDF/.build/checkouts/Nimble/Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/include"
+    umbrella "../../../.build/checkouts/Nimble/Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/include"
     export *
 }
