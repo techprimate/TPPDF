@@ -22,7 +22,7 @@ jobs:
       - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
       - PROJECT="TPPDF.xcodeproj"
       before_script:
-      - set -euo pipefail
+      - set -eo pipefail
       script:
       - xcodebuild -resolvePackageDependencies
                    -project ${PROJECT}
@@ -53,10 +53,9 @@ jobs:
       - bundle install
       - bundle exec pod install --project-directory="${ROOT_FOLDER}"
       before_script:
-      - set -euo pipefail
+      - set -eo pipefail
       - cd "${ROOT_FOLDER}"
       script:
-      - set -o pipefail
       - xcodebuild -workspace "$WORKSPACE"
                    -scheme "$EXAMPLE_SCHEME"
                    -sdk iphonesimulator
@@ -76,7 +75,7 @@ jobs:
       - brew update
       - brew outdated carthage || brew upgrade carthage
       before_script:
-      - set -euo pipefail
+      - set -eo pipefail
       - cd "${ROOT_FOLDER}"
       - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
       - carthage update --platform ios
@@ -96,7 +95,7 @@ jobs:
       env:
       - ROOT_FOLDER="Example iOS-SwiftPM"
       before_script:
-      - set -euo pipefail
+      - set -eo pipefail
       - cd "${ROOT_FOLDER}"
       script:
       - xcodebuild -resolvePackageDependencies
