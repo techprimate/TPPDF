@@ -39,11 +39,13 @@ Example*/checkouts
 Example*/dependencies-state.json
 Example*/manifest.db
 Exampl*/repositories
+
 # Carthage
 Example*/Carthage
 Example*/derived_data
 
 # Cocoapods
+Example*/Pods
 Example*/Pods/Local Podspecs
 Example*/Pods/Nimble
 Example*/Pods/Quick
