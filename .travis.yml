@@ -41,7 +41,7 @@ jobs:
                    test | xcpretty
 
     - stage: Examples
-      name: "Example iOS Swift - Cocoapods"
+      name: "Example iOS - Cocoapods"
       language: objective-c
       cache:
         bundler: true
