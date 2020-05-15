@@ -56,5 +56,5 @@ Example*/Pods/Swiftlint
 .swiftpm
 
 # Xcode Schemes, so Carthage doesn't complain
-!Example iOS-SwiftPM/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF.xcscheme
-!Example iOS-SwiftPM/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF-Example.xcscheme
+!Example iOS/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF.xcscheme
+!Example iOS/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF-Example.xcscheme
