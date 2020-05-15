@@ -40,6 +40,7 @@ jobs:
       - brew outdated carthage || brew upgrade carthage
       before_script:
       - cd "${ROOT_FOLDER}"
+      - ./update_cartfile_ci.sh
       - carthage bootstrap
       script:
       - set -o pipefail
