@@ -18,9 +18,13 @@ jobs:
     - stage: Tests
       name: "Unit Tests"
       language: objective-c
+      cache:
+        bundler: true
       env:
       - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
       - PROJECT="TPPDF.xcodeproj"
+      install:
+      - bundle install
       before_script:
       - set -eo pipefail
       script:
