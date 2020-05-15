@@ -15,12 +15,15 @@ jobs:
       podfile: "Example iOS-Cocoapods/Podfile"
       env:
       - ROOT_FOLDER="Example iOS-Cocoapods"
-      - WORKSPACE="${ROOT_FOLDER}/Example.xcworkspace"
-      - PROJECT="${ROOT_FOLDER}/Examplexcodeproj"
+      - WORKSPACE="Example.xcworkspace"
+      - PROJECT="Example.xcodeproj"
       - EXAMPLE_SCHEME="Example"
       install:
       - bundle install
       - bundle exec pod install --project-directory="${ROOT_FOLDER}"
+      before_script:
+      - set -euo pipefail
+      - cd "${ROOT_FOLDER}"
       script:
       - set -o pipefail
       - xcodebuild -workspace "$WORKSPACE"
@@ -35,25 +38,36 @@ jobs:
     - language: objective-c
       env:
       - ROOT_FOLDER="Example iOS-Carthage"
+      - WORKSPACE="Example.xcworkspace"
+      - PROJECT="Examplexcodeproj"
+      - EXAMPLE_SCHEME="Example"
       before_install:
       - brew update
       - brew outdated carthage || brew upgrade carthage
       before_script:
+      - set -euo pipefail
       - cd "${ROOT_FOLDER}"
       - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
-      - carthage update
-      - carthage bootstrap
+      - carthage update --platform ios
       script:
-      - set -o pipefail
+      - xcodebuild -workspace "$WORKSPACE"
+                   -scheme "$EXAMPLE_SCHEME"
+                   -sdk iphonesimulator
+                   -destination "$DESTINATION"
+                   -configuration Debug
+                   -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                   ONLY_ACTIVE_ARCH=YES
+                   build | xcpretty
     - language: objective-c
       env:
       - ROOT_FOLDER="Example iOS-SwiftPM"
       - PROJECT="Example.xcodeproj"
       - TEST_FRAMEWORK_SCHEME="Example"
       - EXAMPLE_SCHEME="Example"
-      script:
-      - set -o pipefail
+      before_script:
+      - set -euo pipefail
       - cd "${ROOT_FOLDER}"
+      script:
       - xcodebuild -resolvePackageDependencies
                    -project ${PROJECT}
                    -scheme ${EXAMPLE_SCHEME}
