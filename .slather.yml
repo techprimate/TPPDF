@@ -1,7 +1,6 @@
 coverage_service: cobertura_xml
-xcodeproj: Example/TPPDF.xcodeproj
-scheme: TPPDF-Example
-workspace: Example/TPPDF.xcworkspace
+xcodeproj: TPPDF.xcodeproj
+scheme: TPPDF-Package
 source_directory: Source
 configuration: Debug
 binary_basename: TPPDF
