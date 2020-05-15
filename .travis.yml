@@ -16,6 +16,7 @@ stages:
 jobs:
   include:
     - stage: Tests
+      name: "Unit Tests"
       language: objective-c
       env:
       - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
@@ -40,6 +41,7 @@ jobs:
                    test | xcpretty
 
     - stage: Examples
+      name: "Example iOS Swift - Cocoapods"
       language: objective-c
       cache:
         bundler: true
@@ -66,6 +68,7 @@ jobs:
       - bundle exec pod lib lint --allow-warnings
 
     - stage: Examples
+      name: "Example iOS - Carthage"
       language: objective-c
       env:
       - ROOT_FOLDER="Example iOS-Carthage"
@@ -88,6 +91,7 @@ jobs:
                    build | xcpretty
 
     - stage: Examples
+      name: "Example iOS - Swift PM"
       language: objective-c
       env:
       - ROOT_FOLDER="Example iOS-SwiftPM"
