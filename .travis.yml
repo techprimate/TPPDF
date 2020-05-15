@@ -24,12 +24,7 @@ jobs:
       before_script:
       - set -eo pipefail
       script:
-      - xcodebuild -resolvePackageDependencies
-                   -project ${PROJECT}
-                   -scheme ${TEST_FRAMEWORK_SCHEME}
-                   -clonedSourcePackagesDirPath .
-                   -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                   -configuration Debug | xcpretty
+      - swift package resolve
       - xcodebuild -project ${PROJECT}
                    -scheme ${TEST_FRAMEWORK_SCHEME}
                    -clonedSourcePackagesDirPath .
@@ -38,7 +33,7 @@ jobs:
                    -destination "${DESTINATION}"
                    -configuration Debug
                    ONLY_ACTIVE_ARCH=YES
-                   test | xcpretty
+                   test | bundle exec xcpretty
 
     - stage: Examples
       name: "Example iOS - Cocoapods"
@@ -63,7 +58,7 @@ jobs:
                    -configuration Debug
                    -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                    ONLY_ACTIVE_ARCH=YES
-                   build | xcpretty
+                   build | bundle exec xcpretty
       - bundle exec pod lib lint --allow-warnings
 
     - stage: Examples
@@ -87,7 +82,7 @@ jobs:
                    -configuration Debug
                    -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                    ONLY_ACTIVE_ARCH=YES
-                   build | xcpretty
+                   build | bundle exec xcpretty
 
     - stage: Examples
       name: "Example iOS - Swift PM"
@@ -103,7 +98,7 @@ jobs:
                    -scheme ${EXAMPLE_SCHEME}
                    -clonedSourcePackagesDirPath .
                    -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                   -configuration Debug | xcpretty
+                   -configuration Debug | bundle exec xcpretty
       - xcodebuild -project ${PROJECT}
                    -scheme ${EXAMPLE_SCHEME}
                    -clonedSourcePackagesDirPath .
@@ -112,7 +107,7 @@ jobs:
                    -destination "${DESTINATION}"
                    -configuration Debug
                    ONLY_ACTIVE_ARCH=YES
-                   build | xcpretty
+                   build | bundle exec xcpretty
       - xcodebuild -project ${PROJECT}
                    -scheme ${TEST_FRAMEWORK_SCHEME}
                    -clonedSourcePackagesDirPath .
@@ -121,7 +116,7 @@ jobs:
                    -destination "${DESTINATION}"
                    -configuration Debug
                    ONLY_ACTIVE_ARCH=YES
-                   test | xcpretty
+                   test | bundle exec xcpretty
 
 after_success:
 - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verbose
