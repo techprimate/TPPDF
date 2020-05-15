@@ -5,19 +5,48 @@ language: objective-c
 env:
   global:
     - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
+    - WORKSPACE="Example.xcworkspace"
+    - PROJECT="Example.xcodeproj"
+    - EXAMPLE_SCHEME="Example"
+
+stages:
+  - Tests
+  - Examples
 
 jobs:
   include:
-    - language: objective-c
+    - stage: Tests
+      language: objective-c
+      env:
+      - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
+      - PROJECT="TPPDF.xcodeproj"
+      before_script:
+      - set -euo pipefail
+      script:
+      - xcodebuild -resolvePackageDependencies
+                   -project ${PROJECT}
+                   -scheme ${TEST_FRAMEWORK_SCHEME}
+                   -clonedSourcePackagesDirPath .
+                   -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                   -configuration Debug | xcpretty
+      - xcodebuild -project ${PROJECT}
+                   -scheme ${TEST_FRAMEWORK_SCHEME}
+                   -clonedSourcePackagesDirPath .
+                   -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                   -sdk iphonesimulator
+                   -destination "${DESTINATION}"
+                   -configuration Debug
+                   ONLY_ACTIVE_ARCH=YES
+                   test | xcpretty
+
+    - stage: Examples
+      language: objective-c
       cache:
         bundler: true
         cocoapods: true
       podfile: "Example iOS-Cocoapods/Podfile"
       env:
       - ROOT_FOLDER="Example iOS-Cocoapods"
-      - WORKSPACE="Example.xcworkspace"
-      - PROJECT="Example.xcodeproj"
-      - EXAMPLE_SCHEME="Example"
       install:
       - bundle install
       - bundle exec pod install --project-directory="${ROOT_FOLDER}"
@@ -35,12 +64,11 @@ jobs:
                    ONLY_ACTIVE_ARCH=YES
                    build | xcpretty
       - bundle exec pod lib lint --allow-warnings
-    - language: objective-c
+
+    - stage: Examples
+      language: objective-c
       env:
       - ROOT_FOLDER="Example iOS-Carthage"
-      - WORKSPACE="Example.xcworkspace"
-      - PROJECT="Examplexcodeproj"
-      - EXAMPLE_SCHEME="Example"
       before_install:
       - brew update
       - brew outdated carthage || brew upgrade carthage
@@ -58,12 +86,11 @@ jobs:
                    -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                    ONLY_ACTIVE_ARCH=YES
                    build | xcpretty
-    - language: objective-c
+
+    - stage: Examples
+      language: objective-c
       env:
       - ROOT_FOLDER="Example iOS-SwiftPM"
-      - PROJECT="Example.xcodeproj"
-      - TEST_FRAMEWORK_SCHEME="Example"
-      - EXAMPLE_SCHEME="Example"
       before_script:
       - set -euo pipefail
       - cd "${ROOT_FOLDER}"
