@@ -6,57 +6,57 @@
 //
 
 /**
- TODO: Documentation
+ Options for aligning content inside a table cell
  */
 public enum PDFTableCellAlignment {
 
     /**
-     TODO: Documentation
+     Content will be aligned in the top left corner
      */
     case topLeft
 
     /**
-     TODO: Documentation
+     Content will be aligned with the top edge, centered horizontally
      */
     case top
 
     /**
-     TODO: Documentation
+     Content will be aligned in the top right corner
      */
     case topRight
 
     /**
-     TODO: Documentation
+     Content will be aligned with the left edge, centered vertically
      */
     case left
 
     /**
-     TODO: Documentation
+     Content will be centered horizontally & vertically
      */
     case center
 
     /**
-     TODO: Documentation
+     Content will be aligned with the right edge, centered horizontally
      */
     case right
 
     /**
-     TODO: Documentation
+     Content will be aligned in the bottom left corner
      */
     case bottomLeft
 
     /**
-     TODO: Documentation
+     Content will be aligned with the bottom edge, centered horizontally
      */
     case bottom
 
     /**
-     TODO: Documentation
+     Content will be aligned in the top right corner
      */
     case bottomRight
 
     /**
-     Alignment is at the top side
+     Alignment is at the top edge
      */
     internal var isTop: Bool {
         switch self {
