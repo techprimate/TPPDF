@@ -201,8 +201,8 @@ To add an attributed string to the document, you first need to create a `PDFAttr
 
 ```swift
 let attributedTitle = NSMutableAttributedString(string: "Awesome attributed title!", attributes: [
-	NSFontAttributeName : UIFont.systemFontOfSize(28.0),
-	NSForegroundColorAttributeName : UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0, alpha: 1.0)
+	.name: UIFont.systemFontOfSize(28.0),
+	.foreground: UIColor(red: 219.0 / 255.0, green: 100.0 / 255.0, blue: 58.0 / 255.0, alpha: 1.0)
 ])
 let textElement = PDFAttributedText(text: title)
 document.add(attributedTextObject: attributedTitle)
