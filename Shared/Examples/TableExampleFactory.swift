@@ -15,46 +15,23 @@ class TableExampleFactory: ExampleFactory {
         let document = PDFDocument(format: .a4)
 
         // Create a table
-        let table = PDFTable()
+        let table = PDFTable(rows: 10, columns: 4)
 
-        // Tables can contain Strings, Numbers, Images or nil, in case you need an empty cell. If you add a unknown content type, an error will be thrown and the rendering will stop.
-        do {
-            try table.generateCells(
-                data:
-                [
-                    [nil, "Name", "Image", "Description"],
-                    [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
-                    [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
-                    [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
-                    [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
-                    [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
-                    [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
-                    [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
-                    [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
-                    [nil, nil, nil, "Many beautiful places"]
-                ],
-                alignments:
-                [
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-                    [.center, .left, .center, .right],
-            ])
-        } catch PDFError.tableContentInvalid(let value) {
-            // In case invalid input is provided, this error will be thrown.
-
-            print("This type of object is not supported as table content: " + String(describing: (type(of: value))))
-        } catch {
-            // General error handling in case something goes wrong.
-
-            print("Error while creating table: " + error.localizedDescription)
-        }
+        // Tables can contain Strings, Numbers, Images or nil, in case you need an empty cell.
+        // If you add a unknown content type, an assertion will be thrown and the rendering will stop.
+        table.content = [
+            [nil, "Name",      "Image",                        "Description"],
+            [1,   "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
+            [2,   "Forrest",   UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
+            [3,   "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
+            [4,   "Fields",    UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
+            [1,   "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
+            [2,   "Forrest",   UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
+            [3,   "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
+            [4,   "Fields",    UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
+            [nil, nil,         nil,                            "Many beautiful places"]
+        ]
+        table.rows.allRowsAlignment = [.center, .left, .center, .right]
 
         // The widths of each column is proportional to the total width, set by a value between 0.0 and 1.0, representing percentage.
 

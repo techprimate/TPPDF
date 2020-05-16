@@ -8,14 +8,14 @@
 import UIKit
 
 /**
- TODO: Documentation
+ Adds functionality to convert to PDF table content
  */
-public extension UIImage {
+extension UIImage: PDFTableContentable {
 
     /**
-     TODO: Documentation
+     - returns: Instance of `PDFTableContent` of type image, using self as content
      */
-    func toPDFTableContent() -> PDFTableContent {
+    public var asTableContent: PDFTableContent {
         PDFTableContent(type: .image, content: self)
     }
 }

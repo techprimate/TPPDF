@@ -5,17 +5,15 @@
 //  Created by Philip Niedertscheider on 20.12.19.
 //
 
-import Foundation
-
 /**
- TODO: Documentation
+ Adds functionality to convert to PDF table content
  */
-public extension String {
+extension String: PDFTableContentable {
 
     /**
-     TODO: Documentation
+     - returns: Instance of `PDFTableContent` of type string, using self as content
      */
-    func toPDFTableContent() -> PDFTableContent {
+    public var asTableContent: PDFTableContent {
         PDFTableContent(type: .string, content: self)
     }
 }

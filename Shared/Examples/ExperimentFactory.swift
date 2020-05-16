@@ -19,22 +19,22 @@ class ExperimentFactory: ExampleFactory {
         table.padding = 10
 
         for row in 0..<table.size.rows {
-            table[row, 0].content = "\(row)".toPDFTableContent()
+            table[row, 0].content = "\(row)".asTableContent
             for column in 1..<table.size.columns {
-                table[row, column].content = "\(row),\(column)".toPDFTableContent()
+                table[row, column].content = "\(row),\(column)".asTableContent
             }
         }
 
         for i in stride(from: 0, to: 48, by: 3) {
-            table[i...(i + 2), 1].merge(with: PDFTableCell(content: Array(repeating: "\(i),1", count: 3).joined(separator: "\n").toPDFTableContent(),
+            table[i...(i + 2), 1].merge(with: PDFTableCell(content: Array(repeating: "\(i),1", count: 3).joined(separator: "\n").asTableContent,
                                                            alignment: .center))
         }
         for i in stride(from: 1, to: 47, by: 3) {
-            table[i...(i + 2), 2].merge(with: PDFTableCell(content: Array(repeating: "\(i),2", count: 3).joined(separator: "\n").toPDFTableContent(),
+            table[i...(i + 2), 2].merge(with: PDFTableCell(content: Array(repeating: "\(i),2", count: 3).joined(separator: "\n").asTableContent,
                                                            alignment: .center))
         }
         for i in stride(from: 2, to: 48, by: 3) {
-            table[i...(i + 2), 3].merge(with: PDFTableCell(content: Array(repeating: "\(i),3", count: 3).joined(separator: "\n").toPDFTableContent(),
+            table[i...(i + 2), 3].merge(with: PDFTableCell(content: Array(repeating: "\(i),3", count: 3).joined(separator: "\n").asTableContent,
                                                            alignment: .center))
         }
 
@@ -43,7 +43,7 @@ class ExperimentFactory: ExampleFactory {
         let singleCellTable = PDFTable(rows: 1, columns: 1)
         singleCellTable[0,0].content = (0...100).map(String.init)
             .joined(separator: "\n")
-            .toPDFTableContent()
+            .asTableContent
         document.add(table: singleCellTable)
 
         return [document]

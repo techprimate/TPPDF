@@ -103,3 +103,10 @@ public class PDFTableContent: PDFJSONSerializable {
         type == .image ? content as? UIImage : nil
     }
 }
+
+extension PDFTableContent: PDFTableContentable {
+
+    public var asTableContent: PDFTableContent {
+        self
+    }
+}

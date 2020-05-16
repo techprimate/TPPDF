@@ -381,17 +381,7 @@ An instance of `PDFTableCellBorders` allows you set each border of a cell indvid
 To change the style of a specific cell, use the following method of `table`:
 
 ```swift
-do {
-    try table.setCellStyle(row: 1, column: 1, style: PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black)))
-} catch PDFError.tableIndexOutOfBounds(let index, let length){
-    // In case the index is out of bounds
-
-    print("Requested cell is out of bounds! \(index) / \(length)")
-} catch {
-    // General error handling in case something goes wrong.
-
-    print("Error while setting cell style: " + error.localizedDescription)
-}
+table[1,1].style = PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black))
 ```
 
 ##### Table style

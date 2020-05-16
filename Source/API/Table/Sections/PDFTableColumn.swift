@@ -27,22 +27,26 @@ public class PDFTableColumn {
     }
 
     /**
-     Setter method to change the style of all cells in the column
+     Access content of all cells in column or sets a content of a subsection of cells.
+
+     If the bounds of the section is exceeded, when setting new values, an assertion error will be thrown.
      */
-    public var style: PDFTableCellStyle {
-        @available(*, unavailable)
+    public var content: [PDFTableContentable?] {
         get {
-            fatalError("You cannot read from this object.")
+            cells.map(\.content)
         }
         set {
-            cells.forEach({ $0.style = newValue })
+            assert(newValue.count <= cells.count, "Can not access more cells than available")
+            for (idx, cell) in cells.enumerated() {
+                cell.content = newValue[idx]?.asTableContent
+            }
         }
     }
 
     /**
      Setter method to change the content of all cells in the column
      */
-    public var content: PDFTableContent? {
+    public var allCellsContent: PDFTableContent? {
         @available(*, unavailable)
         get {
             fatalError("You cannot read from this object.")
@@ -53,9 +57,56 @@ public class PDFTableColumn {
     }
 
     /**
+     Access content of all cells in column or sets a content of a subsection of cells.
+
+     If the bounds of the section is exceeded, when setting new values, an assertion error will be thrown.
+     */
+    public var style: [PDFTableCellStyle?] {
+        get {
+            cells.map(\.style)
+        }
+        set {
+            assert(newValue.count <= cells.count, "Can not access more cells than available")
+            for (idx, cell) in cells.enumerated() {
+                cell.style = newValue[idx]
+            }
+        }
+    }
+
+    /**
+     Setter method to change the style of all cells in the column
+     */
+    public var allCellsStyle: PDFTableCellStyle? {
+        @available(*, unavailable)
+        get {
+            fatalError("You cannot read from this object.")
+        }
+        set {
+            cells.forEach({ $0.style = newValue })
+        }
+    }
+
+    /**
+     Access content of all cells in column or sets a content of a subsection of cells.
+
+     If the bounds of the section is exceeded, when setting new values, an assertion error will be thrown.
+     */
+    public var alignment: [PDFTableCellAlignment] {
+        get {
+            cells.map(\.alignment)
+        }
+        set {
+            assert(newValue.count <= cells.count, "Can not access more cells than available")
+            for (idx, cell) in cells.enumerated() {
+                cell.alignment = newValue[idx]
+            }
+        }
+    }
+
+    /**
      Setter method to change the content of all cells in the column
      */
-    public var alignment: PDFTableCellAlignment {
+    public var allCellsAlignment: PDFTableCellAlignment {
         @available(*, unavailable)
         get {
             fatalError("You cannot read from this object.")

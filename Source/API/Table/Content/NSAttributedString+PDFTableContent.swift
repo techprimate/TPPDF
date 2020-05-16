@@ -8,14 +8,14 @@
 import Foundation
 
 /**
- TODO: Documentation
+ Adds functionality to convert to PDF table content
  */
-public extension NSAttributedString {
+extension NSAttributedString: PDFTableContentable {
 
     /**
-     TODO: Documentation
+    - returns: Instance of `PDFTableContent` of type attributed string, using self as content
      */
-    func toPDFTableContent() -> PDFTableContent {
+    public var asTableContent: PDFTableContent {
         PDFTableContent(type: .attributedString, content: self)
     }
 }
