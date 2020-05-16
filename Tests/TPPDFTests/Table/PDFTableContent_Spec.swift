@@ -263,7 +263,7 @@ class PDFTableContent_Spec: QuickSpec {
 
                     it("can be converted to content") {
                         let value = "EXAMPLE"
-                        let content = value.toPDFTableContent()
+                        let content = value.asTableContent
                         expect(content.content as? String) == value
                         expect(content.type) == PDFTableContent.ContentType.string
                     }
@@ -273,7 +273,7 @@ class PDFTableContent_Spec: QuickSpec {
 
                     it("can be converted to content") {
                         let attributedString = NSAttributedString(string: "EXAMPLE")
-                        let content = attributedString.toPDFTableContent()
+                        let content = attributedString.asTableContent
                         expect(content.content as? NSAttributedString) == attributedString
                         expect(content.type) == PDFTableContent.ContentType.attributedString
                     }
@@ -283,7 +283,7 @@ class PDFTableContent_Spec: QuickSpec {
 
                     it("can be converted to content") {
                         let image = UIImage()
-                        let content = image.toPDFTableContent()
+                        let content = image.asTableContent
                         expect(content.content as? UIImage).to(be(image))
                         expect(content.type) == PDFTableContent.ContentType.image
                     }

@@ -25,7 +25,7 @@ class PDFTableMergeUtilSpec: QuickSpec {
                 table = PDFTable(rows: ROWS, columns: COLS)
                 for row in 0..<ROWS {
                     for column in 0..<COLS {
-                        table[row, column].content = "\(row),\(column)".toPDFTableContent()
+                        table[row, column].content = "\(row),\(column)".asTableContent
                     }
                 }
             }
