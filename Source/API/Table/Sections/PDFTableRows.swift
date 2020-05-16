@@ -145,7 +145,6 @@ public class PDFTableRows {
         }
     }
 
-
     /**
      Setter method to change the style of all cells in the rows
      */

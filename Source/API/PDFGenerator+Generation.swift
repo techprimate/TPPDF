@@ -88,11 +88,8 @@ extension PDFGenerator {
         }
         resetGenerator()
 
-        layout.margin = document.layout.margin
-
         // Extract content objects
         let contentObjects = PDFGenerator.extractContentObjects(objects: document.objects)
-        let numContentObjects = contentObjects.count
 
         // Extract header & footer objects
         let footers = PDFGenerator.extractFooterObjects(objects: document.objects)
@@ -110,17 +107,37 @@ extension PDFGenerator {
             document.layout.space.header = 0
         }
 
-        var allObjects: [PDFLocatedRenderObject] = []
-
-        // Only calculate render header & footer metrics if page has content.
-        if numContentObjects > 0 {
-            allObjects += try addHeaderFooterObjects()
-        }
-
+        // Progress tracking
         var calculationProgress = Progress.discreteProgress(totalUnitCount: Int64(contentObjects.count))
         progress.addChild(calculationProgress, withPendingUnitCount: 1)
 
-        // Iterate all objects and let them calculate the required rendering
+        // Set layout margin according to document spec
+        layout.margin = document.layout.margin
+
+        // Save calculated page count from reseting
+        totalPages = try estimateTotalPageCount(of: contentObjects, progress: calculationProgress)
+
+        // Progress tracking
+        calculationProgress = Progress.discreteProgress(totalUnitCount: Int64(contentObjects.count))
+        progress.addChild(calculationProgress, withPendingUnitCount: 1)
+
+        // Set layout margin according to document spec
+        layout.margin = document.layout.margin
+
+        // Calculate
+        return try calculateRenderObjects(contentObjs: contentObjects, masterObj: masterObjects, progress: calculationProgress)
+    }
+
+    private func estimateTotalPageCount(of contentObjects: [PDFLocatedRenderObject], progress: Progress) throws -> Int {
+        // Only calculate render header & footer metrics if page has content.
+        if !contentObjects.isEmpty {
+            _ = try addHeaderFooterObjects()
+        }
+
+        var hasAddedHeaderFooterToPage = false
+
+        // Iterate all objects and let them calculate the required rendering bounds
+        var needsPageBreak = false
         for (container, pdfObject) in contentObjects {
             if let tocObject = pdfObject as? PDFTableOfContentObject {
                 // Create table of content from objects
@@ -129,57 +146,99 @@ extension PDFGenerator {
                                                                        symbol: tocObject.options.symbol)
             }
             let objects = try pdfObject.calculate(generator: self, container: container)
+            var prevObj: PDFLocatedRenderObject?
             for obj in objects {
-                allObjects.append(obj)
-
-                if let pageObj = obj.1 as? PDFPageBreakObject, !pageObj.stayOnSamePage {
-                    currentPage += 1
-                    totalPages += 1
-                    allObjects += try addHeaderFooterObjects()
-                } else if obj.1 is PDFExternalPageObject {
-                    currentPage += 1
-                    totalPages += 1
+                if needsPageBreak {
+                    if !(prevObj?.1 is PDFExternalPageObject) {
+                        needsPageBreak = false
+                        _ = try PDFPageBreakObject().calculate(generator: self, container: container)
+                        currentPage += 1
+                    }
                 }
+
+                if !(obj.1 is PDFExternalPageObject) {
+                    if !hasAddedHeaderFooterToPage {
+                        hasAddedHeaderFooterToPage = true
+                        _ = try addHeaderFooterObjects()
+                    }
+                }
+
+                if obj.1 is PDFExternalPageObject {
+                    needsPageBreak = true
+                }
+
+                if let pageBreak = obj.1 as? PDFPageBreakObject, !pageBreak.stayOnSamePage {
+                    currentPage += 1
+                    hasAddedHeaderFooterToPage = false
+                }
+                prevObj = obj
             }
-            calculationProgress.completedUnitCount += 1
+            progress.completedUnitCount += 1
         }
 
-        // Save calculated page count from reseting
-        totalPages = currentPage
+        let result = currentPage
 
         // Reset all changes made by metrics calculation to generator
         resetGenerator()
-        layout.margin = document.layout.margin
 
-        allObjects = masterObjects
+        return result
+    }
 
-        // Only calculate render header & footer metrics if page has content.
-        if !contentObjects.isEmpty {
-            allObjects += try addHeaderFooterObjects()
+    private func calculateRenderObjects(contentObjs: [PDFLocatedRenderObject], masterObj: [PDFLocatedRenderObject], progress: Progress) throws -> [PDFLocatedRenderObject] {
+        guard !contentObjs.isEmpty else {
+            return []
         }
 
-        calculationProgress = Progress.discreteProgress(totalUnitCount: Int64(contentObjects.count))
-        progress.addChild(calculationProgress, withPendingUnitCount: 1)
+        var result = [PDFLocatedRenderObject]()
+
+        var hasAddedMasterToPage = false
+        var hasAddedHeaderFooterToPage = false
 
         // Iterate all objects and let them calculate the required rendering
-        for (container, pdfObject) in contentObjects {
+        var needsPageBreak = false
+        for (container, pdfObject) in contentObjs {
             let objects = try pdfObject.calculate(generator: self, container: container)
+            var prevObj: PDFLocatedRenderObject?
             for obj in objects {
+                if needsPageBreak {
+                    if !(prevObj?.1 is PDFExternalPageObject) {
+                        needsPageBreak = false
+                        result += try PDFPageBreakObject().calculate(generator: self, container: container)
+                        currentPage += 1
+                    }
+                }
+                if !(obj.1 is PDFExternalPageObject) {
+                    if !hasAddedMasterToPage {
+                        hasAddedMasterToPage = true
 
-                allObjects.append(obj)
+                        // Add master objects to page
+                        result += masterObj
+                    }
+                    if !hasAddedHeaderFooterToPage {
+                        hasAddedHeaderFooterToPage = true
+
+                        // Only calculate render header & footer metrics if page has content.
+                        result += try addHeaderFooterObjects()
+                    }
+                }
+
+                result.append(obj)
+
+                if obj.1 is PDFExternalPageObject {
+                    needsPageBreak = true
+                }
 
                 if let pageBreak = obj.1 as? PDFPageBreakObject, !pageBreak.stayOnSamePage {
-                    allObjects.append(contentsOf: masterObjects)
-                }
-
-                if let pageObj = obj.1 as? PDFPageBreakObject, !pageObj.stayOnSamePage {
                     currentPage += 1
-                    allObjects += try addHeaderFooterObjects()
+                    hasAddedHeaderFooterToPage = false
+                    hasAddedMasterToPage = false
                 }
+                prevObj = obj
             }
-            calculationProgress.completedUnitCount += 1
+            progress.completedUnitCount += 1
         }
-        return allObjects
+
+        return result
     }
 
     /**

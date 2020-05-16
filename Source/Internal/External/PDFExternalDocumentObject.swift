@@ -24,14 +24,13 @@ internal class PDFExternalDocumentObject: PDFRenderObject {
         guard let cgPDF = CGPDFDocument(url as CFURL) else {
             throw PDFError.externalDocumentURLInvalid(url: url)
         }
+
         for i in pages {
             guard let page = cgPDF.page(at: i) else {
                 throw PDFError.pageOutOfBounds(index: i)
             }
             result.append((container, PDFExternalPageObject(page: page)))
         }
-
-        result += try PDFPageBreakObject().calculate(generator: generator, container: .contentLeft)
 
         return result
     }

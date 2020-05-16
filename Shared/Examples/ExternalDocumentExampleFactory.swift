@@ -17,11 +17,18 @@ class ExternalDocumentExampleFactory: ExampleFactory {
         document.add(text: "This is my first document.")
 
         // Add a PDF page from a different PDF file
-        let externalDocument = PDFExternalDocument(url: Bundle.main.url(forResource: "sample", withExtension: "pdf")!, pages: 1, 3)
+        var externalDocument = PDFExternalDocument(url: Bundle.main.url(forResource: "sample", withExtension: "pdf")!, pages: 1, 3)
         document.add(externalDocument: externalDocument)
 
         // Add more text after externalDocument
-        document.add(text: "This is more text after the external pdf file and the second PDFDocument")
+        document.add(text: "This is more text after the external pdf file")
+
+        // Add same sample again
+        externalDocument = PDFExternalDocument(url: Bundle.main.url(forResource: "sample", withExtension: "pdf")!, pages: 1, 3)
+        document.add(externalDocument: externalDocument)
+
+        // Add more text after externalDocument
+        document.add(text: "This is the end")
 
         return [document]
     }
