@@ -47,14 +47,13 @@ jobs:
         cocoapods: true
       podfile: "Example iOS-Cocoapods/Podfile"
       env:
-      - ROOT_FOLDER="Example iOS-Cocoapods"
+      - ROOT_FOLDER="Example\ iOS-Cocoapods"
       install:
       - bundle install
       - bundle exec pod install --project-directory="${ROOT_FOLDER}"
       before_script:
       - set -eo pipefail
-      - ls
-      - cd "$ROOT_FOLDER"
+      - cd $ROOT_FOLDER
       script:
       - xcodebuild -workspace "$WORKSPACE"
                    -scheme "$EXAMPLE_SCHEME"
@@ -70,13 +69,13 @@ jobs:
       name: "Example iOS - Carthage"
       language: objective-c
       env:
-      - ROOT_FOLDER="Example iOS-Carthage"
+      - ROOT_FOLDER="Example\ iOS-Carthage"
       before_install:
       - brew update
       - brew outdated carthage || brew upgrade carthage
       before_script:
       - set -eo pipefail
-      - cd "${ROOT_FOLDER}"
+      - cd $ROOT_FOLDER
       - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
       - carthage update --platform ios
       script:
@@ -93,10 +92,10 @@ jobs:
       name: "Example iOS - Swift PM"
       language: objective-c
       env:
-      - ROOT_FOLDER="Example iOS-SwiftPM"
+      - ROOT_FOLDER="Example\ iOS-SwiftPM"
       before_script:
       - set -eo pipefail
-      - cd "${ROOT_FOLDER}"
+      - cd $ROOT_FOLDER
       script:
       - xcodebuild -resolvePackageDependencies
                    -project ${PROJECT}

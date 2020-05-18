@@ -11,6 +11,11 @@ import UIKit
 
 class ExamplesListViewController: UITableViewController {
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidLoad()
+        performSegue(withIdentifier: "show-example", sender: IndexPath(row: 0, section: 1))
+    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return Examples.factories.count
     }
