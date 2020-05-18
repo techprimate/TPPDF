@@ -49,6 +49,7 @@ jobs:
       cocoapods: true
     podfile: "${ROOT_FOLDER}/Podfile"
     install:
+    - bundle install
     - bundle exec pod install --project-directory="${ROOT_FOLDER}"
     before_script:
     - set -eo pipefail
