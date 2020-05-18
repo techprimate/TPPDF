@@ -15,7 +15,7 @@ public class PDFTableColumn {
     /**
      References to the cells in the column
      */
-    public let cells: [PDFTableCell]
+    public private(set) var cells: [PDFTableCell]
 
     private let table: PDFTable
     private let position: Int
@@ -24,6 +24,19 @@ public class PDFTableColumn {
         self.cells = cells
         self.table = table
         self.position = position
+    }
+
+    /**
+     Access and modifier for a specific cell in a given row
+     */
+    public subscript(row: Int) -> PDFTableCell {
+        get {
+            cells[row]
+        }
+        set {
+            cells[row] = newValue
+            table.cells[row][position] = newValue
+        }
     }
 
     /**

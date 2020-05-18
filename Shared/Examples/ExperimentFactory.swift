@@ -13,10 +13,13 @@ class ExperimentFactory: ExampleFactory {
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
+        document.add(space: 100)
         let table = PDFTable(rows: 50, columns: 4)
         table.widths = [0.1, 0.3, 0.3, 0.3]
         table.margin = 10
         table.padding = 10
+        table.showHeadersOnEveryPage = false
+        table.style.columnHeaderCount = 3
 
         for row in 0..<table.size.rows {
             table[row, 0].content = "\(row)".asTableContent
@@ -25,18 +28,21 @@ class ExperimentFactory: ExampleFactory {
             }
         }
 
-        for i in stride(from: 0, to: 48, by: 3) {
-            table[i...(i + 2), 1].merge(with: PDFTableCell(content: Array(repeating: "\(i),1", count: 3).joined(separator: "\n").asTableContent,
+        for i in stride(from: 3, to: 48, by: 3) {
+            table[rows: i...(i + 2), column: 1].merge(with: PDFTableCell(content: Array(repeating: "\(i),1", count: 3).joined(separator: "\n").asTableContent,
                                                            alignment: .center))
         }
-        for i in stride(from: 1, to: 47, by: 3) {
-            table[i...(i + 2), 2].merge(with: PDFTableCell(content: Array(repeating: "\(i),2", count: 3).joined(separator: "\n").asTableContent,
+        for i in stride(from: 4, to: 47, by: 3) {
+            table[rows: i...(i + 2), column: 2].merge(with: PDFTableCell(content: Array(repeating: "\(i),2", count: 3).joined(separator: "\n").asTableContent,
                                                            alignment: .center))
         }
-        for i in stride(from: 2, to: 48, by: 3) {
-            table[i...(i + 2), 3].merge(with: PDFTableCell(content: Array(repeating: "\(i),3", count: 3).joined(separator: "\n").asTableContent,
+        for i in stride(from: 5, to: 48, by: 3) {
+            table[rows: i...(i + 2), column: 3].merge(with: PDFTableCell(content: Array(repeating: "\(i),3", count: 3).joined(separator: "\n").asTableContent,
                                                            alignment: .center))
         }
+
+        table[rows: 0..<2, column: 2].merge()
+        table[rows: 1..<3, column: 3].merge()
 
         document.add(table: table)
 

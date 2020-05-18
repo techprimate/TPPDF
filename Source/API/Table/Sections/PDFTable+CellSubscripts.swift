@@ -17,7 +17,7 @@ extension PDFTable {
 
      - returns: cell at given indicies
      */
-    public subscript(position: PDFTableCellPosition) -> PDFTableCell {
+    public subscript(position position: PDFTableCellPosition) -> PDFTableCell {
         get {
             self[position.row, position.column]
         }

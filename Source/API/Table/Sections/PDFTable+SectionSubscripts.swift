@@ -21,12 +21,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(row: Int, columns: Range<Int>) -> PDFTableSection {
+    public subscript(rows row: Int, columns columns: Range<Int>) -> PDFTableSection {
         get {
-            self[row...row, columns.relative(to: cells[0])]
+            self[rows: row...row, columns: columns.relative(to: cells[0])]
         }
         set {
-            self[row...row, columns.relative(to: cells[0])] = newValue
+            self[rows: row...row, columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -38,12 +38,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(row: Int, columns: ClosedRange<Int>) -> PDFTableSection {
+    public subscript(rows row: Int, columns columns: ClosedRange<Int>) -> PDFTableSection {
         get {
-            self[row...row, columns.relative(to: cells[0])]
+            self[rows: row...row, columns: columns.relative(to: cells[0])]
         }
         set {
-            self[row...row, columns.relative(to: cells[0])] = newValue
+            self[rows: row...row, columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -55,12 +55,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(row: Int, columns: PartialRangeFrom<Int>) -> PDFTableSection {
+    public subscript(rows row: Int, columns columns: PartialRangeFrom<Int>) -> PDFTableSection {
         get {
-            self[row...row, columns.relative(to: cells[0])]
+            self[rows: row...row, columns: columns.relative(to: cells[0])]
         }
         set {
-            self[row...row, columns.relative(to: cells[0])] = newValue
+            self[rows: row...row, columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -72,12 +72,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(row: Int, columns: PartialRangeThrough<Int>) -> PDFTableSection {
+    public subscript(rows row: Int, columns columns: PartialRangeThrough<Int>) -> PDFTableSection {
         get {
-            self[row...row, columns.relative(to: cells[0])]
+            self[rows: row...row, columns: columns.relative(to: cells[0])]
         }
         set {
-            self[row...row, columns.relative(to: cells[0])] = newValue
+            self[rows: row...row, columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -89,12 +89,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(row: Int, columns: PartialRangeUpTo<Int>) -> PDFTableSection {
+    public subscript(rows row: Int, columns columns: PartialRangeUpTo<Int>) -> PDFTableSection {
         get {
-            self[row...row, columns.relative(to: cells[0])]
+            self[rows: row...row, columns: columns.relative(to: cells[0])]
         }
         set {
-            self[row...row, columns.relative(to: cells[0])] = newValue
+            self[rows: row...row, columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -108,12 +108,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: Range<Int>, columns: ClosedRange<Int>) -> PDFTableSection {
+    public subscript(rows rows: Range<Int>, columns columns: ClosedRange<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -125,12 +125,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: Range<Int>, columns: PartialRangeFrom<Int>) -> PDFTableSection {
+    public subscript(rows rows: Range<Int>, columns columns: PartialRangeFrom<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -142,12 +142,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: Range<Int>, columns: PartialRangeThrough<Int>) -> PDFTableSection {
+    public subscript(rows rows: Range<Int>, columns columns: PartialRangeThrough<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -159,12 +159,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: Range<Int>, columns: PartialRangeUpTo<Int>) -> PDFTableSection {
+    public subscript(rows rows: Range<Int>, columns columns: PartialRangeUpTo<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -176,12 +176,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: Range<Int>, column: Int) -> PDFTableSection {
+    public subscript(rows rows: Range<Int>, column column: Int) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), column...column]
+            self[rows: rows.relative(to: cells), columns: column...column]
         }
         set {
-            self[rows.relative(to: cells), column...column] = newValue
+            self[rows: rows.relative(to: cells), columns: column...column] = newValue
         }
     }
 
@@ -195,12 +195,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: ClosedRange<Int>, columns: Range<Int>) -> PDFTableSection {
+    public subscript(rows rows: ClosedRange<Int>, columns columns: Range<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -212,12 +212,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: ClosedRange<Int>, columns: ClosedRange<Int>) -> PDFTableSection {
+    public subscript(rows rows: ClosedRange<Int>, columns columns: ClosedRange<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -229,12 +229,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: ClosedRange<Int>, columns: PartialRangeFrom<Int>) -> PDFTableSection {
+    public subscript(rows rows: ClosedRange<Int>, columns columns: PartialRangeFrom<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -246,12 +246,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: ClosedRange<Int>, columns: PartialRangeThrough<Int>) -> PDFTableSection {
+    public subscript(rows rows: ClosedRange<Int>, columns columns: PartialRangeThrough<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -263,12 +263,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: ClosedRange<Int>, columns: PartialRangeUpTo<Int>) -> PDFTableSection {
+    public subscript(rows rows: ClosedRange<Int>, columns columns: PartialRangeUpTo<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -280,12 +280,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: ClosedRange<Int>, column: Int) -> PDFTableSection {
+    public subscript(rows rows: ClosedRange<Int>, column column: Int) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), column...column]
+            self[rows: rows.relative(to: cells), columns: column...column]
         }
         set {
-            self[rows.relative(to: cells), column...column] = newValue
+            self[rows: rows.relative(to: cells), columns: column...column] = newValue
         }
     }
 
@@ -299,12 +299,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeFrom<Int>, columns: Range<Int>) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeFrom<Int>, columns columns: Range<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -316,12 +316,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeFrom<Int>, columns: ClosedRange<Int>) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeFrom<Int>, columns columns: ClosedRange<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -333,12 +333,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeFrom<Int>, columns: PartialRangeFrom<Int>) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeFrom<Int>, columns columns: PartialRangeFrom<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -350,12 +350,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeFrom<Int>, columns: PartialRangeThrough<Int>) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeFrom<Int>, columns columns: PartialRangeThrough<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -367,12 +367,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeFrom<Int>, columns: PartialRangeUpTo<Int>) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeFrom<Int>, columns columns: PartialRangeUpTo<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -384,12 +384,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeFrom<Int>, column: Int) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeFrom<Int>, column column: Int) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), column...column]
+            self[rows: rows.relative(to: cells), columns: column...column]
         }
         set {
-            self[rows.relative(to: cells), column...column] = newValue
+            self[rows: rows.relative(to: cells), columns: column...column] = newValue
         }
     }
 
@@ -403,12 +403,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeUpTo<Int>, columns: Range<Int>) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeUpTo<Int>, columns columns: Range<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -420,12 +420,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeUpTo<Int>, columns: ClosedRange<Int>) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeUpTo<Int>, columns columns: ClosedRange<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -437,12 +437,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeUpTo<Int>, columns: PartialRangeFrom<Int>) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeUpTo<Int>, columns columns: PartialRangeFrom<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -454,12 +454,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeUpTo<Int>, columns: PartialRangeThrough<Int>) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeUpTo<Int>, columns columns: PartialRangeThrough<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -471,12 +471,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeUpTo<Int>, columns: PartialRangeUpTo<Int>) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeUpTo<Int>, columns columns: PartialRangeUpTo<Int>) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])]
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])]
         }
         set {
-            self[rows.relative(to: cells), columns.relative(to: cells[0])] = newValue
+            self[rows: rows.relative(to: cells), columns: columns.relative(to: cells[0])] = newValue
         }
     }
 
@@ -488,12 +488,12 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: PartialRangeUpTo<Int>, column: Int) -> PDFTableSection {
+    public subscript(rows rows: PartialRangeUpTo<Int>, column column: Int) -> PDFTableSection {
         get {
-            self[rows.relative(to: cells), column...column]
+            self[rows: rows.relative(to: cells), columns: column...column]
         }
         set {
-            self[rows.relative(to: cells), column...column] = newValue
+            self[rows: rows.relative(to: cells), columns: column...column] = newValue
         }
     }
 
@@ -505,7 +505,7 @@ extension PDFTable {
 
      - returns: `PDFTableSection` with references to cells
      */
-    public subscript(rows: Range<Int>, columns: Range<Int>) -> PDFTableSection {
+    public subscript(rows rows: Range<Int>, columns columns: Range<Int>) -> PDFTableSection {
         get {
             PDFTableSection(cells: self.cells[rows].map({ Array($0[columns]) }), of: self, in: rows, and: columns)
         }
