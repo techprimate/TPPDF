@@ -62,6 +62,7 @@ jobs:
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  ONLY_ACTIVE_ARCH=YES
                  build | bundle exec xcpretty
+    - cd ../
     - bundle exec pod lib lint --allow-warnings
 
   - stage: Examples
