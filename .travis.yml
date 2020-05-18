@@ -39,33 +39,36 @@ jobs:
 #                   ONLY_ACTIVE_ARCH=YES
 #                   test | bundle exec xcpretty
 
-#    - stage: Examples
-#      name: "Example iOS - Cocoapods"
-#      language: objective-c
-#      cache:
-#        bundler: true
-#        cocoapods: true
-#      podfile: "Example iOS-Cocoapods/Podfile"
-#      install:
-#      - bundle install
-#      - bundle exec pod install --project-directory="Example iOS-Cocoapods"
-#      before_script:
-#      - set -eo pipefail
-#      - cd "Example iOS-Cocoapods"
-#      script:
-#      - xcodebuild -workspace "$WORKSPACE"
-#                   -scheme "$EXAMPLE_SCHEME"
-#                   -sdk iphonesimulator
-#                   -destination "$DESTINATION"
-#                   -configuration Debug
-#                   -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-#                   ONLY_ACTIVE_ARCH=YES
-#                   build | bundle exec xcpretty
-#      - bundle exec pod lib lint --allow-warnings
+   - stage: Examples
+     name: "Example iOS - Cocoapods"
+     language: objective-c
+     env:
+     - ROOT_FOLDER="Example iOS-Cocoapods"
+     cache:
+       bundler: true
+       cocoapods: true
+     podfile: "${ROOT_FOLDER}/Podfile"
+     install:
+     - bundle exec pod install --project-directory="${ROOT_FOLDER}"
+     before_script:
+     - set -eo pipefail
+     - cd "${ROOT_FOLDER}"
+     script:
+     - xcodebuild -workspace "$WORKSPACE"
+                  -scheme "$EXAMPLE_SCHEME"
+                  -sdk iphonesimulator
+                  -destination "$DESTINATION"
+                  -configuration Debug
+                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                  ONLY_ACTIVE_ARCH=YES
+                  build | bundle exec xcpretty
+     - bundle exec pod lib lint --allow-warnings
 
     - stage: Examples
       name: "Example iOS - Carthage"
       language: objective-c
+      cache:
+        bundler: true
       env:
       - ROOT_FOLDER="Example iOS-Carthage"
       before_install:
@@ -88,6 +91,8 @@ jobs:
     - stage: Examples
       name: "Example iOS - Swift PM"
       language: objective-c
+      cache:
+        bundler: true
       env:
       - ROOT_FOLDER="Example iOS-SwiftPM"
       script:
