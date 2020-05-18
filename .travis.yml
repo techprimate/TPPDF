@@ -63,27 +63,27 @@ jobs:
 #                   build | bundle exec xcpretty
 #      - bundle exec pod lib lint --allow-warnings
 
-   # - stage: Examples
-   #   name: "Example iOS - Carthage"
-   #   language: objective-c
-   #   env:
-   #   - ROOT_FOLDER="Example\ iOS-Carthage"
-   #   before_install:
-   #   - brew update
-   #   - brew outdated carthage || brew upgrade carthage
-   #   before_script:
-   #   - cd "${ROOT_FOLDER}"
-   #   - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
-   #   - carthage update --platform ios
-   #   script:
-   #   - xcodebuild -workspace "$WORKSPACE"
-   #                -scheme "$EXAMPLE_SCHEME"
-   #                -sdk iphonesimulator
-   #                -destination "$DESTINATION"
-   #                -configuration Debug
-   #                -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-   #                ONLY_ACTIVE_ARCH=YES
-   #                build | bundle exec xcpretty
+    - stage: Examples
+      name: "Example iOS - Carthage"
+      language: objective-c
+      env:
+      - ROOT_FOLDER="Example iOS-Carthage"
+      before_install:
+      - brew update
+      - brew outdated carthage || brew upgrade carthage
+      before_script:
+      - cd "${ROOT_FOLDER}"
+      - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
+      - carthage update --platform ios
+      script:
+      - xcodebuild -workspace "$WORKSPACE"
+                   -scheme "$EXAMPLE_SCHEME"
+                   -sdk iphonesimulator
+                   -destination "$DESTINATION"
+                   -configuration Debug
+                   -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                   ONLY_ACTIVE_ARCH=YES
+                   build | bundle exec xcpretty
 
     - stage: Examples
       name: "Example iOS - Swift PM"
