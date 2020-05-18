@@ -5,9 +5,25 @@
 
 **Implemented enhancements:**
 
+- Table Merging
+- Swift Package Manager Support
+- Hyperlinks in texts
+
 **Fixed bugs:**
 
+- External document including empty pages 
+
 **Closed issues:**
+
+- #178
+- #179
+- #182
+- #183
+- #184
+- #185
+- #186
+- #196
+- #197
 
 **Merged pull requests:**
 

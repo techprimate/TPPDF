@@ -38,6 +38,7 @@
 </p>
 
 <p align="center">
+    <a href="#whats-new">What's new?</a>
     <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
   • <a href="#example">Example</a>
@@ -46,6 +47,15 @@
   • <a href="#credits">Credits</a>
   • <a href="#license">License</a>
 </p>
+
+## What's new?
+
+TPPDF 2.0 brings a lot of new features and small tweaks. Here are some of the biggest ones:
+
+- [x] Swift Package Manager Support
+- [x] Table with cell merging
+- [x] Table cell content wraps on page breaks
+- [x] Hyperlinks in attributed strings
 
 ## Features
 
