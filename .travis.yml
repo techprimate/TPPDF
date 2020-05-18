@@ -52,7 +52,6 @@ jobs:
     - bundle install
     - bundle exec pod install --project-directory="${ROOT_FOLDER}"
     before_script:
-    - set -eo pipefail
     - cd "${ROOT_FOLDER}"
     script:
     - xcodebuild -workspace "$WORKSPACE"
