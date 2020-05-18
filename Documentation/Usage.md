@@ -17,8 +17,8 @@
   + [Table](#table)
     - [Alignment](#alignment)
     - [Content](#content)
-    - [Cell Style](#cell-style)
     - [Table Style](#table-style)
+    - [Cell Style](#cell-style)
     - [Table generation](#table-generation)
 * [Layout](#layout)
   + [Multi-Column Sections](#multi-column-sections)
@@ -303,6 +303,94 @@ let table = PDFTable()
 
 Each cell has an optional `content` of type `PDFTableContent`, an optional `style` of `PDFTableCellStyle` and always an `alignment` of `PDFTableCellAlignment`.
 
+#### Access to cells
+
+As of version 2.0 the `PDFTable` class has been improved a lot. Now you can easily select a single cell, single row, single columns, multiple rows, muliple columns or even just a subsection of the table using subscript functions. These 'views' on the table are only references to the given table instances and its cells. They also provide you additional modifier functions for setting values.
+
+**Single Cell:**
+
+Access using direct row and column indicies:
+
+```
+let cell = table[0,0]
+```
+
+or use `PDFTableCellPosition` to wrap the position in an object:
+
+```
+cell = table[PDFTableCellPosition(row: 0, column: 0)]
+```
+
+Now that you have a reference to the cell instance, you can set the following properties:
+
+```
+cell.content = ...
+cell.alignment = ...
+cell.style = ...
+```
+
+**Single Row & Single Column:**
+
+```
+let row = table[row: 0]
+let column = table[column: 0]
+```
+
+As this row/column is referencing a series of cells, the following modifiers are available:
+
+```
+row.content = [...]						// Sets the content for each cell individually
+row.allCellsContent = ...				// Sets the content for all cells to the same
+row.style = [style1, style2]			// Sets the style for each cell individually
+row.allCellsStyle = style1				// Sets the style for all cells to the same
+row.alignment = [.left, .right]		// Sets the alignment for each cell individually
+row.allCellsAlignment = .left			// Sets the alignment for all cells to the same
+```
+
+**Multiple Rows & Multiple Columns:**
+
+Supports all kinds of integer ranges.
+
+```
+var rows = table[rows: 0...2] 	// Selects first three rows
+rows = table[rows: 0..<2]		  	// Selects first two rows
+```
+
+As this row/column is referencing a 2D matrix of cells, the following modifiers are available:
+
+```
+rows.content = [[...], [...]]			// Sets the content for each cell individually
+rows.allRowsContent = [...]			// Sets the content for all rows/columns to the same
+rows.allCellsContent = ...				// Sets the content for all cells to the same
+
+rows.style = [[...], [...]]			// Sets the style for each cell individually
+rows.allRowsContent = [...]			// Sets the style for all rows/columns to the same
+rows.allCellsStyle = style1			// Sets the style for all cells to the same
+
+rows.alignment = [[...], [...]]		// Sets the alignment for each cell individually
+rows.allRowsAlignment = [...]			// Sets the alignment for all rows/columns to the same
+rows.allCellsAlignment = .left		// Sets the alignment for all cells to the same
+```
+
+**Section:**
+
+Supports all kinds of integer and range combinations.
+
+```
+var rows = table[0...2, 1] 		//	Selects the first three rows in the first column 
+rows = table[0..<3, 0..<3]			// Selects the top-left 3x3 cells of the table
+```
+
+As a Section is also a 2D matrix of cells, it provides the same modifiers as 'Multiple Rows & Multiple Columns'.
+
+#### Cell Merging
+
+Merging cell uses the previously describe subscript accessors. Select a cell range and merge them together using `merge()`. Normally this replaces all cells in the area with the top-left cell of the selection, but you can also pass an instance of `PDFTableCell` as the parameter for `merge(with: cell)` to replace all cells with the given one.
+
+**Attention:**
+
+If you merge the column headers to uneven height, the framework will not be able to repeat the headers on every page (if enabled by `table.showHeadersOnEveryPage = true`). Please keep that in mind!
+
 #### Alignment
 
 The alignment is one of the following `PDFTableCellAlignment`:
@@ -317,36 +405,14 @@ During calculation the size of the content will be calculated, and afterwards it
 
 A cell content instance `PDFTableCellContent` has a `content` value and a property `type`, which is one of the following:
 
-- `PDFTableContent.none`, empty cell
-- `PDFTableContent.string`, a simple string only styled through the cell style
-- `PDFTableContent.attributedString`, an attributed string which won't be changed by the cell style
-- `PDFTableContent.image`, an image which 
+- `.none`, empty cell
+- `.string`, a simple string only styled through the cell style
+- `.attributedString`, an attributed string which won't be changed by the cell style
+- `.image`, an image which 
 
 If a cell height is too big for the rest of the page, it will be placed on the next page.
 
-#### Cell Style
-
-To define the style of a cell, you can create the an instance of `PDFTableCellStyle` and directly set it to the cells `style` property, but you can also style a whole table using the property `style` of type `PDFTableStyle` of the `table`.
-
-A cell style defines the `fill` and the `text` color of the content. Also it defines how the `border` is drawn and what `font` should be used:
-
-```swift
-let colors = (fill: UIColor.blue, text: UIColor.orange)
-let lineStyle = PDFLineStyle(type: .dashed, color: UIColor.gray, width: 10)
-let borders = PDFTableCellBorders(left: lineStyle, top: lineStyle, right: lineStyle, bottom: lineStyle)
-let font = UIFont.systemFont(ofSize: 20)
-let style = PDFTableCellStyle(colors: colors, borders: borders, font: font)
-```
-
-An instance of `PDFTableCellBorders` allows you set each border of a cell indvidually. The line style is defined as a `PDFLineStyle` (See [Line Style](#Line-Style)).
-
-To change the style of a specific cell, use the following method of `table`:
-
-```swift
-table[1,1].style = PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black))
-```
-
-#### Table style
+#### Table Style
 
 A table style is a collection of cell styles, which will be applied as global values. Take a look at `PDFTableStyleDefaults` where you can find a collection of presets, e.g. `PDFTableStyleDefaults.simple`.
 
@@ -377,50 +443,27 @@ If there are conflicts, e.g a cell is a column and a header row, then the follow
 
 If you set the property `table.showHeadersOnEveryPage` to `true`, the first rows which are the column headers, will be copied and inserted at the top of the table, after each page break.
 
-#### Table generation
+#### Cell Style
 
-First, add your cell data and set the alignment for each cell. This needs to be wrapped in a `try-catch` because it can fail with invalid data or if the validation fails.
+To define the style of a cell, you can create the an instance of `PDFTableCellStyle` and directly set it to the cells `style` property.
 
-The quickest way to generate a new table is using `generateCells(data:, alignments:)`. You need to pass two two-dimensional arrays, one with the data which can be `nil`, `String`, `NSAttributedString`, `Int`, `Double`, `Float` or an `UIImage`. Numbers will be converted into simple strings. Any other content will throw a `PDFError.tableContentInvalid`:
+A cell style defines the `fill` and the `text` color of the content. Also it defines how the `border` is drawn and what `font` should be used:
 
 ```swift
-do {
-    try table.generateCells(data: [
-        [nil, "Name", "Image", "Description"],
-        [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
-        [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
-        [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
-        [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
-        [1, "Waterfall", UIImage(named: "Image-1.jpg")!, "Water flowing down stones."],
-        [2, "Forrest", UIImage(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
-        [3, "Fireworks", UIImage(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
-        [4, "Fields", UIImage(named: "Image-4.jpg")!, "Crops growing big and providing food."],
-        [nil, nil, nil, "Many beautiful places"]
-    ],
-    alignments: [
-        [.center, .left, .center, .right],
-        [.center, .left, .center, .right],
-        [.center, .left, .center, .right],
-        [.center, .left, .center, .right],
-        [.center, .left, .center, .right],
-        [.center, .left, .center, .right],
-        [.center, .left, .center, .right],
-        [.center, .left, .center, .right],
-        [.center, .left, .center, .right],
-        [.center, .left, .center, .right],
-    ])
-} catch PDFError.tableContentInvalid(let value) {
-    // In case invalid input is provided, this error will be thrown.
-
-    print("This type of object is not supported as table content: " + String(describing: (type(of: value))))
-} catch {
-    // General error handling in case something goes wrong.
-
-    print("Error while creating table: " + error.localizedDescription)
-}
+let colors = (fill: UIColor.blue, text: UIColor.orange)
+let lineStyle = PDFLineStyle(type: .dashed, color: UIColor.gray, width: 10)
+let borders = PDFTableCellBorders(left: lineStyle, top: lineStyle, right: lineStyle, bottom: lineStyle)
+let font = UIFont.systemFont(ofSize: 20)
+let style = PDFTableCellStyle(colors: colors, borders: borders, font: font)
 ```
 
-You are also able to create each cell individually, put them in a two-dimensional cell array and assign it to `table.cells` directly. The method above is simply added for convenience.
+An instance of `PDFTableCellBorders` allows you set each border of a cell indvidually. The line style is defined as a `PDFLineStyle` (See [Line Style](#Line-Style)).
+
+To change the style of a specific cell, use the following method of `table`:
+
+```swift
+table[1,1].style = PDFTableCellStyle(colors: (fill: UIColor.yellow, text: UIColor.black))
+```
 
 #### Layout
 
