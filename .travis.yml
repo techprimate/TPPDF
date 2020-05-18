@@ -39,30 +39,30 @@ jobs:
 #                   ONLY_ACTIVE_ARCH=YES
 #                   test | bundle exec xcpretty
 
-   - stage: Examples
-     name: "Example iOS - Cocoapods"
-     language: objective-c
-     env:
-     - ROOT_FOLDER="Example iOS-Cocoapods"
-     cache:
-       bundler: true
-       cocoapods: true
-     podfile: "${ROOT_FOLDER}/Podfile"
-     install:
-     - bundle exec pod install --project-directory="${ROOT_FOLDER}"
-     before_script:
-     - set -eo pipefail
-     - cd "${ROOT_FOLDER}"
-     script:
-     - xcodebuild -workspace "$WORKSPACE"
-                  -scheme "$EXAMPLE_SCHEME"
-                  -sdk iphonesimulator
-                  -destination "$DESTINATION"
-                  -configuration Debug
-                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                  ONLY_ACTIVE_ARCH=YES
-                  build | bundle exec xcpretty
-     - bundle exec pod lib lint --allow-warnings
+  - stage: Examples
+    name: "Example iOS - Cocoapods"
+    language: objective-c
+    env:
+    - ROOT_FOLDER="Example iOS-Cocoapods"
+    cache:
+      bundler: true
+      cocoapods: true
+    podfile: "${ROOT_FOLDER}/Podfile"
+    install:
+    - bundle exec pod install --project-directory="${ROOT_FOLDER}"
+    before_script:
+    - set -eo pipefail
+    - cd "${ROOT_FOLDER}"
+    script:
+    - xcodebuild -workspace "$WORKSPACE"
+                 -scheme "$EXAMPLE_SCHEME"
+                 -sdk iphonesimulator
+                 -destination "$DESTINATION"
+                 -configuration Debug
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 ONLY_ACTIVE_ARCH=YES
+                 build | bundle exec xcpretty
+    - bundle exec pod lib lint --allow-warnings
 
     - stage: Examples
       name: "Example iOS - Carthage"
