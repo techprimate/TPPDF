@@ -56,6 +56,8 @@ TPPDF 2.0 brings a lot of new features and small tweaks. Here are some of the bi
 - [x] Table with cell merging
 - [x] Table cell content wraps on page breaks
 - [x] Hyperlinks in attributed strings
+- [x] Native progress tracking using `Foundation.Progress`
+- [x] Instance-based generators, so you can generate multiple documents at the same time
 
 ## Features
 
