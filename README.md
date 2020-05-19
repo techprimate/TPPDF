@@ -38,6 +38,7 @@
 </p>
 
 <p align="center">
+    <a href="#whats-new">What's new?</a>
     <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
   • <a href="#example">Example</a>
@@ -46,6 +47,24 @@
   • <a href="#credits">Credits</a>
   • <a href="#license">License</a>
 </p>
+
+**Attention:**
+
+We just released version 2.0.0. It has breaking API changes and might causes issues as it is needs more testing.
+Please do not upgrade to it yet, unless you are willing to accept some instability.
+
+**IF YOU SEE ANY ISSUES, PLEASE REPORT THEM!** Thank you!
+
+## What's new?
+
+TPPDF 2.0 brings a lot of new features and small tweaks. Here are some of the biggest ones:
+
+- [x] Swift Package Manager Support
+- [x] Table with cell merging
+- [x] Table cell content wraps on page breaks
+- [x] Hyperlinks in attributed strings
+- [x] Native progress tracking using `Foundation.Progress`
+- [x] Instance-based generators, so you can generate multiple documents at the same time
 
 ## Features
 
