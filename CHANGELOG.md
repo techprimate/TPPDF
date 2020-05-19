@@ -11,7 +11,7 @@
 
 **Merged pull requests:**
 
-## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
+## [2.0.0](https://github.com/techprimate/TPPDF/tree/2.0.0) (2020-05-19)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.6.0...2.0.0)
 
 **Implemented enhancements:**
