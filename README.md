@@ -98,16 +98,16 @@ To run the example project, run `pod try TPPDF`
 
 ### Requirements
 
+As of TPPDF 2.0 and Swift 5.2, we do not actively support older Swift versions anymore. If you still need an older Swift version, see the following table for their respective branches. Bleed development version can be found on the `develop` branch.
+
 | Language  | Branch                                                           | Pod version | Xcode version         | iOS version |
 | --------- | ---------------------------------------------------------------- | ----------- | --------------------- | ----------- |
-| Swift 5   | [master](https://github.com/techprimate/TPPDF/tree/master)       | >= 1.4.x    | Xcode 10.2+           | iOS 8.3+    |
 | Swift 4.2 | [swift-4.2](https://github.com/techprimate/TPPDF/tree/swift-4.2) | >= 1.3.x    | Xcode 10.0+           | iOS 8.3+    |
 | Swift 4.1 | [swift-4.1](https://github.com/techprimate/TPPDF/tree/swift-4.1) | >= 1.0.x    | Xcode 9.3             | iOS 8.3+    |
 | Swift 3.0 | [swift-3.0](https://github.com/techprimate/TPPDF/tree/swift-3.0) | >= 0.2.x    | Xcode 8               | iOS 8.0+    |
 | Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.5       | Xcode 8, Xcode 7.3.x  | iOS 8.0+    |
 | Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | 0.1.4       | Xcode 7.3.x           | iOS 8.0+    |
 
-Bleed development version can be found on the `develop` branch.
 
 ### CocoaPods
 
@@ -156,8 +156,17 @@ Run `carthage update` to build the framework and drag the built `TPPDF.framework
 
 ### Swift Package Manager
 
-Swift Package Manager is now supported for iOS.
-macOS support is a requested feature and work-in-progress. Linux support is not available, as `UIKit` is not available on linux.
+Swift Package Manager is now supported for iOS. macOS support is a requested feature and work-in-progress. 
+
+Linux support is not available, as `UIKit` is not available on linux.
+
+Once you have your Swift package set up, adding TPPDF as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/techprimate/TPPDF", .upToNextMajor(from: "2.0.0"))
+]
+```
 
 ### Manual Installation
 
@@ -206,12 +215,7 @@ TPPDF is created and maintained by Philip Niedertscheider, founder of [techprima
 
 ### Contributors
 
-Please consider backing this project by using the following link: 
-
-<a href="https://paypal.me/tprm8" target="_blank">
-	<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/back-this-project.png" alt="Back This Project">
-</a>
-
+Please consider backing this project by using the following **GitHub Sponsor** button.
 
 We want to thank all [contributors](https://github.com/techprimate/TPPDF/graphs/contributors) for their effort!
 
