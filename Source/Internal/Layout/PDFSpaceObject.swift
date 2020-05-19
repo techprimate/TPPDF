@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  Empty space between two elements
  */
@@ -34,7 +36,7 @@ internal class PDFSpaceObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var size = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         size.height = min(space, size.height)
         let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: frame.size)
@@ -65,6 +67,6 @@ internal class PDFSpaceObject: PDFRenderObject {
      Creates a new `PDFSpaceObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFSpaceObject(space: self.space)
+        PDFSpaceObject(space: self.space)
     }
 }

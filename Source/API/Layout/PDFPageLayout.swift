@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+import UIKit
+
 /**
  Contains all relevant layout informations of a pdf document
  */
@@ -56,20 +58,20 @@ public struct PDFPageLayout: PDFJSONSerializable {
      Returns a `CGRect` with a origin at zero and the `size` of the layout.
      */
     public var bounds: CGRect {
-        return CGRect(origin: .zero, size: size)
+        CGRect(origin: .zero, size: size)
     }
 
     /**
      Shorthand access to layout width
      */
     public var width: CGFloat {
-        return size.width
+        size.width
     }
 
     /**
      Shorthand access to layout height
      */
     public var height: CGFloat {
-        return size.height
+        size.height
     }
 }

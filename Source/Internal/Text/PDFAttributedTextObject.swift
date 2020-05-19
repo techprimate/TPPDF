@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  Calculates and draws a text
  */
@@ -71,8 +73,8 @@ internal class PDFAttributedTextObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         // Generate attributed string if simple text, otherwise uses given attributedText
         attributedString = try generateAttributedText(generator: generator, container: container)
@@ -169,7 +171,11 @@ internal class PDFAttributedTextObject: PDFRenderObject {
         applyAttributes()
     }
 
-    private func calculateLinkAttributes(with links: [(url: String, range: NSRange)], in frameRef: CTFrame, in allRange: NSRange, context: CGContext, debug: Bool) {
+    private func calculateLinkAttributes(with links: [(url: String, range: NSRange)],
+                                         in frameRef: CTFrame,
+                                         in allRange: NSRange,
+                                         context: CGContext,
+                                         debug: Bool) {
         guard let lines = CTFrameGetLines(frameRef) as? [CTLine] else {
             return
         }
@@ -278,6 +284,6 @@ internal class PDFAttributedTextObject: PDFRenderObject {
      TODO: Documentation
      */
     override internal var copy: PDFRenderObject {
-        return PDFAttributedTextObject(text: (self.attributedText ?? self.simpleText)!)
+        PDFAttributedTextObject(text: (self.attributedText ?? self.simpleText)!)
     }
 }

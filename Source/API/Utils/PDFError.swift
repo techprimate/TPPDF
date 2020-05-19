@@ -5,8 +5,10 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
+import Foundation
+
 /**
- TODO: Documentation
+ List of errors which can occur during using this framework
  */
 public enum PDFError: Error {
 

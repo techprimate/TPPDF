@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  Changes the font of the container, where this object is in.
  */
@@ -34,7 +36,7 @@ internal class PDFFontObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.fonts[container] = font
 
         return [(container, self)]
@@ -44,6 +46,6 @@ internal class PDFFontObject: PDFRenderObject {
      Creates a new `PDFFontObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFFontObject(font: self.font)
+        PDFFontObject(font: self.font)
     }
 }

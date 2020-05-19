@@ -77,7 +77,7 @@ internal class PDFGroupObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         let heights = generator.layout.heights
         guard let columnState = generator.columnState.copy() as? PDFColumnLayoutState else {
             throw PDFError.copyingFailed
@@ -88,13 +88,13 @@ internal class PDFGroupObject: PDFRenderObject {
         generator.layout.heights.add(padding.top, to: container)
 
         // Fix if not enough space left
-        var result: [(PDFContainer, PDFRenderObject)] = []
+        var result: [PDFLocatedRenderObject] = []
         if PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container) < 0 {
             result += try PDFPageBreakObject().calculate(generator: generator, container: container)
         }
 
         var groupedResult = [
-            [(PDFContainer, PDFRenderObject)]()
+            [PDFLocatedRenderObject]()
         ]
 
         // Set padding
@@ -147,10 +147,10 @@ internal class PDFGroupObject: PDFRenderObject {
 
     private func calculateOnNextPage(generator: PDFGenerator,
                                      container: PDFContainer,
-                                     pbObj: PDFPageBreakObject) throws -> [(PDFContainer, PDFRenderObject)] {
+                                     pbObj: PDFPageBreakObject) throws -> [PDFLocatedRenderObject] {
         frame = CGRect.null
 
-        var result: [(PDFContainer, PDFRenderObject)] = []
+        var result: [PDFLocatedRenderObject] = []
         result += try pbObj.calculate(generator: generator, container: container)
         result += [(container, self)]
 
@@ -167,7 +167,7 @@ internal class PDFGroupObject: PDFRenderObject {
     }
 
     private func calculateBoundsFrame(generator: PDFGenerator) -> CGRect {
-        return generator.document.layout.bounds.inset(by: generator.layout.margin)
+        generator.document.layout.bounds.inset(by: generator.layout.margin)
     }
 
     /**
@@ -219,13 +219,13 @@ internal class PDFGroupObject: PDFRenderObject {
      Creates a new `PDFGroupObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFGroupObject(objects: self.objects.map { ($0, $1.copy) },
-                              allowsBreaks: self.allowsBreaks,
-                              isFullPage: self.isFullPage,
-                              backgroundColor: self.backgroundColor,
-                              backgroundImage: self.backgroundImage?.copy,
-                              backgroundShape: self.backgroundShape,
-                              outline: self.outline,
-                              padding: self.padding)
+        PDFGroupObject(objects: self.objects.map { ($0, $1.copy) },
+                       allowsBreaks: self.allowsBreaks,
+                       isFullPage: self.isFullPage,
+                       backgroundColor: self.backgroundColor,
+                       backgroundImage: self.backgroundImage?.copy,
+                       backgroundShape: self.backgroundShape,
+                       outline: self.outline,
+                       padding: self.padding)
     }
 }

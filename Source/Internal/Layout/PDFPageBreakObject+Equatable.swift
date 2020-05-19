@@ -14,6 +14,6 @@ extension PDFPageBreakObject: Equatable {
      TODO: documentation
      */
     public static func == (lhs: PDFPageBreakObject, rhs: PDFPageBreakObject) -> Bool {
-        return true
+        true
     }
 }

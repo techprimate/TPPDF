@@ -34,18 +34,27 @@ playground.xcworkspace
 
 # Swift Package Manager
 .build/
+Example*/ManifestLoading
+Example*/checkouts
+Example*/dependencies-state.json
+Example*/manifest.db
+Exampl*/repositories
 
 # Carthage
-Carthage/Build
-derived_data
+Example*/Carthage
+Example*/derived_data
+Example*/Cartfile.resolved
 
 # Cocoapods
-Example/Pods/Local Podspecs
-Example/Pods/Nimble
-Example/Pods/Quick
-Example/Pods/Swiftlint
+Example*/Pods
+Example*/Pods/Local Podspecs
+Example*/Pods/Nimble
+Example*/Pods/Quick
+Example*/Pods/Swiftlint
+
+# Swift Package Manager
+.swiftpm
 
 # Xcode Schemes, so Carthage doesn't complain
-!Example/Pods/Pods.xcodeproj/xcshareddata/xcschemes/TPPDF.xcscheme
-!Example/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF-Example.xcscheme
-!Example/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF_Tests.xcscheme
+!Example iOS/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF.xcscheme
+!Example iOS/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF-Example.xcscheme

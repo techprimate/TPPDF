@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
+import UIKit
+
 /**
  A table is a two dimensional list.
  It can be styled and can contain different data.
@@ -42,6 +44,21 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
     public var showHeadersOnEveryPage: Bool = false
 
     /**
+     Count of rows and columns in this table
+     */
+    public private(set) var size: (rows: Int, columns: Int)
+
+    public convenience init(size: (rows: Int, columns: Int) = (0, 0)) {
+        self.init(rows: size.rows, columns: size.columns)
+    }
+
+    public init(rows: Int = 0, columns: Int = 0) {
+        self.size = (rows: rows, columns: columns)
+        self.cells = (0..<rows).map({ _ in (0..<columns).map({ _ in PDFTableCell() }) })
+        self.widths = (0..<columns).map({ _ in 1.0 / CGFloat(columns) })
+    }
+
+    /**
      Generates cells from given `data` and `alignments` and stores the result in the instance variable `cells`
 
      - throws: `PDFError` if table validation fails. See `PDFTableValidator.validateTableData(::)` for details
@@ -49,9 +66,11 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
     public func generateCells(data: [[Any?]], alignments: [[PDFTableCellAlignment]]) throws {
         try PDFTableValidator.validateTableData(data: data, alignments: alignments)
 
+        self.size.rows = data.count
         self.cells = []
 
         for (rowIndex, row) in data.enumerated() {
+            self.size.columns = row.count
             var contentRow = [PDFTableCell]()
             for (colIndex, col) in row.enumerated() {
                 let content = try PDFTableContent(content: col)
@@ -67,16 +86,9 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
     /**
      Modify the cell style of at the position defined by `row` and `column`
      */
+    @available(*, deprecated, message: "Use subscript accessor [row:column:] instead, this will be removed in release 2.1")
     public func setCellStyle(row rowIndex: Int, column columnIndex: Int, style cellStyle: PDFTableCellStyle?) throws {
-        if rowIndex < 0 || rowIndex >= cells.count {
-            throw PDFError.tableIndexOutOfBounds(index: rowIndex, length: cells.count)
-        }
-        if columnIndex < 0 || columnIndex >= cells[rowIndex].count {
-            throw PDFError.tableIndexOutOfBounds(index: columnIndex, length: cells[rowIndex].count)
-        }
-
-        let cell = cells[rowIndex][columnIndex]
-        cell.style = cellStyle
+        self[rowIndex, columnIndex].style = cellStyle
     }
 
     /**
@@ -91,5 +103,33 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
         table.margin = self.margin
         table.showHeadersOnEveryPage = self.showHeadersOnEveryPage
         return table
+    }
+
+    // Access shorthands
+
+    public var rows: PDFTableRows {
+        self[rows: 0..<size.rows]
+    }
+
+    public var columns: PDFTableColumns {
+        self[columns: 0..<size.columns]
+    }
+
+    public var content: [[PDFTableContentable?]] {
+        get {
+            self.rows.content
+        }
+        set {
+            self.rows.content = newValue
+        }
+    }
+
+    public var alignment: [[PDFTableCellAlignment]] {
+        get {
+            self.rows.alignment
+        }
+        set {
+            self.rows.alignment = newValue
+        }
     }
 }

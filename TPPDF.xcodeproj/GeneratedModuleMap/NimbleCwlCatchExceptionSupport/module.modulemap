@@ -1,0 +1,4 @@
+module NimbleCwlCatchExceptionSupport {
+    umbrella "../../../.build/checkouts/Nimble/Carthage/Checkouts/CwlPreconditionTesting/Dependencies/CwlCatchException/Sources/CwlCatchExceptionSupport/include"
+    export *
+}

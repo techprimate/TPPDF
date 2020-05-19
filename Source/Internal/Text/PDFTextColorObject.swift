@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  Changes the text color in the container, where this object is in.
  */
@@ -34,7 +36,7 @@ internal class PDFTextColorObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.textColor[container] = color
 
         return [(container, self)]
@@ -44,6 +46,6 @@ internal class PDFTextColorObject: PDFRenderObject {
      Creates a new `PDFTextColorObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFTextColorObject(color: self.color)
+        PDFTextColorObject(color: self.color)
     }
 }

@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
+import UIKit
+
 /**
  TODO: Documentation
  */
@@ -49,7 +51,7 @@ public class PDFList: PDFDocumentObject, PDFJSONSerializable {
      TODO: Documentation
      */
     public var count: Int {
-        return items.count
+        items.count
     }
 
     /**
@@ -100,7 +102,7 @@ public class PDFList: PDFDocumentObject, PDFJSONSerializable {
      */
     internal var copy: PDFList {
         let list = PDFList(indentations: self.levelIndentations)
-        list.items = items.map { $0.copy }
+        list.items = items.map(\.copy)
         return list
     }
 }
@@ -108,13 +110,13 @@ public class PDFList: PDFDocumentObject, PDFJSONSerializable {
 extension PDFList: CustomDebugStringConvertible {
 
     public var debugDescription: String {
-        return "PDFList(levels: \(levelIndentations.debugDescription), items: \(items.debugDescription))"
+        "PDFList(levels: \(levelIndentations.debugDescription), items: \(items.debugDescription))"
     }
 }
 
 extension PDFList: CustomStringConvertible {
 
     public var description: String {
-        return "PDFList(levels: \(levelIndentations), items: \(items))"
+        "PDFList(levels: \(levelIndentations), items: \(items))"
     }
 }

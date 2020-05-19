@@ -1,6 +1,68 @@
 {
   "warnings": [
-
+    {
+      "file": "/Volumes/Developer/TPPDF/Source/API/Groups/PDFMasterGroup.swift",
+      "line": 16,
+      "symbol": "PDFMasterGroup.isFullPage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 51,
+      "symbol": "PDFTable.init(size:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 55,
+      "symbol": "PDFTable.init(rows:columns:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 110,
+      "symbol": "PDFTable.rows",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 114,
+      "symbol": "PDFTable.columns",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 118,
+      "symbol": "PDFTable.content",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 127,
+      "symbol": "PDFTable.alignment",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Volumes/Developer/TPPDF/Source/API/Utils/PDFDocumentObject.swift",
+      "line": 10,
+      "symbol": "PDFDocumentObject",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Volumes/Developer/TPPDF/Source/API/Utils/PDFDocumentObject.swift",
+      "line": 14,
+      "symbol": "PDFDocumentObject.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
   ],
   "source_directory": "/Volumes/Developer/TPPDF"
 }

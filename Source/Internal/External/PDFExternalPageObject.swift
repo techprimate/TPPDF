@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 12.08.19.
 //
 
-import Foundation
+import UIKit
 
 internal class PDFExternalPageObject: PDFRenderObject {
 
@@ -15,8 +15,10 @@ internal class PDFExternalPageObject: PDFRenderObject {
         self.page = page
     }
 
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        return [(container, self)]
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        [
+            (container, self)
+        ]
     }
 
     override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {

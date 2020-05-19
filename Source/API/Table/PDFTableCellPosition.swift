@@ -6,22 +6,22 @@
 //
 
 /**
- TODO: Documentation
+ A cell position represent the coordinate of a cell in a given table
  */
 public struct PDFTableCellPosition {
 
     /**
-     TODO: Documentation
+     Vertical row index, starting at zero
      */
     public var row: Int
 
     /**
-     TODO: Documentation
+     Horizontal column index, starting at zero
      */
     public var column: Int
 
     /**
-     TODO: Documentation
+     Creates a new position with the given row and column
      */
     public init(row: Int, column: Int) {
         self.row = row

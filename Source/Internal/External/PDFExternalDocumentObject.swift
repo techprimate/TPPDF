@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 internal class PDFExternalDocumentObject: PDFRenderObject {
 
@@ -17,20 +18,19 @@ internal class PDFExternalDocumentObject: PDFRenderObject {
         self.pages = pages
     }
 
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         guard let cgPDF = CGPDFDocument(url as CFURL) else {
             throw PDFError.externalDocumentURLInvalid(url: url)
         }
+
         for i in pages {
             guard let page = cgPDF.page(at: i) else {
                 throw PDFError.pageOutOfBounds(index: i)
             }
             result.append((container, PDFExternalPageObject(page: page)))
         }
-
-        result += try PDFPageBreakObject().calculate(generator: generator, container: .contentLeft)
 
         return result
     }
@@ -39,6 +39,6 @@ internal class PDFExternalDocumentObject: PDFRenderObject {
      TODO: documentation
      */
     override internal var copy: PDFRenderObject {
-       return PDFExternalDocumentObject(url: self.url, pages: self.pages)
+       PDFExternalDocumentObject(url: self.url, pages: self.pages)
     }
 }

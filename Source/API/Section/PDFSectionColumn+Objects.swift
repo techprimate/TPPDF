@@ -5,6 +5,8 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
+import UIKit
+
 /**
 This extension contains all functions to modify the objects of a section column
 */

@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 31/10/2017.
 //
 
+import UIKit
+
 /**
  Attributed text objects hold an instance of `NSAttributedString`
 
@@ -30,7 +32,7 @@ public class PDFAttributedText: PDFText {
      Creats a new `PDFAttributedText` with the same properties
      */
     override internal var copy: PDFText {
-        return PDFAttributedText(text: text)
+        PDFAttributedText(text: text)
     }
 }
 

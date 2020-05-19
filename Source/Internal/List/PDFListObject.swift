@@ -25,8 +25,8 @@ internal class PDFListObject: PDFRenderObject {
     /**
      TODO: documentation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         let originalLeftIndent = generator.layout.indentation.leftIn(container: container)
 
@@ -50,7 +50,9 @@ internal class PDFListObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    private func createSymbolItem(generator: PDFGenerator, container: PDFContainer, symbol: PDFListItemSymbol) throws -> [(PDFContainer, PDFRenderObject)] {
+    private func createSymbolItem(generator: PDFGenerator,
+                                  container: PDFContainer,
+                                  symbol: PDFListItemSymbol) throws -> [PDFLocatedRenderObject] {
         let symbol: String = symbol.stringValue
         let symbolText = PDFSimpleText(text: symbol)
         let symbolTextObject = PDFAttributedTextObject(simpleText: symbolText)
@@ -66,7 +68,7 @@ internal class PDFListObject: PDFRenderObject {
         return toAdd
     }
 
-    private func createTextItem(generator: PDFGenerator, container: PDFContainer, text: String) throws -> [(PDFContainer, PDFRenderObject)] {
+    private func createTextItem(generator: PDFGenerator, container: PDFContainer, text: String) throws -> [PDFLocatedRenderObject] {
         let itemText = PDFSimpleText(text: text)
         let itemTextObject = PDFAttributedTextObject(simpleText: itemText)
         return try itemTextObject.calculate(generator: generator, container: container)
@@ -76,6 +78,6 @@ internal class PDFListObject: PDFRenderObject {
      Creates a new `PDFListObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFListObject(list: self.list.copy)
+        PDFListObject(list: self.list.copy)
     }
 }

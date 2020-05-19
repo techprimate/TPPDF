@@ -1,0 +1,23 @@
+PODS:
+  - SwiftLint (0.39.2)
+  - TPPDF (1.6.0):
+    - SwiftLint
+
+DEPENDENCIES:
+  - TPPDF (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - SwiftLint
+
+EXTERNAL SOURCES:
+  TPPDF:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+  TPPDF: 0148af2eb1c6b6de1024be58f65bbe70cf7fb2d5
+
+PODFILE CHECKSUM: 5dce4fe74396d7a60f8c89b090ddd3e853429276
+
+COCOAPODS: 1.9.1

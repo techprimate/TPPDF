@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  All renderable objects subclass from this object.
  Each object is first calculated and then drawn.
@@ -32,8 +34,8 @@ public class PDFRenderObject: CustomStringConvertible, PDFJSONSerializable {
      - returns: List of objects and the container they are located in
      */
     @discardableResult
-    internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        return []
+    internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        []
     }
 
     /**

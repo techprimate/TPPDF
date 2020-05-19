@@ -6,17 +6,17 @@
 //
 
 /**
- TODO: Documentation
+ A protocol that objects adopt to provide functional copies of themselves.
  */
 public protocol PDFCopy {
 
     /**
-     TODO: Documentation
+     Type of intance, used to add generic to protocol
      */
     associatedtype Element
 
     /**
-     TODO: Documentation
+     Returns a new instance that’s a copy of the receiver.
      */
     var copy: Element { get }
 

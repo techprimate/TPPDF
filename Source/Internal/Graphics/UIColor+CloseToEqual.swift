@@ -5,10 +5,15 @@
 //  Created by Philip Niedertscheider on 16/11/2017.
 //
 
+import UIKit
+
 extension UIColor {
 
     /**
-     TODO: documentation
+     Calculates the red, green, blue and alpha values in the range 0...1 and compares the values up to the decimal specified.
+
+     - parameter color: The other `UIColor`
+     - returns: `true` if difference is less than specified delta
      */
     internal func isClose(to color: UIColor, decimals: Int) -> Bool {
         var r1: CGFloat = 0
@@ -38,7 +43,13 @@ extension UIColor {
     }
 
     /**
-     TODO: documentation
+     Checks if the difference between the given values is less than the given delta.
+
+     - parameter val1: First value
+     - parameter val2: Second value
+     - parameter decimals:Number of decimal digits
+
+     - returns: `true` if differnec is small enough, othewise `false`
      */
     private func outOfBounds(val1: CGFloat, val2: CGFloat, decimals: Int) -> Bool {
         let value1 = Decimal(Double(val1))

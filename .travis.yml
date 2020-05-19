@@ -1,35 +1,126 @@
 os: osx
-osx_image: xcode11.2
+osx_image: xcode11.4
 language: objective-c
-cache:
-  bundler: true
-  cocoapods: true
-podfile: Example/Podfile
-notifications:
-  slack:
-    secure: zqgyogEkMEjTfIZqbSOfG8SWE3+93tDyPt+Q/aRe4xO/Bd/IKcUrn0XtLDeZf38Q5Xkb3oZzg+8NMcwj0EPEbV+iO/drmJd3keAHWlLwc1Lyzq7mjibfOgwtXRuahC6z5VxPooGFH3dXz0ZWPrk4oDTv6p9uJ+8efPxZMY55lMnJvvYRVBHwIfK9pxNkOt/dC7Sflh6/46JUIefJGuSr3rgG+ImE+exp/us6lA2wu/XDDyMyAqMQPBLa2L4OL/CKqLP6NFLy00QlRtlPKW/AvyIXPI2x/k9porkK+cueGK0n3ZnZcsINdf8YKIVuTpOATmd9igXX7d2oW7FGJwlU7ttZ6gaa/zQxfHwVHKYbXdQYdfpXrB6u/tb1qpfj/CbDVgxVHEr7vXXJQdMJVnWqzXJiLlai4S3tRrLHyD86IeyhWj28jMp0JT6A9bkhrMy30Fyx3L2QMzZf17/xRI3ZJdl+Exj/f5xEngdO5yk2B98K4YWFkfJO80kmegXnH178OolaOnhHTLW/1q6l/ZBD7LVtRq1hFgcPIR0JxgsvWzX6+0dE4cZ6pb1Ulq0uj90T8ryBV+jaHdHPKxOORCkOLHfsem+5Tw5GzMBVhVNKdV7ajX1SvZmIMyoczfCsKXdU5zk5vbjigjm0fqdKY2/1AJAXDAHB7QMeQSR/WDEXNbc=
+
 env:
   global:
-  - WORKSPACE=Example/TPPDF.xcworkspace
-  - PROJECT=Example/TPPDF.xcodeproj
-  - TEST_FRAMEWORK_SCHEME="TPPDF-Example"
-  - EXAMPLE_SCHEME="TPPDF-Example"
-  - SOURCE_FOLDER="Source"
-  matrix:
   - DESTINATION="OS=13.2.2,name=iPhone 11 Pro"
-install:
-- bundle install
-- bundle exec pod repo update
-- bundle exec pod install --project-directory=Example
-script:
-- set -o pipefail
-- xcodebuild -version
-- xcodebuild -showsdks
-- xcodebuild -list
-- xcodebuild -workspace "$WORKSPACE" -scheme "$TEST_FRAMEWORK_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES build test | xcpretty
-- xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME" -sdk iphonesimulator -destination "$DESTINATION" -configuration Debug -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data ONLY_ACTIVE_ARCH=YES build | xcpretty
-- pod lib lint --allow-warnings
+  - WORKSPACE="Example.xcworkspace"
+  - PROJECT="Example.xcodeproj"
+  - EXAMPLE_SCHEME="Example"
+
+stages:
+  - Tests
+  - Examples
+
+jobs:
+  include:
+  - stage: Tests
+    name: "Unit Tests"
+    language: objective-c
+    cache:
+      bundler: true
+    env:
+    - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
+    - PROJECT="TPPDF.xcodeproj"
+    install:
+    - bundle install
+    script:
+    - swift package resolve
+    - xcodebuild -project ${PROJECT}
+                 -scheme ${TEST_FRAMEWORK_SCHEME}
+                 -clonedSourcePackagesDirPath .
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 -sdk iphonesimulator
+                 -destination "${DESTINATION}"
+                 -configuration Debug
+                 ONLY_ACTIVE_ARCH=YES
+                 test | bundle exec xcpretty
+
+  - stage: Examples
+    name: "Example iOS - Cocoapods"
+    language: objective-c
+    env:
+    - ROOT_FOLDER="Example iOS-Cocoapods"
+    cache:
+      bundler: true
+      cocoapods: true
+    podfile: "${ROOT_FOLDER}/Podfile"
+    install:
+    - bundle install
+    - bundle exec pod install --project-directory="${ROOT_FOLDER}"
+    before_script:
+    - cd "${ROOT_FOLDER}"
+    script:
+    - xcodebuild -workspace "$WORKSPACE"
+                 -scheme "$EXAMPLE_SCHEME"
+                 -sdk iphonesimulator
+                 -destination "$DESTINATION"
+                 -configuration Debug
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 ONLY_ACTIVE_ARCH=YES
+                 build | bundle exec xcpretty
+    - cd ../
+    - bundle exec pod lib lint --allow-warnings
+
+  - stage: Examples
+    name: "Example iOS - Carthage"
+    language: objective-c
+    cache:
+      bundler: true
+    env:
+    - ROOT_FOLDER="Example iOS-Carthage"
+    before_install:
+    - brew update
+    - brew outdated carthage || brew upgrade carthage
+    before_script:
+    - cd "${ROOT_FOLDER}"
+    - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
+    - carthage update --platform ios
+    script:
+    - xcodebuild -workspace "$WORKSPACE"
+                 -scheme "$EXAMPLE_SCHEME"
+                 -sdk iphonesimulator
+                 -destination "$DESTINATION"
+                 -configuration Debug
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 ONLY_ACTIVE_ARCH=YES
+                 build | bundle exec xcpretty
+
+  - stage: Examples
+    name: "Example iOS - Swift PM"
+    language: objective-c
+    cache:
+      bundler: true
+    env:
+    - ROOT_FOLDER="Example iOS-SwiftPM"
+    script:
+    - cd "${ROOT_FOLDER}"
+    - xcodebuild -resolvePackageDependencies
+                 -project ${PROJECT}
+                 -scheme ${EXAMPLE_SCHEME}
+                 -clonedSourcePackagesDirPath .
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 -configuration Debug | bundle exec xcpretty
+    - xcodebuild -project ${PROJECT}
+                 -scheme ${EXAMPLE_SCHEME}
+                 -clonedSourcePackagesDirPath .
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 -sdk iphonesimulator
+                 -destination "${DESTINATION}"
+                 -configuration Debug
+                 ONLY_ACTIVE_ARCH=YES
+                 build | bundle exec xcpretty
+    - xcodebuild -project ${PROJECT}
+                 -scheme ${TEST_FRAMEWORK_SCHEME}
+                 -clonedSourcePackagesDirPath .
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 -sdk iphonesimulator
+                 -destination "${DESTINATION}"
+                 -configuration Debug
+                 ONLY_ACTIVE_ARCH=YES
+                 test | bundle exec xcpretty
+
 after_success:
 - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verbose
-- bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X
-  xcode
+- bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X xcode

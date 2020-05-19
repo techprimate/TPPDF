@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 30/10/2017.
 //
 
+import UIKit
+
 /**
  TODO: documentation
  */
@@ -21,19 +23,19 @@ internal struct PDFLayoutHeights: CustomStringConvertible {
     internal var footer: [PDFContainer: CGFloat] = [:]
 
     /**
-     TODO: documentation
+     Tracks the current height of the document content
      */
     internal var content: CGFloat = 0
 
     /**
-     TODO: documentation
+     Initialises the heights by resetting the headers and footers
      */
     internal init() {
         resetHeaderFooterHeight()
     }
 
     /**
-     TODO: documentation
+     Resets all three header and footer containers to be zero
      */
     internal mutating func resetHeaderFooterHeight() {
         header[.headerLeft] = 0
@@ -59,17 +61,17 @@ internal struct PDFLayoutHeights: CustomStringConvertible {
     }
 
     /**
-     TODO: documentation
+     - returns: Height of highest header container
      */
     internal func maxHeaderHeight() -> CGFloat {
-        return header.values.max() ?? 0
+        header.values.max() ?? 0
     }
 
     /**
-     TODO: documentation
+     - returns: Height of highestfooter  container
      */
     internal func maxFooterHeight() -> CGFloat {
-        return footer.values.max() ?? 0
+        footer.values.max() ?? 0
     }
 
     /**

@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 04.12.2019
 //
 
+import UIKit
+
 /**
  Generates a PDF from multiple `PDFDocument` by appending them.
  */
@@ -51,7 +53,7 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     public init(documents: [PDFDocument] = []) {
         assert(!documents.isEmpty, "At least one document is required!")
         self.generators = documents.map(PDFGenerator.init(document:))
-        self.progresses = self.generators.map { $0.progress }
+        self.progresses = self.generators.map(\.progress)
 
         self.bounds = documents.first?.layout.bounds ?? .zero
         self.info = documents.first?.info ?? PDFInfo()
@@ -61,12 +63,12 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
 
     /// nodoc
     public func generateURL(filename: String) throws -> URL {
-        return try self.generateURL(filename: filename, info: nil)
+        try self.generateURL(filename: filename, info: nil)
     }
 
     /// nodoc
     public func generate(to target: URL) throws {
-        return try self.generate(to: target, info: nil)
+        try self.generate(to: target, info: nil)
     }
 
     /**
@@ -85,7 +87,7 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     }
 
     public func generateData() throws -> Data {
-        return try self.generateData(info: nil)
+        try self.generateData(info: nil)
     }
 
     /**

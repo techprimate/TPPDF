@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  TODO: documentation
  */
@@ -37,8 +39,8 @@ internal class PDFImageRowObject: PDFRenderObject {
     /**
      TODO: documentation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         let originalInsetLeft = generator.layout.indentation.leftIn(container: container)
         let originalInsetRight = generator.layout.indentation.rightIn(container: container)
@@ -89,6 +91,6 @@ internal class PDFImageRowObject: PDFRenderObject {
      TODO: documentation
      */
     override internal var copy: PDFRenderObject {
-        return PDFImageRowObject(images: self.images, spacing: self.spacing, captionSpacing: self.captionSpacing)
+        PDFImageRowObject(images: self.images, spacing: self.spacing, captionSpacing: self.captionSpacing)
     }
 }

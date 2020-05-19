@@ -30,7 +30,6 @@ public enum PDFGroupContainer {
      */
     case right
 
-
     internal init(from container: PDFContainer) {
         if container.isLeft {
             self = .left
@@ -46,7 +45,7 @@ public enum PDFGroupContainer {
      Useful for initalizing default values for each container
      */
     internal static var all: [PDFGroupContainer] {
-        return [.left, .center, .right]
+        [.left, .center, .right]
     }
 
     /**

@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 28.05.19.
 //
 
+import UIKit
+
 /**
  TODO: Documentation
  */
@@ -69,7 +71,7 @@ internal class PDFColumnWrapSectionObject: PDFRenderObject {
      - returns: Self
      */
     @discardableResult
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.columnState.set(currentColumn: 0, for: container)
         generator.columnState.set(inset: (0, 0), for: container)
 
@@ -105,10 +107,10 @@ internal class PDFColumnWrapSectionObject: PDFRenderObject {
      TODO: Documentation
      */
     override internal var copy: PDFRenderObject {
-        return PDFColumnWrapSectionObject(columns: self.columns,
-                                          widths: self.widths,
-                                          spacings: self.spacings,
-                                          isDisable: self.isDisable,
-                                          addPageBreak: self.addPageBreak)
+        PDFColumnWrapSectionObject(columns: self.columns,
+                                   widths: self.widths,
+                                   spacings: self.spacings,
+                                   isDisable: self.isDisable,
+                                   addPageBreak: self.addPageBreak)
     }
 }

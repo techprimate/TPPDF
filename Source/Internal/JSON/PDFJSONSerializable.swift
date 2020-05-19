@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import Foundation
+
 /**
  TODO: Documentation
  */
@@ -71,7 +73,7 @@ public extension PDFJSONSerializable {
      TODO: Documentation
      */
     func isTuple(value: Any) -> Bool {
-        return Mirror(reflecting: value).displayStyle == .tuple
+        Mirror(reflecting: value).displayStyle == .tuple
     }
 
     /**

@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  Used to modify the indentation of a container
  */
@@ -41,7 +43,7 @@ internal class PDFIndentationObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         if left {
             generator.layout.indentation.setLeft(indentation: indentation, in: container)
         } else {
@@ -55,6 +57,6 @@ internal class PDFIndentationObject: PDFRenderObject {
      Creates a new `PDFIndentationObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFIndentationObject(indentation: self.indentation, left: self.left)
+        PDFIndentationObject(indentation: self.indentation, left: self.left)
     }
 }

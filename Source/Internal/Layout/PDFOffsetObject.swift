@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  Used to modify the offset of a container
  */
@@ -33,7 +35,7 @@ internal class PDFOffsetObject: PDFRenderObject {
      - returns: Self
      */
     @discardableResult
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.layout.setContentOffset(in: container, to: offset)
 
         return [(container, self)]
@@ -43,6 +45,6 @@ internal class PDFOffsetObject: PDFRenderObject {
      Creates a news `PDFOffsetObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFOffsetObject(offset: self.offset)
+        PDFOffsetObject(offset: self.offset)
     }
 }

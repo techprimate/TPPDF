@@ -16,6 +16,6 @@ extension Data: PDFJSONSerializable {
      TODO: Documentation
      */
     public var JSONRepresentation: AnyObject {
-        return self.base64EncodedString() as AnyObject
+        self.base64EncodedString() as AnyObject
     }
 }

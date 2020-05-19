@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+import UIKit
+
 /**
  This extension includes all size constnats defined by their corresponding standard.
  */

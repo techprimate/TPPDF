@@ -25,8 +25,8 @@ internal class PDFSectionColumnObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-	override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-		var result: [(PDFContainer, PDFRenderObject)] = []
+	override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+		var result: [PDFLocatedRenderObject] = []
 
 		for (container, object) in column.objects {
 			result += try object.calculate(generator: generator, container: container.contentContainer)
@@ -39,6 +39,6 @@ internal class PDFSectionColumnObject: PDFRenderObject {
      Creates a new `PDFSectionColumnObject` with the same properties
      */
 	override internal var copy: PDFRenderObject {
-		return PDFSectionColumnObject(column: self.column.copy)
+		PDFSectionColumnObject(column: self.column.copy)
 	}
 }

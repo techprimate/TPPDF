@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- TODO: Documentation
+ Type alias for weak references to document wide text styles
  */
 internal typealias WeakPDFTextStyleRef = WeakRef<PDFTextStyle>
 
@@ -31,7 +31,7 @@ public class PDFTableOfContent: PDFDocumentObject, PDFJSONSerializable {
      TODO: Documentation
      */
     public init(styles: [PDFTextStyle], symbol: PDFListItemSymbol) {
-        self.styles = styles.map { WeakPDFTextStyleRef(value: $0) }
+        self.styles = styles.map(WeakPDFTextStyleRef.init(value:))
         self.symbol = symbol
     }
 

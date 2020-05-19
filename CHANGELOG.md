@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.6.0...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.0.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,38 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/1.6.0...2.0.0)
+
+**Implemented enhancements:**
+
+- Table Merging
+- Swift Package Manager Support
+- Hyperlinks in texts
+
+**Fixed bugs:**
+
+- External document including empty pages 
+
+**Closed issues:**
+
+- #41
+- #86
+- #148
+- #178
+- #179
+- #182
+- #183
+- #184
+- #185
+- #186
+- #196
+- #197
+
+**Merged pull requests:**
+
+- #181
 
 ## [1.6.0](https://github.com/techprimate/TPPDF/tree/1.6.0) (2020-03-23)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.4...1.6.0)
@@ -21,6 +53,7 @@
 - Added support to embed external PDF document (Issue #31)
 - Added clickable URL support for images (Issue #170)
 - Added support for NSAttributedString link attributes (Issue #71)
+- Added subscript range access to PDFTable and deprecated `PDFTable.setCellStyle`
 
 **Fixed bugs:**
 

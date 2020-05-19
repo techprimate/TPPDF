@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 06.12.17.
 //
 
+import UIKit
+
 /**
  Calculates and draws a rectangle.
 
@@ -50,7 +52,7 @@ internal class PDFRectangleObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: size)
 
         self.frame = CGRect(origin: position, size: size)
@@ -75,6 +77,6 @@ internal class PDFRectangleObject: PDFRenderObject {
      Creates new `PDFRectangleObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFRectangleObject(lineStyle: self.lineStyle, size: self.size, fillColor: self.fillColor)
+        PDFRectangleObject(lineStyle: self.lineStyle, size: self.size, fillColor: self.fillColor)
     }
 }

@@ -1,0 +1,4 @@
+module NimbleCwlMachBadInstructionHandler {
+    umbrella "../../../.build/checkouts/Nimble/Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/include"
+    export *
+}

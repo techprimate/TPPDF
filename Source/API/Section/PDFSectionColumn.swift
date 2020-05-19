@@ -5,6 +5,8 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
+import UIKit
+
 /**
  TODO: Documentation
  */
@@ -39,6 +41,6 @@ public class PDFSectionColumn: PDFDocumentObject, PDFJSONSerializable {
      Creates a new `PDFSectionColumn` with the same properties
      */
 	internal var copy: PDFSectionColumn {
-		return PDFSectionColumn(width: self.width)
+		PDFSectionColumn(width: self.width)
 	}
 }

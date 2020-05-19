@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  Calculates the given image and a caption if necessary
  */
@@ -41,8 +43,8 @@ internal class PDFImageObject: PDFRenderObject {
 
      - returns: Calculated objects and their corresponding container, created by this calculation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         var (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(generator: generator,
                                                                                  container: container,
@@ -129,6 +131,6 @@ internal class PDFImageObject: PDFRenderObject {
      Creates a new `PDFImageObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFImageObject(image: self.image.copy, captionSpacing: self.captionSpacing)
+        PDFImageObject(image: self.image.copy, captionSpacing: self.captionSpacing)
     }
 }

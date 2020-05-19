@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  This extension contains all functions to modify the objects of a document
  */
@@ -24,9 +26,7 @@ public extension PDFDocument {
         objects += [(container, PDFSpaceObject(space: space))]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "add(_:space:)")
     func addSpace(_ container: PDFContainer = PDFContainer.contentLeft, space: CGFloat) {
         add(container, space: space)
@@ -57,9 +57,7 @@ public extension PDFDocument {
         objects += [(container, PDFImageObject(image: image))]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "add(_:image:)")
     func addImage(_ container: PDFContainer = PDFContainer.contentLeft, image: PDFImage) {
         add(container, image: image)
@@ -77,9 +75,7 @@ public extension PDFDocument {
         objects += [(container, PDFImageRowObject(images: images, spacing: spacing))]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "add(_:imagesInRow:spacing:)")
     func addImagesInRow(_ container: PDFContainer = PDFContainer.contentLeft, images: [PDFImage], spacing: CGFloat = 5.0) {
         add(container, imagesInRow: images, spacing: spacing)
@@ -98,9 +94,7 @@ public extension PDFDocument {
         add(container, textObject: PDFSimpleText(text: text, spacing: lineSpacing))
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "add(_:text:lineSpacing:)")
     func addText(_ container: PDFContainer = PDFContainer.contentLeft, text: String, lineSpacing: CGFloat = 1.0) {
         add(container, text: text, lineSpacing: lineSpacing)
@@ -116,9 +110,7 @@ public extension PDFDocument {
         objects += [(container, PDFAttributedTextObject(simpleText: textObject))]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "add(_:textObject:)")
     func addText(_ container: PDFContainer = PDFContainer.contentLeft, textObject: PDFSimpleText) {
         add(container, textObject: textObject)
@@ -134,9 +126,7 @@ public extension PDFDocument {
         add(container, attributedTextObject: PDFAttributedText(text: attributedText))
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "add(_:attributedText:)")
     func addAttributedText(_ container: PDFContainer = PDFContainer.contentLeft, text: NSAttributedString) {
         add(container, attributedText: text)
@@ -162,9 +152,7 @@ public extension PDFDocument {
         objects += [(container, PDFFontObject(font: font))]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "set(_:font:)")
     func setFont(_ container: PDFContainer = PDFContainer.contentLeft, font: UIFont) {
         set(container, font: font)
@@ -189,9 +177,7 @@ public extension PDFDocument {
         objects += [(container, PDFTextColorObject(color: textColor))]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "set(_:textColor:)")
     func setTextColor(_ container: PDFContainer = PDFContainer.contentLeft, color: UIColor) {
         objects += [(container, PDFTextColorObject(color: color))]
@@ -215,9 +201,7 @@ public extension PDFDocument {
         objects += [(container, PDFTableObject(table: table))]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "add(_:table:)")
     func addTable(_ container: PDFContainer = PDFContainer.contentLeft, table: PDFTable) {
         add(container, table: table)
@@ -232,26 +216,22 @@ public extension PDFDocument {
         objects += [(container, PDFListObject(list: list))]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "add(_:table:)")
     func addList(_ container: PDFContainer = PDFContainer.contentLeft, list: PDFList) {
         add(container, list: list)
     }
 
-	// MARK: - Section
-
-	/**
-	 Adds a section object to the document
-	 */
-    func add(section: PDFSection) {
-		objects += [(.contentLeft, PDFSectionObject(section: section))]
-	}
+    // MARK: - Section
 
     /**
-     TODO: Documentation
+     Adds a section object to the document
      */
+    func add(section: PDFSection) {
+        objects += [(.contentLeft, PDFSectionObject(section: section))]
+    }
+
+    /// :nodoc:
     @available(*, deprecated, renamed: "add(_:section:)")
     func addSection(_ section: PDFSection) {
         add(section: section)
@@ -270,9 +250,7 @@ public extension PDFDocument {
         objects += [(container, PDFIndentationObject(indentation: indent, left: left))]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "set(_:indent:left:)")
     func setIndentation(_ container: PDFContainer = PDFContainer.contentLeft, indent: CGFloat, left: Bool) {
         set(container, indent: indent, left: left)
@@ -288,9 +266,7 @@ public extension PDFDocument {
         objects += [(container, PDFOffsetObject(offset: absoluteOffset))]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// :nodoc:
     @available(*, deprecated, renamed: "set(_:absoluteOffset:)")
     func setAbsoluteOffset(_ container: PDFContainer = PDFContainer.contentLeft, offset: CGFloat) {
         set(container, absoluteOffset: offset)
@@ -338,7 +314,7 @@ public extension PDFDocument {
     }
 
     /**
-     TODO: Documentation
+     Add a group object to the given container
      */
     func add(_ container: PDFContainer = PDFContainer.contentLeft, group: PDFGroup) {
         objects += [(container, PDFGroupObject(objects: group.objects,
@@ -352,7 +328,7 @@ public extension PDFDocument {
     }
 
     /**
-     TODO: Documentation
+     Replaces current master group with the given one
      */
     func set(master group: PDFMasterGroup) {
         self.masterGroup = PDFGroupObject(objects: group.objects,
@@ -366,7 +342,7 @@ public extension PDFDocument {
     }
 
     /**
-     TODO: Documentation
+     Adds an external document to the document
      */
     func add(externalDocument doc: PDFExternalDocument) {
         objects += [(.none, PDFExternalDocumentObject(url: doc.url,

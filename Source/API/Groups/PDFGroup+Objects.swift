@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 31.05.19.
 //
 
-import Foundation
+import UIKit
 
 /**
  This extension contains all functions to modify the objects of a group

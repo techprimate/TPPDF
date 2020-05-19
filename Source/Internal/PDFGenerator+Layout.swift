@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
+import UIKit
+
 /**
  Extends the generator with shorthand methods for accessing and modifying the layout
  */
@@ -18,7 +20,7 @@ extension PDFGenerator {
      - returns: Offset in points
      */
     internal func getContentOffset(in container: PDFContainer) -> CGFloat {
-        return layout.getContentOffset(in: container)
+        layout.getContentOffset(in: container)
     }
 
     /**

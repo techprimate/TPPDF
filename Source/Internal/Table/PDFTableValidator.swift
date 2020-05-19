@@ -5,8 +5,10 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+import UIKit
+
 /**
- TODO: Documentation
+ PDFTable validation utility
  */
 internal enum PDFTableValidator {
 
@@ -24,6 +26,25 @@ internal enum PDFTableValidator {
         // Throw error when empty. Signalizes developer he tries to render an empty table. Might cause format errors
         if table.cells.isEmpty {
             throw PDFError.tableIsEmpty
+        }
+
+        // Check if headers are vertically merged unevenly, this means we can not have headers on every page
+        var headerCellsPerColumn: [Int] = Array(repeating: 0, count: table.size.columns)
+        // Get merge count of all header cells
+        for colIdx in 0..<table.size.columns {
+            let column = table[column: colIdx]
+            var prevCell = column[0]
+            var count = 0
+            while count < table.size.rows && (count < table.style.columnHeaderCount || column[count] === prevCell) {
+                prevCell = column[count]
+                count += 1
+            }
+            headerCellsPerColumn[colIdx] = count
+        }
+
+        if headerCellsPerColumn.contains(where: { $0 != headerCellsPerColumn[0] }) {
+            print("Can not display headers with uneven height due to merged cells on all pages. Disabling it...")
+            table.showHeadersOnEveryPage = false
         }
 
         // Compare each data row, throw error when columns row count does not equal relativeColumnWidth count

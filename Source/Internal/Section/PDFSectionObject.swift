@@ -5,6 +5,8 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
+import UIKit
+
 /**
  TODO: Documentation
  */
@@ -25,15 +27,15 @@ internal class PDFSectionObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
-        var result: [(PDFContainer, PDFRenderObject)] = []
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var result: [PDFLocatedRenderObject] = []
 
         let originalIndent = generator.layout.indentation.content
         let originalContentOffset = generator.getContentOffset(in: container)
 
         var indentationLeft: CGFloat = 0.0
         var columnWidthSum: CGFloat = 0.0
-        var objectsPerColumn: [Int: [(PDFContainer, PDFRenderObject)]] = [:]
+        var objectsPerColumn: [Int: [PDFLocatedRenderObject]] = [:]
 
         let contentWidth = generator.document.layout.width
             - generator.layout.margin.left
@@ -110,20 +112,20 @@ internal class PDFSectionObject: PDFRenderObject {
      ...
      ```
      */
-    internal func calulatePageBreakPositions(_ objectsPerColumn: [Int: [(PDFContainer, PDFRenderObject)]]) -> [(PDFContainer, PDFRenderObject)] {
+    internal func calulatePageBreakPositions(_ objectsPerColumn: [Int: [PDFLocatedRenderObject]]) -> [PDFLocatedRenderObject] {
         // stores how many objects are in one column at max
         let maxObjectsPerColumn = objectsPerColumn.reduce(0) { max($0, $1.value.count) }
 
         /* as soon as a column requests a page break, we need to stack subsequent objects of the very same column until the following is `true`:
          * one or more columns do not have more objects and all other columns, which have more objects left, are requesting a page break
          */
-        var stackedObjectsPerColumn = [Int: [(PDFContainer, PDFRenderObject)]]()
+        var stackedObjectsPerColumn = [Int: [PDFLocatedRenderObject]]()
         for columnIndex in objectsPerColumn.keys {
             stackedObjectsPerColumn[columnIndex] = []
         }
 
         // stores the final objects which can be drawn to the pdf
-        var result: [(PDFContainer, PDFRenderObject)] = []
+        var result: [PDFLocatedRenderObject] = []
 
         // loop through all objects, row by row for each column
         for objectIndex in 0..<maxObjectsPerColumn {
@@ -188,6 +190,6 @@ internal class PDFSectionObject: PDFRenderObject {
      Creates a new `PDFSectionObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        return PDFSectionObject(section: self.section.copy)
+        PDFSectionObject(section: self.section.copy)
     }
 }

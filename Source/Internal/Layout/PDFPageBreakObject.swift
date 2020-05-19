@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+import UIKit
+
 /**
  Used in the rendering to create a new page
  */
@@ -26,7 +28,7 @@ internal class PDFPageBreakObject: PDFRenderObject {
 
      - returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.layout.heights.content = generator.columnState.getWrapColumnsHeight(for: container)
 
         stayOnSamePage = false
@@ -75,6 +77,6 @@ internal class PDFPageBreakObject: PDFRenderObject {
      Creates a new `PDFPageBreakObject`
      */
     override internal var copy: PDFRenderObject {
-        return PDFPageBreakObject()
+        PDFPageBreakObject()
     }
 }

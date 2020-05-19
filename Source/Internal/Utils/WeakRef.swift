@@ -8,17 +8,19 @@
 import Foundation
 
 /**
- TODO: Documentation
+ Utility class used for weak reference wrapping
  */
 internal class WeakRef<T> where T: AnyObject {
 
     /**
-     TODO: Documentation
+     Holds a weak reference to an instance
      */
     internal private(set) weak var value: T?
 
     /**
-     TODO: Documentation
+     Creates a new weak reference instance, holding a reference to the given value
+
+     - parameter value: Value to be weakly referenced
      */
     internal init(value: T?) {
         self.value = value

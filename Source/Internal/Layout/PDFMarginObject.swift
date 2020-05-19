@@ -48,7 +48,7 @@ internal class PDFMarginObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [(PDFContainer, PDFRenderObject)] {
+    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         if reset {
             generator.layout.margin = generator.document.layout.margin
             return [(container, self)]
@@ -73,10 +73,10 @@ internal class PDFMarginObject: PDFRenderObject {
      TODO: Documentation
      */
     override internal var copy: PDFRenderObject {
-        return PDFMarginObject(left: self.values.left,
-                               right: self.values.right,
-                               top: self.values.top,
-                               bottom: self.values.bottom,
-                               reset: self.reset)
+        PDFMarginObject(left: self.values.left,
+                        right: self.values.right,
+                        top: self.values.top,
+                        bottom: self.values.bottom,
+                        reset: self.reset)
     }
 }

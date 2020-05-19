@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+import UIKit
+
 /**
  This struct defines how a line or border of a table is drawn.
  */
@@ -49,6 +51,6 @@ public struct PDFLineStyle: PDFJSONSerializable {
      Shorthand method for creating an invisible line
      */
     public static var none: PDFLineStyle {
-        return PDFLineStyle(type: .none, width: 0)
+        PDFLineStyle(type: .none, width: 0)
     }
 }

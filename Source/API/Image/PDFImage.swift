@@ -5,6 +5,8 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+import UIKit
+
 /**
  Image element for the PDF document. Contains all information about an image, including the caption.
  */
@@ -79,12 +81,12 @@ public class PDFImage: PDFDocumentObject, PDFJSONSerializable {
      Creates a new `PDFImage` with the same properties
      */
     public var copy: PDFImage {
-        return PDFImage(image: self.image,
-                        caption: self.caption?.copy,
-                        size: self.size,
-                        sizeFit: self.sizeFit,
-                        quality: self.quality,
-                        options: self.options,
-                        cornerRadius: self.cornerRadius)
+        PDFImage(image: self.image,
+                 caption: self.caption?.copy,
+                 size: self.size,
+                 sizeFit: self.sizeFit,
+                 quality: self.quality,
+                 options: self.options,
+                 cornerRadius: self.cornerRadius)
     }
 }

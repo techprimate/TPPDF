@@ -1,8 +1,8 @@
 author: Philip Niedertscheider
-author_url: https://www.github.com/techprimate-phil
+author_url: https://www.github.com/philprime
 github_url: https://www.github.com/techprimate/TPPDF
 root_url: https://techprimate.github.io/TPPDF/
 module: TPPDF
 output: docs
 theme: fullwidth
-xcodebuild_arguments: [-workspace, 'Example/TPPDF.xcworkspace', -scheme, 'TPPDF-Example']
+xcodebuild_arguments: [-project, 'Example iOS-SwiftPM/Example.xcodeproj', -scheme, 'Example', -sdk, 'iphonesimulator']
