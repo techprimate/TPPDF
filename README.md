@@ -48,6 +48,13 @@
   • <a href="#license">License</a>
 </p>
 
+**Attention:**
+
+We just released version 2.0.0. It has breaking API changes and might causes issues as it is needs more testing.
+Please do not upgrade to it yet, unless you are willing to accept some instability.
+
+**IF YOU SEE ANY ISSUES, PLEASE REPORT THEM!** Thank you!
+
 ## What's new?
 
 TPPDF 2.0 brings a lot of new features and small tweaks. Here are some of the biggest ones:
