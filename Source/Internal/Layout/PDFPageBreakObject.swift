@@ -5,7 +5,12 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
+import CoreGraphics
 
 /**
  Used in the rendering to create a new page
@@ -67,7 +72,14 @@ internal class PDFPageBreakObject: PDFRenderObject {
      */
     override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
         if !stayOnSamePage {
+            #if os(iOS)
             UIGraphicsBeginPDFPageWithInfo(generator.document.layout.bounds, nil)
+            #elseif os(macOS)
+            var box = generator.document.layout.bounds
+            withUnsafePointer(to: &box) { pointer in
+                NSGraphicsContext.current?.cgContext.beginPage(mediaBox: pointer)
+            }
+            #endif
             generator.drawDebugPageOverlay()
         }
         applyAttributes()

@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Image element for the PDF document. Contains all information about an image, including the caption.
@@ -15,7 +19,7 @@ public class PDFImage: PDFDocumentObject {
     /**
      The actual image
      */
-    public var image: UIImage
+    public var image: Image
 
     /**
      An instance of a `PDFText` subclass.
@@ -61,7 +65,7 @@ public class PDFImage: PDFDocumentObject {
      - parameter options: Defines if the image will be modified before rendering
      - parameter cornerRadius: Defines the radius of the corners
      */
-    public init(image: UIImage,
+    public init(image: Image,
                 caption: PDFText? = nil,
                 size: CGSize = .zero,
                 sizeFit: PDFImageSizeFit = .widthHeight,

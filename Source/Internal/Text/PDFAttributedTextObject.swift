@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Calculates and draws a text
@@ -135,7 +139,7 @@ internal class PDFAttributedTextObject: PDFRenderObject {
 
         // Create the frame and a rectangular path of the text frame
         let frameRect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-        let framePath = UIBezierPath(rect: frameRect).cgPath
+        let framePath = BezierPath(rect: frameRect).cgPath
 
         // Create core text frame for the given attributed string
         // The whole text should fit the frame, as calculations were already done
@@ -210,7 +214,7 @@ internal class PDFAttributedTextObject: PDFRenderObject {
                     attributes.append((attribute: .link(url: URL(string: link.url)!), frame: linkFrame))
 
                     if debug {
-                        PDFGraphics.drawRect(rect: linkFrame, outline: .none, fill: UIColor.red.withAlphaComponent(0.4))
+                        PDFGraphics.drawRect(rect: linkFrame, outline: .none, fill: Color.red.withAlphaComponent(0.4))
                     }
                 }
             }
@@ -259,8 +263,8 @@ internal class PDFAttributedTextObject: PDFRenderObject {
      - returns: Attributes dictionary, used for `NSAttributedString` creation
      */
     internal static func generateDefaultTextAttributes(container: PDFContainer,
-                                                       fonts: inout [PDFContainer: UIFont],
-                                                       textColor: inout [PDFContainer: UIColor],
+                                                       fonts: inout [PDFContainer: Font],
+                                                       textColor: inout [PDFContainer: Color],
                                                        spacing: CGFloat,
                                                        style: PDFTextStyle?) -> [NSAttributedString.Key: NSObject] {
         let paragraphStyle = NSMutableParagraphStyle()

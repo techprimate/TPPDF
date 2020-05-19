@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 31/10/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Contains all relevant layout informations of a pdf document
@@ -25,7 +29,7 @@ internal class PDFLayout: CustomStringConvertible {
     /**
      TODO: documentation
      */
-    internal var margin: UIEdgeInsets = .zero
+    internal var margin: EdgeInsets = .zero
 
     // MARK: - INTERNAL FUNCS
 

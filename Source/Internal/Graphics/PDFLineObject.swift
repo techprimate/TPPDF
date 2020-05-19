@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 06.12.17.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Calculates and draws a line.

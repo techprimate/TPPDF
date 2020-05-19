@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 05/06/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Gives the generator the functionality to convert a `PDFDocument` into a `PDF`

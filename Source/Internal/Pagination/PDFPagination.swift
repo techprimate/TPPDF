@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Used to define the pagination behaviour of a document.

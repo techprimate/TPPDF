@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 04.12.2019
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Generates a PDF from multiple `PDFDocument` by appending them.
@@ -81,9 +85,15 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     */
     public func generate(to target: URL, info: PDFInfo?) throws {
         assert(!generators.isEmpty, "At least one document is required!")
+        #if os(iOS)
         UIGraphicsBeginPDFContextToFile(target.path, bounds, (info ?? self.info).generate())
         try processDocuments()
         UIGraphicsEndPDFContext()
+        #elseif os(macOS)
+        let context = CGContext(target.path, bounds, (info ?? self.info).generate())
+        try processDocuments()
+        CGPDFContextClose(context)
+        #endif
     }
 
     public func generateData() throws -> Data {

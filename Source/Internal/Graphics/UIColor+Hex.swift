@@ -5,9 +5,13 @@
 //  Created by Philip Niedertscheider on 04/11/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
-extension UIColor {
+extension Color {
 
     /**
      TODO: documentation

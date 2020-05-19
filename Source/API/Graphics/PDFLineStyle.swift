@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  This struct defines how a line or border of a table is drawn.
@@ -20,7 +24,7 @@ public struct PDFLineStyle {
     /**
      Defines the color of this line
      */
-    public var color: UIColor
+    public var color: Color
 
     /**
      Defines the width of this line
@@ -40,7 +44,7 @@ public struct PDFLineStyle {
      - parameter width: of Line
      - parameter radius: of border
      */
-    public init(type: PDFLineType = .full, color: UIColor = .black, width: CGFloat = 0.25, radius: CGFloat? = nil) {
+    public init(type: PDFLineType = .full, color: Color = .black, width: CGFloat = 0.25, radius: CGFloat? = nil) {
         self.type = type
         self.color = color
         self.width = width

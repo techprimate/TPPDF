@@ -1,21 +1,25 @@
 //
-//  UIColor+CloseToEqual.swift
+//  Color+CloseToEqual.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 16/11/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
-extension UIColor {
+extension Color {
 
     /**
      Calculates the red, green, blue and alpha values in the range 0...1 and compares the values up to the decimal specified.
 
-     - parameter color: The other `UIColor`
+     - parameter color: The other `Color`
      - returns: `true` if difference is less than specified delta
      */
-    internal func isClose(to color: UIColor, decimals: Int) -> Bool {
+    internal func isClose(to color: Color, decimals: Int) -> Bool {
         var r1: CGFloat = 0
         var g1: CGFloat = 0
         var b1: CGFloat = 0

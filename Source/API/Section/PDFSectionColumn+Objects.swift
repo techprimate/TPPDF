@@ -5,7 +5,11 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
 This extension contains all functions to modify the objects of a section column
@@ -168,7 +172,7 @@ public extension PDFSectionColumn {
 	- parameter container: Container where the font will be set, defaults to `PDFSectionColumnContainer.left`
 	- parameter font: Font of text
 	*/
-    func set(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, font: UIFont) {
+    func set(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, font: Font) {
 		objects += [(container, PDFFontObject(font: font))]
 	}
 
@@ -176,7 +180,7 @@ public extension PDFSectionColumn {
      TODO: Documentation
      */
     @available(*, deprecated, renamed: "set(_:font:)")
-    func setFont(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, font: UIFont) {
+    func setFont(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, font: Font) {
         set(container, font: font)
     }
 
@@ -186,7 +190,7 @@ public extension PDFSectionColumn {
 	- parameter container: Container whose text color will be reset, defaults to `PDFSectionColumnContainer.left`
 	*/
     func resetFont(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left) {
-		objects += [(container, PDFFontObject(font: UIFont.systemFont(ofSize: UIFont.systemFontSize)))]
+		objects += [(container, PDFFontObject(font: Font.systemFont(ofSize: Font.systemFontSize)))]
 	}
 
 	/**
@@ -195,7 +199,7 @@ public extension PDFSectionColumn {
 	- parameter container: Container where the text color will be set, defaults to `PDFSectionColumnContainer.left`
 	- parameter color: Color of the text
 	*/
-    func set(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, textColor: UIColor) {
+    func set(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, textColor: Color) {
         objects += [(container, PDFTextColorObject(color: textColor))]
     }
 
@@ -203,7 +207,7 @@ public extension PDFSectionColumn {
      TODO: Documentation
      */
     @available(*, deprecated, renamed: "set(_:textColor:)")
-    func setTextColor(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, color: UIColor) {
+    func setTextColor(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, color: Color) {
         set(container, textColor: color)
     }
 
@@ -213,7 +217,7 @@ public extension PDFSectionColumn {
 	- parameter container: Container whose text color will be reset, defaults to `PDFSectionColumnContainer.left`
 	*/
     func resetTextColor(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left) {
-		objects += [(container, PDFTextColorObject(color: UIColor.black))]
+		objects += [(container, PDFTextColorObject(color: Color.black))]
 	}
 
 	// MARK: - Table

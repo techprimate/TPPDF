@@ -5,7 +5,11 @@
 //  Created by Zheng-Xiang Ke on 2016/12/15.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Information saved in PDF file metadata.

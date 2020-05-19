@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 13/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Contains a collection methods to render the following shapes:
@@ -47,12 +51,12 @@ internal enum PDFGraphics {
 
      - returns: Bezier path of line, `nil` if line type in `style` was `PDFLineType.none`
      */
-    internal static func createLinePath(start: CGPoint, end: CGPoint, style: PDFLineStyle) -> UIBezierPath? {
+    internal static func createLinePath(start: CGPoint, end: CGPoint, style: PDFLineStyle) -> BezierPath? {
         if style.type == .none {
             return nil
         }
 
-        var path = UIBezierPath()
+        var path = BezierPath()
         path.move(to: start)
         path.addLine(to: end)
 
@@ -72,7 +76,7 @@ internal enum PDFGraphics {
      - parameter outline: Style of border lines
      - parameter fill: Inner color
      */
-    internal static func drawRect(rect: CGRect, outline: PDFLineStyle, fill: UIColor = .clear) {
+    internal static func drawRect(rect: CGRect, outline: PDFLineStyle, fill: Color = .clear) {
         let path = createRectPath(rect: rect, outline: outline)
 
         outline.color.setStroke()
@@ -105,10 +109,10 @@ internal enum PDFGraphics {
      - parameter rect: Frame of rectangle
      - parameter outline: Style of border lines
      */
-    internal static func createRectPath(rect: CGRect, outline: PDFLineStyle) -> UIBezierPath {
-        var path = UIBezierPath(rect: rect)
+    internal static func createRectPath(rect: CGRect, outline: PDFLineStyle) -> BezierPath {
+        var path = BezierPath(rect: rect)
         if let radius = outline.radius {
-            path = UIBezierPath.init(roundedRect: rect, cornerRadius: radius)
+            path = BezierPath.init(roundedRect: rect, cornerRadius: radius)
         }
 
         let dashes = createDashes(style: outline, path: &path)
@@ -120,16 +124,16 @@ internal enum PDFGraphics {
     // MARK: - Shape Utility
 
     /**
-     Creates an array of dash values. Used to define dashes of a `UIBezierPath`.
+     Creates an array of dash values. Used to define dashes of a `BezierPath`.
      Array is empty if line type is not a dashed or dotted.
-     This also sets the `UIBezierPath.lineCapStyle`.
+     This also sets the `BezierPath.lineCapStyle`.
 
      - parameter style: Style of line
      - parameter path: Reference to the path, which will be manipulated.
 
      - returns: Array with dash values
      */
-    internal static func createDashes(style: PDFLineStyle, path: inout UIBezierPath) -> [CGFloat] {
+    internal static func createDashes(style: PDFLineStyle, path: inout BezierPath) -> [CGFloat] {
         var dashes: [CGFloat] = []
 
         switch style.type {
@@ -149,9 +153,9 @@ internal enum PDFGraphics {
     /**
      TODO: Documentation
      */
-    internal static func drawPath(path: UIBezierPath, outline: PDFLineStyle, fillColor: UIColor) {
-        guard var path = path.copy() as? UIBezierPath else {
-            fatalError("Copy of UIBezierPath is invalid!")
+    internal static func drawPath(path: BezierPath, outline: PDFLineStyle, fillColor: Color) {
+        guard var path = path.copy() as? BezierPath else {
+            fatalError("Copy of BezierPath is invalid!")
         }
         let dashes = createDashes(style: outline, path: &path)
         path.setLineDash(dashes, count: dashes.count, phase: 0.0)
@@ -179,10 +183,10 @@ internal enum PDFGraphics {
 
      - returns: Resized, compressed and rounded copy of `image`
      */
-    internal static func resizeAndCompressImage(image: UIImage, frame: CGRect,
+    internal static func resizeAndCompressImage(image: Image, frame: CGRect,
                                                 shouldResize: Bool, shouldCompress: Bool,
                                                 quality: CGFloat,
-                                                roundCorners: UIRectCorner = [], cornerRadius: CGFloat? = nil) -> UIImage {
+                                                roundCorners: RectCorner = [], cornerRadius: CGFloat? = nil) -> Image {
         var finalImage = image
 
         if shouldResize {
@@ -207,19 +211,27 @@ internal enum PDFGraphics {
 
      - returns: Resized version of `image`
      */
-    internal static func resize(image: UIImage, frame: CGRect, quality: CGFloat) -> UIImage {
+    internal static func resize(image: Image, frame: CGRect, quality: CGFloat) -> Image {
         let factor: CGFloat = min(3 * quality, 1)
         let resizeFactor = factor.isZero ? 0.2 : factor
 
         let size = CGSize(width: frame.width * resizeFactor,
                           height: frame.height * resizeFactor)
 
+        #if os(iOS)
         UIGraphicsBeginImageContext(size)
         image.draw(in: CGRect(origin: .zero, size: size))
         let finalImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
         return finalImage ?? image
+        #elseif os(macOS)
+        let finalImage = NSImage(size: size)
+        finalImage.lockFocus()
+        image.draw(in: CGRect(origin: .zero, size: size))
+        finalImage.unlockFocus()
+        return finalImage
+        #endif
     }
 
     /**
@@ -231,11 +243,19 @@ internal enum PDFGraphics {
 
      - returns: Compressed image
      */
-    internal static func compress(image: UIImage, quality: CGFloat) -> UIImage {
+    internal static func compress(image: Image, quality: CGFloat) -> Image {
+        #if os(iOS)
         guard let data = image.jpegData(compressionQuality: quality) else {
             return image
         }
-        guard let compressed = UIImage(data: data) else {
+        #elseif os(macOS)
+        guard let imageData = image.tiffRepresentation,
+            let bitmapData = NSBitmapImageRep(data: imageData),
+            let data = bitmapData.representation(using: .jpeg, properties: [:]) else {
+                return image
+        }
+        #endif
+        guard let compressed = Image(data: data) else {
             return image
         }
         return compressed
@@ -251,7 +271,7 @@ internal enum PDFGraphics {
 
      - returns: Manipulated image
      */
-    internal static func round(image: UIImage, frameSize: CGSize, corners: UIRectCorner, cornerRadius: CGFloat?) -> UIImage {
+    internal static func round(image: Image, frameSize: CGSize, corners: RectCorner, cornerRadius: CGFloat?) -> Image {
         let size = image.size
 
         var cornerRadii = CGSize.zero
@@ -263,15 +283,31 @@ internal enum PDFGraphics {
             cornerRadii = CGSize(width: radius, height: radius)
         }
 
+        #if os(iOS)
         UIGraphicsBeginImageContext(size)
-        let clipPath = UIBezierPath(roundedRect: CGRect(origin: .zero, size: size), byRoundingCorners: corners, cornerRadii: cornerRadii)
+        let clipPath = BezierPath(roundedRect: CGRect(origin: .zero, size: size), byRoundingCorners: corners, cornerRadii: cornerRadii)
+        #elseif os(macOS)
+        let finalImage = NSImage(size: size)
+        finalImage.lockFocus()
+        let clipPath = BezierPath(roundedRect: CGRect(origin: .zero, size: size), byRoundingCorners: corners, cornerRadii: cornerRadii)
+        #endif
+
         clipPath.addClip()
         image.draw(in: CGRect(origin: .zero, size: size))
 
+        #if os(iOS)
         let finalImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-
         return finalImage ?? image
+        #elseif os(macOS)
+        finalImage.unlockFocus()
+        guard let data = finalImage.tiffRepresentation,
+            let imageRep = NSBitmapImageRep(data: data),
+            let pngData = imageRep.representation(using: .png, properties: [:]) else {
+                return image
+        }
+        return NSImage(data: pngData) ?? image
+        #endif
     }
 
     /**
@@ -282,7 +318,7 @@ internal enum PDFGraphics {
         /**
          TODO: Documentation
          */
-        case dotted(foreColor: UIColor, backColor: UIColor)
+        case dotted(foreColor: Color, backColor: Color)
 
         /**
          TODO: Documentation
@@ -290,21 +326,31 @@ internal enum PDFGraphics {
         internal func setFill() {
             switch self {
             case .dotted(let foreColor, let backColor):
-                UIGraphicsBeginImageContext(CGSize(width: 5, height: 5))
-                UIColor.clear.setStroke()
+                let size = CGSize(width: 5, height: 5)
+                #if os(iOS)
+                UIGraphicsBeginImageContext(size)
+                #elseif os(macOS)
+                let image = NSImage(size: size)
+                image.lockFocus()
+                #endif
+                Color.clear.setStroke()
                 backColor.setFill()
 
-                var path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 5, height: 5))
+                var path = BezierPath(rect: CGRect(x: 0, y: 0, width: 5, height: 5))
                 path.fill()
 
                 foreColor.setFill()
 
-                path = UIBezierPath(ovalIn: CGRect(x: 2.5, y: 2.5, width: 2.5, height: 2.5))
+                path = BezierPath(ovalIn: CGRect(x: 2.5, y: 2.5, width: 2.5, height: 2.5))
                 path.fill()
 
-                let image = UIGraphicsGetImageFromCurrentImageContext()
+                #if os(iOS)
+                let image = UIGraphicsGetImageFromCurrentImageContext()!
                 UIGraphicsEndImageContext()
-                UIColor(patternImage: image!).setFill()
+                #elseif os(macOS)
+                image.unlockFocus()
+                #endif
+                Color(patternImage: image).setFill()
             }
         }
     }

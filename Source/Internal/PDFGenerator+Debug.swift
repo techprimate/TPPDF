@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 24/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Adds UI debugging information while rendering.
@@ -38,7 +42,7 @@ extension PDFGenerator {
      Style of debug lines
      */
     private var debugLineStyle: PDFLineStyle {
-        PDFLineStyle(type: .dashed, color: UIColor.blue, width: 1.0)
+        PDFLineStyle(type: .dashed, color: Color.blue, width: 1.0)
     }
 
     // MARK: - PRIVATE FUNCS

@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 06.12.17.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Calculates and draws a rectangle.
@@ -27,16 +31,16 @@ internal class PDFRectangleObject: PDFRenderObject {
     /**
      Defines the fill color the rectangle
      */
-    internal var fillColor: UIColor
+    internal var fillColor: Color
 
     /**
      Initializer
 
      - parameter lineStyle: Style of outline, defaults to `PDFLineStyle` defaults
      - parameter size: Size of rectangle, defaults to `CGSize.zero`
-     - parameter fillColor: Fill color, defaults to `UIColor.clear`
+     - parameter fillColor: Fill color, defaults to `Color.clear`
      */
-    internal init(lineStyle: PDFLineStyle = PDFLineStyle(), size: CGSize = CGSize.zero, fillColor: UIColor = UIColor.clear) {
+    internal init(lineStyle: PDFLineStyle = PDFLineStyle(), size: CGSize = CGSize.zero, fillColor: Color = Color.clear) {
         self.lineStyle = lineStyle
         self.size = size
         self.fillColor = fillColor

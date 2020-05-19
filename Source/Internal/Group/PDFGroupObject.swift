@@ -5,9 +5,11 @@
 //  Created by Philip Niedertscheider on 31.05.19.
 //
 
-import Foundation
+#if os(iOS)
 import UIKit
-
+#elseif os(macOS)
+import AppKit
+#endif
 /**
  TODO: Documentation
  */
@@ -31,7 +33,7 @@ internal class PDFGroupObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    internal var backgroundColor: UIColor?
+    internal var backgroundColor: Color?
 
     /**
      TODO: Documentation
@@ -51,7 +53,7 @@ internal class PDFGroupObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    internal var padding: UIEdgeInsets
+    internal var padding: EdgeInsets
 
     /**
      TODO: Documentation
@@ -59,11 +61,11 @@ internal class PDFGroupObject: PDFRenderObject {
     internal init(objects: [(container: PDFGroupContainer, object: PDFRenderObject)],
                   allowsBreaks: Bool,
                   isFullPage: Bool,
-                  backgroundColor: UIColor?,
+                  backgroundColor: Color?,
                   backgroundImage: PDFImage?,
                   backgroundShape: PDFDynamicGeometryShape?,
                   outline: PDFLineStyle,
-                  padding: UIEdgeInsets) {
+                  padding: EdgeInsets) {
         self.objects = objects
         self.allowsBreaks = allowsBreaks
         self.isFullPage = isFullPage

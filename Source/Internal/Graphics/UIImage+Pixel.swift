@@ -1,29 +1,39 @@
 //
-//  UIImage+Pixel.swift
+//  Image+Pixel.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 05/11/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  TODO: documentation
  */
-extension UIImage {
+extension Image {
 
     /**
      TODO: documentation
      */
     internal var pixelExtractor: PixelExtractor {
+        #if os(iOS)
         PixelExtractor(img: self.cgImage!)
+        #elseif os(macOS)
+        var imageRect = CGRect(origin: .zero, size: self.size)
+        let image = self.cgImage(forProposedRect: &imageRect, context: nil, hints: nil)!
+        return PixelExtractor(img: image)
+        #endif
     }
 
     /**
      TODO: documentation
      */
-    internal func pixelColor(at location: CGPoint) -> UIColor {
-        PixelExtractor(img: self.cgImage!).colorAt(x: Int(location.x), y: Int(location.y))
+    internal func pixelColor(at location: CGPoint) -> Color {
+        self.pixelExtractor.colorAt(x: Int(location.x), y: Int(location.y))
     }
 }
 
@@ -99,7 +109,7 @@ internal class PixelExtractor: NSObject {
     /**
      TODO: documentation
      */
-    internal func colorAt(x: Int, y: Int) -> UIColor {
+    internal func colorAt(x: Int, y: Int) -> Color {
         assert(0<=x && x<width)
         assert(0<=y && y<height)
 
@@ -112,7 +122,7 @@ internal class PixelExtractor: NSObject {
         let green = CGFloat(data.load(fromByteOffset: offset+2, as: UInt8.self)) / 255.0
         let blue = CGFloat(data.load(fromByteOffset: offset+3, as: UInt8.self)) / 255.0
 
-        let color = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        let color = Color(red: red, green: green, blue: blue, alpha: alpha)
 
         return color
     }
