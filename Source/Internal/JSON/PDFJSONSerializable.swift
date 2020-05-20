@@ -20,6 +20,7 @@ extension PDFJSONSerializable {
     /**
      TODO: Documentation
      */
+    @available(*, deprecated, message: "In favor of other JSON encoding solutions, this will be removed in release 2.1")
     public var JSONRepresentation: AnyObject {
         var representation = [String: AnyObject]()
 
@@ -39,6 +40,7 @@ public extension PDFJSONSerializable {
     /**
      TODO: Documentation
      */
+    @available(*, deprecated, message: "In favor of other JSON encoding solutions, this will be removed in release 2.1")
     func toJSON(options: JSONSerialization.WritingOptions = []) -> String? {
         let representation = JSONRepresentation
 
@@ -54,6 +56,7 @@ public extension PDFJSONSerializable {
     /**
      TODO: Documentation
      */
+    @available(*, deprecated, message: "In favor of other JSON encoding solutions, this will be removed in release 2.1")
     func convertValue(_ value: Any) -> AnyObject {
         if let value = value as? PDFJSONSerializable {
             return value.JSONRepresentation
