@@ -35,8 +35,3 @@ public class PDFAttributedText: PDFText {
         PDFAttributedText(text: text)
     }
 }
-
-/**
- TODO: Documentation
- */
-extension PDFAttributedText: PDFJSONSerializable {}

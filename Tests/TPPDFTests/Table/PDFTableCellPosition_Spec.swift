@@ -37,16 +37,6 @@ class PDFTableCellPosition_Spec: QuickSpec {
                     expect(position.column) == column
                 }
             }
-
-            context("JSONSerializable") {
-
-                it("can be represented") {
-                    expect(position.JSONRepresentation as? [String: Int]) == [
-                        "row": row,
-                        "column": column
-                    ]
-                }
-            }
         }
     }
 

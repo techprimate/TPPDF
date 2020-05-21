@@ -62,18 +62,6 @@ class PDFListItemSymbol_Spec : QuickSpec {
                 expect(PDFListItemSymbol(rawValue: "numbered|nil")?.rawValue) == PDFListItemSymbol.numbered(value: nil).rawValue
                 expect(PDFListItemSymbol(rawValue: "numbered|%@")?.rawValue) == PDFListItemSymbol.numbered(value: "%@").rawValue
             }
-
-            context("JSONRepresentation") {
-
-                it("can be represented") {
-                    expect(PDFListItemSymbol.none.JSONRepresentation as? String) == PDFListItemSymbol.none.rawValue
-                    expect(PDFListItemSymbol.inherit.JSONRepresentation as? String) == PDFListItemSymbol.inherit.rawValue
-                    expect(PDFListItemSymbol.dot.JSONRepresentation as? String) == PDFListItemSymbol.dot.rawValue
-                    expect(PDFListItemSymbol.dash.JSONRepresentation as? String) == PDFListItemSymbol.dash.rawValue
-                    expect(PDFListItemSymbol.custom(value: "%@").JSONRepresentation as? String) == PDFListItemSymbol.custom(value: "%@").rawValue
-                    expect(PDFListItemSymbol.numbered(value: "%@").JSONRepresentation as? String) == PDFListItemSymbol.numbered(value: "%@").rawValue
-                }
-            }
         }
     }
 

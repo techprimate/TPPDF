@@ -21,7 +21,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          TPPDF 1.6.0 Docs
+          TPPDF 2.0.0 Docs
         </a>
          (98% documented)
       </p>
@@ -202,28 +202,13 @@
             <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Array.html">Array</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CGPoint.html">CGPoint</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions.html#/c:@S@CGRect">CGRect</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions.html#/c:@S@CGSize">CGSize</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CustomDebugStringConvertible.html">CustomDebugStringConvertible</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CustomStringConvertible.html">CustomStringConvertible</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Data.html">Data</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Dictionary.html">Dictionary</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/Double.html">Double</a>
@@ -241,12 +226,6 @@
                 <a class="nav-group-task-link" href="Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/UIColor.html">UIColor</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions.html#/c:objc(cs)UIFont">UIFont</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/UIImage.html">UIImage</a>
               </li>
             </ul>
@@ -262,12 +241,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/PDFGeneratorProtocol.html">PDFGeneratorProtocol</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/PDFJSONRepresentable.html">PDFJSONRepresentable</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/PDFTableContentable.html">PDFTableContentable</a>
@@ -361,7 +334,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFLineType</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFLineType</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -390,7 +362,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFGroupContainer</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFGroupContainer</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -419,7 +390,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFImageSizeFit</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFImageSizeFit</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -451,7 +421,6 @@ Also each part is horizontally split up into a left, a center and a right area.<
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFContainer</span> <span class="p">:</span> <span class="kt">CaseIterable</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFContainer</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -479,7 +448,7 @@ Also each part is horizontally split up into a left, a center and a right area.<
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFListItemSymbol</span> <span class="p">:</span> <span class="kt">RawRepresentable</span><span class="p">,</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFListItemSymbol</span> <span class="p">:</span> <span class="kt">RawRepresentable</span></code></pre>
 
                         </div>
                       </div>
@@ -537,7 +506,6 @@ All sizes are calculated using 72 points/inch</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFTableCellAlignment</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFTableCellAlignment</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -622,7 +590,6 @@ All sizes are calculated using 72 points/inch</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFSectionColumnContainer</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFSectionColumnContainer</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -654,7 +621,6 @@ All sizes are calculated using 72 points/inch</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PDFPaginationStyle</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFPaginationStyle</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFPaginationStyle</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -697,7 +663,7 @@ All sizes are calculated using 72 points/inch</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://www.github.com/philprime" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2020-05-17)</p>
+      <p>&copy; 2020 <a class="link" href="https://www.github.com/philprime" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2020-05-21)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

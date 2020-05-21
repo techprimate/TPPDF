@@ -102,13 +102,6 @@ class PDFContainer_Spec: QuickSpec {
                     PDFContainer.footerLeft, PDFContainer.footerCenter, PDFContainer.footerRight,
                 ]
             }
-
-            describe("JSON") {
-
-                it("can be represented") {
-                    expect(PDFContainer.headerCenter.JSONRepresentation as? Int) == 2
-                }
-            }
         }
     }
 

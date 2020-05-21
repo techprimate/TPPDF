@@ -15,7 +15,7 @@ internal typealias WeakPDFTextStyleRef = WeakRef<PDFTextStyle>
 /**
  TODO: Documentation
  */
-public class PDFTableOfContent: PDFDocumentObject, PDFJSONSerializable {
+public class PDFTableOfContent: PDFDocumentObject {
 
     /**
      TODO: Documentation

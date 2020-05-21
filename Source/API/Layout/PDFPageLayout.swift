@@ -10,7 +10,7 @@ import UIKit
 /**
  Contains all relevant layout informations of a pdf document
  */
-public struct PDFPageLayout: PDFJSONSerializable {
+public struct PDFPageLayout {
 
     // MARK: - PUBLIC VARS
 

@@ -10,7 +10,7 @@ import UIKit
 /**
  TODO: Documentation
  */
-public class PDFSection: PDFDocumentObject, PDFJSONSerializable {
+public class PDFSection: PDFDocumentObject {
 
 	/**
 	List of section columns.

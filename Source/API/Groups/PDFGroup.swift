@@ -11,7 +11,7 @@ import UIKit
 /**
  TODO: Documentation
  */
-public class PDFGroup: PDFJSONSerializable {
+public class PDFGroup {
 
     // MARK: - PUBLIC VARS
 

@@ -10,7 +10,7 @@ import UIKit
 /**
  Image element for the PDF document. Contains all information about an image, including the caption.
  */
-public class PDFImage: PDFDocumentObject, PDFJSONSerializable {
+public class PDFImage: PDFDocumentObject {
 
     /**
      The actual image

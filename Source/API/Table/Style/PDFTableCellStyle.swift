@@ -10,7 +10,7 @@ import UIKit
 /**
  TODO: Documentation
  */
-public struct PDFTableCellStyle: PDFJSONSerializable {
+public struct PDFTableCellStyle {
 
     /**
      TODO: Documentation
