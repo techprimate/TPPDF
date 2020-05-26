@@ -73,16 +73,20 @@ internal class PDFLineObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         PDFGraphics.drawLine(
+            in: context,
             start: startPoint,
             end: endPoint,
             style: style)
 
         if generator.debug && (style.type == .none) {
-            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
+            PDFGraphics.drawRect(in: context,
+                                 rect: self.frame,
+                                 outline: PDFLineStyle(type: .full, color: .red, width: 1.0),
+                                 fill: .clear)
         }
-        applyAttributes()
+        applyAttributes(in: context)
     }
 
     /**

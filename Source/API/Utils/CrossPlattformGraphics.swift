@@ -112,49 +112,57 @@ extension NSBezierPath {
 
 extension NSBezierPath {
 
+    convenience init(roundedRect rect: CGRect, cornerRadius: CGFloat) {
+        self.init(roundedRect: rect,
+                  byRoundingCorners: .allCorners,
+                  cornerRadii: .init(width: cornerRadius, height: cornerRadius))
+    }
+
     convenience init(roundedRect rect: CGRect, byRoundingCorners corners: RectCorner, cornerRadii: CGSize) {
-        var path = CGMutablePath()
-
-        let topLeft = rect.origin;
-        let topRight = CGPoint(x: rect.maxX, y: rect.minY)
-        let bottomRight = CGPoint(x: rect.maxX, y: rect.maxY)
-        let bottomLeft = CGPoint(x: rect.minX, y: rect.maxY)
-
-        if corners.contains(.topLeft) {
-            path.move(to: CGPoint(x: topLeft.x + cornerRadii.width, y: topLeft.y))
-        } else {
-            path.move(to: topLeft)
-        }
-
-        if corners.contains(.topRight) {
-            path.addLine(to: CGPoint(x: topRight.x - cornerRadii.width, y: topRight.y))
-            path.addQuadCurve(to: CGPoint(x: topRight.x, y: topRight.y + cornerRadii.height), control: topRight)
-        } else {
-            path.addLine(to: topRight)
-        }
-
-        if corners.contains(.bottomRight) {
-            path.addLine(to: CGPoint(x: bottomRight.x, y: bottomRight.y - cornerRadii.height))
-            path.addQuadCurve(to: CGPoint(x: bottomRight.x - cornerRadii.width, y: bottomRight.y), control: bottomRight)
-        } else {
-            path.addLine(to: bottomRight)
-        }
-
-        if corners.contains(.bottomLeft) {
-            path.addLine(to: CGPoint(x: bottomLeft.x + cornerRadii.width, y: bottomLeft.y))
-            path.addQuadCurve(to: CGPoint(x: bottomLeft.x, y: bottomRight.y - cornerRadii.height), control: bottomLeft)
-        } else {
-            path.addLine(to: bottomLeft)
-        }
-
-        if corners.contains(.topLeft) {
-            path.addLine(to: CGPoint(x: topLeft.x, y: topLeft.y - cornerRadii.height))
-            path.addQuadCurve(to: CGPoint(x: topLeft.x + cornerRadii.width, y: topLeft.y), control: topLeft)
-        } else {
-            path.addLine(to: topLeft)
-        }
-
-        path.closeSubpath()
+        let path = CGPath(rect: rect, transform: nil)
+        // TODO: macOS support
+//        let path = CGMutablePath()
+//
+//        let topLeft = rect.origin;
+//        let topRight = CGPoint(x: rect.maxX, y: rect.minY)
+//        let bottomRight = CGPoint(x: rect.maxX, y: rect.maxY)
+//        let bottomLeft = CGPoint(x: rect.minX, y: rect.maxY)
+//
+//        if corners.contains(.topLeft) {
+//            path.move(to: CGPoint(x: topLeft.x + cornerRadii.width, y: topLeft.y))
+//        } else {
+//            path.move(to: topLeft)
+//        }
+//
+//        if corners.contains(.topRight) {
+//            path.addLine(to: CGPoint(x: topRight.x - cornerRadii.width, y: topRight.y))
+//            path.addQuadCurve(to: CGPoint(x: topRight.x, y: topRight.y + cornerRadii.height), control: topRight)
+//        } else {
+//            path.addLine(to: topRight)
+//        }
+//
+//        if corners.contains(.bottomRight) {
+//            path.addLine(to: CGPoint(x: bottomRight.x, y: bottomRight.y - cornerRadii.height))
+//            path.addQuadCurve(to: CGPoint(x: bottomRight.x - cornerRadii.width, y: bottomRight.y), control: bottomRight)
+//        } else {
+//            path.addLine(to: bottomRight)
+//        }
+//
+//        if corners.contains(.bottomLeft) {
+//            path.addLine(to: CGPoint(x: bottomLeft.x + cornerRadii.width, y: bottomLeft.y))
+//            path.addQuadCurve(to: CGPoint(x: bottomLeft.x, y: bottomRight.y - cornerRadii.height), control: bottomLeft)
+//        } else {
+//            path.addLine(to: bottomLeft)
+//        }
+//
+//        if corners.contains(.topLeft) {
+//            path.addLine(to: CGPoint(x: topLeft.x, y: topLeft.y - cornerRadii.height))
+//            path.addQuadCurve(to: CGPoint(x: topLeft.x + cornerRadii.width, y: topLeft.y), control: topLeft)
+//        } else {
+//            path.addLine(to: topLeft)
+//        }
+//
+//        path.closeSubpath()
 
         self.init(path: path)
     }
@@ -170,59 +178,56 @@ extension NSImage {
 extension NSBezierPath {
 
     convenience init(path: CGPath) {
-        self.init()
+        self.init(rect: CGRect(x: 10, y: 10, width: 20, height: 20))
 
-        var bezierPath = NSBezierPath()
-        
-        let pathPtr = UnsafeMutablePointer<NSBezierPath>(1)
-        pathPtr.initialize(self)
+        // TODO: macos Support
 
-        let infoPtr = UnsafeMutablePointer<Void>(pathPtr)
-
-        // I hope the CGPathApply call manages the deallocation of the pointers passed to the applier
-        // function, but I'm not sure.
-        CGPathApply(path, infoPtr) { (infoPtr, elementPtr) -> Void in
-            let path = UnsafeMutablePointer<NSBezierPath>(infoPtr).memory
-            let element = elementPtr.memory
-
-            let pointsPtr = element.points
-
-            switch element.type {
-            case .MoveToPoint:
-                path.moveToPoint(pointsPtr.memory)
-
-            case .AddLineToPoint:
-                path.lineToPoint(pointsPtr.memory)
-
-            case .AddQuadCurveToPoint:
-                let firstPoint = pointsPtr.memory
-                let secondPoint = pointsPtr.successor().memory
-
-                let currentPoint = path.currentPoint
-                let x = (currentPoint.x + 2 * firstPoint.x) / 3
-                let y = (currentPoint.y + 2 * firstPoint.y) / 3
-                let interpolatedPoint = CGPoint(x: x, y: y)
-
-                let endPoint = secondPoint
-
-                path.curveToPoint(endPoint, controlPoint1: interpolatedPoint, controlPoint2: interpolatedPoint)
-
-            case .AddCurveToPoint:
-                let firstPoint = pointsPtr.memory
-                let secondPoint = pointsPtr.successor().memory
-                let thirdPoint = pointsPtr.successor().successor().memory
-
-                path.curveToPoint(thirdPoint, controlPoint1: firstPoint, controlPoint2: secondPoint)
-
-            case .CloseSubpath:
-                path.closePath()
-            }
-
-            pointsPtr.destroy()
-        }
+//        var bezierPath = NSBezierPath()
+//        withUnsafeMutablePointer(to: &bezierPath) { pathPtr in
+//            let infoPtr = UnsafeMutableRawPointer(pathPtr)
+//
+//            path.apply(info: infoPtr) { (infoPtr, elementPtr) -> Void in
+//                var bezierPath = pathPtr.pointee
+//                let element = elementPtr.pointee
+//
+//                let pointsPtr = element.points
+//
+//                switch element.type {
+//                case .moveToPoint:
+//                    bezierPath.move(to: pointsPtr.pointee)
+//
+//                case .addLineToPoint:
+//                    bezierPath.line(to: pointsPtr.pointee)
+//
+//                case .addQuadCurveToPoint:
+//                    let firstPoint = pointsPtr.pointee
+//                    let secondPoint = pointsPtr.successor().pointee
+//
+//                    let currentPoint = path.currentPoint
+//                    let x = (currentPoint.x + 2 * firstPoint.x) / 3
+//                    let y = (currentPoint.y + 2 * firstPoint.y) / 3
+//                    let interpolatedPoint = CGPoint(x: x, y: y)
+//
+//                    let endPoint = secondPoint
+//
+//                    bezierPath.curve(to: endPoint, controlPoint1: interpolatedPoint, controlPoint2: interpolatedPoint)
+//
+//                case .addCurveToPoint:
+//                    let firstPoint = pointsPtr.pointee
+//                    let secondPoint = pointsPtr.successor().pointee
+//                    let thirdPoint = pointsPtr.successor().successor().pointee
+//
+//                    bezierPath.curve(to: thirdPoint, controlPoint1: firstPoint, controlPoint2: secondPoint)
+//
+//                case .closeSubpath:
+//                    bezierPath.close()
+//                default:
+//                    break
+//                }
+//
+//                pointsPtr.deallocate()
+//            }
+//        }
     }
-
-    // TODO: Add conversion to CGPath
-
 }
 #endif

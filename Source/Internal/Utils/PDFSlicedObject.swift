@@ -28,22 +28,15 @@ internal class PDFSlicedObject: PDFRenderObject {
         ]
     }
 
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        #if os(iOS)
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return
-        }
-        #else
-        guard let context = NSGraphicsContext.current?.cgContext else {
-            return
-        }
-        #endif
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         if frame != .null {
             context.saveGState()
-            BezierPath(rect: frame).addClip()
+            context.beginPath()
+            context.addPath(BezierPath(rect: frame).cgPath)
+            context.clip()
         }
         for child in children {
-            try child.draw(generator: generator, container: container)
+            try child.draw(generator: generator, container: container, in: context)
         }
         if frame != .null {
             context.restoreGState()

@@ -199,7 +199,7 @@ internal class PDFGroupObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         if let color = backgroundColor {
             let path = PDFGraphics.createRectPath(rect: self.frame, outline: self.outline)
             PDFGraphics.drawPath(path: path, outline: self.outline, fillColor: color)
@@ -211,10 +211,14 @@ internal class PDFGroupObject: PDFRenderObject {
         }
 
         if generator.debug {
-            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0), fill: .clear)
-            PDFGraphics.drawRect(rect: self.frame.inset(by: padding), outline: PDFLineStyle(type: .full, color: .purple, width: 1.0), fill: .clear)
+            PDFGraphics.drawRect(in: context,
+                                 rect: self.frame,
+                                 outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0), fill: .clear)
+            PDFGraphics.drawRect(in: context,
+                                 rect: self.frame.inset(by: padding),
+                                 outline: PDFLineStyle(type: .full, color: .purple, width: 1.0), fill: .clear)
         }
-        applyAttributes()
+        applyAttributes(in: context)
     }
 
     /**

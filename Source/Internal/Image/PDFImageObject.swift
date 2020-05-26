@@ -91,7 +91,7 @@ internal class PDFImageObject: PDFRenderObject {
      - parameter generator: Current instance handling the drawing
      - parameter container: Container where the image is placed in
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         var roundedCorners: RectCorner = []
         if image.options.contains(.rounded) {
             roundedCorners = .allCorners
@@ -118,7 +118,7 @@ internal class PDFImageObject: PDFRenderObject {
                                                                roundCorners: roundedCorners,
                                                                cornerRadius: image.cornerRadius)
         modifiedImage.draw(in: self.frame)
-        applyAttributes()
+        applyAttributes(in: context)
     }
 
     /**

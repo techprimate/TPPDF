@@ -25,13 +25,13 @@ internal class PDFExternalPageObject: PDFRenderObject {
         ]
     }
 
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         let mediaBox = page.getBoxRect(.mediaBox)
+        #if os(iOS)
         UIGraphicsBeginPDFPageWithInfo(mediaBox, nil)
-
-        guard let context = UIGraphicsGetCurrentContext() else {
-            fatalError()
-        }
+        #elseif os(macOS)
+        context.beginPDFPage(nil)
+        #endif
 
         context.saveGState()
         context.translateBy(x: 0, y: mediaBox.size.height)
@@ -41,6 +41,6 @@ internal class PDFExternalPageObject: PDFRenderObject {
 
         context.restoreGState()
 
-        applyAttributes()
+        applyAttributes(in: context)
     }
 }

@@ -94,7 +94,12 @@ internal class PixelExtractor: NSObject {
         let bitmapData = malloc(bitmapByteCount)
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
         let size = CGSize(width: pixelsWide, height: pixelsHigh)
+        #if os(iOS)
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        #elseif os(macOS)
+        // TODO: macOS support
+        #endif
+
         // create bitmap
         let context = CGContext(data: bitmapData, width: pixelsWide, height: pixelsHigh, bitsPerComponent: 8,
                                 bytesPerRow: bitmapBytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)

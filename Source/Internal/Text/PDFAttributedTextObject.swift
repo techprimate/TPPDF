@@ -120,22 +120,19 @@ internal class PDFAttributedTextObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         if attributedString == nil {
             throw PDFError.textObjectNotCalculated
         }
-
-        // Get current graphics context
-        let currentContext = UIGraphicsGetCurrentContext()!
 
         // Create a core text frame setter
         let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
 
         // Save context pre manipulation
-        currentContext.saveGState()
+        context.saveGState()
 
         // Reset text matrix, so no text scaling is affected
-        currentContext.textMatrix = CGAffineTransform.identity
+        context.textMatrix = CGAffineTransform.identity
 
         // Create the frame and a rectangular path of the text frame
         let frameRect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
@@ -146,21 +143,34 @@ internal class PDFAttributedTextObject: PDFRenderObject {
         let frameRef = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, attributedString.length), framePath, nil)
 
         // Translate by 100% graphics height up and reverse scale, as core text does draw from bottom up and not from top down
-        currentContext.translateBy(x: 0, y: UIGraphicsGetPDFContextBounds().height)
-        currentContext.scaleBy(x: 1.0, y: -1.0)
+        #if os(iOS)
+        context.translateBy(x: 0, y: UIGraphicsGetPDFContextBounds().height)
+        #elseif os(macOS)
+        // TODO: macOS Support
+        context.translateBy(x: 0, y: CGFloat(generator.document.layout.height))
+        #endif
+        context.scaleBy(x: 1.0, y: -1.0)
 
         // Translate context to actual position of text
-        currentContext.translateBy(x: frame.minX, y: UIGraphicsGetPDFContextBounds().height - frame.maxY)
+        #if os(iOS)
+        context.translateBy(x: frame.minX, y: UIGraphicsGetPDFContextBounds().height - frame.maxY)
+        #elseif os(macOS)
+        // TODO: macOS support
+        context.translateBy(x: frame.minX, y: CGFloat(generator.document.layout.height) - frame.maxY)
+        #endif
 
         // Draw text into context
-        CTFrameDraw(frameRef, currentContext)
+        CTFrameDraw(frameRef, context)
 
         // Restore context to pre manipulation
-        currentContext.restoreGState()
+        context.restoreGState()
 
         // If debugging is enabled, draw a outline around the text
         if generator.debug {
-            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0), fill: .clear)
+            PDFGraphics.drawRect(in: context,
+                                 rect: self.frame,
+                                 outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0),
+                                 fill: .clear)
         }
 
         let allRange = NSRange(location: 0, length: attributedString.length)
@@ -171,8 +181,8 @@ internal class PDFAttributedTextObject: PDFRenderObject {
             }
         }
 
-        calculateLinkAttributes(with: links, in: frameRef, in: allRange, context: currentContext, debug: generator.debug)
-        applyAttributes()
+        calculateLinkAttributes(with: links, in: frameRef, in: allRange, context: context, debug: generator.debug)
+        applyAttributes(in: context)
     }
 
     private func calculateLinkAttributes(with links: [(url: String, range: NSRange)],
@@ -214,7 +224,10 @@ internal class PDFAttributedTextObject: PDFRenderObject {
                     attributes.append((attribute: .link(url: URL(string: link.url)!), frame: linkFrame))
 
                     if debug {
-                        PDFGraphics.drawRect(rect: linkFrame, outline: .none, fill: Color.red.withAlphaComponent(0.4))
+                        PDFGraphics.drawRect(in: context,
+                                             rect: linkFrame,
+                                             outline: .none,
+                                             fill: Color.red.withAlphaComponent(0.4))
                     }
                 }
             }

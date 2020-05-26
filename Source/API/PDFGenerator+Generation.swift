@@ -37,9 +37,26 @@ extension PDFGenerator {
      - throws:          PDFError
      */
     public func generate(to url: URL, info: PDFInfo?) throws {
-        UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, (info ?? document.info).generate())
-        try generatePDFContext()
+        var mediaBox = document.layout.bounds
+        #if os(iOS)
+        UIGraphicsBeginPDFContextToFile(url.path, mediaBox, (info ?? document.info).generate())
+        #elseif os(macOS)
+        guard let context = CGContext(url as CFURL, mediaBox: &mediaBox, (info ?? document.info).generate() as CFDictionary) else {
+            fatalError()
+        }
+        context.beginPDFPage(nil)
+        context.translateBy(x: 0, y: mediaBox.size.height)
+        context.scaleBy(x: 1, y: -1)
+        #endif
+
+        try generatePDFContext(context: context)
+
+        #if os(iOS)
         UIGraphicsEndPDFContext()
+        #elseif os(macOS)
+        context.endPDFPage()
+        context.closePDF()
+        #endif
     }
 
     /// nodoc
@@ -59,9 +76,29 @@ extension PDFGenerator {
      */
     public func generateData(info: PDFInfo?) throws -> Data {
         let data = NSMutableData()
+
+        #if os(iOS)
         UIGraphicsBeginPDFContextToData(data, document.layout.bounds, (info ?? document.info).generate())
-        try generatePDFContext()
+        #elseif os(macOS)
+        var pageRect = document.layout.bounds
+        guard let pdfContext = CGContext(consumer: CGDataConsumer(data: data)!,
+                                         mediaBox: &pageRect,
+                                         (info ?? document.info).generate() as CFDictionary) else {
+            fatalError()
+        }
+        pdfContext.beginPDFPage(nil)
+        // TODO: macOS support
+        #endif
+
+        try generatePDFContext(context: pdfContext)
+
+        #if os(iOS)
         UIGraphicsEndPDFContext()
+        #elseif os(macOS)
+        pdfContext.endPDFPage()
+        pdfContext.closePDF()
+        #endif
+
         return data as Data
     }
 
@@ -72,9 +109,9 @@ extension PDFGenerator {
 
      - throws: PDFError
      */
-    public func generatePDFContext() throws {
+    public func generatePDFContext(context: CGContext) throws {
         let renderObjects = try createRenderObjects()
-        try render(objects: renderObjects)
+        try render(objects: renderObjects, in: context)
     }
 
     /**
@@ -314,16 +351,20 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    internal func render(objects: [PDFLocatedRenderObject]) throws {
+    internal func render(objects: [PDFLocatedRenderObject], in context: CGContext) throws {
+        #if os(iOS)
         UIGraphicsBeginPDFPageWithInfo(document.layout.bounds, nil)
-
-        drawDebugPageOverlay()
+        #elseif os(macOS)
+        // TODO: macOS support
+        #endif
+        
+        drawDebugPageOverlay(in: context)
 
         let renderProgress = Progress.discreteProgress(totalUnitCount: Int64(objects.count))
         progress.addChild(renderProgress, withPendingUnitCount: 1)
 
         for (container, object) in objects {
-            try render(object: object, in: container)
+            try render(object: object, in: container, in: context)
             renderProgress.completedUnitCount += 1
         }
     }
@@ -333,8 +374,8 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    internal func render(object: PDFRenderObject, in container: PDFContainer) throws {
-        try object.draw(generator: self, container: container)
+    internal func render(object: PDFRenderObject, in container: PDFContainer, in context: CGContext) throws {
+        try object.draw(generator: self, container: container, in: context)
     }
 
     // MARK: - INTERNAL STATIC FUNCS

@@ -34,11 +34,12 @@ internal enum PDFGraphics {
      - parameter end: End point of line
      - parameter style: Style of drawn line
      */
-    internal static func drawLine(start: CGPoint, end: CGPoint, style: PDFLineStyle) {
+    internal static func drawLine(in context: CGContext, start: CGPoint, end: CGPoint, style: PDFLineStyle) {
         if let path = createLinePath(start: start, end: end, style: style) {
-            style.color.setStroke()
-
-            path.stroke()
+            context.setStrokeColor(style.color.cgColor)
+            context.beginPath()
+            context.addPath(path.cgPath)
+            context.strokePath()
         }
     }
 
@@ -58,7 +59,11 @@ internal enum PDFGraphics {
 
         var path = BezierPath()
         path.move(to: start)
+        #if os(iOS)
         path.addLine(to: end)
+        #elseif os(macOS)
+        path.line(to: end)
+        #endif
 
         let dashes = createDashes(style: style, path: &path)
         path.setLineDash(dashes, count: dashes.count, phase: 0.0)
@@ -76,14 +81,16 @@ internal enum PDFGraphics {
      - parameter outline: Style of border lines
      - parameter fill: Inner color
      */
-    internal static func drawRect(rect: CGRect, outline: PDFLineStyle, fill: Color = .clear) {
+    internal static func drawRect(in context: CGContext, rect: CGRect, outline: PDFLineStyle, fill: Color = .clear) {
         let path = createRectPath(rect: rect, outline: outline)
 
-        outline.color.setStroke()
-        fill.setFill()
+        context.setStrokeColor(outline.color.cgColor)
+        context.setFillColor(fill.cgColor)
 
-        path.fill()
-        path.stroke()
+        context.beginPath()
+        context.addPath(path.cgPath)
+        context.fillPath()
+        context.strokePath()
     }
 
     /**
@@ -93,14 +100,16 @@ internal enum PDFGraphics {
      - parameter outline: Style of border lines
      - parameter fill: Inner color
      */
-    internal static func drawRect(rect: CGRect, outline: PDFLineStyle, pattern: FillPattern) {
+    internal static func drawRect(in context: CGContext, rect: CGRect, outline: PDFLineStyle, pattern: FillPattern) {
         let path = createRectPath(rect: rect, outline: outline)
 
-        outline.color.setStroke()
-        pattern.setFill()
+        context.setStrokeColor(outline.color.cgColor)
+        pattern.setFill(in: context)
 
-        path.fill()
-        path.stroke()
+        context.beginPath()
+        context.addPath(path.cgPath)
+        context.fillPath()
+        context.strokePath()
     }
 
     /**
@@ -112,9 +121,8 @@ internal enum PDFGraphics {
     internal static func createRectPath(rect: CGRect, outline: PDFLineStyle) -> BezierPath {
         var path = BezierPath(rect: rect)
         if let radius = outline.radius {
-            path = BezierPath.init(roundedRect: rect, cornerRadius: radius)
+            path = BezierPath(roundedRect: rect, cornerRadius: radius)
         }
-
         let dashes = createDashes(style: outline, path: &path)
         path.setLineDash(dashes, count: dashes.count, phase: 0.0)
         path.lineWidth = CGFloat(outline.width)
@@ -249,6 +257,7 @@ internal enum PDFGraphics {
             return image
         }
         #elseif os(macOS)
+        // TODO: macOS support
         guard let imageData = image.tiffRepresentation,
             let bitmapData = NSBitmapImageRep(data: imageData),
             let data = bitmapData.representation(using: .jpeg, properties: [:]) else {
@@ -323,13 +332,14 @@ internal enum PDFGraphics {
         /**
          TODO: Documentation
          */
-        internal func setFill() {
+        internal func setFill(in context: CGContext) {
             switch self {
             case .dotted(let foreColor, let backColor):
                 let size = CGSize(width: 5, height: 5)
                 #if os(iOS)
                 UIGraphicsBeginImageContext(size)
                 #elseif os(macOS)
+                // TODO: macOS support
                 let image = NSImage(size: size)
                 image.lockFocus()
                 #endif
@@ -350,7 +360,7 @@ internal enum PDFGraphics {
                 #elseif os(macOS)
                 image.unlockFocus()
                 #endif
-                Color(patternImage: image).setFill()
+                context.setFillColor(Color(patternImage: image).cgColor)
             }
         }
     }

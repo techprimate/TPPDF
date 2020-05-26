@@ -87,12 +87,19 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
         assert(!generators.isEmpty, "At least one document is required!")
         #if os(iOS)
         UIGraphicsBeginPDFContextToFile(target.path, bounds, (info ?? self.info).generate())
-        try processDocuments()
+        #elseif os(macOS)
+        // TODO: macOS support
+        let pdfContext: CGContext! = nil
+//        let context = CGContext(target.path, bounds, (info ?? self.info).generate())
+        #endif
+
+        try processDocuments(context: pdfContext)
+
+        #if os(iOS)
         UIGraphicsEndPDFContext()
         #elseif os(macOS)
-        let context = CGContext(target.path, bounds, (info ?? self.info).generate())
-        try processDocuments()
-        CGPDFContextClose(context)
+        // TODO: macOS support
+//        CGPDFContextClose(context)
         #endif
     }
 
@@ -112,9 +119,22 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     public func generateData(info: PDFInfo? = nil) throws -> Data {
         assert(!generators.isEmpty, "At least one document is required!")
         let data = NSMutableData()
+
+        #if os(iOS)
         UIGraphicsBeginPDFContextToData(data, bounds, (info ?? self.info).generate())
-        try processDocuments()
+        #elseif os(macOS)
+        // TODO: macOS support
+        let pdfContext: CGContext! = nil
+        #endif
+
+        try processDocuments(context: pdfContext)
+
+        #if os(iOS)
         UIGraphicsEndPDFContext()
+        #elseif os(macOS)
+        // TODO: macOS support
+        #endif
+        
         return data as Data
     }
 
@@ -124,11 +144,11 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
      Make sure to call `UIGraphicsBeginPDFContextToData()` before,
      and `UIGraphicsEndPDFContext` after calling this method.
      */
-    internal func processDocuments() throws {
+    internal func processDocuments(context: CGContext) throws {
         for generator in generators {
             generator.debug = debug
             progress.addChild(generator.progress, withPendingUnitCount: 1)
-            try generator.generatePDFContext()
+            try generator.generatePDFContext(context: context)
         }
     }
 }
