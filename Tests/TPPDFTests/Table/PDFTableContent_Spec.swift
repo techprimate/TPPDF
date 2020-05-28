@@ -33,15 +33,6 @@ class PDFTableContent_Spec: QuickSpec {
                 it("has a value none") {
                     expect(PDFTableContent.ContentType.image).toNot(beNil())
                 }
-
-                context("JSON") {
-                    it("can be represented") {
-                        expect(PDFTableContent.ContentType.none.JSONRepresentation as? Int) == 0
-                        expect(PDFTableContent.ContentType.string.JSONRepresentation as? Int) == 1
-                        expect(PDFTableContent.ContentType.attributedString.JSONRepresentation as? Int) == 2
-                        expect(PDFTableContent.ContentType.image.JSONRepresentation as? Int) == 3
-                    }
-                }
             }
 
             context("variables") {

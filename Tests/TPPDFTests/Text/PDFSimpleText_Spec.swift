@@ -43,13 +43,6 @@ class PDFSimpleText_Spec: QuickSpec {
                 expect(textObject.text) == text
                 expect(textObject.spacing) == 0
             }
-
-            context("JSONRepresentable") {
-
-                it("can be represented") {
-                    expect(textObject.JSONRepresentation).toNot(beNil())
-                }
-            }
         }
     }
 

@@ -5,6 +5,9 @@
 
 **Implemented enhancements:**
 
+- Removed JSON representation
+- Added deprecation for `table.generateCells`
+
 **Fixed bugs:**
 
 **Closed issues:**

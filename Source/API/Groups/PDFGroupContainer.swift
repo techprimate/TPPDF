@@ -60,24 +60,3 @@ public enum PDFGroupContainer {
         }
     }
 }
-
-// MARK: - JSON Serialization
-
-extension PDFGroupContainer: PDFJSONSerializable {
-
-    /**
-     Creates a representable object
-     */
-    public var JSONRepresentation: AnyObject {
-        switch self {
-        case .none:
-            return 0 as AnyObject
-        case .left:
-            return 1 as AnyObject
-        case .center:
-            return 2 as AnyObject
-        case .right:
-            return 3 as AnyObject
-        }
-    }
-}

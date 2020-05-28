@@ -11,7 +11,7 @@ import UIKit
  All renderable objects subclass from this object.
  Each object is first calculated and then drawn.
  */
-public class PDFRenderObject: CustomStringConvertible, PDFJSONSerializable {
+public class PDFRenderObject: CustomStringConvertible {
 
     /**
      Frame of this object

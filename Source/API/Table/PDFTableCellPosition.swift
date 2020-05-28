@@ -28,5 +28,3 @@ public struct PDFTableCellPosition {
         self.column = column
     }
 }
-
-extension PDFTableCellPosition: PDFJSONSerializable {}

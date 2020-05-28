@@ -10,7 +10,7 @@ import UIKit
 /**
  Information saved in PDF file metadata.
  */
-public class PDFInfo: PDFJSONSerializable {
+public class PDFInfo {
 
     /**
      Title of document.

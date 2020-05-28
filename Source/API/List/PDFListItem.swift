@@ -80,27 +80,6 @@ public class PDFListItem: PDFDocumentObject {
     }
 }
 
-extension PDFListItem: PDFJSONSerializable {
-
-    /**
-     TODO: documentation
-     */
-    public var JSONRepresentation: AnyObject {
-        var representation: [String: AnyObject] = [:]
-        if let content = content {
-            representation["content"] = content as AnyObject
-        }
-        representation["symbol"] = symbol.JSONRepresentation
-
-        if let children = children {
-            let result = children.map(\.JSONRepresentation) as AnyObject
-
-            representation["children"] = result
-        }
-        return representation as AnyObject
-    }
-}
-
 extension PDFListItem: CustomDebugStringConvertible {
 
     public var debugDescription: String {

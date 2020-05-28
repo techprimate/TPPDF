@@ -10,7 +10,7 @@ import UIKit
 /**
  TODO: Documentation
  */
-public class PDFSectionColumn: PDFDocumentObject, PDFJSONSerializable {
+public class PDFSectionColumn: PDFDocumentObject {
 
 	// MARK: - PUBLIC VARS
 

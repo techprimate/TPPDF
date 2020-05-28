@@ -90,28 +90,6 @@ class PDFListItem_Spec: QuickSpec {
                 expect(object.setContent(content)) === object
                 expect(object.content) == content
             }
-
-            context("JSON") {
-
-                it("can be represented") {
-                    let content = "RANDOMNEWCONTENT"
-                    object.content = content
-                    object.symbol = PDFListItemSymbol.dot
-
-                    let item = PDFListItem(symbol: .dash, content: "A1")
-
-                    let representation = object.addItem(item).JSONRepresentation as? [String: AnyObject]
-                    expect(representation).toNot(beNil())
-
-                    expect(representation?["content"] as? String) == content
-                    expect(representation?["symbol"] as? String) == PDFListItemSymbol.dot.JSONRepresentation as? String
-
-                    let children = representation?["children"] as? [[String: AnyObject]]
-                    expect(children).toNot(beNil())
-                    expect(children?.count) == 1
-                    expect(children?[0].JSONRepresentation as? [String: String]) == item.JSONRepresentation as? [String: String]
-                }
-            }
         }
     }
 

@@ -21,7 +21,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          TPPDF 1.6.0 Docs
+          TPPDF 2.0.0 Docs
         </a>
          (98% documented)
       </p>
@@ -202,28 +202,13 @@
             <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Array.html">Array</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CGPoint.html">CGPoint</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions.html#/c:@S@CGRect">CGRect</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions.html#/c:@S@CGSize">CGSize</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CustomDebugStringConvertible.html">CustomDebugStringConvertible</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CustomStringConvertible.html">CustomStringConvertible</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Data.html">Data</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Dictionary.html">Dictionary</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/Double.html">Double</a>
@@ -241,12 +226,6 @@
                 <a class="nav-group-task-link" href="Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/UIColor.html">UIColor</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions.html#/c:objc(cs)UIFont">UIFont</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/UIImage.html">UIImage</a>
               </li>
             </ul>
@@ -262,12 +241,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/PDFGeneratorProtocol.html">PDFGeneratorProtocol</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/PDFJSONRepresentable.html">PDFJSONRepresentable</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/PDFTableContentable.html">PDFTableContentable</a>
@@ -467,7 +440,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFGroup</span> <span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFGroup</span></code></pre>
 
                         </div>
                       </div>
@@ -523,7 +496,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFImage</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFImage</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFImage</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
@@ -552,7 +525,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFList</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFList</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFList</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFList</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFList</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
@@ -585,7 +558,6 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFListItem</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFListItem</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFListItem</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFListItem</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFListItem</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
@@ -615,7 +587,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFInfo</span> <span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFInfo</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFInfo</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
@@ -639,15 +611,13 @@
                         <p>The main class users interact with.
 This object holds the information about the document and also all PDF objects.</p>
 
-<p>It is possible to create a JSON representation using the <code><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></code> protocol.</p>
-
                         <a href="Classes/PDFDocument.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFDocument</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFDocument</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -731,7 +701,7 @@ This object holds the information about the document and also all PDF objects.</
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFSection</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFSection</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span></code></pre>
 
                         </div>
                       </div>
@@ -759,7 +729,7 @@ This object holds the information about the document and also all PDF objects.</
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFSectionColumn</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFSectionColumn</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span></code></pre>
 
                         </div>
                       </div>
@@ -787,7 +757,7 @@ This object holds the information about the document and also all PDF objects.</
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTableOfContent</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTableOfContent</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span></code></pre>
 
                         </div>
                       </div>
@@ -815,7 +785,7 @@ This object holds the information about the document and also all PDF objects.</
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTableContent</span> <span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTableContent</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFTableContent</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFTableContent</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFTableContentable.html">PDFTableContentable</a></span></code></pre>
 
@@ -846,7 +816,7 @@ It can be styled and can contain different data.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTable</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTable</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFTable</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
@@ -875,7 +845,7 @@ It can be styled and can contain different data.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTableCell</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTableCell</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFDocumentObject.html">PDFDocumentObject</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFTableCell</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
@@ -1048,7 +1018,7 @@ It can be styled and can contain different data.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTableStyle</span> <span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTableStyle</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFTableStyle</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
@@ -1081,7 +1051,6 @@ It can be styled and can contain different data.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFAttributedText</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFText.html">PDFText</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFAttributedText</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFAttributedText</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1113,7 +1082,6 @@ It can be styled and can contain different data.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFSimpleText</span> <span class="p">:</span> <span class="kt"><a href="Classes/PDFText.html">PDFText</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFSimpleText</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFSimpleText</span><span class="p">:</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1225,7 +1193,7 @@ Each object is first calculated and then drawn.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFRenderObject</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt"><a href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFRenderObject</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1240,7 +1208,7 @@ Each object is first calculated and then drawn.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://www.github.com/philprime" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2020-05-17)</p>
+      <p>&copy; 2020 <a class="link" href="https://www.github.com/philprime" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2020-05-21)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

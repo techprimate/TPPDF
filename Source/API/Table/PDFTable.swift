@@ -11,7 +11,7 @@ import UIKit
  A table is a two dimensional list.
  It can be styled and can contain different data.
  */
-public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
+public class PDFTable: PDFDocumentObject {
 
     /**
      Styling used for drawing
@@ -52,6 +52,9 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
         self.init(rows: size.rows, columns: size.columns)
     }
 
+    /**
+     Creates a new table with the given size and populates it with empty cells.
+     */
     public init(rows: Int = 0, columns: Int = 0) {
         self.size = (rows: rows, columns: columns)
         self.cells = (0..<rows).map({ _ in (0..<columns).map({ _ in PDFTableCell() }) })
@@ -63,6 +66,7 @@ public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
 
      - throws: `PDFError` if table validation fails. See `PDFTableValidator.validateTableData(::)` for details
      */
+    @available(*, deprecated, message: "Use the content and alignment properties instead, this will be removed in release 2.1")
     public func generateCells(data: [[Any?]], alignments: [[PDFTableCellAlignment]]) throws {
         try PDFTableValidator.validateTableData(data: data, alignments: alignments)
 

@@ -49,5 +49,3 @@ public class PDFSimpleText: PDFText {
         PDFSimpleText(text: self.text, spacing: self.spacing, style: self.style)
     }
 }
-
-extension PDFSimpleText: PDFJSONSerializable {}
