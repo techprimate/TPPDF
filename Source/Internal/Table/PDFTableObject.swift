@@ -336,7 +336,11 @@ internal class PDFTableObject: PDFRenderObject {
             }
 
             var onPageCells: [PDFTableCalculatedCell]
-            (onPageCells, nextPageCells) = filterCellsOnPage(for: generator, items: nextPageCells, minOffset: minOffset, maxOffset: maxOffset)
+            (onPageCells, nextPageCells) = filterCellsOnPage(for: generator,
+                                                             items: nextPageCells,
+                                                             minOffset: minOffset,
+                                                             maxOffset: maxOffset,
+                                                             shouldSplitCellsOnPageBeak: table.shouldSplitCellsOnPageBeak)
 
             for (idx, item) in onPageCells.enumerated() {
                 let cellFrame = item.frames.cell
@@ -394,19 +398,25 @@ internal class PDFTableObject: PDFRenderObject {
 
     internal typealias FilteredCells = (cells: [PDFTableCalculatedCell], rest: [PDFTableCalculatedCell])
 
-    internal func filterCellsOnPage(for generator: PDFGenerator, items: [PDFTableCalculatedCell], minOffset: CGFloat, maxOffset: CGFloat) -> FilteredCells {
+    internal func filterCellsOnPage(for generator: PDFGenerator, items: [PDFTableCalculatedCell], minOffset: CGFloat, maxOffset: CGFloat, shouldSplitCellsOnPageBeak: Bool) -> FilteredCells {
         let contentHeight = maxOffset - minOffset
 
         var cells: [PDFTableCalculatedCell] = []
         var rest: [PDFTableCalculatedCell] = []
 
-        for item in  items {
+        for item in items {
             let cellFrame = item.frames.cell
+
             if cellFrame.maxY < maxOffset {
                 cells.append(item)
             } else {
-                if cellFrame.minY < maxOffset {
+                // If cells should be split and cell is partially on current page, add it to the cells, the cell will be sliced afterwards
+                if shouldSplitCellsOnPageBeak && cellFrame.minY < maxOffset {
                     cells.append(item)
+                }
+                var offsetFix: CGFloat = 0
+                if !shouldSplitCellsOnPageBeak {
+                    offsetFix = cellFrame.maxY - maxOffset
                 }
                 var nextPageCell = item
                 nextPageCell.frames.cell.origin.y -= contentHeight
