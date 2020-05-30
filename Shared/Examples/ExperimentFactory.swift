@@ -19,6 +19,7 @@ class ExperimentFactory: ExampleFactory {
         table.margin = 10
         table.padding = 10
         table.showHeadersOnEveryPage = false
+        table.shouldSplitCellsOnPageBeak = false
         table.style.columnHeaderCount = 3
 
         for row in 0..<table.size.rows {
@@ -27,22 +28,6 @@ class ExperimentFactory: ExampleFactory {
                 table[row, column].content = "\(row),\(column)".asTableContent
             }
         }
-
-        for i in stride(from: 3, to: 48, by: 3) {
-            table[rows: i...(i + 2), column: 1].merge(with: PDFTableCell(content: Array(repeating: "\(i),1", count: 3).joined(separator: "\n").asTableContent,
-                                                           alignment: .center))
-        }
-        for i in stride(from: 4, to: 47, by: 3) {
-            table[rows: i...(i + 2), column: 2].merge(with: PDFTableCell(content: Array(repeating: "\(i),2", count: 3).joined(separator: "\n").asTableContent,
-                                                           alignment: .center))
-        }
-        for i in stride(from: 5, to: 48, by: 3) {
-            table[rows: i...(i + 2), column: 3].merge(with: PDFTableCell(content: Array(repeating: "\(i),3", count: 3).joined(separator: "\n").asTableContent,
-                                                           alignment: .center))
-        }
-
-        table[rows: 0..<2, column: 2].merge()
-        table[rows: 1..<3, column: 3].merge()
 
         document.add(table: table)
 
