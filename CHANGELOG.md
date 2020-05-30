@@ -10,6 +10,8 @@
 
 **Fixed bugs:**
 
+- Missing page break after space which overlaps page end (#204)
+
 **Closed issues:**
 
 **Merged pull requests:**
