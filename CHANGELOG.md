@@ -5,6 +5,18 @@
 
 **Implemented enhancements:**
 
+**Fixed bugs:**
+
+**Closed issues:**
+
+**Merged pull requests:**
+
+
+## [2.0.1](https://github.com/techprimate/TPPDF/tree/2.0.1) (2020-05-31)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.0.0...2.0.1)
+
+**Implemented enhancements:**
+
 - Removed JSON representation
 - Added deprecation for `table.generateCells`
 
@@ -14,7 +26,7 @@
 
 **Closed issues:**
 
-**Merged pull requests:**
+- #204
 
 ## [2.0.0](https://github.com/techprimate/TPPDF/tree/2.0.0) (2020-05-19)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.6.0...2.0.0)
