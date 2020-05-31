@@ -15,12 +15,6 @@ class PDFLineType_Spec: QuickSpec {
     override func spec() {
         describe("PDFLineType") {
 
-            it("can create a JSON representable") {
-                expect(PDFLineType.none.JSONRepresentation as? Int) == 0
-                expect(PDFLineType.full.JSONRepresentation as? Int) == 1
-                expect(PDFLineType.dashed.JSONRepresentation as? Int) == 2
-                expect(PDFLineType.dotted.JSONRepresentation as? Int) == 3
-            }
         }
     }
 

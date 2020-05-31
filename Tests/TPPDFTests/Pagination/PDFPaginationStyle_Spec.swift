@@ -23,11 +23,6 @@ class PDFPaginationStyle_Spec: QuickSpec {
                 it("can format a page number") {
                     expect(style.format(page: 2, total: 7)) == "2 - 7"
                 }
-
-                it("can create a JSON representable") {
-                    expect(style.JSONRepresentation as? String).toNot(beNil())
-                    expect(style.JSONRepresentation as? String) == "PDFPaginationStyle.default"
-                }
             }
 
             context("roman") {
@@ -36,11 +31,6 @@ class PDFPaginationStyle_Spec: QuickSpec {
 
                 it("can format a page number") {
                     expect(style.format(page: 2, total: 7)) == "II / VII"
-                }
-
-                it("can create a JSON representable") {
-                    expect(style.JSONRepresentation as? String).toNot(beNil())
-                    expect(style.JSONRepresentation as? String) == "PDFPaginationStyle.roman(%@ / %@)"
                 }
             }
 
@@ -54,11 +44,6 @@ class PDFPaginationStyle_Spec: QuickSpec {
                 it("can format a page number") {
                     expect(style.format(page: 2, total: 7)) == "2.00 +++ 7.00"
                 }
-
-                it("can create a JSON representable") {
-                    expect(style.JSONRepresentation as? String).toNot(beNil())
-                    expect(style.JSONRepresentation as? String) == "PDFPaginationStyle.customNumberFormat(%@ +++ %@)"
-                }
             }
 
             context("customClosure") {
@@ -69,11 +54,6 @@ class PDFPaginationStyle_Spec: QuickSpec {
 
                 it("can format a page number") {
                     expect(style.format(page: 3, total: 7)) == "9 - 14"
-                }
-
-                it("can create a JSON representable") {
-                    expect(style.JSONRepresentation as? String).toNot(beNil())
-                    expect(style.JSONRepresentation as? String) == "PDFPaginationStyle.customClosure"
                 }
             }
 

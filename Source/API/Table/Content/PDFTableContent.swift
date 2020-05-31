@@ -10,7 +10,7 @@ import UIKit
 /**
  TODO: Documentation
  */
-public class PDFTableContent: PDFJSONSerializable {
+public class PDFTableContent {
 
     /**
      TODO: Documentation

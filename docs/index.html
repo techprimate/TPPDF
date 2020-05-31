@@ -20,7 +20,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          TPPDF 1.6.0 Docs
+          TPPDF 2.0.1 Docs
         </a>
          (98% documented)
       </p>
@@ -201,28 +201,13 @@
             <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Array.html">Array</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CGPoint.html">CGPoint</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions.html#/c:@S@CGRect">CGRect</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions.html#/c:@S@CGSize">CGSize</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CustomDebugStringConvertible.html">CustomDebugStringConvertible</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CustomStringConvertible.html">CustomStringConvertible</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Data.html">Data</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Dictionary.html">Dictionary</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/Double.html">Double</a>
@@ -240,12 +225,6 @@
                 <a class="nav-group-task-link" href="Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/UIColor.html">UIColor</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions.html#/c:objc(cs)UIFont">UIFont</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/UIImage.html">UIImage</a>
               </li>
             </ul>
@@ -261,12 +240,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/PDFGeneratorProtocol.html">PDFGeneratorProtocol</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/PDFJSONRepresentable.html">PDFJSONRepresentable</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/PDFJSONSerializable.html">PDFJSONSerializable</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/PDFTableContentable.html">PDFTableContentable</a>
@@ -363,6 +336,7 @@
 </p>
 
 <p align="center">
+    <a href="#whats-new">What&rsquo;s new?</a>
     <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
   • <a href="#example">Example</a>
@@ -371,6 +345,25 @@
   • <a href="#credits">Credits</a>
   • <a href="#license">License</a>
 </p>
+
+<p><strong>Attention:</strong></p>
+
+<p>We just released version 2.0.0. It has breaking API changes and might causes issues as it is needs more testing.
+Please do not upgrade to it yet, unless you are willing to accept some instability.</p>
+
+<p><strong>IF YOU SEE ANY ISSUES, PLEASE REPORT THEM!</strong> Thank you!</p>
+<h2 id='what-39-s-new' class='heading'>What&rsquo;s new?</h2>
+
+<p>TPPDF 2.0 brings a lot of new features and small tweaks. Here are some of the biggest ones:</p>
+
+<ul>
+<li>[x] Swift Package Manager Support</li>
+<li>[x] Table with cell merging</li>
+<li>[x] Table cell content wraps on page breaks</li>
+<li>[x] Hyperlinks in attributed strings</li>
+<li>[x] Native progress tracking using <code>Foundation.Progress</code></li>
+<li>[x] Instance-based generators, so you can generate multiple documents at the same time</li>
+</ul>
 <h2 id='features' class='heading'>Features</h2>
 
 <ul>
@@ -410,6 +403,8 @@
 <h2 id='installation' class='heading'>Installation</h2>
 <h3 id='requirements' class='heading'>Requirements</h3>
 
+<p>As of TPPDF 2.0 and Swift 5.2, we do not actively support older Swift versions anymore. If you still need an older Swift version, see the following table for their respective branches. Bleed development version can be found on the <code>develop</code> branch.</p>
+
 <table><thead>
 <tr>
 <th>Language</th>
@@ -419,13 +414,6 @@
 <th>iOS version</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>Swift 5</td>
-<td><a href="https://github.com/techprimate/TPPDF/tree/master">master</a></td>
-<td>&gt;= 1.4.x</td>
-<td>Xcode 10.2+</td>
-<td>iOS 8.3+</td>
-</tr>
 <tr>
 <td>Swift 4.2</td>
 <td><a href="https://github.com/techprimate/TPPDF/tree/swift-4.2">swift-4.2</a></td>
@@ -462,8 +450,6 @@
 <td>iOS 8.0+</td>
 </tr>
 </tbody></table>
-
-<p>Bleed development version can be found on the <code>develop</code> branch.</p>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p><a href="http://cocoapods.org">CocoaPods</a> is a dependency manager for Cocoa projects. You can install it with the following command:</p>
@@ -499,8 +485,15 @@
 <p>Run <code>carthage update</code> to build the framework and drag the built <code>TPPDF.framework</code> into your Xcode project</p>
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
-<p>Swift Package Manager is now supported for iOS.
-macOS support is a requested feature and work-in-progress. Linux support is not available, as <code>UIKit</code> is not available on linux.</p>
+<p>Swift Package Manager is now supported for iOS. macOS support is a requested feature and work-in-progress. </p>
+
+<p>Linux support is not available, as <code>UIKit</code> is not available on linux.</p>
+
+<p>Once you have your Swift package set up, adding TPPDF as a dependency is as easy as adding it to the <code>dependencies</code> value of your <code>Package.swift</code>.</p>
+<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/techprimate/TPPDF"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2.0.0"</span><span class="p">))</span>
+<span class="p">]</span>
+</code></pre>
 <h3 id='manual-installation' class='heading'>Manual Installation</h3>
 
 <p>As Xcode project configurations are getting pretty complex, it is recommended to use a dependency manager.
@@ -544,11 +537,7 @@ If you still want to add TPPDF manually, please see issue <a href="https://githu
 </p>
 <h3 id='contributors' class='heading'>Contributors</h3>
 
-<p>Please consider backing this project by using the following link: </p>
-
-<p><a href="https://paypal.me/tprm8" target="_blank">
-    <img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/back-this-project.png" alt="Back This Project">
-</a></p>
+<p>Please consider backing this project by using the following <strong>GitHub Sponsor</strong> button.</p>
 
 <p>We want to thank all <a href="https://github.com/techprimate/TPPDF/graphs/contributors">contributors</a> for their effort!</p>
 <h2 id='license' class='heading'>License</h2>
@@ -562,7 +551,7 @@ If you still want to add TPPDF manually, please see issue <a href="https://githu
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://www.github.com/philprime" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2020-05-17)</p>
+      <p>&copy; 2020 <a class="link" href="https://www.github.com/philprime" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2020-05-31)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

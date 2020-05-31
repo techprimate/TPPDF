@@ -8,7 +8,7 @@
 /**
  TODO: Documentation
  */
-public class PDFTableStyle: PDFJSONSerializable {
+public class PDFTableStyle {
 
     /**
      TODO: Documentation

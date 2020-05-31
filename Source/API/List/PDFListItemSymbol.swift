@@ -8,7 +8,7 @@
 /**
  TODO: documentation
  */
-public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
+public enum PDFListItemSymbol: RawRepresentable {
 
     /**
      TODO: documentation
@@ -111,12 +111,5 @@ public enum PDFListItemSymbol: RawRepresentable, PDFJSONSerializable {
                 self = .none
             }
         }
-    }
-
-    /**
-     TODO: documentation
-     */
-    public var JSONRepresentation: AnyObject {
-        self.rawValue as AnyObject
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 /**
  This struct defines how a line or border of a table is drawn.
  */
-public struct PDFLineStyle: PDFJSONSerializable {
+public struct PDFLineStyle {
 
     /**
      Defines the type of this line

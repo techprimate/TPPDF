@@ -20,15 +20,6 @@ class PDFImageSizeFit_Spec: QuickSpec {
                 expect(PDFImageSizeFit.height).toNot(beNil())
                 expect(PDFImageSizeFit.widthHeight).toNot(beNil())
             }
-
-            context("JSONSerializable") {
-
-                it("can be represented") {
-                    expect(PDFImageSizeFit.width.JSONRepresentation as? Int) == 0
-                    expect(PDFImageSizeFit.height.JSONRepresentation as? Int) == 1
-                    expect(PDFImageSizeFit.widthHeight.JSONRepresentation as? Int) == 2
-                }
-            }
         }
     }
 

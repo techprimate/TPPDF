@@ -10,7 +10,7 @@ import UIKit
 /**
  TODO: Documentation
  */
-public class PDFList: PDFDocumentObject, PDFJSONSerializable {
+public class PDFList: PDFDocumentObject {
 
     /**
      TODO: Documentation

@@ -10,7 +10,7 @@ import UIKit
 /**
  Used to define the pagination behaviour of a document.
  */
-public struct PDFPagination: PDFJSONSerializable {
+public struct PDFPagination {
 
     /**
      Container where the pagination will be placed

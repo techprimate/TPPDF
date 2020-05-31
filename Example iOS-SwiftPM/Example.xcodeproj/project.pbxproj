@@ -156,23 +156,23 @@
 		D498551D2461FB0B00D54270 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				D498551E2461FB0B00D54270 /* PaginationExampleFactory.swift */,
-				D498551F2461FB0B00D54270 /* TableOfContentsExampleFactory.swift */,
-				D49855202461FB0B00D54270 /* TableExampleFactory.swift */,
-				D49855212461FB0B00D54270 /* LineSeparatorExampleFactory.swift */,
-				D49855222461FB0B00D54270 /* TextStylesExampleFactory.swift */,
-				D49855232461FB0B00D54270 /* MultiSectionExampleFactory.swift */,
+				D49855552461FB9A00D54270 /* Examples.swift */,
+				D498552B2461FB0B00D54270 /* ExperimentFactory.swift */,
+				D49855262461FB0B00D54270 /* ExternalDocumentExampleFactory.swift */,
 				D49855242461FB0B00D54270 /* GroupExampleFactory.swift */,
 				D49855252461FB0B00D54270 /* HeaderFooterExampleFactory.swift */,
-				D49855262461FB0B00D54270 /* ExternalDocumentExampleFactory.swift */,
-				D49855272461FB0B00D54270 /* MultipleDocumentsExampleFactory.swift */,
-				D49855282461FB0B00D54270 /* ListExampleFactory.swift */,
-				D49855292461FB0B00D54270 /* TextExampleFactory.swift */,
-				D498552A2461FB0B00D54270 /* ObjectAttributesExampleFactory.swift */,
-				D498552B2461FB0B00D54270 /* ExperimentFactory.swift */,
 				D498552C2461FB0B00D54270 /* ImageExampleFactory.swift */,
+				D49855212461FB0B00D54270 /* LineSeparatorExampleFactory.swift */,
+				D49855282461FB0B00D54270 /* ListExampleFactory.swift */,
 				D498552D2461FB0B00D54270 /* MetadataExampleFactory.swift */,
-				D49855552461FB9A00D54270 /* Examples.swift */,
+				D49855272461FB0B00D54270 /* MultipleDocumentsExampleFactory.swift */,
+				D49855232461FB0B00D54270 /* MultiSectionExampleFactory.swift */,
+				D498552A2461FB0B00D54270 /* ObjectAttributesExampleFactory.swift */,
+				D498551E2461FB0B00D54270 /* PaginationExampleFactory.swift */,
+				D49855202461FB0B00D54270 /* TableExampleFactory.swift */,
+				D498551F2461FB0B00D54270 /* TableOfContentsExampleFactory.swift */,
+				D49855292461FB0B00D54270 /* TextExampleFactory.swift */,
+				D49855222461FB0B00D54270 /* TextStylesExampleFactory.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";

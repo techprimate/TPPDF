@@ -11,7 +11,7 @@ import UIKit
  A table is a two dimensional list.
  It can be styled and can contain different data.
  */
-public class PDFTable: PDFDocumentObject, PDFJSONSerializable {
+public class PDFTable: PDFDocumentObject {
 
     /**
      Styling used for drawing

@@ -55,7 +55,7 @@ internal enum PDFCalculations {
      */
     internal static func calculateTextSizeAndRemainder(of text: NSAttributedString,
                                                        in bounds: CGSize) -> TextCalculationResult {
-        assert(bounds.width > 0, "Can't render text if no space available")
+        assert(bounds.width > 0 && bounds.height > 0, "Can't render text if no space available")
 
         let framesetter = CTFramesetterCreateWithAttributedString(text)
         let framePath = UIBezierPath(rect: CGRect(origin: .zero, size: bounds)).cgPath

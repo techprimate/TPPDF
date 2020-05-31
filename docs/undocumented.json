@@ -16,35 +16,28 @@
     },
     {
       "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 55,
-      "symbol": "PDFTable.init(rows:columns:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 110,
+      "line": 114,
       "symbol": "PDFTable.rows",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 114,
+      "line": 118,
       "symbol": "PDFTable.columns",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 118,
+      "line": 122,
       "symbol": "PDFTable.content",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Volumes/Developer/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 127,
+      "line": 131,
       "symbol": "PDFTable.alignment",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"

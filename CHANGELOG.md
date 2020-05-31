@@ -5,14 +5,28 @@
 
 **Implemented enhancements:**
 
-- Added deprecation for JSON representation
-- Added deprecation for `table.generateCells`
-
 **Fixed bugs:**
 
 **Closed issues:**
 
 **Merged pull requests:**
+
+
+## [2.0.1](https://github.com/techprimate/TPPDF/tree/2.0.1) (2020-05-31)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.0.0...2.0.1)
+
+**Implemented enhancements:**
+
+- Removed JSON representation
+- Added deprecation for `table.generateCells`
+
+**Fixed bugs:**
+
+- Missing page break after space which overlaps page end (#204)
+
+**Closed issues:**
+
+- #204
 
 ## [2.0.0](https://github.com/techprimate/TPPDF/tree/2.0.0) (2020-05-19)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.6.0...2.0.0)

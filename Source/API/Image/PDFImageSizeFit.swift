@@ -26,22 +26,3 @@ public enum PDFImageSizeFit {
     case widthHeight
 
 }
-
-// MARK: - JSON Serialization
-
-extension PDFImageSizeFit: PDFJSONSerializable {
-
-    /**
-     Creates representable object
-     */
-    public var JSONRepresentation: AnyObject {
-        switch self {
-        case .width:
-            return 0 as AnyObject
-        case .height:
-            return 1 as AnyObject
-        case .widthHeight:
-            return 2 as AnyObject
-        }
-    }
-}
