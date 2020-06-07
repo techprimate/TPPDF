@@ -7,7 +7,11 @@
 
 **Fixed bugs:**
 
+- Added note to documentation about not readding `PDFSection` instances
+
 **Closed issues:**
+
+- #73
 
 **Merged pull requests:**
 
