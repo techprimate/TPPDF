@@ -102,5 +102,11 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
         layout.reset()
         columnState.reset()
         currentPage = 1
+        fonts = fonts.mapValues { _ in
+            UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        }
+        textColor = textColor.mapValues { _ in
+            UIColor.black
+        }
     }
 }
