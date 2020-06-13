@@ -12,26 +12,26 @@
  - dashed: Line consists out of short dashes
  - dotted: Lines consists out of dots
  */
-public enum PDFLineType {
+public enum PDFLineType: String {
 
     /**
      No visible line
      */
-    case none
+    case none = "none"
 
     /**
      Full line
      */
-    case full
+    case full = "full"
 
     /**
      Line is dashed, dash length and spacing is three times the line width
      */
-    case dashed
+    case dashed = "dashed"
 
     /**
      Line is dotted. Dot spacing is twice the line width
      */
-    case dotted
+    case dotted = "dotted"
 
 }
