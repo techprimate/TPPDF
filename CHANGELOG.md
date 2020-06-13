@@ -6,10 +6,13 @@
 **Implemented enhancements:**
 
 - Added raw representable values to `PDFPageFormat`
+- Added raw representable type to `PDFLineType`
+- Added constant `none` to `PDFTableCellStyle` and `PDFTableCellBorders`
 
 **Fixed bugs:**
 
 - Added note to documentation about not readding `PDFSection` instances
+- Added missing font and text color reset to generator
 
 **Closed issues:**
 
