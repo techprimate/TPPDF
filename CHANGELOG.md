@@ -5,6 +5,8 @@
 
 **Implemented enhancements:**
 
+- Added raw representable values to `PDFPageFormat`
+
 **Fixed bugs:**
 
 - Added note to documentation about not readding `PDFSection` instances

@@ -11,35 +11,73 @@ import UIKit
  * Source for page sizes: https://www.papersizes.org
  * All sizes are calculated using 72 points/inch
  */
-public enum PDFPageFormat {
+public enum PDFPageFormat: String {
 
     /**
      Page formats mostly used in the USA
      */
-    case usHalfLetter, usLetter, usLegal, usJuniorLegal, usLedger
+    case usHalfLetter = "us.half-letter",
+         usLetter = "us.letter",
+         usLegal = "us.legal",
+         usJuniorLegal = "us.junior-legal",
+         usLedger = "us.ledger"
 
     /**
      Page formats according to the American National Standards Institute
      */
-    case ansiA, ansiB, ansiC, ansiD, ansiE
+    case ansiA = "ansi.a",
+         ansiB = "ansi.b",
+         ansiC = "ansi.c",
+         ansiD = "ansi.d",
+         ansiE = "ansi.e"
 
     /**
      A-Series of paper standard DIN 476
      For more detail: https://en.wikipedia.org/wiki/Paper_size#A_series
      */
-    case a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10
+    case a0 = "a0",
+         a1 = "a1",
+         a2 = "a2",
+         a3 = "a3",
+         a4 = "a4",
+         a5 = "a5",
+         a6 = "a6",
+         a7 = "a7",
+         a8 = "a8",
+         a9 = "a9",
+         a10 = "a10"
 
     /**
      B-Series is the geometric mean of the A-series
      For more detail: https://en.wikipedia.org/wiki/Paper_size#B_series
      */
-    case b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10
+    case b0 = "b0",
+         b1 = "b1",
+         b2 = "b2",
+         b3 = "b3",
+         b4 = "b4",
+         b5 = "b5",
+         b6 = "b6",
+         b7 = "b7",
+         b8 = "b8",
+         b9 = "b9",
+         b10 = "b10"
 
     /**
      C-Series is ususally used for envelopes. Definition is written in ISO 269
      For more detail: https://en.wikipedia.org/wiki/Paper_size#C_series
      */
-    case c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10
+    case c0 = "c0",
+         c1 = "c1",
+         c2 = "c2",
+         c3 = "c3",
+         c4 = "c4",
+         c5 = "c5",
+         c6 = "c6",
+         c7 = "c7",
+         c8 = "c8",
+         c9 = "c9",
+         c10 = "c10"
 
     /**
      Size defined in constants
