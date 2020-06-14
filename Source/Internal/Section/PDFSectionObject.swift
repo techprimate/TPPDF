@@ -12,6 +12,12 @@ import UIKit
  */
 internal class PDFSectionObject: PDFRenderObject {
 
+    internal struct PDFSectionColumnMetadata {
+        let minX: CGFloat
+        let width: CGFloat
+        let backgroundColor: UIColor?
+    }
+
     /**
      TODO: Documentation
      */
@@ -30,45 +36,45 @@ internal class PDFSectionObject: PDFRenderObject {
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
+        // Save state of layout
         let originalIndent = generator.layout.indentation.content
         let originalContentOffset = generator.getContentOffset(in: container)
 
-        var indentationLeft: CGFloat = 0.0
-        var columnWidthSum: CGFloat = 0.0
+        var leftColumnGuide: CGFloat = 0.0
         var objectsPerColumn: [Int: [PDFLocatedRenderObject]] = [:]
 
-        let contentWidth = generator.document.layout.width
+        let availableWidth = generator.document.layout.width
             - generator.layout.margin.left
             - generator.layout.margin.right
+        let contentWidth = availableWidth - max(0, CGFloat(section.columns.count - 1) * section.columnMargin)
 
+        var columnMetadata = [PDFSectionColumnMetadata]()
         for (columnIndex, column) in section.columns.enumerated() {
-            columnWidthSum += column.width
-
-            let columnLeftMargin = columnIndex == 0 ? 0 : section.columnMargin / 2
-            let columnRightMargin = columnIndex == section.columns.count - 1 ? 0 : section.columnMargin / 2
+            let columnWidth = column.width * contentWidth
+            let rightColumnGuide = leftColumnGuide + columnWidth
 
             for container in [PDFContainer.contentLeft, .contentCenter, .contentRight] {
                 generator.setContentOffset(in: container, to: originalContentOffset)
-                generator.layout.indentation.setLeft(indentation: indentationLeft + columnLeftMargin, in: container)
-                generator.layout.indentation.setRight(indentation: contentWidth
-                    - columnWidthSum * contentWidth
-                    + columnRightMargin, in: container)
+                generator.layout.indentation.setLeft(indentation: leftColumnGuide, in: container)
+                generator.layout.indentation.setRight(indentation: availableWidth - rightColumnGuide, in: container)
             }
 
-            let object = PDFSectionColumnObject(column: column)
-            objectsPerColumn[columnIndex] = try object.calculate(generator: generator, container: container)
+            objectsPerColumn[columnIndex] = try PDFSectionColumnObject(column: column)
+                .calculate(generator: generator, container: container)
 
-            indentationLeft += column.width * contentWidth
+            columnMetadata.append(.init(minX: generator.layout.margin.left + leftColumnGuide,
+                                        width: columnWidth,
+                                        backgroundColor: column.backgroundColor))
+
+            leftColumnGuide = rightColumnGuide + section.columnMargin
         }
-        result += calulatePageBreakPositions(objectsPerColumn)
+        result += calulatePageBreakPositions(objectsPerColumn, metadata: columnMetadata, container: container)
         generator.layout.indentation.content = originalIndent
 
         var contentMinY: CGFloat?
         var contentMaxY: CGFloat?
 
-        for current in result.reversed() {
-            let currentObject = current.1
-
+        for (_, currentObject) in result.reversed() {
             if currentObject is PDFPageBreakObject {
                 break
             }
@@ -112,7 +118,7 @@ internal class PDFSectionObject: PDFRenderObject {
      ...
      ```
      */
-    internal func calulatePageBreakPositions(_ objectsPerColumn: [Int: [PDFLocatedRenderObject]]) -> [PDFLocatedRenderObject] {
+    internal func calulatePageBreakPositions(_ objectsPerColumn: [Int: [PDFLocatedRenderObject]], metadata: [PDFSectionColumnMetadata], container: PDFContainer) -> [PDFLocatedRenderObject] {
         // stores how many objects are in one column at max
         let maxObjectsPerColumn = objectsPerColumn.reduce(0) { max($0, $1.value.count) }
 
@@ -129,22 +135,43 @@ internal class PDFSectionObject: PDFRenderObject {
 
         // loop through all objects, row by row for each column
         for objectIndex in 0..<maxObjectsPerColumn {
+            // track the result elements per column, so we can calculate the section column frames
+            var resultPerColumn = [Int: [PDFLocatedRenderObject]]()
+
             for (columnIndex, columnObjects) in objectsPerColumn where columnObjects.count > objectIndex {
                 let columnObject = columnObjects[objectIndex]
 
-                // if we already began to stack objects for this column, we simply put all subsequent objects onto the stack
                 if var columnStack = stackedObjectsPerColumn[columnIndex], !columnStack.isEmpty {
+                    // if we already began to stack objects for this column, we simply put all subsequent objects onto the stack
                     columnStack.append(columnObject)
                     stackedObjectsPerColumn[columnIndex] = columnStack
-
-                    // if the column is requesting a page break, we start stacking the objects
                 } else if columnObject.1 is PDFPageBreakObject {
+                    // if the column is requesting a page break, we start stacking the objects
                     stackedObjectsPerColumn[columnIndex] = [columnObject]
-
-                    // if the column does not have a stack and is not requesting a page break we just add the object to the result
                 } else {
-                    result += [columnObject]
+                    // if the column does not have a stack and is not requesting a page break we just add the object to the result
+                    resultPerColumn[columnIndex] = (resultPerColumn[columnIndex] ?? []) + [columnObject]
                 }
+            }
+
+            // swiftlint:disable multiline_function_chains
+            let sectionMinY = resultPerColumn.values.reduce([], +)
+                .map(\.1.frame).map({ $0.minY })
+                .reduce(CGFloat.greatestFiniteMagnitude, min)
+            let sectionMaxY = resultPerColumn.values.reduce([], +)
+                .map(\.1.frame).map({ $0.maxY })
+                .reduce(CGFloat.leastNormalMagnitude, max)
+
+            for (idx, columnObjects) in resultPerColumn {
+                let met = metadata[idx]
+                guard let backgroundColor = met.backgroundColor else {
+                    result += columnObjects
+                    continue
+                }
+                let frame = CGRect(x: met.minX, y: sectionMinY, width: met.width, height: sectionMaxY - sectionMinY)
+                let rect = PDFRectangleObject(lineStyle: .none, size: frame.size, fillColor: backgroundColor)
+                rect.frame = frame
+                result += [(container, rect)] + columnObjects
             }
 
             // does any of the columns request a page break?
@@ -174,7 +201,7 @@ internal class PDFSectionObject: PDFRenderObject {
             result += [(.contentLeft, PDFPageBreakObject())]
 
             // ... and process the stacked objects first
-            result += calulatePageBreakPositions(stackedObjectsPerColumn)
+            result += calulatePageBreakPositions(stackedObjectsPerColumn, metadata: metadata, container: container)
 
             // now we can empty the column stacks and keep going
             // with the objects which still need to be processed

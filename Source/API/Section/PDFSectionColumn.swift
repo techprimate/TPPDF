@@ -23,7 +23,7 @@ public class PDFSectionColumn: PDFDocumentObject {
     Background color of this section
      */
     public var backgroundColor: UIColor?
-    
+
 	// MARK: - INTERNAL VARS
 
 	/**
