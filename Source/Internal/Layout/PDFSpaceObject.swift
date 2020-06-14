@@ -43,7 +43,11 @@ internal class PDFSpaceObject: PDFRenderObject {
         self.frame = CGRect(origin: position, size: size)
         generator.layout.heights.add(space, to: container)
 
-        return [(container, self)]
+        var result: [PDFLocatedRenderObject] = [(container, self)]
+        if PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container) <= 0 {
+            result += try PDFPageBreakObject().calculate(generator: generator, container: container)
+        }
+        return result
     }
 
     /**

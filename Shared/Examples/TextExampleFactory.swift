@@ -63,6 +63,9 @@ class TextExampleFactory: ExampleFactory {
         document.set(font: UIFont.italicSystemFont(ofSize: 13))
         document.add(text: LoremIpsum.get(words: 100))
 
+        document.add(space: 300)
+        document.add(text: "Test text here")
+        
         return [document]
     }
 }
