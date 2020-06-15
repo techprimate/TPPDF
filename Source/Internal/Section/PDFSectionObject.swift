@@ -13,9 +13,9 @@ import UIKit
 internal class PDFSectionObject: PDFRenderObject {
 
     internal struct PDFSectionColumnMetadata {
-        let minX: CGFloat
-        let width: CGFloat
-        let backgroundColor: UIColor?
+        internal let minX: CGFloat
+        internal let width: CGFloat
+        internal let backgroundColor: UIColor?
     }
 
     /**

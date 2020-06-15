@@ -20,6 +20,4 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit'
   s.swift_version = '5.2'
 
-  s.dependency 'SwiftLint'
-
 end
