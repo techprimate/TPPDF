@@ -19,6 +19,11 @@ public class PDFSectionColumn: PDFDocumentObject {
 	*/
 	public private(set) var width: CGFloat
 
+    /**
+    Background color of this section
+     */
+    public var backgroundColor: UIColor?
+
 	// MARK: - INTERNAL VARS
 
 	/**

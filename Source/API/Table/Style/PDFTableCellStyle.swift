@@ -38,3 +38,8 @@ public struct PDFTableCellStyle {
         self.font = font
     }
 }
+
+extension PDFTableCellStyle {
+
+    public static let none = PDFTableCellStyle(colors: (fill: UIColor.clear, text: UIColor.black), borders: .none, font: UIFont.systemFont(ofSize: UIFont.systemFontSize))
+}

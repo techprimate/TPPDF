@@ -497,6 +497,8 @@ section.columns[2].addText(.center, text: "center")
 document.add(sectiion: section)
 ```
 
+**Attention:** Do not add a `PDFSection` multiple times, as they hold some internal state, which will lead to collisions and unpredictable framing calculations
+
 #### Column Wrap Sections
 
 A column wrap section allows you to split your page into multiple columns and fill it up starting at the left. All you have to do is enable it, add content, and then disable it. When disabling it you can set the flag `addPageBreak` if you want it to continue on a fresh page (defaults to true).

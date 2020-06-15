@@ -43,21 +43,8 @@
 		D4803CB524703E5300DDA039 /* Int+RomanNumerals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0124703E5300DDA039 /* Int+RomanNumerals.swift */; };
 		D4803CB624703E5300DDA039 /* PDFPaginationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0224703E5300DDA039 /* PDFPaginationStyle.swift */; };
 		D4803CB724703E5300DDA039 /* PDFPaginationClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0324703E5300DDA039 /* PDFPaginationClosure.swift */; };
-		D4803CB824703E5300DDA039 /* PDFPaginationStyle+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0424703E5300DDA039 /* PDFPaginationStyle+PDFJSONSerializable.swift */; };
 		D4803CB924703E5300DDA039 /* PDFPaginationStyle+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0524703E5300DDA039 /* PDFPaginationStyle+Equatable.swift */; };
 		D4803CBA24703E5300DDA039 /* PDFPagination+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0624703E5300DDA039 /* PDFPagination+Equatable.swift */; };
-		D4803CBB24703E5300DDA039 /* UIImage+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0824703E5300DDA039 /* UIImage+PDFJSONSerializable.swift */; };
-		D4803CBC24703E5300DDA039 /* NSAttributedString+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0924703E5300DDA039 /* NSAttributedString+PDFJSONSerializable.swift */; };
-		D4803CBD24703E5300DDA039 /* PDFJSONRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0A24703E5300DDA039 /* PDFJSONRepresentable.swift */; };
-		D4803CBE24703E5300DDA039 /* CGRect+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0B24703E5300DDA039 /* CGRect+PDFJSONSerializable.swift */; };
-		D4803CBF24703E5300DDA039 /* UIFont+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0C24703E5300DDA039 /* UIFont+PDFJSONSerializable.swift */; };
-		D4803CC024703E5300DDA039 /* Dictionary+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0D24703E5300DDA039 /* Dictionary+PDFJSONSerializable.swift */; };
-		D4803CC124703E5300DDA039 /* PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0E24703E5300DDA039 /* PDFJSONSerializable.swift */; };
-		D4803CC224703E5300DDA039 /* CGSize+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C0F24703E5300DDA039 /* CGSize+PDFJSONSerializable.swift */; };
-		D4803CC324703E5300DDA039 /* Data+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C1024703E5300DDA039 /* Data+PDFJSONSerializable.swift */; };
-		D4803CC424703E5300DDA039 /* UIColor+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C1124703E5300DDA039 /* UIColor+PDFJSONSerializable.swift */; };
-		D4803CC524703E5300DDA039 /* CGPoint+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C1224703E5300DDA039 /* CGPoint+PDFJSONSerializable.swift */; };
-		D4803CC624703E5300DDA039 /* Array+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C1324703E5300DDA039 /* Array+PDFJSONSerializable.swift */; };
 		D4803CC724703E5300DDA039 /* PDFListObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C1524703E5300DDA039 /* PDFListObject.swift */; };
 		D4803CC824703E5300DDA039 /* PDFTableOfContentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C1724703E5300DDA039 /* PDFTableOfContentObject.swift */; };
 		D4803CC924703E5300DDA039 /* PDFGenerator+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C1824703E5300DDA039 /* PDFGenerator+Layout.swift */; };
@@ -92,7 +79,6 @@
 		D4803CE624703E5300DDA039 /* PDFTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C3924703E5300DDA039 /* PDFTableNode.swift */; };
 		D4803CE724703E5300DDA039 /* PDFTableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C3A24703E5300DDA039 /* PDFTableObject.swift */; };
 		D4803CE824703E5300DDA039 /* PDFTableValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C3B24703E5300DDA039 /* PDFTableValidator.swift */; };
-		D4803CE924703E5300DDA039 /* PDFTableCellAlignment+PDFJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C3C24703E5300DDA039 /* PDFTableCellAlignment+PDFJSONSerializable.swift */; };
 		D4803CEA24703E5300DDA039 /* PDFFontObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C3E24703E5300DDA039 /* PDFFontObject.swift */; };
 		D4803CEB24703E5300DDA039 /* PDFAttributedTextObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C3F24703E5300DDA039 /* PDFAttributedTextObject.swift */; };
 		D4803CEC24703E5300DDA039 /* PDFTextColorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C4024703E5300DDA039 /* PDFTextColorObject.swift */; };
@@ -285,8 +271,6 @@
 		OBJ_756 /* PDFImage_Equatable_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_208 /* PDFImage_Equatable_Spec.swift */; };
 		OBJ_757 /* PDFImage_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_209 /* PDFImage_Spec.swift */; };
 		OBJ_758 /* PDFTableMergeUtil_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_212 /* PDFTableMergeUtil_Spec.swift */; };
-		OBJ_759 /* PDFJSONRepresentable_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_214 /* PDFJSONRepresentable_Spec.swift */; };
-		OBJ_760 /* PDFJSONSerializable_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_215 /* PDFJSONSerializable_Spec.swift */; };
 		OBJ_761 /* PDFContainer_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_217 /* PDFContainer_Spec.swift */; };
 		OBJ_762 /* PDFIndentationObject_Equatable_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_218 /* PDFIndentationObject_Equatable_Spec.swift */; };
 		OBJ_763 /* PDFIndentationObject_Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_219 /* PDFIndentationObject_Spec.swift */; };
@@ -518,21 +502,8 @@
 		D4803C0124703E5300DDA039 /* Int+RomanNumerals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+RomanNumerals.swift"; sourceTree = "<group>"; };
 		D4803C0224703E5300DDA039 /* PDFPaginationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPaginationStyle.swift; sourceTree = "<group>"; };
 		D4803C0324703E5300DDA039 /* PDFPaginationClosure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPaginationClosure.swift; sourceTree = "<group>"; };
-		D4803C0424703E5300DDA039 /* PDFPaginationStyle+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFPaginationStyle+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
 		D4803C0524703E5300DDA039 /* PDFPaginationStyle+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFPaginationStyle+Equatable.swift"; sourceTree = "<group>"; };
 		D4803C0624703E5300DDA039 /* PDFPagination+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFPagination+Equatable.swift"; sourceTree = "<group>"; };
-		D4803C0824703E5300DDA039 /* UIImage+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
-		D4803C0924703E5300DDA039 /* NSAttributedString+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
-		D4803C0A24703E5300DDA039 /* PDFJSONRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFJSONRepresentable.swift; sourceTree = "<group>"; };
-		D4803C0B24703E5300DDA039 /* CGRect+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
-		D4803C0C24703E5300DDA039 /* UIFont+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
-		D4803C0D24703E5300DDA039 /* Dictionary+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
-		D4803C0E24703E5300DDA039 /* PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFJSONSerializable.swift; sourceTree = "<group>"; };
-		D4803C0F24703E5300DDA039 /* CGSize+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
-		D4803C1024703E5300DDA039 /* Data+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
-		D4803C1124703E5300DDA039 /* UIColor+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
-		D4803C1224703E5300DDA039 /* CGPoint+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
-		D4803C1324703E5300DDA039 /* Array+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
 		D4803C1524703E5300DDA039 /* PDFListObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFListObject.swift; sourceTree = "<group>"; };
 		D4803C1724703E5300DDA039 /* PDFTableOfContentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFTableOfContentObject.swift; sourceTree = "<group>"; };
 		D4803C1824703E5300DDA039 /* PDFGenerator+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+Layout.swift"; sourceTree = "<group>"; };
@@ -567,7 +538,6 @@
 		D4803C3924703E5300DDA039 /* PDFTableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFTableNode.swift; sourceTree = "<group>"; };
 		D4803C3A24703E5300DDA039 /* PDFTableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFTableObject.swift; sourceTree = "<group>"; };
 		D4803C3B24703E5300DDA039 /* PDFTableValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFTableValidator.swift; sourceTree = "<group>"; };
-		D4803C3C24703E5300DDA039 /* PDFTableCellAlignment+PDFJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFTableCellAlignment+PDFJSONSerializable.swift"; sourceTree = "<group>"; };
 		D4803C3E24703E5300DDA039 /* PDFFontObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFFontObject.swift; sourceTree = "<group>"; };
 		D4803C3F24703E5300DDA039 /* PDFAttributedTextObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFAttributedTextObject.swift; sourceTree = "<group>"; };
 		D4803C4024703E5300DDA039 /* PDFTextColorObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFTextColorObject.swift; sourceTree = "<group>"; };
@@ -669,8 +639,6 @@
 		OBJ_208 /* PDFImage_Equatable_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFImage_Equatable_Spec.swift; sourceTree = "<group>"; };
 		OBJ_209 /* PDFImage_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFImage_Spec.swift; sourceTree = "<group>"; };
 		OBJ_212 /* PDFTableMergeUtil_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableMergeUtil_Spec.swift; sourceTree = "<group>"; };
-		OBJ_214 /* PDFJSONRepresentable_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFJSONRepresentable_Spec.swift; sourceTree = "<group>"; };
-		OBJ_215 /* PDFJSONSerializable_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFJSONSerializable_Spec.swift; sourceTree = "<group>"; };
 		OBJ_217 /* PDFContainer_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFContainer_Spec.swift; sourceTree = "<group>"; };
 		OBJ_218 /* PDFIndentationObject_Equatable_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFIndentationObject_Equatable_Spec.swift; sourceTree = "<group>"; };
 		OBJ_219 /* PDFIndentationObject_Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFIndentationObject_Spec.swift; sourceTree = "<group>"; };
@@ -931,7 +899,6 @@
 				D4803BFB24703E5300DDA039 /* PDFGenerator+Debug.swift */,
 				D4803BFC24703E5300DDA039 /* Math */,
 				D4803BFF24703E5300DDA039 /* Pagination */,
-				D4803C0724703E5300DDA039 /* JSON */,
 				D4803C1424703E5300DDA039 /* List */,
 				D4803C1624703E5300DDA039 /* Table Of Content */,
 				D4803C1824703E5300DDA039 /* PDFGenerator+Layout.swift */,
@@ -1011,30 +978,10 @@
 				D4803C0124703E5300DDA039 /* Int+RomanNumerals.swift */,
 				D4803C0224703E5300DDA039 /* PDFPaginationStyle.swift */,
 				D4803C0324703E5300DDA039 /* PDFPaginationClosure.swift */,
-				D4803C0424703E5300DDA039 /* PDFPaginationStyle+PDFJSONSerializable.swift */,
 				D4803C0524703E5300DDA039 /* PDFPaginationStyle+Equatable.swift */,
 				D4803C0624703E5300DDA039 /* PDFPagination+Equatable.swift */,
 			);
 			path = Pagination;
-			sourceTree = "<group>";
-		};
-		D4803C0724703E5300DDA039 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				D4803C0824703E5300DDA039 /* UIImage+PDFJSONSerializable.swift */,
-				D4803C0924703E5300DDA039 /* NSAttributedString+PDFJSONSerializable.swift */,
-				D4803C0A24703E5300DDA039 /* PDFJSONRepresentable.swift */,
-				D4803C0B24703E5300DDA039 /* CGRect+PDFJSONSerializable.swift */,
-				D4803C0C24703E5300DDA039 /* UIFont+PDFJSONSerializable.swift */,
-				D4803C0D24703E5300DDA039 /* Dictionary+PDFJSONSerializable.swift */,
-				D4803C0E24703E5300DDA039 /* PDFJSONSerializable.swift */,
-				D4803C0F24703E5300DDA039 /* CGSize+PDFJSONSerializable.swift */,
-				D4803C1024703E5300DDA039 /* Data+PDFJSONSerializable.swift */,
-				D4803C1124703E5300DDA039 /* UIColor+PDFJSONSerializable.swift */,
-				D4803C1224703E5300DDA039 /* CGPoint+PDFJSONSerializable.swift */,
-				D4803C1324703E5300DDA039 /* Array+PDFJSONSerializable.swift */,
-			);
-			path = JSON;
 			sourceTree = "<group>";
 		};
 		D4803C1424703E5300DDA039 /* List */ = {
@@ -1108,7 +1055,6 @@
 				D4803C3924703E5300DDA039 /* PDFTableNode.swift */,
 				D4803C3A24703E5300DDA039 /* PDFTableObject.swift */,
 				D4803C3B24703E5300DDA039 /* PDFTableValidator.swift */,
-				D4803C3C24703E5300DDA039 /* PDFTableCellAlignment+PDFJSONSerializable.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -1352,7 +1298,6 @@
 				OBJ_196 /* Graphics */,
 				OBJ_206 /* Image */,
 				OBJ_210 /* Internal */,
-				OBJ_213 /* JSON */,
 				OBJ_216 /* Layout */,
 				OBJ_233 /* List */,
 				OBJ_240 /* Math */,
@@ -1413,15 +1358,6 @@
 				OBJ_212 /* PDFTableMergeUtil_Spec.swift */,
 			);
 			path = Table;
-			sourceTree = "<group>";
-		};
-		OBJ_213 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_214 /* PDFJSONRepresentable_Spec.swift */,
-				OBJ_215 /* PDFJSONSerializable_Spec.swift */,
-			);
-			path = JSON;
 			sourceTree = "<group>";
 		};
 		OBJ_216 /* Layout */ = {
@@ -1822,7 +1758,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -1831,7 +1767,6 @@
 				OBJ_294 /* Dependencies */,
 				OBJ_404 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -2078,7 +2013,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_404 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2260,10 +2195,8 @@
 				D4803CE324703E5300DDA039 /* PDFExternalPageObject.swift in Sources */,
 				D4803D1A24703E5300DDA039 /* PDFTableCellStyle+Equatable.swift in Sources */,
 				D4803D3224703E5300DDA039 /* UIImage+PDFTableContent.swift in Sources */,
-				D4803CBF24703E5300DDA039 /* UIFont+PDFJSONSerializable.swift in Sources */,
 				D4803D2924703E5300DDA039 /* PDFTableColumn.swift in Sources */,
 				D4803D3B24703E5300DDA039 /* PDFText.swift in Sources */,
-				D4803CC424703E5300DDA039 /* UIColor+PDFJSONSerializable.swift in Sources */,
 				D4803CFD24703E5300DDA039 /* PDFPageFormat+Layout.swift in Sources */,
 				D4803CA924703E5300DDA039 /* PDFObjectAttribute.swift in Sources */,
 				D4803CAC24703E5300DDA039 /* FileManager+TemporaryFiles.swift in Sources */,
@@ -2288,7 +2221,6 @@
 				D4803D1224703E5300DDA039 /* PDFBezierPath+Copying.swift in Sources */,
 				D4803CAD24703E5300DDA039 /* Stack.swift in Sources */,
 				D4803CCF24703E5300DDA039 /* UIImage+Pixel.swift in Sources */,
-				D4803CB824703E5300DDA039 /* PDFPaginationStyle+PDFJSONSerializable.swift in Sources */,
 				D4803D0C24703E5300DDA039 /* PDFBezierPathVertex.swift in Sources */,
 				D4803CE524703E5300DDA039 /* PDFTableMergeUtil.swift in Sources */,
 				D4803D0024703E5300DDA039 /* PDFInfo.swift in Sources */,
@@ -2299,7 +2231,6 @@
 				D4803CDD24703E5300DDA039 /* PDFLayout+Equatable.swift in Sources */,
 				D4803CD224703E5300DDA039 /* PDFPageBreakObject.swift in Sources */,
 				D4803CDC24703E5300DDA039 /* PDFSpaceObject.swift in Sources */,
-				D4803CE924703E5300DDA039 /* PDFTableCellAlignment+PDFJSONSerializable.swift in Sources */,
 				D4803CFB24703E5300DDA039 /* PDFGenerator.swift in Sources */,
 				D4803CCD24703E5300DDA039 /* PDFLineObject.swift in Sources */,
 				D4803D3124703E5300DDA039 /* PDFTableContent.swift in Sources */,
@@ -2329,12 +2260,10 @@
 				D4803D0424703E5300DDA039 /* PDFMasterGroup.swift in Sources */,
 				D4803CEC24703E5300DDA039 /* PDFTextColorObject.swift in Sources */,
 				D4803D0624703E5300DDA039 /* PDFListItemSymbol.swift in Sources */,
-				D4803CC024703E5300DDA039 /* Dictionary+PDFJSONSerializable.swift in Sources */,
 				D4803D1124703E5300DDA039 /* PDFBezierPath.swift in Sources */,
 				D4803D3A24703E5300DDA039 /* PDFAttributedText.swift in Sources */,
 				D4803D2224703E5300DDA039 /* PDFTable+RowSubscripts.swift in Sources */,
 				D4803CF924703E5300DDA039 /* PDFSection.swift in Sources */,
-				D4803CC224703E5300DDA039 /* CGSize+PDFJSONSerializable.swift in Sources */,
 				D4803CB924703E5300DDA039 /* PDFPaginationStyle+Equatable.swift in Sources */,
 				D4803CD124703E5300DDA039 /* PDFRectangleObject.swift in Sources */,
 				D4803CA524703E5300DDA039 /* PDFCalculations.swift in Sources */,
@@ -2347,7 +2276,6 @@
 				D4803CF524703E5300DDA039 /* PDFError.swift in Sources */,
 				D4803D0124703E5300DDA039 /* PDFInfo+Equatable.swift in Sources */,
 				D4803CA424703E5300DDA039 /* PDFImageRowObject.swift in Sources */,
-				D4803CBE24703E5300DDA039 /* CGRect+PDFJSONSerializable.swift in Sources */,
 				D4803D2C24703E5300DDA039 /* PDFTableContent+Equatable.swift in Sources */,
 				D4803D0E24703E5300DDA039 /* PDFLineType.swift in Sources */,
 				D4803CF824703E5300DDA039 /* PDFSectionColumn+Objects.swift in Sources */,
@@ -2360,15 +2288,12 @@
 				D4803CB424703E5300DDA039 /* PDFPagination.swift in Sources */,
 				D4803D0D24703E5300DDA039 /* PDFLineStyle+Equatable.swift in Sources */,
 				D4803CD324703E5300DDA039 /* PDFLayoutHeights.swift in Sources */,
-				D4803CC624703E5300DDA039 /* Array+PDFJSONSerializable.swift in Sources */,
 				D4803CEA24703E5300DDA039 /* PDFFontObject.swift in Sources */,
 				D4803CE124703E5300DDA039 /* PDFIndentationObject+Equatable.swift in Sources */,
 				D4803D3324703E5300DDA039 /* PDFTableCell.swift in Sources */,
 				D4803CED24703E5300DDA039 /* PDFImageSizeFit.swift in Sources */,
-				D4803CC524703E5300DDA039 /* CGPoint+PDFJSONSerializable.swift in Sources */,
 				D4803CD024703E5300DDA039 /* PDFLineSeparatorObject+Equatable.swift in Sources */,
 				D4803D0724703E5300DDA039 /* PDFList.swift in Sources */,
-				D4803CBD24703E5300DDA039 /* PDFJSONRepresentable.swift in Sources */,
 				D4803CA624703E5300DDA039 /* PDFSlicedObject.swift in Sources */,
 				D4803D0B24703E5300DDA039 /* PDFTableOfContent.swift in Sources */,
 				D4803CD724703E5300DDA039 /* PDFOffsetObject+Equatable.swift in Sources */,
@@ -2397,16 +2322,12 @@
 				D4803D1E24703E5300DDA039 /* PDFTableStyle+Equatable.swift in Sources */,
 				D4803D1924703E5300DDA039 /* PDFTableStyle+Defaults.swift in Sources */,
 				D4803D2A24703E5300DDA039 /* PDFTable+CellSubscripts.swift in Sources */,
-				D4803CBC24703E5300DDA039 /* NSAttributedString+PDFJSONSerializable.swift in Sources */,
 				D4803CFA24703E5300DDA039 /* PDFSectionColumn.swift in Sources */,
 				D4803D1424703E5300DDA039 /* PDFPageLayout.swift in Sources */,
-				D4803CC324703E5300DDA039 /* Data+PDFJSONSerializable.swift in Sources */,
 				D4803D2024703E5300DDA039 /* PDFTableCellStyle.swift in Sources */,
 				D4803CFF24703E5300DDA039 /* PDFGenerator+Generation.swift in Sources */,
-				D4803CBB24703E5300DDA039 /* UIImage+PDFJSONSerializable.swift in Sources */,
 				D4803CF324703E5300DDA039 /* PDFMultiDocumentGenerator.swift in Sources */,
 				D4803CF624703E5300DDA039 /* PDFRenderObject.swift in Sources */,
-				D4803CC124703E5300DDA039 /* PDFJSONSerializable.swift in Sources */,
 				D4803CD824703E5300DDA039 /* PDFPageBreakObject+Equatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2436,8 +2357,6 @@
 				OBJ_756 /* PDFImage_Equatable_Spec.swift in Sources */,
 				OBJ_757 /* PDFImage_Spec.swift in Sources */,
 				OBJ_758 /* PDFTableMergeUtil_Spec.swift in Sources */,
-				OBJ_759 /* PDFJSONRepresentable_Spec.swift in Sources */,
-				OBJ_760 /* PDFJSONSerializable_Spec.swift in Sources */,
 				OBJ_761 /* PDFContainer_Spec.swift in Sources */,
 				OBJ_762 /* PDFIndentationObject_Equatable_Spec.swift in Sources */,
 				OBJ_763 /* PDFIndentationObject_Spec.swift in Sources */,
