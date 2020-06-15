@@ -23,14 +23,21 @@ internal class PDFIndentationObject: PDFRenderObject {
     internal var left: Bool
 
     /**
+     Flag to check if section inset inside column needs to be changed.
+     If `true`, the indention is relative to the column left guide
+     */
+    internal var insideSectionColumn: Bool
+
+    /**
      Initializer
 
      - parameter indentation: Offset in points from edge
      - parameter left: Offset is from left side if `true`, from right if `false`
      */
-    internal init(indentation: CGFloat, left: Bool) {
+    internal init(indentation: CGFloat, left: Bool, insideSectionColumn: Bool) {
         self.indentation = indentation
         self.left = left
+        self.insideSectionColumn = insideSectionColumn
     }
 
     /**
@@ -44,10 +51,17 @@ internal class PDFIndentationObject: PDFRenderObject {
      - returns: Self
      */
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        var indent = indentation
         if left {
-            generator.layout.indentation.setLeft(indentation: indentation, in: container)
+            if insideSectionColumn {
+                indent += generator.layout.indentation.leftIn(container: container)
+            }
+            generator.layout.indentation.setLeft(indentation: indent, in: container)
         } else {
-            generator.layout.indentation.setRight(indentation: indentation, in: container)
+            if insideSectionColumn {
+                indent += generator.layout.indentation.rightIn(container: container)
+            }
+            generator.layout.indentation.setRight(indentation: indent, in: container)
         }
 
         return [(container, self)]
@@ -57,6 +71,6 @@ internal class PDFIndentationObject: PDFRenderObject {
      Creates a new `PDFIndentationObject` with the same properties
      */
     override internal var copy: PDFRenderObject {
-        PDFIndentationObject(indentation: self.indentation, left: self.left)
+        PDFIndentationObject(indentation: self.indentation, left: self.left, insideSectionColumn: self.insideSectionColumn)
     }
 }

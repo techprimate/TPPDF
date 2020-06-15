@@ -156,10 +156,14 @@ internal class PDFSectionObject: PDFRenderObject {
 
             // swiftlint:disable multiline_function_chains
             let sectionMinY = resultPerColumn.values.reduce([], +)
-                .map(\.1.frame).map({ $0.minY })
+                .map(\.1.frame)
+                .filter({ $0.origin != .null })
+                .map({ $0.minY })
                 .reduce(CGFloat.greatestFiniteMagnitude, min)
             let sectionMaxY = resultPerColumn.values.reduce([], +)
-                .map(\.1.frame).map({ $0.maxY })
+                .map(\.1.frame)
+                .filter({ $0.origin != .null })
+                .map({ $0.maxY })
                 .reduce(CGFloat.leastNormalMagnitude, max)
 
             for (idx, columnObjects) in resultPerColumn {

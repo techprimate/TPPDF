@@ -7,6 +7,8 @@
 
 **Fixed bugs:**
 
+- Fixed indentations inside sections
+
 **Closed issues:**
 
 **Merged pull requests:**
