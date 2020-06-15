@@ -8,6 +8,7 @@
 - Added raw representable values to `PDFPageFormat`
 - Added raw representable type to `PDFLineType`
 - Added constant `none` to `PDFTableCellStyle` and `PDFTableCellBorders`
+- Added background color to `PDFSectionColumn` (#122)
 
 **Fixed bugs:**
 
@@ -17,9 +18,11 @@
 **Closed issues:**
 
 - #73
+- #122
 
 **Merged pull requests:**
 
+- #211
 
 ## [2.0.1](https://github.com/techprimate/TPPDF/tree/2.0.1) (2020-05-31)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.0.0...2.0.1)
