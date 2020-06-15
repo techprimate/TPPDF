@@ -1,24 +1,41 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.0.0...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.0...HEAD)
+
+**Implemented enhancements:**
+
+**Fixed bugs:**
+
+**Closed issues:**
+
+**Merged pull requests:**
+
+## [2.1.0](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-06-15)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.0.1...2.1.0)
 
 **Implemented enhancements:**
 
 - Added raw representable values to `PDFPageFormat`
 - Added raw representable type to `PDFLineType`
 - Added constant `none` to `PDFTableCellStyle` and `PDFTableCellBorders`
-- Added background color to `PDFSectionColumn` (#122)
+- Added background color to `PDFSectionColumn` (Issue #122)
 
 **Fixed bugs:**
 
-- Added note to documentation about not readding `PDFSection` instances
+- Added note to documentation about not reusing `PDFSection` instances (Issue #122)
 - Added missing font and text color reset to generator
 
 **Closed issues:**
 
 - #73
 - #122
+- #204
+- #197
+- #189
+- #186
+- #184
+- #183
 
 **Merged pull requests:**
 
