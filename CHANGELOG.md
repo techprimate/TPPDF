@@ -1,19 +1,28 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.0...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.1...HEAD)
 
 **Implemented enhancements:**
 
 **Fixed bugs:**
 
-- Fixed indentations inside sections
-
 **Closed issues:**
 
 **Merged pull requests:**
 
-## [2.1.0](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-06-15)
+## [2.1.1](https://github.com/techprimate/TPPDF/tree/2.1.1) (2020-06-16)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.0...2.1.1)
+
+**Implemented enhancements:**
+
+- Added raw representable to `PDFTableCellAlignment`
+
+**Fixed bugs:**
+
+- Fixed indentations inside sections
+
+## [2.1.0](https://github.com/techprimate/TPPDF/tree/2.1.0) (2020-06-15)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.0.1...2.1.0)
 
 **Implemented enhancements:**
@@ -22,13 +31,11 @@
 - Added raw representable type to `PDFLineType`
 - Added constant `none` to `PDFTableCellStyle` and `PDFTableCellBorders`
 - Added background color to `PDFSectionColumn` (Issue #122)
-- Added raw representable to `PDFTableCellAlignment`
 
 **Fixed bugs:**
 
 - Added note to documentation about not reusing `PDFSection` instances (Issue #122)
 - Added missing font and text color reset to generator
-- Fixed sections overwriting indentations
 
 **Closed issues:**
 
