@@ -40,13 +40,11 @@ internal class PDFSectionObject: PDFRenderObject {
         let originalIndent = generator.layout.indentation.content
         let originalContentOffset = generator.getContentOffset(in: container)
 
-        var leftColumnGuide: CGFloat = 0.0
+        var leftColumnGuide: CGFloat = originalIndent.left
         var objectsPerColumn: [Int: [PDFLocatedRenderObject]] = [:]
 
-        let availableWidth = generator.document.layout.width
-            - generator.layout.margin.left
-            - generator.layout.margin.right
-        let contentWidth = availableWidth - max(0, CGFloat(section.columns.count - 1) * section.columnMargin)
+        let availableWidth = PDFCalculations.calculateAvailableFrameWidth(for: generator, in: container)
+        let contentWidth = availableWidth - max(0, CGFloat(section.columns.count - 1)) * section.columnMargin
 
         var columnMetadata = [PDFSectionColumnMetadata]()
         for (columnIndex, column) in section.columns.enumerated() {
@@ -56,7 +54,7 @@ internal class PDFSectionObject: PDFRenderObject {
             for container in [PDFContainer.contentLeft, .contentCenter, .contentRight] {
                 generator.setContentOffset(in: container, to: originalContentOffset)
                 generator.layout.indentation.setLeft(indentation: leftColumnGuide, in: container)
-                generator.layout.indentation.setRight(indentation: availableWidth - rightColumnGuide, in: container)
+                generator.layout.indentation.setRight(indentation: availableWidth - rightColumnGuide + originalIndent.right, in: container)
             }
 
             objectsPerColumn[columnIndex] = try PDFSectionColumnObject(column: column)
@@ -77,6 +75,9 @@ internal class PDFSectionObject: PDFRenderObject {
         for (_, currentObject) in result.reversed() {
             if currentObject is PDFPageBreakObject {
                 break
+            }
+            if currentObject.frame.origin.y == CGFloat.infinity {
+                continue
             }
 
             if contentMaxY == nil {
@@ -155,27 +156,23 @@ internal class PDFSectionObject: PDFRenderObject {
             }
 
             // swiftlint:disable multiline_function_chains
-            let sectionMinY = resultPerColumn.values.reduce([], +)
+            let allFrames = resultPerColumn.values.reduce([], +)
                 .map(\.1.frame)
                 .filter({ $0.origin != .null })
-                .map({ $0.minY })
-                .reduce(CGFloat.greatestFiniteMagnitude, min)
-            let sectionMaxY = resultPerColumn.values.reduce([], +)
-                .map(\.1.frame)
-                .filter({ $0.origin != .null })
-                .map({ $0.maxY })
-                .reduce(CGFloat.leastNormalMagnitude, max)
+            if let sectionMinY = allFrames.map({ $0.minY }).min(),
+                let sectionMaxY = allFrames.map({ $0.maxY }).max() {
 
-            for (idx, columnObjects) in resultPerColumn {
-                let met = metadata[idx]
-                guard let backgroundColor = met.backgroundColor else {
-                    result += columnObjects
-                    continue
+                for (idx, columnObjects) in resultPerColumn {
+                    let met = metadata[idx]
+                    guard let backgroundColor = met.backgroundColor else {
+                        result += columnObjects
+                        continue
+                    }
+                    let frame = CGRect(x: met.minX, y: sectionMinY, width: met.width, height: sectionMaxY - sectionMinY)
+                    let rect = PDFRectangleObject(lineStyle: .none, size: frame.size, fillColor: backgroundColor)
+                    rect.frame = frame
+                    result += [(container, rect)] + columnObjects
                 }
-                let frame = CGRect(x: met.minX, y: sectionMinY, width: met.width, height: sectionMaxY - sectionMinY)
-                let rect = PDFRectangleObject(lineStyle: .none, size: frame.size, fillColor: backgroundColor)
-                rect.frame = frame
-                result += [(container, rect)] + columnObjects
             }
 
             // does any of the columns request a page break?

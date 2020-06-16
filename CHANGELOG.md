@@ -22,11 +22,13 @@
 - Added raw representable type to `PDFLineType`
 - Added constant `none` to `PDFTableCellStyle` and `PDFTableCellBorders`
 - Added background color to `PDFSectionColumn` (Issue #122)
+- Added raw representable to `PDFTableCellAlignment`
 
 **Fixed bugs:**
 
 - Added note to documentation about not reusing `PDFSection` instances (Issue #122)
 - Added missing font and text color reset to generator
+- Fixed sections overwriting indentations
 
 **Closed issues:**
 
