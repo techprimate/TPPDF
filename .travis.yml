@@ -9,6 +9,8 @@ env:
   - PROJECT="Example.xcodeproj"
   - EXAMPLE_SCHEME="Example"
 
+  - secure: y71ScxtfYr3/DI0XKjGz8Bmia33QF9vO5euPJJbQ6kD5ADhEFkici/YZWxDkYtEZocKaUHIR4KYrKya2kTwJC630s2wLg974gERcUATZkWxeJdKgpfZ2aZtqYNPPDxozMTFtiT4kaw5HiD0usJUgnWKqf/XsTW+3BpTJA58xqXChcXulibs9FJvPz6ZVxW+dNW3F5xtC3GCOWk3Rofrw8GJXdCfie/CaJUvxaQVm9hOwKn0Akpe6rvFKlMtfYOLL9yclaMAM+Um7uFVZwhCPHtAzXvpOhA2U/n7eXy/fNpoXxi9zf+epD1iiFmxJQfc1ZO6jkUJEksLXdO3pEMnoe205Bm70QMO6l9gyuq6Z2cUcCBrd2wDzfLYBoOqapgachpTQifotXX6rapm5pCDhg0pMCRihH5moFnsE7jqz2Lo4n68cvSa9+Irr97HmvH+GdF++VIVGK4/GJOErwGUx0Nh32BIeV3p4D+MNm918mAEO7a66a1RiTKNAr1xnrAtCl0k4XeZPCp0uQQ0TEVOxi/vecIS3k6mNMJw5W9tE0F7fun8kHdv6EKrzKIBkyDxMsh2Z5zVqE3wRcCuD+7FgrcmYDUXyk+t1o2cMNs7iZkKFQAG69+qXviTXnaD9Mq0LGP1sx+OQpQKzde9CAC+tgj+1fqD41jqr6zHJqaEOxvs=
+
 stages:
   - Tests
   - Examples
