@@ -66,7 +66,7 @@ public class PDFTable: PDFDocumentObject {
 
      - throws: `PDFError` if table validation fails. See `PDFTableValidator.validateTableData(::)` for details
      */
-    @available(*, deprecated, message: "Use the content and alignment properties instead, this will be removed in release 2.1")
+    @available(*, deprecated, message: "Use the content and alignment properties instead, this will be removed in release 2.X")
     public func generateCells(data: [[Any?]], alignments: [[PDFTableCellAlignment]]) throws {
         try PDFTableValidator.validateTableData(data: data, alignments: alignments)
 

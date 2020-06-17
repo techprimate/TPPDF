@@ -19,9 +19,10 @@ class PDFIndentationObject_Spec: QuickSpec {
             var object: PDFIndentationObject!
             let indentation: CGFloat = 20.0
             let left = false
+            let insideSectionColumn = false
 
             beforeEach {
-                object = PDFIndentationObject(indentation: indentation, left: left)
+                object = PDFIndentationObject(indentation: indentation, left: left, insideSectionColumn: insideSectionColumn)
             }
 
             describe("variables") {
@@ -32,6 +33,10 @@ class PDFIndentationObject_Spec: QuickSpec {
 
                 it("has a left") {
                     expect(object.left) == left
+                }
+
+                it("has a insideSectionColumn") {
+                    expect(object.insideSectionColumn) == insideSectionColumn
                 }
             }
 

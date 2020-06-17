@@ -12,6 +12,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		D454C07D249A796A0001E4CC /* TPPDF in Frameworks */ = {isa = PBXBuildFile; productRef = D454C07C249A796A0001E4CC /* TPPDF */; };
 		D49855392461FB0B00D54270 /* ExampleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855182461FB0B00D54270 /* ExampleFactory.swift */; };
 		D498553A2461FB0B00D54270 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855192461FB0B00D54270 /* TimeUtils.swift */; };
 		D498553B2461FB0B00D54270 /* LoremIpsum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D498551A2461FB0B00D54270 /* LoremIpsum.swift */; };
@@ -40,7 +41,6 @@
 		D49855532461FB0B00D54270 /* Image-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D49855372461FB0B00D54270 /* Image-4.jpg */; };
 		D49855542461FB0B00D54270 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D49855382461FB0B00D54270 /* Icon.png */; };
 		D49855562461FB9A00D54270 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855552461FB9A00D54270 /* Examples.swift */; };
-		D4B0D6C824629EAD00493C91 /* TPPDF in Frameworks */ = {isa = PBXBuildFile; productRef = D4B0D6C724629EAD00493C91 /* TPPDF */; };
 		D4D28D2323AA1A6D00028D5A /* ExamplesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D28D2223AA1A6D00028D5A /* ExamplesListViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +52,7 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D454C07A249A79570001E4CC /* TPPDF */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TPPDF; path = ..; sourceTree = "<group>"; };
 		D49855182461FB0B00D54270 /* ExampleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleFactory.swift; sourceTree = "<group>"; };
 		D49855192461FB0B00D54270 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		D498551A2461FB0B00D54270 /* LoremIpsum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoremIpsum.swift; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		D49855372461FB0B00D54270 /* Image-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-4.jpg"; sourceTree = "<group>"; };
 		D49855382461FB0B00D54270 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D49855552461FB9A00D54270 /* Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
-		D4C009D1246E99CC00956F95 /* TPPDF */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TPPDF; path = ..; sourceTree = "<group>"; };
 		D4D28D2223AA1A6D00028D5A /* ExamplesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4B0D6C824629EAD00493C91 /* TPPDF in Frameworks */,
+				D454C07D249A796A0001E4CC /* TPPDF in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,9 +99,10 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				D4C009D1246E99CC00956F95 /* TPPDF */,
+				D454C07A249A79570001E4CC /* TPPDF */,
 				607FACD21AFB9204008FA782 /* Example */,
 				607FACD11AFB9204008FA782 /* Products */,
+				D454C07B249A796A0001E4CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +131,13 @@
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D454C07B249A796A0001E4CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D49855162461FB0B00D54270 /* Shared */ = {
@@ -248,7 +256,7 @@
 			);
 			name = Example;
 			packageProductDependencies = (
-				D4B0D6C724629EAD00493C91 /* TPPDF */,
+				D454C07C249A796A0001E4CC /* TPPDF */,
 			);
 			productName = TPPDF;
 			productReference = 607FACD01AFB9204008FA782 /* Example.app */;
@@ -281,7 +289,6 @@
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			packageReferences = (
-				D4B0D6C624629EAD00493C91 /* XCRemoteSwiftPackageReference "TPPDF" */,
 			);
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
@@ -560,21 +567,9 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		D4B0D6C624629EAD00493C91 /* XCRemoteSwiftPackageReference "TPPDF" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/techprimate/TPPDF";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		D4B0D6C724629EAD00493C91 /* TPPDF */ = {
+		D454C07C249A796A0001E4CC /* TPPDF */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D4B0D6C624629EAD00493C91 /* XCRemoteSwiftPackageReference "TPPDF" */;
 			productName = TPPDF;
 		};
 /* End XCSwiftPackageProductDependency section */
