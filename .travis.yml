@@ -120,7 +120,7 @@ jobs:
   - stage: Documentation
     name: Generate Documentation
     language: objective-c
-    if: branch = master
+    if: branch = master AND type != pull_request
     cache: bundler
     script:
     - git remote update
