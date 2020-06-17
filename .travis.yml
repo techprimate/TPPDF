@@ -15,11 +15,6 @@ stages:
   - Examples
   - Documentation
 
-cache:
-  bundler: true
-  directories:
-    - $HOME/Library/Caches/Homebrew
-
 jobs:
   include:
   - stage: Tests
