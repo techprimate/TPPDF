@@ -15,13 +15,17 @@ stages:
   - Examples
   - Documentation
 
+cache:
+  bundler: true
+  directories:
+    - $HOME/Library/Caches/Homebrew
+
 jobs:
   include:
   - stage: Tests
     name: "Unit Tests"
     language: objective-c
-    cache:
-      bundler: true
+    cache: bundler
     env:
     - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
     - PROJECT="TPPDF.xcodeproj"
@@ -37,7 +41,7 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 test | bundle exec xcpretty
+                 test | xcpretty
 
     after_success:
     - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verb>
@@ -72,8 +76,6 @@ jobs:
   - stage: Examples
     name: "Example iOS - Carthage"
     language: objective-c
-    cache:
-      bundler: true
     env:
     - ROOT_FOLDER="Example iOS-Carthage"
     before_install:
@@ -91,13 +93,11 @@ jobs:
                  -configuration Debug
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  ONLY_ACTIVE_ARCH=YES
-                 build | bundle exec xcpretty
+                 build | xcpretty
 
   - stage: Examples
     name: "Example iOS - Swift PM"
     language: objective-c
-    cache:
-      bundler: true
     env:
     - ROOT_FOLDER="Example iOS-SwiftPM"
     script:
@@ -107,7 +107,7 @@ jobs:
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                 -configuration Debug | bundle exec xcpretty
+                 -configuration Debug | xcpretty
     - xcodebuild -project ${PROJECT}
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
@@ -116,7 +116,7 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 build | bundle exec xcpretty
+                 build | xcpretty
     - xcodebuild -project ${PROJECT}
                  -scheme ${TEST_FRAMEWORK_SCHEME}
                  -clonedSourcePackagesDirPath .
@@ -125,17 +125,13 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 test | bundle exec xcpretty
+                 test | xcpretty
 
   - stage: Documentation
     name: Generate Documentation
     language: objective-c
-    git.depth: false
     if: branch = master
-    cache:
-      bundler: true
-    install:
-    - bundle install
+    cache: bundler
     script:
     - git remote update
     - git fetch origin gh-pages:gh-pages --depth 1
