@@ -68,6 +68,7 @@ jobs:
   - stage: Examples
     name: "Example iOS - Carthage"
     language: objective-c
+    if: type != pull_request
     env:
     - ROOT_FOLDER="Example iOS-Carthage"
     before_script:
