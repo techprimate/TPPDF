@@ -33,7 +33,7 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 test | xcpretty
+                 test | xcpretty && exit ${PIPESTATUS[0]}
 
     after_success:
     - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verb>
@@ -59,7 +59,7 @@ jobs:
                  -configuration Debug
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  ONLY_ACTIVE_ARCH=YES
-                 build | xcpretty
+                 build | xcpretty  && exit ${PIPESTATUS[0]}
     - cd ../
     - bundle exec pod lib lint --allow-warnings
 
@@ -80,7 +80,7 @@ jobs:
                  -configuration Debug
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  ONLY_ACTIVE_ARCH=YES
-                 build | xcpretty
+                 build | xcpretty  && exit ${PIPESTATUS[0]}
 
   - stage: Examples
     name: "Example iOS - Swift PM"
@@ -94,7 +94,7 @@ jobs:
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                 -configuration Debug | xcpretty
+                 -configuration Debug | xcpretty && exit ${PIPESTATUS[0]}
     - xcodebuild -project ${PROJECT}
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
@@ -103,7 +103,7 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 build | xcpretty
+                 build | xcpretty  && exit ${PIPESTATUS[0]}
     - xcodebuild -project ${PROJECT}
                  -scheme ${TEST_FRAMEWORK_SCHEME}
                  -clonedSourcePackagesDirPath .
@@ -112,7 +112,7 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 test | xcpretty
+                 test | xcpretty && exit ${PIPESTATUS[0]}
 
   - stage: Documentation
     name: Generate Documentation
