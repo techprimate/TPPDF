@@ -17,6 +17,7 @@
 **Implemented enhancements:**
 
 - Added raw representable to `PDFTableCellAlignment`
+- Added support for groups inside section columns
 
 **Fixed bugs:**
 
