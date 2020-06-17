@@ -20,6 +20,9 @@ extension PDFIndentationObject: Equatable {
         guard lhs.left == rhs.left else {
             return false
         }
+        guard lhs.insideSectionColumn == rhs.insideSectionColumn else {
+            return false
+        }
         return true
     }
 }

@@ -247,7 +247,7 @@ public extension PDFDocument {
      - parameter left: If `true` then the left side indentation is set, else the right indentation is set
      */
     func set(_ container: PDFContainer = PDFContainer.contentLeft, indent: CGFloat, left: Bool) {
-        objects += [(container, PDFIndentationObject(indentation: indent, left: left))]
+        objects += [(container, PDFIndentationObject(indentation: indent, left: left, insideSectionColumn: false))]
     }
 
     /// :nodoc:

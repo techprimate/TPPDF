@@ -260,7 +260,7 @@ public extension PDFSectionColumn {
 	- parameter left: If `true` then the left side indentation is set, else the right indentation is set
 	*/
     func set(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, indent: CGFloat, left: Bool) {
-        objects += [(container, PDFIndentationObject(indentation: indent, left: left))]
+        objects += [(container, PDFIndentationObject(indentation: indent, left: left, insideSectionColumn: true))]
     }
 
     /**
@@ -287,5 +287,21 @@ public extension PDFSectionColumn {
     @available(*, deprecated, renamed: "set(_:absoluteOffset:)")
     func setAbsoluteOffset(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, offset: CGFloat) {
         set(container, absoluteOffset: offset)
+    }
+
+    // MARK: - Groups
+
+    /**
+    Adds a group object to the section column in the defined container
+    */
+    func add(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, group: PDFGroup) {
+        objects += [(container, PDFGroupObject(objects: group.objects,
+                                               allowsBreaks: group.allowsBreaks,
+                                               isFullPage: false,
+                                               backgroundColor: group.backgroundColor,
+                                               backgroundImage: group.backgroundImage,
+                                               backgroundShape: group.backgroundShape,
+                                               outline: group.outline,
+                                               padding: group.padding))]
     }
 }

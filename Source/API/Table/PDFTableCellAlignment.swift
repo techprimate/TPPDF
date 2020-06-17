@@ -8,52 +8,52 @@
 /**
  Options for aligning content inside a table cell
  */
-public enum PDFTableCellAlignment {
+public enum PDFTableCellAlignment: String {
 
     /**
      Content will be aligned in the top left corner
      */
-    case topLeft
+    case topLeft = "top-left"
 
     /**
      Content will be aligned with the top edge, centered horizontally
      */
-    case top
+    case top = "top"
 
     /**
      Content will be aligned in the top right corner
      */
-    case topRight
+    case topRight = "top-right"
 
     /**
      Content will be aligned with the left edge, centered vertically
      */
-    case left
+    case left = "left"
 
     /**
      Content will be centered horizontally & vertically
      */
-    case center
+    case center = "center"
 
     /**
      Content will be aligned with the right edge, centered horizontally
      */
-    case right
+    case right = "right"
 
     /**
      Content will be aligned in the bottom left corner
      */
-    case bottomLeft
+    case bottomLeft = "bottom-left"
 
     /**
      Content will be aligned with the bottom edge, centered horizontally
      */
-    case bottom
+    case bottom = "bottom"
 
     /**
      Content will be aligned in the top right corner
      */
-    case bottomRight
+    case bottomRight = "bottom-right"
 
     /**
      Alignment is at the top edge

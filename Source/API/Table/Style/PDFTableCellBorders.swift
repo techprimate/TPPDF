@@ -47,5 +47,5 @@ public struct PDFTableCellBorders {
 extension PDFTableCellBorders {
 
     public static let none = PDFTableCellBorders(left: .none, top: .none, right: .none, bottom: .none)
-    
+
 }

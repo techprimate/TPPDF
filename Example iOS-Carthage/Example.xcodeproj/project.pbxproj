@@ -41,6 +41,7 @@
 		D49855542461FB0B00D54270 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D49855382461FB0B00D54270 /* Icon.png */; };
 		D49855562461FB9A00D54270 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855552461FB9A00D54270 /* Examples.swift */; };
 		D4D28D2323AA1A6D00028D5A /* ExamplesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D28D2223AA1A6D00028D5A /* ExamplesListViewController.swift */; };
+		D4FF9A28249A488A006FF2ED /* TPPDF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4FF9A27249A488A006FF2ED /* TPPDF.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		D49855382461FB0B00D54270 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D49855552461FB9A00D54270 /* Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
 		D4D28D2223AA1A6D00028D5A /* ExamplesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesListViewController.swift; sourceTree = "<group>"; };
+		D4FF9A27249A488A006FF2ED /* TPPDF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TPPDF.framework; path = Carthage/Build/iOS/TPPDF.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FF9A28249A488A006FF2ED /* TPPDF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +99,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				D4FF9A26249A487B006FF2ED /* Frameworks */,
 				607FACD21AFB9204008FA782 /* Example */,
 				607FACD11AFB9204008FA782 /* Products */,
 			);
@@ -227,6 +231,15 @@
 			path = "../../Shared iOS/UI";
 			sourceTree = "<group>";
 		};
+		D4FF9A26249A487B006FF2ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4FF9A27249A488A006FF2ED /* TPPDF.framework */,
+			);
+			name = Frameworks;
+			path = Example;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -235,9 +248,9 @@
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
 				607FACCC1AFB9204008FA782 /* Sources */,
-				D4E6F9A21FA732720049890F /* Swift Lint */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
+				D4FF9A2A249A489C006FF2ED /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -309,19 +322,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D4E6F9A21FA732720049890F /* Swift Lint */ = {
+		D4FF9A2A249A489C006FF2ED /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "Swift Lint";
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/TPPDF.framework",
+			);
+			name = Carthage;
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TPPDF.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n   \"swiftlint\" --config ../.swiftlint.yml\nelse\n   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -493,6 +512,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = Example/Info.plist;
@@ -513,6 +536,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = Example/Info.plist;

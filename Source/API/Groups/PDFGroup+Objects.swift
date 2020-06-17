@@ -172,7 +172,7 @@ public extension PDFGroup {
      - parameter left: If `true` then the left side indentation is set, else the right indentation is set
      */
     func set(_ container: PDFGroupContainer = PDFGroupContainer.left, indentation: CGFloat, left: Bool) {
-        objects += [(container, PDFIndentationObject(indentation: indentation, left: left))]
+        objects += [(container, PDFIndentationObject(indentation: indentation, left: left, insideSectionColumn: false))]
     }
 
     /**

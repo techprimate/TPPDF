@@ -17,20 +17,25 @@ class PDFIndentationObject_Equatable_Spec: QuickSpec {
 
             context("Equatable") {
 
-                let object = PDFIndentationObject(indentation: 0, left: true)
+                let object = PDFIndentationObject(indentation: 0, left: true, insideSectionColumn: true)
 
                 it("is equal") {
-                    let otherObject = PDFIndentationObject(indentation: 0, left: true)
+                    let otherObject = PDFIndentationObject(indentation: 0, left: true, insideSectionColumn: true)
                     expect(object) == otherObject
                 }
 
                 it("is not equal with different indentation") {
-                    let otherObject = PDFIndentationObject(indentation: 10, left: true)
+                    let otherObject = PDFIndentationObject(indentation: 10, left: true, insideSectionColumn: true)
                     expect(object) != otherObject
                 }
 
                 it("is not equal with different left") {
-                    let otherObject = PDFIndentationObject(indentation: 0, left: false)
+                    let otherObject = PDFIndentationObject(indentation: 0, left: false, insideSectionColumn: true)
+                    expect(object) != otherObject
+                }
+
+                it("is not equal with different insideSectionColumn") {
+                    let otherObject = PDFIndentationObject(indentation: 0, left: true, insideSectionColumn: false)
                     expect(object) != otherObject
                 }
             }
