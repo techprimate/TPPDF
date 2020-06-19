@@ -127,7 +127,7 @@ $ gem install cocoapods
 To integrate TPPDF into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://cdn.cocoapods.org/'
 platform :ios, '10.0'
 use_frameworks!
 
