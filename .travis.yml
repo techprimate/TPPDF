@@ -1,6 +1,9 @@
 os: osx
 osx_image: xcode11.6
 language: objective-c
+cache:
+- bundler
+- cocoapods
 
 env:
   global:
@@ -21,7 +24,6 @@ jobs:
   - stage: Tests
     name: "Unit Tests"
     language: objective-c
-    cache: bundler
     env:
     - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
     - PROJECT="TPPDF.xcodeproj"
@@ -46,9 +48,6 @@ jobs:
     language: objective-c
     env:
     - ROOT_FOLDER="Example iOS-Cocoapods"
-    cache:
-      bundler: true
-      cocoapods: true
     podfile: "${ROOT_FOLDER}/Podfile"
     before_script:
     - bundle exec pod install --project-directory="${ROOT_FOLDER}"
@@ -121,7 +120,6 @@ jobs:
     name: Generate Documentation
     language: objective-c
     if: branch = master AND type != pull_request
-    cache: bundler
     script:
     - git remote update
     - git fetch origin gh-pages:gh-pages --depth 1
