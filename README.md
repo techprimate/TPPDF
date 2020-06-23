@@ -42,7 +42,7 @@
     <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
   • <a href="#example">Example</a>
-  • <a href="https://github.com/techprimate/TPPDF/blob/better-docs/Documentation/Usage.md"><strong>Usage</strong></a>
+  • <a href="Documentation/Usage.md"><strong>Usage</strong></a>
   • <a href="#installation">Installation</a>
   • <a href="#credits">Credits</a>
   • <a href="#license">License</a>
@@ -127,7 +127,7 @@ $ gem install cocoapods
 To integrate TPPDF into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://cdn.cocoapods.org/'
 platform :ios, '10.0'
 use_frameworks!
 
