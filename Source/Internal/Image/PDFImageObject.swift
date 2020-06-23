@@ -117,7 +117,13 @@ internal class PDFImageObject: PDFRenderObject {
                                                                quality: image.quality,
                                                                roundCorners: roundedCorners,
                                                                cornerRadius: image.cornerRadius)
-        modifiedImage.draw(in: self.frame)
+        let priorNsgc = NSGraphicsContext.current
+        defer {
+            NSGraphicsContext.current = priorNsgc
+        }
+        NSGraphicsContext.current = NSGraphicsContext(cgContext: context, flipped: false)
+        modifiedImage.draw(in: frame)
+
         applyAttributes(in: context)
     }
 

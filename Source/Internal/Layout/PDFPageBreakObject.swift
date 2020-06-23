@@ -77,6 +77,8 @@ internal class PDFPageBreakObject: PDFRenderObject {
             #elseif os(macOS)
             context.endPDFPage()
             context.beginPDFPage(nil)
+            context.translateBy(x: 0, y: generator.document.layout.bounds.height)
+            context.scaleBy(x: 1, y: -1)
             #endif
             generator.drawDebugPageOverlay(in: context)
         }

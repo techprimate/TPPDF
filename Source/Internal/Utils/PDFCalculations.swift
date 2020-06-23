@@ -31,8 +31,11 @@ internal enum PDFCalculations {
      */
     internal static func calculateText(generator: PDFGenerator,
                                        container: PDFContainer,
-                                       text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString, remainder: NSAttributedString?) {
+                                       text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString?, remainder: NSAttributedString?) {
         let availableSize = calculateAvailableFrame(for: generator, in: container)
+        guard availableSize.height > 0 else {
+            return (frame: .zero, render: nil, remainder: text)
+        }
         let calcResult = calculateTextSizeAndRemainder(of: text, in: availableSize)
         let origin = calculateElementPosition(for: generator, in: container, with: calcResult.size)
 

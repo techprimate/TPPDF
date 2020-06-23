@@ -13,7 +13,7 @@ import TPPDF
 class ContentViewModel: ObservableObject {
 
     @Published var url: URL?
-    @State var selectedFactory = Examples.factories.first?.facts.first {
+    @State var selectedFactory = Examples.factories.first?.examples.first {
         didSet {
             generate()
         }
@@ -26,20 +26,24 @@ class ContentViewModel: ObservableObject {
 
 struct DetailView: View {
 
-    @State var name: String
-    @State var factory: ExampleFactory
+    @State var example: Example
     @State var generator: PDFGeneratorProtocol!
     @State var url: URL?
 
     var body: some View {
-        PDFKitRepresentedView(url: url)
-            .onAppear {
-                self.generatePDF()
+        VStack(alignment: .leading, spacing: 0) {
+            Text("\(example.name)")
+                .font(.headline)
+                .padding(10)
+            PDFKitRepresentedView(url: url)
+                .onAppear {
+                    self.generatePDF()
+            }
         }
     }
 
     func generatePDF() {
-        let docs = factory.generateDocument()
+        let docs = example.factory.generateDocument()
         if docs.count == 1 {
             generator = PDFGenerator(document: docs[0])
         } else {
@@ -52,6 +56,7 @@ struct DetailView: View {
 //                self.progressView.doubleValue = p.fractionCompleted
 //            }
 //        }
+
         DispatchQueue.global(qos: .background).async {
             do {
                 let url = try self.generator.generateURL(filename: "output.pdf")
@@ -72,18 +77,18 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(Examples.factories, id: \.header) { item in
-                    Section(header: Text(item.header)) {
-                        ForEach(item.facts, id: \.0) { factory in
-                            NavigationLink(factory.0, destination: DetailView(name: factory.0, factory: factory.1))
+                ForEach(Examples.factories, id: \.header) { section in
+                    Section(header: Text(section.header)) {
+                        ForEach(section.examples, id: \.name) { example in
+                            NavigationLink(example.name, destination: DetailView(example: example))
                         }
                     }
                 }
             }
-            .frame(minWidth: 150, maxWidth: 150, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+            .frame(minWidth: 100, maxWidth: 300, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             .listStyle(SidebarListStyle())
 
-            DetailView(name: viewModel.selectedFactory!.0, factory: viewModel.selectedFactory!.1)
+            DetailView(example: viewModel.selectedFactory!)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

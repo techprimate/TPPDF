@@ -85,22 +85,10 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     */
     public func generate(to target: URL, info: PDFInfo?) throws {
         assert(!generators.isEmpty, "At least one document is required!")
-        #if os(iOS)
-        UIGraphicsBeginPDFContextToFile(target.path, bounds, (info ?? self.info).generate())
-        #elseif os(macOS)
-        // TODO: macOS support
-        let pdfContext: CGContext! = nil
-//        let context = CGContext(target.path, bounds, (info ?? self.info).generate())
-        #endif
-
-        try processDocuments(context: pdfContext)
-
-        #if os(iOS)
-        UIGraphicsEndPDFContext()
-        #elseif os(macOS)
-        // TODO: macOS support
-//        CGPDFContextClose(context)
-        #endif
+        
+        let context = PDFContextGraphics.createPDFContext(url: target, bounds: self.bounds, info: self.info)
+        try processDocuments(context: context)
+        PDFContextGraphics.closePDFContext(context)
     }
 
     public func generateData() throws -> Data {
@@ -118,22 +106,10 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     */
     public func generateData(info: PDFInfo? = nil) throws -> Data {
         assert(!generators.isEmpty, "At least one document is required!")
-        let data = NSMutableData()
 
-        #if os(iOS)
-        UIGraphicsBeginPDFContextToData(data, bounds, (info ?? self.info).generate())
-        #elseif os(macOS)
-        // TODO: macOS support
-        let pdfContext: CGContext! = nil
-        #endif
-
-        try processDocuments(context: pdfContext)
-
-        #if os(iOS)
-        UIGraphicsEndPDFContext()
-        #elseif os(macOS)
-        // TODO: macOS support
-        #endif
+        let (data, context) = PDFContextGraphics.createPDFDataContext(bounds: bounds, info: info ?? self.info)
+        try processDocuments(context: context)
+        PDFContextGraphics.closePDFContext(context)
         
         return data as Data
     }

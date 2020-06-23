@@ -93,7 +93,7 @@ internal class PDFAttributedTextObject: PDFRenderObject {
         attributedString = renderString
         self.frame = frame
 
-        if attributedString.length > 0 {
+        if attributedString != nil && attributedString.length > 0 {
             result.append((container, self))
         }
 
