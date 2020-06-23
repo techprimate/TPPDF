@@ -81,6 +81,19 @@ class ImageExampleFactory: ExampleFactory {
         document.add(imagesInRow: images[1], spacing: 10)
         document.add(imagesInRow: images[1], spacing: 10)
 
+        // Image and caption should be on same page
+        let tallImage = PDFImage(image: UIImage(named: "Image-4.jpg")!,
+                                 size: CGSize(width: 150, height: 800))
+        tallImage.caption = PDFSimpleText(text: "Awesome Caption\nLine 2 of awesome Caption")
+
+        // Height should fit
+        tallImage.sizeFit = .height
+
+        document.add(.contentCenter, image: tallImage)
+
+        // Just add some text to see page break
+        document.add(text: LoremIpsum.get(words: 50))
+
         return [document]
     }
 }
