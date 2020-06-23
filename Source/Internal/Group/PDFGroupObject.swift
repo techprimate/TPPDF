@@ -202,10 +202,11 @@ internal class PDFGroupObject: PDFRenderObject {
     override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         if let color = backgroundColor {
             let path = PDFGraphics.createRectPath(rect: self.frame, outline: self.outline)
-            PDFGraphics.drawPath(path: path, outline: self.outline, fillColor: color)
+            PDFGraphics.drawPath(path: path, in: context, outline: self.outline, fillColor: color)
         }
         if let shape = backgroundShape {
             PDFGraphics.drawPath(path: shape.path.bezierPath(in: self.frame),
+                                 in: context, 
                                  outline: shape.stroke,
                                  fillColor: shape.fillColor)
         }

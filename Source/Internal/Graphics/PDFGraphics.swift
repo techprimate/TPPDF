@@ -161,7 +161,7 @@ internal enum PDFGraphics {
     /**
      TODO: Documentation
      */
-    internal static func drawPath(path: BezierPath, outline: PDFLineStyle, fillColor: Color) {
+    internal static func drawPath(path: BezierPath, in context: CGContext, outline: PDFLineStyle, fillColor: Color) {
         guard var path = path.copy() as? BezierPath else {
             fatalError("Copy of BezierPath is invalid!")
         }
@@ -169,11 +169,13 @@ internal enum PDFGraphics {
         path.setLineDash(dashes, count: dashes.count, phase: 0.0)
         path.lineWidth = CGFloat(outline.width)
 
-        outline.color.setStroke()
-        fillColor.setFill()
+        context.setStrokeColor(outline.color.cgColor)
+        context.setFillColor(fillColor.cgColor)
 
-        path.fill()
-        path.stroke()
+        context.beginPath()
+        context.addPath(path.cgPath)
+        context.fillPath()
+        context.strokePath()
     }
 
     // MARK: - Image Manipulation
