@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.1...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.2...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,22 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [2.1.2](https://github.com/techprimate/TPPDF/tree/2.1.2) (2020-06-23)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.1...2.1.2)
+
+**Fixed bugs:**
+
+- Height of image captions are now calcuated correctly (Issue #208)
+
+**Closed issues:**
+
+- Issue #208
+
+**Merged pull requests:**
+
+- PR #214 [by chrisgonzgonz]
+
 
 ## [2.1.1](https://github.com/techprimate/TPPDF/tree/2.1.1) (2020-06-16)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.0...2.1.1)
@@ -40,18 +56,18 @@
 
 **Closed issues:**
 
-- #73
-- #122
-- #204
-- #197
-- #189
-- #186
-- #184
-- #183
+- Issue #73
+- Issue #122
+- Issue #204
+- Issue #197
+- Issue #189
+- Issue #186
+- Issue #184
+- Issue #183
 
 **Merged pull requests:**
 
-- #211
+- Issue #211
 
 ## [2.0.1](https://github.com/techprimate/TPPDF/tree/2.0.1) (2020-05-31)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.0.0...2.0.1)
@@ -67,7 +83,7 @@
 
 **Closed issues:**
 
-- #204
+- Issue #204
 
 ## [2.0.0](https://github.com/techprimate/TPPDF/tree/2.0.0) (2020-05-19)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.6.0...2.0.0)
@@ -84,22 +100,22 @@
 
 **Closed issues:**
 
-- #41
-- #86
-- #148
-- #178
-- #179
-- #182
-- #183
-- #184
-- #185
-- #186
-- #196
-- #197
+- Issue #41
+- Issue #86
+- Issue #148
+- Issue #178
+- Issue #179
+- Issue #182
+- Issue #183
+- Issue #184
+- Issue #185
+- Issue #186
+- Issue #196
+- Issue #197
 
 **Merged pull requests:**
 
-- #181
+- Issue #181
 
 ## [1.6.0](https://github.com/techprimate/TPPDF/tree/1.6.0) (2020-03-23)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.4...1.6.0)
@@ -119,17 +135,17 @@
 
 **Closed issues:**
 
-- #155
-- #31
-- #170
-- #71
+- Issue #155
+- Issue #31
+- Issue #170
+- Issue #71
 
 **Merged pull requests:**
 
-- #171
-- #172
-- #174
-- #177
+- Issue #171
+- Issue #172
+- Issue #174
+- Issue #177
 
 ## [1.5.4](https://github.com/techprimate/TPPDF/tree/1.5.4) (2019-06-06)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.3...1.5.4)
@@ -161,7 +177,7 @@
 
 **Closed issues:**
 
-- #67
+- Issue #67
 
 ## [1.5.0](https://github.com/techprimate/TPPDF/tree/1.5.0) (2019-06-05)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.1...1.5.0)
@@ -182,17 +198,17 @@
 
 **Closed issues:**
 
-- #9
-- #57
-- #58
-- #88
-- #113
-- #118
-- #127
-- #132
-- #136
-- #137
-- #138
+- Issue #9
+- Issue #57
+- Issue #58
+- Issue #88
+- Issue #113
+- Issue #118
+- Issue #127
+- Issue #132
+- Issue #136
+- Issue #137
+- Issue #138
 
 ## [1.4.1](https://github.com/techprimate/TPPDF/tree/1.4.1) (2019-05-19)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.0...1.4.1)
@@ -219,9 +235,9 @@
 
 **Closed issues:**
 
-- #123
-- #125
-- #128
+- Issue #123
+- Issue #125
+- Issue #128
 
 ## [1.3.3](https://github.com/techprimate/TPPDF/tree/1.3.3) (2019-03-13)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.2...1.3.3)
@@ -232,14 +248,13 @@
 
 **Closed issues:**
 
-- #101
-- #103
-- #108
-- #109
-- #111
-- #113
-- #114
-
+- Issue #101
+- Issue #103
+- Issue #108
+- Issue #109
+- Issue #111
+- Issue #113
+- Issue #114
 
 **Merged pull requests:**
 
