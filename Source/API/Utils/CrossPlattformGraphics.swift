@@ -119,50 +119,48 @@ extension NSBezierPath {
     }
 
     convenience init(roundedRect rect: CGRect, byRoundingCorners corners: RectCorner, cornerRadii: CGSize) {
-        let path = CGPath(rect: rect, transform: nil)
-        // TODO: macOS support
-//        let path = CGMutablePath()
-//
-//        let topLeft = rect.origin;
-//        let topRight = CGPoint(x: rect.maxX, y: rect.minY)
-//        let bottomRight = CGPoint(x: rect.maxX, y: rect.maxY)
-//        let bottomLeft = CGPoint(x: rect.minX, y: rect.maxY)
-//
-//        if corners.contains(.topLeft) {
-//            path.move(to: CGPoint(x: topLeft.x + cornerRadii.width, y: topLeft.y))
-//        } else {
-//            path.move(to: topLeft)
-//        }
-//
-//        if corners.contains(.topRight) {
-//            path.addLine(to: CGPoint(x: topRight.x - cornerRadii.width, y: topRight.y))
-//            path.addQuadCurve(to: CGPoint(x: topRight.x, y: topRight.y + cornerRadii.height), control: topRight)
-//        } else {
-//            path.addLine(to: topRight)
-//        }
-//
-//        if corners.contains(.bottomRight) {
-//            path.addLine(to: CGPoint(x: bottomRight.x, y: bottomRight.y - cornerRadii.height))
-//            path.addQuadCurve(to: CGPoint(x: bottomRight.x - cornerRadii.width, y: bottomRight.y), control: bottomRight)
-//        } else {
-//            path.addLine(to: bottomRight)
-//        }
-//
-//        if corners.contains(.bottomLeft) {
-//            path.addLine(to: CGPoint(x: bottomLeft.x + cornerRadii.width, y: bottomLeft.y))
-//            path.addQuadCurve(to: CGPoint(x: bottomLeft.x, y: bottomRight.y - cornerRadii.height), control: bottomLeft)
-//        } else {
-//            path.addLine(to: bottomLeft)
-//        }
-//
-//        if corners.contains(.topLeft) {
-//            path.addLine(to: CGPoint(x: topLeft.x, y: topLeft.y - cornerRadii.height))
-//            path.addQuadCurve(to: CGPoint(x: topLeft.x + cornerRadii.width, y: topLeft.y), control: topLeft)
-//        } else {
-//            path.addLine(to: topLeft)
-//        }
-//
-//        path.closeSubpath()
+        let path = CGMutablePath()
+
+        let topLeft = rect.origin;
+        let topRight = CGPoint(x: rect.maxX, y: rect.minY)
+        let bottomRight = CGPoint(x: rect.maxX, y: rect.maxY)
+        let bottomLeft = CGPoint(x: rect.minX, y: rect.maxY)
+
+        if corners.contains(.topLeft) {
+            path.move(to: CGPoint(x: topLeft.x + cornerRadii.width, y: topLeft.y))
+        } else {
+            path.move(to: topLeft)
+        }
+
+        if corners.contains(.topRight) {
+            path.addLine(to: CGPoint(x: topRight.x - cornerRadii.width, y: topRight.y))
+            path.addQuadCurve(to: CGPoint(x: topRight.x, y: topRight.y + cornerRadii.height), control: topRight)
+        } else {
+            path.addLine(to: topRight)
+        }
+
+        if corners.contains(.bottomRight) {
+            path.addLine(to: CGPoint(x: bottomRight.x, y: bottomRight.y - cornerRadii.height))
+            path.addQuadCurve(to: CGPoint(x: bottomRight.x - cornerRadii.width, y: bottomRight.y), control: bottomRight)
+        } else {
+            path.addLine(to: bottomRight)
+        }
+
+        if corners.contains(.bottomLeft) {
+            path.addLine(to: CGPoint(x: bottomLeft.x + cornerRadii.width, y: bottomLeft.y))
+            path.addQuadCurve(to: CGPoint(x: bottomLeft.x, y: bottomRight.y - cornerRadii.height), control: bottomLeft)
+        } else {
+            path.addLine(to: bottomLeft)
+        }
+
+        if corners.contains(.topLeft) {
+            path.addLine(to: CGPoint(x: topLeft.x, y: topLeft.y - cornerRadii.height))
+            path.addQuadCurve(to: CGPoint(x: topLeft.x + cornerRadii.width, y: topLeft.y), control: topLeft)
+        } else {
+            path.addLine(to: topLeft)
+        }
+
+        path.closeSubpath()
 
         self.init(path: path)
     }

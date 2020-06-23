@@ -6,7 +6,11 @@
 //  Copyright © 2019 techprimate GmbH & Co. KG. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 import TPPDF
 
 class TextStylesExampleFactory: ExampleFactory {
@@ -16,14 +20,14 @@ class TextStylesExampleFactory: ExampleFactory {
 
         // Define doccument wide styles
         let titleStyle = document.add(style: PDFTextStyle(name: "Title",
-                                                          font: UIFont.boldSystemFont(ofSize: 50.0),
-                                                          color: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)))
+                                                          font: Font.boldSystemFont(ofSize: 50.0),
+                                                          color: Color(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)))
         let headingStyle1 = document.add(style: PDFTextStyle(name: "Heading 1",
-                                                             font: UIFont.systemFont(ofSize: 20),
-                                                             color: UIColor.black))
+                                                             font: Font.systemFont(ofSize: 20),
+                                                             color: Color.black))
         let headingStyle2 = document.add(style: PDFTextStyle(name: "Heading 2",
-                                                             font: UIFont.systemFont(ofSize: 15),
-                                                             color: UIColor.red))
+                                                             font: Font.systemFont(ofSize: 15),
+                                                             color: Color.red))
 
         document.add(textObject: PDFSimpleText(text: "TPPDF", style: titleStyle))
 

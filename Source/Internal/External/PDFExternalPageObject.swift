@@ -30,6 +30,7 @@ internal class PDFExternalPageObject: PDFRenderObject {
         #if os(iOS)
         UIGraphicsBeginPDFPageWithInfo(mediaBox, nil)
         #elseif os(macOS)
+        context.endPDFPage()
         context.beginPDFPage(nil)
         #endif
 

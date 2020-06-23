@@ -75,6 +75,7 @@ internal class PDFPageBreakObject: PDFRenderObject {
             #if os(iOS)
             UIGraphicsBeginPDFPageWithInfo(generator.document.layout.bounds, nil)
             #elseif os(macOS)
+            context.endPDFPage()
             context.beginPDFPage(nil)
             #endif
             generator.drawDebugPageOverlay(in: context)

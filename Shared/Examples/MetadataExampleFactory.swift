@@ -6,7 +6,11 @@
 //  Copyright © 2019 techprimate GmbH & Co. KG. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 import TPPDF
 
 class MetadataExampleFactory: ExampleFactory {
@@ -24,7 +28,7 @@ class MetadataExampleFactory: ExampleFactory {
 
         // Just a visual note:
 
-        document.set(font: UIFont.systemFont(ofSize: 30))
+        document.set(font: Font.systemFont(ofSize: 30))
         document.add(text: "Nothing to see here, as it is just meta!")
         
         return [document]

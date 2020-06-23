@@ -19,7 +19,7 @@ internal class PDFSectionObject: PDFRenderObject {
     internal struct PDFSectionColumnMetadata {
         internal let minX: CGFloat
         internal let width: CGFloat
-        internal let backgroundColor: UIColor?
+        internal let backgroundColor: Color?
     }
 
     /**

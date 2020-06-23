@@ -10,9 +10,9 @@ import Foundation
 
 enum Examples {
 
-    static var factories: [[(String, ExampleFactory)]] {
+    static var factories: [(header: String, facts: [(String, ExampleFactory)])] {
         [
-            [
+            (header: "Popular Examples", facts: [
                 ("List", ListExampleFactory()),
                 ("Images", ImageExampleFactory()),
                 ("Groups", GroupExampleFactory()),
@@ -28,10 +28,10 @@ enum Examples {
                 ("Text Styles", TextStylesExampleFactory()),
                 ("External Documents", ExternalDocumentExampleFactory()),
                 ("Object Attributes", ObjectAttributesExampleFactory())
-            ],
-            [
+            ]),
+            (header: "Developer Examples", facts: [
                 ("Experiment", ExperimentFactory()),
-            ]
+            ])
         ]
     }
 }

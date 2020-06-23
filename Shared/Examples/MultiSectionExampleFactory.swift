@@ -7,7 +7,11 @@
 //
 
 import TPPDF
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 class MultiSectionExampleFactory: ExampleFactory {
 
@@ -16,24 +20,24 @@ class MultiSectionExampleFactory: ExampleFactory {
 
         // Add multi column section
         let section = PDFSection(columnWidths: [0.30, 0.40, 0.30])
-        section.columns[0].backgroundColor = UIColor.red
+        section.columns[0].backgroundColor = Color.red
         section.columns[0].add(.left, text: "left")
         section.columns[0].add(.center, text: "center")
         section.columns[0].add(.right, text: "right")
         section.columns[0].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.")
-        section.columns[0].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
+        section.columns[0].add(.center, image: PDFImage(image: Image(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
         section.columns[0].add(text: "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
 
-        section.columns[1].backgroundColor = UIColor.orange
+        section.columns[1].backgroundColor = Color.orange
         section.columns[1].add(.left, text: "left")
         section.columns[1].add(.center, text: "center")
         section.columns[1].add(.right, text: "right")
         section.columns[1].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
         section.columns[1].add(.center, text: "center")
-        section.columns[1].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
+        section.columns[1].add(.center, image: PDFImage(image: Image(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
 
-        section.columns[2].backgroundColor = UIColor.yellow
-        section.columns[2].add(.center, image: PDFImage(image: UIImage(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
+        section.columns[2].backgroundColor = Color.yellow
+        section.columns[2].add(.center, image: PDFImage(image: Image(named: "Icon.png")!, size: CGSize(width: 40, height: 40), quality: 0.9))
         section.columns[2].add(text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
         section.columns[2].add(.left, text: "left")
         section.columns[2].add(.center, text: "center")

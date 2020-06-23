@@ -45,7 +45,7 @@ public struct PDFTableCellStyle {
 
 extension PDFTableCellStyle {
 
-    public static let none = PDFTableCellStyle(colors: (fill: UIColor.clear, text: UIColor.black),
+    public static let none = PDFTableCellStyle(colors: (fill: Color.clear, text: Color.black),
                                                borders: .none,
-                                               font: UIFont.systemFont(ofSize: UIFont.systemFontSize))
+                                               font: Font.systemFont(ofSize: Font.systemFontSize))
 }
