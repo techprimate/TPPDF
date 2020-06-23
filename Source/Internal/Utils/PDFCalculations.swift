@@ -436,9 +436,15 @@ internal enum PDFCalculations {
                                                    sizeFit: PDFImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         let size = (size == CGSize.zero) ? image.size : size
+        
+        /* calculate caption height if a caption exists */
+        let captionHeight: CGFloat =
+            (image.caption as? PDFAttributedText).map({ $0.text.size().height })
+        ?? (image.caption as? PDFSimpleText).map({ $0.text.size().height })
+        ?? 0
 
         let maxWidth = min(size.width, calculateAvailableFrameWidth(for: generator, in: container))
-        let maxHeight = min(size.height, calculateAvailableFrameHeight(for: generator, in: container))
+        let maxHeight = min(size.height, calculateAvailableFrameHeight(for: generator, in: container) - captionHeight)
 
         let wFactor = image.size.width / maxWidth
         let hFactor = image.size.height / maxHeight
@@ -454,11 +460,8 @@ internal enum PDFCalculations {
             }
         }()
 
-        let imageSize = CGSize(width: image.size.width / factor, height: image.size.height / factor)
-        let captionHeight: CGFloat = 0
-        // if let _ = image.caption {
-        // TODO: Fix caption height calculations
-        // }
+        let imageSize = CGSize(width: image.size.width / factor, height: (image.size.height / factor) - captionHeight)
+        
         return (imageSize, CGSize(width: imageSize.width, height: captionHeight))
     }
 
