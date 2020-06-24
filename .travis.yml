@@ -29,6 +29,7 @@ jobs:
     - PROJECT="TPPDF.xcodeproj"
     script:
     - swift package resolve
+    - set -o pipefail
     - xcodebuild -project ${PROJECT}
                  -scheme ${TEST_FRAMEWORK_SCHEME}
                  -clonedSourcePackagesDirPath .
@@ -37,7 +38,7 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 test | xcpretty && exit ${PIPESTATUS[0]}
+                 test | xcpretty
 
     after_success:
     - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verb>
@@ -53,6 +54,7 @@ jobs:
     - bundle exec pod install --project-directory="${ROOT_FOLDER}"
     - cd "${ROOT_FOLDER}"
     script:
+    - set -o pipefail
     - xcodebuild -workspace "$WORKSPACE"
                  -scheme "$EXAMPLE_SCHEME"
                  -sdk iphonesimulator
@@ -60,7 +62,7 @@ jobs:
                  -configuration Debug
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  ONLY_ACTIVE_ARCH=YES
-                 build | xcpretty  && exit ${PIPESTATUS[0]}
+                 build | xcpretty
     - cd ../
     - bundle exec pod lib lint --allow-warnings
 
@@ -75,6 +77,7 @@ jobs:
     - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
     - carthage update --platform ios --cache-builds
     script:
+    - set -o pipefail
     - xcodebuild -project "$PROJECT"
                  -scheme "$EXAMPLE_SCHEME"
                  -sdk iphonesimulator
@@ -82,7 +85,7 @@ jobs:
                  -configuration Debug
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  ONLY_ACTIVE_ARCH=YES
-                 build | xcpretty  && exit ${PIPESTATUS[0]}
+                 build | xcpretty
 
   - stage: Examples
     name: "Example iOS - Swift PM"
@@ -90,13 +93,14 @@ jobs:
     env:
     - ROOT_FOLDER="Example iOS-SwiftPM"
     script:
+    - set -o pipefail
     - cd "${ROOT_FOLDER}"
     - xcodebuild -resolvePackageDependencies
                  -project ${PROJECT}
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                 -configuration Debug | xcpretty && exit ${PIPESTATUS[0]}
+                 -configuration Debug | xcpretty
     - xcodebuild -project ${PROJECT}
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
@@ -105,7 +109,7 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 build | xcpretty  && exit ${PIPESTATUS[0]}
+                 build | xcpretty
     - xcodebuild -project ${PROJECT}
                  -scheme ${TEST_FRAMEWORK_SCHEME}
                  -clonedSourcePackagesDirPath .
@@ -114,7 +118,7 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 test | xcpretty && exit ${PIPESTATUS[0]}
+                 test | xcpretty
 
   - stage: Examples
     name: "Example macOS"
@@ -122,13 +126,14 @@ jobs:
     env:
     - ROOT_FOLDER="Example macOS"
     script:
+    - set -o pipefail
     - cd "${ROOT_FOLDER}"
     - xcodebuild -project ${PROJECT}
                  -scheme ${EXAMPLE_SCHEME}
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  -sdk macosx10.15
                  -configuration Debug
-                 build | xcpretty  && exit ${PIPESTATUS[0]}
+                 build | xcpretty
 
   - stage: Documentation
     name: Generate Documentation
