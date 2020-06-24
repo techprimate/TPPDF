@@ -96,7 +96,6 @@ jobs:
     env:
     - ROOT_FOLDER="Example iOS-SwiftPM"
     script:
-    - set -o pipefail
     - cd "${ROOT_FOLDER}"
     - xcodebuild -resolvePackageDependencies
                  -project ${PROJECT}
@@ -121,13 +120,21 @@ jobs:
     env:
     - ROOT_FOLDER="Example macOS"
     script:
-    - set -o pipefail
     - cd "${ROOT_FOLDER}"
+    - xcodebuild -resolvePackageDependencies
+                 -project ${PROJECT}
+                 -scheme ${EXAMPLE_SCHEME}
+                 -clonedSourcePackagesDirPath .
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 -configuration Debug | xcpretty
+    - set -o pipefail  
     - xcodebuild -project ${PROJECT}
                  -scheme ${EXAMPLE_SCHEME}
+                 -clonedSourcePackagesDirPath .
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  -sdk macosx10.15
                  -configuration Debug
+                 ONLY_ACTIVE_ARCH=YES
                  build | xcpretty
 
   - stage: Documentation
