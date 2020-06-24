@@ -116,6 +116,20 @@ jobs:
                  ONLY_ACTIVE_ARCH=YES
                  test | xcpretty && exit ${PIPESTATUS[0]}
 
+  - stage: Examples
+    name: "Example macOS"
+    language: objective-c
+    env:
+    - ROOT_FOLDER="Example macOS"
+    script:
+    - cd "${ROOT_FOLDER}"
+    - xcodebuild -project ${PROJECT}
+                 -scheme ${EXAMPLE_SCHEME}
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 -sdk macosx10.15
+                 -configuration Debug
+                 build | xcpretty  && exit ${PIPESTATUS[0]}
+
   - stage: Documentation
     name: Generate Documentation
     language: objective-c
