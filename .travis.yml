@@ -3,7 +3,6 @@ osx_image: xcode11.6
 language: objective-c
 cache:
 - bundler
-- cocoapods
 
 env:
   global:
@@ -28,6 +27,7 @@ jobs:
     - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
     - PROJECT="TPPDF.xcodeproj"
     script:
+    - set -o pipefail
     - swift package resolve
     - xcodebuild -project ${PROJECT}
                  -scheme ${TEST_FRAMEWORK_SCHEME}
@@ -37,15 +37,18 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 test | xcpretty && exit ${PIPESTATUS[0]}
+                 test | xcpretty
 
     after_success:
-    - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verb>
-    - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gco>
+    - bundle exec slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data
+    - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gco
 
   - stage: Examples
     name: "Example iOS - Cocoapods"
     language: objective-c
+    cache:
+      - bundler
+      - cocoapods
     env:
     - ROOT_FOLDER="Example iOS-Cocoapods"
     podfile: "${ROOT_FOLDER}/Podfile"
@@ -53,6 +56,7 @@ jobs:
     - bundle exec pod install --project-directory="${ROOT_FOLDER}"
     - cd "${ROOT_FOLDER}"
     script:
+    - set -o pipefail  
     - xcodebuild -workspace "$WORKSPACE"
                  -scheme "$EXAMPLE_SCHEME"
                  -sdk iphonesimulator
@@ -60,7 +64,7 @@ jobs:
                  -configuration Debug
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  ONLY_ACTIVE_ARCH=YES
-                 build | xcpretty  && exit ${PIPESTATUS[0]}
+                 build | xcpretty
     - cd ../
     - bundle exec pod lib lint --allow-warnings
 
@@ -75,6 +79,7 @@ jobs:
     - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
     - carthage update --platform ios --cache-builds
     script:
+    - set -o pipefail  
     - xcodebuild -project "$PROJECT"
                  -scheme "$EXAMPLE_SCHEME"
                  -sdk iphonesimulator
@@ -82,7 +87,7 @@ jobs:
                  -configuration Debug
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  ONLY_ACTIVE_ARCH=YES
-                 build | xcpretty  && exit ${PIPESTATUS[0]}
+                 build | xcpretty
 
   - stage: Examples
     name: "Example iOS - Swift PM"
@@ -96,7 +101,8 @@ jobs:
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                 -configuration Debug | xcpretty && exit ${PIPESTATUS[0]}
+                 -configuration Debug | xcpretty
+    - set -o pipefail  
     - xcodebuild -project ${PROJECT}
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
@@ -105,16 +111,7 @@ jobs:
                  -destination "${DESTINATION}"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
-                 build | xcpretty  && exit ${PIPESTATUS[0]}
-    - xcodebuild -project ${PROJECT}
-                 -scheme ${TEST_FRAMEWORK_SCHEME}
-                 -clonedSourcePackagesDirPath .
-                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                 -sdk iphonesimulator
-                 -destination "${DESTINATION}"
-                 -configuration Debug
-                 ONLY_ACTIVE_ARCH=YES
-                 test | xcpretty && exit ${PIPESTATUS[0]}
+                 build | xcpretty
 
   - stage: Documentation
     name: Generate Documentation
@@ -122,8 +119,9 @@ jobs:
     if: branch = master AND type != pull_request
     script:
     - git remote update
-    - git fetch origin gh-pages:gh-pages --depth 1
+    - git fetch origin gh-pages:gh-pages
     - git checkout gh-pages
+    - git merge master -X theirs --allow-unrelated-histories
     - bundle exec jazzy
     - git add docs
     - git config user.name  "Travis"
