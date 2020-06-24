@@ -119,9 +119,9 @@ jobs:
     if: branch = master AND type != pull_request
     script:
     - git remote update
-    - git fetch origin gh-pages:gh-pages --depth 1
+    - git fetch origin gh-pages:gh-page
     - git checkout gh-pages
-    - git merge master -X theirs
+    - git merge master -X theirs --allow-unrelated-histories
     - bundle exec jazzy
     - git add docs
     - git config user.name  "Travis"
