@@ -121,6 +121,7 @@ jobs:
     - git remote update
     - git fetch origin gh-pages:gh-pages --depth 1
     - git checkout gh-pages
+    - git merge master -X theirs
     - bundle exec jazzy
     - git add docs
     - git config user.name  "Travis"
