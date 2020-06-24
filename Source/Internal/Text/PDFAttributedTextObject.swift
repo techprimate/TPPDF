@@ -143,22 +143,12 @@ internal class PDFAttributedTextObject: PDFRenderObject {
         let frameRef = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, attributedString.length), framePath, nil)
 
         // Translate by 100% graphics height up and reverse scale, as core text does draw from bottom up and not from top down
-        #if os(iOS)
-        context.translateBy(x: 0, y: UIGraphicsGetPDFContextBounds().height)
-        #elseif os(macOS)
-        // TODO: macOS Support
         context.translateBy(x: 0, y: CGFloat(generator.document.layout.height))
-        #endif
         context.scaleBy(x: 1.0, y: -1.0)
 
         // Translate context to actual position of text
-        #if os(iOS)
-        context.translateBy(x: frame.minX, y: UIGraphicsGetPDFContextBounds().height - frame.maxY)
-        #elseif os(macOS)
-        // TODO: macOS support
         context.translateBy(x: frame.minX, y: CGFloat(generator.document.layout.height) - frame.maxY)
-        #endif
-
+        
         // Draw text into context
         CTFrameDraw(frameRef, context)
 
@@ -167,10 +157,8 @@ internal class PDFAttributedTextObject: PDFRenderObject {
 
         // If debugging is enabled, draw a outline around the text
         if generator.debug {
-            PDFGraphics.drawRect(in: context,
-                                 rect: self.frame,
-                                 outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0),
-                                 fill: .clear)
+            PDFGraphics.drawRect(in: context, rect: self.frame,
+                                 outline: .init(type: .dashed, color: .red, width: 1.0), fill: .clear)
         }
 
         let allRange = NSRange(location: 0, length: attributedString.length)
