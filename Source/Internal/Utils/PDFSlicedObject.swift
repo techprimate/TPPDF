@@ -23,13 +23,9 @@ internal class PDFSlicedObject: PDFRenderObject {
     }
 
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
-        var result: [PDFLocatedRenderObject] = []
-
-        for object in children {
-            result += try object.calculate(generator: generator, container: container)
-        }
-
-        return result
+        [
+            (container, self)
+        ]
     }
 
     override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
