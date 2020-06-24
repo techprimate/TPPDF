@@ -164,13 +164,6 @@ extension NSBezierPath {
     }
 }
 
-extension NSImage {
-
-    func jpegData(compressionQuality quality: CGFloat) -> Data? {
-        return self.tiffRepresentation(using: .jpeg, factor: Float(quality))
-    }
-}
-
 extension NSBezierPath {
 
     convenience init(path: CGPath) {
@@ -212,3 +205,20 @@ extension NSBezierPath {
     }
 }
 #endif
+
+extension CGContext {
+
+    func draw(image: CGImage, in rect: CGRect, flipped: Bool) {
+        guard flipped else {
+            self.draw(image, in: rect)
+            return
+        }
+
+        self.saveGState()
+        self.translateBy(x: 0, y: rect.maxY)
+        self.scaleBy(x: 1.0, y: -1.0)
+        self.translateBy(x: 0, y: -rect.minY)
+        self.draw(image, in: rect)
+        self.restoreGState()
+    }
+}
