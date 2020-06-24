@@ -112,15 +112,6 @@ jobs:
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
                  build | xcpretty
-    - xcodebuild -project ${PROJECT}
-                 -scheme ${TEST_FRAMEWORK_SCHEME}
-                 -clonedSourcePackagesDirPath .
-                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                 -sdk iphonesimulator
-                 -destination "${DESTINATION}"
-                 -configuration Debug
-                 ONLY_ACTIVE_ARCH=YES
-                 test | xcpretty
 
   - stage: Documentation
     name: Generate Documentation
