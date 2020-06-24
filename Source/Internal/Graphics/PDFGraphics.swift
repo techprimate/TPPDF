@@ -90,8 +90,7 @@ internal enum PDFGraphics {
 
         context.beginPath()
         context.addPath(path.cgPath)
-        context.fillPath()
-        context.strokePath()
+        context.drawPath(using: .fillStroke)
     }
 
     /**
@@ -260,7 +259,6 @@ internal enum PDFGraphics {
             return image
         }
         #elseif os(macOS)
-        // TODO: macOS support
         guard let imageData = image.tiffRepresentation,
             let bitmapData = NSBitmapImageRep(data: imageData),
             let data = bitmapData.representation(using: .jpeg, properties: [:]) else {
@@ -342,18 +340,15 @@ internal enum PDFGraphics {
                 #if os(iOS)
                 UIGraphicsBeginImageContext(size)
                 #elseif os(macOS)
-                // TODO: macOS support
                 let image = NSImage(size: size)
                 image.lockFocus()
                 #endif
                 Color.clear.setStroke()
                 backColor.setFill()
-
                 var path = BezierPath(rect: CGRect(x: 0, y: 0, width: 5, height: 5))
                 path.fill()
 
                 foreColor.setFill()
-
                 path = BezierPath(ovalIn: CGRect(x: 2.5, y: 2.5, width: 2.5, height: 2.5))
                 path.fill()
 

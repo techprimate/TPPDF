@@ -30,6 +30,10 @@ class ExamplesListViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return Examples.factories[section].header
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "show-example", sender: indexPath)

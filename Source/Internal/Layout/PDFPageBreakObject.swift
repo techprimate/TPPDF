@@ -72,14 +72,8 @@ internal class PDFPageBreakObject: PDFRenderObject {
      */
     override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         if !stayOnSamePage {
-            #if os(iOS)
-            UIGraphicsBeginPDFPageWithInfo(generator.document.layout.bounds, nil)
-            #elseif os(macOS)
-            context.endPDFPage()
-            context.beginPDFPage(nil)
-            context.translateBy(x: 0, y: generator.document.layout.bounds.height)
-            context.scaleBy(x: 1, y: -1)
-            #endif
+            PDFContextGraphics.endPDFPage(in: context)
+            PDFContextGraphics.beginPDFPage(in: context, for: generator.document.layout.bounds)
             generator.drawDebugPageOverlay(in: context)
         }
         applyAttributes(in: context)

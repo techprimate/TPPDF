@@ -315,7 +315,7 @@ extension PDFGenerator {
      */
     internal func render(objects: [PDFLocatedRenderObject], in context: CGContext) throws {
         PDFContextGraphics.beginPDFPage(in: context, for: document.layout.bounds)
-        
+
         drawDebugPageOverlay(in: context)
 
         let renderProgress = Progress.discreteProgress(totalUnitCount: Int64(objects.count))

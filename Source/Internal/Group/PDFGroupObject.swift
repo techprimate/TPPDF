@@ -206,7 +206,7 @@ internal class PDFGroupObject: PDFRenderObject {
         }
         if let shape = backgroundShape {
             PDFGraphics.drawPath(path: shape.path.bezierPath(in: self.frame),
-                                 in: context, 
+                                 in: context,
                                  outline: shape.stroke,
                                  fillColor: shape.fillColor)
         }

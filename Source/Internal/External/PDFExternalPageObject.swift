@@ -20,21 +20,15 @@ internal class PDFExternalPageObject: PDFRenderObject {
     }
 
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
-        [
+        self.frame = page.getBoxRect(.mediaBox)
+        return [
             (container, self)
         ]
     }
 
     override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
-        let mediaBox = page.getBoxRect(.mediaBox)
-        #if os(iOS)
-        UIGraphicsBeginPDFPageWithInfo(mediaBox, nil)
-        #elseif os(macOS)
-        print(#file, #line, "End PDF Page")
-        context.endPDFPage()
-        print(#file, #line, "Begin PDF Page")
-        context.beginPDFPage(nil)
-        #endif
+        PDFContextGraphics.endPDFPage(in: context)
+        PDFContextGraphics.beginPDFPage(in: context, for: frame, invertY: false)
 
         context.saveGState()
         context.drawPDFPage(page)
