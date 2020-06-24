@@ -59,7 +59,7 @@ public struct RectCorner: OptionSet {
     public static var topRight: RectCorner    = RectCorner(rawValue: 1 << 1)
     public static var bottomLeft: RectCorner  = RectCorner(rawValue: 1 << 2)
     public static var bottomRight: RectCorner = RectCorner(rawValue: 1 << 3)
-    public static var allCorners: RectCorner  = RectCorner(rawValue: 1 << 4)
+    public static var allCorners: RectCorner  = RectCorner(rawValue: 1 << 4 - 1)
 
     let value: Int
 
@@ -119,43 +119,53 @@ extension NSBezierPath {
     convenience init(roundedRect rect: CGRect, byRoundingCorners corners: RectCorner, cornerRadii: CGSize) {
         let path = CGMutablePath()
 
-        let topLeft = rect.origin;
-        let topRight = CGPoint(x: rect.maxX, y: rect.minY)
-        let bottomRight = CGPoint(x: rect.maxX, y: rect.maxY)
-        let bottomLeft = CGPoint(x: rect.minX, y: rect.maxY)
+        // Coordinate system is flipped
 
-        if corners.contains(.topLeft) {
-            path.move(to: CGPoint(x: topLeft.x + cornerRadii.width, y: topLeft.y))
+        if corners.contains(.bottomLeft) {
+            path.move(to: .init(x: rect.minX + cornerRadii.width,
+                                y: rect.minY))
         } else {
-            path.move(to: topLeft)
-        }
-
-        if corners.contains(.topRight) {
-            path.addLine(to: CGPoint(x: topRight.x - cornerRadii.width, y: topRight.y))
-            path.addQuadCurve(to: CGPoint(x: topRight.x, y: topRight.y + cornerRadii.height), control: topRight)
-        } else {
-            path.addLine(to: topRight)
+            path.addLine(to: .init(x: rect.minX, y: rect.minY))
         }
 
         if corners.contains(.bottomRight) {
-            path.addLine(to: CGPoint(x: bottomRight.x, y: bottomRight.y - cornerRadii.height))
-            path.addQuadCurve(to: CGPoint(x: bottomRight.x - cornerRadii.width, y: bottomRight.y), control: bottomRight)
+            path.addLine(to: .init(x: rect.maxX - cornerRadii.width, y: rect.minY))
+            path.addRelativeArc(center: .init(x: rect.maxX - cornerRadii.width, y: rect.minY + cornerRadii.height),
+                                radius: cornerRadii.width,
+                                startAngle: -CGFloat.pi / 2,
+                                delta: CGFloat.pi / 2)
         } else {
-            path.addLine(to: bottomRight)
+            path.addLine(to: .init(x: rect.maxX, y: rect.minY))
         }
 
-        if corners.contains(.bottomLeft) {
-            path.addLine(to: CGPoint(x: bottomLeft.x + cornerRadii.width, y: bottomLeft.y))
-            path.addQuadCurve(to: CGPoint(x: bottomLeft.x, y: bottomRight.y - cornerRadii.height), control: bottomLeft)
+        if corners.contains(.topRight) {
+            path.addLine(to: .init(x: rect.maxX, y: rect.maxY - cornerRadii.height))
+            path.addRelativeArc(center: .init(x: rect.maxX - cornerRadii.width, y: rect.maxY - cornerRadii.height),
+                                radius: cornerRadii.width,
+                                startAngle: 0,
+                                delta: CGFloat.pi / 2)
         } else {
-            path.addLine(to: bottomLeft)
+            path.addLine(to: .init(x: rect.maxX, y: rect.maxY))
         }
 
         if corners.contains(.topLeft) {
-            path.addLine(to: CGPoint(x: topLeft.x, y: topLeft.y - cornerRadii.height))
-            path.addQuadCurve(to: CGPoint(x: topLeft.x + cornerRadii.width, y: topLeft.y), control: topLeft)
+            path.addLine(to: .init(x: rect.minX + cornerRadii.width, y: rect.maxY))
+            path.addRelativeArc(center: .init(x: rect.minX + cornerRadii.width, y: rect.maxY - cornerRadii.height),
+                                radius: cornerRadii.width,
+                                startAngle: CGFloat.pi / 2,
+                                delta: CGFloat.pi / 2)
         } else {
-            path.addLine(to: topLeft)
+            path.addLine(to: .init(x: rect.minX, y: rect.maxY))
+        }
+
+        if corners.contains(.bottomLeft) {
+            path.addLine(to: .init(x: rect.minX, y: rect.minY + cornerRadii.height))
+            path.addRelativeArc(center: .init(x: rect.minX + cornerRadii.width, y: rect.minY + cornerRadii.height),
+                                radius: cornerRadii.width,
+                                startAngle: CGFloat.pi,
+                                delta: CGFloat.pi / 2)
+        } else {
+            path.addLine(to: .init(x: rect.minX, y: rect.minY))
         }
 
         path.closeSubpath()

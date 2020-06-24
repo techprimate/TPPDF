@@ -259,7 +259,7 @@ internal enum PDFGraphics {
 
         clipPath.addClip()
         image.draw(in: CGRect(origin: .zero, size: size))
-
+        
         #if os(iOS)
         let finalImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
