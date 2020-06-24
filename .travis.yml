@@ -40,8 +40,8 @@ jobs:
                  test | xcpretty && exit ${PIPESTATUS[0]}
 
     after_success:
-    - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verb>
-    - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gco>
+    - slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data --verb
+    - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gco
 
   - stage: Examples
     name: "Example iOS - Cocoapods"
