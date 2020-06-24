@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PDFTableStyle Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/PDFTableStyle" class="dashAnchor"></a>
+
+    <a title="PDFTableStyle Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          TPPDF 2.1.2 Docs
+        </a>
+         (98% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://www.github.com/techprimate/TPPDF">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Ftechprimate%2Egithub%2Eio%2FTPPDF%2Fdocsets%2FTPPDF%2Exml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">TPPDF Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      PDFTableStyle Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFAttributedText.html">PDFAttributedText</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFBezierPath.html">PDFBezierPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFBezierPathVertex.html">PDFBezierPathVertex</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFBezierPathVertex/Anchor.html">– Anchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFDocument.html">PDFDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFDocumentObject.html">PDFDocumentObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFDynamicGeometryShape.html">PDFDynamicGeometryShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFExternalDocument.html">PDFExternalDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFGenerator.html">PDFGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFGroup.html">PDFGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFImage.html">PDFImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFInfo.html">PDFInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFList.html">PDFList</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFListItem.html">PDFListItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFMasterGroup.html">PDFMasterGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFMultiDocumentGenerator.html">PDFMultiDocumentGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:5TPPDF15PDFRenderObjectC">PDFRenderObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFSection.html">PDFSection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFSectionColumn.html">PDFSectionColumn</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFSimpleText.html">PDFSimpleText</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTable.html">PDFTable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableCell.html">PDFTableCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableColumn.html">PDFTableColumn</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableColumns.html">PDFTableColumns</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableContent.html">PDFTableContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableOfContent.html">PDFTableOfContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableRow.html">PDFTableRow</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableRows.html">PDFTableRows</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableSection.html">PDFTableSection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableStyle.html">PDFTableStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFText.html">PDFText</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTextStyle.html">PDFTextStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFContainer.html">PDFContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFGroupContainer.html">PDFGroupContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFImageSizeFit.html">PDFImageSizeFit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFLineType.html">PDFLineType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFListItemSymbol.html">PDFListItemSymbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFObjectAttribute.html">PDFObjectAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFPageFormat.html">PDFPageFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFPaginationStyle.html">PDFPaginationStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFTableCellAlignment.html">PDFTableCellAlignment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFTableStyleDefaults.html">PDFTableStyleDefaults</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CGPoint.html">CGPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CustomDebugStringConvertible.html">CustomDebugStringConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CustomStringConvertible.html">CustomStringConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Float.html">Float</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/NSAttributedString.html">NSAttributedString</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UIImage.html">UIImage</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFAttributableObject.html">PDFAttributableObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFCopy.html">PDFCopy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFGeneratorProtocol.html">PDFGeneratorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFTableContentable.html">PDFTableContentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFTableMergable.html">PDFTableMergable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFImageOptions.html">PDFImageOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFLineStyle.html">PDFLineStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFPageLayout.html">PDFPageLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFPagination.html">PDFPagination</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFTableCellBorders.html">PDFTableCellBorders</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFTableCellPosition.html">PDFTableCellPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Stack.html">Stack</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:5TPPDF22PDFLocatedRenderObjecta">PDFLocatedRenderObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:5TPPDF20PDFPaginationClosurea">PDFPaginationClosure</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>PDFTableStyle</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFTableStyle</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">PDFTableStyle</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                </div>
+              </div>
+            <p>TODO: Documentation</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC14rowHeaderCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/rowHeaderCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC14rowHeaderCountSivp">rowHeaderCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>TODO: Documentation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rowHeaderCount</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC17columnHeaderCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/columnHeaderCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC17columnHeaderCountSivp">columnHeaderCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>TODO: Documentation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">columnHeaderCount</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC11footerCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/footerCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC11footerCountSivp">footerCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>TODO: Documentation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">footerCount</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC7outlineAA07PDFLineC0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/outline" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC7outlineAA07PDFLineC0Vvp">outline</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>TODO: Documentation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">outline</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFLineStyle.html">PDFLineStyle</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC09rowHeaderC0AA0b4CellC0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/rowHeaderStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC09rowHeaderC0AA0b4CellC0Vvp">rowHeaderStyle</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The cell style of row headers. Horizontal border lines are ignored, as these are defined in</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rowHeaderStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC012columnHeaderC0AA0b4CellC0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/columnHeaderStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC012columnHeaderC0AA0b4CellC0Vvp">columnHeaderStyle</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>TODO: Documentation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">columnHeaderStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC06footerC0AA0b4CellC0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/footerStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC06footerC0AA0b4CellC0Vvp">footerStyle</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>TODO: Documentation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">footerStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC07contentC0AA0b4CellC0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/contentStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC07contentC0AA0b4CellC0Vvp">contentStyle</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>TODO: Documentation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">contentStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC018alternatingContentC0AA0b4CellC0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/alternatingContentStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC018alternatingContentC0AA0b4CellC0VSgvp">alternatingContentStyle</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>TODO: Documentation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">alternatingContentStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC14rowHeaderCount06columneF006footerF07outline0deC00geC00hC007contentC0018alternatingContentC0ACSi_S2iAA07PDFLineC0VAA0b4CellC0VA4PSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(rowHeaderCount:columnHeaderCount:footerCount:outline:rowHeaderStyle:columnHeaderStyle:footerStyle:contentStyle:alternatingContentStyle:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC14rowHeaderCount06columneF006footerF07outline0deC00geC00hC007contentC0018alternatingContentC0ACSi_S2iAA07PDFLineC0VAA0b4CellC0VA4PSgtcfc">init(rowHeaderCount:<wbr>columnHeaderCount:<wbr>footerCount:<wbr>outline:<wbr>rowHeaderStyle:<wbr>columnHeaderStyle:<wbr>footerStyle:<wbr>contentStyle:<wbr>alternatingContentStyle:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a table style. All parameters are optional</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rowHeaderCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nv">columnHeaderCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nv">footerCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nv">outline</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFLineStyle.html">PDFLineStyle</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/PDFLineStyle.html">PDFLineStyle</a></span><span class="p">(),</span>
+            <span class="nv">rowHeaderStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span><span class="p">(),</span>
+            <span class="nv">columnHeaderStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span><span class="p">(),</span>
+            <span class="nv">footerStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span><span class="p">(),</span>
+            <span class="nv">contentStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span><span class="p">(),</span>
+            <span class="nv">alternatingContentStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rowHeaderCount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of top rows which have header style, defaults to <code>1</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>columnHeaderCount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of left columns with header style, defaults to <code>1</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>footerCount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of footer rows with header style, defaults to <code>1</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>outline</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Line style of the outer borderlines, defaults to <code>TablePDFLineStyle.init</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>showHorizontalGridLines</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Render horizontal grid lines, defaults to <code>true</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>showVerticalGridLines</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Render vertical grid lines, defaults to <code>true</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>showRowHeaderGridLines</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Render row header grid lines, defaults to <code>true</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>showColumnHeaderGridLines</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Render column header grid lines, defaults to <code>true</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>showFooterGridLines</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Render footer grid lines, defaults to <code>true</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rowHeaderStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cell style of row header cells, defaults to <code>TablePDFLineStyle.init</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>columnHeaderStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cell style of row header cells, defaults to <code>TablePDFLineStyle.init</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>footerStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cell style of row header cells, defaults to <code>TablePDFLineStyle.init</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC4copyACyF"></a>
+                    <a name="//apple_ref/swift/Method/copy()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC4copyACyF">copy()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a identical copy of this style</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">copy</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">PDFTableStyle</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF13PDFTableStyleC2eeoiySbAC_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF13PDFTableStyleC2eeoiySbAC_ACtFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>TODO: Documentation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">PDFTableStyle</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">PDFTableStyle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2020 <a class="link" href="https://www.github.com/philprime" target="_blank" rel="external">Philip Niedertscheider</a>. All rights reserved. (Last updated: 2020-06-24)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
