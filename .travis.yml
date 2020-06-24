@@ -3,7 +3,6 @@ osx_image: xcode11.6
 language: objective-c
 cache:
 - bundler
-- cocoapods
 
 env:
   global:
@@ -47,6 +46,9 @@ jobs:
   - stage: Examples
     name: "Example iOS - Cocoapods"
     language: objective-c
+    cache:
+      - bundler
+      - cocoapods
     env:
     - ROOT_FOLDER="Example iOS-Cocoapods"
     podfile: "${ROOT_FOLDER}/Podfile"
