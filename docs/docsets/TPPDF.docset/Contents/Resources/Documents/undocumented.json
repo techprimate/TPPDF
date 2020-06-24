@@ -1,0 +1,75 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Groups/PDFMasterGroup.swift",
+      "line": 16,
+      "symbol": "PDFMasterGroup.isFullPage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 51,
+      "symbol": "PDFTable.init(size:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 114,
+      "symbol": "PDFTable.rows",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 118,
+      "symbol": "PDFTable.columns",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 122,
+      "symbol": "PDFTable.content",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
+      "line": 131,
+      "symbol": "PDFTable.alignment",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/Style/PDFTableCellBorders.swift",
+      "line": 49,
+      "symbol": "PDFTableCellBorders.none",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/Style/PDFTableCellStyle.swift",
+      "line": 44,
+      "symbol": "PDFTableCellStyle.none",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/PDFDocumentObject.swift",
+      "line": 10,
+      "symbol": "PDFDocumentObject",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/PDFDocumentObject.swift",
+      "line": 14,
+      "symbol": "PDFDocumentObject.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/travis/build/techprimate/TPPDF"
+}
