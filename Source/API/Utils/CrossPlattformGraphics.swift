@@ -31,8 +31,10 @@ public typealias Point = NSPoint
 extension NSBezierPath{
     func quadCurve(to endPoint: CGPoint, controlPoint: CGPoint) {
         let startPoint = self.currentPoint
-        let controlPoint1 = CGPoint(x: (startPoint.x + (controlPoint.x - startPoint.x) * 2.0/3.0), y: (startPoint.y + (controlPoint.y - startPoint.y) * 2.0/3.0))
-        let controlPoint2 = CGPoint(x: (endPoint.x + (controlPoint.x - endPoint.x) * 2.0/3.0), y: (endPoint.y + (controlPoint.y - endPoint.y) * 2.0/3.0))
+        let controlPoint1 = CGPoint(x: (startPoint.x + (controlPoint.x - startPoint.x) * 2.0/3.0),
+                                    y: (startPoint.y + (controlPoint.y - startPoint.y) * 2.0/3.0))
+        let controlPoint2 = CGPoint(x: (endPoint.x + (controlPoint.x - endPoint.x) * 2.0/3.0),
+                                    y: (endPoint.y + (controlPoint.y - endPoint.y) * 2.0/3.0))
         curve(to: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
     }
 }
@@ -91,16 +93,12 @@ extension NSBezierPath {
             switch type {
             case .moveTo:
                 path.move(to: points[0])
-
             case .lineTo:
                 path.addLine(to: points[0])
-
             case .curveTo:
                 path.addCurve(to: points[2], control1: points[0], control2: points[1])
-
             case .closePath:
                 path.closeSubpath()
-
             @unknown default:
                 break
             }
@@ -178,54 +176,39 @@ extension NSBezierPath {
     convenience init(path: CGPath) {
         self.init(rect: CGRect(x: 10, y: 10, width: 20, height: 20))
 
-        // TODO: macos Support
+        path.applyWithBlock { elementPtr in
+            let element = elementPtr.pointee
+            let pointsPtr = element.points
 
-//        var bezierPath = NSBezierPath()
-//        withUnsafeMutablePointer(to: &bezierPath) { pathPtr in
-//            let infoPtr = UnsafeMutableRawPointer(pathPtr)
-//
-//            path.apply(info: infoPtr) { (infoPtr, elementPtr) -> Void in
-//                var bezierPath = pathPtr.pointee
-//                let element = elementPtr.pointee
-//
-//                let pointsPtr = element.points
-//
-//                switch element.type {
-//                case .moveToPoint:
-//                    bezierPath.move(to: pointsPtr.pointee)
-//
-//                case .addLineToPoint:
-//                    bezierPath.line(to: pointsPtr.pointee)
-//
-//                case .addQuadCurveToPoint:
-//                    let firstPoint = pointsPtr.pointee
-//                    let secondPoint = pointsPtr.successor().pointee
-//
-//                    let currentPoint = path.currentPoint
-//                    let x = (currentPoint.x + 2 * firstPoint.x) / 3
-//                    let y = (currentPoint.y + 2 * firstPoint.y) / 3
-//                    let interpolatedPoint = CGPoint(x: x, y: y)
-//
-//                    let endPoint = secondPoint
-//
-//                    bezierPath.curve(to: endPoint, controlPoint1: interpolatedPoint, controlPoint2: interpolatedPoint)
-//
-//                case .addCurveToPoint:
-//                    let firstPoint = pointsPtr.pointee
-//                    let secondPoint = pointsPtr.successor().pointee
-//                    let thirdPoint = pointsPtr.successor().successor().pointee
-//
-//                    bezierPath.curve(to: thirdPoint, controlPoint1: firstPoint, controlPoint2: secondPoint)
-//
-//                case .closeSubpath:
-//                    bezierPath.close()
-//                default:
-//                    break
-//                }
-//
-//                pointsPtr.deallocate()
-//            }
-//        }
+            switch element.type {
+            case .moveToPoint:
+                self.move(to: pointsPtr.pointee)
+            case .addLineToPoint:
+                self.line(to: pointsPtr.pointee)
+            case .addQuadCurveToPoint:
+                let firstPoint = pointsPtr.pointee
+                let secondPoint = pointsPtr.successor().pointee
+
+                let currentPoint = path.currentPoint
+                let x = (currentPoint.x + 2 * firstPoint.x) / 3
+                let y = (currentPoint.y + 2 * firstPoint.y) / 3
+                let interpolatedPoint = CGPoint(x: x, y: y)
+
+                let endPoint = secondPoint
+
+                self.curve(to: endPoint, controlPoint1: interpolatedPoint, controlPoint2: interpolatedPoint)
+            case .addCurveToPoint:
+                let firstPoint = pointsPtr.pointee
+                let secondPoint = pointsPtr.successor().pointee
+                let thirdPoint = pointsPtr.successor().successor().pointee
+
+                self.curve(to: thirdPoint, controlPoint1: firstPoint, controlPoint2: secondPoint)
+            case .closeSubpath:
+                self.close()
+            default:
+                break
+            }
+        }
     }
 }
 #endif
