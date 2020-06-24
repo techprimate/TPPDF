@@ -122,7 +122,7 @@ internal class PDFImageObject: PDFRenderObject {
         defer {
             NSGraphicsContext.current = priorNsgc
         }
-        NSGraphicsContext.current = NSGraphicsContext(cgContext: context, flipped: false)
+        NSGraphicsContext.current = NSGraphicsContext(cgContext: context, flipped: true)
         modifiedImage.draw(in: frame)
         #else
         if let cgImage = modifiedImage.cgImage {

@@ -35,42 +35,21 @@ internal enum PDFGraphics {
      - parameter style: Style of drawn line
      */
     internal static func drawLine(in context: CGContext, start: CGPoint, end: CGPoint, style: PDFLineStyle) {
-        if let path = createLinePath(start: start, end: end, style: style) {
-            context.setStrokeColor(style.color.cgColor)
-            context.beginPath()
-            context.addPath(path.cgPath)
-            context.closePath()
-            context.strokePath()
-        }
-    }
-
-    /**
-     Creates a path containing a line from the given `start` to the given `end` point.
-
-     - parameter start: Start point of line
-     - parameter end: End point of line
-     - parameter style: Style of drawn line
-
-     - returns: Bezier path of line, `nil` if line type in `style` was `PDFLineType.none`
-     */
-    internal static func createLinePath(start: CGPoint, end: CGPoint, style: PDFLineStyle) -> BezierPath? {
-        if style.type == .none {
-            return nil
+        guard style.type != .none else {
+            return
         }
 
-        var path = BezierPath()
-        path.move(to: start)
-        #if os(iOS)
-        path.addLine(to: end)
-        #elseif os(macOS)
-        path.line(to: end)
-        #endif
+        context.beginPath()
+        context.move(to: start)
+        context.addLine(to: end)
 
-        let dashes = createDashes(style: style, path: &path)
-        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
-        path.lineWidth = CGFloat(style.width)
+        if let dashes = createDashes(style: style) {
+            context.setLineDash(phase: 0.0, lengths: dashes.lengths)
+            context.setLineCap(dashes.cap)
+        }
 
-        return path
+        context.setStrokeColor(style.color.cgColor)
+        context.drawPath(using: .stroke)
     }
 
     // MARK: - Shape: Rectangle
@@ -83,13 +62,12 @@ internal enum PDFGraphics {
      - parameter fill: Inner color
      */
     internal static func drawRect(in context: CGContext, rect: CGRect, outline: PDFLineStyle, fill: Color = .clear) {
-        let path = createRectPath(rect: rect, outline: outline)
-
-        context.setStrokeColor(outline.color.cgColor)
+        var path = BezierPath(rect: rect)
+        if let radius = outline.radius {
+            path = BezierPath(roundedRect: rect, cornerRadius: radius)
+        }
+        prepareForDrawingPath(path: path, in: context, outline: outline)
         context.setFillColor(fill.cgColor)
-
-        context.beginPath()
-        context.addPath(path.cgPath)
         context.drawPath(using: .fillStroke)
     }
 
@@ -101,35 +79,41 @@ internal enum PDFGraphics {
      - parameter fill: Inner color
      */
     internal static func drawRect(in context: CGContext, rect: CGRect, outline: PDFLineStyle, pattern: FillPattern) {
-        let path = createRectPath(rect: rect, outline: outline)
-
-        context.setStrokeColor(outline.color.cgColor)
-        pattern.setFill(in: context)
-
-        context.beginPath()
-        context.addPath(path.cgPath)
-        context.fillPath()
-        context.strokePath()
-    }
-
-    /**
-     Creates a rectangular bezier path from the given `frame`.
-
-     - parameter rect: Frame of rectangle
-     - parameter outline: Style of border lines
-     */
-    internal static func createRectPath(rect: CGRect, outline: PDFLineStyle) -> BezierPath {
         var path = BezierPath(rect: rect)
         if let radius = outline.radius {
             path = BezierPath(roundedRect: rect, cornerRadius: radius)
         }
-        let dashes = createDashes(style: outline, path: &path)
-        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
-        path.lineWidth = CGFloat(outline.width)
-        return path
+        prepareForDrawingPath(path: path, in: context, outline: outline)
+        pattern.setFill(in: context)
+        context.drawPath(using: .fillStroke)
     }
 
     // MARK: - Shape Utility
+
+    /**
+     TODO: Documentation
+     */
+    internal static func drawPath(path: BezierPath, in context: CGContext, outline: PDFLineStyle, fillColor: Color) {
+        prepareForDrawingPath(path: path, in: context, outline: outline)
+        context.setFillColor(fillColor.cgColor)
+        context.drawPath(using: .fillStroke)
+    }
+
+    /**
+     TODO: Documentation
+     */
+    internal static func prepareForDrawingPath(path: BezierPath, in context: CGContext, outline: PDFLineStyle) {
+        context.beginPath()
+        context.addPath(path.cgPath)
+
+        if let dashes = createDashes(style: outline) {
+            context.setLineDash(phase: 0, lengths: dashes.lengths)
+            context.setLineCap(dashes.cap)
+        }
+        context.setLineWidth(outline.width)
+
+        context.setStrokeColor(outline.color.cgColor)
+    }
 
     /**
      Creates an array of dash values. Used to define dashes of a `BezierPath`.
@@ -141,41 +125,15 @@ internal enum PDFGraphics {
 
      - returns: Array with dash values
      */
-    internal static func createDashes(style: PDFLineStyle, path: inout BezierPath) -> [CGFloat] {
-        var dashes: [CGFloat] = []
-
+    internal static func createDashes(style: PDFLineStyle) -> (lengths: [CGFloat], cap: CGLineCap)? {
         switch style.type {
         case .dashed:
-            dashes = [style.width * 3, style.width * 3]
-            path.lineCapStyle = .butt
+            return ([style.width * 3, style.width * 3], .butt)
         case .dotted:
-            dashes = [0, style.width * 2]
-            path.lineCapStyle = .round
+            return ([0, style.width * 2], .round)
         default:
-            break
+            return nil
         }
-
-        return dashes
-    }
-
-    /**
-     TODO: Documentation
-     */
-    internal static func drawPath(path: BezierPath, in context: CGContext, outline: PDFLineStyle, fillColor: Color) {
-        guard var path = path.copy() as? BezierPath else {
-            fatalError("Copy of BezierPath is invalid!")
-        }
-        let dashes = createDashes(style: outline, path: &path)
-        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
-        path.lineWidth = CGFloat(outline.width)
-
-        context.setStrokeColor(outline.color.cgColor)
-        context.setFillColor(fillColor.cgColor)
-
-        context.beginPath()
-        context.addPath(path.cgPath)
-        context.fillPath()
-        context.strokePath()
     }
 
     // MARK: - Image Manipulation
@@ -238,6 +196,8 @@ internal enum PDFGraphics {
         #elseif os(macOS)
         let finalImage = NSImage(size: size)
         finalImage.lockFocus()
+        let context = NSGraphicsContext.current!
+        context.imageInterpolation = .high
         image.draw(in: CGRect(origin: .zero, size: size))
         finalImage.unlockFocus()
         return finalImage

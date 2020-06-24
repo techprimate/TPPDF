@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D45C42ED24A3C1970040FE37 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C42EC24A3C1970040FE37 /* ProgressBar.swift */; };
+		D45C42EF24A3C1B80040FE37 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C42EE24A3C1B80040FE37 /* DetailView.swift */; };
 		D48C538924A269F400D7A3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C538824A269F400D7A3DD /* AppDelegate.swift */; };
 		D48C538B24A269F400D7A3DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C538A24A269F400D7A3DD /* ContentView.swift */; };
 		D48C538D24A269F500D7A3DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48C538C24A269F500D7A3DD /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D45C42EC24A3C1970040FE37 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		D45C42EE24A3C1B80040FE37 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		D48C538524A269F400D7A3DD /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48C538824A269F400D7A3DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D48C538A24A269F400D7A3DD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +101,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D45C42EB24A3C18B0040FE37 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D48C538A24A269F400D7A3DD /* ContentView.swift */,
+				D45C42EC24A3C1970040FE37 /* ProgressBar.swift */,
+				D48C53DD24A27A0100D7A3DD /* PDFView+SwiftUI.swift */,
+				D45C42EE24A3C1B80040FE37 /* DetailView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		D48C537C24A269F400D7A3DD = {
 			isa = PBXGroup;
 			children = (
@@ -120,8 +135,7 @@
 			children = (
 				D48C539C24A26C0000D7A3DD /* Shared */,
 				D48C538824A269F400D7A3DD /* AppDelegate.swift */,
-				D48C538A24A269F400D7A3DD /* ContentView.swift */,
-				D48C53DD24A27A0100D7A3DD /* PDFView+SwiftUI.swift */,
+				D45C42EB24A3C18B0040FE37 /* UI */,
 				D48C538C24A269F500D7A3DD /* Assets.xcassets */,
 				D48C539124A269F500D7A3DD /* Main.storyboard */,
 				D48C539424A269F500D7A3DD /* Info.plist */,
@@ -312,6 +326,7 @@
 				D48C53CB24A26C0000D7A3DD /* ListExampleFactory.swift in Sources */,
 				D48C53BE24A26C0000D7A3DD /* ExampleFactory.swift in Sources */,
 				D48C53C424A26C0000D7A3DD /* LineSeparatorExampleFactory.swift in Sources */,
+				D45C42EF24A3C1B80040FE37 /* DetailView.swift in Sources */,
 				D48C53C624A26C0000D7A3DD /* MultiSectionExampleFactory.swift in Sources */,
 				D48C53C824A26C0000D7A3DD /* HeaderFooterExampleFactory.swift in Sources */,
 				D48C538B24A269F400D7A3DD /* ContentView.swift in Sources */,
@@ -326,6 +341,7 @@
 				D48C53D124A26C0000D7A3DD /* Examples.swift in Sources */,
 				D48C53CE24A26C0000D7A3DD /* ExperimentFactory.swift in Sources */,
 				D48C53C124A26C0000D7A3DD /* PaginationExampleFactory.swift in Sources */,
+				D45C42ED24A3C1970040FE37 /* ProgressBar.swift in Sources */,
 				D48C53CA24A26C0000D7A3DD /* MultipleDocumentsExampleFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,7 +28,7 @@ internal class PDFExternalPageObject: PDFRenderObject {
 
     override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         PDFContextGraphics.endPDFPage(in: context)
-        PDFContextGraphics.beginPDFPage(in: context, for: frame, invertY: false)
+        PDFContextGraphics.beginPDFPage(in: context, for: frame, flipped: false)
 
         context.saveGState()
         context.drawPDFPage(page)
