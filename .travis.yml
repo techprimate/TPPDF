@@ -94,13 +94,13 @@ jobs:
     - ROOT_FOLDER="Example iOS-SwiftPM"
     script:
     - cd "${ROOT_FOLDER}"
-    - set -o pipefail  
     - xcodebuild -resolvePackageDependencies
                  -project ${PROJECT}
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  -configuration Debug | xcpretty
+    - set -o pipefail  
     - xcodebuild -project ${PROJECT}
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
