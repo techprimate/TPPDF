@@ -7,6 +7,9 @@
 
 import Foundation
 import CoreGraphics
+#if os(iOS)
+import UIKit
+#endif
 
 enum PDFContextGraphics {
 
@@ -21,13 +24,18 @@ enum PDFContextGraphics {
 
     static func createPDFDataContext(bounds: CGRect, info: PDFInfo) -> (NSMutableData, CGContext) {
         print(#file, #line, "Create PDF Data Context")
-        #if os(iOS)
-        UIGraphicsBeginPDFContextToData(data, document.layout.bounds, (info ?? document.info).generate())
-        #elseif os(macOS)
         let data = NSMutableData()
+        let contextInfo = info.generate()
+        #if os(iOS)
+        UIGraphicsBeginPDFContextToData(data, bounds, contextInfo)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            fatalError()
+        }
+        return (data, context)
+        #elseif os(macOS)
         var mediaBox = bounds
         guard let consumer = CGDataConsumer(data: data),
-            let context = CGContext(consumer: consumer, mediaBox: &mediaBox, info.generate() as CFDictionary) else {
+            let context = CGContext(consumer: consumer, mediaBox: &mediaBox, contextInfo as CFDictionary) else {
             fatalError()
         }
         return (data, context)
@@ -59,6 +67,8 @@ enum PDFContextGraphics {
 
     static func endPDFPage(in context: CGContext) {
         print(#file, #line, "End PDF Page")
+        #if os(macOS)
         context.endPDFPage()
+        #endif
     }
 }

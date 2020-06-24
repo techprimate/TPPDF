@@ -39,6 +39,7 @@ internal enum PDFGraphics {
             context.setStrokeColor(style.color.cgColor)
             context.beginPath()
             context.addPath(path.cgPath)
+            context.closePath()
             context.strokePath()
         }
     }

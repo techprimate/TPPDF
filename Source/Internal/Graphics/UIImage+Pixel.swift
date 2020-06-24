@@ -21,7 +21,7 @@ extension Image {
      */
     internal var pixelExtractor: PixelExtractor {
         #if os(iOS)
-        PixelExtractor(img: self.cgImage!)
+        return PixelExtractor(img: self.cgImage!)
         #elseif os(macOS)
         var imageRect = CGRect(origin: .zero, size: self.size)
         let image = self.cgImage(forProposedRect: &imageRect, context: nil, hints: nil)!
