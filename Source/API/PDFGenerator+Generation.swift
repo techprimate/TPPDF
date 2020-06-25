@@ -197,6 +197,11 @@ extension PDFGenerator {
         var hasAddedMasterToPage = false
         var hasAddedHeaderFooterToPage = false
 
+        result += masterObj
+        hasAddedMasterToPage = true
+        result += try addHeaderFooterObjects()
+        hasAddedHeaderFooterToPage = true
+
         // Iterate all objects and let them calculate the required rendering
         var needsPageBreak = false
         for (container, pdfObject) in contentObjs {

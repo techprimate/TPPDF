@@ -25,6 +25,11 @@ struct DetailView: View {
                 Text("\(example.name)")
                     .font(.headline)
                 Spacer()
+                Button(action: {
+                    self.generatePDF(force: true)
+                }, label: {
+                    Text("Refresh")
+                })
                 ProgressBar(value: $progressValue)
                     .frame(width: 100, height: 20)
                     .fixedSize(horizontal: true, vertical: true)
@@ -32,13 +37,13 @@ struct DetailView: View {
 
             PDFKitRepresentedView(url: url)
                 .onAppear {
-                    self.generatePDF()
+                    self.generatePDF(force: false)
             }
         }
     }
 
-    func generatePDF() {
-        guard !isGenerated else {
+    func generatePDF(force: Bool) {
+        if url != nil && !force {
             return
         }
         let docs = example.factory.generateDocument()
@@ -47,7 +52,7 @@ struct DetailView: View {
         } else {
             generator = PDFMultiDocumentGenerator(documents: docs)
         }
-        generator.debug = false
+        generator.debug = true
 
         observer = generator.progress.observe(\.completedUnitCount) { (p, v) in
             self.progressValue = p.fractionCompleted

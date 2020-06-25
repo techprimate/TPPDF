@@ -13,7 +13,7 @@ import TPPDF
 class ContentViewModel: ObservableObject {
 
     @Published var url: URL?
-    @State var selectedFactory = Examples.factories.last?.examples.first
+    @State var selectedFactory = Examples.factories.first?.examples.first
 
 }
 

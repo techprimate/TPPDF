@@ -56,7 +56,7 @@ internal class PDFLineObject: PDFRenderObject {
      */
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         let origin = CGPoint(x: min(startPoint.x, endPoint.x),
-                             y: min(startPoint.x, endPoint.x))
+                             y: min(startPoint.y, endPoint.y))
         let size = CGSize(width: max(startPoint.x, endPoint.x) - origin.x,
                           height: max(startPoint.y, endPoint.y) - origin.y)
 
