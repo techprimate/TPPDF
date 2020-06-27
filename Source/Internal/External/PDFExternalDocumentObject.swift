@@ -29,7 +29,7 @@ internal class PDFExternalDocumentObject: PDFRenderObject {
             guard let page = cgPDF.page(at: i) else {
                 throw PDFError.pageOutOfBounds(index: i)
             }
-            result.append((container, PDFExternalPageObject(page: page)))
+            result += try PDFExternalPageObject(page: page).calculate(generator: generator, container: container)
         }
 
         return result

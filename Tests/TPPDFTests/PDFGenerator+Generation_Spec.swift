@@ -137,7 +137,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         static var called = false
 
-                        override func draw(generator: PDFGenerator, container: PDFContainer) throws {
+                        override func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
                             CustomObject.called = true
                         }
 
@@ -147,10 +147,18 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                     let document = PDFDocument(format: .a4)
                     let generator = PDFGenerator(document: document)
-
+                    UIGraphicsBeginImageContext(CGSize(width: 100, height: 100))
+                    defer {
+                        UIGraphicsEndImageContext()
+                    }
+                    guard let context = UIGraphicsGetCurrentContext() else {
+                        fail("Could not get graphics context")
+                        return
+                    }
+                    
                     expect(CustomObject.called).to(beFalse())
 
-                    try? generator.render(object: obj, in: .headerLeft)
+                    try? generator.render(object: obj, in: .headerLeft, in: context)
 
                     expect(CustomObject.called).to(beTrue())
                 }

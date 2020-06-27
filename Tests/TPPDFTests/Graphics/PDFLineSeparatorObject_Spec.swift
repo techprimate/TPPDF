@@ -67,10 +67,13 @@ class PDFLineSeparatorObject_Spec: QuickSpec {
 
                 it("should not draw overlay if debug is disabled") {
                     UIGraphicsBeginImageContext(document.layout.size)
+                    guard let context = UIGraphicsGetCurrentContext() else {
+                        fatalError()
+                    }
 
                     generator.debug = false
                     let _ = try? separator.calculate(generator: generator, container: container)
-                    try? separator.draw(generator: generator, container: container)
+                    try? separator.draw(generator: generator, container: container, in: context)
 
                     let image = UIGraphicsGetImageFromCurrentImageContext()
                     UIGraphicsEndImageContext()
@@ -101,10 +104,14 @@ class PDFLineSeparatorObject_Spec: QuickSpec {
 
                 it("should draw overlay if debug is enabled") {
                     UIGraphicsBeginImageContext(document.layout.size)
+                    guard let context = UIGraphicsGetCurrentContext() else {
+                        fail("Could not get graphics context")
+                        return
+                    }
 
                     generator.debug = true
                     let _ = try? separator.calculate(generator: generator, container: container)
-                    try? separator.draw(generator: generator, container: container)
+                    try? separator.draw(generator: generator, container: container, in: context)
 
                     let image = UIGraphicsGetImageFromCurrentImageContext()
                     UIGraphicsEndImageContext()

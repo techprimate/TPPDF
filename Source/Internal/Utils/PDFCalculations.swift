@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 24/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 // swiftlint:disable function_body_length
 
@@ -27,8 +31,11 @@ internal enum PDFCalculations {
      */
     internal static func calculateText(generator: PDFGenerator,
                                        container: PDFContainer,
-                                       text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString, remainder: NSAttributedString?) {
+                                       text: NSAttributedString) -> (frame: CGRect, render: NSAttributedString?, remainder: NSAttributedString?) {
         let availableSize = calculateAvailableFrame(for: generator, in: container)
+        guard availableSize.height > 0 else {
+            return (frame: .zero, render: nil, remainder: text)
+        }
         let calcResult = calculateTextSizeAndRemainder(of: text, in: availableSize)
         let origin = calculateElementPosition(for: generator, in: container, with: calcResult.size)
 
@@ -58,7 +65,7 @@ internal enum PDFCalculations {
         assert(bounds.width > 0 && bounds.height > 0, "Can't render text if no space available")
 
         let framesetter = CTFramesetterCreateWithAttributedString(text)
-        let framePath = UIBezierPath(rect: CGRect(origin: .zero, size: bounds)).cgPath
+        let framePath = BezierPath(rect: CGRect(origin: .zero, size: bounds)).cgPath
 
         let textRange = CFRange(location: 0, length: text.length)
 
@@ -315,7 +322,7 @@ internal enum PDFCalculations {
     /**
      TODO: Documentation
      */
-    internal static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: UIImage) -> CGRect {
+    internal static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: Image) -> CGRect {
         let imageSize = image.size
         let height = imageSize.height / imageSize.width * width
 
@@ -410,7 +417,7 @@ internal enum PDFCalculations {
                                                                  text: CFAttributedString,
                                                                  currentRange: CFRange) -> (CGRect, CTFrame, CGSize) {
         let framesetter = CTFramesetterCreateWithAttributedString(text)
-        let framePath = UIBezierPath(rect: frame).cgPath
+        let framePath = BezierPath(rect: frame).cgPath
 
         // Get the frame that will do the rendering.
         // The currentRange variable specifies only the starting point. The framesetter

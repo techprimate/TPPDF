@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  TODO: Documentation
@@ -15,7 +19,7 @@ public struct PDFTableCellStyle {
     /**
      TODO: Documentation
      */
-    public var colors: (fill: UIColor, text: UIColor)
+    public var colors: (fill: Color, text: Color)
 
     /**
      TODO: Documentation
@@ -25,14 +29,14 @@ public struct PDFTableCellStyle {
     /**
      TODO: Documentation
      */
-    public var font: UIFont
+    public var font: Font
 
     /**
      TODO: Documentation
      */
-    public init(colors: (fill: UIColor, text: UIColor) = (UIColor.clear, UIColor.black),
+    public init(colors: (fill: Color, text: Color) = (Color.clear, Color.black),
                 borders: PDFTableCellBorders = PDFTableCellBorders(),
-                font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)) {
+                font: Font = Font.systemFont(ofSize: Font.systemFontSize)) {
         self.colors = colors
         self.borders = borders
         self.font = font
@@ -41,7 +45,7 @@ public struct PDFTableCellStyle {
 
 extension PDFTableCellStyle {
 
-    public static let none = PDFTableCellStyle(colors: (fill: UIColor.clear, text: UIColor.black),
+    public static let none = PDFTableCellStyle(colors: (fill: Color.clear, text: Color.black),
                                                borders: .none,
-                                               font: UIFont.systemFont(ofSize: UIFont.systemFontSize))
+                                               font: Font.systemFont(ofSize: Font.systemFontSize))
 }

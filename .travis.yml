@@ -29,6 +29,7 @@ jobs:
     script:
     - set -o pipefail
     - swift package resolve
+    - set -o pipefail
     - xcodebuild -project ${PROJECT}
                  -scheme ${TEST_FRAMEWORK_SCHEME}
                  -clonedSourcePackagesDirPath .
@@ -79,7 +80,7 @@ jobs:
     - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
     - carthage update --platform ios --cache-builds
     script:
-    - set -o pipefail  
+    - set -o pipefail
     - xcodebuild -project "$PROJECT"
                  -scheme "$EXAMPLE_SCHEME"
                  -sdk iphonesimulator
@@ -109,6 +110,29 @@ jobs:
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  -sdk iphonesimulator
                  -destination "${DESTINATION}"
+                 -configuration Debug
+                 ONLY_ACTIVE_ARCH=YES
+                 build | xcpretty
+
+  - stage: Examples
+    name: "Example macOS"
+    language: objective-c
+    env:
+    - ROOT_FOLDER="Example macOS"
+    script:
+    - cd "${ROOT_FOLDER}"
+    - xcodebuild -resolvePackageDependencies
+                 -project ${PROJECT}
+                 -scheme ${EXAMPLE_SCHEME}
+                 -clonedSourcePackagesDirPath .
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 -configuration Debug | xcpretty
+    - set -o pipefail  
+    - xcodebuild -project ${PROJECT}
+                 -scheme ${EXAMPLE_SCHEME}
+                 -clonedSourcePackagesDirPath .
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 -sdk macosx10.15
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
                  build | xcpretty

@@ -5,9 +5,11 @@
 //  Created by Philip Niedertscheider on 31.05.19.
 //
 
-import Foundation
+#if os(iOS)
 import UIKit
-
+#elseif os(macOS)
+import AppKit
+#endif
 /**
  TODO: Documentation
  */
@@ -31,7 +33,7 @@ internal class PDFGroupObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    internal var backgroundColor: UIColor?
+    internal var backgroundColor: Color?
 
     /**
      TODO: Documentation
@@ -51,7 +53,7 @@ internal class PDFGroupObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    internal var padding: UIEdgeInsets
+    internal var padding: EdgeInsets
 
     /**
      TODO: Documentation
@@ -59,11 +61,11 @@ internal class PDFGroupObject: PDFRenderObject {
     internal init(objects: [(container: PDFGroupContainer, object: PDFRenderObject)],
                   allowsBreaks: Bool,
                   isFullPage: Bool,
-                  backgroundColor: UIColor?,
+                  backgroundColor: Color?,
                   backgroundImage: PDFImage?,
                   backgroundShape: PDFDynamicGeometryShape?,
                   outline: PDFLineStyle,
-                  padding: UIEdgeInsets) {
+                  padding: EdgeInsets) {
         self.objects = objects
         self.allowsBreaks = allowsBreaks
         self.isFullPage = isFullPage
@@ -197,22 +199,26 @@ internal class PDFGroupObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         if let color = backgroundColor {
-            let path = PDFGraphics.createRectPath(rect: self.frame, outline: self.outline)
-            PDFGraphics.drawPath(path: path, outline: self.outline, fillColor: color)
+            PDFGraphics.drawRect(in: context, rect: self.frame, outline: self.outline, fill: color)
         }
         if let shape = backgroundShape {
             PDFGraphics.drawPath(path: shape.path.bezierPath(in: self.frame),
+                                 in: context,
                                  outline: shape.stroke,
                                  fillColor: shape.fillColor)
         }
 
         if generator.debug {
-            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0), fill: .clear)
-            PDFGraphics.drawRect(rect: self.frame.inset(by: padding), outline: PDFLineStyle(type: .full, color: .purple, width: 1.0), fill: .clear)
+            PDFGraphics.drawRect(in: context,
+                                 rect: self.frame,
+                                 outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0), fill: .clear)
+            PDFGraphics.drawRect(in: context,
+                                 rect: self.frame.inset(by: padding),
+                                 outline: PDFLineStyle(type: .full, color: .purple, width: 1.0), fill: .clear)
         }
-        applyAttributes()
+        applyAttributes(in: context)
     }
 
     /**

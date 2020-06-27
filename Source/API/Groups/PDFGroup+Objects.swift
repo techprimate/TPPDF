@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 31.05.19.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  This extension contains all functions to modify the objects of a group
@@ -112,7 +116,7 @@ public extension PDFGroup {
      - parameter container: Container where the font will be set, defaults to `PDFGroupContainer.left`
      - parameter font: Font of text
      */
-    func set(_ container: PDFGroupContainer = PDFGroupContainer.left, font: UIFont) {
+    func set(_ container: PDFGroupContainer = PDFGroupContainer.left, font: Font) {
         objects += [(container, PDFFontObject(font: font))]
     }
 
@@ -122,7 +126,7 @@ public extension PDFGroup {
      - parameter container: Container whose text color will be reset, defaults to `PDFGroupContainer.left`
      */
     func resetFont(_ container: PDFGroupContainer = PDFGroupContainer.left) {
-        objects += [(container, PDFFontObject(font: UIFont.systemFont(ofSize: UIFont.systemFontSize)))]
+        objects += [(container, PDFFontObject(font: Font.systemFont(ofSize: Font.systemFontSize)))]
     }
 
     /**
@@ -131,7 +135,7 @@ public extension PDFGroup {
      - parameter container: Container where the text color will be set, defaults to `PDFGroupContainer.left`
      - parameter color: Color of the text
      */
-    func set(_ container: PDFGroupContainer = PDFGroupContainer.left, textColor: UIColor) {
+    func set(_ container: PDFGroupContainer = PDFGroupContainer.left, textColor: Color) {
         objects += [(container, PDFTextColorObject(color: textColor))]
     }
 
@@ -141,7 +145,7 @@ public extension PDFGroup {
      - parameter container: Container whose text color will be reset, defaults to `PDFGroupContainer.left`
      */
     func resetTextColor(_ container: PDFGroupContainer = PDFGroupContainer.left) {
-        objects += [(container, PDFTextColorObject(color: UIColor.black))]
+        objects += [(container, PDFTextColorObject(color: Color.black))]
     }
 
     // MARK: - Table

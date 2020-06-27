@@ -5,8 +5,11 @@
 //  Created by Philip Niedertscheider on 04/11/2017.
 //
 
-import Foundation
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 extension CGPoint {
 

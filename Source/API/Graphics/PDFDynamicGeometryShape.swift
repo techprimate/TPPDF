@@ -5,8 +5,11 @@
 //  Created by Philip Niedertscheider on 01.06.19.
 //
 
-import Foundation
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  TODO: Documentation
@@ -21,7 +24,7 @@ public class PDFDynamicGeometryShape: CustomStringConvertible {
     /**
      TODO: Documentation
      */
-    public var fillColor: UIColor = .black
+    public var fillColor: Color = .black
 
     /**
      TODO: Documentation
@@ -31,7 +34,7 @@ public class PDFDynamicGeometryShape: CustomStringConvertible {
     /**
      TODO: Documentation
      */
-    public init(path: PDFBezierPath, fillColor: UIColor, stroke: PDFLineStyle) {
+    public init(path: PDFBezierPath, fillColor: Color, stroke: PDFLineStyle) {
         self.path = path
         self.fillColor = fillColor
         self.stroke = stroke

@@ -84,12 +84,14 @@ class PDFSpaceObject_Spec: QuickSpec {
 
                 it("should not draw frame if debug is disabled") {
                     UIGraphicsBeginImageContext(document.layout.size)
-
+                    guard let context = UIGraphicsGetCurrentContext() else {
+                        fatalError()
+                    }
                     generator.debug = false
 
                     expect {
                         let _ = try object.calculate(generator: generator, container: container)
-                        try object.draw(generator: generator, container: container)
+                        try object.draw(generator: generator, container: container, in: context)
 
                         return nil
                         }.toNot(throwError())
@@ -127,12 +129,16 @@ class PDFSpaceObject_Spec: QuickSpec {
 
                 it("should draw frame if debug is enabled") {
                     UIGraphicsBeginImageContext(document.layout.size)
+                    guard let context = UIGraphicsGetCurrentContext() else {
+                        fail("Could not get graphics context")
+                        return
+                    }
 
                     generator.debug = true
 
                     expect {
                         let _ = try object.calculate(generator: generator, container: container)
-                        try object.draw(generator: generator, container: container)
+                        try object.draw(generator: generator, container: container, in: context)
 
                         return nil
                         }.toNot(throwError())

@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 28.05.19.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  TODO: Documentation

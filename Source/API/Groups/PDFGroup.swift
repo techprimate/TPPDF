@@ -5,8 +5,11 @@
 //  Created by Philip Niedertscheider on 31.05.19.
 //
 
-import Foundation
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  TODO: Documentation
@@ -23,7 +26,7 @@ public class PDFGroup {
     /**
      TODO: Documentation
      */
-    public var backgroundColor: UIColor?
+    public var backgroundColor: Color?
 
     /**
      TODO: Documentation
@@ -43,7 +46,7 @@ public class PDFGroup {
     /**
      TODO: Documentation
      */
-    public var padding: UIEdgeInsets
+    public var padding: EdgeInsets
 
     // MARK: - INTERNAL VARS
 
@@ -58,11 +61,11 @@ public class PDFGroup {
      TODO: Documentation
      */
     public init(allowsBreaks: Bool = false,
-                backgroundColor: UIColor? = nil,
+                backgroundColor: Color? = nil,
                 backgroundImage: PDFImage? = nil,
                 backgroundShape: PDFDynamicGeometryShape? = nil,
                 outline: PDFLineStyle = .none,
-                padding: UIEdgeInsets = .zero) {
+                padding: EdgeInsets = .zero) {
         self.allowsBreaks = allowsBreaks
         self.backgroundColor = backgroundColor
         self.backgroundImage = backgroundImage

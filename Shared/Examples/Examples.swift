@@ -8,30 +8,44 @@
 
 import Foundation
 
+struct ExampleSection {
+
+    let header: String
+    let examples: [Example]
+
+}
+
+struct Example {
+
+    let name: String
+    let factory: ExampleFactory
+
+}
+
 enum Examples {
 
-    static var factories: [[(String, ExampleFactory)]] {
+    static var factories: [ExampleSection] {
         [
-            [
-                ("List", ListExampleFactory()),
-                ("Images", ImageExampleFactory()),
-                ("Groups", GroupExampleFactory()),
-                ("Table", TableExampleFactory()),
-                ("Lines", LineSeparatorExampleFactory()),
-                ("Text", TextExampleFactory()),
-                ("Table of Contents", TableOfContentsExampleFactory()),
-                ("Header & Footer", HeaderFooterExampleFactory()),
-                ("Multi Section", MultiSectionExampleFactory()),
-                ("Multi Documents", MultipleDocumentsExampleFactory()),
-                ("Metadata", MetadataExampleFactory()),
-                ("Pagination", PaginationExampleFactory()),
-                ("Text Styles", TextStylesExampleFactory()),
-                ("External Documents", ExternalDocumentExampleFactory()),
-                ("Object Attributes", ObjectAttributesExampleFactory())
-            ],
-            [
-                ("Experiment", ExperimentFactory()),
-            ]
+            .init(header: "Popular Examples", examples: [
+                .init(name: "List", factory: ListExampleFactory()),
+                .init(name: "Images", factory: ImageExampleFactory()),
+                .init(name: "Groups", factory: GroupExampleFactory()),
+                .init(name: "Table", factory: TableExampleFactory()),
+                .init(name: "Lines", factory: LineSeparatorExampleFactory()),
+                .init(name: "Text", factory: TextExampleFactory()),
+                .init(name: "Table of Contents", factory: TableOfContentsExampleFactory()),
+                .init(name: "Header & Footer", factory: HeaderFooterExampleFactory()),
+                .init(name: "Multi Section", factory: MultiSectionExampleFactory()),
+                .init(name: "Multi Documents", factory: MultipleDocumentsExampleFactory()),
+                .init(name: "Metadata", factory: MetadataExampleFactory()),
+                .init(name: "Pagination", factory: PaginationExampleFactory()),
+                .init(name: "Text Styles", factory: TextStylesExampleFactory()),
+                .init(name: "External Documents", factory: ExternalDocumentExampleFactory()),
+                .init(name: "Object Attributes", factory: ObjectAttributesExampleFactory())
+            ]),
+            .init(header: "Developer Examples", examples: [
+                .init(name: "Experiment", factory: ExperimentFactory()),
+            ])
         ]
     }
 }

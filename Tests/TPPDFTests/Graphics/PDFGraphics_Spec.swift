@@ -16,53 +16,30 @@ class PDFGraphics_Spec : QuickSpec {
     override func spec() {
         describe("PDFGraphics") {
 
-            it("can not create an none path") {
-                let start = CGPoint.zero
-                let end = CGPoint(x: 100, y: 100)
-                let style = PDFLineStyle.none
-
-                let dashes = PDFGraphics.createLinePath(start: start, end: end, style: style)
-                expect(dashes).to(beNil())
-            }
-
             it("can create dashes with butts") {
                 let width: CGFloat = 5
                 let style = PDFLineStyle(type: .dashed, color: .red, width: width)
 
-                var path = UIBezierPath()
-                path.move(to: CGPoint.zero)
-                path.addLine(to: CGPoint(x: 0, y: 100))
-
-                let dashes = PDFGraphics.createDashes(style: style, path: &path)
-                expect(dashes).to(haveCount(2))
-                expect(dashes) == [3 * width, 3 * width]
-                expect(path.lineCapStyle) == CGLineCap.butt
+                let dashes = PDFGraphics.createDashes(style: style)
+                expect(dashes?.lengths) == [3 * width, 3 * width]
+                expect(dashes?.cap) == CGLineCap.butt
             }
 
             it("can create dotted dashes") {
                 let width: CGFloat = 5
                 let style = PDFLineStyle(type: .dotted, color: .red, width: width)
 
-                var path = UIBezierPath()
-                path.move(to: CGPoint.zero)
-                path.addLine(to: CGPoint(x: 0, y: 100))
-
-                let dashes = PDFGraphics.createDashes(style: style, path: &path)
-                expect(dashes).to(haveCount(2))
-                expect(dashes) == [0, 2 * width]
-                expect(path.lineCapStyle) == CGLineCap.round
+                let dashes = PDFGraphics.createDashes(style: style)
+                expect(dashes?.lengths) == [0, 2 * width]
+                expect(dashes?.cap) == CGLineCap.round
             }
 
             it("does nothing when not a dashed type") {
                 let width: CGFloat = 5
                 let style = PDFLineStyle(type: .none, color: .red, width: width)
 
-                var path = UIBezierPath()
-                path.move(to: CGPoint.zero)
-                path.addLine(to: CGPoint(x: 0, y: 100))
-
-                let dashes = PDFGraphics.createDashes(style: style, path: &path)
-                expect(dashes).to(haveCount(0))
+                let dashes = PDFGraphics.createDashes(style: style)
+                expect(dashes).to(beNil())
             }
 
             describe("resizing and compression") {

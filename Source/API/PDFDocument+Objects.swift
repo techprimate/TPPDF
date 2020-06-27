@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  This extension contains all functions to modify the objects of a document
@@ -148,13 +152,13 @@ public extension PDFDocument {
      - parameter container: Container where the font will be set, defaults to `PDFContainer.contentLeft`
      - parameter font: Font of text
      */
-    func set(_ container: PDFContainer = PDFContainer.contentLeft, font: UIFont) {
+    func set(_ container: PDFContainer = PDFContainer.contentLeft, font: Font) {
         objects += [(container, PDFFontObject(font: font))]
     }
 
     /// :nodoc:
     @available(*, deprecated, renamed: "set(_:font:)")
-    func setFont(_ container: PDFContainer = PDFContainer.contentLeft, font: UIFont) {
+    func setFont(_ container: PDFContainer = PDFContainer.contentLeft, font: Font) {
         set(container, font: font)
     }
 
@@ -164,7 +168,7 @@ public extension PDFDocument {
      - parameter container: Container whose text color will be reset, defaults to `PDFContainer.contentLeft`
      */
     func resetFont(_ container: PDFContainer = PDFContainer.contentLeft) {
-        objects += [(container, PDFFontObject(font: UIFont.systemFont(ofSize: UIFont.systemFontSize)))]
+        objects += [(container, PDFFontObject(font: Font.systemFont(ofSize: Font.systemFontSize)))]
     }
 
     /**
@@ -173,13 +177,13 @@ public extension PDFDocument {
      - parameter container: Container where the text color will be set, defaults to `PDFContainer.contentLeft`
      - parameter color: Color of the text
      */
-    func set(_ container: PDFContainer = PDFContainer.contentLeft, textColor: UIColor) {
+    func set(_ container: PDFContainer = PDFContainer.contentLeft, textColor: Color) {
         objects += [(container, PDFTextColorObject(color: textColor))]
     }
 
     /// :nodoc:
     @available(*, deprecated, renamed: "set(_:textColor:)")
-    func setTextColor(_ container: PDFContainer = PDFContainer.contentLeft, color: UIColor) {
+    func setTextColor(_ container: PDFContainer = PDFContainer.contentLeft, color: Color) {
         objects += [(container, PDFTextColorObject(color: color))]
     }
 
@@ -189,7 +193,7 @@ public extension PDFDocument {
      - parameter container: Container whose text color will be reset, defaults to `PDFContainer.contentLeft`
      */
     func resetTextColor(_ container: PDFContainer = PDFContainer.contentLeft) {
-        objects += [(container, PDFTextColorObject(color: UIColor.black))]
+        objects += [(container, PDFTextColorObject(color: Color.black))]
     }
 
     // MARK: - Table

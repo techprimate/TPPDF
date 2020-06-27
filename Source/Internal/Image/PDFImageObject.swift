@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Calculates the given image and a caption if necessary
@@ -87,8 +91,8 @@ internal class PDFImageObject: PDFRenderObject {
      - parameter generator: Current instance handling the drawing
      - parameter container: Container where the image is placed in
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        var roundedCorners: UIRectCorner = []
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+        var roundedCorners: RectCorner = []
         if image.options.contains(.rounded) {
             roundedCorners = .allCorners
         } else {
@@ -113,8 +117,18 @@ internal class PDFImageObject: PDFRenderObject {
                                                                quality: image.quality,
                                                                roundCorners: roundedCorners,
                                                                cornerRadius: image.cornerRadius)
-        modifiedImage.draw(in: self.frame)
-        applyAttributes()
+
+        let cgImage: CGImage?
+        #if os(iOS)
+        cgImage = modifiedImage.cgImage
+        #elseif os(macOS)
+        cgImage = modifiedImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        #endif
+        if let cgImage = cgImage {
+            context.draw(image: cgImage, in: frame, flipped: true)
+        }
+
+        applyAttributes(in: context)
     }
 
     /**

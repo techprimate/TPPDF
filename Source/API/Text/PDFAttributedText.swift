@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 31/10/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Attributed text objects hold an instance of `NSAttributedString`

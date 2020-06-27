@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Empty space between two elements
@@ -58,13 +62,14 @@ internal class PDFSpaceObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         if generator.debug {
-            PDFGraphics.drawRect(rect: self.frame,
+            PDFGraphics.drawRect(in: context,
+                                 rect: self.frame,
                                  outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0),
                                  pattern: PDFGraphics.FillPattern.dotted(foreColor: .green, backColor: .white))
         }
-        applyAttributes()
+        applyAttributes(in: context)
     }
 
     /**

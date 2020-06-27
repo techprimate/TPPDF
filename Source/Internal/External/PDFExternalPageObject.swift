@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 12.08.19.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 internal class PDFExternalPageObject: PDFRenderObject {
 
@@ -16,27 +20,20 @@ internal class PDFExternalPageObject: PDFRenderObject {
     }
 
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
-        [
+        self.frame = page.getBoxRect(.mediaBox)
+        return [
             (container, self)
         ]
     }
 
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        let mediaBox = page.getBoxRect(.mediaBox)
-        UIGraphicsBeginPDFPageWithInfo(mediaBox, nil)
-
-        guard let context = UIGraphicsGetCurrentContext() else {
-            fatalError()
-        }
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+        PDFContextGraphics.endPDFPage(in: context)
+        PDFContextGraphics.beginPDFPage(in: context, for: frame, flipped: false)
 
         context.saveGState()
-        context.translateBy(x: 0, y: mediaBox.size.height)
-        context.scaleBy(x: 1, y: -1)
-
         context.drawPDFPage(page)
-
         context.restoreGState()
 
-        applyAttributes()
+        applyAttributes(in: context)
     }
 }

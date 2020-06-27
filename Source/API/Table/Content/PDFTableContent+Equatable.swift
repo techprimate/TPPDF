@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  TODO: Documentation
@@ -27,8 +31,8 @@ extension PDFTableContent: Equatable {
             let rhsString = rhs.content as? NSAttributedString,
             lhsString != rhsString {
             return false
-        } else if let lhsImage = lhs.content as? UIImage,
-            let rhsImage = rhs.content as? UIImage,
+        } else if let lhsImage = lhs.content as? Image,
+            let rhsImage = rhs.content as? Image,
             lhsImage != rhsImage {
             return false
         } else if (lhs.content == nil && rhs.content != nil) || (lhs.content != nil && rhs.content == nil) {

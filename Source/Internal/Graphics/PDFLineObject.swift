@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 06.12.17.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Calculates and draws a line.
@@ -52,7 +56,7 @@ internal class PDFLineObject: PDFRenderObject {
      */
     override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         let origin = CGPoint(x: min(startPoint.x, endPoint.x),
-                             y: min(startPoint.x, endPoint.x))
+                             y: min(startPoint.y, endPoint.y))
         let size = CGSize(width: max(startPoint.x, endPoint.x) - origin.x,
                           height: max(startPoint.y, endPoint.y) - origin.y)
 
@@ -69,16 +73,20 @@ internal class PDFLineObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         PDFGraphics.drawLine(
+            in: context,
             start: startPoint,
             end: endPoint,
             style: style)
 
         if generator.debug && (style.type == .none) {
-            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
+            PDFGraphics.drawRect(in: context,
+                                 rect: self.frame,
+                                 outline: PDFLineStyle(type: .full, color: .red, width: 1.0),
+                                 fill: .clear)
         }
-        applyAttributes()
+        applyAttributes(in: context)
     }
 
     /**
