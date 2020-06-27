@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.2...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.2.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,21 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-06-27)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.2...2.2.0)
+
+**Implemented enhancements:**
+
+- macOS Support!
+
+**Closed issues:**
+
+- Issue #193
+
+**Merged pull requests:**
+
+- PR #217
 
 ## [2.1.2](https://github.com/techprimate/TPPDF/tree/2.1.2) (2020-06-23)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.1...2.1.2)
