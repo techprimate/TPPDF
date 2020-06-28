@@ -6,7 +6,11 @@
 //  Copyright © 2019 techprimate GmbH & Co. KG. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 import TPPDF
 
 class GroupExampleFactory: ExampleFactory {
@@ -33,9 +37,9 @@ class GroupExampleFactory: ExampleFactory {
         let group = PDFGroup(allowsBreaks: false,
                              backgroundColor: .green,
                              backgroundShape: shape,
-                             padding: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 180))
+                             padding: EdgeInsets(top: 50, left: 50, bottom: 50, right: 180))
         for i in 0..<10 {
-            group.set(font: UIFont.systemFont(ofSize: 18))
+            group.set(font: Font.systemFont(ofSize: 18))
             group.set(indentation: 30 * CGFloat(i % 5), left: true)
             group.set(indentation: 30 * CGFloat(i % 3), left: false)
             group.add(text: "Text \(i)-\(i)-\(i)-\(i)-\(i)")

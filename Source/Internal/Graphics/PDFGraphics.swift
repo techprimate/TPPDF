@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 13/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Contains a collection methods to render the following shapes:
@@ -30,37 +34,18 @@ internal enum PDFGraphics {
      - parameter end: End point of line
      - parameter style: Style of drawn line
      */
-    internal static func drawLine(start: CGPoint, end: CGPoint, style: PDFLineStyle) {
-        if let path = createLinePath(start: start, end: end, style: style) {
-            style.color.setStroke()
-
-            path.stroke()
-        }
-    }
-
-    /**
-     Creates a path containing a line from the given `start` to the given `end` point.
-
-     - parameter start: Start point of line
-     - parameter end: End point of line
-     - parameter style: Style of drawn line
-
-     - returns: Bezier path of line, `nil` if line type in `style` was `PDFLineType.none`
-     */
-    internal static func createLinePath(start: CGPoint, end: CGPoint, style: PDFLineStyle) -> UIBezierPath? {
-        if style.type == .none {
-            return nil
+    internal static func drawLine(in context: CGContext, start: CGPoint, end: CGPoint, style: PDFLineStyle) {
+        guard style.type != .none else {
+            return
         }
 
-        var path = UIBezierPath()
+        let path = CGMutablePath()
         path.move(to: start)
         path.addLine(to: end)
 
-        let dashes = createDashes(style: style, path: &path)
-        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
-        path.lineWidth = CGFloat(style.width)
+        prepareForDrawingPath(path: path, in: context, strokeStyle: style)
 
-        return path
+        context.drawPath(using: .stroke)
     }
 
     // MARK: - Shape: Rectangle
@@ -72,14 +57,14 @@ internal enum PDFGraphics {
      - parameter outline: Style of border lines
      - parameter fill: Inner color
      */
-    internal static func drawRect(rect: CGRect, outline: PDFLineStyle, fill: UIColor = .clear) {
-        let path = createRectPath(rect: rect, outline: outline)
-
-        outline.color.setStroke()
-        fill.setFill()
-
-        path.fill()
-        path.stroke()
+    internal static func drawRect(in context: CGContext, rect: CGRect, outline: PDFLineStyle, fill: Color = .clear) {
+        var path = BezierPath(rect: rect)
+        if let radius = outline.radius {
+            path = BezierPath(roundedRect: rect, cornerRadius: radius)
+        }
+        prepareForDrawingPath(path: path.cgPath, in: context, strokeStyle: outline)
+        context.setFillColor(fill.cgColor)
+        context.drawPath(using: .fillStroke)
     }
 
     /**
@@ -89,79 +74,61 @@ internal enum PDFGraphics {
      - parameter outline: Style of border lines
      - parameter fill: Inner color
      */
-    internal static func drawRect(rect: CGRect, outline: PDFLineStyle, pattern: FillPattern) {
-        let path = createRectPath(rect: rect, outline: outline)
-
-        outline.color.setStroke()
-        pattern.setFill()
-
-        path.fill()
-        path.stroke()
-    }
-
-    /**
-     Creates a rectangular bezier path from the given `frame`.
-
-     - parameter rect: Frame of rectangle
-     - parameter outline: Style of border lines
-     */
-    internal static func createRectPath(rect: CGRect, outline: PDFLineStyle) -> UIBezierPath {
-        var path = UIBezierPath(rect: rect)
+    internal static func drawRect(in context: CGContext, rect: CGRect, outline: PDFLineStyle, pattern: FillPattern) {
+        var path = BezierPath(rect: rect)
         if let radius = outline.radius {
-            path = UIBezierPath.init(roundedRect: rect, cornerRadius: radius)
+            path = BezierPath(roundedRect: rect, cornerRadius: radius)
         }
-
-        let dashes = createDashes(style: outline, path: &path)
-        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
-        path.lineWidth = CGFloat(outline.width)
-        return path
+        prepareForDrawingPath(path: path.cgPath, in: context, strokeStyle: outline)
+        pattern.setFill(in: context)
+        context.drawPath(using: .fillStroke)
     }
 
     // MARK: - Shape Utility
 
     /**
-     Creates an array of dash values. Used to define dashes of a `UIBezierPath`.
+     TODO: Documentation
+     */
+    internal static func drawPath(path: BezierPath, in context: CGContext, outline: PDFLineStyle, fillColor: Color) {
+        prepareForDrawingPath(path: path.cgPath, in: context, strokeStyle: outline)
+        context.setFillColor(fillColor.cgColor)
+        context.drawPath(using: .fillStroke)
+    }
+
+    /**
+     TODO: Documentation
+     */
+    internal static func prepareForDrawingPath(path: CGPath, in context: CGContext, strokeStyle: PDFLineStyle) {
+        context.beginPath()
+        context.addPath(path)
+
+        if let dashes = createDashes(style: strokeStyle) {
+            context.setLineDash(phase: 0, lengths: dashes.lengths)
+            context.setLineCap(dashes.cap)
+        }
+        context.setLineWidth(strokeStyle.width)
+        context.setStrokeColor(strokeStyle.color.cgColor)
+    }
+
+    /**
+     Creates an array of dash values. Used to define dashes of a `BezierPath`.
      Array is empty if line type is not a dashed or dotted.
-     This also sets the `UIBezierPath.lineCapStyle`.
+     This also sets the `BezierPath.lineCapStyle`.
 
      - parameter style: Style of line
      - parameter path: Reference to the path, which will be manipulated.
 
      - returns: Array with dash values
      */
-    internal static func createDashes(style: PDFLineStyle, path: inout UIBezierPath) -> [CGFloat] {
-        var dashes: [CGFloat] = []
-
+    internal static func createDashes(style: PDFLineStyle) -> (lengths: [CGFloat], cap: CGLineCap)? {
         switch style.type {
         case .dashed:
-            dashes = [style.width * 3, style.width * 3]
-            path.lineCapStyle = .butt
+            return ([style.width * 3, style.width * 3], .butt)
         case .dotted:
-            dashes = [0, style.width * 2]
-            path.lineCapStyle = .round
+            return ([0, style.width * 2], .round)
         default:
-            break
+            return nil
         }
-
-        return dashes
-    }
-
-    /**
-     TODO: Documentation
-     */
-    internal static func drawPath(path: UIBezierPath, outline: PDFLineStyle, fillColor: UIColor) {
-        guard var path = path.copy() as? UIBezierPath else {
-            fatalError("Copy of UIBezierPath is invalid!")
-        }
-        let dashes = createDashes(style: outline, path: &path)
-        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
-        path.lineWidth = CGFloat(outline.width)
-
-        outline.color.setStroke()
-        fillColor.setFill()
-
-        path.fill()
-        path.stroke()
     }
 
     // MARK: - Image Manipulation
@@ -179,10 +146,10 @@ internal enum PDFGraphics {
 
      - returns: Resized, compressed and rounded copy of `image`
      */
-    internal static func resizeAndCompressImage(image: UIImage, frame: CGRect,
+    internal static func resizeAndCompressImage(image: Image, frame: CGRect,
                                                 shouldResize: Bool, shouldCompress: Bool,
                                                 quality: CGFloat,
-                                                roundCorners: UIRectCorner = [], cornerRadius: CGFloat? = nil) -> UIImage {
+                                                roundCorners: RectCorner = [], cornerRadius: CGFloat? = nil) -> Image {
         var finalImage = image
 
         if shouldResize {
@@ -207,19 +174,29 @@ internal enum PDFGraphics {
 
      - returns: Resized version of `image`
      */
-    internal static func resize(image: UIImage, frame: CGRect, quality: CGFloat) -> UIImage {
+    internal static func resize(image: Image, frame: CGRect, quality: CGFloat) -> Image {
         let factor: CGFloat = min(3 * quality, 1)
         let resizeFactor = factor.isZero ? 0.2 : factor
 
         let size = CGSize(width: frame.width * resizeFactor,
                           height: frame.height * resizeFactor)
 
+        #if os(iOS)
         UIGraphicsBeginImageContext(size)
         image.draw(in: CGRect(origin: .zero, size: size))
         let finalImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
         return finalImage ?? image
+        #elseif os(macOS)
+        let finalImage = NSImage(size: size)
+        finalImage.lockFocus()
+        let context = NSGraphicsContext.current!
+        context.imageInterpolation = .high
+        image.draw(in: CGRect(origin: .zero, size: size))
+        finalImage.unlockFocus()
+        return finalImage
+        #endif
     }
 
     /**
@@ -231,11 +208,19 @@ internal enum PDFGraphics {
 
      - returns: Compressed image
      */
-    internal static func compress(image: UIImage, quality: CGFloat) -> UIImage {
+    internal static func compress(image: Image, quality: CGFloat) -> Image {
+        #if os(iOS)
         guard let data = image.jpegData(compressionQuality: quality) else {
             return image
         }
-        guard let compressed = UIImage(data: data) else {
+        #elseif os(macOS)
+        guard let imageData = image.tiffRepresentation,
+            let bitmapData = NSBitmapImageRep(data: imageData),
+            let data = bitmapData.representation(using: .jpeg, properties: [:]) else {
+                return image
+        }
+        #endif
+        guard let compressed = Image(data: data) else {
             return image
         }
         return compressed
@@ -251,7 +236,7 @@ internal enum PDFGraphics {
 
      - returns: Manipulated image
      */
-    internal static func round(image: UIImage, frameSize: CGSize, corners: UIRectCorner, cornerRadius: CGFloat?) -> UIImage {
+    internal static func round(image: Image, frameSize: CGSize, corners: RectCorner, cornerRadius: CGFloat?) -> Image {
         let size = image.size
 
         var cornerRadii = CGSize.zero
@@ -263,15 +248,31 @@ internal enum PDFGraphics {
             cornerRadii = CGSize(width: radius, height: radius)
         }
 
+        let clipPath = BezierPath(roundedRect: CGRect(origin: .zero, size: size), byRoundingCorners: corners, cornerRadii: cornerRadii)
+
+        #if os(iOS)
         UIGraphicsBeginImageContext(size)
-        let clipPath = UIBezierPath(roundedRect: CGRect(origin: .zero, size: size), byRoundingCorners: corners, cornerRadii: cornerRadii)
+        #elseif os(macOS)
+        let finalImage = NSImage(size: size)
+        finalImage.lockFocus()
+        #endif
+
         clipPath.addClip()
         image.draw(in: CGRect(origin: .zero, size: size))
-
+        
+        #if os(iOS)
         let finalImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-
         return finalImage ?? image
+        #elseif os(macOS)
+        finalImage.unlockFocus()
+        guard let data = finalImage.tiffRepresentation,
+            let imageRep = NSBitmapImageRep(data: data),
+            let pngData = imageRep.representation(using: .png, properties: [:]) else {
+                return image
+        }
+        return NSImage(data: pngData) ?? image
+        #endif
     }
 
     /**
@@ -282,29 +283,40 @@ internal enum PDFGraphics {
         /**
          TODO: Documentation
          */
-        case dotted(foreColor: UIColor, backColor: UIColor)
+        case dotted(foreColor: Color, backColor: Color)
 
         /**
          TODO: Documentation
          */
-        internal func setFill() {
+        internal func setFill(in context: CGContext) {
             switch self {
             case .dotted(let foreColor, let backColor):
-                UIGraphicsBeginImageContext(CGSize(width: 5, height: 5))
-                UIColor.clear.setStroke()
-                backColor.setFill()
+                let size = CGSize(width: 5, height: 5)
 
-                var path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 5, height: 5))
+                #if os(iOS)
+                UIGraphicsBeginImageContext(size)
+                #elseif os(macOS)
+                let image = NSImage(size: size)
+                image.lockFocus()
+                #endif
+
+                Color.clear.setStroke()
+                backColor.setFill()
+                var path = BezierPath(rect: CGRect(x: 0, y: 0, width: 5, height: 5))
                 path.fill()
 
                 foreColor.setFill()
-
-                path = UIBezierPath(ovalIn: CGRect(x: 2.5, y: 2.5, width: 2.5, height: 2.5))
+                path = BezierPath(ovalIn: CGRect(x: 2.5, y: 2.5, width: 2.5, height: 2.5))
                 path.fill()
 
-                let image = UIGraphicsGetImageFromCurrentImageContext()
+                #if os(iOS)
+                let image = UIGraphicsGetImageFromCurrentImageContext()!
                 UIGraphicsEndImageContext()
-                UIColor(patternImage: image!).setFill()
+                #elseif os(macOS)
+                image.unlockFocus()
+                #endif
+
+                context.setFillColor(Color(patternImage: image).cgColor)
             }
         }
     }

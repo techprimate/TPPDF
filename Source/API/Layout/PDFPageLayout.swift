@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 11/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Contains all relevant layout informations of a pdf document
@@ -27,7 +31,7 @@ public struct PDFPageLayout {
      `left`: Left inset of page
      `right`: Right inset of page
      */
-    public var margin: UIEdgeInsets = .zero
+    public var margin: EdgeInsets = .zero
 
     /**
      Spaces between header, content and footer.
@@ -46,7 +50,7 @@ public struct PDFPageLayout {
      - Parameter margin: Edge margin insets
      - Parameter space: Vertical spacing between header, footer and content
      */
-    public init(size: CGSize = .zero, margin: UIEdgeInsets = .zero, space: (header: CGFloat, footer: CGFloat) = (0, 0)) {
+    public init(size: CGSize = .zero, margin: EdgeInsets = .zero, space: (header: CGFloat, footer: CGFloat) = (0, 0)) {
         self.size = size
         self.margin = margin
         self.space = space

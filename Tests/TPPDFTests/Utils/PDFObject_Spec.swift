@@ -26,11 +26,15 @@ class PDFObject_Spec: QuickSpec {
                 var document: PDFDocument!
                 var generator: PDFGenerator!
                 var container: PDFContainer!
+                var context: CGContext!
 
                 beforeEach {
                     document = PDFDocument(format: .a4)
                     generator = PDFGenerator(document: document)
                     container = PDFContainer.none
+                    let url = URL(fileURLWithPath: NSTemporaryDirectory())
+                        .appendingPathComponent(UUID().uuidString)
+                    context = CGContext(url as CFURL, mediaBox: nil, nil)
                 }
 
                 it("should return a empty subobjects array when calculating") {
@@ -44,7 +48,7 @@ class PDFObject_Spec: QuickSpec {
 
                 it("should have a draw method") {
                     expect {
-                        try object.draw(generator: generator, container: container)
+                        try object.draw(generator: generator, container: container, in: context)
                     }.toNot(throwError())
                 }
             }

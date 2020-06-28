@@ -6,7 +6,11 @@
 //  Copyright © 2019 techprimate GmbH & Co. KG. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 import TPPDF
 
 class TextExampleFactory: ExampleFactory {
@@ -14,8 +18,8 @@ class TextExampleFactory: ExampleFactory {
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
-        document.set(.contentCenter, font: UIFont.boldSystemFont(ofSize: 50.0))
-        document.set(.contentCenter, textColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0))
+        document.set(.contentCenter, font: Font.boldSystemFont(ofSize: 50.0))
+        document.set(.contentCenter, textColor: Color(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0))
         // Add a string using the title style
         document.add(.contentCenter, textObject: PDFSimpleText(text: "TPPDF"))
 
@@ -24,8 +28,8 @@ class TextExampleFactory: ExampleFactory {
 
         // Create and add a subtitle as an attributed string for more customization possibilities
         let title = NSMutableAttributedString(string: "Create PDF documents easily", attributes: [
-            .font: UIFont.systemFont(ofSize: 18.0),
-            .foregroundColor: UIColor(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
+            .font: Font.systemFont(ofSize: 18.0),
+            .foregroundColor: Color(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
         ])
         document.add(.contentCenter, attributedText: title)
 
@@ -34,14 +38,14 @@ class TextExampleFactory: ExampleFactory {
 
         // Add headline with extra spacing
         document.add(space: 10)
-        document.set(font: UIFont.systemFont(ofSize: 15))
-        document.set(textColor: UIColor.black)
+        document.set(font: Font.systemFont(ofSize: 15))
+        document.set(textColor: Color.black)
 
         document.add(textObject: PDFSimpleText(text: "1. Introduction"))
         document.add(space: 10)
 
         // Set font for text
-        document.set(font: UIFont.systemFont(ofSize: 13.0))
+        document.set(font: Font.systemFont(ofSize: 13.0))
 
         // Add long simple text. This will automatically word wrap if content width is not enough.
         document.add(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
@@ -60,7 +64,7 @@ class TextExampleFactory: ExampleFactory {
         document.set(indent: 100, left: false)
 
         // Set font
-        document.set(font: UIFont.italicSystemFont(ofSize: 13))
+        document.set(font: Font.systemFont(ofSize: 13))
         document.add(text: LoremIpsum.get(words: 100))
 
         document.add(space: 300)

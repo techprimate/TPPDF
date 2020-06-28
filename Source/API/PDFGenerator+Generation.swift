@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 05/06/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Gives the generator the functionality to convert a `PDFDocument` into a `PDF`
@@ -33,9 +37,9 @@ extension PDFGenerator {
      - throws:          PDFError
      */
     public func generate(to url: URL, info: PDFInfo?) throws {
-        UIGraphicsBeginPDFContextToFile(url.path, document.layout.bounds, (info ?? document.info).generate())
-        try generatePDFContext()
-        UIGraphicsEndPDFContext()
+        let context = PDFContextGraphics.createPDFContext(url: url, bounds: document.layout.bounds, info: info ?? document.info)
+        try generatePDFContext(context: context)
+        PDFContextGraphics.closePDFContext(context)
     }
 
     /// nodoc
@@ -54,10 +58,9 @@ extension PDFGenerator {
      - throws:              PDFError
      */
     public func generateData(info: PDFInfo?) throws -> Data {
-        let data = NSMutableData()
-        UIGraphicsBeginPDFContextToData(data, document.layout.bounds, (info ?? document.info).generate())
-        try generatePDFContext()
-        UIGraphicsEndPDFContext()
+        let (data, context) = PDFContextGraphics.createPDFDataContext(bounds: document.layout.bounds, info: info ?? document.info)
+        try generatePDFContext(context: context)
+        PDFContextGraphics.closePDFContext(context)
         return data as Data
     }
 
@@ -68,9 +71,9 @@ extension PDFGenerator {
 
      - throws: PDFError
      */
-    public func generatePDFContext() throws {
+    public func generatePDFContext(context: CGContext) throws {
         let renderObjects = try createRenderObjects()
-        try render(objects: renderObjects)
+        try render(objects: renderObjects, in: context)
     }
 
     /**
@@ -194,6 +197,11 @@ extension PDFGenerator {
         var hasAddedMasterToPage = false
         var hasAddedHeaderFooterToPage = false
 
+        result += masterObj
+        hasAddedMasterToPage = true
+        result += try addHeaderFooterObjects()
+        hasAddedHeaderFooterToPage = true
+
         // Iterate all objects and let them calculate the required rendering
         var needsPageBreak = false
         for (container, pdfObject) in contentObjs {
@@ -310,18 +318,20 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    internal func render(objects: [PDFLocatedRenderObject]) throws {
-        UIGraphicsBeginPDFPageWithInfo(document.layout.bounds, nil)
+    internal func render(objects: [PDFLocatedRenderObject], in context: CGContext) throws {
+        PDFContextGraphics.beginPDFPage(in: context, for: document.layout.bounds)
 
-        drawDebugPageOverlay()
+        drawDebugPageOverlay(in: context)
 
         let renderProgress = Progress.discreteProgress(totalUnitCount: Int64(objects.count))
         progress.addChild(renderProgress, withPendingUnitCount: 1)
 
         for (container, object) in objects {
-            try render(object: object, in: container)
+            try render(object: object, in: container, in: context)
             renderProgress.completedUnitCount += 1
         }
+
+        PDFContextGraphics.endPDFPage(in: context)
     }
 
     /**
@@ -329,8 +339,8 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    internal func render(object: PDFRenderObject, in container: PDFContainer) throws {
-        try object.draw(generator: self, container: container)
+    internal func render(object: PDFRenderObject, in container: PDFContainer, in context: CGContext) throws {
+        try object.draw(generator: self, container: container, in: context)
     }
 
     // MARK: - INTERNAL STATIC FUNCS

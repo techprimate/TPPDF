@@ -6,7 +6,11 @@
 //  Copyright © 2019 techprimate GmbH & Co. KG. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 import TPPDF
 
 class PaginationExampleFactory: ExampleFactory {
@@ -23,8 +27,8 @@ class PaginationExampleFactory: ExampleFactory {
         document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure { (page, total) -> String in
             return "\(page) / \(total)"
             }, range: (1, 20), hiddenPages: [3, 7], textAttributes: [
-                .font: UIFont.boldSystemFont(ofSize: 30.0),
-                .foregroundColor: UIColor.blue
+                .font: Font.boldSystemFont(ofSize: 30.0),
+                .foregroundColor: Color.blue
         ])
         
         return [document]

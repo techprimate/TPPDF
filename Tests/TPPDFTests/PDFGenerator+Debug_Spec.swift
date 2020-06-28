@@ -25,9 +25,13 @@ class PDFGenerator_Debug_Spec: QuickSpec {
 
                 it("should not draw overlay if debug is disabled") {
                     UIGraphicsBeginImageContext(document.layout.size)
-
+                    guard let context = UIGraphicsGetCurrentContext() else {
+                        fail("Could not get graphics context")
+                        return
+                    }
+                    
                     generator.debug = false
-                    generator.drawDebugPageOverlay()
+                    generator.drawDebugPageOverlay(in: context)
 
                     let image = UIGraphicsGetImageFromCurrentImageContext()
                     UIGraphicsEndImageContext()
@@ -54,9 +58,12 @@ class PDFGenerator_Debug_Spec: QuickSpec {
 
                 it("should draw margin lines") {
                     UIGraphicsBeginImageContext(document.layout.size)
-
+                    guard let context = UIGraphicsGetCurrentContext() else {
+                        fail("Could not get graphics context")
+                        return
+                    }
                     generator.debug = true
-                    generator.drawDebugPageOverlay()
+                    generator.drawDebugPageOverlay(in: context)
 
                     let image = UIGraphicsGetImageFromCurrentImageContext()
                     UIGraphicsEndImageContext()

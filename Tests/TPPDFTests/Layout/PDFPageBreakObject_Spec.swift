@@ -6,6 +6,8 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
+import Foundation
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -25,6 +27,7 @@ class PDFPageBreakObject_Spec: QuickSpec {
 
                 let document = PDFDocument(format: .a4)
                 var generator: PDFGenerator!
+                var context: CGContext!
 
                 let container = PDFContainer.contentLeft
                 var result: [PDFLocatedRenderObject]!
@@ -32,6 +35,9 @@ class PDFPageBreakObject_Spec: QuickSpec {
                 beforeEach {
                     generator = PDFGenerator(document: document)
                     result = []
+                    let url = URL(fileURLWithPath: NSTemporaryDirectory())
+                        .appendingPathComponent(UUID().uuidString)
+                    context = CGContext(url as CFURL, mediaBox: nil, nil)
                 }
 
                 it("can set offset") {
@@ -47,7 +53,7 @@ class PDFPageBreakObject_Spec: QuickSpec {
 
                 it("can be drawn") {
                     expect {
-                        try object.draw(generator: generator, container: container)
+                        try object.draw(generator: generator, container: container, in: context)
                     }.toNot(throwError())
                 }
             }

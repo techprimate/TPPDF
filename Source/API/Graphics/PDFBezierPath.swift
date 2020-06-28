@@ -5,8 +5,11 @@
 //  Created by Philip Niedertscheider on 01.06.19.
 //
 
-import Foundation
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  TODO: Documentation
@@ -111,27 +114,50 @@ public class PDFBezierPath: CustomStringConvertible {
     /**
      TODO: Documentation
      */
-    public func bezierPath(in frame: CGRect) -> UIBezierPath {
-        let bezierPath = UIBezierPath()
+    public func bezierPath(in frame: CGRect) -> BezierPath {
+        let bezierPath = BezierPath()
         for element in elements {
             switch element {
             case .move(let point):
                 bezierPath.move(to: calculate(point: point, in: frame))
             case .line(let point):
+                #if os(iOS)
                 bezierPath.addLine(to: calculate(point: point, in: frame))
+                #else
+                bezierPath.line(to: calculate(point: point, in: frame))
+                #endif
             case .curve(let endPoint, let controlPoint1, let controlPoint2):
+                #if os(iOS)
                 bezierPath.addCurve(to: calculate(point: endPoint, in: frame),
                                     controlPoint1: calculate(point: controlPoint1, in: frame),
                                     controlPoint2: calculate(point: controlPoint2, in: frame))
+                #else
+                bezierPath.curve(to: calculate(point: endPoint, in: frame),
+                                 controlPoint1: calculate(point: controlPoint1, in: frame),
+                                 controlPoint2: calculate(point: controlPoint2, in: frame))
+                #endif
             case .quadCurve(let endPoint, let controlPoint):
+                #if os(iOS)
                 bezierPath.addQuadCurve(to: calculate(point: endPoint, in: frame),
                                         controlPoint: calculate(point: controlPoint, in: frame))
+                #else
+                bezierPath.quadCurve(to: calculate(point: endPoint, in: frame),
+                                        controlPoint: calculate(point: controlPoint, in: frame))
+                #endif
             case .arc(let center, let radius, let startAngle, let endAngle, let clockwise):
+                #if os(iOS)
                 bezierPath.addArc(withCenter: calculate(point: center, in: frame),
                                   radius: radius,
                                   startAngle: startAngle,
                                   endAngle: endAngle,
                                   clockwise: clockwise)
+                #else
+                bezierPath.appendArc(withCenter: calculate(point: center, in: frame),
+                                     radius: radius,
+                                     startAngle: startAngle,
+                                     endAngle: endAngle,
+                                     clockwise: clockwise)
+                #endif
             case .close:
                 bezierPath.close()
             }

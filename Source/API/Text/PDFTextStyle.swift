@@ -5,8 +5,11 @@
 //  Created by Philip Niedertscheider on 28.05.19.
 //
 
-import Foundation
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  TODO: Documentation
@@ -21,12 +24,12 @@ public class PDFTextStyle {
     /**
      Font of object
      */
-    public var font: UIFont?
+    public var font: Font?
 
     /**
      Text color of object
      */
-    public var color: UIColor?
+    public var color: Color?
 
     /**
      Initalizer
@@ -35,7 +38,7 @@ public class PDFTextStyle {
      - parameter font: Font of text, defaults to nil
      - parameter color: Color of text, defaults to nil
      */
-    public init(name: String, font: UIFont? = nil, color: UIColor? = nil) {
+    public init(name: String, font: Font? = nil, color: Color? = nil) {
         self.name = name
         self.font = font
         self.color = color

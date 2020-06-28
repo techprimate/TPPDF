@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 // swiftlint:disable function_parameter_count
 
@@ -316,7 +320,11 @@ internal class PDFTableObject: PDFRenderObject {
                     }
 
                     // Grid
-                    cellElements += createCellOutlineObjects(borders: item.style.borders, frame: cellFrame)
+                    let outline = try createCellOutlineObjects(borders: item.style.borders, frame: cellFrame)
+                        .map({ try $0.calculate(generator: generator, container: container) })
+                        .reduce([], +)
+                        .map(\.1)
+                    cellElements += outline
 
                     let sliceObject = createSliceObject(frame: cellFrame,
                                                         elements: cellElements,
@@ -352,8 +360,12 @@ internal class PDFTableObject: PDFRenderObject {
                 }
 
                 // Grid
-                cellElements += createCellOutlineObjects(borders: item.style.borders, frame: cellFrame)
-
+                let outline = try createCellOutlineObjects(borders: item.style.borders, frame: cellFrame)
+                    .map({ try $0.calculate(generator: generator, container: container) })
+                    .reduce([], +)
+                    .map(\.1)
+                cellElements += outline
+                
                 let sliceObject = createSliceObject(frame: cellFrame,
                                                     elements: cellElements,
                                                     minOffset: minOffset,

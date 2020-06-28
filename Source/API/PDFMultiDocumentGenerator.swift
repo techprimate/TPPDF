@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 04.12.2019
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Generates a PDF from multiple `PDFDocument` by appending them.
@@ -81,9 +85,10 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     */
     public func generate(to target: URL, info: PDFInfo?) throws {
         assert(!generators.isEmpty, "At least one document is required!")
-        UIGraphicsBeginPDFContextToFile(target.path, bounds, (info ?? self.info).generate())
-        try processDocuments()
-        UIGraphicsEndPDFContext()
+        
+        let context = PDFContextGraphics.createPDFContext(url: target, bounds: self.bounds, info: self.info)
+        try processDocuments(context: context)
+        PDFContextGraphics.closePDFContext(context)
     }
 
     public func generateData() throws -> Data {
@@ -101,10 +106,11 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     */
     public func generateData(info: PDFInfo? = nil) throws -> Data {
         assert(!generators.isEmpty, "At least one document is required!")
-        let data = NSMutableData()
-        UIGraphicsBeginPDFContextToData(data, bounds, (info ?? self.info).generate())
-        try processDocuments()
-        UIGraphicsEndPDFContext()
+
+        let (data, context) = PDFContextGraphics.createPDFDataContext(bounds: bounds, info: info ?? self.info)
+        try processDocuments(context: context)
+        PDFContextGraphics.closePDFContext(context)
+        
         return data as Data
     }
 
@@ -114,11 +120,11 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
      Make sure to call `UIGraphicsBeginPDFContextToData()` before,
      and `UIGraphicsEndPDFContext` after calling this method.
      */
-    internal func processDocuments() throws {
+    internal func processDocuments(context: CGContext) throws {
         for generator in generators {
             generator.debug = debug
             progress.addChild(generator.progress, withPendingUnitCount: 1)
-            try generator.generatePDFContext()
+            try generator.generatePDFContext(context: context)
         }
     }
 }

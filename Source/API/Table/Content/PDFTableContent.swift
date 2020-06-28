@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  TODO: Documentation
@@ -47,7 +51,7 @@ public class PDFTableContent {
         } else if content is String {
             self.type = .string
             self.content = content
-        } else if content is UIImage {
+        } else if content is Image {
             self.type = .image
             self.content = content
         } else if content is NSAttributedString {
@@ -99,8 +103,8 @@ public class PDFTableContent {
     /**
      TODO: Documentation
      */
-    internal var imageValue: UIImage? {
-        type == .image ? content as? UIImage : nil
+    internal var imageValue: Image? {
+        type == .image ? content as? Image : nil
     }
 }
 

@@ -5,7 +5,11 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  TODO: Documentation
@@ -15,7 +19,7 @@ internal class PDFSectionObject: PDFRenderObject {
     internal struct PDFSectionColumnMetadata {
         internal let minX: CGFloat
         internal let width: CGFloat
-        internal let backgroundColor: UIColor?
+        internal let backgroundColor: Color?
     }
 
     /**

@@ -5,7 +5,12 @@
 //  Created by Philip Niedertscheider on 06.01.20.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
+import CoreGraphics
 
 internal class PDFSlicedObject: PDFRenderObject {
 
@@ -23,16 +28,15 @@ internal class PDFSlicedObject: PDFRenderObject {
         ]
     }
 
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return
-        }
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         if frame != .null {
             context.saveGState()
-            UIBezierPath(rect: frame).addClip()
+            context.beginPath()
+            context.addPath(BezierPath(rect: frame).cgPath)
+            context.clip()
         }
         for child in children {
-            try child.draw(generator: generator, container: container)
+            try child.draw(generator: generator, container: container, in: context)
         }
         if frame != .null {
             context.restoreGState()

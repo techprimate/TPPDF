@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Calculates and draws a horizontal separator line.
@@ -55,18 +59,21 @@ internal class PDFLineSeparatorObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
         PDFGraphics.drawLine(
+            in: context,
             start: CGPoint(x: self.frame.minX, y: self.frame.midY),
             end: CGPoint(x: self.frame.maxX, y: self.frame.midY),
             style: style
         )
 
         if generator.debug && (style.type == .none) {
-            PDFGraphics.drawRect(rect: self.frame, outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
+            PDFGraphics.drawRect(in: context,
+                                 rect: self.frame,
+                                 outline: PDFLineStyle(type: .full, color: .red, width: 1.0), fill: .clear)
         }
 
-        applyAttributes()
+        applyAttributes(in: context)
     }
 
     /**

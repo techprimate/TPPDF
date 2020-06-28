@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 12/08/16.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  * Source for page sizes: https://www.papersizes.org

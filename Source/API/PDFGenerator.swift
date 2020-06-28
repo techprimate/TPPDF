@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 11/08/16.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Factory which converts a document into a PDF file
@@ -52,7 +56,7 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
     /**
      Generator wide padding used for calculations of groups
      */
-    internal var currentPadding = UIEdgeInsets.zero
+    internal var currentPadding = EdgeInsets.zero
 
     /**
      Relative value tracking progress
@@ -63,8 +67,8 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
      Font of each container.
      These values are used for simple text objects
      */
-    internal lazy var fonts: [PDFContainer: UIFont] = .init(uniqueKeysWithValues: PDFContainer.allCases.map({ container in
-        (container, UIFont.systemFont(ofSize: UIFont.systemFontSize))
+    internal lazy var fonts: [PDFContainer: Font] = .init(uniqueKeysWithValues: PDFContainer.allCases.map({ container in
+        (container, Font.systemFont(ofSize: Font.systemFontSize))
     }))
 
     /**
@@ -76,8 +80,8 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
      Text color of each container.
      These values are used for simple text objects
      */
-    internal lazy var textColor: [PDFContainer: UIColor] = .init(uniqueKeysWithValues: PDFContainer.allCases.map({ container in
-        (container, UIColor.black)
+    internal lazy var textColor: [PDFContainer: Color] = .init(uniqueKeysWithValues: PDFContainer.allCases.map({ container in
+        (container, Color.black)
     }))
 
     // MARK: - PUBLIC INITS
@@ -103,10 +107,10 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
         columnState.reset()
         currentPage = 1
         fonts = fonts.mapValues { _ in
-            UIFont.systemFont(ofSize: UIFont.systemFontSize)
+            Font.systemFont(ofSize: Font.systemFontSize)
         }
         textColor = textColor.mapValues { _ in
-            UIColor.black
+            Color.black
         }
     }
 }

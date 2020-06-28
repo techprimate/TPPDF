@@ -5,7 +5,11 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /**
  Changes the text color in the container, where this object is in.
@@ -15,14 +19,14 @@ internal class PDFTextColorObject: PDFRenderObject {
     /**
      New text color in container after calculation
      */
-    internal var color: UIColor
+    internal var color: Color
 
     /**
      Initalizer
 
      - parameter textColor: New text color
      */
-    internal init(color: UIColor) {
+    internal init(color: Color) {
         self.color = color
     }
 
