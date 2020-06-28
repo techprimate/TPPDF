@@ -2,42 +2,42 @@
   "warnings": [
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Groups/PDFMasterGroup.swift",
-      "line": 16,
+      "line": 19,
       "symbol": "PDFMasterGroup.isFullPage",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 51,
+      "line": 55,
       "symbol": "PDFTable.init(size:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 114,
+      "line": 118,
       "symbol": "PDFTable.rows",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 118,
+      "line": 122,
       "symbol": "PDFTable.columns",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 122,
+      "line": 126,
       "symbol": "PDFTable.content",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 131,
+      "line": 135,
       "symbol": "PDFTable.alignment",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -51,9 +51,65 @@
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/Style/PDFTableCellStyle.swift",
-      "line": 44,
+      "line": 48,
       "symbol": "PDFTableCellStyle.none",
       "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/CrossPlattformGraphics.swift",
+      "line": 12,
+      "symbol": "Color",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/CrossPlattformGraphics.swift",
+      "line": 13,
+      "symbol": "Font",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/CrossPlattformGraphics.swift",
+      "line": 14,
+      "symbol": "Image",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/CrossPlattformGraphics.swift",
+      "line": 15,
+      "symbol": "EdgeInsets",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/CrossPlattformGraphics.swift",
+      "line": 16,
+      "symbol": "BezierPath",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/CrossPlattformGraphics.swift",
+      "line": 17,
+      "symbol": "Image",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/CrossPlattformGraphics.swift",
+      "line": 17,
+      "symbol": "Point",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/CrossPlattformGraphics.swift",
+      "line": 18,
+      "symbol": "RectCorner",
+      "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
