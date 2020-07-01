@@ -42,7 +42,7 @@
     <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
   • <a href="#example">Example</a>
-  • <a href="Documentation/Usage.md"><strong>Usage</strong></a>
+  • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md"><strong>Usage</strong></a>
   • <a href="#installation">Installation</a>
   • <a href="#credits">Credits</a>
   • <a href="#license">License</a>
