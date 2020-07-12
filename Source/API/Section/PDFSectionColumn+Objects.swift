@@ -30,14 +30,6 @@ public extension PDFSectionColumn {
         objects += [(container, PDFSpaceObject(space: space))]
     }
 
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "add(_:space:)")
-    func addSpace(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, space: CGFloat) {
-        add(container, space: space)
-    }
-
 	// MARK: - Lines
 
 	/**
@@ -63,14 +55,6 @@ public extension PDFSectionColumn {
 		objects += [(container, PDFImageObject(image: image))]
 	}
 
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "add(_:image:)")
-    func addImage(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, image: PDFImage) {
-        add(container, image: image)
-    }
-
 	/**
 	Adds an image row to the given container.
 	This image row will fill the full available width between left indentation and right indentation.
@@ -81,14 +65,6 @@ public extension PDFSectionColumn {
 	*/
     func add(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, imagesInRow images: [PDFImage], spacing: CGFloat = 5.0) {
         objects += [(container, PDFImageRowObject(images: images, spacing: spacing))]
-    }
-
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "add(_:imagesInRow:spacing:)")
-    func addImagesInRow(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, images: [PDFImage], spacing: CGFloat = 5.0) {
-        add(container, imagesInRow: images, spacing: spacing)
     }
 
 	// MARK: - Text
@@ -104,14 +80,6 @@ public extension PDFSectionColumn {
 		add(container, textObject: PDFSimpleText(text: text, spacing: lineSpacing))
 	}
 
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "add(_:text:lineSpacing:)")
-    func addText(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, text: String, lineSpacing: CGFloat = 1.0) {
-        add(container, text: text, lineSpacing: lineSpacing)
-    }
-
 	/**
 	Adds an text object to the given container
 	
@@ -121,14 +89,6 @@ public extension PDFSectionColumn {
     func add(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, textObject: PDFSimpleText) {
 		objects += [(container, PDFAttributedTextObject(simpleText: textObject))]
 	}
-
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "add(_:textObject:)")
-    func addText(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, textObject: PDFSimpleText) {
-        add(container, textObject: textObject)
-    }
 
 	/**
 	Shorthand function to add a attributed String text to the given container
@@ -140,14 +100,6 @@ public extension PDFSectionColumn {
 		add(container, attributedTextObject: PDFAttributedText(text: attributedText))
 	}
 
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "add(_:attributedText:)")
-    func addAttributedText(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, text: NSAttributedString) {
-        add(container, attributedText: text)
-    }
-
 	/**
 	Adds an attributed text object to the given container
 	
@@ -158,14 +110,6 @@ public extension PDFSectionColumn {
 		objects += [(container, PDFAttributedTextObject(attributedText: attributedTextObject))]
 	}
 
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "add(_:attributedTextObject:)")
-    func addAttributedText(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, textObject: PDFAttributedText) {
-        add(container, attributedTextObject: textObject)
-    }
-
 	/**
 	Set font in given container. This text color will be used when adding a `PDFSimpleText`
 	
@@ -175,14 +119,6 @@ public extension PDFSectionColumn {
     func set(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, font: Font) {
 		objects += [(container, PDFFontObject(font: font))]
 	}
-
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "set(_:font:)")
-    func setFont(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, font: Font) {
-        set(container, font: font)
-    }
 
 	/**
 	Reset text color in given container to default.
@@ -203,14 +139,6 @@ public extension PDFSectionColumn {
         objects += [(container, PDFTextColorObject(color: textColor))]
     }
 
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "set(_:textColor:)")
-    func setTextColor(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, color: Color) {
-        set(container, textColor: color)
-    }
-
 	/**
 	Reset text color in given container to default.
 	
@@ -229,14 +157,6 @@ public extension PDFSectionColumn {
         objects += [(container, PDFTableObject(table: table))]
     }
 
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "add(_:table:)")
-    func addTable(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, table: PDFTable) {
-        add(container, table: table)
-    }
-
 	// MARK: - List
 
 	/**
@@ -244,14 +164,6 @@ public extension PDFSectionColumn {
 	*/
     func add(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, list: PDFList) {
         objects += [(container, PDFListObject(list: list))]
-    }
-
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "add(_:list:)")
-    func addList(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, list: PDFList) {
-        add(container, list: list)
     }
 
 	// MARK: - Layout
@@ -267,14 +179,6 @@ public extension PDFSectionColumn {
         objects += [(container, PDFIndentationObject(indentation: indent, left: left, insideSectionColumn: true))]
     }
 
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "set(_:indet:left:)")
-    func setIndentation(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, indent: CGFloat, left: Bool) {
-        set(container, indent: indent, left: left)
-    }
-
 	/**
 	Change the absolute top offset in a container
 	
@@ -284,14 +188,6 @@ public extension PDFSectionColumn {
     func set(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, absoluteOffset: CGFloat) {
 		objects += [(container, PDFOffsetObject(offset: absoluteOffset))]
 	}
-
-    /**
-     TODO: Documentation
-     */
-    @available(*, deprecated, renamed: "set(_:absoluteOffset:)")
-    func setAbsoluteOffset(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, offset: CGFloat) {
-        set(container, absoluteOffset: offset)
-    }
 
     // MARK: - Groups
 
