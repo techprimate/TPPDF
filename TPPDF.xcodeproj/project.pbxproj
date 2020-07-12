@@ -93,7 +93,6 @@
 		D4803CF524703E5300DDA039 /* PDFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C4C24703E5300DDA039 /* PDFError.swift */; };
 		D4803CF624703E5300DDA039 /* PDFRenderObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C4D24703E5300DDA039 /* PDFRenderObject.swift */; };
 		D4803CF724703E5300DDA039 /* PDFCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C4E24703E5300DDA039 /* PDFCopy.swift */; };
-		D4803CF824703E5300DDA039 /* PDFSectionColumn+Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C5024703E5300DDA039 /* PDFSectionColumn+Objects.swift */; };
 		D4803CF924703E5300DDA039 /* PDFSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C5124703E5300DDA039 /* PDFSection.swift */; };
 		D4803CFA24703E5300DDA039 /* PDFSectionColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C5224703E5300DDA039 /* PDFSectionColumn.swift */; };
 		D4803CFB24703E5300DDA039 /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C5324703E5300DDA039 /* PDFGenerator.swift */; };
@@ -553,7 +552,6 @@
 		D4803C4C24703E5300DDA039 /* PDFError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFError.swift; sourceTree = "<group>"; };
 		D4803C4D24703E5300DDA039 /* PDFRenderObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFRenderObject.swift; sourceTree = "<group>"; };
 		D4803C4E24703E5300DDA039 /* PDFCopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFCopy.swift; sourceTree = "<group>"; };
-		D4803C5024703E5300DDA039 /* PDFSectionColumn+Objects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFSectionColumn+Objects.swift"; sourceTree = "<group>"; };
 		D4803C5124703E5300DDA039 /* PDFSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFSection.swift; sourceTree = "<group>"; };
 		D4803C5224703E5300DDA039 /* PDFSectionColumn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFSectionColumn.swift; sourceTree = "<group>"; };
 		D4803C5324703E5300DDA039 /* PDFGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFGenerator.swift; sourceTree = "<group>"; };
@@ -1123,7 +1121,6 @@
 		D4803C4F24703E5300DDA039 /* Section */ = {
 			isa = PBXGroup;
 			children = (
-				D4803C5024703E5300DDA039 /* PDFSectionColumn+Objects.swift */,
 				D4803C5124703E5300DDA039 /* PDFSection.swift */,
 				D4803C5224703E5300DDA039 /* PDFSectionColumn.swift */,
 			);
@@ -2280,7 +2277,6 @@
 				D4803CA424703E5300DDA039 /* PDFImageRowObject.swift in Sources */,
 				D4803D2C24703E5300DDA039 /* PDFTableContent+Equatable.swift in Sources */,
 				D4803D0E24703E5300DDA039 /* PDFLineType.swift in Sources */,
-				D4803CF824703E5300DDA039 /* PDFSectionColumn+Objects.swift in Sources */,
 				D4803D2524703E5300DDA039 /* PDFTableColumns.swift in Sources */,
 				D4803CCC24703E5300DDA039 /* UIColor+CloseToEqual.swift in Sources */,
 				D4803CA224703E5300DDA039 /* PDFGroupObject.swift in Sources */,
