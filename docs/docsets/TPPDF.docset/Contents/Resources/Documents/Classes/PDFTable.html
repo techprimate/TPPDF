@@ -21,7 +21,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          TPPDF 2.2.0 Docs
+          TPPDF 2.3.0 Docs
         </a>
          (97% documented)
       </p>
@@ -596,67 +596,6 @@ It can be styled and can contain different data.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rows</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF8PDFTableC13generateCells4data10alignmentsySaySayypSgGG_SaySayAA0B13CellAlignmentOGGtKF"></a>
-                    <a name="//apple_ref/swift/Method/generateCells(data:alignments:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFTableC13generateCells4data10alignmentsySaySayypSgGG_SaySayAA0B13CellAlignmentOGGtKF">generateCells(data:<wbr>alignments:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Generates cells from given <code>data</code> and <code>alignments</code> and stores the result in the instance variable <code><a href="../Classes/PDFTable.html#/s:5TPPDF8PDFTableC5cellsSaySayAA0B4CellCGGvp">cells</a></code></p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    <code><a href="../Enums/PDFError.html">PDFError</a></code> if table validation fails. See <code>PDFTableValidator.validateTableData(::)</code> for details
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, message: "Use the content and alignment properties instead, this will be removed in release 2.X")</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">generateCells</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="p">[[</span><span class="kt">Any</span><span class="p">?]],</span> <span class="nv">alignments</span><span class="p">:</span> <span class="p">[[</span><span class="kt"><a href="../Enums/PDFTableCellAlignment.html">PDFTableCellAlignment</a></span><span class="p">]])</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5TPPDF8PDFTableC12setCellStyle3row6column5styleySi_SiAA0bdE0VSgtKF"></a>
-                    <a name="//apple_ref/swift/Method/setCellStyle(row:column:style:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5TPPDF8PDFTableC12setCellStyle3row6column5styleySi_SiAA0bdE0VSgtKF">setCellStyle(row:<wbr>column:<wbr>style:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Modify the cell style of at the position defined by <code>row</code> and <code>column</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, message: "Use subscript accessor [row:column:] instead, this will be removed in release 2.1")</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">setCellStyle</span><span class="p">(</span><span class="n">row</span> <span class="nv">rowIndex</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">column</span> <span class="nv">columnIndex</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n"><a href="../Classes/PDFTable.html#/s:5TPPDF8PDFTableC5styleAA0B5StyleCvp">style</a></span> <span class="nv">cellStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a></span><span class="p">?)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
