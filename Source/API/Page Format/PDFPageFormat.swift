@@ -15,7 +15,7 @@ import AppKit
  * Source for page sizes: https://www.papersizes.org
  * All sizes are calculated using 72 points/inch
  */
-public enum PDFPageFormat: String {
+public enum PDFPageFormat: String, CaseIterable {
 
     /**
      Page formats mostly used in the USA

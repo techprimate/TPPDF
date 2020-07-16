@@ -66,40 +66,6 @@ public class PDFTable: PDFDocumentObject {
     }
 
     /**
-     Generates cells from given `data` and `alignments` and stores the result in the instance variable `cells`
-
-     - throws: `PDFError` if table validation fails. See `PDFTableValidator.validateTableData(::)` for details
-     */
-    @available(*, deprecated, message: "Use the content and alignment properties instead, this will be removed in release 2.X")
-    public func generateCells(data: [[Any?]], alignments: [[PDFTableCellAlignment]]) throws {
-        try PDFTableValidator.validateTableData(data: data, alignments: alignments)
-
-        self.size.rows = data.count
-        self.cells = []
-
-        for (rowIndex, row) in data.enumerated() {
-            self.size.columns = row.count
-            var contentRow = [PDFTableCell]()
-            for (colIndex, col) in row.enumerated() {
-                let content = try PDFTableContent(content: col)
-                let alignment = alignments[rowIndex][colIndex]
-
-                let cell = PDFTableCell(content: content, alignment: alignment)
-                contentRow.append(cell)
-            }
-            self.cells.append(contentRow)
-        }
-    }
-
-    /**
-     Modify the cell style of at the position defined by `row` and `column`
-     */
-    @available(*, deprecated, message: "Use subscript accessor [row:column:] instead, this will be removed in release 2.1")
-    public func setCellStyle(row rowIndex: Int, column columnIndex: Int, style cellStyle: PDFTableCellStyle?) throws {
-        self[rowIndex, columnIndex].style = cellStyle
-    }
-
-    /**
      Creates a new `PDFTable` with the same properties
      */
     internal var copy: PDFTable {

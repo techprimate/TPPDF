@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.2.0...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -11,7 +11,15 @@
 
 **Merged pull requests:**
 
-## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-06-27)
+## [2.3.0](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-07-16)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.2.0...2.3.0)
+
+**Implemented enhancements:**
+
+- Removed deprecated functions
+- Added `CaseIterable` to `PDFPageFormat`
+
+## [2.2.0](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-06-27)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.2...2.2.0)
 
 **Implemented enhancements:**

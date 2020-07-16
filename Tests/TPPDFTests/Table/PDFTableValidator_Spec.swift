@@ -54,32 +54,28 @@ class PDFTableValidator_Spec: QuickSpec {
             var table: PDFTable!
 
             beforeEach {
-                table = PDFTable()
+                table = PDFTable(rows: 2, columns: 4)
             }
 
             context("table validation") {
 
-                it("fails when no cells in table") {
+                it("should succeed when no cells in table") {
                     expect {
                         try PDFTableValidator.validateTable(table: table)
-                        }.to(throwError(PDFError.tableIsEmpty))
+                        }.toNot(throwError())
                 }
 
                 it("fails when not same amount of data than widths") {
                     table.widths = widths
-                    try! table.generateCells(data: data, alignments: alignments)
-                    table.widths = []
-
                     expect {
-                        try PDFTableValidator.validateTable(table: table)
-                        }.to(throwError(
-                            PDFError.tableStructureInvalid(message: "Data and alignment for row with index 0 does not have the same amount!")
-                        ))
+                        table.content = [["1", "2"]]
+                    }.to(throwAssertion())
                 }
 
                 it("should not fail with valid data") {
                     table.widths = widths
-                    try! table.generateCells(data: data, alignments: alignments)
+                    table.content = data
+                    table.alignment = alignments
 
                     expect {
                         try PDFTableValidator.validateTable(table: table)

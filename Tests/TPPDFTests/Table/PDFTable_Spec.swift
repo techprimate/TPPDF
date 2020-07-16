@@ -45,60 +45,6 @@ class PDFTable_Spec: QuickSpec {
                 }
             }
 
-            context("cell generation") {
-
-                var table: PDFTable!
-
-                beforeEach {
-                    table = PDFTable()
-                }
-
-                it("will throw if data is invalid") {
-                    let data = [["EXAMPLE"]]
-                    let alignments: [[PDFTableCellAlignment]] = []
-
-                    expect {
-                        try table.generateCells(data: data, alignments: alignments)
-                    }.to(throwError())
-                }
-
-                it("does generate cells based on data and alignements") {
-                    let data = [
-                        ["1|1", "1|2", "1|3"],
-                        ["2|1", "2|2", "2|3"]
-                    ]
-
-                    let alignments = [
-                        [PDFTableCellAlignment.left, PDFTableCellAlignment.center, PDFTableCellAlignment.right],
-                        [PDFTableCellAlignment.right, PDFTableCellAlignment.bottom, PDFTableCellAlignment.left]
-                    ]
-
-                    expect {
-                        try table.generateCells(data: data, alignments: alignments)
-                        }.toNot(throwError())
-
-                    let resultContent = [
-                        [try! PDFTableContent(content: "1|1"), try! PDFTableContent(content: "1|2"), try! PDFTableContent(content: "1|3")],
-                        [try! PDFTableContent(content: "2|1"), try! PDFTableContent(content: "2|2"), try! PDFTableContent(content: "2|3")]
-                    ]
-                    let result = [
-                        [
-                            PDFTableCell(content: resultContent[0][0], alignment: alignments[0][0], style: nil),
-                            PDFTableCell(content: resultContent[0][1], alignment: alignments[0][1], style: nil),
-                            PDFTableCell(content: resultContent[0][2], alignment: alignments[0][2], style: nil)
-                        ],
-                        [
-                            PDFTableCell(content: resultContent[1][0], alignment: alignments[1][0], style: nil),
-                            PDFTableCell(content: resultContent[1][1], alignment: alignments[1][1], style: nil),
-                            PDFTableCell(content: resultContent[1][2], alignment: alignments[1][2], style: nil)
-                        ]
-                    ]
-                    expect(table.cells.count) == result.count
-                    expect(table.cells[0]) == result[0]
-                    expect(table.cells[1]) == result[1]
-                }
-            }
-
             context("cell style") {
 
                 it("can set style of cell") {
