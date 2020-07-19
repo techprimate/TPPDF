@@ -42,7 +42,8 @@ class PDFPaginationStyle_Spec: QuickSpec {
                 let style = PDFPaginationStyle.customNumberFormat(template: "%@ +++ %@", formatter: formatter)
 
                 it("can format a page number") {
-                    expect(style.format(page: 2, total: 7)) == "2.00 +++ 7.00"
+                    let ds = Locale.current.decimalSeparator!
+                    expect(style.format(page: 2, total: 7)) == "2\(ds)00 +++ 7\(ds)00"
                 }
             }
 

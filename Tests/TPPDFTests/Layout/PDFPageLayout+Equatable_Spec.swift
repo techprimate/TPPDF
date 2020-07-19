@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -41,8 +41,8 @@ class PDFPageLayout_Equatable_Spec: QuickSpec {
                 it("is not equal with different margin") {
                     var otherObject = PDFPageLayout()
 
-                    object.margin = UIEdgeInsets(top: 40, left: 30, bottom: 20, right: 10)
-                    otherObject.margin = UIEdgeInsets(top: 10, left: 20, bottom: 30, right: 40)
+                    object.margin = EdgeInsets(top: 40, left: 30, bottom: 20, right: 10)
+                    otherObject.margin = EdgeInsets(top: 10, left: 20, bottom: 30, right: 40)
 
                     expect(object) != otherObject
                 }

@@ -6,7 +6,8 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -76,7 +77,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
 
                     let base64String = "/9j/4AAQSkZJRgABAQAASABIAAD/4QBYRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgAAQABAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMABgYGBgYGCgYGCg4KCgoOEg4ODg4SFxISEhISFxwXFxcXFxccHBwcHBwcHCIiIiIiIicnJycnLCwsLCwsLCwsLP/bAEMBBwcHCwoLEwoKEy4fGh8uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLv/dAAQAAf/aAAwDAQACEQMRAD8A6+iiivxY/Sz/2Q==".data(using: String.Encoding.utf8)!
                     let data = Data(base64Encoded: base64String)!
-                    let image = UIImage(data: data)!
+                    let image = Image(data: data)!
 
                     let pdfImage = PDFImage(image: image)
 
@@ -190,7 +191,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
 
                 context("text font") {
 
-                    let font = UIFont.systemFont(ofSize: 20, weight: .bold)
+                    let font = Font.systemFont(ofSize: 20, weight: .bold)
 
                     it("is possible to set the text color of the default container") {
                         document.set(font: font)
@@ -219,7 +220,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                         expect(document.objects[0].0) == PDFContainer.contentLeft
 
                         let object = document.objects[0].1 as? PDFFontObject
-                        expect(object?.font) == UIFont.systemFont(ofSize: UIFont.systemFontSize)
+                        expect(object?.font) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
                     }
 
                     it("is possible to reset the text color a specific container") {
@@ -229,13 +230,13 @@ class PDFDocument_Objects_Spec: QuickSpec {
                         expect(document.objects[0].0) == PDFContainer.headerRight
 
                         let object = document.objects[0].1 as? PDFFontObject
-                        expect(object?.font) == UIFont.systemFont(ofSize: UIFont.systemFontSize)
+                        expect(object?.font) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
                     }
                 }
 
                 context("text color") {
 
-                    let color = UIColor.orange
+                    let color = Color.orange
 
                     it("is possible to set the text color of the default container") {
                         document.set(textColor: color)
@@ -264,7 +265,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                         expect(document.objects[0].0) == PDFContainer.contentLeft
 
                         let object = document.objects[0].1 as? PDFTextColorObject
-                        expect(object?.color) == UIColor.black
+                        expect(object?.color) == Color.black
                     }
 
                     it("is possible to reset the text color a specific container") {
@@ -274,7 +275,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                         expect(document.objects[0].0) == PDFContainer.headerRight
 
                         let object = document.objects[0].1 as? PDFTextColorObject
-                        expect(object?.color) == UIColor.black
+                        expect(object?.color) == Color.black
                     }
                 }
 

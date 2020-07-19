@@ -1,55 +1,47 @@
 //
-//  UIImage+Pixel_Spec.swift
+//  Image+Pixel_Spec.swift
 //  TPPDF_Tests
 //
 //  Created by Philip Niedertscheider on 05/11/2017.
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
 
-class UIImage_Pixel_Spec: QuickSpec {
+class Image_Pixel_Spec: QuickSpec {
 
     override func spec() {
-        describe("UIImage") {
+        describe("Image") {
 
             context("Pixel") {
                 it("can get pixel color") {
-                    UIGraphicsBeginImageContext(CGSize(width: 2, height: 2))
+                    let size = CGSize(width: 2, height: 2)
+                    let context = PDFContextGraphics.createBitmapContext(size: size)!
 
-                    var rect = CGRect(x: 0, y: 0, width: 1, height: 1)
-                    var path = UIBezierPath(rect: rect)
-                    UIColor.blue.setFill()
-                    path.fill()
+                    context.setFillColor(Color.blue.cgColor)
+                    context.fill(.init(x: 0, y: 0, width: 1, height: 1))
 
-                    rect = CGRect(x: 1, y: 0, width: 1, height: 1)
-                    path = UIBezierPath(rect: rect)
-                    UIColor.green.setFill()
-                    path.fill()
+                    context.setFillColor(Color.green.cgColor)
+                    context.fill(.init(x: 1, y: 0, width: 1, height: 1))
 
-                    rect = CGRect(x: 0, y: 1, width: 1, height: 1)
-                    path = UIBezierPath(rect: rect)
-                    UIColor.red.setFill()
-                    path.fill()
+                    context.setFillColor(Color.red.cgColor)
+                    context.fill(.init(x: 0, y: 1, width: 1, height: 1))
 
-                    rect = CGRect(x: 1, y: 1, width: 1, height: 1)
-                    path = UIBezierPath(rect: rect)
-                    UIColor.orange.setFill()
-                    path.fill()
+                    context.setFillColor(Color.orange.cgColor)
+                    context.fill(.init(x: 1, y: 1, width: 1, height: 1))
 
-                    let image: UIImage! = UIGraphicsGetImageFromCurrentImageContext()!
-                    UIGraphicsEndImageContext()
-
+                    let image = PDFContextGraphics.getImage(from: context, size: size)!
+                    
                     // Position is upside down
 
                     expect(image.size) == CGSize(width: 2, height: 2)
-                    expect(image.pixelColor(at: CGPoint(x: 0, y: 0))) == UIColor.blue
-                    expect(image.pixelColor(at: CGPoint(x: 1, y: 0))) == UIColor.green
-                    expect(image.pixelColor(at: CGPoint(x: 0, y: 1))) == UIColor.red
-                    expect(image.pixelColor(at: CGPoint(x: 1, y: 1)).isClose(to: UIColor.orange, decimals: 2)).to(beTrue())
+                    expect(image.pixelColor(at: CGPoint(x: 0, y: 1))) == Color.blue
+                    expect(image.pixelColor(at: CGPoint(x: 1, y: 1))) == Color.green
+                    expect(image.pixelColor(at: CGPoint(x: 0, y: 0))) == Color.red
+                    expect(image.pixelColor(at: CGPoint(x: 1, y: 0)).isClose(to: Color.orange, decimals: 2)).to(beTrue())
                 }
             }
         }

@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import Quick
 import Nimble
 @testable import TPPDF
@@ -94,13 +94,13 @@ class PDFTableContent_Spec: QuickSpec {
                 }
 
                 it("can set to image") {
-                    let value = UIImage()
+                    let value = Image()
 
                     expect {
                         try content.setContent(content: value)
                         }.toNot(throwError())
                     expect(content.type).toEventually(equal(PDFTableContent.ContentType.image))
-                    expect(content.content as? UIImage).toEventually(equal(value))
+                    expect(content.content as? Image).toEventually(equal(value))
                 }
 
                 it("can set to attributed string") {
@@ -233,9 +233,9 @@ class PDFTableContent_Spec: QuickSpec {
                 }
 
                 it("can get image value") {
-                    content.content = UIImage()
+                    content.content = Image()
                     content.type = .image
-                    expect(content.imageValue) == content.content as? UIImage
+                    expect(content.imageValue) == content.content as? Image
 
                     content.type = .none
                     expect(content.imageValue).to(beNil())
@@ -270,12 +270,12 @@ class PDFTableContent_Spec: QuickSpec {
                     }
                 }
 
-                context("UIImage") {
+                context("Image") {
 
                     it("can be converted to content") {
-                        let image = UIImage()
+                        let image = Image()
                         let content = image.asTableContent
-                        expect(content.content as? UIImage).to(be(image))
+                        expect(content.content as? Image).to(be(image))
                         expect(content.type) == PDFTableContent.ContentType.image
                     }
                 }

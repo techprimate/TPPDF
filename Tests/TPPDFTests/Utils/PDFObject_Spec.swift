@@ -5,7 +5,8 @@
 //  Created by Philip Niedertscheider on 02/11/2017.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF

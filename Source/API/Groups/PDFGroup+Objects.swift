@@ -126,7 +126,7 @@ public extension PDFGroup {
      - parameter container: Container whose text color will be reset, defaults to `PDFGroupContainer.left`
      */
     func resetFont(_ container: PDFGroupContainer = PDFGroupContainer.left) {
-        objects += [(container, PDFFontObject(font: Font.systemFont(ofSize: Font.systemFontSize)))]
+        objects += [(container, PDFFontObject(font: Font.systemFont(ofSize: PDFConstants.defaultFontSize)))]
     }
 
     /**

@@ -13,7 +13,7 @@ import TPPDF
 class ContentViewModel: ObservableObject {
 
     @Published var url: URL?
-    @State var selectedFactory = Examples.factories.first?.examples.first
+    @State var selectedFactory = Examples.defaultFactory
 
 }
 
@@ -37,7 +37,7 @@ struct ContentView: View {
                    alignment: .topLeading)
             .listStyle(SidebarListStyle())
 
-            DetailView(example: viewModel.selectedFactory!)
+            DetailView(example: viewModel.selectedFactory)
                 .frame(minWidth: 0, maxWidth: .infinity,
                        minHeight: 0, maxHeight: .infinity,
                        alignment: .topLeading)
