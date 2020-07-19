@@ -30,7 +30,7 @@ class PDFTableCellStyle_Spec: QuickSpec {
                 }
 
                 it("has a default font") {
-                    expect(style.font) == Font.systemFont(ofSize: Font.systemFontSize)
+                    expect(style.font) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
                 }
             }
 

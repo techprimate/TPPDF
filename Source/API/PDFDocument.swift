@@ -180,7 +180,7 @@ public class PDFDocument: CustomStringConvertible {
      - parameter container: Container whose text color will be reset, defaults to `PDFContainer.contentLeft`
      */
     public func resetFont(_ container: PDFContainer = PDFContainer.contentLeft) {
-        objects += [(container, PDFFontObject(font: Font.systemFont(ofSize: Font.systemFontSize)))]
+        objects += [(container, PDFFontObject(font: Font.systemFont(ofSize: PDFConstants.defaultFontSize)))]
     }
 
     /**

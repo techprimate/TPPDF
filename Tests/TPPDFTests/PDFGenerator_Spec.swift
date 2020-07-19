@@ -38,16 +38,16 @@ class PDFGenerator_Spec: QuickSpec {
                 }
 
                 it("has a lazy font per container dictionary") {
-                    expect(generator.fonts[PDFContainer.none]) == Font.systemFont(ofSize: Font.systemFontSize)
-                    expect(generator.fonts[PDFContainer.headerLeft]) == Font.systemFont(ofSize: Font.systemFontSize)
-                    expect(generator.fonts[PDFContainer.headerCenter]) == Font.systemFont(ofSize: Font.systemFontSize)
-                    expect(generator.fonts[PDFContainer.headerRight]) == Font.systemFont(ofSize: Font.systemFontSize)
-                    expect(generator.fonts[PDFContainer.contentLeft]) == Font.systemFont(ofSize: Font.systemFontSize)
-                    expect(generator.fonts[PDFContainer.contentCenter]) == Font.systemFont(ofSize: Font.systemFontSize)
-                    expect(generator.fonts[PDFContainer.contentRight]) == Font.systemFont(ofSize: Font.systemFontSize)
-                    expect(generator.fonts[PDFContainer.footerLeft]) == Font.systemFont(ofSize: Font.systemFontSize)
-                    expect(generator.fonts[PDFContainer.footerCenter]) == Font.systemFont(ofSize: Font.systemFontSize)
-                    expect(generator.fonts[PDFContainer.footerRight]) == Font.systemFont(ofSize: Font.systemFontSize)
+                    expect(generator.fonts[PDFContainer.none]) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+                    expect(generator.fonts[PDFContainer.headerLeft]) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+                    expect(generator.fonts[PDFContainer.headerCenter]) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+                    expect(generator.fonts[PDFContainer.headerRight]) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+                    expect(generator.fonts[PDFContainer.contentLeft]) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+                    expect(generator.fonts[PDFContainer.contentCenter]) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+                    expect(generator.fonts[PDFContainer.contentRight]) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+                    expect(generator.fonts[PDFContainer.footerLeft]) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+                    expect(generator.fonts[PDFContainer.footerCenter]) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+                    expect(generator.fonts[PDFContainer.footerRight]) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
                 }
             }
 

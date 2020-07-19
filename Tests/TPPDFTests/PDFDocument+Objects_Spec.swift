@@ -220,7 +220,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                         expect(document.objects[0].0) == PDFContainer.contentLeft
 
                         let object = document.objects[0].1 as? PDFFontObject
-                        expect(object?.font) == Font.systemFont(ofSize: Font.systemFontSize)
+                        expect(object?.font) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
                     }
 
                     it("is possible to reset the text color a specific container") {
@@ -230,7 +230,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
                         expect(document.objects[0].0) == PDFContainer.headerRight
 
                         let object = document.objects[0].1 as? PDFFontObject
-                        expect(object?.font) == Font.systemFont(ofSize: Font.systemFontSize)
+                        expect(object?.font) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
                     }
                 }
 
