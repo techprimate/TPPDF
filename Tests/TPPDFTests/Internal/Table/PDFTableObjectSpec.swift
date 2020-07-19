@@ -8,7 +8,12 @@ class PDFTableObjectSpec: QuickSpec {
         describe("PDFTableObject") {
             describe("calculations") {
                 context("unmerged cells on multiple pages without splicing and no table headers on every page") {
-                    let table = PDFTable(rows: 50, columns: 4)
+                    let container = PDFContainer.contentLeft
+
+                    let rows = 50
+                    let columns = 4
+                    let count = rows * columns
+                    let table = PDFTable(rows: rows, columns: columns)
                     table.widths = [0.1, 0.3, 0.3, 0.3]
                     table.margin = 10
                     table.padding = 10
@@ -23,16 +28,29 @@ class PDFTableObjectSpec: QuickSpec {
                         }
                     }
 
-                    it("should return correct frames") {
+                    var result: [PDFLocatedRenderObject]!
+
+                    beforeEach {
                         let generator = PDFGenerator(document: .init(format: .a4))
                         let tableObject = PDFTableObject(table: table)
 
-                        var result: [PDFLocatedRenderObject]!
                         expect {
-                            result = try tableObject.calculate(generator: generator, container: .contentLeft)
+                            result = try tableObject.calculate(generator: generator, container: container)
                         }.toNot(throwError())
+                    }
 
-                        //expect(result).to(haveCount(1))
+                    it("should return all cells and necessary page breaks") {
+                        expect(result).to(haveCount(count))
+
+                        for (i, cell) in result.enumerated() {
+                            let row = i / columns
+                            let column = i % columns
+                            expect(cell.0) == container
+                            guard let renderObject = cell.1 as? PDFSlicedObject else {
+                                fail()
+                                return
+                            }
+                        }
                     }
                 }
             }
