@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -29,7 +29,7 @@ class PDFPageLayout_Spec: QuickSpec {
                 }
 
                 it("has default value margin") {
-                    expect(layout.margin) == UIEdgeInsets.zero
+                    expect(layout.margin) == EdgeInsets.zero
                 }
 
                 it("has a default value space") {

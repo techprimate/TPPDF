@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -19,7 +19,7 @@ class PDFLineStyle_Spec: QuickSpec {
             var lineStyle: PDFLineStyle!
 
             let type = PDFLineType.dotted
-            let color = UIColor.orange
+            let color = Color.orange
             let width: CGFloat = 1.25
 
             beforeEach {
@@ -29,7 +29,7 @@ class PDFLineStyle_Spec: QuickSpec {
             it("can be initalized with empty initalizer") {
                 lineStyle = PDFLineStyle()
                 expect(lineStyle.type) == PDFLineType.full
-                expect(lineStyle.color) == UIColor.black
+                expect(lineStyle.color) == Color.black
                 expect(lineStyle.width) == 0.25
             }
 

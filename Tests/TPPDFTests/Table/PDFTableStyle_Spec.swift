@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+
 import Quick
 import Nimble
 @testable import TPPDF
@@ -79,21 +79,21 @@ class PDFTableStyle_Spec: QuickSpec {
                     let footerCount = 4
 
                     let outline = PDFLineStyle(type: .dashed, color: .orange, width: 1.25)
-                    let rowHeaderStyle = PDFTableCellStyle(colors: (fill: UIColor.blue, text: UIColor.green),
+                    let rowHeaderStyle = PDFTableCellStyle(colors: (fill: Color.blue, text: Color.green),
                                                            borders: PDFTableCellBorders(),
-                                                           font: UIFont.systemFont(ofSize: 10))
-                    let columnHeaderStyle = PDFTableCellStyle(colors: (fill: UIColor.black, text: UIColor.green),
+                                                           font: Font.systemFont(ofSize: 10))
+                    let columnHeaderStyle = PDFTableCellStyle(colors: (fill: Color.black, text: Color.green),
                                                               borders: PDFTableCellBorders(),
-                                                              font: UIFont.systemFont(ofSize: 12))
-                    let footerStyle = PDFTableCellStyle(colors: (fill: UIColor.purple, text: UIColor.green),
+                                                              font: Font.systemFont(ofSize: 12))
+                    let footerStyle = PDFTableCellStyle(colors: (fill: Color.purple, text: Color.green),
                                                         borders: PDFTableCellBorders(),
-                                                        font: UIFont.systemFont(ofSize: 15))
-                    let contentStyle = PDFTableCellStyle(colors: (fill: UIColor.blue, text: UIColor.orange),
+                                                        font: Font.systemFont(ofSize: 15))
+                    let contentStyle = PDFTableCellStyle(colors: (fill: Color.blue, text: Color.orange),
                                                          borders: PDFTableCellBorders(),
-                                                         font: UIFont.systemFont(ofSize: 10))
-                    let alternatingContentStyle = PDFTableCellStyle(colors: (fill: UIColor.red, text: UIColor.green),
+                                                         font: Font.systemFont(ofSize: 10))
+                    let alternatingContentStyle = PDFTableCellStyle(colors: (fill: Color.red, text: Color.green),
                                                                     borders: PDFTableCellBorders(),
-                                                                    font: UIFont.systemFont(ofSize: 15))
+                                                                    font: Font.systemFont(ofSize: 15))
 
                     let style = PDFTableStyle(
                         rowHeaderCount: rowHeaderCount,
@@ -125,21 +125,21 @@ class PDFTableStyle_Spec: QuickSpec {
                 let footerCount = 4
 
                 let outline = PDFLineStyle(type: .dashed, color: .orange, width: 1.25)
-                let rowHeaderStyle = PDFTableCellStyle(colors: (fill: UIColor.blue, text: UIColor.green),
+                let rowHeaderStyle = PDFTableCellStyle(colors: (fill: Color.blue, text: Color.green),
                                                        borders: PDFTableCellBorders(),
-                                                       font: UIFont.systemFont(ofSize: 10))
-                let columnHeaderStyle = PDFTableCellStyle(colors: (fill: UIColor.black, text: UIColor.green),
+                                                       font: Font.systemFont(ofSize: 10))
+                let columnHeaderStyle = PDFTableCellStyle(colors: (fill: Color.black, text: Color.green),
                                                           borders: PDFTableCellBorders(),
-                                                          font: UIFont.systemFont(ofSize: 12))
-                let footerStyle = PDFTableCellStyle(colors: (fill: UIColor.purple, text: UIColor.green),
+                                                          font: Font.systemFont(ofSize: 12))
+                let footerStyle = PDFTableCellStyle(colors: (fill: Color.purple, text: Color.green),
                                                     borders: PDFTableCellBorders(),
-                                                    font: UIFont.systemFont(ofSize: 15))
-                let contentStyle = PDFTableCellStyle(colors: (fill: UIColor.blue, text: UIColor.orange),
+                                                    font: Font.systemFont(ofSize: 15))
+                let contentStyle = PDFTableCellStyle(colors: (fill: Color.blue, text: Color.orange),
                                                      borders: PDFTableCellBorders(),
-                                                     font: UIFont.systemFont(ofSize: 10))
-                let alternatingContentStyle = PDFTableCellStyle(colors: (fill: UIColor.red, text: UIColor.green),
+                                                     font: Font.systemFont(ofSize: 10))
+                let alternatingContentStyle = PDFTableCellStyle(colors: (fill: Color.red, text: Color.green),
                                                                 borders: PDFTableCellBorders(),
-                                                                font: UIFont.systemFont(ofSize: 15))
+                                                                font: Font.systemFont(ofSize: 15))
 
                 let style = PDFTableStyle(
                     rowHeaderCount: rowHeaderCount,

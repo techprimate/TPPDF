@@ -339,8 +339,7 @@ internal class PDFTableObject: PDFRenderObject {
             nextPageCells = filterResult.remainder
             // If none of the cells fit on the current page, the algorithm will try again on the next page and if it occurs again, an error should be thrown
             if onPageCells.isEmpty && !firstPage, let firstInvalidCell = nextPageCells.first {
-                break
-//                throw PDFError.tableCellTooBig(cell: firstInvalidCell.cell)
+                throw PDFError.tableCellTooBig(cell: firstInvalidCell.cell)
             }
 
 
