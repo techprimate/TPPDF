@@ -58,7 +58,7 @@ jobs:
                  -clonedSourcePackagesDirPath .
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
                  -sdk macosx
-                 -destination "OS=macOS,arch=x86_64"
+                 -destination "platform=macOS"
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
                  test | xcpretty

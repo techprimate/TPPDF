@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF

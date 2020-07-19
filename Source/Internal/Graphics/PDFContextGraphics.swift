@@ -30,7 +30,11 @@ internal enum PDFContextGraphics {
         guard let cgImage = context.makeImage() else {
             return nil
         }
+        #if os(macOS)
         return Image(cgImage: cgImage, size: size)
+        #elseif os(iOS)
+        return Image(cgImage: cgImage)
+        #endif
     }
 
     internal static func createPDFContext(url: URL, bounds: CGRect, info: PDFInfo) -> CGContext {
