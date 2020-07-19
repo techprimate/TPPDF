@@ -20,8 +20,8 @@ stages:
 
 jobs:
   include:
-  - stage: iOS Tests
-    name: "Unit Tests"
+  - stage: Tests
+    name: "iOS Unit Tests"
     language: objective-c
     env:
     - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
@@ -43,8 +43,8 @@ jobs:
     after_success:
     - bundle exec slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data
     - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gco
-  - stage: macOS Tests
-    name: "Unit Tests"
+  - stage: Tests
+    name: "macOS Unit Tests"
     language: objective-c
     env:
     - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
