@@ -31,11 +31,11 @@ class ExperimentFactory: ExampleFactory {
 
         document.add(table: table)
 
-        let singleCellTable = PDFTable(rows: 1, columns: 1)
-        singleCellTable[0,0].content = (0...100).map(String.init)
-            .joined(separator: "\n")
-            .asTableContent
-        document.add(table: singleCellTable)
+//        let singleCellTable = PDFTable(rows: 1, columns: 1)
+//        singleCellTable[0,0].content = (0...100).map(String.init)
+//            .joined(separator: "\n")
+//            .asTableContent
+//        document.add(table: singleCellTable)
 
         return [document]
     }
