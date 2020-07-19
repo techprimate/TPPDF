@@ -331,12 +331,17 @@ internal class PDFTableObject: PDFRenderObject {
             }
 
             let filterResult = filterCellsOnPage(for: generator,
-                                                             items: nextPageCells,
-                                                             minOffset: minOffset,
-                                                             maxOffset: maxOffset,
-                                                             shouldSplitCellsOnPageBeak: table.shouldSplitCellsOnPageBeak)
+                                                 items: nextPageCells,
+                                                 minOffset: minOffset,
+                                                 maxOffset: maxOffset,
+                                                 shouldSplitCellsOnPageBeak: table.shouldSplitCellsOnPageBeak)
             let onPageCells = filterResult.cells
             nextPageCells = filterResult.remainder
+            // If none of the cells fit on the current page, the algorithm will try again on the next page and if it occurs again, an error should be thrown
+            if onPageCells.isEmpty && !firstPage, let firstInvalidCell = nextPageCells.first {
+                break
+//                throw PDFError.tableCellTooBig(cell: firstInvalidCell.cell)
+            }
 
 
             for (idx, item) in onPageCells.enumerated() {
@@ -412,27 +417,37 @@ internal class PDFTableObject: PDFRenderObject {
     ///   - shouldSplitCellsOnPageBeak: If `true`, cells won't be sliced and shown on both pages, instead moved entirely to the next page
     /// - Returns: Two lists of cells, see `FilteredCells`
     internal func filterCellsOnPage(for generator: PDFGenerator, items: [PDFTableCalculatedCell], minOffset: CGFloat, maxOffset: CGFloat, shouldSplitCellsOnPageBeak: Bool) -> FilteredCells {
+        // Maximum height available
         let contentHeight = maxOffset - minOffset
-
         var result = FilteredCells(cells: [], remainder: [])
 
+        var offsetFix: CGFloat!
+
+        // Iterate each cell and decide if it fits on current page or if it needs to be moved to the further pages
         for item in items {
             let cellFrame = item.frames.cell
 
-            if cellFrame.maxY < maxOffset {
+            // Cells needs to fit the current available space entirely
+            if cellFrame.maxY < maxOffset { // TODO: is the row padding relevant here?
                 result.cells.append(item)
             } else {
                 // If cells should be split and cell is partially on current page, add it to the cells, the cell will be sliced afterwards
                 if shouldSplitCellsOnPageBeak && cellFrame.minY < maxOffset {
                     result.cells.append(item)
                 }
-                var offsetFix: CGFloat = 0
-                if !shouldSplitCellsOnPageBeak {
-                    offsetFix = cellFrame.maxY - maxOffset
-                }
+                // In any case, if the cell does not fit on the active page entirely, it must be repositioned for further pages
                 var nextPageCell = item
-                nextPageCell.frames.cell.origin.y -= contentHeight
-                nextPageCell.frames.content.origin.y -= contentHeight
+                if shouldSplitCellsOnPageBeak {
+                    nextPageCell.frames.cell.origin.y -= contentHeight
+                    nextPageCell.frames.content.origin.y -= contentHeight
+                } else {
+                    let cellContentOffset = nextPageCell.frames.content.minY - nextPageCell.frames.cell.minY
+                    if offsetFix == nil {
+                        offsetFix = nextPageCell.frames.cell.minY - minOffset
+                    }
+                    nextPageCell.frames.cell.origin.y -= offsetFix
+                    nextPageCell.frames.content.origin.y = nextPageCell.frames.cell.minY + cellContentOffset
+                }
                 result.remainder.append(nextPageCell)
             }
         }
