@@ -334,7 +334,7 @@ internal class PDFTableObject: PDFRenderObject {
                                                  items: nextPageCells,
                                                  minOffset: minOffset,
                                                  maxOffset: maxOffset,
-                                                 shouldSplitCellsOnPageBeak: table.shouldSplitCellsOnPageBeak)
+                                                 shouldSplitCellsOnPageBeak: table.shouldSplitCellsOnPageBreak)
             let onPageCells = filterResult.cells
             nextPageCells = filterResult.remainder
             // If none of the cells fit on the current page, the algorithm will try again on the next page and if it occurs again, an error should be thrown
@@ -413,7 +413,7 @@ internal class PDFTableObject: PDFRenderObject {
     ///   - items: List of cells to filter
     ///   - minOffset: Minimum `y`-position on the page
     ///   - maxOffset: Maximum `y`-position on the page
-    ///   - shouldSplitCellsOnPageBeak: If `true`, cells won't be sliced and shown on both pages, instead moved entirely to the next page
+    ///   - shouldSplitCellsOnPageBreak: If `true`, cells won't be sliced and shown on both pages, instead moved entirely to the next page
     /// - Returns: Two lists of cells, see `FilteredCells`
     internal func filterCellsOnPage(for generator: PDFGenerator, items: [PDFTableCalculatedCell], minOffset: CGFloat, maxOffset: CGFloat, shouldSplitCellsOnPageBeak: Bool) -> FilteredCells {
         // Maximum height available
