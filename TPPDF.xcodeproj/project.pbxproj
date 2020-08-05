@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		D477C4C224C45C780097C2AB /* PDFTableCalculatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D477C4C124C45C780097C2AB /* PDFTableCalculatedCell.swift */; };
 		D477C4C424C479550097C2AB /* PDFConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D477C4C324C479550097C2AB /* PDFConstants.swift */; };
 		D4803CA224703E5300DDA039 /* PDFGroupObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803BE824703E5300DDA039 /* PDFGroupObject.swift */; };
 		D4803CA324703E5300DDA039 /* PDFImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803BEA24703E5300DDA039 /* PDFImageObject.swift */; };
@@ -1055,6 +1056,7 @@
 		D4803C3724703E5300DDA039 /* Table */ = {
 			isa = PBXGroup;
 			children = (
+				D477C4C124C45C780097C2AB /* PDFTableCalculatedCell.swift */,
 				D4803C3824703E5300DDA039 /* PDFTableMergeUtil.swift */,
 				D4803C3924703E5300DDA039 /* PDFTableNode.swift */,
 				D4803C3A24703E5300DDA039 /* PDFTableObject.swift */,
@@ -2330,6 +2332,7 @@
 				D4803D1424703E5300DDA039 /* PDFPageLayout.swift in Sources */,
 				D4803D2024703E5300DDA039 /* PDFTableCellStyle.swift in Sources */,
 				D4803CFF24703E5300DDA039 /* PDFGenerator+Generation.swift in Sources */,
+				D477C4C224C45C780097C2AB /* PDFTableCalculatedCell.swift in Sources */,
 				D4803CF324703E5300DDA039 /* PDFMultiDocumentGenerator.swift in Sources */,
 				D4EE2F9924A34CBF0004E3B9 /* CrossPlattformGraphics.swift in Sources */,
 				D4803CF624703E5300DDA039 /* PDFRenderObject.swift in Sources */,
