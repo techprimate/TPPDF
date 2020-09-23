@@ -6,7 +6,8 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -49,11 +50,11 @@ class PDFGraphics_Spec : QuickSpec {
                 let data: Data! = Data(base64Encoded: base64String)
                 expect(data).toNot(beNil())
 
-                var image: UIImage!
+                var image: Image!
                 let resultFrame = CGRect(x: 0, y: 0, width: 40, height: 40)
 
                 beforeEach {
-                    image = UIImage(data: data)
+                    image = Image(data: data)
                     expect(image).toNot(beNil())
 
                     expect(image.size) == CGSize(width: 61, height: 68)
@@ -66,7 +67,8 @@ class PDFGraphics_Spec : QuickSpec {
                                                                     shouldCompress: false,
                                                                     quality: 0.2)
                     expect(result) !== image
-                    expect(result.size) == CGSize(width: 25, height: 25)
+                    expect(result.size.width).to(beCloseTo(24))
+                    expect(result.size.height).to(beCloseTo(24))
                 }
 
                 it("can compress image") {
@@ -86,7 +88,7 @@ class PDFGraphics_Spec : QuickSpec {
                                                                     shouldCompress: true,
                                                                     quality: 0.2)
                     expect(result) !== image
-                    expect(result.size) == CGSize(width: 25.0, height: 25.0)
+                    expect(result.size) == CGSize(width: 24.0, height: 24.0)
                 }
 
                 it("can return original image") {

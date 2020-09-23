@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -25,7 +25,7 @@ class PDFPageFormat_SizeConstants_Spec: QuickSpec {
                     }
 
                     it("has a US Letter format") {
-                        expect(PDFPageFormat.usLetter.size) == CGSize(width: 612, height: 762)
+                        expect(PDFPageFormat.usLetter.size) == CGSize(width: 612, height: 792)
                     }
 
                     it("has a US Legal format") {
@@ -37,7 +37,7 @@ class PDFPageFormat_SizeConstants_Spec: QuickSpec {
                     }
 
                     it("has a US Ledger format") {
-                        expect(PDFPageFormat.usLedger.size) == CGSize(width: 720, height: 1224)
+                        expect(PDFPageFormat.usLedger.size) == CGSize(width: 792, height: 1224)
                     }
                 }
 

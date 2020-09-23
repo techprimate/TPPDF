@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+
 import Quick
 import Nimble
 @testable import TPPDF
@@ -51,7 +51,7 @@ class PDFTable_Spec: QuickSpec {
                     let table = PDFTable()
                     table.cells = [[PDFTableCell()]]
 
-                    let style = PDFTableCellStyle(colors: (fill: UIColor.green, text: UIColor.orange))
+                    let style = PDFTableCellStyle(colors: (fill: Color.green, text: Color.orange))
 
                     table[0, 0].style = style
                     expect(table.cells[0][0].style).toEventually(equal(style))

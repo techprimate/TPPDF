@@ -25,13 +25,13 @@ public extension PDFPageFormat {
         case .usHalfLetter:
             return CGSize(width: 396, height: 612)   // 140  x 216  mm | 5.5  x 8.5  in
         case .usLetter:
-            return CGSize(width: 612, height: 762)   // 216  x 279  mm | 8.5  x 11.0 in
+            return CGSize(width: 612, height: 792)   // 216  x 279  mm | 8.5  x 11.0 in
         case .usLegal:
             return CGSize(width: 612, height: 1008)  // 216  x 356  mm | 8.5  x 14.0 in
         case .usJuniorLegal:
             return CGSize(width: 360, height: 576)   // 127  x 203  mm | 5.0  x 8.0  in
         case .usLedger:
-            return CGSize(width: 720, height: 1224)  // 279  x 432  mm | 11.0 x 17.0 in
+            return CGSize(width: 792, height: 1224)  // 279  x 432  mm | 11.0 x 17.0 in
         default:
             return size
         }

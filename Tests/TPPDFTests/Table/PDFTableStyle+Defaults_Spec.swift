@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+
 import Quick
 import Nimble
 @testable import TPPDF
@@ -19,7 +19,7 @@ class PDFTableStyle_Defaults_Spec: QuickSpec {
             context("Defaults") {
 
                 it("has a simple style") {
-                    let darkGray = UIColor(red: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+                    let darkGray = Color(red: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
 
                     let simple = PDFTableStyleDefaults.simple
 
@@ -27,39 +27,39 @@ class PDFTableStyle_Defaults_Spec: QuickSpec {
                     expect(simple.columnHeaderCount) == 1
                     expect(simple.footerCount) == 0
 
-                    expect(simple.outline) == PDFLineStyle(type: .full, color: UIColor.darkGray, width: 1.0)
+                    expect(simple.outline) == PDFLineStyle(type: .full, color: Color.darkGray, width: 1.0)
                     expect(simple.rowHeaderStyle) == PDFTableCellStyle(
-                        colors: (fill: UIColor.white, text: darkGray),
+                        colors: (fill: Color.white, text: darkGray),
                         borders: PDFTableCellBorders(bottom: PDFLineStyle(
                             type: .full,
-                            color: UIColor.lightGray,
+                            color: Color.lightGray,
                             width: 0.5
                         )),
-                        font: UIFont.boldSystemFont(ofSize: 12.0)
+                        font: Font.boldSystemFont(ofSize: 12.0)
                     )
                     expect(simple.columnHeaderStyle) == PDFTableCellStyle(
                         colors: (
-                            fill: UIColor(red: 83.0 / 255.0, green: 171.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0),
-                            text: UIColor.white
+                            fill: Color(red: 83.0 / 255.0, green: 171.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0),
+                            text: Color.white
                         ),
                         borders: PDFTableCellBorders(),
-                        font: UIFont.boldSystemFont(ofSize: 14)
+                        font: Font.boldSystemFont(ofSize: 14)
                     )
                     expect(simple.contentStyle) == PDFTableCellStyle(
                         colors: (
-                            fill: UIColor(red: 246.0 / 255.0, green: 246.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0),
+                            fill: Color(red: 246.0 / 255.0, green: 246.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0),
                             text: darkGray
                         ),
                         borders: PDFTableCellBorders(),
-                        font: UIFont.systemFont(ofSize: 14)
+                        font: Font.systemFont(ofSize: 14)
                     )
                     expect(simple.alternatingContentStyle) == PDFTableCellStyle(
                         colors: (
-                            fill: UIColor(red: 233.0 / 255.0, green: 233.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0),
+                            fill: Color(red: 233.0 / 255.0, green: 233.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0),
                             text: darkGray
                         ),
                         borders: PDFTableCellBorders(),
-                        font: UIFont.systemFont(ofSize: 14)
+                        font: Font.systemFont(ofSize: 14)
                     )
                 }
             }

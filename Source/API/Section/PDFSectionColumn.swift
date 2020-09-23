@@ -161,7 +161,7 @@ public class PDFSectionColumn: PDFDocumentObject {
     - parameter container: Container whose text color will be reset, defaults to `PDFSectionColumnContainer.left`
     */
     public func resetFont(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left) {
-        objects += [(container, PDFFontObject(font: Font.systemFont(ofSize: Font.systemFontSize)))]
+        objects += [(container, PDFFontObject(font: Font.systemFont(ofSize: PDFConstants.defaultFontSize)))]
     }
 
     /**

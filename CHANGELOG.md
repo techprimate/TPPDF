@@ -7,9 +7,15 @@
 
 **Fixed bugs:**
 
+- Fixed invalid US page formats (#225)
+
 **Closed issues:**
 
+- Issue #225
+
 **Merged pull requests:**
+
+- PR #226
 
 ## [2.3.0](https://github.com/techprimate/TPPDF/tree/2.3.0) (2020-07-16)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.2.0...2.3.0)

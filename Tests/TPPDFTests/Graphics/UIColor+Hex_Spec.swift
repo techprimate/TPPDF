@@ -1,56 +1,55 @@
 //
-//  UIColor+Hex_Spec.swift
+//  Color+Hex_Spec.swift
 //  TPPDF_Tests
 //
 //  Created by Philip Niedertscheider on 09/11/2017.
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
 import Quick
 import Nimble
 @testable import TPPDF
 
-class UIColor_Hex_Spec: QuickSpec {
+class Color_Hex_Spec: QuickSpec {
 
     override func spec() {
-        describe("UIColor+Hex") {
+        describe("Color+Hex") {
 
             it("can be initalized with three digit hex") {
-                let color = try? UIColor(hex: "3F0")
-                expect(color) == UIColor(red: 0.2, green: 1.0, blue: 0, alpha: 1)
+                let color = try? Color(hex: "3F0")
+                expect(color) == Color(red: 0.2, green: 1.0, blue: 0, alpha: 1)
             }
 
             it("can be initalized with four digit hex") {
-                let color = try? UIColor(hex: "3F0C")
-                expect(color) == UIColor(red: 0.2, green: 1.0, blue: 0, alpha: 0.8)
+                let color = try? Color(hex: "3F0C")
+                expect(color) == Color(red: 0.2, green: 1.0, blue: 0, alpha: 0.8)
             }
 
             it("can be initalized with six digit hex") {
-                let color = try? UIColor(hex: "FF00FF")
-                expect(color) == UIColor.magenta
+                let color = try? Color(hex: "FF00FF")
+                expect(color) == Color.magenta
             }
 
             it("can be initalized with eight digit hex") {
-                let color = try? UIColor(hex: "FFFF0000")
-                expect(color) == UIColor.yellow.withAlphaComponent(0.0)
+                let color = try? Color(hex: "FFFF0000")
+                expect(color) == Color.yellow.withAlphaComponent(0.0)
             }
 
             it("can not be initalized with other length") {
                 expect {
-                    try UIColor(hex: "1234567890")
+                    try Color(hex: "1234567890")
                 }.to(throwError())
             }
 
             it("can not be initalized with invalid hexadecimal characters") {
                 expect {
-                    try UIColor(hex: "%")
+                    try Color(hex: "%")
                 }.to(throwError())
             }
 
             it("can be converted to hexadecimal string") {
-                expect(UIColor.orange.hex) == "#ff7f00"
-                expect(UIColor.orange.withAlphaComponent(0.5).hex) == "#ff7f007f"
+                expect(Color.orange.hex) == "#ff7f00"
+                expect(Color.orange.withAlphaComponent(0.5).hex) == "#ff7f007f"
             }
         }
     }

@@ -6,7 +6,8 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
+import Foundation
 import Quick
 import Nimble
 @testable import TPPDF

@@ -37,6 +37,9 @@ public enum PDFError: Error {
      */
     case tableCellWeakReferenceBroken
 
+    /// Indicates that the cell is too big to be rendered onto a single page
+    case tableCellTooBig(cell: PDFTableCell)
+
     /**
      TODO: Documentation
      */
@@ -87,6 +90,8 @@ public enum PDFError: Error {
             return "Table index out of bounds: <index: \(index), length: \(length)>"
         case .tableCellWeakReferenceBroken:
             return "Weak reference in table cell is broken"
+        case .tableCellTooBig(let cell):
+            return "Table cell is too big to be rendered: \(cell)"
         case .textObjectIsNil:
             return "No text object has been set"
         case .textObjectNotCalculated:

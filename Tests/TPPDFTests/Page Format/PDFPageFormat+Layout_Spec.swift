@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -20,7 +20,7 @@ class PDFPageFormat_Layout_Spec: QuickSpec {
 
                 it("has a shorthand method to creaet a PDFPageLayout") {
                     expect(PDFPageFormat.a0.layout) == PDFPageLayout(size: CGSize(width: 2384, height: 3370),
-                                                                     margin: UIEdgeInsets(
+                                                                     margin: EdgeInsets(
                                                                         top: 60.0,
                                                                         left: 60.0,
                                                                         bottom: 60.0,

@@ -365,7 +365,7 @@ internal class PDFTableObject: PDFRenderObject {
                     .reduce([], +)
                     .map(\.1)
                 cellElements += outline
-                
+
                 let sliceObject = createSliceObject(frame: cellFrame,
                                                     elements: cellElements,
                                                     minOffset: minOffset,

@@ -21,7 +21,7 @@ stages:
 jobs:
   include:
   - stage: Tests
-    name: "Unit Tests"
+    name: "iOS Unit Tests"
     language: objective-c
     env:
     - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
@@ -43,6 +43,25 @@ jobs:
     after_success:
     - bundle exec slather coverage -t --build-directory ${TRAVIS_BUILD_DIR}/derived_data
     - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gco
+  - stage: Tests
+    name: "macOS Unit Tests"
+    language: objective-c
+    env:
+    - TEST_FRAMEWORK_SCHEME="TPPDF-Package"
+    - PROJECT="TPPDF.xcodeproj"
+    script:
+    - set -o pipefail
+    - swift package resolve
+    - set -o pipefail
+    - xcodebuild -project ${PROJECT}
+                 -scheme ${TEST_FRAMEWORK_SCHEME}
+                 -clonedSourcePackagesDirPath .
+                 -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
+                 -sdk macosx
+                 -destination "platform=macOS"
+                 -configuration Debug
+                 ONLY_ACTIVE_ARCH=YES
+                 test | xcpretty
 
   - stage: Examples
     name: "Example iOS - Cocoapods"

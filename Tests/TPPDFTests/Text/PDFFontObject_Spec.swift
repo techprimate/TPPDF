@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -16,7 +16,7 @@ class PDFFontObject_Spec: QuickSpec {
     override func spec() {
         describe("PDFFontObject") {
 
-            let font = UIFont.boldSystemFont(ofSize: 100)
+            let font = Font.boldSystemFont(ofSize: 100)
             var object: PDFFontObject!
 
             beforeEach {

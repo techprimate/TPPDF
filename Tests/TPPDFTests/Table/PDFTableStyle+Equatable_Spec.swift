@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+
 import Quick
 import Nimble
 @testable import TPPDF
@@ -103,9 +103,9 @@ class PDFTableStyle_Equatable_Spec: QuickSpec {
                                                    columnHeaderCount: 2,
                                                    footerCount: 3,
                                                    outline: PDFLineStyle.none,
-                                                   rowHeaderStyle: PDFTableCellStyle(colors: (fill: UIColor.red, text: UIColor.blue),
+                                                   rowHeaderStyle: PDFTableCellStyle(colors: (fill: Color.red, text: Color.blue),
                                                                                      borders: PDFTableCellBorders(),
-                                                                                     font: UIFont.systemFont(ofSize: 20)),
+                                                                                     font: Font.systemFont(ofSize: 20)),
                                                    columnHeaderStyle: PDFTableCellStyle(),
                                                    footerStyle: PDFTableCellStyle(),
                                                    contentStyle: PDFTableCellStyle(),
@@ -120,9 +120,9 @@ class PDFTableStyle_Equatable_Spec: QuickSpec {
                                                    footerCount: 3,
                                                    outline: PDFLineStyle.none,
                                                    rowHeaderStyle: PDFTableCellStyle(),
-                                                   columnHeaderStyle: PDFTableCellStyle(colors: (fill: UIColor.red, text: UIColor.blue),
+                                                   columnHeaderStyle: PDFTableCellStyle(colors: (fill: Color.red, text: Color.blue),
                                                                                         borders: PDFTableCellBorders(),
-                                                                                        font: UIFont.systemFont(ofSize: 20)),
+                                                                                        font: Font.systemFont(ofSize: 20)),
                                                    footerStyle: PDFTableCellStyle(),
                                                    contentStyle: PDFTableCellStyle(),
                                                    alternatingContentStyle: PDFTableCellStyle())
@@ -137,9 +137,9 @@ class PDFTableStyle_Equatable_Spec: QuickSpec {
                                                    outline: PDFLineStyle.none,
                                                    rowHeaderStyle: PDFTableCellStyle(),
                                                    columnHeaderStyle: PDFTableCellStyle(),
-                                                   footerStyle: PDFTableCellStyle(colors: (fill: UIColor.red, text: UIColor.blue),
+                                                   footerStyle: PDFTableCellStyle(colors: (fill: Color.red, text: Color.blue),
                                                                                   borders: PDFTableCellBorders(),
-                                                                                  font: UIFont.systemFont(ofSize: 20)),
+                                                                                  font: Font.systemFont(ofSize: 20)),
                                                    contentStyle: PDFTableCellStyle(),
                                                    alternatingContentStyle: PDFTableCellStyle())
 
@@ -154,9 +154,9 @@ class PDFTableStyle_Equatable_Spec: QuickSpec {
                                                    rowHeaderStyle: PDFTableCellStyle(),
                                                    columnHeaderStyle: PDFTableCellStyle(),
                                                    footerStyle: PDFTableCellStyle(),
-                                                   contentStyle: PDFTableCellStyle(colors: (fill: UIColor.red, text: UIColor.blue),
+                                                   contentStyle: PDFTableCellStyle(colors: (fill: Color.red, text: Color.blue),
                                                                                    borders: PDFTableCellBorders(),
-                                                                                   font: UIFont.systemFont(ofSize: 20)),
+                                                                                   font: Font.systemFont(ofSize: 20)),
                                                    alternatingContentStyle: PDFTableCellStyle())
 
                     expect(style) != otherStyle

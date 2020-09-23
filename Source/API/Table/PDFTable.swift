@@ -48,6 +48,11 @@ public class PDFTable: PDFDocumentObject {
     public var showHeadersOnEveryPage: Bool = false
 
     /**
+     Cells should split when overlapping page
+     */
+    public var shouldSplitCellsOnPageBeak = false
+
+    /**
      Count of rows and columns in this table
      */
     public private(set) var size: (rows: Int, columns: Int)
