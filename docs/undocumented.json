@@ -9,35 +9,35 @@
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 55,
+      "line": 60,
       "symbol": "PDFTable.init(size:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 84,
+      "line": 89,
       "symbol": "PDFTable.rows",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 88,
+      "line": 93,
       "symbol": "PDFTable.columns",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 92,
+      "line": 97,
       "symbol": "PDFTable.content",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
-      "line": 101,
+      "line": 106,
       "symbol": "PDFTable.alignment",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
