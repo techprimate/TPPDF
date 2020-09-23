@@ -11,6 +11,32 @@ import CoreGraphics
 
 internal enum PDFContextGraphics {
 
+    internal static func createBitmapContext(size: CGSize) -> CGContext? {
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bytesPerPixel = 4
+        let bytesPerRow = bytesPerPixel * Int(size.width)
+        let rawData = malloc(Int(size.height) * bytesPerRow)
+        let bitsPerComponent = 8
+        return CGContext(data: rawData,
+                         width: Int(size.width),
+                         height: Int(size.height),
+                         bitsPerComponent: bitsPerComponent,
+                         bytesPerRow: bytesPerRow,
+                         space: colorSpace,
+                         bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+    }
+
+    internal static func getImage(from context: CGContext, size: CGSize) -> Image? {
+        guard let cgImage = context.makeImage() else {
+            return nil
+        }
+        #if os(macOS)
+        return Image(cgImage: cgImage, size: size)
+        #elseif os(iOS)
+        return Image(cgImage: cgImage)
+        #endif
+    }
+
     internal static func createPDFContext(url: URL, bounds: CGRect, info: PDFInfo) -> CGContext {
         var mediaBox = bounds
         guard let context = CGContext(url as CFURL, mediaBox: &mediaBox, info.generate() as CFDictionary) else {

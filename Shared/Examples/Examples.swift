@@ -48,5 +48,9 @@ enum Examples {
             ])
         ]
     }
+
+    static var defaultFactory: Example {
+        return factories[1].examples[0]
+    }
 }
 

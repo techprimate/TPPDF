@@ -6,7 +6,8 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -147,15 +148,8 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                     let document = PDFDocument(format: .a4)
                     let generator = PDFGenerator(document: document)
-                    UIGraphicsBeginImageContext(CGSize(width: 100, height: 100))
-                    defer {
-                        UIGraphicsEndImageContext()
-                    }
-                    guard let context = UIGraphicsGetCurrentContext() else {
-                        fail("Could not get graphics context")
-                        return
-                    }
-                    
+                    let context = PDFContextGraphics.createBitmapContext(size: .init(width: 100, height: 100))!
+
                     expect(CustomObject.called).to(beFalse())
 
                     try? generator.render(object: obj, in: .headerLeft, in: context)
@@ -222,10 +216,10 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                 describe("table of content") {
 
-                    let headingStyle1 = document.add(style: PDFTextStyle(name: "Heading 1", font: UIFont.systemFont(ofSize: 25), color: UIColor.green))
-                    let headingStyle2 = document.add(style: PDFTextStyle(name: "Heading 2", font: UIFont.systemFont(ofSize: 20), color: UIColor.red))
-                    let headingStyle3 = document.add(style: PDFTextStyle(name: "Heading 3", font: UIFont.systemFont(ofSize: 18), color: UIColor.blue))
-                    let bodyStyle = document.add(style: PDFTextStyle(name: "Body", font: UIFont.systemFont(ofSize: 12), color: UIColor.orange))
+                    let headingStyle1 = document.add(style: PDFTextStyle(name: "Heading 1", font: Font.systemFont(ofSize: 25), color: Color.green))
+                    let headingStyle2 = document.add(style: PDFTextStyle(name: "Heading 2", font: Font.systemFont(ofSize: 20), color: Color.red))
+                    let headingStyle3 = document.add(style: PDFTextStyle(name: "Heading 3", font: Font.systemFont(ofSize: 18), color: Color.blue))
+                    let bodyStyle = document.add(style: PDFTextStyle(name: "Body", font: Font.systemFont(ofSize: 12), color: Color.orange))
 
                     let styles = [
                         headingStyle1,

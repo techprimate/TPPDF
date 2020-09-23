@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+
 import Quick
 import Nimble
 @testable import TPPDF
@@ -21,8 +21,8 @@ class PDFTableCellStyle_Spec: QuickSpec {
                 let style = PDFTableCellStyle()
 
                 it("has default colors") {
-                    expect(style.colors.fill) == UIColor.clear
-                    expect(style.colors.text) == UIColor.black
+                    expect(style.colors.fill) == Color.clear
+                    expect(style.colors.text) == Color.black
                 }
 
                 it("has default borders") {
@@ -30,18 +30,18 @@ class PDFTableCellStyle_Spec: QuickSpec {
                 }
 
                 it("has a default font") {
-                    expect(style.font) == UIFont.systemFont(ofSize: UIFont.systemFontSize)
+                    expect(style.font) == Font.systemFont(ofSize: PDFConstants.defaultFontSize)
                 }
             }
 
             context("initalizer") {
 
                 it("can be iniatlized with colors") {
-                    let colors = (fill: UIColor.orange, text: UIColor.green)
+                    let colors = (fill: Color.orange, text: Color.green)
                     let cell = PDFTableCellStyle(colors: colors)
 
-                    expect(cell.colors.fill) == UIColor.orange
-                    expect(cell.colors.text) == UIColor.green
+                    expect(cell.colors.fill) == Color.orange
+                    expect(cell.colors.text) == Color.green
                 }
 
                 it("can be iniatlized with borders") {
@@ -52,7 +52,7 @@ class PDFTableCellStyle_Spec: QuickSpec {
                 }
 
                 it("can be iniatlized with a font") {
-                    let font = UIFont.systemFont(ofSize: 25)
+                    let font = Font.systemFont(ofSize: 25)
                     let cell = PDFTableCellStyle(font: font)
 
                     expect(cell.font) == font

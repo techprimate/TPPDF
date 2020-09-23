@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+
 import Quick
 import Nimble
 @testable import TPPDF
@@ -26,7 +26,7 @@ class PDFTableCellStyle_Equatable_Spec: QuickSpec {
                 }
 
                 it("is not equal with different colors") {
-                    let colors = (fill: UIColor.red, text: UIColor.blue)
+                    let colors = (fill: Color.red, text: Color.blue)
                     let otherStyle = PDFTableCellStyle(colors: colors)
                     expect(style) != otherStyle
                 }
@@ -38,7 +38,7 @@ class PDFTableCellStyle_Equatable_Spec: QuickSpec {
                 }
 
                 it("is not equal with different font") {
-                    let font = UIFont.boldSystemFont(ofSize: 10.0)
+                    let font = Font.boldSystemFont(ofSize: 10.0)
                     let otherStyle = PDFTableCellStyle(font: font)
                     expect(style) != otherStyle
                 }

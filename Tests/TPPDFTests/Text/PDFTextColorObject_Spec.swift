@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -16,7 +16,7 @@ class PDFTextColorObject_Spec: QuickSpec {
     override func spec() {
         describe("PDFTextColorObject") {
 
-            let color = UIColor.red
+            let color = Color.red
             var object: PDFTextColorObject!
 
             beforeEach {

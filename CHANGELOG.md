@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.0...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.1...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,21 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [2.3.1](https://github.com/techprimate/TPPDF/tree/2.3.1) (2020-09-23)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.0...2.3.1)
+
+**Fixed bugs:**
+
+- Fixed invalid US page formats (#225)
+
+**Closed issues:**
+
+- Issue #225
+
+**Merged pull requests:**
+
+- PR #226
 
 ## [2.3.0](https://github.com/techprimate/TPPDF/tree/2.3.0) (2020-07-16)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.2.0...2.3.0)

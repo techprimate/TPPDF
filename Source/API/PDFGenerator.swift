@@ -68,7 +68,7 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
      These values are used for simple text objects
      */
     internal lazy var fonts: [PDFContainer: Font] = .init(uniqueKeysWithValues: PDFContainer.allCases.map({ container in
-        (container, Font.systemFont(ofSize: Font.systemFontSize))
+        (container, Font.systemFont(ofSize: PDFConstants.defaultFontSize))
     }))
 
     /**
@@ -107,7 +107,7 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
         columnState.reset()
         currentPage = 1
         fonts = fonts.mapValues { _ in
-            Font.systemFont(ofSize: Font.systemFontSize)
+            Font.systemFont(ofSize: PDFConstants.defaultFontSize)
         }
         textColor = textColor.mapValues { _ in
             Color.black

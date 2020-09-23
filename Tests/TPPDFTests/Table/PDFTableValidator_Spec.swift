@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import Quick
 import Nimble
 @testable import TPPDF
@@ -58,11 +58,11 @@ class PDFTableValidator_Spec: QuickSpec {
             }
 
             context("table validation") {
-
+                
                 it("should succeed when no cells in table") {
                     expect {
                         try PDFTableValidator.validateTable(table: table)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                 }
 
                 it("fails when not same amount of data than widths") {
