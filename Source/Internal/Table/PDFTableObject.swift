@@ -144,10 +144,10 @@ internal class PDFTableObject: PDFRenderObject {
                             type: CellType,
                             origin: CGPoint,
                             width: CGFloat) -> PDFTableCalculatedCell {
-        var frame = (
+        var frame: PDFTableCalculatedCell = (
             cell: cell,
-            style: style,
             type: type,
+            style: style,
             frames: (
                 cell: CGRect(
                     origin: origin + table.margin,
