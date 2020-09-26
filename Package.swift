@@ -12,8 +12,8 @@ let package = Package(
         .library(name: "TPPDF", targets: ["TPPDF"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Quick/Quick", .upToNextMajor(from: "2.2.0")),
-        .package(url: "https://github.com/Quick/Nimble",  .upToNextMajor(from: "8.0.7")),
+        .package(url: "https://github.com/Quick/Quick", .exact("2.2.0")),
+        .package(url: "https://github.com/Quick/Nimble",  .exact("8.0.7")),
     ],
     targets: [
         .target(name: "TPPDF", path: "Source"),
