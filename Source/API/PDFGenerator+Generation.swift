@@ -355,6 +355,9 @@ extension PDFGenerator {
      */
     internal func render(object: PDFRenderObject, in container: PDFContainer, in context: PDFContext) throws {
         try object.draw(generator: self, container: container, in: context)
+        if let imageObject = object as? PDFImageObject {
+            imageDelegate?.generator(willBeginDrawingImage: imageObject.image, with: context, in: object.frame)
+        }
     }
 
     // MARK: - INTERNAL STATIC FUNCS

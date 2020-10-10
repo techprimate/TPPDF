@@ -80,4 +80,9 @@ public class PDFSimpleText: PDFText {
     }
 
     // MARK: - Hashable
+    
+    override public func hash(into hasher: inout Hasher) {
+        hasher.combine(text)
+        hasher.combine(spacing)
+    }
 }
