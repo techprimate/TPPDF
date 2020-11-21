@@ -54,12 +54,12 @@
 
 **Attention:**
 
-TPPDF is an Open Source side-project of Philip Niedertscheider@[techprimate](https://techprimate.com/).
+TPPDF is an Open Source side-project of [techprimate](https://techprimate.com/).
 As we are currently working on multiple other projects, we only have limited time for fixing bugs and enhancing TPPDF.
 
 That's why any issue reporting and especially **Pull Requests** are very welcome!
 
-If you need professional support for your company, you can reach out to [phil@techprimate.com](mailto:phil@techprimate.com) with a description of your task!
+If you need professional support for your company, you can reach out to [@philprimes](https://twitter.com/philprimes) on Twitter or on our website [techprimate.com](https://techprimate.com/contact)!
 This is mainly for custom or high-priority requests, therefore we won't publish a consulting pricing for now.
 
 For everything else, please see [Communication](#communication). Thank you!
