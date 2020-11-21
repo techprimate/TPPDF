@@ -62,7 +62,7 @@ That's why any issue reporting and especially **Pull Requests** are very welcome
 If you need professional support for your company, you can reach out to [@philprimes](https://twitter.com/philprimes) on Twitter or on our website [techprimate.com](https://techprimate.com/contact)!
 This is mainly for custom or high-priority requests, therefore we won't publish a consulting pricing for now.
 
-For everything else, please see [Communication](#communication). Thank you!
+For everything else, please see [Communication](#communication) and [this message](https://github.com/techprimate/TPPDF/issues/250). Thank you!
 
 ## What's new?
 
@@ -100,11 +100,10 @@ TPPDF 2.0 brings a lot of new features and small tweaks. Here are some of the bi
 
 ## Communication
 
-- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf). (Tag 'TPPDF')
-- If you'd like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf).
-- If you **found a bug**, open an issue.
-- If you **have a feature request**, open an issue.
-- If you **want to contribute**, submit a pull request.
+- ~~If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf). (Tag 'TPPDF')~~ Just open up another issue, it might lead to better documentation.
+- If you **found a bug**, open an [issue](https://github.com/techprimate/TPPDF/issues/new?template=bug_report.md).
+- If you **have a feature request**, open an [issue](https://github.com/techprimate/TPPDF/issues/new?template=feature_request.md).
+- If you **want to contribute**, submit a [pull request](https://github.com/techprimate/TPPDF/compare).
 
 ## Example
 
