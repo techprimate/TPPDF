@@ -20,8 +20,8 @@
 	<a href="https://travis-ci.org/techprimate/TPPDF">
 		<img src="https://travis-ci.org/techprimate/TPPDF.svg?branch=master&style=flat-square" alt="Travis">
 	</a>
-	<a href="https://app.codacy.com/app/techprimate/TPPDF">
-		<img src="https://api.codacy.com/project/badge/Grade/a30af06f7c6742d9960960a339e908f2" alt="Codacy">
+        <a href="https://www.codacy.com/gh/techprimate/TPPDF/dashboard">
+            <img src="https://app.codacy.com/project/badge/Grade/1af1a59fe93f49ae942732e4d526067a"/>
 	</a>
 	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-master">
 		<img src="https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de" alt="codebeat">
@@ -38,8 +38,12 @@
 </p>
 
 <p align="center">
+    <sub>Created and maintained by <a href="https://github.com/philprime">Philip Niedertscheider</a> and all the amazing <a href="https://github.com/techprimate/TPPDF/graphs/contributors">contributors</a>.</sub>
+</p>
+
+<p align="center">
     <a href="#whats-new">What's new?</a>
-    <a href="#features">Features</a>
+  • <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
   • <a href="#example">Example</a>
   • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md"><strong>Usage</strong></a>
@@ -50,10 +54,15 @@
 
 **Attention:**
 
-We just released version 2.0.0. It has breaking API changes and might causes issues as it is needs more testing.
-Please do not upgrade to it yet, unless you are willing to accept some instability.
+TPPDF is an Open Source side-project of Philip Niedertscheider@[techprimate](https://techprimate.com/).
+As we are currently working on multiple other projects, we only have limited time for fixing bugs and enhancing TPPDF.
 
-**IF YOU SEE ANY ISSUES, PLEASE REPORT THEM!** Thank you!
+That's why any issue reporting and especially **Pull Requests** are very welcome!
+
+If you need professional support for your company, you can reach out to [phil@techprimate.com](mailto:phil@techprimate.com) with a description of your task!
+This is mainly for custom or high-priority requests, therefore we won't publish a consulting pricing for now.
+
+For everything else, please see [Communication](#communication). Thank you!
 
 ## What's new?
 
