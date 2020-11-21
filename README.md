@@ -20,8 +20,8 @@
 	<a href="https://travis-ci.org/techprimate/TPPDF">
 		<img src="https://travis-ci.org/techprimate/TPPDF.svg?branch=master&style=flat-square" alt="Travis">
 	</a>
-	<a href="https://app.codacy.com/app/techprimate/TPPDF">
-		<img src="https://api.codacy.com/project/badge/Grade/a30af06f7c6742d9960960a339e908f2" alt="Codacy">
+        <a href="https://www.codacy.com/gh/techprimate/TPPDF/dashboard">
+            <img src="https://app.codacy.com/project/badge/Grade/1af1a59fe93f49ae942732e4d526067a"/>
 	</a>
 	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-master">
 		<img src="https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de" alt="codebeat">
