@@ -37,9 +37,9 @@
 	</b>
 </p>
 
-<div align="center">
-    <sub>Created and maintained by <a href="https://github.com/philprime">Philip Niedertscheider</a> and all the amazing [contributors](https://github.com/techprimate/TPPDF/graphs/contributors).</sub>
-</div>
+<p align="center">
+    <sub>Created and maintained by <a href="https://github.com/philprime">Philip Niedertscheider</a> and all the amazing <a href="https://github.com/techprimate/TPPDF/graphs/contributors">contributors</a>.</sub>
+</p>
 
 <p align="center">
     <a href="#whats-new">What's new?</a>
