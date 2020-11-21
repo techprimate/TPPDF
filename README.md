@@ -37,9 +37,13 @@
 	</b>
 </p>
 
+<div align="center">
+    <sub>Created and maintained by <a href="https://github.com/philprime">Philip Niedertscheider</a> and all the amazing [contributors](https://github.com/techprimate/TPPDF/graphs/contributors).</sub>
+</div>
+
 <p align="center">
     <a href="#whats-new">What's new?</a>
-    <a href="#features">Features</a>
+  • <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
   • <a href="#example">Example</a>
   • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md"><strong>Usage</strong></a>
@@ -50,10 +54,15 @@
 
 **Attention:**
 
-We just released version 2.0.0. It has breaking API changes and might causes issues as it is needs more testing.
-Please do not upgrade to it yet, unless you are willing to accept some instability.
+TPPDF is an Open Source side-project of Philip Niedertscheider@[techprimate](https://techprimate.com/).
+As we are currently working on multiple other projects, we only have limited time for fixing bugs and enhancing TPPDF.
 
-**IF YOU SEE ANY ISSUES, PLEASE REPORT THEM!** Thank you!
+That's why any issue reporting and especially **Pull Requests** are very welcome!
+
+If you need professional support for your company, you can reach out to [phil@techprimate.com](mailto:phil@techprimate.com) with a description of your task!
+This is mainly for custom or high-priority requests, therefore we won't publish a consulting pricing for now.
+
+For everything else, please see [Communication](#communication). Thank you!
 
 ## What's new?
 
