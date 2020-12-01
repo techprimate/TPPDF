@@ -163,7 +163,7 @@ internal enum PDFCalculations {
 
         return pageLayout.height
             - layout.margin.top
-            - layout.heights.maxHeaderHeight()
+            - layout.heights.maxFooterHeight()
     }
 
     /**
