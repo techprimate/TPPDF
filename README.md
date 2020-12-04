@@ -20,8 +20,8 @@
 	<a href="https://travis-ci.org/techprimate/TPPDF">
 		<img src="https://travis-ci.org/techprimate/TPPDF.svg?branch=master&style=flat-square" alt="Travis">
 	</a>
-	<a href="https://app.codacy.com/app/techprimate/TPPDF">
-		<img src="https://api.codacy.com/project/badge/Grade/a30af06f7c6742d9960960a339e908f2" alt="Codacy">
+        <a href="https://www.codacy.com/gh/techprimate/TPPDF/dashboard">
+            <img src="https://app.codacy.com/project/badge/Grade/1af1a59fe93f49ae942732e4d526067a"/>
 	</a>
 	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-master">
 		<img src="https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de" alt="codebeat">
@@ -38,8 +38,12 @@
 </p>
 
 <p align="center">
+    <sub>Created and maintained by <a href="https://github.com/philprime">Philip Niedertscheider</a> and all the amazing <a href="https://github.com/techprimate/TPPDF/graphs/contributors">contributors</a>.</sub>
+</p>
+
+<p align="center">
     <a href="#whats-new">What's new?</a>
-    <a href="#features">Features</a>
+  • <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
   • <a href="#example">Example</a>
   • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md"><strong>Usage</strong></a>
@@ -50,10 +54,15 @@
 
 **Attention:**
 
-We just released version 2.0.0. It has breaking API changes and might causes issues as it is needs more testing.
-Please do not upgrade to it yet, unless you are willing to accept some instability.
+TPPDF is an Open Source side-project of [techprimate](https://techprimate.com/).
+As we are currently working on multiple other projects, we only have limited time for fixing bugs and enhancing TPPDF.
 
-**IF YOU SEE ANY ISSUES, PLEASE REPORT THEM!** Thank you!
+That's why any issue reporting and especially **Pull Requests** are very welcome!
+
+If you need professional support for your company, you can reach out to [@philprimes](https://twitter.com/philprimes) on Twitter or on our website [techprimate.com](https://techprimate.com/contact)!
+This is mainly for custom or high-priority requests, therefore we won't publish a consulting pricing for now.
+
+For everything else, please see [Communication](#communication) and [this message](https://github.com/techprimate/TPPDF/issues/250). Thank you!
 
 ## What's new?
 
@@ -91,11 +100,10 @@ TPPDF 2.0 brings a lot of new features and small tweaks. Here are some of the bi
 
 ## Communication
 
-- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf). (Tag 'TPPDF')
-- If you'd like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf).
-- If you **found a bug**, open an issue.
-- If you **have a feature request**, open an issue.
-- If you **want to contribute**, submit a pull request.
+- ~~If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tppdf). (Tag 'TPPDF')~~ Just open up another issue, it might lead to better documentation.
+- If you **found a bug**, open an [issue](https://github.com/techprimate/TPPDF/issues/new?template=bug_report.md).
+- If you **have a feature request**, open an [issue](https://github.com/techprimate/TPPDF/issues/new?template=feature_request.md).
+- If you **want to contribute**, submit a [pull request](https://github.com/techprimate/TPPDF/compare).
 
 ## Example
 
