@@ -18,15 +18,3 @@ public class PDFDocumentObject: PDFAttributableObject, PDFTaggableObject {
         attributes.append(attribute)
     }
 }
-
-extension PDFDocumentObject: Hashable {
-
-    public static func == (lhs: PDFDocumentObject, rhs: PDFDocumentObject) -> Bool {
-        lhs.attributes == rhs.attributes && lhs.tag == rhs.tag
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(attributes)
-        hasher.combine(tag)
-    }
-}

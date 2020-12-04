@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-extension PDFTableCell {
+extension PDFTableCell: Equatable {
 
     /// Compares two instances of `PDFTableCell` for equality
     ///
@@ -22,13 +22,13 @@ extension PDFTableCell {
             return false
         }
         // Properties of PDFTableCell
-        if lhs.content != rhs.content {
+        guard lhs.content == rhs.content else {
             return false
         }
-        if lhs.alignment != rhs.alignment {
+        guard lhs.style == rhs.style else {
             return false
         }
-        if lhs.style != rhs.style {
+        guard lhs.alignment == rhs.alignment else {
             return false
         }
         return true

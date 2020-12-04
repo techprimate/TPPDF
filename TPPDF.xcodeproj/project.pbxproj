@@ -1221,6 +1221,7 @@
 			isa = PBXGroup;
 			children = (
 				D4803C7824703E5300DDA039 /* PDFTable+Equatable.swift */,
+				D4803C8124703E5300DDA039 /* PDFTableCell+Equatable.swift */,
 				D4803C7924703E5300DDA039 /* Style */,
 				D4803C8324703E5300DDA039 /* Sections */,
 				D4803C8E24703E5300DDA039 /* Content */,
@@ -1242,7 +1243,6 @@
 				D4803C7E24703E5300DDA039 /* PDFTableCellPosition+Equatable-Hashable.swift */,
 				D4803C7F24703E5300DDA039 /* PDFTableCellBorders.swift */,
 				D4803C8024703E5300DDA039 /* PDFTableStyle+Equatable.swift */,
-				D4803C8124703E5300DDA039 /* PDFTableCell+Equatable.swift */,
 				D4803C8224703E5300DDA039 /* PDFTableCellStyle.swift */,
 			);
 			path = Style;

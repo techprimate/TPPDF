@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-extension PDFTable {
+extension PDFTable: Equatable {
 
     /// Compares two instances of `PDFTable` for equality
     ///

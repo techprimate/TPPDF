@@ -8,7 +8,7 @@
 /**
  TODO: documentation
  */
-extension PDFImage {
+extension PDFImage: Equatable {
 
     /**
      TODO: documentation

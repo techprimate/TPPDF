@@ -8,7 +8,7 @@
 /**
  TODO: Documentation
  */
-extension PDFSimpleText {
+extension PDFSimpleText: Equatable {
 
     /// Compares two instances of `PDFSimpleText` for equality
     ///

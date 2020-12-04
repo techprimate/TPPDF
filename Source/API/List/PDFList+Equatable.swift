@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-extension PDFList {
+extension PDFList: Equatable {
 
     /// Compares two instances of `PDFList` for equality
     ///
