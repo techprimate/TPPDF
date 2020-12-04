@@ -19,7 +19,7 @@ class ExperimentFactory: ExampleFactory {
         table.margin = 10
         table.padding = 10
         table.showHeadersOnEveryPage = false
-        table.shouldSplitCellsOnPageBeak = false
+        table.shouldSplitCellsOnPageBreak = false
         table.style.columnHeaderCount = 3
 
         for row in 0..<table.size.rows {
