@@ -5,15 +5,23 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-/**
- TODO: documentation
- */
-extension PDFList: Equatable {
+extension PDFList {
 
-    /**
-     TODO: documentation
-     */
+    /// Compares two instances of `PDFList` for equality
+    ///
+    /// - Parameters:
+    ///   - lhs: One instance of `PDFList`
+    ///   - rhs: Another instance of `PDFList`
+    /// - Returns: `true`, if `levelIndentations` and `items` equal; otherwise `false`
     public static func == (lhs: PDFList, rhs: PDFList) -> Bool {
+        // Properties of PDFObjectAttribute
+        guard lhs.attributes == rhs.attributes else {
+            return false
+        }
+        guard lhs.tag == rhs.tag else {
+            return false
+        }
+        // Properties of PDFList
         guard lhs.levelIndentations.count == rhs.levelIndentations.count else {
             return false
         }

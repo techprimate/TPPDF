@@ -8,12 +8,18 @@
 /**
  TODO: documentation
  */
-extension PDFImage: Equatable {
+extension PDFImage {
 
     /**
      TODO: documentation
      */
     public static func == (lhs: PDFImage, rhs: PDFImage) -> Bool {
+        guard lhs.attributes == rhs.attributes else {
+            return false
+        }
+        guard lhs.tag == rhs.tag else {
+            return false
+        }
         guard lhs.image == rhs.image else {
             return false
         }

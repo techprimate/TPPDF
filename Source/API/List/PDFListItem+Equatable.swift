@@ -5,15 +5,23 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-/**
- TODO: documentation
- */
-extension PDFListItem: Equatable {
+extension PDFListItem {
 
-    /**
-     TODO: documentation
-     */
+    /// Compares two instances of `PDFListItem` for equality
+    ///
+    /// - Parameters:
+    ///   - lhs: One instance of `PDFListItem`
+    ///   - rhs: Another instance of `PDFListItem`
+    /// - Returns: `true`, if `attributes`, `tag`, `content`, `children` and `symbol` equal; otherwise `false`
     public static func == (lhs: PDFListItem, rhs: PDFListItem) -> Bool {
+        // Properties of PDFObjectAttribute
+        guard lhs.attributes == rhs.attributes else {
+            return false
+        }
+        guard lhs.tag == rhs.tag else {
+            return false
+        }
+        // Properties of PDFListItem
         guard lhs.content == rhs.content else {
             return false
         }

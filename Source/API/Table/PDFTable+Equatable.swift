@@ -5,15 +5,23 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-/**
- TODO: Documentation
- */
-extension PDFTable: Equatable {
+extension PDFTable {
 
-    /**
-     TODO: Documentation
-     */
+    /// Compares two instances of `PDFTable` for equality
+    ///
+    /// - Parameters:
+    ///   - lhs: One instance of `PDFTable`
+    ///   - rhs: Another instance of `PDFTable`
+    /// - Returns: `true`, if `attributes`, `tag`, `style`, `cells`, `widths`, `padding`, `margin`, `showHeadersOnEveryPage` equal; otherwise `false`
     public static func == (lhs: PDFTable, rhs: PDFTable) -> Bool {
+        // Properties of PDFObjectAttribute
+        guard lhs.attributes == rhs.attributes else {
+            return false
+        }
+        guard lhs.tag == rhs.tag else {
+            return false
+        }
+        // Properties of PDFTable
         guard lhs.style == rhs.style else {
             return false
         }
