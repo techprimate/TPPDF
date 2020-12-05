@@ -5,11 +5,20 @@
 
 **Implemented enhancements:**
 
+- Added optional table cell splicing disabling
+
 **Fixed bugs:**
 
 **Closed issues:**
 
+- Issue #205
+- Issue #222
+- Issue #243
+- Issue #249
+
 **Merged pull requests:**
+
+- PR #223
 
 ## [2.3.1](https://github.com/techprimate/TPPDF/tree/2.3.1) (2020-09-23)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.0...2.3.1)

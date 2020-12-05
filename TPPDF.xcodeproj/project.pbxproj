@@ -161,6 +161,7 @@
 		D4803D3A24703E5300DDA039 /* PDFAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803C9F24703E5300DDA039 /* PDFAttributedText.swift */; };
 		D4803D3B24703E5300DDA039 /* PDFText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803CA024703E5300DDA039 /* PDFText.swift */; };
 		D4803D3C24703E5300DDA039 /* PDFTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4803CA124703E5300DDA039 /* PDFTextStyle.swift */; };
+		D4839C39253706950005BB87 /* PDFTableCalculatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4839C38253706950005BB87 /* PDFTableCalculatedCell.swift */; };
 		D4EE2F9724A34C990004E3B9 /* PDFContextGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE2F9624A34C990004E3B9 /* PDFContextGraphics.swift */; };
 		D4EE2F9924A34CBF0004E3B9 /* CrossPlattformGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE2F9824A34CBF0004E3B9 /* CrossPlattformGraphics.swift */; };
 		OBJ_419 /* AdapterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_331 /* AdapterProtocols.swift */; };
@@ -621,6 +622,7 @@
 		D4803C9F24703E5300DDA039 /* PDFAttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFAttributedText.swift; sourceTree = "<group>"; };
 		D4803CA024703E5300DDA039 /* PDFText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFText.swift; sourceTree = "<group>"; };
 		D4803CA124703E5300DDA039 /* PDFTextStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFTextStyle.swift; sourceTree = "<group>"; };
+		D4839C38253706950005BB87 /* PDFTableCalculatedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFTableCalculatedCell.swift; sourceTree = "<group>"; };
 		D4EE2F9624A34C990004E3B9 /* PDFContextGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFContextGraphics.swift; sourceTree = "<group>"; };
 		D4EE2F9824A34CBF0004E3B9 /* CrossPlattformGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPlattformGraphics.swift; sourceTree = "<group>"; };
 		"Nimble::Nimble::Product" /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1054,6 +1056,7 @@
 		D4803C3724703E5300DDA039 /* Table */ = {
 			isa = PBXGroup;
 			children = (
+				D4839C38253706950005BB87 /* PDFTableCalculatedCell.swift */,
 				D4803C3824703E5300DDA039 /* PDFTableMergeUtil.swift */,
 				D4803C3924703E5300DDA039 /* PDFTableNode.swift */,
 				D4803C3A24703E5300DDA039 /* PDFTableObject.swift */,
@@ -2265,6 +2268,7 @@
 				D4803D1124703E5300DDA039 /* PDFBezierPath.swift in Sources */,
 				D4803D3A24703E5300DDA039 /* PDFAttributedText.swift in Sources */,
 				D4803D2224703E5300DDA039 /* PDFTable+RowSubscripts.swift in Sources */,
+				D4839C39253706950005BB87 /* PDFTableCalculatedCell.swift in Sources */,
 				D4803CF924703E5300DDA039 /* PDFSection.swift in Sources */,
 				D4803CB924703E5300DDA039 /* PDFPaginationStyle+Equatable.swift in Sources */,
 				D4803CD124703E5300DDA039 /* PDFRectangleObject.swift in Sources */,

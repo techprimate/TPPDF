@@ -50,7 +50,7 @@ public class PDFTable: PDFDocumentObject {
     /**
      Cells should split when overlapping page
      */
-    public var shouldSplitCellsOnPageBeak = false
+    public var shouldSplitCellsOnPageBreak = false
 
     /**
      Count of rows and columns in this table
