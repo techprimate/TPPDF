@@ -13,11 +13,6 @@ import AppKit
 
 // swiftlint:disable function_parameter_count
 
-internal typealias PDFTableCalculatedCell = (cell: PDFTableCell,
-                                             type: PDFTableObject.CellType,
-                                             style: PDFTableCellStyle,
-                                             frames: (cell: CGRect, content: CGRect))
-
 /**
  Internal object, used for calculating a `PDFTable`
  */
@@ -144,7 +139,7 @@ internal class PDFTableObject: PDFRenderObject {
                             type: CellType,
                             origin: CGPoint,
                             width: CGFloat) -> PDFTableCalculatedCell {
-        var frame: PDFTableCalculatedCell = (
+        var frame = PDFTableCalculatedCell(
             cell: cell,
             type: type,
             style: style,
@@ -335,8 +330,18 @@ internal class PDFTableObject: PDFRenderObject {
                 minOffset +=  headerHeight
             }
 
-            var onPageCells: [PDFTableCalculatedCell]
-            (onPageCells, nextPageCells) = filterCellsOnPage(for: generator, items: nextPageCells, minOffset: minOffset, maxOffset: maxOffset)
+            let filterResult = filterCellsOnPage(for: generator,
+                                                 items: nextPageCells,
+                                                 minOffset: minOffset,
+                                                 maxOffset: maxOffset,
+                                                 shouldSplitCellsOnPageBeak: table.shouldSplitCellsOnPageBreak)
+            let onPageCells = filterResult.cells
+            nextPageCells = filterResult.remainder
+            // If none of the cells fit on the current page, the algorithm will try again on the next page and if it occurs again, an error should be thrown
+            if onPageCells.isEmpty && !firstPage, let firstInvalidCell = nextPageCells.first {
+                throw PDFError.tableCellTooBig(cell: firstInvalidCell.cell)
+            }
+
 
             for (idx, item) in onPageCells.enumerated() {
                 let cellFrame = item.frames.cell
@@ -392,29 +397,60 @@ internal class PDFTableObject: PDFRenderObject {
         return (objects: result, offset: pageEnd.y)
     }
 
-    internal typealias FilteredCells = (cells: [PDFTableCalculatedCell], rest: [PDFTableCalculatedCell])
+    /// Holds two lists of cells, used during table calculations
+    internal struct FilteredCells {
+        /// List of calculated cells on the active page
+        var cells: [PDFTableCalculatedCell]
+        /// List of remaining cells on further pages
+        var remainder: [PDFTableCalculatedCell]
+    }
 
-    internal func filterCellsOnPage(for generator: PDFGenerator, items: [PDFTableCalculatedCell], minOffset: CGFloat, maxOffset: CGFloat) -> FilteredCells {
+
+    /// Filters the given list of cells into the ones that fit on the current page, and all remainding cells, repositioned for the next page.
+    ///
+    /// - Parameters:
+    ///   - generator: Active instance of `PDFGenerator`
+    ///   - items: List of cells to filter
+    ///   - minOffset: Minimum `y`-position on the page
+    ///   - maxOffset: Maximum `y`-position on the page
+    ///   - shouldSplitCellsOnPageBreak: If `true`, cells won't be sliced and shown on both pages, instead moved entirely to the next page
+    /// - Returns: Two lists of cells, see `FilteredCells`
+    internal func filterCellsOnPage(for generator: PDFGenerator, items: [PDFTableCalculatedCell], minOffset: CGFloat, maxOffset: CGFloat, shouldSplitCellsOnPageBeak: Bool) -> FilteredCells {
+        // Maximum height available
         let contentHeight = maxOffset - minOffset
+        var result = FilteredCells(cells: [], remainder: [])
 
-        var cells: [PDFTableCalculatedCell] = []
-        var rest: [PDFTableCalculatedCell] = []
+        var offsetFix: CGFloat!
 
-        for item in  items {
+        // Iterate each cell and decide if it fits on current page or if it needs to be moved to the further pages
+        for item in items {
             let cellFrame = item.frames.cell
-            if cellFrame.maxY < maxOffset {
-                cells.append(item)
+
+            // Cells needs to fit the current available space entirely
+            if cellFrame.maxY < maxOffset { // TODO: is the row padding relevant here?
+                result.cells.append(item)
             } else {
-                if cellFrame.minY < maxOffset {
-                    cells.append(item)
+                // If cells should be split and cell is partially on current page, add it to the cells, the cell will be sliced afterwards
+                if shouldSplitCellsOnPageBeak && cellFrame.minY < maxOffset {
+                    result.cells.append(item)
                 }
+                // In any case, if the cell does not fit on the active page entirely, it must be repositioned for further pages
                 var nextPageCell = item
-                nextPageCell.frames.cell.origin.y -= contentHeight
-                nextPageCell.frames.content.origin.y -= contentHeight
-                rest.append(nextPageCell)
+                if shouldSplitCellsOnPageBeak {
+                    nextPageCell.frames.cell.origin.y -= contentHeight
+                    nextPageCell.frames.content.origin.y -= contentHeight
+                } else {
+                    let cellContentOffset = nextPageCell.frames.content.minY - nextPageCell.frames.cell.minY
+                    if offsetFix == nil {
+                        offsetFix = nextPageCell.frames.cell.minY - minOffset
+                    }
+                    nextPageCell.frames.cell.origin.y -= offsetFix
+                    nextPageCell.frames.content.origin.y = nextPageCell.frames.cell.minY + cellContentOffset
+                }
+                result.remainder.append(nextPageCell)
             }
         }
-        return (cells: cells, rest: rest)
+        return result
     }
 
     internal func createSliceObject(frame: CGRect, elements: [PDFRenderObject], minOffset: CGFloat, maxOffset: CGFloat) -> PDFSlicedObject {
@@ -430,9 +466,12 @@ internal class PDFTableObject: PDFRenderObject {
         return sliceObject
     }
 
-    /**
-     Creates a render object for the cell background
-     */
+    /// Creates a render object for the cell background
+    ///
+    /// - Parameters:
+    ///   - style: Style of table cell
+    ///   - frame: Frame of cell
+    /// - Returns: Calculated `PDFRectangleObject`
     internal func createCellBackgroundObject(style: PDFTableCellStyle, frame: CGRect) -> PDFRenderObject {
         let object = PDFRectangleObject(lineStyle: .none, size: frame.size, fillColor: style.colors.fill)
         object.frame = frame
@@ -500,14 +539,11 @@ internal class PDFTableObject: PDFRenderObject {
         return .content
     }
 
-    /**
-     Returns the style of a given cell, depending on the type.
-
-     - parameters tableStyle: Style configuration of table
-     - parameters type: Type of cell
-
-     - returns: Style of cell
-     */
+    /// Returns the style of a given cell, depending on the type.
+    /// - Parameters:
+    ///   - tableStyle: Style configuration of table
+    ///   - type: Type of cell
+    /// - Returns: Style of cell
     internal func getStyle(tableStyle: PDFTableStyle, type: CellType) -> PDFTableCellStyle {
         switch type {
         case .header:
@@ -525,14 +561,11 @@ internal class PDFTableObject: PDFRenderObject {
         }
     }
 
-    /**
-     Creates four outline line objects around a given frame using the given style.
-
-     - parameter borders: Style of each border direction
-     - parameter frame: Frame of rectangle
-
-     - returns: Array of `PDFLineObject`
-     */
+    /// Creates four outline line objects around a given frame using the given style.
+    /// - Parameters:
+    ///   - borders: Style of each border edge
+    ///   - frame: Frame of rectangle
+    /// - Returns: Array of `PDFLineObject`
     internal func createCellOutlineObjects(borders: PDFTableCellBorders, frame: CGRect) -> [PDFLineObject] {
         [
             PDFLineObject(style: borders.top,
@@ -550,9 +583,7 @@ internal class PDFTableObject: PDFRenderObject {
         ]
     }
 
-    /**
-     Creates a new `PDFTableObject` with the same properties
-     */
+    /// Creates a new `PDFTableObject` with the same properties
     override internal var copy: PDFRenderObject {
         PDFTableObject(table: table.copy)
     }

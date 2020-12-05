@@ -67,7 +67,7 @@ public class PDFTableRow {
         }
         set {
             assert(newValue.count <= cells.count, "Can not access more cells than available")
-            for (idx, cell) in cells.enumerated() {
+            for (idx, cell) in cells.enumerated() where idx <= newValue.count - 1 {
                 cell.style = newValue[idx]
             }
         }
@@ -97,7 +97,7 @@ public class PDFTableRow {
         }
         set {
             assert(newValue.count <= cells.count, "Can not access more cells than available")
-            for (idx, cell) in cells.enumerated() {
+            for (idx, cell) in cells.enumerated() where idx <= newValue.count - 1 {
                 cell.alignment = newValue[idx]
             }
         }

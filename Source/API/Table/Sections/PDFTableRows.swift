@@ -140,8 +140,10 @@ public class PDFTableRows {
             fatalError("You cannot read from this object.")
         }
         set {
-            assert(newValue.count <= rows.count, "Can not access more rows than available")
-            rows.forEach { $0.alignment = newValue }
+            rows.forEach {
+                assert(newValue.count <= $0.cells.count, "Can not access more columns than available")
+                $0.alignment = newValue
+            }
         }
     }
 
