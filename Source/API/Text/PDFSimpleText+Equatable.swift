@@ -8,14 +8,8 @@
 /**
  TODO: Documentation
  */
-extension PDFSimpleText: Equatable {
+extension PDFSimpleText {
 
-    /// Compares two instances of `PDFSimpleText` for equality
-    ///
-    /// - Parameters:
-    ///   - lhs: One instance of `PDFSimpleText`
-    ///   - rhs: Another instance of `PDFSimpleText`
-    /// - Returns: `true`, if `attributes`, `tag`, `text` and `spacing` equal; otherwise `false`
     public static func == (lhs: PDFSimpleText, rhs: PDFSimpleText) -> Bool {
         // Properties of PDFObjectAttribute
         guard lhs.attributes == rhs.attributes else {

@@ -111,4 +111,41 @@ public class PDFTable: PDFDocumentObject {
             self.rows.alignment = newValue
         }
     }
+
+    // MARK: - Equatable
+
+    /// Compares two instances of `PDFTable` for equality
+    ///
+    /// - Parameters:
+    ///   - other: Another instance of `PDFTable`
+    /// - Returns: `true`, if `attributes`, `tag`, `style`, `cells`, `widths`, `padding`, `margin`, `showHeadersOnEveryPage` equal; otherwise `false`
+    public override func isEqual(to other: PDFDocumentObject) -> Bool {
+        guard super.isEqual(to: other) else { return false }
+
+        guard let otherTable = other as? PDFTable else {
+            return false
+        }
+        guard self.style == otherTable.style else {
+            return false
+        }
+        guard self.cells.count == otherTable.cells.count else {
+            return false
+        }
+        for i in 0..<self.cells.count where self.cells[i] != otherTable.cells[i] {
+            return false
+        }
+        guard self.widths == otherTable.widths else {
+            return false
+        }
+        guard self.padding == otherTable.padding else {
+            return false
+        }
+        guard self.margin == otherTable.margin else {
+            return false
+        }
+        guard self.showHeadersOnEveryPage == otherTable.showHeadersOnEveryPage else {
+            return false
+        }
+        return true
+    }
 }

@@ -14,7 +14,7 @@ import AppKit
 /**
  TODO: Documentation
  */
-public class PDFTableContent: CustomStringConvertible {
+public class PDFTableContent: CustomStringConvertible, Hashable {
 
     /**
      TODO: Documentation
@@ -105,6 +105,46 @@ public class PDFTableContent: CustomStringConvertible {
      */
     internal var imageValue: Image? {
         type == .image ? content as? Image : nil
+    }
+
+    // MARK: - Equatable
+
+    public static func == (lhs: PDFTableContent, rhs: PDFTableContent) -> Bool {
+        guard lhs.type == rhs.type else {
+            return false
+        }
+        if let lhsString = lhs.content as? String,
+            let rhsString = rhs.content as? String,
+            lhsString != rhsString {
+            return false
+        } else if let lhsString = lhs.content as? NSAttributedString,
+            let rhsString = rhs.content as? NSAttributedString,
+            lhsString != rhsString {
+            return false
+        } else if let lhsImage = lhs.content as? Image,
+            let rhsImage = rhs.content as? Image,
+            lhsImage != rhsImage {
+            return false
+        } else if (lhs.content == nil && rhs.content != nil) || (lhs.content != nil && rhs.content == nil) {
+            return false
+        }
+        return true
+    }
+
+    // MARK: - Hashable
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(type)
+        switch type {
+        case .string:
+            hasher.combine(stringValue)
+        case .attributedString:
+            hasher.combine(attributedStringValue)
+        case .image:
+            hasher.combine(imageValue)
+        case .none:
+            hasher.combine("none")
+        }
     }
 }
 

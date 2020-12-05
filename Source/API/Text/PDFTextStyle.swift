@@ -14,7 +14,7 @@ import AppKit
 /**
  TODO: Documentation
  */
-public class PDFTextStyle {
+public class PDFTextStyle: Hashable {
 
     /**
      Name of style
@@ -42,5 +42,28 @@ public class PDFTextStyle {
         self.name = name
         self.font = font
         self.color = color
+    }
+
+    // MARK: - Equatable
+
+    public static func == (lhs: PDFTextStyle, rhs: PDFTextStyle) -> Bool {
+        guard lhs.name == rhs.name else {
+            return false
+        }
+        guard lhs.font == rhs.font else {
+            return false
+        }
+        guard lhs.color == rhs.color else {
+            return false
+        }
+        return true
+    }
+
+    // MARK: - Hashable
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(font)
+        hasher.combine(color)
     }
 }

@@ -8,7 +8,7 @@
 /**
  TODO: documentation
  */
-public enum PDFListItemSymbol: RawRepresentable {
+public enum PDFListItemSymbol: RawRepresentable, Hashable {
 
     /**
      TODO: documentation
@@ -111,5 +111,29 @@ public enum PDFListItemSymbol: RawRepresentable {
                 self = .none
             }
         }
+    }
+
+    // MARK: - Equatable
+
+    public static func == (lhs: PDFListItemSymbol, rhs: PDFListItemSymbol) -> Bool {
+        switch (lhs, rhs) {
+        case (.none, .none),
+             (.inherit, .inherit),
+             (.dot, .dot),
+             (.dash, .dash):
+            return true
+        case let (.custom(lhsValue), .custom(rhsValue)):
+            return lhsValue == rhsValue
+        case let (.numbered(lhsValue), .numbered(rhsValue)):
+            return lhsValue == rhsValue
+        default:
+            return false
+        }
+    }
+
+    // MARK: - Hashable
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(rawValue)
     }
 }

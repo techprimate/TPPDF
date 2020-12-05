@@ -8,41 +8,54 @@
 /**
  TODO: Documentation
  */
-public struct PDFTableCellBorders {
+public struct PDFTableCellBorders: Hashable {
 
-    /**
-     TODO: Documentation
-     */
+    /// Style of left edge line
     public var left: PDFLineStyle
 
-    /**
-     TODO: Documentation
-     */
+    /// Style of top edge line
     public var top: PDFLineStyle
 
-    /**
-     TODO: Documentation
-     */
+    /// Style of right edge line
     public var right: PDFLineStyle
 
-    /**
-     TODO: Documentation
-     */
+    /// Style of bottom edge line
     public var bottom: PDFLineStyle
 
     /**
      TODO: Documentation
      */
-    public init(left: PDFLineStyle = PDFLineStyle.none,
-                top: PDFLineStyle = PDFLineStyle.none,
-                right: PDFLineStyle = PDFLineStyle.none,
-                bottom: PDFLineStyle = PDFLineStyle.none) {
+    public init(left: PDFLineStyle = .none,
+                top: PDFLineStyle = .none,
+                right: PDFLineStyle = .none,
+                bottom: PDFLineStyle = .none) {
         self.left = left
         self.top = top
         self.right = right
         self.bottom = bottom
     }
+
+    // MARK: - Equatable
+
+    public static func == (lhs: PDFTableCellBorders, rhs: PDFTableCellBorders) -> Bool {
+        guard lhs.left == rhs.left else { return false }
+        guard lhs.top == rhs.top else { return false }
+        guard lhs.right == rhs.right else { return false }
+        guard lhs.bottom == rhs.bottom else { return false }
+        return true
+    }
+
+    // MARK: - Hashable
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(left)
+        hasher.combine(top)
+        hasher.combine(right)
+        hasher.combine(bottom)
+    }
 }
+
+// MARK: - Defaults
 
 extension PDFTableCellBorders {
 
