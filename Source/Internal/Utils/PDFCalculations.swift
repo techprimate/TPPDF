@@ -157,13 +157,42 @@ internal enum PDFCalculations {
             + layout.heights.maxHeaderHeight()
     }
 
+    /// Calculates the maximum offset from the top edge when the main content should break to the next page
+    ///
+    /// This method calculates the limit by the following formula:
+    ///
+    ///       page height
+    ///     - bottom margin
+    ///     - footer height
+    ///     - footer spacing (if footer exists)
+    ///     - padding
+    ///     -----------------------------------
+    ///       offset from top edge
+    ///
+    ///     --- ┏━━━━━━━━━━┓
+    ///      ↑  ┃┌────────┐┃
+    ///      ↓  ┃│ Group  │┃
+    ///     --> ┃└────────┘┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┨
+    ///         ┃ spacing  ┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┨
+    ///         ┃  footer  ┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┨
+    ///         ┃  margin  ┃
+    ///         ┗━━━━━━━━━━┛
+    ///
+    /// - Parameter generator: Generator currently in use holding information about the document
+    /// - Returns: Offset from top edge in points
     internal static func calculateBottomMaximum(for generator: PDFGenerator) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
+        let footerHeight = layout.heights.maxFooterHeight()
 
         return pageLayout.height
-            - layout.margin.top
-            - layout.heights.maxHeaderHeight()
+            - generator.currentPadding.bottom
+            - (footerHeight > 0 ? pageLayout.space.footer : 0)
+            - footerHeight
+            - layout.margin.bottom
     }
 
     /**
