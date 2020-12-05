@@ -1,24 +1,41 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.1...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.2...HEAD)
 
 **Implemented enhancements:**
-
-- Added optional table cell splicing disabling
 
 **Fixed bugs:**
 
 **Closed issues:**
 
+**Merged pull requests:**
+
+## [2.3.2](https://github.com/techprimate/TPPDF/tree/2.3.2) (2020-12-05)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.1...2.3.2)
+
+**Implemented enhancements:**
+
+- Added optional table cell splicing disabling (#205)
+
+**Fixed bugs:**
+
+- Fixed carthage version missing (#236)
+
+**Closed issues:**
+
 - Issue #205
 - Issue #222
+- Issue #236
 - Issue #243
 - Issue #249
+- Issue #233
 
 **Merged pull requests:**
 
 - PR #223
+- PR #252 [by lpeancovschi]
+- PR #255
 
 ## [2.3.1](https://github.com/techprimate/TPPDF/tree/2.3.1) (2020-09-23)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.0...2.3.1)
