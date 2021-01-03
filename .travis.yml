@@ -97,7 +97,7 @@ jobs:
     before_script:
     - cd "${ROOT_FOLDER}"
     - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
-    - carthage update --platform ios --cache-builds
+    - ../scripts/carthage.sh update --platform ios --cache-builds
     script:
     - set -o pipefail
     - xcodebuild -project "$PROJECT"
