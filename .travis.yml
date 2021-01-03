@@ -151,7 +151,7 @@ jobs:
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                 -sdk macosx10.15
+                 -sdk macosx
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
                  build | xcpretty
