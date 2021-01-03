@@ -133,7 +133,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         static var called = false
 
-                        override func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+                        override func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
                             CustomObject.called = true
                         }
 
@@ -147,7 +147,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                     expect(CustomObject.called).to(beFalse())
 
-                    try? generator.render(object: obj, in: .headerLeft, in: context)
+                    try? generator.render(object: obj, in: .headerLeft, in: .init(cgContext: context))
 
                     expect(CustomObject.called).to(beTrue())
                 }

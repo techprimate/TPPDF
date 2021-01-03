@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		D4B7EA1E25A1BB67007D09C7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B7EA1D25A1BB67007D09C7 /* XCTest.framework */; };
 		D4B7EA1F25A1BB67007D09C7 /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4B7EA1D25A1BB67007D09C7 /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4B7EA4125A1C956007D09C7 /* PDFContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7EA4025A1C956007D09C7 /* PDFContext.swift */; };
 		OBJ_428 /* CwlCatchException.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_353 /* CwlCatchException.swift */; };
 		OBJ_430 /* CwlCatchExceptionSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "CwlCatchException::CwlCatchExceptionSupport::Product" /* CwlCatchExceptionSupport.framework */; };
 		OBJ_438 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_359 /* Package.swift */; };
@@ -519,6 +520,7 @@
 		"CwlPreconditionTesting::CwlPosixPreconditionTesting::Product" /* CwlPosixPreconditionTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CwlPosixPreconditionTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"CwlPreconditionTesting::CwlPreconditionTesting::Product" /* CwlPreconditionTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CwlPreconditionTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B7EA1D25A1BB67007D09C7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D4B7EA4025A1C956007D09C7 /* PDFContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFContext.swift; sourceTree = "<group>"; };
 		"Nimble::Nimble::Product" /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* PDFExternalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExternalDocument.swift; sourceTree = "<group>"; };
 		OBJ_101 /* PDFContextGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFContextGraphics.swift; sourceTree = "<group>"; };
@@ -963,6 +965,7 @@
 		OBJ_100 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				D4B7EA4025A1C956007D09C7 /* PDFContext.swift */,
 				OBJ_101 /* PDFContextGraphics.swift */,
 				OBJ_102 /* PDFGraphics.swift */,
 				OBJ_103 /* PDFLineObject.swift */,
@@ -1732,7 +1735,7 @@
 			path = "Table Of Content";
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -1759,7 +1762,6 @@
 				OBJ_422 /* CHANGELOG.md */,
 				D4B7EA1C25A1BB67007D09C7 /* Frameworks */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_51 /* Table */ = {
@@ -2201,7 +2203,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_395 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2421,6 +2423,7 @@
 				OBJ_621 /* PDFImageSizeFit.swift in Sources */,
 				OBJ_622 /* PDFContainer.swift in Sources */,
 				OBJ_623 /* PDFPageLayout.swift in Sources */,
+				D4B7EA4125A1C956007D09C7 /* PDFContext.swift in Sources */,
 				OBJ_624 /* PDFList.swift in Sources */,
 				OBJ_625 /* PDFListItem.swift in Sources */,
 				OBJ_626 /* PDFListItemSymbol.swift in Sources */,

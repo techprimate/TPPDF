@@ -53,7 +53,7 @@ class PDFPageBreakObject_Spec: QuickSpec {
 
                 it("can be drawn") {
                     expect {
-                        try object.draw(generator: generator, container: container, in: context)
+                        try object.draw(generator: generator, container: container, in: PDFContext(cgContext: context))
                     }.toNot(throwError())
                 }
             }
