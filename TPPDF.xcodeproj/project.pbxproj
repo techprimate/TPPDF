@@ -949,8 +949,8 @@
 		"Quick::Quick::Product" /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Quick::QuickObjCRuntime::Product" /* QuickObjCRuntime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QuickObjCRuntime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"TPPDF::TPPDF::Product" /* TPPDF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPPDF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"TPPDF::TPPDFIntegrationTests::Product" /* TPPDFIntegrationTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = TPPDFIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"TPPDF::TPPDFTests::Product" /* TPPDFTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = TPPDFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"TPPDF::TPPDFIntegrationTests::Product" /* TPPDFIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = TPPDFIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"TPPDF::TPPDFTests::Product" /* TPPDFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = TPPDFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3671,7 +3671,7 @@
 					"$(SRCROOT)/TPPDF.xcodeproj/GeneratedModuleMap/QuickObjCRuntime",
 				);
 				INFOPLIST_FILE = TPPDF.xcodeproj/TPPDFIntegrationTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_CFLAGS = "$(inherited)";
@@ -3703,7 +3703,7 @@
 					"$(SRCROOT)/TPPDF.xcodeproj/GeneratedModuleMap/QuickObjCRuntime",
 				);
 				INFOPLIST_FILE = TPPDF.xcodeproj/TPPDFIntegrationTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_CFLAGS = "$(inherited)";
@@ -3765,7 +3765,7 @@
 					"$(SRCROOT)/TPPDF.xcodeproj/GeneratedModuleMap/QuickObjCRuntime",
 				);
 				INFOPLIST_FILE = TPPDF.xcodeproj/TPPDFTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "$(inherited)";
@@ -3797,7 +3797,7 @@
 					"$(SRCROOT)/TPPDF.xcodeproj/GeneratedModuleMap/QuickObjCRuntime",
 				);
 				INFOPLIST_FILE = TPPDF.xcodeproj/TPPDFTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "$(inherited)";
