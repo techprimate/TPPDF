@@ -34,7 +34,7 @@ internal enum PDFGraphics {
      - parameter end: End point of line
      - parameter style: Style of drawn line
      */
-    internal static func drawLine(in context: CGContext, start: CGPoint, end: CGPoint, style: PDFLineStyle) {
+    internal static func drawLine(in context: PDFContext, start: CGPoint, end: CGPoint, style: PDFLineStyle) {
         guard style.type != .none else {
             return
         }
@@ -57,7 +57,7 @@ internal enum PDFGraphics {
      - parameter outline: Style of border lines
      - parameter fill: Inner color
      */
-    internal static func drawRect(in context: CGContext, rect: CGRect, outline: PDFLineStyle, fill: Color = .clear) {
+    internal static func drawRect(in context: PDFContext, rect: CGRect, outline: PDFLineStyle, fill: Color = .clear) {
         var path = BezierPath(rect: rect)
         if let radius = outline.radius {
             path = BezierPath(roundedRect: rect, cornerRadius: radius)
@@ -74,7 +74,7 @@ internal enum PDFGraphics {
      - parameter outline: Style of border lines
      - parameter fill: Inner color
      */
-    internal static func drawRect(in context: CGContext, rect: CGRect, outline: PDFLineStyle, pattern: FillPattern) {
+    internal static func drawRect(in context: PDFContext, rect: CGRect, outline: PDFLineStyle, pattern: FillPattern) {
         var path = BezierPath(rect: rect)
         if let radius = outline.radius {
             path = BezierPath(roundedRect: rect, cornerRadius: radius)
@@ -89,7 +89,7 @@ internal enum PDFGraphics {
     /**
      TODO: Documentation
      */
-    internal static func drawPath(path: BezierPath, in context: CGContext, outline: PDFLineStyle, fillColor: Color) {
+    internal static func drawPath(path: BezierPath, in context: PDFContext, outline: PDFLineStyle, fillColor: Color) {
         prepareForDrawingPath(path: path.cgPath, in: context, strokeStyle: outline)
         context.setFillColor(fillColor.cgColor)
         context.drawPath(using: .fillStroke)
@@ -98,7 +98,7 @@ internal enum PDFGraphics {
     /**
      TODO: Documentation
      */
-    internal static func prepareForDrawingPath(path: CGPath, in context: CGContext, strokeStyle: PDFLineStyle) {
+    internal static func prepareForDrawingPath(path: CGPath, in context: PDFContext, strokeStyle: PDFLineStyle) {
         context.beginPath()
         context.addPath(path)
 
@@ -260,7 +260,7 @@ internal enum PDFGraphics {
 
         clipPath.addClip()
         image.draw(in: CGRect(origin: .zero, size: size))
-        
+
         #if os(iOS)
         let finalImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -289,7 +289,7 @@ internal enum PDFGraphics {
         /**
          TODO: Documentation
          */
-        internal func setFill(in context: CGContext) {
+        internal func setFill(in context: PDFContext) {
             switch self {
             case .dotted(let foreColor, let backColor):
                 let size = CGSize(width: 5, height: 5)

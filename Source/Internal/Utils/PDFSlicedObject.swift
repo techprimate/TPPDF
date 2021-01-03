@@ -28,7 +28,7 @@ internal class PDFSlicedObject: PDFRenderObject {
         ]
     }
 
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
         if frame != .null {
             context.saveGState()
             context.beginPath()

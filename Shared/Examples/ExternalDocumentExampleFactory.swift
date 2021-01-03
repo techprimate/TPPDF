@@ -24,7 +24,7 @@ class ExternalDocumentExampleFactory: ExampleFactory {
         document.add(text: "This is more text after the external pdf file")
 
         // Add same sample again
-        externalDocument = PDFExternalDocument(url: Bundle.main.url(forResource: "sample", withExtension: "pdf")!, pages: 1, 3)
+        externalDocument = PDFExternalDocument(url: Bundle.main.url(forResource: "sample", withExtension: "pdf")!, pages: 2, 4)
         document.add(externalDocument: externalDocument)
 
         // Add more text after externalDocument

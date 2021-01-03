@@ -70,7 +70,7 @@ internal class PDFPageBreakObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
         if !stayOnSamePage {
             PDFContextGraphics.endPDFPage(in: context)
             PDFContextGraphics.beginPDFPage(in: context, for: generator.document.layout.bounds)

@@ -120,7 +120,7 @@ internal class PDFAttributedTextObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
         if attributedString == nil {
             throw PDFError.textObjectNotCalculated
         }
@@ -148,9 +148,9 @@ internal class PDFAttributedTextObject: PDFRenderObject {
 
         // Translate context to actual position of text
         context.translateBy(x: frame.minX, y: CGFloat(generator.document.layout.height) - frame.maxY)
-        
+
         // Draw text into context
-        CTFrameDraw(frameRef, context)
+        context.draw(ctFrame: frameRef)
 
         // Restore context to pre manipulation
         context.restoreGState()
@@ -176,7 +176,7 @@ internal class PDFAttributedTextObject: PDFRenderObject {
     private func calculateLinkAttributes(with links: [(url: String, range: NSRange)],
                                          in frameRef: CTFrame,
                                          in allRange: NSRange,
-                                         context: CGContext,
+                                         context: PDFContext,
                                          debug: Bool) {
         guard let lines = CTFrameGetLines(frameRef) as? [CTLine] else {
             return

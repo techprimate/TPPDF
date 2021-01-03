@@ -71,7 +71,7 @@ extension PDFGenerator {
 
      - throws: PDFError
      */
-    public func generatePDFContext(context: CGContext) throws {
+    public func generatePDFContext(context: PDFContext) throws {
         let renderObjects = try createRenderObjects()
         try render(objects: renderObjects, in: context)
     }
@@ -318,13 +318,13 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    internal func render(objects: [PDFLocatedRenderObject], in context: CGContext) throws {
+    internal func render(objects: [PDFLocatedRenderObject], in context: PDFContext) throws {
         PDFContextGraphics.beginPDFPage(in: context, for: document.layout.bounds)
-
-        drawDebugPageOverlay(in: context)
 
         let renderProgress = Progress.discreteProgress(totalUnitCount: Int64(objects.count))
         progress.addChild(renderProgress, withPendingUnitCount: 1)
+
+        drawDebugPageOverlay(in: context)
 
         for (container, object) in objects {
             try render(object: object, in: container, in: context)
@@ -339,7 +339,7 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    internal func render(object: PDFRenderObject, in container: PDFContainer, in context: CGContext) throws {
+    internal func render(object: PDFRenderObject, in container: PDFContainer, in context: PDFContext) throws {
         try object.draw(generator: self, container: container, in: context)
     }
 

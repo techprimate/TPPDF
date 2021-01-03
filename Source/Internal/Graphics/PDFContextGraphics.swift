@@ -37,15 +37,15 @@ internal enum PDFContextGraphics {
         #endif
     }
 
-    internal static func createPDFContext(url: URL, bounds: CGRect, info: PDFInfo) -> CGContext {
+    internal static func createPDFContext(url: URL, bounds: CGRect, info: PDFInfo) -> PDFContext {
         var mediaBox = bounds
         guard let context = CGContext(url as CFURL, mediaBox: &mediaBox, info.generate() as CFDictionary) else {
             fatalError("Failed to create PDF rendering context for URL")
         }
-        return context
+        return PDFContext(cgContext: context)
     }
 
-    internal static func createPDFDataContext(bounds: CGRect, info: PDFInfo) -> (NSMutableData, CGContext) {
+    internal static func createPDFDataContext(bounds: CGRect, info: PDFInfo) -> (NSMutableData, PDFContext) {
         let data = NSMutableData()
         let contextInfo = info.generate()
         var mediaBox = bounds
@@ -53,14 +53,14 @@ internal enum PDFContextGraphics {
             let context = CGContext(consumer: consumer, mediaBox: &mediaBox, contextInfo as CFDictionary) else {
             fatalError("Failed to create PDF rendering context")
         }
-        return (data, context)
+        return (data, PDFContext(cgContext: context))
     }
 
-    internal static func closePDFContext(_ context: CGContext) {
+    internal static func closePDFContext(_ context: PDFContext) {
         context.closePDF()
     }
 
-    internal static func beginPDFPage(in context: CGContext, for bounds: CGRect, flipped: Bool = true) {
+    internal static func beginPDFPage(in context: PDFContext, for bounds: CGRect, flipped: Bool = true) {
         var mediaBox = bounds
         let boxData = NSData(bytes: &mediaBox, length: MemoryLayout.size(ofValue: mediaBox))
         let pageInfo = [
@@ -74,7 +74,7 @@ internal enum PDFContextGraphics {
         }
     }
 
-    internal static func endPDFPage(in context: CGContext) {
+    internal static func endPDFPage(in context: PDFContext) {
         context.endPDFPage()
     }
 }
