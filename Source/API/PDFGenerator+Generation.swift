@@ -164,6 +164,8 @@ extension PDFGenerator {
                         hasAddedHeaderFooterToPage = true
                         _ = try addHeaderFooterObjects()
                     }
+                } else {
+                    currentPage += 1
                 }
 
                 if obj.1 is PDFExternalPageObject {
@@ -287,6 +289,7 @@ extension PDFGenerator {
      TODO: Documentation
      */
     private func headerFooterDebugLines() throws -> [PDFLocatedRenderObject] {
+        return []
         let headerFooterDebugLineStyle = PDFLineStyle(type: .dashed, color: .orange, width: 1)
 
         let yPositions = [
@@ -319,12 +322,14 @@ extension PDFGenerator {
      - throws: PDFError, if rendering fails
      */
     internal func render(objects: [PDFLocatedRenderObject], in context: PDFContext) throws {
-        PDFContextGraphics.beginPDFPage(in: context, for: document.layout.bounds)
-
         let renderProgress = Progress.discreteProgress(totalUnitCount: Int64(objects.count))
         progress.addChild(renderProgress, withPendingUnitCount: 1)
 
-        drawDebugPageOverlay(in: context)
+        // if first element is an external document, do not create the page
+        if objects.first?.1 is PDFExternalPageObject == false {
+            PDFContextGraphics.beginPDFPage(in: context, for: document.layout.bounds)
+            drawDebugPageOverlay(in: context)
+        }
 
         for (container, object) in objects {
             try render(object: object, in: container, in: context)

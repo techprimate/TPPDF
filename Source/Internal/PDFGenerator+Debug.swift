@@ -16,7 +16,7 @@ import AppKit
  */
 extension PDFGenerator {
 
-    // MARK: - INTERNAL FUNCS
+    // MARK: - INTERNAL FUNCSs
 
     /**
      Overlays horizontal and vertical lines at margin insets

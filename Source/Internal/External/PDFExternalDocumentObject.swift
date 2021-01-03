@@ -24,8 +24,8 @@ internal class PDFExternalDocumentObject: PDFRenderObject {
         guard let cgPDF = CGPDFDocument(url as CFURL) else {
             throw PDFError.externalDocumentURLInvalid(url: url)
         }
-
-        for i in pages {
+        let allPages = pages.isEmpty ? Array(1...cgPDF.numberOfPages) : pages
+        for i in allPages {
             guard let page = cgPDF.page(at: i) else {
                 throw PDFError.pageOutOfBounds(index: i)
             }
