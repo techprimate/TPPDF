@@ -61,7 +61,6 @@ class ViewController: UIViewController {
                 /* ---- Execution Metrics ---- */
 
                 DispatchQueue.main.async {
-                    print((generator as? PDFGenerator)?.totalPages)
                     self.progressView.isHidden = true
                     // Load PDF into a webview from the temporary file
                     self.webView.loadRequest(URLRequest(url: url))

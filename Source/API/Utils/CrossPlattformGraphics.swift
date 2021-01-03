@@ -28,7 +28,7 @@ public typealias EdgeInsets = NSEdgeInsets
 public typealias BezierPath = NSBezierPath
 public typealias Point = NSPoint
 
-extension NSBezierPath{
+extension NSBezierPath {
     func quadCurve(to endPoint: CGPoint, controlPoint: CGPoint) {
         let startPoint = self.currentPoint
         let controlPoint1 = CGPoint(x: (startPoint.x + (controlPoint.x - startPoint.x) * 2.0/3.0),
@@ -106,7 +106,6 @@ extension NSBezierPath {
         return path
     }
 }
-
 
 extension NSBezierPath {
 

@@ -85,4 +85,3 @@ extension Color {
         return String(format: "#%08x", rgb)
     }
 }
-

@@ -35,7 +35,7 @@ public class PDFAttributedText: PDFText {
     /**
      Creats a new `PDFAttributedText` with the same properties
      */
-    public override var copy: PDFText {
+    override public var copy: PDFText {
         PDFAttributedText(text: text)
     }
 
@@ -47,7 +47,7 @@ public class PDFAttributedText: PDFText {
     ///   - lhs: One instance of `PDFAttributedText`
     ///   - rhs: Another instance of `PDFAttributedText`
     /// - Returns: `true`, if `attributes`, `tag` and `text` equal; otherwise `false`
-    public override func isEqual(to other: PDFDocumentObject) -> Bool {
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
         guard super.isEqual(to: other) else {
             return false
         }

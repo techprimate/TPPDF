@@ -182,8 +182,7 @@ extension PDFGenerator {
             progress.completedUnitCount += 1
         }
 
-        var result = currentPage
-        // If the last object was a external page object, we reduce the amount by one, as we are already on the next page
+        let result = currentPage
 
         // Reset all changes made by metrics calculation to generator
         resetGenerator()

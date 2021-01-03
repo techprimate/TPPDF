@@ -118,7 +118,7 @@ public class PDFList: PDFDocumentObject {
     ///   - lhs: One instance of `PDFList`
     ///   - rhs: Another instance of `PDFList`
     /// - Returns: `true`, if `levelIndentations` and `items` equal; otherwise `false`
-    public override func isEqual(to other: PDFDocumentObject) -> Bool {
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
         guard super.isEqual(to: other) else {
             return false
         }
@@ -142,7 +142,7 @@ public class PDFList: PDFDocumentObject {
 
     // MARK: - Hashable
 
-    public override func hash(into hasher: inout Hasher) {
+    override public func hash(into hasher: inout Hasher) {
         super.hash(into: &hasher)
         for (pre, post) in levelIndentations {
             hasher.combine(pre)

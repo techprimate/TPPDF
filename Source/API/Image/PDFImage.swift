@@ -96,7 +96,7 @@ public class PDFImage: PDFDocumentObject {
 
     // MARK: - Equatable
 
-    public override func isEqual(to other: PDFDocumentObject) -> Bool {
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
         guard super.isEqual(to: other) else {
             return false
         }
@@ -129,7 +129,7 @@ public class PDFImage: PDFDocumentObject {
 
     // MARK: - Hashable
 
-    public override func hash(into hasher: inout Hasher) {
+    override public func hash(into hasher: inout Hasher) {
         hasher.combine(image)
         hasher.combine(caption)
         hasher.combine(size.width)

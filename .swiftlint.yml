@@ -44,7 +44,7 @@ identifier_name:
     error:        2
     warning:      2
 included:
-  - ../Source
+  - Source
 line_length:      150
 reporter:         xcode
 type_body_length:

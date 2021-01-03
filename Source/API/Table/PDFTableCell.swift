@@ -49,7 +49,7 @@ public class PDFTableCell: PDFDocumentObject {
     ///   - lhs: One instance of `PDFTableCell`
     ///   - rhs: Another instance of `PDFTableCell`
     /// - Returns: `true`, if `attributes`, `tag`, `content`, `alignment` and `style` equal; otherwise `false`
-    public override func isEqual(to other: PDFDocumentObject) -> Bool {
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
         guard super.isEqual(to: other) else {
             return false
         }
@@ -70,7 +70,7 @@ public class PDFTableCell: PDFDocumentObject {
 
     // MARK: - Equatable
 
-    public override func hash(into hasher: inout Hasher) {
+    override public func hash(into hasher: inout Hasher) {
         super.hash(into: &hasher)
         hasher.combine(content)
         hasher.combine(style)

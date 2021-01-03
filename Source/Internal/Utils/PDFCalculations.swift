@@ -472,7 +472,7 @@ internal enum PDFCalculations {
                                                    sizeFit: PDFImageSizeFit) -> (CGSize, CGSize) {
         /* calculate the aspect size of image */
         let size = (size == CGSize.zero) ? image.size : size
-        
+
         /* calculate caption height if a caption exists */
         let captionHeight: CGFloat =
             (image.caption as? PDFAttributedText).map({ $0.text.size().height })
@@ -497,7 +497,7 @@ internal enum PDFCalculations {
         }()
 
         let imageSize = CGSize(width: image.size.width / factor, height: (image.size.height / factor) - captionHeight)
-        
+
         return (imageSize, CGSize(width: imageSize.width, height: captionHeight))
     }
 

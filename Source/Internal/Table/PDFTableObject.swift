@@ -342,7 +342,6 @@ internal class PDFTableObject: PDFRenderObject {
                 throw PDFError.tableCellTooBig(cell: firstInvalidCell.cell)
             }
 
-
             for (idx, item) in onPageCells.enumerated() {
                 let cellFrame = item.frames.cell
 
@@ -404,7 +403,6 @@ internal class PDFTableObject: PDFRenderObject {
         /// List of remaining cells on further pages
         var remainder: [PDFTableCalculatedCell]
     }
-
 
     /// Filters the given list of cells into the ones that fit on the current page, and all remainding cells, repositioned for the next page.
     ///
