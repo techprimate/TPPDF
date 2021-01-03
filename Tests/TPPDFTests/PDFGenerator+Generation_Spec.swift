@@ -275,6 +275,70 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                     }
                 }
             }
+
+            describe("total page estimation") {
+
+                // Test Case:
+                // Precondition:
+                //  - Document contains an external document
+                // Expected Result:
+                //  - Same page count as external document
+                // Notes:
+                //  - none
+                context("only external document") {
+                    it("should return correct total pages count") {
+                        let document = PDFDocument(format: .a4)
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "sample", withExtension: "pdf")!))
+
+                        let generator = PDFGenerator(document: document)
+                        _ = try generator.generateData()
+
+                        expect(generator.totalPages) == 4
+                    }
+                }
+
+                // Test Case:
+                // Precondition:
+                //  - Document contains an external document
+                //  - Document contains text after document
+                // Expected Result:
+                //  - Same page count as external document plus one
+                // Notes:
+                //  - none
+                context("external document and text") {
+                    it("should return correct total pages count") {
+                        let document = PDFDocument(format: .a4)
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "sample", withExtension: "pdf")!))
+                        document.add(text: "Some text after document")
+
+                        let generator = PDFGenerator(document: document)
+                        _ = try generator.generateData()
+
+                        expect(generator.totalPages) == 5
+                    }
+                }
+
+                // Test Case:
+                // Precondition:
+                //  - Document contains text
+                //  - Document contains an external document after text
+                // Expected Result:
+                //  - Same page count as external document plus one
+                // Notes:
+                //  - none
+                context("external document and text") {
+                    it("should return correct total pages count") {
+                        let document = PDFDocument(format: .a4)
+                        document.add(text: "Some text after document")
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "sample", withExtension: "pdf")!))
+
+                        let generator = PDFGenerator(document: document)
+                        _ = try generator.generateData()
+
+                        expect(generator.totalPages) == 5
+                    }
+                }
+            }
         }
     }
 }

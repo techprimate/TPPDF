@@ -14,6 +14,8 @@ class ExperimentFactory: ExampleFactory {
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
+        document.pagination = .init(container: .footerRight)
+        
         let externalDocument = PDFExternalDocument(url: Bundle.main.url(forResource: "sample-large", withExtension: "pdf")!)
         document.add(externalDocument: externalDocument)
 
