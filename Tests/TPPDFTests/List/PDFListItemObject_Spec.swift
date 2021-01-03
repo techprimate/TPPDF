@@ -225,7 +225,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(180))
                     #endif
-                    expect(item?.frame.size.width).to(beCloseTo(107, within: 1))
+                    expect(item?.frame.size.width).to(beCloseTo(105.4, within: 1))
                     #if os(macOS)
                     expect(item?.frame.size.height).to(equal(20.0))
                     #elseif os(iOS)
