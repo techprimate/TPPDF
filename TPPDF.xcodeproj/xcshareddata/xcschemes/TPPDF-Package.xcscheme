@@ -26,18 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES">
-      <CodeCoverageTargets>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "TPPDF::TPPDF"
-            BuildableName = "TPPDF.framework"
-            BlueprintName = "TPPDF"
-            ReferencedContainer = "container:TPPDF.xcodeproj">
-         </BuildableReference>
-      </CodeCoverageTargets>
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -46,6 +35,16 @@
                BlueprintIdentifier = "TPPDF::TPPDFTests"
                BuildableName = "TPPDFTests.xctest"
                BlueprintName = "TPPDFTests"
+               ReferencedContainer = "container:TPPDF.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "TPPDF::TPPDFIntegrationTests"
+               BuildableName = "TPPDFIntegrationTests.xctest"
+               BlueprintName = "TPPDFIntegrationTests"
                ReferencedContainer = "container:TPPDF.xcodeproj">
             </BuildableReference>
          </TestableReference>
