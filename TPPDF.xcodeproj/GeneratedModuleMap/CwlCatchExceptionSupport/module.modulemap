@@ -1,4 +1,0 @@
-module CwlCatchExceptionSupport {
-    umbrella "/Volumes/Developer/TPPDF/.build/checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/include"
-    export *
-}

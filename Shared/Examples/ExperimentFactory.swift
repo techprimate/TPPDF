@@ -17,6 +17,8 @@ class ExperimentFactory: ExampleFactory {
         let externalDocument = PDFExternalDocument(url: Bundle.main.url(forResource: "sample-large", withExtension: "pdf")!)
         document.add(externalDocument: externalDocument)
 
+        document.add(text: "END")
+
         return [document]
     }
 }

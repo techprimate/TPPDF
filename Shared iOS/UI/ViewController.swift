@@ -55,12 +55,13 @@ class ViewController: UIViewController {
             do {
                 let url = try generator.generateURL(filename: "Example.pdf")
                 print("Output URL:", url)
-
+                
                 /* ---- Execution Metrics ---- */
                 print("Generation took: " + TimeUtils.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
                 /* ---- Execution Metrics ---- */
 
                 DispatchQueue.main.async {
+                    print((generator as? PDFGenerator)?.totalPages)
                     self.progressView.isHidden = true
                     // Load PDF into a webview from the temporary file
                     self.webView.loadRequest(URLRequest(url: url))

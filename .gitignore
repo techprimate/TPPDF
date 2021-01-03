@@ -54,6 +54,7 @@ Example*/Pods/Swiftlint
 
 # Swift Package Manager
 .swiftpm
+TPPDF.xcodeproj/GeneratedModuleMap
 
 # Xcode Schemes, so Carthage doesn't complain
 !Example iOS/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF.xcscheme
