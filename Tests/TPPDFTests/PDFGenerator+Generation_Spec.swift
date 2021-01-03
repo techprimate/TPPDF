@@ -15,6 +15,12 @@ import Nimble
 class PDFGenerator_Generation_Spec: QuickSpec {
 
     override func spec() {
+        // This is a hotfix until we can use xcodebuild with SPM resource paths
+        if Bundle.module == Bundle.main {
+            Bundle.module = Bundle(for: PDFGenerator_Generation_Spec.self)
+        }
+
+        
         describe("PDFGenerator") {
 
             context("Generation") {
