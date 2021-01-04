@@ -40,10 +40,9 @@
 </p>
 
 <p align="center">
-    <a href="#whats-new">What's new?</a>
-  • <a href="#features">Features</a>
+  <a href="#features">Features</a>
   • <a href="#communication">Communication</a>
-  • <a href="#example">Example</a>
+  • <a href="#getting-started">Getting Started</a>
   • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md"><strong>Usage</strong></a>
   • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Installation.md">Installation</a>
   • <a href="#credits">Credits</a>
@@ -77,6 +76,33 @@
 - [x] Native progress tracking using `Foundation.Progress`
 - [ ] [Documentation](https://techprimate.github.io/TPPDF)
 
+## Getting Started
+
+Building a PDF document is very easy:
+
+First, you create a document with a paperformat...
+
+```swift
+let document = PDFDocument(format: .a4)
+```
+
+...then you add your information to a container...
+
+```swift
+document.addText(.contentCenter, text: "Create PDF documents easily.")
+```
+
+...then you render the document...
+ 
+```swift 
+let generator = PDFGenerator(document: document)
+let url  = try generator.generateURL(document: document, filename: "Example.pdf")
+```
+
+**...done!**
+
+If you need more details, checkout [Usage](https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md).
+
 ## Communication
 
 **Attention:**
@@ -102,7 +128,6 @@ Take a look at the [Getting Started Guide](https://github.com/techprimate/TPPDF/
 
 - Clone the repository and look at the Example folders
 - Run `pod try TPPDF`
-
 
 ## Apps using TPPDF
 
