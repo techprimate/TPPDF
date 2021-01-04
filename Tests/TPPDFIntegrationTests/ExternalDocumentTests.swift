@@ -76,6 +76,7 @@ class ExternalDocumentTests: QuickSpec {
                     }
                 }
             }
+
             context("content before document") {
                 context("debug mode") {
 
@@ -276,6 +277,132 @@ class ExternalDocumentTests: QuickSpec {
 
                         let outputDoc = PDFKit.PDFDocument(url: outputURL)
                         expect(outputDoc?.pageCount) == 52
+
+                        // TODO: compare output PDF to reference PDF
+                    }
+                }
+            }
+
+            context("multiple external documents") {
+                context("debug mode") {
+
+                    // Test Case:
+                    // Precondition:
+                    //  - Document contains 2 external documents
+                    //  - Debug mode is active
+                    // Expected Result:
+                    //  - Render content of each document after another
+                    // Notes:
+                    //  - This test needs to be run with and without debug mode to validate side effects
+                    it("should merge two external documents with debug overlay") {
+                        let document = PDFDocument(format: .a4)
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+
+                        let generator = PDFGenerator(document: document)
+                        generator.debug = true
+
+                        var outputURL: URL! = nil
+                        expect {
+                            outputURL = try generator.generateURL(filename: "output.pdf")
+                        }.toNot(throwError())
+                        expect(generator.totalPages) == 100
+
+                        let outputDoc = PDFKit.PDFDocument(url: outputURL)
+                        expect(outputDoc?.pageCount) == 100
+
+                        // TODO: compare output PDF to reference PDF
+                    }
+
+                    // Test Case:
+                    // Precondition:
+                    //  - Document contains 2 external documents
+                    //  - Debug mode is active
+                    // Expected Result:
+                    //  - Render content of each document after another
+                    // Notes:
+                    //  - This test needs to be run with and without debug mode to validate side effects
+                    it("should merge many external documents with debug overlay") {
+                        let document = PDFDocument(format: .a4)
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+
+                        let generator = PDFGenerator(document: document)
+                        generator.debug = true
+
+                        var outputURL: URL! = nil
+                        expect {
+                            outputURL = try generator.generateURL(filename: "output.pdf")
+                        }.toNot(throwError())
+                        expect(generator.totalPages) == 250
+
+                        let outputDoc = PDFKit.PDFDocument(url: outputURL)
+                        expect(outputDoc?.pageCount) == 250
+
+                        // TODO: compare output PDF to reference PDF
+                    }
+                }
+
+                context("normal mode") {
+
+                    // Test Case:
+                    // Precondition:
+                    //  - Document contains 5 external documents
+                    //  - Debug mode is not active
+                    // Expected Result:
+                    //  - Render content of each document after another
+                    // Notes:
+                    //  - This test needs to be run with and without debug mode to validate side effects
+                    it("should merge two external documents") {
+                        let document = PDFDocument(format: .a4)
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+
+                        let generator = PDFGenerator(document: document)
+                        generator.debug = false
+
+                        var outputURL: URL! = nil
+                        expect {
+                            outputURL = try generator.generateURL(filename: "output.pdf")
+                        }.toNot(throwError())
+                        expect(generator.totalPages) == 100
+
+                        let outputDoc = PDFKit.PDFDocument(url: outputURL)
+                        expect(outputDoc?.pageCount) == 100
+
+                        // TODO: compare output PDF to reference PDF
+                    }
+
+                    // Test Case:
+                    // Precondition:
+                    //  - Document contains 5 external documents
+                    //  - Debug mode is not  active
+                    // Expected Result:
+                    //  - Render content of each document after another
+                    // Notes:
+                    //  - This test needs to be run with and without debug mode to validate side effects
+                    it("should merge many external documents") {
+                        let document = PDFDocument(format: .a4)
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "50-pages", withExtension: "pdf")!))
+
+                        let generator = PDFGenerator(document: document)
+                        generator.debug = false
+
+                        var outputURL: URL! = nil
+                        expect {
+                            outputURL = try generator.generateURL(filename: "output.pdf")
+                        }.toNot(throwError())
+                        expect(generator.totalPages) == 250
+
+                        let outputDoc = PDFKit.PDFDocument(url: outputURL)
+                        expect(outputDoc?.pageCount) == 250
 
                         // TODO: compare output PDF to reference PDF
                     }

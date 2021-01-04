@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		D47CBEDB25A3AFD90071CD3A /* EmptyDocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47CBEDA25A3AFD90071CD3A /* EmptyDocumentTests.swift */; };
 		D48008C025A200AD00CFB266 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48008BF25A200AD00CFB266 /* XCTest.framework */; };
 		D48008C125A200AD00CFB266 /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D48008BF25A200AD00CFB266 /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D48009AC25A204C700CFB266 /* Bundle+Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48009AB25A204C700CFB266 /* Bundle+Module.swift */; };
@@ -624,6 +625,7 @@
 		"CwlPreconditionTesting::CwlMachBadInstructionHandler::Product" /* CwlMachBadInstructionHandler.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CwlMachBadInstructionHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"CwlPreconditionTesting::CwlPosixPreconditionTesting::Product" /* CwlPosixPreconditionTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CwlPosixPreconditionTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"CwlPreconditionTesting::CwlPreconditionTesting::Product" /* CwlPreconditionTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CwlPreconditionTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D47CBEDA25A3AFD90071CD3A /* EmptyDocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDocumentTests.swift; sourceTree = "<group>"; };
 		D48008BF25A200AD00CFB266 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D480095625A202DD00CFB266 /* 50-pages.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "50-pages.pdf"; sourceTree = "<group>"; };
 		D480099925A202F200CFB266 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
@@ -1276,6 +1278,7 @@
 			children = (
 				D480095525A202DD00CFB266 /* resources */,
 				OBJ_177 /* ExternalDocumentTests.swift */,
+				D47CBEDA25A3AFD90071CD3A /* EmptyDocumentTests.swift */,
 			);
 			name = TPPDFIntegrationTests;
 			path = Tests/TPPDFIntegrationTests;
@@ -2709,6 +2712,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_736 /* ExternalDocumentTests.swift in Sources */,
+				D47CBEDB25A3AFD90071CD3A /* EmptyDocumentTests.swift in Sources */,
 				D48009CD25A2050900CFB266 /* Bundle+Module.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
