@@ -141,7 +141,9 @@ extension PDFGenerator {
 
         // Iterate all objects and let them calculate the required rendering bounds
         var needsPageBreak = false
-        for (pdfObjectIdx, (container, pdfObject)) in contentObjects.enumerated() {
+        var prevPDFObject: PDFLocatedRenderObject?
+        for (pdfObjectIdx, locatedPdfObject) in contentObjects.enumerated() {
+            let (container, pdfObject) = locatedPdfObject
             if let tocObject = pdfObject as? PDFTableOfContentObject {
                 // Create table of content from objects
                 tocObject.list = PDFGenerator.createTableOfContentList(objects: contentObjects,
@@ -152,7 +154,8 @@ extension PDFGenerator {
             var prevObj: PDFLocatedRenderObject?
             for (objIdx, obj) in objects.enumerated() {
                 if needsPageBreak {
-                    if !(prevObj?.1 is PDFExternalPageObject) {
+                    // Skip adding page break between external pages
+                    if !(prevObj?.1 is PDFExternalPageObject) && !(obj.1 is PDFExternalPageObject) {
                         needsPageBreak = false
                         _ = try PDFPageBreakObject().calculate(generator: self, container: container)
                         currentPage += 1
@@ -180,6 +183,7 @@ extension PDFGenerator {
                 prevObj = obj
             }
             progress.completedUnitCount += 1
+            prevPDFObject = locatedPdfObject
         }
 
         let result = currentPage
@@ -215,7 +219,7 @@ extension PDFGenerator {
             var prevObj: PDFLocatedRenderObject?
             for obj in objects {
                 if needsPageBreak {
-                    if !(prevObj?.1 is PDFExternalPageObject) {
+                    if !(prevObj?.1 is PDFExternalPageObject) && !(obj.1 is PDFExternalPageObject) {
                         needsPageBreak = false
                         result += try PDFPageBreakObject().calculate(generator: self, container: container)
                         currentPage += 1
