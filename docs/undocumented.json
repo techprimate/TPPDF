@@ -8,6 +8,34 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Image/PDFImage.swift",
+      "line": 99,
+      "symbol": "PDFImage.isEqual(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Image/PDFImage.swift",
+      "line": 132,
+      "symbol": "PDFImage.hash(into:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/List/PDFList.swift",
+      "line": 145,
+      "symbol": "PDFList.hash(into:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/List/PDFListItem.swift",
+      "line": 111,
+      "symbol": "PDFListItem.hash(into:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTable.swift",
       "line": 60,
       "symbol": "PDFTable.init(size:)",
@@ -43,17 +71,31 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/PDFTableCell.swift",
+      "line": 73,
+      "symbol": "PDFTableCell.hash(into:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/Style/PDFTableCellBorders.swift",
-      "line": 49,
+      "line": 62,
       "symbol": "PDFTableCellBorders.none",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Table/Style/PDFTableCellStyle.swift",
-      "line": 48,
+      "line": 71,
       "symbol": "PDFTableCellStyle.none",
       "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Text/PDFSimpleText+Equatable.swift",
+      "line": 13,
+      "symbol": "PDFSimpleText.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
@@ -114,15 +156,22 @@
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/PDFDocumentObject.swift",
-      "line": 10,
+      "line": 8,
       "symbol": "PDFDocumentObject",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/PDFDocumentObject.swift",
-      "line": 14,
+      "line": 13,
       "symbol": "PDFDocumentObject.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/techprimate/TPPDF/Source/API/Utils/PDFDocumentObject.swift",
+      "line": 25,
+      "symbol": "PDFDocumentObject.isEqual(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
