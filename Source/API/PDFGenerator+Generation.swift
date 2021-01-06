@@ -71,7 +71,7 @@ extension PDFGenerator {
 
      - throws: PDFError
      */
-    public func generatePDFContext(context: CGContext) throws {
+    public func generatePDFContext(context: PDFContext) throws {
         let renderObjects = try createRenderObjects()
         try render(objects: renderObjects, in: context)
     }
@@ -131,9 +131,9 @@ extension PDFGenerator {
         return try calculateRenderObjects(contentObjs: contentObjects, masterObj: masterObjects, progress: calculationProgress)
     }
 
-    private func estimateTotalPageCount(of contentObjects: [PDFLocatedRenderObject], progress: Progress) throws -> Int {
+    internal func estimateTotalPageCount(of contentObjects: [PDFLocatedRenderObject], progress: Progress) throws -> Int {
         // Only calculate render header & footer metrics if page has content.
-        if !contentObjects.isEmpty {
+        if !contentObjects.isEmpty && !(contentObjects.first?.1 is PDFExternalPageObject) {
             _ = try addHeaderFooterObjects()
         }
 
@@ -141,7 +141,9 @@ extension PDFGenerator {
 
         // Iterate all objects and let them calculate the required rendering bounds
         var needsPageBreak = false
-        for (container, pdfObject) in contentObjects {
+        var prevPDFObject: PDFLocatedRenderObject?
+        for (pdfObjectIdx, locatedPdfObject) in contentObjects.enumerated() {
+            let (container, pdfObject) = locatedPdfObject
             if let tocObject = pdfObject as? PDFTableOfContentObject {
                 // Create table of content from objects
                 tocObject.list = PDFGenerator.createTableOfContentList(objects: contentObjects,
@@ -150,24 +152,28 @@ extension PDFGenerator {
             }
             let objects = try pdfObject.calculate(generator: self, container: container)
             var prevObj: PDFLocatedRenderObject?
-            for obj in objects {
+            for (objIdx, obj) in objects.enumerated() {
                 if needsPageBreak {
-                    if !(prevObj?.1 is PDFExternalPageObject) {
+                    // Skip adding page break between external pages
+                    if !(prevObj?.1 is PDFExternalPageObject) && !(obj.1 is PDFExternalPageObject) {
                         needsPageBreak = false
                         _ = try PDFPageBreakObject().calculate(generator: self, container: container)
                         currentPage += 1
                     }
                 }
 
-                if !(obj.1 is PDFExternalPageObject) {
+                if obj.1 is PDFExternalPageObject {
+                    // Do not add counter if one of the following is true:
+                    // - external page is the first element
+                    if !(pdfObjectIdx == 0 && objIdx == 0) {
+                        currentPage += 1
+                    }
+                    needsPageBreak = true
+                } else {
                     if !hasAddedHeaderFooterToPage {
                         hasAddedHeaderFooterToPage = true
                         _ = try addHeaderFooterObjects()
                     }
-                }
-
-                if obj.1 is PDFExternalPageObject {
-                    needsPageBreak = true
                 }
 
                 if let pageBreak = obj.1 as? PDFPageBreakObject, !pageBreak.stayOnSamePage {
@@ -177,6 +183,7 @@ extension PDFGenerator {
                 prevObj = obj
             }
             progress.completedUnitCount += 1
+            prevPDFObject = locatedPdfObject
         }
 
         let result = currentPage
@@ -199,7 +206,10 @@ extension PDFGenerator {
 
         result += masterObj
         hasAddedMasterToPage = true
-        result += try addHeaderFooterObjects()
+        // If the first content object is an external page document, skip headers and footers
+        if !(contentObjs.first?.1 is PDFExternalDocumentObject) {
+            result += try addHeaderFooterObjects()
+        }
         hasAddedHeaderFooterToPage = true
 
         // Iterate all objects and let them calculate the required rendering
@@ -209,7 +219,7 @@ extension PDFGenerator {
             var prevObj: PDFLocatedRenderObject?
             for obj in objects {
                 if needsPageBreak {
-                    if !(prevObj?.1 is PDFExternalPageObject) {
+                    if !(prevObj?.1 is PDFExternalPageObject) && !(obj.1 is PDFExternalPageObject) {
                         needsPageBreak = false
                         result += try PDFPageBreakObject().calculate(generator: self, container: container)
                         currentPage += 1
@@ -318,13 +328,15 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    internal func render(objects: [PDFLocatedRenderObject], in context: CGContext) throws {
-        PDFContextGraphics.beginPDFPage(in: context, for: document.layout.bounds)
-
-        drawDebugPageOverlay(in: context)
-
+    internal func render(objects: [PDFLocatedRenderObject], in context: PDFContext) throws {
         let renderProgress = Progress.discreteProgress(totalUnitCount: Int64(objects.count))
         progress.addChild(renderProgress, withPendingUnitCount: 1)
+
+        // if first element is an external document, do not create the page
+        if objects.first?.1 is PDFExternalPageObject == false {
+            PDFContextGraphics.beginPDFPage(in: context, for: document.layout.bounds)
+            drawDebugPageOverlay(in: context)
+        }
 
         for (container, object) in objects {
             try render(object: object, in: container, in: context)
@@ -339,7 +351,7 @@ extension PDFGenerator {
 
      - throws: PDFError, if rendering fails
      */
-    internal func render(object: PDFRenderObject, in container: PDFContainer, in context: CGContext) throws {
+    internal func render(object: PDFRenderObject, in container: PDFContainer, in context: PDFContext) throws {
         try object.draw(generator: self, container: container, in: context)
     }
 

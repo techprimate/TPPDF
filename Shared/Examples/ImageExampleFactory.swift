@@ -66,8 +66,10 @@ class ImageExampleFactory: ExampleFactory {
             ]
         ]
 
-        // Add first row of images
+        // As an example we can set a tag to the first image, so we can identify in our delegation methods
+        images[0][0].tag = 1
 
+        // Add first row of images
         document.add(imagesInRow: images[0], spacing: 10)
 
         // Add spacing between image rows

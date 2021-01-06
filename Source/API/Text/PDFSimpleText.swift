@@ -49,7 +49,35 @@ public class PDFSimpleText: PDFText {
     /**
      Creates a new `PDFSimpleText` with the same properties
      */
-    override internal var copy: PDFText {
+    override public var copy: PDFText {
         PDFSimpleText(text: self.text, spacing: self.spacing, style: self.style)
     }
+
+    // MARK: - Equatable
+
+    /// Compares two instances of `PDFSimpleText` for equality
+    ///
+    /// - Parameters:
+    ///   - other: Another instance of `PDFSimpleText`
+    /// - Returns: `true`, if `attributes`, `tag`, `text` and `spacing` equal; otherwise `false`
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
+        guard super.isEqual(to: other) else {
+            return false
+        }
+        guard let otherText = other as? PDFSimpleText else {
+            return false
+        }
+        guard self.text == otherText.text else {
+            return false
+        }
+        guard self.spacing == otherText.spacing else {
+            return false
+        }
+        guard self.style == otherText.style else {
+            return false
+        }
+        return true
+    }
+
+    // MARK: - Hashable
 }

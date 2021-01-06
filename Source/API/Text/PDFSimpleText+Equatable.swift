@@ -8,12 +8,17 @@
 /**
  TODO: Documentation
  */
-extension PDFSimpleText: Equatable {
+extension PDFSimpleText {
 
-    /**
-     TODO: Documentation
-     */
     public static func == (lhs: PDFSimpleText, rhs: PDFSimpleText) -> Bool {
+        // Properties of PDFObjectAttribute
+        guard lhs.attributes == rhs.attributes else {
+            return false
+        }
+        guard lhs.tag == rhs.tag else {
+            return false
+        }
+        // Properties of PDFSimpleText
         guard lhs.text == rhs.text else {
             return false
         }

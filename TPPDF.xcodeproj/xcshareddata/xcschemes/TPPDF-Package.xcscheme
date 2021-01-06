@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "9999"
+   LastUpgradeVersion = "1230"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -46,6 +46,16 @@
                BlueprintIdentifier = "TPPDF::TPPDFTests"
                BuildableName = "TPPDFTests.xctest"
                BlueprintName = "TPPDFTests"
+               ReferencedContainer = "container:TPPDF.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "TPPDF::TPPDFIntegrationTests"
+               BuildableName = "TPPDFIntegrationTests.xctest"
+               BlueprintName = "TPPDFIntegrationTests"
                ReferencedContainer = "container:TPPDF.xcodeproj">
             </BuildableReference>
          </TestableReference>

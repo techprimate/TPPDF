@@ -62,7 +62,7 @@ internal class PDFSpaceObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
         if generator.debug {
             PDFGraphics.drawRect(in: context,
                                  rect: self.frame,

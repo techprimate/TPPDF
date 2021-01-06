@@ -85,7 +85,7 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     */
     public func generate(to target: URL, info: PDFInfo?) throws {
         assert(!generators.isEmpty, "At least one document is required!")
-        
+
         let context = PDFContextGraphics.createPDFContext(url: target, bounds: self.bounds, info: self.info)
         try processDocuments(context: context)
         PDFContextGraphics.closePDFContext(context)
@@ -110,7 +110,7 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
         let (data, context) = PDFContextGraphics.createPDFDataContext(bounds: bounds, info: info ?? self.info)
         try processDocuments(context: context)
         PDFContextGraphics.closePDFContext(context)
-        
+
         return data as Data
     }
 
@@ -120,7 +120,7 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
      Make sure to call `UIGraphicsBeginPDFContextToData()` before,
      and `UIGraphicsEndPDFContext` after calling this method.
      */
-    internal func processDocuments(context: CGContext) throws {
+    internal func processDocuments(context: PDFContext) throws {
         for generator in generators {
             generator.debug = debug
             progress.addChild(generator.progress, withPendingUnitCount: 1)

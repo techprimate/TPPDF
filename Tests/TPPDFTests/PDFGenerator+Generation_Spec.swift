@@ -15,6 +15,12 @@ import Nimble
 class PDFGenerator_Generation_Spec: QuickSpec {
 
     override func spec() {
+        // This is a hotfix until we can use xcodebuild with SPM resource paths
+        if Bundle.module == Bundle.main {
+            Bundle.module = Bundle(for: PDFGenerator_Generation_Spec.self)
+        }
+
+        
         describe("PDFGenerator") {
 
             context("Generation") {
@@ -28,7 +34,6 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         var url: URL!
                         expect {
                             url = try PDFGenerator(document: document).generateURL(filename: filename)
-                            return nil
                             }.toNot(throwError())
                         expect(url).toEventuallyNot(beNil())
 
@@ -49,7 +54,6 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         var url: URL!
                         expect {
                             url = try PDFGenerator(document: document).generateURL(filename: filename)
-                            return nil
                             }.toNot(throwError())
                         expect(url).toEventuallyNot(beNil())
 
@@ -70,7 +74,6 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         var url: URL!
                         expect {
                             url = try PDFGenerator(document: document).generateURL(filename: filename)
-                            return nil
                             }.toNot(throwError())
                         expect(url).toEventuallyNot(beNil())
 
@@ -94,7 +97,6 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         var data: Data!
                         expect {
                             data = try PDFGenerator(document: document).generateData()
-                            return nil
                             }.toNot(throwError())
                         expect(data).toEventuallyNot(beNil())
                         //                        let expectedBase64 = ""
@@ -108,7 +110,6 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         var data: Data!
                         expect {
                             data = try PDFGenerator(document: document).generateData()
-                            return nil
                             }.toNot(throwError())
                         expect(data).toEventuallyNot(beNil())
                         //                        let expectedBase64 = ""
@@ -138,7 +139,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         static var called = false
 
-                        override func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+                        override func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
                             CustomObject.called = true
                         }
 
@@ -152,7 +153,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                     expect(CustomObject.called).to(beFalse())
 
-                    try? generator.render(object: obj, in: .headerLeft, in: context)
+                    try? generator.render(object: obj, in: .headerLeft, in: .init(cgContext: context))
 
                     expect(CustomObject.called).to(beTrue())
                 }
@@ -277,6 +278,70 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             ])
 
                         expect(list).to(equal(expectedList))
+                    }
+                }
+            }
+
+            describe("total page estimation") {
+
+                // Test Case:
+                // Precondition:
+                //  - Document contains an external document
+                // Expected Result:
+                //  - Same page count as external document
+                // Notes:
+                //  - none
+                context("only external document") {
+                    it("should return correct total pages count") {
+                        let document = PDFDocument(format: .a4)
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "sample", withExtension: "pdf")!))
+
+                        let generator = PDFGenerator(document: document)
+                        _ = try generator.generateData()
+
+                        expect(generator.totalPages) == 4
+                    }
+                }
+
+                // Test Case:
+                // Precondition:
+                //  - Document contains an external document
+                //  - Document contains text after document
+                // Expected Result:
+                //  - Same page count as external document plus one
+                // Notes:
+                //  - none
+                context("external document and text") {
+                    it("should return correct total pages count") {
+                        let document = PDFDocument(format: .a4)
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "sample", withExtension: "pdf")!))
+                        document.add(text: "Some text after document")
+
+                        let generator = PDFGenerator(document: document)
+                        _ = try generator.generateData()
+
+                        expect(generator.totalPages) == 5
+                    }
+                }
+
+                // Test Case:
+                // Precondition:
+                //  - Document contains text
+                //  - Document contains an external document after text
+                // Expected Result:
+                //  - Same page count as external document plus one
+                // Notes:
+                //  - none
+                context("external document and text") {
+                    it("should return correct total pages count") {
+                        let document = PDFDocument(format: .a4)
+                        document.add(text: "Some text after document")
+                        document.add(externalDocument: .init(url: Bundle.module.url(forResource: "sample", withExtension: "pdf")!))
+
+                        let generator = PDFGenerator(document: document)
+                        _ = try generator.generateData()
+
+                        expect(generator.totalPages) == 5
                     }
                 }
             }

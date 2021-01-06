@@ -14,7 +14,7 @@ import AppKit
 /**
  TODO: Documentation
  */
-public struct PDFTableCellStyle {
+public struct PDFTableCellStyle: Hashable {
 
     /**
      TODO: Documentation
@@ -40,6 +40,29 @@ public struct PDFTableCellStyle {
         self.colors = colors
         self.borders = borders
         self.font = font
+    }
+
+    // MARK: - Equatable
+
+    public static func == (lhs: PDFTableCellStyle, rhs: PDFTableCellStyle) -> Bool {
+        guard lhs.colors == rhs.colors else {
+            return false
+        }
+        guard lhs.borders == rhs.borders else {
+            return false
+        }
+        guard lhs.font == rhs.font else {
+            return false
+        }
+        return true
+    }
+    // MARK: - Hashable
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(colors.fill)
+        hasher.combine(colors.text)
+        hasher.combine(borders)
+        hasher.combine(font)
     }
 }
 

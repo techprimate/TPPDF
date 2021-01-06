@@ -91,7 +91,7 @@ internal class PDFImageObject: PDFRenderObject {
      - parameter generator: Current instance handling the drawing
      - parameter container: Container where the image is placed in
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
         var roundedCorners: RectCorner = []
         if image.options.contains(.rounded) {
             roundedCorners = .allCorners

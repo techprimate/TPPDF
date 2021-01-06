@@ -72,7 +72,7 @@ internal class PDFRectangleObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
         PDFGraphics.drawRect(in: context, rect: self.frame, outline: lineStyle, fill: fillColor)
         applyAttributes(in: context)
     }

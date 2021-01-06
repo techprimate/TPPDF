@@ -40,4 +40,40 @@ public class PDFTableCell: PDFDocumentObject {
         self.alignment = alignment
         self.style = style
     }
+
+    // MARK: - Equatable
+
+    /// Compares two instances of `PDFTableCell` for equality
+    ///
+    /// - Parameters:
+    ///   - lhs: One instance of `PDFTableCell`
+    ///   - rhs: Another instance of `PDFTableCell`
+    /// - Returns: `true`, if `attributes`, `tag`, `content`, `alignment` and `style` equal; otherwise `false`
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
+        guard super.isEqual(to: other) else {
+            return false
+        }
+        guard let otherCell = other as? PDFTableCell else {
+            return false
+        }
+        guard self.content == otherCell.content else {
+            return false
+        }
+        guard self.style == otherCell.style else {
+            return false
+        }
+        guard self.alignment == otherCell.alignment else {
+            return false
+        }
+        return true
+    }
+
+    // MARK: - Equatable
+
+    override public func hash(into hasher: inout Hasher) {
+        super.hash(into: &hasher)
+        hasher.combine(content)
+        hasher.combine(style)
+        hasher.combine(alignment)
+    }
 }
