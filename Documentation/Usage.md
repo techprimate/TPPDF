@@ -40,6 +40,7 @@
     - [Document Info](#document-info)
     - [Generation](#generation)
     - [Multiple Documents](#multiple-documents)
+* [Progress Observing](#progress-observing)
 * [Debug](#debug)
 
 ## Getting Started
@@ -738,7 +739,7 @@ You can generate the PDF file using the following method:
 let document: PDFDocument
 let filename = "awesome.pdf"
 let generator = PDFGenerator(document: document)
-let url = try generator.generateURL(document: document, filename: filename)
+let url = try generator.generateURL(filename: filename)
 ```
 
 This will render the document to a temporary file and return the URL. Be sure to wrap it a `try-catch` block, as it might throw an error!
@@ -749,7 +750,7 @@ It is also possible to render the file and return the data, using `generateData`
 let document: PDFDocument
 let filename = "awesome.pdf"
 let generator = PDFGenerator(document: document)
-let data = try generator.generateData(document: document, filename: filename)
+let data = try generator.generateData()
 ```
 
 And if you want to directly save it to a specific file, pass an URL to `generate(document:, to: )`:
@@ -769,15 +770,6 @@ If you want to combine multiple `PDFDocument` into a single PDF file, use the al
 
 ```swift
 let generator = PDFMultiDocumentGenerator(documents: [document1, document2])
-generator.progress.observe(\.fractionCompleted) { (p, _) in
-    print(p.localizedDescription ?? "")
-}
-generator.progress.observe(\.fractionCompleted) { (p, _) in
-    print(p.localizedDescription ?? "")
-}
-generator.progress.observe(\.completedUnitCount) { (p, _) in
-    print(p.completedUnitCount ?? "", " of ", p.totalUnitCount)
-}
 let url = try generator.generateURL(filename: "Example.pdf")
 ```
 
@@ -792,6 +784,40 @@ generator.progresses[0].observe(\.fractionCompleted) { (p, _) in
 }
 ```
 
+# Progress Observing
+
+Progress observing is done using the native `Progress` handling.
+
+**Example:**
+
+```swift
+let generator = PDFDocumentGenerator(document: document)
+generator.progress.observe(\.fractionCompleted) { (p, _) in
+    print(p.localizedDescription ?? "")
+}
+```
+
+Also you are able to track the generation of each individual document when rendering multiple documents by using the `progresses` array:
+
+**Example:**
+
+```swift
+let generator = PDFMultiDocumentGenerator(documents: [document1, document2])
+generator.progresses[0].observe(\.fractionCompleted) { (p, _) in
+    print(p.localizedDescription ?? "")
+}
+```
+
+You can find more about `Progress` handling in the Apple Developer documentation.
+
 # Debug
 
-If you want to enable a debug overlay, set the flag `debug` in `PDFGenerator::generate(..)`, `PDFGenerator::generateURL(..)` or `PDFGenerator::generateData(..)` to `true` and it will add colored outlines of the elements in you document.
+If you want to enable a debug overlay, set the flag `debug` of the `PDFGenerator` instance to `true` and it will add colored outlines of the elements in you document.
+
+**Example:**
+
+```swift
+let document: PDFDocument
+let generator = PDFDocumentGenerator(document: document)
+generator.debug = true
+```
