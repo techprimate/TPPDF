@@ -109,6 +109,47 @@ public class PDFList: PDFDocumentObject {
         list.items = items.map(\.copy)
         return list
     }
+
+    // MARK: - Equatable
+
+    /// Compares two instances of `PDFList` for equality
+    ///
+    /// - Parameters:
+    ///   - lhs: One instance of `PDFList`
+    ///   - rhs: Another instance of `PDFList`
+    /// - Returns: `true`, if `levelIndentations` and `items` equal; otherwise `false`
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
+        guard super.isEqual(to: other) else {
+            return false
+        }
+        guard let otherList = other as? PDFList else {
+            return false
+        }
+        guard self.levelIndentations.count == otherList.levelIndentations.count else {
+            return false
+        }
+        for (idx, indentation) in self.levelIndentations.enumerated() where otherList.levelIndentations[idx] != indentation {
+            return false
+        }
+        guard self.items.count == otherList.items.count else {
+            return false
+        }
+        for (idx, item) in self.items.enumerated() where otherList.items[idx] != item {
+            return false
+        }
+        return true
+    }
+
+    // MARK: - Hashable
+
+    override public func hash(into hasher: inout Hasher) {
+        super.hash(into: &hasher)
+        for (pre, post) in levelIndentations {
+            hasher.combine(pre)
+            hasher.combine(post)
+        }
+        hasher.combine(items)
+    }
 }
 
 extension PDFList: CustomDebugStringConvertible {

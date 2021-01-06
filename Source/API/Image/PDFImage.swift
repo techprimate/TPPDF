@@ -93,4 +93,51 @@ public class PDFImage: PDFDocumentObject {
                  options: self.options,
                  cornerRadius: self.cornerRadius)
     }
+
+    // MARK: - Equatable
+
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
+        guard super.isEqual(to: other) else {
+            return false
+        }
+        guard let otherImage = other as? PDFImage else {
+            return false
+        }
+        guard self.attributes == otherImage.attributes else {
+            return false
+        }
+        guard self.tag == otherImage.tag else {
+            return false
+        }
+        guard self.image == otherImage.image else {
+            return false
+        }
+        guard self.caption == otherImage.caption else {
+            return false
+        }
+        guard self.size == otherImage.size else {
+            return false
+        }
+        guard self.sizeFit == otherImage.sizeFit else {
+            return false
+        }
+        guard self.quality == otherImage.quality else {
+            return false
+        }
+        return true
+    }
+
+    // MARK: - Hashable
+
+    override public func hash(into hasher: inout Hasher) {
+        hasher.combine(image)
+        hasher.combine(caption)
+        hasher.combine(size.width)
+        hasher.combine(size.height)
+        hasher.combine(sizeFit)
+        hasher.combine(quality)
+        hasher.combine(quality)
+        hasher.combine(options)
+        hasher.combine(cornerRadius)
+    }
 }

@@ -1,7 +1,7 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.2...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.3...HEAD)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,23 @@
 **Closed issues:**
 
 **Merged pull requests:**
+
+## [2.3.3](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.2...2.3.3)
+
+**Fixed bugs:**
+
+- Fixed empty pages between external documents (#247)
+- Fixed total page count calculations (#248)
+
+**Closed issues:**
+
+- Issue #247
+- Issue #248
+
+**Merged pull requests:**
+
+- Issue #258
 
 ## [2.3.2](https://github.com/techprimate/TPPDF/tree/2.3.2) (2020-12-05)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.1...2.3.2)

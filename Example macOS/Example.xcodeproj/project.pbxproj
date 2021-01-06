@@ -44,6 +44,7 @@
 		D48C53D924A26C0000D7A3DD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D48C53BD24A26C0000D7A3DD /* Icon.png */; };
 		D48C53DC24A26E5400D7A3DD /* TPPDF in Frameworks */ = {isa = PBXBuildFile; productRef = D48C53DB24A26E5400D7A3DD /* TPPDF */; };
 		D48C53DE24A27A0100D7A3DD /* PDFView+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C53DD24A27A0100D7A3DD /* PDFView+SwiftUI.swift */; };
+		D4B7EB0B25A1DAD2007D09C7 /* sample-large.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D4B7EB0A25A1DACE007D09C7 /* sample-large.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		D48C53BC24A26C0000D7A3DD /* Image-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-4.jpg"; sourceTree = "<group>"; };
 		D48C53BD24A26C0000D7A3DD /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D48C53DD24A27A0100D7A3DD /* PDFView+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFView+SwiftUI.swift"; sourceTree = "<group>"; };
+		D4B7EB0A25A1DACE007D09C7 /* sample-large.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "sample-large.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 		D48C53B424A26C0000D7A3DD /* Documents */ = {
 			isa = PBXGroup;
 			children = (
+				D4B7EB0A25A1DACE007D09C7 /* sample-large.pdf */,
 				D48C53B524A26C0000D7A3DD /* sample.pdf */,
 			);
 			path = Documents;
@@ -266,7 +269,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "techprimate GmbH & Co. KG";
 				TargetAttributes = {
 					D48C538424A269F400D7A3DD = {
@@ -303,6 +306,7 @@
 				D48C539324A269F500D7A3DD /* Main.storyboard in Resources */,
 				D48C539024A269F500D7A3DD /* Preview Assets.xcassets in Resources */,
 				D48C538D24A269F500D7A3DD /* Assets.xcassets in Resources */,
+				D4B7EB0B25A1DAD2007D09C7 /* sample-large.pdf in Resources */,
 				D48C53D624A26C0000D7A3DD /* Image-3.jpg in Resources */,
 				D48C53D424A26C0000D7A3DD /* PortraitImage.jpg in Resources */,
 				D48C53D924A26C0000D7A3DD /* Icon.png in Resources */,
@@ -386,6 +390,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -446,6 +451,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

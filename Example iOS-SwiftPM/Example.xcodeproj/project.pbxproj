@@ -41,6 +41,7 @@
 		D49855532461FB0B00D54270 /* Image-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D49855372461FB0B00D54270 /* Image-4.jpg */; };
 		D49855542461FB0B00D54270 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D49855382461FB0B00D54270 /* Icon.png */; };
 		D49855562461FB9A00D54270 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855552461FB9A00D54270 /* Examples.swift */; };
+		D4B7EB0725A1D345007D09C7 /* sample-large.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D4B7EB0525A1D32F007D09C7 /* sample-large.pdf */; };
 		D4D28D2323AA1A6D00028D5A /* ExamplesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D28D2223AA1A6D00028D5A /* ExamplesListViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		D49855372461FB0B00D54270 /* Image-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-4.jpg"; sourceTree = "<group>"; };
 		D49855382461FB0B00D54270 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D49855552461FB9A00D54270 /* Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
+		D4B7EB0525A1D32F007D09C7 /* sample-large.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "sample-large.pdf"; sourceTree = "<group>"; };
 		D4D28D2223AA1A6D00028D5A /* ExamplesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,6 +199,7 @@
 		D498552F2461FB0B00D54270 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
+				D4B7EB0525A1D32F007D09C7 /* sample-large.pdf */,
 				D49855302461FB0B00D54270 /* sample.pdf */,
 			);
 			path = Documents;
@@ -310,6 +313,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				D4B7EB0725A1D345007D09C7 /* sample-large.pdf in Resources */,
 				D49855512461FB0B00D54270 /* Image-3.jpg in Resources */,
 				D498554F2461FB0B00D54270 /* PortraitImage.jpg in Resources */,
 				D49855542461FB0B00D54270 /* Icon.png in Resources */,
@@ -333,7 +337,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n   \"swiftlint\" --config ../.swiftlint.yml\nelse\n   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n    if [-z \"$CI\"]; then\n        echo \"Skipping SwiftLint as running on CI...\"\n    else\n        cd ../\n        \"swiftlint\" --config .swiftlint.yml\n    fi\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

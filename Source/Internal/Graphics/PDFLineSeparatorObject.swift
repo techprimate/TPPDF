@@ -59,7 +59,7 @@ internal class PDFLineSeparatorObject: PDFRenderObject {
 
      - throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
         PDFGraphics.drawLine(
             in: context,
             start: CGPoint(x: self.frame.minX, y: self.frame.midY),

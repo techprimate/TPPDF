@@ -14,7 +14,7 @@ import AppKit
 /**
  This struct defines how a line or border of a table is drawn.
  */
-public struct PDFLineStyle {
+public struct PDFLineStyle: Hashable {
 
     /**
      Defines the type of this line
@@ -51,9 +51,29 @@ public struct PDFLineStyle {
         self.radius = radius
     }
 
-    /**
-     Shorthand method for creating an invisible line
-     */
+    // MARK: - Equatable
+
+    public static func == (lhs: PDFLineStyle, rhs: PDFLineStyle) -> Bool {
+        guard lhs.type == rhs.type else { return false }
+        guard lhs.color == rhs.color else { return false }
+        guard lhs.width == rhs.width else { return false }
+        return true
+    }
+
+    // MARK: - Hashable
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(type)
+        hasher.combine(color)
+        hasher.combine(width)
+    }
+}
+
+// MARK: - Defaults
+
+extension PDFLineStyle {
+
+    /// Shorthand method for creating an invisible line
     public static var none: PDFLineStyle {
         PDFLineStyle(type: .none, width: 0)
     }

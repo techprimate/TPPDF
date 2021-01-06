@@ -1,0 +1,4 @@
+module QuickObjCRuntime {
+    umbrella "../../../.build/checkouts/Quick/Sources/QuickObjCRuntime/include"
+    export *
+}

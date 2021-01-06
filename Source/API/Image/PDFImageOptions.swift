@@ -8,7 +8,7 @@
 /**
  TODO: documentation
  */
-public struct PDFImageOptions: OptionSet {
+public struct PDFImageOptions: OptionSet, Hashable {
 
     /**
      TODO: documentation
@@ -61,4 +61,5 @@ public struct PDFImageOptions: OptionSet {
      TODO: documentation
      */
     public static let none = PDFImageOptions(rawValue: 1 << 7)
+
 }

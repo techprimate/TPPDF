@@ -78,6 +78,42 @@ public class PDFListItem: PDFDocumentObject {
         }
         return item
     }
+
+    // MARK: - Equatable
+
+    /// Compares two instances of `PDFListItem` for equality
+    ///
+    /// - Parameters:
+    ///   - lhs: One instance of `PDFListItem`
+    ///   - rhs: Another instance of `PDFListItem`
+    /// - Returns: `true`, if `attributes`, `tag`, `content`, `children` and `symbol` equal; otherwise `false`
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
+        guard super.isEqual(to: other) else {
+            return false
+        }
+        guard let otherListItem = other as? PDFListItem else {
+            return false
+        }
+        guard self.content == otherListItem.content else {
+            return false
+        }
+        guard self.children == otherListItem.children else {
+            return false
+        }
+        guard self.symbol == otherListItem.symbol else {
+            return false
+        }
+        return true
+    }
+
+    // MARK: - Equatable
+
+    override public func hash(into hasher: inout Hasher) {
+        super.hash(into: &hasher)
+        hasher.combine(content)
+        hasher.combine(children)
+        hasher.combine(symbol)
+    }
 }
 
 extension PDFListItem: CustomDebugStringConvertible {

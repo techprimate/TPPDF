@@ -49,7 +49,7 @@ class PDFObject_Spec: QuickSpec {
 
                 it("should have a draw method") {
                     expect {
-                        try object.draw(generator: generator, container: container, in: context)
+                        try object.draw(generator: generator, container: container, in: PDFContext(cgContext: context))
                     }.toNot(throwError())
                 }
             }

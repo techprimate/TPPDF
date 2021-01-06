@@ -52,7 +52,7 @@ public class PDFSectionColumn: PDFDocumentObject {
 	internal var copy: PDFSectionColumn {
 		PDFSectionColumn(width: self.width)
 	}
-    
+
     // MARK: - Layout
 
     /**

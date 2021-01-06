@@ -35,7 +35,30 @@ public class PDFAttributedText: PDFText {
     /**
      Creats a new `PDFAttributedText` with the same properties
      */
-    override internal var copy: PDFText {
+    override public var copy: PDFText {
         PDFAttributedText(text: text)
     }
+
+    // MARK: - Equatable
+
+    /// Compares two instances of `PDFAttributedText` for equality
+    ///
+    /// - Parameters:
+    ///   - lhs: One instance of `PDFAttributedText`
+    ///   - rhs: Another instance of `PDFAttributedText`
+    /// - Returns: `true`, if `attributes`, `tag` and `text` equal; otherwise `false`
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
+        guard super.isEqual(to: other) else {
+            return false
+        }
+        guard let otherAttributedText = other as? PDFAttributedText else {
+            return false
+        }
+        guard self.text == otherAttributedText.text else {
+            return false
+        }
+        return true
+    }
+
+    // MARK: - Hasha
 }

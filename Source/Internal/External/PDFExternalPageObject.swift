@@ -26,8 +26,17 @@ internal class PDFExternalPageObject: PDFRenderObject {
         ]
     }
 
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
-        PDFContextGraphics.endPDFPage(in: context)
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
+        if !context.currentPageContainsDrawnContent {
+            // If page is empty and no page is active, we are good to go
+            // Otherwise we need to delete the empty page
+            if context.hasActivePage {
+                context.resetDelayedCommands()
+            }
+        } else {
+            // if something has been drawn on the page, end the and draw the external PDF page on a new page
+            PDFContextGraphics.endPDFPage(in: context)
+        }
         PDFContextGraphics.beginPDFPage(in: context, for: frame, flipped: false)
 
         context.saveGState()
