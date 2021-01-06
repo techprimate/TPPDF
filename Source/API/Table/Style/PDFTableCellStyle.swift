@@ -14,7 +14,7 @@ import AppKit
 /**
  TODO: Documentation
  */
-public struct PDFTableCellStyle : Hashable {
+public struct PDFTableCellStyle: Hashable {
 
     /**
      TODO: Documentation

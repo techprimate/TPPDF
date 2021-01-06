@@ -50,7 +50,7 @@ public class PDFRenderObject: CustomStringConvertible {
 
      - throws: None
      */
-    internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+    internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
         applyAttributes(in: context)
     }
 
@@ -65,7 +65,7 @@ public class PDFRenderObject: CustomStringConvertible {
      Applies the attributes to the current render context.
      Should be called after calling `draw`
      */
-    internal func applyAttributes(in context: CGContext) {
+    internal func applyAttributes(in context: PDFContext) {
         for (attribute, frame) in attributes {
             switch attribute {
             case .link(let url):

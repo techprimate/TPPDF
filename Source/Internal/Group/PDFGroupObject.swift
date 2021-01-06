@@ -199,7 +199,7 @@ internal class PDFGroupObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: CGContext) throws {
+    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
         if let color = backgroundColor {
             PDFGraphics.drawRect(in: context, rect: self.frame, outline: self.outline, fill: color)
         }

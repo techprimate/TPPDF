@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 
 import PackageDescription
 
@@ -21,6 +21,15 @@ let package = Package(
             "TPPDF",
             "Quick",
             "Nimble"
+        ], resources: [
+            .copy("resources/sample.pdf"),
+        ]),
+        .testTarget(name: "TPPDFIntegrationTests", dependencies: [
+            "TPPDF",
+            "Quick",
+            "Nimble"
+        ], resources: [
+            .copy("resources/50-pages.pdf"),
         ]),
     ]
 )

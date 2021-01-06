@@ -7,20 +7,19 @@
 //
 
 import TPPDF
+import Foundation
 
 class ExperimentFactory: ExampleFactory {
 
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
-        let table = PDFTable(rows: 3, columns: 4)
-        table.content = [
-            ["0,0", "0,1", "0,2", "0,3"],
-            ["1,0", "1,1", "1,2", "1,3"],
-            ["2,0", "2,1", "2,2", "2,3"],
-        ]
-        table.rows.allRowsAlignment = [.left, .left, .right, .right]
-        document.add(table: table)
+        document.pagination = .init(container: .footerRight)
+        
+        let externalDocument = PDFExternalDocument(url: Bundle.main.url(forResource: "sample-large", withExtension: "pdf")!)
+        document.add(externalDocument: externalDocument)
+
+        document.add(text: "END")
 
         return [document]
     }

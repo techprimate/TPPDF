@@ -1,12 +1,12 @@
 os: osx
-osx_image: xcode11.6
+osx_image: xcode12.2
 language: objective-c
 cache:
 - bundler
 
 env:
   global:
-  - DESTINATION="OS=13.4,name=iPhone 11 Pro"
+  - DESTINATION="OS=14.2,name=iPhone 11 Pro"
   - WORKSPACE="Example.xcworkspace"
   - PROJECT="Example.xcodeproj"
   - EXAMPLE_SCHEME="Example"
@@ -97,7 +97,7 @@ jobs:
     before_script:
     - cd "${ROOT_FOLDER}"
     - echo 'github "techprimate/TPPDF" "'$(git rev-parse HEAD)'"' > Cartfile
-    - carthage update --platform ios --cache-builds
+    - ../scripts/carthage.sh update --platform ios --cache-builds
     script:
     - set -o pipefail
     - xcodebuild -project "$PROJECT"
@@ -151,7 +151,7 @@ jobs:
                  -scheme ${EXAMPLE_SCHEME}
                  -clonedSourcePackagesDirPath .
                  -derivedDataPath ${TRAVIS_BUILD_DIR}/derived_data
-                 -sdk macosx10.15
+                 -sdk macosx
                  -configuration Debug
                  ONLY_ACTIVE_ARCH=YES
                  build | xcpretty

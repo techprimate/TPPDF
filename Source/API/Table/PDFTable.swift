@@ -119,7 +119,7 @@ public class PDFTable: PDFDocumentObject {
     /// - Parameters:
     ///   - other: Another instance of `PDFTable`
     /// - Returns: `true`, if `attributes`, `tag`, `style`, `cells`, `widths`, `padding`, `margin`, `showHeadersOnEveryPage` equal; otherwise `false`
-    public override func isEqual(to other: PDFDocumentObject) -> Bool {
+    override public func isEqual(to other: PDFDocumentObject) -> Bool {
         guard super.isEqual(to: other) else { return false }
 
         guard let otherTable = other as? PDFTable else {

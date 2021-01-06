@@ -1,0 +1,4 @@
+module CwlCatchExceptionSupport {
+    umbrella "../../../.build/checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/include"
+    export *
+}

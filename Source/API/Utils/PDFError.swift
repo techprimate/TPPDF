@@ -10,7 +10,7 @@ import Foundation
 /**
  List of errors which can occur during using this framework
  */
-public enum PDFError: Error {
+public enum PDFError: LocalizedError {
 
     /**
      TODO: Documentation
@@ -70,15 +70,13 @@ public enum PDFError: Error {
      */
     case externalDocumentURLInvalid(url: URL)
 
-    /**
-     TODO: Documentation
-     */
+    /// Index of page in external document is out of bounds
     case pageOutOfBounds(index: Int)
 
     /**
      TODO: Documentation
      */
-    public var localizedDescription: String {
+    public var errorDescription: String? {
         switch self {
         case .tableContentInvalid(let value):
             return "Table content is invalid: " + value.debugDescription

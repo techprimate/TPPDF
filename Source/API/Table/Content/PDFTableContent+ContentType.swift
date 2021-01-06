@@ -34,6 +34,6 @@ extension PDFTableContent {
          TODO: Documentation
          */
         case image
-        
+
     }
 }
