@@ -32,21 +32,18 @@ public class PDFContext {
 
     internal func beginPDFPage(_ pageInfo: CFDictionary?) {
         // Do not create page immediately, instead invoke it as soon as necessary
-        print("beginPDFPage")
         delayedCommands.append(.beginPDFPage(pageConfig: pageInfo))
         currentPageContainsDrawnContent = false
         hasActivePage = true
     }
 
     internal func endPDFPage() {
-        print("endPDFPage")
         applyDelayedCommands()
         cgContext.endPDFPage()
         hasActivePage = false
     }
 
     internal func closePDF() {
-        print("closePDFPage")
         applyDelayedCommands()
         cgContext.closePDF()
         hasActivePage = false
@@ -61,33 +58,28 @@ public class PDFContext {
     // MARK: - Translation
 
     internal func translateBy(x: CGFloat, y: CGFloat) {
-        print("translateBy")
         delayedCommands.append(.translateBy(x: x, y: y))
     }
 
     internal func scaleBy(x: CGFloat, y: CGFloat) {
-        print("scaleBy")
         delayedCommands.append(.scaleBy(x: x, y: y))
     }
 
     // MARK: - Drawing
 
     internal func drawPath(using mode: CGPathDrawingMode) {
-        print("drawPath")
         applyDelayedCommands()
         cgContext.drawPath(using: mode)
         currentPageContainsDrawnContent = true
     }
 
     internal func drawPDFPage(_ page: CGPDFPage) {
-        print("drawPDFPage")
         applyDelayedCommands()
         cgContext.drawPDFPage(page)
         currentPageContainsDrawnContent = true
     }
 
     internal func draw(image: CGImage, in frame: CGRect, flipped: Bool) {
-        print("draw(image:)")
         applyDelayedCommands()
         cgContext.draw(image: image, in: frame, flipped: flipped)
         currentPageContainsDrawnContent = true
@@ -96,7 +88,6 @@ public class PDFContext {
     // MARK: - Colors
 
     internal func setFillColor(_ color: CGColor) {
-        print("setFillColor")
         applyDelayedCommands()
         cgContext.setFillColor(color)
         currentPageContainsDrawnContent = true
@@ -105,42 +96,36 @@ public class PDFContext {
     // MARK: - Paths
 
     internal func beginPath() {
-        print("beginPath")
         applyDelayedCommands()
         cgContext.beginPath()
         currentPageContainsDrawnContent = true
     }
 
     internal func addPath(_ path: CGPath) {
-        print("addPath")
         applyDelayedCommands()
         cgContext.addPath(path)
         currentPageContainsDrawnContent = true
     }
 
     internal func setLineDash(phase: CGFloat, lengths: [CGFloat]) {
-        print("setLineDash")
         applyDelayedCommands()
         cgContext.setLineDash(phase: phase, lengths: lengths)
         currentPageContainsDrawnContent = true
     }
 
     internal func setLineCap(_ cap: CGLineCap) {
-        print("setLineCap")
         applyDelayedCommands()
         cgContext.setLineCap(cap)
         currentPageContainsDrawnContent = true
     }
 
     internal func setLineWidth(_ width: CGFloat) {
-        print("setLineWidth")
         applyDelayedCommands()
         cgContext.setLineWidth(width)
         currentPageContainsDrawnContent = true
     }
 
     internal func setStrokeColor(_ color: CGColor) {
-        print("setStrokeColor")
         applyDelayedCommands()
         cgContext.setStrokeColor(color)
         currentPageContainsDrawnContent = true
@@ -149,13 +134,11 @@ public class PDFContext {
     // MARK: - State
 
     internal func saveGState() {
-        print("saveGState")
         applyDelayedCommands()
         cgContext.saveGState()
     }
 
     internal func restoreGState() {
-        print("restoreGState")
         applyDelayedCommands()
         cgContext.restoreGState()
     }
@@ -172,7 +155,6 @@ public class PDFContext {
     }
 
     internal func draw(ctFrame frameRef: CTFrame) {
-        print("draw(ctFrame:)")
         applyDelayedCommands()
         CTFrameDraw(frameRef, cgContext)
         currentPageContainsDrawnContent = true
@@ -181,7 +163,6 @@ public class PDFContext {
     // MARK: - Masking
 
     internal func clip() {
-        print("clip")
         applyDelayedCommands()
         cgContext.clip()
         currentPageContainsDrawnContent = true
@@ -190,7 +171,6 @@ public class PDFContext {
     // MARK: - Metadata
 
     internal func setURL(_ url: CFURL, for rect: CGRect) {
-        print("setURL")
         applyDelayedCommands()
         cgContext.setURL(url, for: rect)
         currentPageContainsDrawnContent = true
