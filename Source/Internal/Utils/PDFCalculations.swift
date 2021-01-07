@@ -144,6 +144,7 @@ internal enum PDFCalculations {
             return pageLayout.height
                 - layout.margin.top
                 - layout.heights.maxHeaderHeight()
+				- pageLayout.space.header
                 - layout.heights.content
                 - generator.currentPadding.bottom
                 - layout.heights.maxFooterHeight()
@@ -153,8 +154,10 @@ internal enum PDFCalculations {
 
     internal static func calculateTopMinimum(for generator: PDFGenerator) -> CGFloat {
         let layout = generator.layout
+		let pageLayout = generator.document.layout
         return layout.margin.top
             + layout.heights.maxHeaderHeight()
+			+ pageLayout.space.header
     }
 
     /// Calculates the maximum offset from the top edge when the main content should break to the next page
