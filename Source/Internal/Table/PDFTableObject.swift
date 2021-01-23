@@ -339,7 +339,7 @@ internal class PDFTableObject: PDFRenderObject {
                     headerShift = false
                 }
                 //add table padding around cells
-                nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: table.padding)
+                nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: table.margin)
             }
 
             let filterResult = filterCellsOnPage(for: generator,
