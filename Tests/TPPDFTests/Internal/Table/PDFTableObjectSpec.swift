@@ -59,16 +59,16 @@ class PDFTableObjectSpec: QuickSpec {
                         expect(result[154].1 as? PDFPageBreakObject) == breakObject
                     }
 
-                    let frames_0_10: [[CGRect]] = (0..<11)
+                    let frames_0_10: [[CGRect]] = (0..<10)
                         .map ({ row -> [CGRect] in
                             (0..<4).map { col -> CGRect in
                                 CGRect(x: [70, 117.5, 260, 402.5][col],
-                                       y: 85 + CGFloat(row) * 47,
+                                       y: 70 + CGFloat(row) * 47,
                                        width: [27.5, 122.5, 122.5, 122.5][col],
                                        height: row >= 10 ? 48 : 37)
                             }
                         })
-                    let frames_11_13: [[CGRect]] = (11..<14)
+                    let frames_11_13: [[CGRect]] = (10..<14)
                         .map ({ row -> [CGRect] in
                             (0..<4).map { col -> CGRect in
                                 CGRect(x: [70, 117.5, 260, 402.5][col],
@@ -86,7 +86,7 @@ class PDFTableObjectSpec: QuickSpec {
                                        height: 48)
                             }
                         })
-                    let frames_25_37: [[CGRect]] = (26..<39)
+                    let frames_25_37: [[CGRect]] = (26..<38)
                         .map ({ row -> [CGRect] in
                             (0..<4).map { col -> CGRect in
                                 CGRect(x: [70, 117.5, 260, 402.5][col],
