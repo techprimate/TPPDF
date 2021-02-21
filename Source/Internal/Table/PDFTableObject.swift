@@ -284,7 +284,8 @@ internal class PDFTableObject: PDFRenderObject {
         let startPosition: CGPoint = cells.first?.frames.cell.origin ?? .zero
         var nextPageCells: [PDFTableCalculatedCell] = cells
         var pageEnd = CGPoint.null
-        var headerShift = true
+        var headerShift = table.showHeadersOnEveryPage
+        
 
         repeat {
             var pageStart = CGPoint.null
@@ -462,7 +463,7 @@ internal class PDFTableObject: PDFRenderObject {
         return result
     }
     
-    internal typealias ShiftedCells = ([PDFTableCalculatedCell])
+    internal typealias ShiftedCells = [PDFTableCalculatedCell]
     
     internal func shiftCellsBy(cells: [PDFTableCalculatedCell], shiftValue: CGFloat) -> ShiftedCells {
         var shiftedCells: [PDFTableCalculatedCell] = []
