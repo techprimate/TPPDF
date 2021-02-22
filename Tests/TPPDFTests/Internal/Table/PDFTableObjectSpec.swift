@@ -65,14 +65,14 @@ class PDFTableObjectSpec: QuickSpec {
                                 CGRect(x: [70, 117.5, 260, 402.5][col],
                                        y: 70 + CGFloat(row) * 47,
                                        width: [27.5, 122.5, 122.5, 122.5][col],
-                                       height: row >= 10 ? 48 : 37)
+                                       height: 37)
                             }
                         })
                     let frames_11_13: [[CGRect]] = (10..<14)
                         .map ({ row -> [CGRect] in
                             (0..<4).map { col -> CGRect in
                                 CGRect(x: [70, 117.5, 260, 402.5][col],
-                                       y: 613 + CGFloat(row - 11) * 58,
+                                       y: 540 + CGFloat(row - 10) * 58,
                                        width: [27.5, 122.5, 122.5, 122.5][col],
                                        height: 48)
                             }
@@ -81,7 +81,7 @@ class PDFTableObjectSpec: QuickSpec {
                         .map ({ row -> [CGRect] in
                             (0..<4).map { col -> CGRect in
                                 CGRect(x: [70, 117.5, 260, 402.5][col],
-                                       y: 60 + CGFloat(row - 14) * 58,
+                                       y: 70 + CGFloat(row - 14) * 58,
                                        width: [27.5, 122.5, 122.5, 122.5][col],
                                        height: 48)
                             }
@@ -90,7 +90,7 @@ class PDFTableObjectSpec: QuickSpec {
                         .map ({ row -> [CGRect] in
                             (0..<4).map { col -> CGRect in
                                 CGRect(x: [70, 117.5, 260, 402.5][col],
-                                       y: 60 + CGFloat(row - 26) * 58,
+                                       y: 70 + CGFloat(row - 26) * 58,
                                        width: [27.5, 122.5, 122.5, 122.5][col],
                                        height: 48)
                             }
@@ -99,7 +99,7 @@ class PDFTableObjectSpec: QuickSpec {
                         .map ({ row -> [CGRect] in
                             (0..<4).map { col -> CGRect in
                                 CGRect(x: [70, 117.5, 260, 402.5][col],
-                                       y: 60 + CGFloat(row - 38) * 58,
+                                       y: 70 + CGFloat(row - 38) * 58,
                                        width: [27.5, 122.5, 122.5, 122.5][col],
                                        height: 48)
                             }
