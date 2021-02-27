@@ -165,7 +165,7 @@ internal enum PDFCalculations {
     ///
     ///       top margin
     ///     + header height
-    ///     + header spacing (if footer exists)
+    ///     + header spacing (if header exists)
     ///     + padding
     ///     -----------------------------------
     ///       offset from top edge
