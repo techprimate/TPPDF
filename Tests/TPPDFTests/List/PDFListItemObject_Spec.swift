@@ -6,6 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
+import Foundation
 import CoreGraphics
 import Quick
 import Nimble
@@ -58,7 +59,7 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     var item: PDFAttributedTextObject? = result?[0].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 10))
-                    expect(item?.frame.origin.y).to(equal(75))
+                    expect(item?.frame.origin.y).to(equal(60))
                     expect(item?.frame.size.width).to(beCloseTo(12, within: 1))
                     #if os(macOS)
                     expect(item?.frame.size.height).to(equal(20.0))
@@ -71,7 +72,7 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[1].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
-                    expect(item?.frame.origin.y).to(equal(75))
+                    expect(item?.frame.origin.y).to(equal(60))
                     expect(item?.frame.size.width).to(beCloseTo(75, within: 1))
                     #if os(macOS)
                     expect(item?.frame.size.height).to(equal(20.0))
@@ -87,7 +88,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(95))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(96))
+                    expect(item?.frame.origin.y).to(equal(81))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(13, within: 1))
                     #if os(macOS)
@@ -104,7 +105,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(95))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(96))
+                    expect(item?.frame.origin.y).to(equal(81))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(78, within: 1))
                     #if os(macOS)
@@ -121,7 +122,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(115))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(117))
+                    expect(item?.frame.origin.y).to(equal(102))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(4, within: 1))
                     #if os(macOS)
@@ -138,7 +139,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(115))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(117))
+                    expect(item?.frame.origin.y).to(equal(102))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(79, within: 1))
                     #if os(macOS)
@@ -155,7 +156,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(135))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(138))
+                    expect(item?.frame.origin.y).to(equal(123))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(8, within: 1))
                     #if os(macOS)
@@ -172,7 +173,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(135))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(138))
+                    expect(item?.frame.origin.y).to(equal(123))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(103, within: 1))
                     #if os(macOS)
@@ -189,7 +190,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(155))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(159))
+                    expect(item?.frame.origin.y).to(equal(144))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(106, within: 1))
                     #if os(macOS)
@@ -206,7 +207,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(175))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(180))
+                    expect(item?.frame.origin.y).to(equal(165))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(4, within: 1))
                     #if os(macOS)
@@ -223,7 +224,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(175))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(180))
+                    expect(item?.frame.origin.y).to(equal(165))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(105.4, within: 1))
                     #if os(macOS)
@@ -240,7 +241,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(195))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(201))
+                    expect(item?.frame.origin.y).to(equal(186))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(11, within: 1))
                     #if os(macOS)
@@ -257,7 +258,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     #if os(macOS)
                     expect(item?.frame.origin.y).to(equal(195))
                     #elseif os(iOS)
-                    expect(item?.frame.origin.y).to(equal(201))
+                    expect(item?.frame.origin.y).to(equal(186))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(79, within: 1))
                     #if os(macOS)
@@ -286,7 +287,7 @@ class PDFListItemObject_Spec: QuickSpec {
                         return
                     }
                     expect(item.frame.origin.x) == document.layout.margin.left
-                    expect(item.frame.origin.y) == 75
+                    expect(item.frame.origin.y) == 60
                     expect(item.frame.size.width).to(beCloseTo(12, within: 1))
                     #if os(macOS)
                     expect(item.frame.size.height) == 20
@@ -302,7 +303,7 @@ class PDFListItemObject_Spec: QuickSpec {
                         return
                     }
                     expect(otherItem.frame.origin.x) == document.layout.margin.left
-                    expect(otherItem.frame.origin.y) == 75
+                    expect(otherItem.frame.origin.y) == 60
                     expect(otherItem.frame.size.width).to(beCloseTo(76, within: 1))
                     #if os(macOS)
                     expect(otherItem.frame.size.height) == 20
