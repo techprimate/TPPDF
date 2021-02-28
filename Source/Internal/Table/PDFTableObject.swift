@@ -290,7 +290,9 @@ internal class PDFTableObject: PDFRenderObject {
         repeat {
             var pageStart = CGPoint.null
 
+            // Calculate top page inset
             var minOffset = PDFCalculations.calculateTopMinimum(for: generator)
+            // Calculate bottom page maximum limit
             let maxOffset = PDFCalculations.calculateBottomMaximum(for: generator)
 
             if !firstPage, let headerCells = headerCells {
@@ -343,10 +345,8 @@ internal class PDFTableObject: PDFRenderObject {
                 nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: table.margin)
             }
 
-            let filterResult = filterCellsOnPage(for: generator,
-                                                 items: nextPageCells,
-                                                 minOffset: minOffset,
-                                                 maxOffset: maxOffset,
+            let filterResult = filterCellsOnPage(for: generator, items: nextPageCells,
+                                                 minOffset: minOffset, maxOffset: maxOffset,
                                                  shouldSplitCellsOnPageBreak: table.shouldSplitCellsOnPageBreak)
             let onPageCells = filterResult.cells
             nextPageCells = filterResult.remainder
