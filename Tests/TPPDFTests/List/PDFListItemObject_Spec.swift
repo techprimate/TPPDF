@@ -86,7 +86,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[2].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 10))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(95))
+                    expect(item?.frame.origin.y).to(equal(80))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(81))
                     #endif
@@ -103,7 +103,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[3].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(95))
+                    expect(item?.frame.origin.y).to(equal(80))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(81))
                     #endif
@@ -120,7 +120,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[4].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 10))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(115))
+                    expect(item?.frame.origin.y).to(equal(100))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(102))
                     #endif
@@ -137,7 +137,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[5].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(115))
+                    expect(item?.frame.origin.y).to(equal(100))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(102))
                     #endif
@@ -154,7 +154,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[6].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(135))
+                    expect(item?.frame.origin.y).to(equal(120))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(123))
                     #endif
@@ -171,7 +171,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[7].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 30))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(135))
+                    expect(item?.frame.origin.y).to(equal(120))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(123))
                     #endif
@@ -188,7 +188,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[8].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 30))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(155))
+                    expect(item?.frame.origin.y).to(equal(140))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(144))
                     #endif
@@ -205,7 +205,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[9].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(175))
+                    expect(item?.frame.origin.y).to(equal(160))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(165))
                     #endif
@@ -222,7 +222,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[10].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 30))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(175))
+                    expect(item?.frame.origin.y).to(equal(160))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(165))
                     #endif
@@ -239,7 +239,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[11].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 10))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(195))
+                    expect(item?.frame.origin.y).to(equal(180))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(186))
                     #endif
@@ -256,7 +256,7 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[12].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
                     #if os(macOS)
-                    expect(item?.frame.origin.y).to(equal(195))
+                    expect(item?.frame.origin.y).to(equal(180))
                     #elseif os(iOS)
                     expect(item?.frame.origin.y).to(equal(186))
                     #endif
