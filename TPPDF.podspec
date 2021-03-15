@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TPPDF'
-  s.version          = '2.3.3'
+  s.version          = '2.3.4'
   s.summary          = 'TPPDF is a simple-to-use PDF builder for iOS'
   s.description      = <<-DESC
     TPPDF is an object-based PDF builder, completely built in Swift.
