@@ -1,7 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.3...HEAD)
+## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2021-??-??)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.4...HEAD)
 
 **Implemented enhancements:**
 
@@ -11,7 +11,24 @@
 
 **Merged pull requests:**
 
-## [2.3.3](https://github.com/techprimate/TPPDF/tree/HEAD) (2020-??-??)
+## [2.3.4](https://github.com/techprimate/TPPDF/tree/2.3.4) (2021-03-15)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.3...2.3.4)
+
+**Implemented enhancements:**
+
+**Fixed bugs:**
+
+- Fixed table header position when activating `showHeaderOnEveryPage` (#222)
+
+**Closed issues:**
+
+- Issue #222
+
+**Merged pull requests:**
+
+- PR #264 (by Sgkhour)
+
+## [2.3.3](https://github.com/techprimate/TPPDF/tree/2.3.3) (2021-01-06)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.2...2.3.3)
 
 **Fixed bugs:**
@@ -26,7 +43,7 @@
 
 **Merged pull requests:**
 
-- Issue #258
+- PR #258
 
 ## [2.3.2](https://github.com/techprimate/TPPDF/tree/2.3.2) (2020-12-05)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.1...2.3.2)
