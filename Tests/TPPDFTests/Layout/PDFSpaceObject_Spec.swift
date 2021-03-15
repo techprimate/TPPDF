@@ -44,20 +44,6 @@ class PDFSpaceObject_Spec: QuickSpec {
                 }
 
                 it("can set space") {
-                    let x = document.layout.margin.left
-                        + generator.layout.indentation.leftIn(container: container)
-
-                    let y = document.layout.margin.bottom
-                        + generator.layout.heights.maxHeaderHeight()
-                        + document.layout.space.header
-                        + generator.layout.heights.content
-
-                    let width = document.layout.size.width
-                        - document.layout.margin.left
-                        - generator.layout.indentation.leftIn(container: container)
-                        - generator.layout.indentation.rightIn(container: container)
-                        - document.layout.margin.right
-
                     let contentHeight = generator.layout.heights.content
 
                     expect {
@@ -65,7 +51,7 @@ class PDFSpaceObject_Spec: QuickSpec {
                         }.toNot(throwError())
                     expect(generator.layout.heights.content).toEventually(equal(contentHeight + object.frame.height))
 
-                    expect(object.frame) == CGRect(x: x, y: y, width: width, height: space)
+                    expect(object.frame) == CGRect(x: 60, y: 60, width: 475, height: space)
 
                     expect(result).toEventually(haveCount(1))
                     expect(result.first?.0).toEventually(equal(container))

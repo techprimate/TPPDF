@@ -284,11 +284,15 @@ internal class PDFTableObject: PDFRenderObject {
         let startPosition: CGPoint = cells.first?.frames.cell.origin ?? .zero
         var nextPageCells: [PDFTableCalculatedCell] = cells
         var pageEnd = CGPoint.null
+        var headerShift = table.showHeadersOnEveryPage
+        
 
         repeat {
             var pageStart = CGPoint.null
 
+            // Calculate top page inset
             var minOffset = PDFCalculations.calculateTopMinimum(for: generator)
+            // Calculate bottom page maximum limit
             let maxOffset = PDFCalculations.calculateBottomMaximum(for: generator)
 
             if !firstPage, let headerCells = headerCells {
@@ -296,7 +300,9 @@ internal class PDFTableObject: PDFRenderObject {
                     var cellFrame = item.frames.cell
                     var contentFrame = item.frames.content
                     cellFrame.origin.y -= startPosition.y - minOffset
+                    cellFrame.origin.y += table.margin
                     contentFrame.origin.y -= startPosition.y - minOffset
+                    contentFrame.origin.y += table.margin
 
                     pageStart = pageStart == .null ? cellFrame.origin : pageStart
                     pageEnd = CGPoint(x: cellFrame.maxX, y: cellFrame.maxY) + CGPoint(x: table.margin, y: table.margin)
@@ -329,11 +335,18 @@ internal class PDFTableObject: PDFRenderObject {
                 }
                 minOffset +=  headerHeight
             }
+            if !firstPage {
+                // shift the rest of the cells down by headerHeight
+                if headerShift {
+                    nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: headerHeight)
+                    headerShift = false
+                }
+                //add table padding around cells
+                nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: table.margin)
+            }
 
-            let filterResult = filterCellsOnPage(for: generator,
-                                                 items: nextPageCells,
-                                                 minOffset: minOffset,
-                                                 maxOffset: maxOffset,
+            let filterResult = filterCellsOnPage(for: generator, items: nextPageCells,
+                                                 minOffset: minOffset, maxOffset: maxOffset,
                                                  shouldSplitCellsOnPageBreak: table.shouldSplitCellsOnPageBreak)
             let onPageCells = filterResult.cells
             nextPageCells = filterResult.remainder
@@ -432,7 +445,6 @@ internal class PDFTableObject: PDFRenderObject {
                 if shouldSplitCellsOnPageBreak && cellFrame.minY < maxOffset {
                     result.cells.append(item)
                 }
-                // In any case, if the cell does not fit on the active page entirely, it must be repositioned for further pages
                 var nextPageCell = item
                 if shouldSplitCellsOnPageBreak {
                     nextPageCell.frames.cell.origin.y -= contentHeight
@@ -450,7 +462,22 @@ internal class PDFTableObject: PDFRenderObject {
         }
         return result
     }
-
+    
+    internal typealias ShiftedCells = [PDFTableCalculatedCell]
+    
+    internal func shiftCellsBy(cells: [PDFTableCalculatedCell], shiftValue: CGFloat) -> ShiftedCells {
+        var shiftedCells: [PDFTableCalculatedCell] = []
+        
+        for cell in cells {
+            var shiftedCell = cell
+            
+            shiftedCell.frames.cell.origin.y += shiftValue
+            shiftedCell.frames.content.origin.y += shiftValue
+            shiftedCells.append(shiftedCell)
+        }
+        return shiftedCells
+    }
+    
     internal func createSliceObject(frame: CGRect, elements: [PDFRenderObject], minOffset: CGFloat, maxOffset: CGFloat) -> PDFSlicedObject {
         let sliceObject = PDFSlicedObject(children: elements, frame: frame)
         if frame.maxY > maxOffset {

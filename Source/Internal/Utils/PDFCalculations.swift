@@ -125,36 +125,74 @@ internal enum PDFCalculations {
             - generator.currentPadding.right
     }
 
-    /**
-     Calculates the available height in a given `container` on the current page.
-     If the container is a header or a footer container, it has no limits and therefore returns the full page layout height
 
-     - parameter generator: Generator used for calculations
-     - parameter container: Container in question
-
-     - returns: Available height in points
-     */
+    /// Calculates the available height in a given `container` on the current page.
+    /// If the container is a header or a footer container, it has no limits and therefore returns the full page layout height
+    ///
+    ///         ┏━━━━━━━━━━━━━━━━┓
+    ///         ┃   top margin   ┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
+    ///         ┃     header     ┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
+    ///         ┃ header spacing ┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
+    ///     --> ┃┌──────────────┐┃ <-- top minimum
+    ///      ↕︎  ┃│    Group     │┃
+    ///     --> ┃└──────────────┘┃ <-- bottom maximum
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
+    ///         ┃ footer spacing ┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
+    ///         ┃     footer     ┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
+    ///         ┃ bottom margin  ┃
+    ///         ┗━━━━━━━━━━━━━━━━┛
+    ///
+    /// - parameter generator: Generator used for calculations
+    /// - parameter container: Container in question
+    /// - returns: Available height in points
     internal static func calculateAvailableFrameHeight(for generator: PDFGenerator, in container: PDFContainer) -> CGFloat {
-        let layout = generator.layout
         let pageLayout = generator.document.layout
 
         if container.isHeader || container.isFooter {
             return pageLayout.height
-        } else {
-            return pageLayout.height
-                - layout.margin.top
-                - layout.heights.maxHeaderHeight()
-                - layout.heights.content
-                - generator.currentPadding.bottom
-                - layout.heights.maxFooterHeight()
-                - layout.margin.bottom
         }
+        return calculateBottomMaximum(for: generator) - calculateTopMinimum(for: generator)
     }
 
+    /// Calculates the minimum offset from the top edge where content should start
+    ///
+    /// This method calculates the limit by the following formula:
+    ///
+    ///       top margin
+    ///     + header height
+    ///     + header spacing (if header exists)
+    ///     + padding
+    ///     -----------------------------------
+    ///       offset from top edge
+    ///
+    ///     --- ┏━━━━━━━━━━━━━━━━┓
+    ///      ↑  ┃   top margin   ┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
+    ///         ┃     header     ┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
+    ///         ┃ header spacing ┃
+    ///      ↓  ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
+    ///     --> ┃┌──────────────┐┃
+    ///         ┃│    Group     │┃
+    ///         ┃└──────────────┘┃
+    ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
+    ///
+    /// - Parameter generator: Generator currently in use holding information about the document
+    /// - Returns: Offset from top edge in points
     internal static func calculateTopMinimum(for generator: PDFGenerator) -> CGFloat {
         let layout = generator.layout
+        let pageLayout = generator.document.layout
+        let headerHeight = layout.heights.maxHeaderHeight()
+
         return layout.margin.top
-            + layout.heights.maxHeaderHeight()
+            + headerHeight
+            + (headerHeight > 0 ? pageLayout.space.header : 0)
+            + generator.currentPadding.top
     }
 
     /// Calculates the maximum offset from the top edge when the main content should break to the next page
@@ -169,7 +207,7 @@ internal enum PDFCalculations {
     ///     -----------------------------------
     ///       offset from top edge
     ///
-    ///     --- ┏━━━━━━━━━━┓
+    ///     --- ┠┄┄┄┄┄┄┄┄┄┄┨
     ///      ↑  ┃┌────────┐┃
     ///      ↓  ┃│ Group  │┃
     ///     --> ┃└────────┘┃
@@ -250,9 +288,33 @@ internal enum PDFCalculations {
         }
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// Calculates the offset from the top edge where content should start in the given container
+    ///
+    /// This method calculates the limit by the following formula:
+    ///
+    ///       top margin
+    ///     + header height
+    ///     + header spacing (if footer exists)
+    ///     + padding
+    ///     -----------------------------------
+    ///       offset from top edge
+    ///
+    ///     --- ┏━━━━━━━━━━━━━━━━━━━━┓
+    ///      ↑  ┊                    ┊
+    ///         ┃┌──────────────────┐┃
+    ///         ┃│ Previous Content │┃
+    ///      ↓  ┃└──────────────────┘┃
+    ///     --> ┃┌──────────────────┐┃
+    ///         ┃│   Next Element   │┃
+    ///         ┃└──────────────────┘┃
+    ///
+    /// - Parameter generator: Generator currently in use holding information about the document
+    /// - Returns: Offset from top edge in points
+    /// - Parameters:
+    ///   - generator: Active generator
+    ///   - container: Container where element is placed
+    ///   - size: Size of element
+    /// - Returns: Offset from the top edge
     private static func calculatePositionY(for generator: PDFGenerator, in container: PDFContainer, with size: CGSize) -> CGFloat {
         let layout = generator.layout
         let pageLayout = generator.document.layout
@@ -266,10 +328,7 @@ internal enum PDFCalculations {
                 - layout.heights.value(for: container)
                 - size.height
         } else {
-            return layout.margin.top
-                + layout.heights.maxHeaderHeight()
-                + pageLayout.space.header
-                + layout.heights.content
+            return calculateTopMinimum(for: generator) + layout.heights.content
         }
     }
 
@@ -289,12 +348,8 @@ internal enum PDFCalculations {
                     - pageLayout.margin.bottom
                     - layout.heights.value(for: container)
                     - element.frame.height)
-        } else {
-            return element.frame.minY
-                - pageLayout.margin.top
-                - layout.heights.maxHeaderHeight()
-                - pageLayout.space.header
         }
+        return element.frame.minY - calculateTopMinimum(for: generator)
     }
 
     /**
@@ -312,12 +367,8 @@ internal enum PDFCalculations {
                 - (pageLayout.height
                     - pageLayout.margin.bottom
                     - layout.heights.value(for: container))
-        } else {
-            return offset
-                - pageLayout.margin.top
-                - layout.heights.maxHeaderHeight()
-                - pageLayout.space.header
         }
+        return offset - calculateTopMinimum(for: generator)
     }
 
     // MARK: - LEGACY

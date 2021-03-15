@@ -1,181 +1,241 @@
 import CoreGraphics
+import Foundation
 import Quick
 import Nimble
+import XCTest
 @testable import TPPDF
 
-class PDFTableObjectSpec: QuickSpec {
+#if os(iOS)
+class PDFTableObjectSpec: XCTestCase {
 
-    override func spec() {
-        // Let's not test on macOS, as small changes in the font messes up all values
-        #if os(iOS)
-        describe("PDFTableObject") {
-            describe("calculation result frames") {
-                context("unmerged cells on multiple pages without splicing and no table headers on every page") {
-                    let container = PDFContainer.contentLeft
+    /// Preconditions:
+    /// - Multiple pages
+    /// - No cell splicing
+    /// - No column headers on every page
+    func testCells_unmergedCellsMultiplePagesNoSplicingTableNoHeadersEveryPage_shouldNotAddHeadersToEveryPage() throws {
+        let rows = 20
+        let columns = 4
+        let count = rows * columns
 
-                    let rows = 40
-                    let columns = 4
-                    let count = rows * columns
-                    let table = PDFTable(rows: rows, columns: columns)
-                    table.widths = [0.1, 0.3, 0.3, 0.3]
-                    table.margin = 10
-                    table.padding = 10
-                    table.showHeadersOnEveryPage = false
-                    table.shouldSplitCellsOnPageBreak = false
-                    table.style.columnHeaderCount = 3
+        let table = generateTable(rows: rows, columns: columns)
+        table.showHeadersOnEveryPage = false
+        let result = try calculate(table: table)
 
-                    for row in 0..<table.size.rows {
-                        table[row, 0].content = "\(row)".asTableContent
-                        for column in 1..<table.size.columns {
-                            table[row, column].content = "\(row),\(column)".asTableContent
-                        }
-                    }
+        // should return correct cell count including necessary page breaks
+        XCTAssertEqual(result.count, count + 1)
+        XCTAssertTrue(result[56].1 is PDFPageBreakObject)
 
-                    let generator = PDFGenerator(document: .init(format: .a4))
-                    let tableObject = PDFTableObject(table: table)
-                    let result = try! tableObject.calculate(generator: generator, container: container)
+        // check cell frames
 
-                    it("should return correct cell count including necessary page breaks") {
-                        expect(result).to(haveCount(count + 3))
-                    }
+        let columnXPositions: [CGFloat] = [70, 117.5, 260, 402.5]
+        let columnWidths: [CGFloat] = [27.5, 122.5, 122.5, 122.5]
 
-                    // Page breaks should be at 52, 101, 150
+        let rowYPositions: [CGFloat] = [
+            // Page 1
+            // Headers
+            70,  // 70,                     // Header Row 0
+            117, // 70 + 37 + 10,           // Header Row 1
+            164, // 70 + (37 + 10) * 2,     // Header Row 2
+            // First smaller rows
+            211, // 70 + (37 + 10) * 3,     // Row 3
+            258, // 70 + (37 + 10) * 4,     // Row 4
+            305, // 70 + (37 + 10) * 5,     // Row 5
+            352, // 70 + (37 + 10) * 6,     // Row 6
+            399, // 70 + (37 + 10) * 7,     // Row 7
+            446, // 70 + (37 + 10) * 8,                      // Row 8
+            493, // 70 + (37 + 10) * 9,                      // Row 9
+            // Larger rows
+            540, // 70 + (37 + 10) * 10,                     // Row 10
+            598, // 70 + (37 + 10) * 10 + (48 + 10) * 1,     // Row 11
+            656, // 70 + (37 + 10) * 10 + (48 + 10) * 2,     // Row 12
+            714, // 70 + (37 + 10) * 10 + (48 + 10) * 3,     // Row 13
+            // Page 2
+            70, // 70 + (48 + 10),                         // Row 14
+            128, // 70 + (48 + 10) * 1,                     // Row 15
+            186, // 70 + (48 + 10) * 2,                     // Row 16
+            244, // 70 + (48 + 10) * 3,                     // Row 17
+            302, // 70 + (48 + 10) * 4,                     // Row 18
+            360, // 70 + (48 + 10) * 5,                     // Row 19
+        ]
+        let rowHeights: [CGFloat] = [
+            // Page 1
+            // Headers
+            37, // Header Row 0
+            37, // Header Row 1
+            37, // Header Row 2
+            // First smaller rows
+            37, // Row 3
+            37, // Row 4
+            37, // Row 5
+            37, // Row 6
+            37, // Row 7
+            37, // Row 8
+            37, // Row 9
+            // Larger rows
+            48, // Row 10
+            48, // Row 11
+            48, // Row 12
+            48, // Row 13
+            // Page 2
+            48, // Row 14
+            48, // Row 15
+            48, // Row 16
+            48, // Row 17
+            48, // Row 18
+            48, // Row 19
+        ]
 
-                    it("should have a page break between first and second page") {
-                        let breakObject = PDFPageBreakObject()
-                        breakObject.stayOnSamePage = true
-                        expect(result[56].1 as? PDFPageBreakObject) == breakObject
-                    }
+        for rowIdx in 0..<14 {
+            for colIdx in 0..<columnXPositions.count {
+                let locatedCell = result[rowIdx * columns + colIdx]
 
-                    it("should have a page break between second and third page") {
-                        let breakObject = PDFPageBreakObject()
-                        breakObject.stayOnSamePage = true
-                        expect(result[105].1 as? PDFPageBreakObject) == breakObject
-                    }
-
-                    it("should have a page break between third and fourth page") {
-                        let breakObject = PDFPageBreakObject()
-                        breakObject.stayOnSamePage = true
-                        expect(result[154].1 as? PDFPageBreakObject) == breakObject
-                    }
-
-                    let frames_0_10: [[CGRect]] = (0..<11)
-                        .map ({ row -> [CGRect] in
-                            (0..<4).map { col -> CGRect in
-                                CGRect(x: [70, 117.5, 260, 402.5][col],
-                                       y: 85 + CGFloat(row) * 47,
-                                       width: [27.5, 122.5, 122.5, 122.5][col],
-                                       height: row >= 10 ? 48 : 37)
-                            }
-                        })
-                    let frames_11_13: [[CGRect]] = (11..<14)
-                        .map ({ row -> [CGRect] in
-                            (0..<4).map { col -> CGRect in
-                                CGRect(x: [70, 117.5, 260, 402.5][col],
-                                       y: 613 + CGFloat(row - 11) * 58,
-                                       width: [27.5, 122.5, 122.5, 122.5][col],
-                                       height: 48)
-                            }
-                        })
-                    let frames_13_25: [[CGRect]] = (14..<26)
-                        .map ({ row -> [CGRect] in
-                            (0..<4).map { col -> CGRect in
-                                CGRect(x: [70, 117.5, 260, 402.5][col],
-                                       y: 60 + CGFloat(row - 14) * 58,
-                                       width: [27.5, 122.5, 122.5, 122.5][col],
-                                       height: 48)
-                            }
-                        })
-                    let frames_25_37: [[CGRect]] = (26..<39)
-                        .map ({ row -> [CGRect] in
-                            (0..<4).map { col -> CGRect in
-                                CGRect(x: [70, 117.5, 260, 402.5][col],
-                                       y: 60 + CGFloat(row - 26) * 58,
-                                       width: [27.5, 122.5, 122.5, 122.5][col],
-                                       height: 48)
-                            }
-                        })
-                    let frames_37_40: [[CGRect]] = (38..<40)
-                        .map ({ row -> [CGRect] in
-                            (0..<4).map { col -> CGRect in
-                                CGRect(x: [70, 117.5, 260, 402.5][col],
-                                       y: 60 + CGFloat(row - 38) * 58,
-                                       width: [27.5, 122.5, 122.5, 122.5][col],
-                                       height: 48)
-                            }
-                        })
-
-                    // test cells on first page
-                    for row in 0..<14 {
-                        for column in 0..<4 {
-                            context("cell \(row) \(column)") {
-                                let locatedCell = result[row * columns + column]
-
-                                it("should be in the correct container") {
-                                    expect(locatedCell.0) == container
-                                }
-
-                                it("should have correct frame") {
-                                    let expectedFrames = frames_0_10 + frames_11_13
-                                    expect(locatedCell.1.frame) == expectedFrames[row][column]
-                                }
-                            }
-                        }
-                    }
-
-                    // test cells on second page
-                    for row in 14..<26 {
-                        for column in 0..<4 {
-                            context("cell \(row) \(column)") {
-                                let locatedCell = result[1 + (row * columns + column)]
-
-                                it("should be in the correct container") {
-                                    expect(locatedCell.0) == container
-                                }
-
-                                it("should have correct frame") {
-                                    expect(locatedCell.1.frame) == frames_13_25[row - 14][column]
-                                }
-                            }
-                        }
-                    }
-
-                    // test cells on third page
-                    for row in 26..<38 {
-                        for column in 0..<4 {
-                            context("cell \(row) \(column)") {
-                                let locatedCell = result[2 + (row * columns + column)]
-
-                                it("should be in the correct container") {
-                                    expect(locatedCell.0) == container
-                                }
-
-                                it("should have correct frame") {
-                                    expect(locatedCell.1.frame) == frames_25_37[row - 26][column]
-                                }
-                            }
-                        }
-                    }
-
-                    // test cells on fourth page
-                    for row in 38..<40 {
-                        for column in 0..<4 {
-                            context("cell \(row) \(column)") {
-                                let locatedCell = result[3 + row * columns + column]
-
-                                it("should be in the correct container") {
-                                    expect(locatedCell.0) == container
-                                }
-
-                                it("should have correct frame") {
-                                    expect(locatedCell.1.frame) == frames_37_40[row - 38][column]
-                                }
-                            }
-                        }
-                    }
-                }
+                XCTAssertEqual(locatedCell.1.frame.origin.x, columnXPositions[colIdx], "Cell \(rowIdx),\(colIdx) has invalid x position")
+                XCTAssertEqual(locatedCell.1.frame.origin.y, rowYPositions[rowIdx], "Cell \(rowIdx),\(colIdx) has invalid y position")
+                XCTAssertEqual(locatedCell.1.frame.width, columnWidths[colIdx], "Cell \(rowIdx),\(colIdx) has invalid width")
+                XCTAssertEqual(locatedCell.1.frame.height, rowHeights[rowIdx], "Cell \(rowIdx),\(colIdx) has invalid height")
             }
         }
-        #endif
+        for rowIdx in 14..<rowYPositions.count {
+            for colIdx in 0..<columnXPositions.count {
+                let locatedCell = result[rowIdx * columns + colIdx + 1] // add one for page break offset
+
+                XCTAssertEqual(locatedCell.1.frame.origin.x, columnXPositions[colIdx], "Cell \(rowIdx),\(colIdx) has invalid x position")
+                XCTAssertEqual(locatedCell.1.frame.origin.y, rowYPositions[rowIdx], "Cell \(rowIdx),\(colIdx) has invalid y position")
+                XCTAssertEqual(locatedCell.1.frame.width, columnWidths[colIdx], "Cell \(rowIdx),\(colIdx) has invalid width")
+                XCTAssertEqual(locatedCell.1.frame.height, rowHeights[rowIdx], "Cell \(rowIdx),\(colIdx) has invalid height")
+            }
+        }
+    }
+
+    /// Preconditions:
+    /// - Multiple pages
+    /// - No cell splicing
+    /// - Column headers on every page
+    func testCells_unmergedCellsMultiplePagesNoSplicingTableHeadersEveryPage_shouldDuplicateHeadersToEveryPage() throws {
+        let rows = 20
+        let columns = 4
+        let count = rows * columns
+
+        let table = generateTable(rows: rows, columns: columns)
+        table.showHeadersOnEveryPage = true
+        let result = try calculate(table: table)
+
+        // should return correct cell count including necessary page breaks
+        XCTAssertEqual(result.count, count + 1 + 12)
+        XCTAssertTrue(result[56].1 is PDFPageBreakObject)
+
+        // check cell frames
+
+        let columnXPositions: [CGFloat] = [70, 117.5, 260, 402.5]
+        let columnWidths: [CGFloat] = [27.5, 122.5, 122.5, 122.5]
+
+        let rowYPositions: [CGFloat] = [
+            // Page 1
+            // Headers
+            70,  // 70,                     // Header Row 0
+            117, // 70 + 37 + 10,           // Header Row 1
+            164, // 70 + (37 + 10) * 2,     // Header Row 2
+            // First smaller rows
+            211, // 70 + (37 + 10) * 3,     // Row 3
+            258, // 70 + (37 + 10) * 4,     // Row 4
+            305, // 70 + (37 + 10) * 5,     // Row 5
+            352, // 70 + (37 + 10) * 6,     // Row 6
+            399, // 70 + (37 + 10) * 7,     // Row 7
+            446, // 70 + (37 + 10) * 8,                      // Row 8
+            493, // 70 + (37 + 10) * 9,                      // Row 9
+            // Larger rows
+            540, // 70 + (37 + 10) * 10,                     // Row 10
+            598, // 70 + (37 + 10) * 10 + (48 + 10) * 1,     // Row 11
+            656, // 70 + (37 + 10) * 10 + (48 + 10) * 2,     // Row 12
+            714, // 70 + (37 + 10) * 10 + (48 + 10) * 3,     // Row 13
+            // Page 2
+            // Headers
+            70,  // 70,                     // Header Row 0
+            117, // 70 + 37 + 10,           // Header Row 1
+            164, // 70 + (37 + 10) * 2,     // Header Row 2
+            211, // 70 + (37 + 10) * 3,         // Row 14
+            269, // 70 + (37 + 10) * 3 + (48 + 10) * 1,     // Row 15
+            327, // 70 + (37 + 10) * 3 + (48 + 10) * 2,     // Row 16
+            385, // 70 + (37 + 10) * 3 + (48 + 10) * 3,     // Row 17
+            443, // 70 + (37 + 10) * 3 + (48 + 10) * 4,     // Row 18
+            501, // 70 + (37 + 10) * 3 + (48 + 10) * 5,     // Row 19
+        ]
+        let rowHeights: [CGFloat] = [
+            // Page 1
+            // Headers
+            37, // Header Row 0
+            37, // Header Row 1
+            37, // Header Row 2
+            // First smaller rows
+            37, // Row 3
+            37, // Row 4
+            37, // Row 5
+            37, // Row 6
+            37, // Row 7
+            37, // Row 8
+            37, // Row 9
+            // Larger rows
+            48, // Row 10
+            48, // Row 11
+            48, // Row 12
+            48, // Row 13
+            // Page 2
+            // Headers
+            37, // Header Row 0
+            37, // Header Row 1
+            37, // Header Row 2
+            48, // Row 14
+            48, // Row 15
+            48, // Row 16
+            48, // Row 17
+            48, // Row 18
+            48, // Row 19
+        ]
+
+        for rowIdx in 0..<14 {
+            for colIdx in 0..<columnXPositions.count {
+                let locatedCell = result[rowIdx * columns + colIdx]
+
+                XCTAssertEqual(locatedCell.1.frame.origin.x, columnXPositions[colIdx], "Cell \(rowIdx),\(colIdx) has invalid x position")
+                XCTAssertEqual(locatedCell.1.frame.origin.y, rowYPositions[rowIdx], "Cell \(rowIdx),\(colIdx) has invalid y position")
+                XCTAssertEqual(locatedCell.1.frame.width, columnWidths[colIdx], "Cell \(rowIdx),\(colIdx) has invalid width")
+                XCTAssertEqual(locatedCell.1.frame.height, rowHeights[rowIdx], "Cell \(rowIdx),\(colIdx) has invalid height")
+            }
+        }
+        for rowIdx in 14..<rowYPositions.count {
+            for colIdx in 0..<columnXPositions.count {
+                let locatedCell = result[rowIdx * columns + colIdx + 1] // add one for page break offset
+
+                XCTAssertEqual(locatedCell.1.frame.origin.x, columnXPositions[colIdx], "Cell \(rowIdx),\(colIdx) has invalid x position")
+                XCTAssertEqual(locatedCell.1.frame.origin.y, rowYPositions[rowIdx], "Cell \(rowIdx),\(colIdx) has invalid y position")
+                XCTAssertEqual(locatedCell.1.frame.width, columnWidths[colIdx], "Cell \(rowIdx),\(colIdx) has invalid width")
+                XCTAssertEqual(locatedCell.1.frame.height, rowHeights[rowIdx], "Cell \(rowIdx),\(colIdx) has invalid height")
+            }
+        }
+    }
+
+    private func generateTable(rows: Int, columns: Int) -> PDFTable {
+        let table = PDFTable(rows: rows, columns: columns)
+        table.widths = [0.1, 0.3, 0.3, 0.3]
+        table.margin = 10
+        table.padding = 10
+        table.shouldSplitCellsOnPageBreak = false
+        table.style.columnHeaderCount = 3
+
+        for row in 0..<table.size.rows {
+            table[row, 0].content = "\(row)".asTableContent
+            for column in 1..<table.size.columns {
+                table[row, column].content = "\(row),\(column)".asTableContent
+            }
+        }
+        return table
+    }
+
+    private func calculate(table: PDFTable) throws -> [PDFLocatedRenderObject] {
+        let container = PDFContainer.contentLeft
+        let generator = PDFGenerator(document: .init(format: .a4))
+        let tableObject = PDFTableObject(table: table)
+        return try tableObject.calculate(generator: generator, container: container)
     }
 }
+#endif

@@ -95,6 +95,9 @@ All values are in dots and are rendered using 72 DPI (dots per inch), as this is
 
 You can also used the predefined formats. For details please refer to the source file [PDFPageFormat.swift](https://github.com/techprimate/TPPDF/blob/master/Source/PDFPageFormat.swift)
 
+Keep in mind that the `space.header` is only applied, if there is at least one element in a header container.
+The same applies to the `space.footer` for footer containers and elements.
+
 If you need your page in landscape format, use the `landscapeSize` variable.
 
 ![Layout](../resources/layout.png)
