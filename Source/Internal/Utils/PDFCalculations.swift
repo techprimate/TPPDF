@@ -56,7 +56,7 @@ internal enum PDFCalculations {
      Calculates the actual size of the text and the remainder which does not fit the given `bounds`
 
      - parameter text: Text which is calculated
-     - paramter bounds: Bounds where text should fit
+     - parameter bounds: Bounds where text should fit
 
      - returns: Tuple of `text`, real `size of the text and the `remainder`
      */
@@ -136,9 +136,12 @@ internal enum PDFCalculations {
     ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
     ///         ┃ header spacing ┃
     ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
-    ///     --> ┃┌──────────────┐┃ <-- top minimum
-    ///      ↕︎  ┃│    Group     │┃
-    ///     --> ┃└──────────────┘┃ <-- bottom maximum
+    ///         ┃┌──────────────┐┃ <-- top minimum
+    ///         ┃│    content   │┃
+    ///         ┃└──────────────┘┃
+    ///     --> ┃                ┃
+    ///      ↕︎  ┃                ┃
+    ///     --> ┃                ┃ <-- bottom maximum
     ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
     ///         ┃ footer spacing ┃
     ///         ┠┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┨
@@ -156,7 +159,7 @@ internal enum PDFCalculations {
         if container.isHeader || container.isFooter {
             return pageLayout.height
         }
-        return calculateBottomMaximum(for: generator) - calculateTopMinimum(for: generator)
+        return calculateBottomMaximum(for: generator) - calculateTopMinimum(for: generator) - generator.layout.heights.content
     }
 
     /// Calculates the minimum offset from the top edge where content should start

@@ -7,14 +7,18 @@
 
 **Fixed bugs:**
 
+- Fixed `PDFList` not calculating available content height correctly (#267)
+
 **Closed issues:**
+
+- Issue #267
 
 **Merged pull requests:**
 
+- PR #268 (by philprime)
+
 ## [2.3.4](https://github.com/techprimate/TPPDF/tree/2.3.4) (2021-03-15)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.3...2.3.4)
-
-**Implemented enhancements:**
 
 **Fixed bugs:**
 
