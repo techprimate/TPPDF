@@ -89,14 +89,14 @@ let document = PDFDocument(format: .a4)
 ...then you add your information to a container...
 
 ```swift
-document.addText(.contentCenter, text: "Create PDF documents easily.")
+document.add(.contentCenter, text: "Create PDF documents easily.")
 ```
 
 ...then you render the document...
  
 ```swift 
 let generator = PDFGenerator(document: document)
-let url  = try generator.generateURL(document: document, filename: "Example.pdf")
+let url  = try generator.generateURL(filename: "Example.pdf")
 ```
 
 **...done!**
