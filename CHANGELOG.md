@@ -8,10 +8,12 @@
 **Fixed bugs:**
 
 - Fixed `PDFList` not calculating available content height correctly (#267)
+- Removed `PDFTable` initializer size defaults (#269)
 
 **Closed issues:**
 
 - Issue #267
+- Issue #269
 
 **Merged pull requests:**
 

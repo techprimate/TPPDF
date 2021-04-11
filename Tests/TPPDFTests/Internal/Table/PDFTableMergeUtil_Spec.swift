@@ -19,7 +19,7 @@ class PDFTableMergeUtilSpec: QuickSpec {
             let ROWS = 10
             let COLS = 10
 
-            var table = PDFTable()
+            var table = PDFTable(rows: ROWS, columns: COLS)
 
             beforeEach {
                 table = PDFTable(rows: ROWS, columns: COLS)

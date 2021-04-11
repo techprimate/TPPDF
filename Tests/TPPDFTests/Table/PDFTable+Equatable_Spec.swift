@@ -20,22 +20,22 @@ class PDFTable_Equatable_Spec: QuickSpec {
                 var table: PDFTable!
 
                 beforeEach {
-                    table = PDFTable()
+                    table = PDFTable(rows: 0, columns: 0)
                 }
 
                 it("is equal") {
-                    let otherTable = PDFTable()
+                    let otherTable = PDFTable(rows: 0, columns: 0)
                     expect(table) == otherTable
                 }
 
                 it("is not equal with different style") {
-                    let otherTable = PDFTable()
+                    let otherTable = PDFTable(rows: 0, columns: 0)
                     otherTable.style = PDFTableStyle(rowHeaderCount: 2)
                     expect(table) != otherTable
                 }
 
                 it("is not equal with different cells") {
-                    let otherTable = PDFTable()
+                    let otherTable = PDFTable(rows: 0, columns: 0)
                     otherTable.cells = [[PDFTableCell(), PDFTableCell()]]
                     expect(table) != otherTable
 
@@ -44,25 +44,25 @@ class PDFTable_Equatable_Spec: QuickSpec {
                 }
 
                 it("is not equal with different widths") {
-                    let otherTable = PDFTable()
+                    let otherTable = PDFTable(rows: 0, columns: 0)
                     otherTable.widths = [0.25, 0.75]
                     expect(table) != otherTable
                 }
 
                 it("is not equal with different padding") {
-                    let otherTable = PDFTable()
+                    let otherTable = PDFTable(rows: 0, columns: 0)
                     otherTable.padding = 100
                     expect(table) != otherTable
                 }
 
                 it("is not equal with different margin") {
-                    let otherTable = PDFTable()
+                    let otherTable = PDFTable(rows: 0, columns: 0)
                     otherTable.margin = 100
                     expect(table) != otherTable
                 }
 
                 it("is not equal with different showHeadersOnEveryPage") {
-                    let otherTable = PDFTable()
+                    let otherTable = PDFTable(rows: 0, columns: 0)
                     otherTable.showHeadersOnEveryPage = !table.showHeadersOnEveryPage
                     expect(table) != otherTable
                 }

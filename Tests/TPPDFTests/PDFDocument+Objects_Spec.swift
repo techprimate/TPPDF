@@ -281,7 +281,7 @@ class PDFDocument_Objects_Spec: QuickSpec {
 
                 context("table") {
 
-                    let table = PDFTable()
+                    let table = PDFTable(rows: 0, columns: 0)
 
                     it("is possible to add a table into the default container") {
                         document.add(table: table)

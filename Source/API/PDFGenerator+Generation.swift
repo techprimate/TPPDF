@@ -141,7 +141,6 @@ extension PDFGenerator {
 
         // Iterate all objects and let them calculate the required rendering bounds
         var needsPageBreak = false
-        var prevPDFObject: PDFLocatedRenderObject?
         for (pdfObjectIdx, locatedPdfObject) in contentObjects.enumerated() {
             let (container, pdfObject) = locatedPdfObject
             if let tocObject = pdfObject as? PDFTableOfContentObject {
@@ -183,7 +182,6 @@ extension PDFGenerator {
                 prevObj = obj
             }
             progress.completedUnitCount += 1
-            prevPDFObject = locatedPdfObject
         }
 
         let result = currentPage

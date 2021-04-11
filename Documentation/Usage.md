@@ -299,10 +299,10 @@ document.add(list: list)
 
 ### Table
 
-Create a `PDFTable` element, which will now be customized.
+Create a `PDFTable` element of a given size, which will now be customized.
 
 ```swift
-let table = PDFTable()
+let table = PDFTable(rows: 3, columns: 4)
 ```
 
 Each cell has an optional `content` of type `PDFTableContent`, an optional `style` of `PDFTableCellStyle` and always an `alignment` of `PDFTableCellAlignment`.

@@ -57,14 +57,20 @@ public class PDFTable: PDFDocumentObject {
      */
     public private(set) var size: (rows: Int, columns: Int)
 
-    public convenience init(size: (rows: Int, columns: Int) = (0, 0)) {
+    /// Creates a new table with the given size and populates it with empty cells
+    ///
+    /// - Parameter size: Row and column count of table
+    public convenience init(size: (rows: Int, columns: Int)) {
         self.init(rows: size.rows, columns: size.columns)
     }
 
-    /**
-     Creates a new table with the given size and populates it with empty cells.
-     */
-    public init(rows: Int = 0, columns: Int = 0) {
+    /// Creates a new table with the given size and populates it with empty cells.
+    /// - Parameters:
+    ///   - rows: Rows of table, must be greater than 0
+    ///   - columns: Columns of table, must be greater than 0
+    public init(rows: Int, columns: Int) {
+        assert(rows >= 0, "Can't create a table with negative row count")
+        assert(columns >= 0, "Can't create a table with negative column count")
         self.size = (rows: rows, columns: columns)
         self.cells = (0..<rows).map({ _ in (0..<columns).map({ _ in PDFTableCell() }) })
         self.widths = (0..<columns).map({ _ in 1.0 / CGFloat(columns) })
@@ -74,7 +80,7 @@ public class PDFTable: PDFDocumentObject {
      Creates a new `PDFTable` with the same properties
      */
     internal var copy: PDFTable {
-        let table = PDFTable()
+        let table = PDFTable(size: self.size)
         table.style = self.style
         table.cells = self.cells
         table.widths = self.widths

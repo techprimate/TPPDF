@@ -18,7 +18,7 @@ class PDFTable_Spec: QuickSpec {
 
             context("variables") {
 
-                let table = PDFTable()
+                let table = PDFTable(rows: 0, columns: 0)
 
                 it("has a default style") {
                     expect(table.style) == PDFTableStyleDefaults.simple
@@ -48,7 +48,7 @@ class PDFTable_Spec: QuickSpec {
             context("cell style") {
 
                 it("can set style of cell") {
-                    let table = PDFTable()
+                    let table = PDFTable(rows: 0, columns: 0)
                     table.cells = [[PDFTableCell()]]
 
                     let style = PDFTableCellStyle(colors: (fill: Color.green, text: Color.orange))
