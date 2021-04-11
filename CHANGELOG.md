@@ -1,9 +1,18 @@
 # Change Log
 
 ## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2021-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.4...HEAD)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.5...HEAD)
 
 **Implemented enhancements:**
+
+**Fixed bugs:**
+
+**Closed issues:**
+
+**Merged pull requests:**
+
+## [Unreleased](https://github.com/techprimate/TPPDF/tree/2.3.5) (2021-04-11)
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.4...2.3.5)
 
 **Fixed bugs:**
 
