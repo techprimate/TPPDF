@@ -56,14 +56,14 @@ let document = PDFDocument(format: .a4)
 ...then you add your information to a container...
 
 ```swift
-document.addText(.contentCenter, text: "Create PDF documents easily.")
+document.add(.contentCenter, text: "Create PDF documents easily.")
 ```
 
 ...then you render the document...
  
 ```swift 
 let generator = PDFGenerator(document: document)
-let url  = try generator.generateURL(document: document, filename: "Example.pdf")
+let url  = try generator.generateURL(filename: "Example.pdf")
 ```
 
 **...done!**
@@ -95,8 +95,8 @@ All values are in dots and are rendered using 72 DPI (dots per inch), as this is
 
 You can also used the predefined formats. For details please refer to the source file [PDFPageFormat.swift](https://github.com/techprimate/TPPDF/blob/master/Source/PDFPageFormat.swift)
 
-Keep in mind that the `space.header` is only applied, if there is at least one element in a header container.
-The same applies to the `space.footer` for footer containers and elements.
+Keep in mind that the `space.header` is only then applied, if there is at least one element in a header container.
+The same applies to the `space.footer` for footer containers and elements. If no header/footer elements are given, increase the margins themselves instead.
 
 If you need your page in landscape format, use the `landscapeSize` variable.
 
@@ -104,15 +104,20 @@ If you need your page in landscape format, use the `landscapeSize` variable.
 
 ### Elements
 
-TPPDF is element based. When adding any content to the document, you are actually adding an element. Then at the render process all elements are calculated into render objects and rendered. 
+TPPDF is an element based builder. When adding any content to the document, you are actually adding an element. 
+
+During the render process all elements are calculated into render objects and then converted into PDF drawable objects. 
 
 But first you need to understand the concept of the layout engine:
 
 ### Container
 
-Every element is placed in a specific container. Three containers exist: Header, Content, Footer. Additionally every container has an alignment: Left, Center, Right.
+Every element is placed in a specific container. 
 
-When you add an new element, you need to provide the correct container - the default container is `ContentLeft`, therefore it is an optional parameter. During calculation it will place the element in the correct container and calculate the correct frame accordingly.
+Three containers exist: `header`, `content`, `footer`. 
+Additionally every container has an alignment: `left`, `center`, `right`.
+
+When you add an new element, you need to provide the correct container - the default container is `.contentLeft`, therefore it is an optional parameter. During calculation it will place the element in the correct container and calculate the correct frame accordingly.
 
 A good example would be the following:
 
@@ -127,7 +132,7 @@ This command adds the text **Created using TPPDF for iOS** to the footer of all 
 
 Basically all elements which are either to either a header (`headerLeft`, `headerCenter` or `headerRight`) or footer (`footerLeft`, `footerCenter` or `footerRight`) container, are considered as header and footer elements and will be repeated on each page.
 
-If a page does not have any content, e.g. an empty page in between two pages, the header and footer elements won't be added to this page neither.
+If a page does not have any content, e.g. an empty page in between two pages, the header and footer elements won't be added to this page either.
 
 ## Elements Index
 
@@ -136,8 +141,8 @@ If a page does not have any content, e.g. an empty page in between two pages, th
 ### Line Separator
 
 ```swift
-let style = PDFLineStyle(type: .full, color: UIColor.darkGray, width: 0.5)
-document.addLineSeparator(PDFContainer.contentLeft, style: style) 
+let style = PDFLineStyle(type: .full, color: .darkGray, width: 0.5)
+document.addLineSeparator(PDFContainer.contentLeft, style: style)
 ```
 
 Adds a horizontal line with a specific `style` in the given `container`. This line is affected by the `indentation`, therefore it is possible to change its width by setting a left and a right indentation before. See [Line Style](#LineStyle) for details about the line styling.
@@ -159,7 +164,7 @@ For convenience you are also able to add an attributed string directly, and TPPD
 document.add(text: text, lineSpacing: spacing)
 ```
 
-During the render process it will create an attributed string using the font set by `setFont(font:)` and the text color set by `setTextColor(color:)`. 
+During the render process it will create an attributed string using the font set by `set(font:)` and the text color set by `set(textColor:)`. 
 
 ### Attributed Text
 

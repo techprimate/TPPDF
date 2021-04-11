@@ -41,8 +41,8 @@
 
 <p align="center">
   <a href="#features">Features</a>
-  • <a href="#communication">Communication</a>
   • <a href="#getting-started">Getting Started</a>
+  • <a href="#communication">Communication</a>
   • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md"><strong>Usage</strong></a>
   • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Installation.md">Installation</a>
   • <a href="#credits">Credits</a>
@@ -124,14 +124,14 @@ For everything else, please see [Communication](#communication) and [this messag
 
 ## Example
 
-Take a look at the [Getting Started Guide](https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md) or checkout the Examples (using of one of the following):
+Take a look at the [Getting Started Guide](https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md#getting-started) or checkout the Examples (using of one of the following):
 
 - Clone the repository and look at the Example folders
 - Run `pod try TPPDF`
 
 ## Apps using TPPDF
 
-If you are using TPPDF in your app and want to be listed here, simply create a pull request or let me know on twitter or via github. I am always curious who is using my projects :)
+If you are using TPPDF in your app and want to be listed here, simply create a pull request or let us know on Twitter or via GitHub. We are always curious to see, who is using our project :)
 
 [ChatHistory](https://itunes.apple.com/app/id1464880768) - by techprimate
 
