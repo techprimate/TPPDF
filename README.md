@@ -133,6 +133,10 @@ Take a look at the [Getting Started Guide](https://github.com/techprimate/TPPDF/
 
 If you are using TPPDF in your app and want to be listed here, simply create a pull request or let us know on Twitter or via GitHub. We are always curious to see, who is using our project :)
 
+[Burnout Coach](https://itunes.apple.com/app/id1495886665) - by Stéphane Mégy
+
+<img src="https://raw.githubusercontent.com/techprimate/TPPDF/master/resources/apps/BurnoutCoach.png" alt="Burnout Coach"/>
+
 [ChatHistory](https://itunes.apple.com/app/id1464880768) - by techprimate
 
 <img src="https://raw.githubusercontent.com/techprimate/TPPDF/master/resources/apps/ChatHistory.png" alt="ChatHistory"/>
