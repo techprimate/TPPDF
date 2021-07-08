@@ -106,7 +106,9 @@ internal class PDFTableObject: PDFRenderObject {
         var headerCells: [PDFTableCalculatedCell] = []
         if table.showHeadersOnEveryPage {
             var rowIdx = 0
-            while cells[rowIdx].allSatisfy({ $0.type == .rowHeader || $0.type == .header }) && rowIdx < table.size.rows {
+
+            // Modified by Giulio Santabarbara (I removed $0.type == .rowHeader)
+            while cells[rowIdx].allSatisfy({ $0.type == .header }) && rowIdx < table.size.rows {
                 headerCells += cells[rowIdx]
                 rowIdx += 1
             }
@@ -285,7 +287,6 @@ internal class PDFTableObject: PDFRenderObject {
         var nextPageCells: [PDFTableCalculatedCell] = cells
         var pageEnd = CGPoint.null
         var headerShift = table.showHeadersOnEveryPage
-        
 
         repeat {
             var pageStart = CGPoint.null
@@ -297,59 +298,77 @@ internal class PDFTableObject: PDFRenderObject {
 
             if !firstPage, let headerCells = headerCells {
                 for item in headerCells {
-                    var cellFrame = item.frames.cell
-                    var contentFrame = item.frames.content
-                    cellFrame.origin.y -= startPosition.y - minOffset
-                    cellFrame.origin.y += table.margin
-                    contentFrame.origin.y -= startPosition.y - minOffset
-                    contentFrame.origin.y += table.margin
 
-                    pageStart = pageStart == .null ? cellFrame.origin : pageStart
-                    pageEnd = CGPoint(x: cellFrame.maxX, y: cellFrame.maxY) + CGPoint(x: table.margin, y: table.margin)
+                    // Modified by Giulio Santabarbara (I added if item.type == .header)
+                    if item.type == .header {
 
-                    var cellElements = [PDFRenderObject]()
+                        var cellFrame = item.frames.cell
+                        var contentFrame = item.frames.content
+                        cellFrame.origin.y -= startPosition.y - minOffset
+                        cellFrame.origin.y += table.margin
+                        contentFrame.origin.y -= startPosition.y - minOffset
+                        contentFrame.origin.y += table.margin
 
-                    // Background
-                    cellElements += [createCellBackgroundObject(style: item.style, frame: cellFrame)]
+                        pageStart = pageStart == .null ? cellFrame.origin : pageStart
+                        pageEnd = CGPoint(x: cellFrame.maxX, y: cellFrame.maxY) + CGPoint(x: table.margin, y: table.margin)
 
-                    // Content
-                    if let contentObj = createCellContentObject(content: item.cell.content,
-                                                                style: item.style,
-                                                                alignment: item.cell.alignment,
-                                                                frame: contentFrame) {
-                        cellElements.append(contentObj)
+                        var cellElements = [PDFRenderObject]()
+
+                        // Background
+                        cellElements += [createCellBackgroundObject(style: item.style, frame: cellFrame)]
+
+                        // Content
+                        if let contentObj = createCellContentObject(content: item.cell.content,
+                                                                    style: item.style,
+                                                                    alignment: item.cell.alignment,
+                                                                    frame: contentFrame) {
+                            cellElements.append(contentObj)
+                        }
+
+                        // Grid
+                        let outline = try createCellOutlineObjects(borders: item.style.borders, frame: cellFrame)
+                            .map({ try $0.calculate(generator: generator, container: container) })
+                            .reduce([], +)
+                            .map(\.1)
+                        cellElements += outline
+
+                        let sliceObject = createSliceObject(frame: cellFrame,
+                                                            elements: cellElements,
+                                                            minOffset: minOffset,
+                                                            maxOffset: maxOffset)
+                        result += try sliceObject.calculate(generator: generator, container: container)
+
                     }
-
-                    // Grid
-                    let outline = try createCellOutlineObjects(borders: item.style.borders, frame: cellFrame)
-                        .map({ try $0.calculate(generator: generator, container: container) })
-                        .reduce([], +)
-                        .map(\.1)
-                    cellElements += outline
-
-                    let sliceObject = createSliceObject(frame: cellFrame,
-                                                        elements: cellElements,
-                                                        minOffset: minOffset,
-                                                        maxOffset: maxOffset)
-                    result += try sliceObject.calculate(generator: generator, container: container)
                 }
-                minOffset +=  headerHeight
+                // Modified by Giulio Santabarbara
+                // minOffset +=  headerHeight
             }
             if !firstPage {
+                // Modified by Giulio Santabarbara (some elements repeated when the table splits into two pages)
+                nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: headerHeight + table.margin)
+
                 // shift the rest of the cells down by headerHeight
-                if headerShift {
-                    nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: headerHeight)
-                    headerShift = false
-                }
-                //add table padding around cells
-                nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: table.margin)
+                /*if headerShift {
+                 nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: headerHeight)
+                 headerShift = false
+                 }*/
+                // add table padding around cells
+                // nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: table.margin)
             }
 
             let filterResult = filterCellsOnPage(for: generator, items: nextPageCells,
                                                  minOffset: minOffset, maxOffset: maxOffset,
                                                  shouldSplitCellsOnPageBreak: table.shouldSplitCellsOnPageBreak)
-            let onPageCells = filterResult.cells
+
+            // Modified by Giulio Santabarbara(was let)
+            var onPageCells = filterResult.cells
             nextPageCells = filterResult.remainder
+
+            // Modified by Giulio Santabarbara (It prevents the header printed on the first page without rows with contents)
+            while onPageCells.last?.type == .header {
+                onPageCells.removeLast()
+            }
+
             // If none of the cells fit on the current page, the algorithm will try again on the next page and if it occurs again, an error should be thrown
             if onPageCells.isEmpty && !firstPage, let firstInvalidCell = nextPageCells.first {
                 throw PDFError.tableCellTooBig(cell: firstInvalidCell.cell)
@@ -440,7 +459,10 @@ internal class PDFTableObject: PDFRenderObject {
             // Cells needs to fit the current available space entirely
             if cellFrame.maxY < maxOffset { // TODO: is the row padding relevant here?
                 result.cells.append(item)
-            } else {
+            } else if item.type != .header {
+                // Note by Giulio Santabarbara (giulio@myaedes.com):
+                // if item.type != .header. Prevents having the header repeated two times on the next page when the table splits
+
                 // If cells should be split and cell is partially on current page, add it to the cells, the cell will be sliced afterwards
                 if shouldSplitCellsOnPageBreak && cellFrame.minY < maxOffset {
                     result.cells.append(item)
@@ -462,22 +484,22 @@ internal class PDFTableObject: PDFRenderObject {
         }
         return result
     }
-    
+
     internal typealias ShiftedCells = [PDFTableCalculatedCell]
-    
+
     internal func shiftCellsBy(cells: [PDFTableCalculatedCell], shiftValue: CGFloat) -> ShiftedCells {
         var shiftedCells: [PDFTableCalculatedCell] = []
-        
+
         for cell in cells {
             var shiftedCell = cell
-            
+
             shiftedCell.frames.cell.origin.y += shiftValue
             shiftedCell.frames.content.origin.y += shiftValue
             shiftedCells.append(shiftedCell)
         }
         return shiftedCells
     }
-    
+
     internal func createSliceObject(frame: CGRect, elements: [PDFRenderObject], minOffset: CGFloat, maxOffset: CGFloat) -> PDFSlicedObject {
         let sliceObject = PDFSlicedObject(children: elements, frame: frame)
         if frame.maxY > maxOffset {

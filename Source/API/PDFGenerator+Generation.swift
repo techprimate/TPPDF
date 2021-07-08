@@ -220,6 +220,8 @@ extension PDFGenerator {
                     if !(prevObj?.1 is PDFExternalPageObject) && !(obj.1 is PDFExternalPageObject) {
                         needsPageBreak = false
                         result += try PDFPageBreakObject().calculate(generator: self, container: container)
+                        // Modified by Giulio Santabarbara (To add a footer to the first page after attachments)
+                        result += try addHeaderFooterObjects()
                         currentPage += 1
                     }
                 }
