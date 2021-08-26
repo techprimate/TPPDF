@@ -5,6 +5,7 @@ disabled_rules:
 excluded:
   - Carthage
   - Pods
+  - Dangerfile.swift
 opt_in_rules:
   - array_init
   - closure_body_length

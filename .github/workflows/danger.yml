@@ -1,0 +1,21 @@
+name: Danger
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  job-danger:
+    name: Review, Lint, Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v1
+      - name: Danger
+        uses: docker://ghcr.io/danger/danger-swift-with-swiftlint:3.10.2
+        with:
+            args: --failOnErrors --no-publish-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}

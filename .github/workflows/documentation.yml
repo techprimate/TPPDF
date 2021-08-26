@@ -1,0 +1,46 @@
+name: Documentation
+
+on:
+  release:
+    types: [ published ]
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy_docs:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem
+    - name: Bundle install
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+    - name: Generate Documentation
+      run: |
+        bundle exec jazzy --config .jazzy.yml
+    - name: Fix Invalid URLs
+      run: |
+        cd docs
+        touch .nojekyll
+    - name: Commit files
+      run: |
+        cd docs
+        git init
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Deploying Updated Jazzy Docs"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        directory: docs
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
+        force: true
