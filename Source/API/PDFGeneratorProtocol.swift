@@ -10,7 +10,7 @@ import Foundation
 /**
  Protocol including all public methods and accessors available for generating documents
  */
-public protocol PDFGeneratorProtocol: class {
+public protocol PDFGeneratorProtocol: AnyObject {
 
     /**
      Instance of  `Progress` used to track and control the multi-document generation
