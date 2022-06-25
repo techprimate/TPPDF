@@ -22,7 +22,7 @@ jobs:
         name: Run Unit Tests iOS
         run: |
           xcodebuild -workspace . \
-                     -scheme "TPPDF-Package" \
+                     -scheme "TPPDF" \
                      -sdk iphonesimulator \
                      -destination "OS=15.2,name=iPhone 12 Pro" \
                      -configuration Debug \
