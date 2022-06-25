@@ -72,7 +72,7 @@ class PDFInfo_Spec: QuickSpec {
                 expect(metadata[kCGPDFContextAllowsCopying as String] as? Bool).to(beTrue())
                 expect(metadata[kCGPDFContextOwnerPassword as String] as? String) == "1234"
                 expect(metadata[kCGPDFContextUserPassword as String] as? String) == "ABCD"
-                expect(metadata[kCGPDFContextCreator as String] as? String) == "xctest 13.4.1"
+                expect((metadata[kCGPDFContextCreator as String] as? String ?? "").hasPrefix("xctest")).to(beTrue())
             }
         }
     }
