@@ -1,6 +1,6 @@
 name: Tests
 
-on: 
+on:
   push:
   pull_request:
     branches:
@@ -12,38 +12,52 @@ jobs:
     name: iOS Unit Tests
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Run tests iOS
-      run: |
-        set -o pipefail
-        xcodebuild -project "TPPDF.xcodeproj" \
-                   -scheme "TPPDF-Package" \
-                   -clonedSourcePackagesDirPath . \
-                   -sdk iphonesimulator \
-                   -destination "OS=14.4,name=iPhone 12 Pro" \
-                   -configuration Debug \
-                   -enableCodeCoverage YES \
-                   ONLY_ACTIVE_ARCH=YES \
-                   build test | xcpretty
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2.0.3
-      with:
-        fail_ci_if_error: true
+      - # Checkout the repository
+        uses: actions/checkout@v2
+
+      - # Install dependencies
+        run: brew install xcbeautify
+
+      - # Run Unit Tests iOS
+        name: Run Unit Tests iOS
+        run: |
+          set -o pipefail
+          xcodebuild -project "TPPDF.xcodeproj" \
+                     -scheme "TPPDF-Package" \
+                     -clonedSourcePackagesDirPath . \
+                     -sdk iphonesimulator \
+                     -destination "OS=14.4,name=iPhone 12 Pro" \
+                     -configuration Debug \
+                     -enableCodeCoverage YES \
+                     ONLY_ACTIVE_ARCH=YES \
+                     build test | xcbeautify
+
+      - # Codecov Coverage
+        name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2.0.3
+        with:
+          fail_ci_if_error: true
 
   macos-unit-tests:
     name: macOS Unit Tests
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Run tests macOS
-      run: |
-        set -o pipefail
-        swift package resolve
-        set -o pipefail
-        xcodebuild -project "TPPDF.xcodeproj" \
-                   -scheme "TPPDF-Package" \
-                   -clonedSourcePackagesDirPath . \
-                   -sdk macosx \
-                  -configuration Debug \
-                  ONLY_ACTIVE_ARCH=YES \
-                  test | xcpretty
+      - # Checkout the repository
+        uses: actions/checkout@v2
+
+      - # Install dependencies
+        run: brew install xcbeautify
+
+      - # Run Unit Tests iOS
+        name: Run Unit Ttests macOS
+        run: |
+          set -o pipefail
+          swift package resolve
+          set -o pipefail
+          xcodebuild -project "TPPDF.xcodeproj" \
+                     -scheme "TPPDF-Package" \
+                     -clonedSourcePackagesDirPath . \
+                     -sdk macosx \
+                     -configuration Debug \
+                     ONLY_ACTIVE_ARCH=YES \
+                     build test | xcbeautify
