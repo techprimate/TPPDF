@@ -21,16 +21,14 @@ jobs:
       - # Run Unit Tests iOS
         name: Run Unit Tests iOS
         run: |
-          set -o pipefail
-          xcodebuild -project "TPPDF.xcodeproj" \
+          xcodebuild -workspace . \
                      -scheme "TPPDF-Package" \
-                     -clonedSourcePackagesDirPath . \
                      -sdk iphonesimulator \
-                     -destination "OS=14.4,name=iPhone 12 Pro" \
+                     -destination "OS=15.2,name=iPhone 12 Pro" \
                      -configuration Debug \
                      -enableCodeCoverage YES \
                      ONLY_ACTIVE_ARCH=YES \
-                     build test | xcbeautify
+                     test | xcbeautify
 
       - # Codecov Coverage
         name: Upload coverage to Codecov
@@ -51,13 +49,4 @@ jobs:
       - # Run Unit Tests iOS
         name: Run Unit Ttests macOS
         run: |
-          set -o pipefail
-          swift package resolve
-          set -o pipefail
-          xcodebuild -project "TPPDF.xcodeproj" \
-                     -scheme "TPPDF-Package" \
-                     -clonedSourcePackagesDirPath . \
-                     -sdk macosx \
-                     -configuration Debug \
-                     ONLY_ACTIVE_ARCH=YES \
-                     build test | xcbeautify
+          swift test --parallel
