@@ -3,7 +3,7 @@
 //  Example
 //
 //  Created by Philip Niedertscheider on 24.06.20.
-//  Copyright © 2020 techprimate GmbH & Co. KG. All rights reserved.
+//  Copyright © 2022 techprimate GmbH. All rights reserved.
 //
 
 import SwiftUI

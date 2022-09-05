@@ -3,7 +3,7 @@
 //  TPPDF_Tests
 //
 //  Created by Philip Niedertscheider on 22.12.19.
-//  Copyright © 2019 techprimate GmbH & Co. KG. All rights reserved.
+//  Copyright © 2022 techprimate GmbH. All rights reserved.
 //
 
 import Foundation

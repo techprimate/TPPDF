@@ -274,7 +274,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1120;
-				ORGANIZATIONNAME = "techprimate GmbH & Co. KG";
+				ORGANIZATIONNAME = "techprimate GmbH";
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
