@@ -23,10 +23,12 @@ jobs:
       - # Install dependencies
         run: brew install xcbeautify
 
-      - # Run Unit Tests iOS
-        name: Run Unit Tests iOS
+      - # Run Tests iOS
+        name: Run Tests iOS
         run: |
-          set -o pipefail && xcodebuild -workspace . \
+          set -o pipefail && \
+          env NSUnbufferedIO=YES \
+          xcodebuild -workspace . \
             -scheme "TPPDF" \
             -sdk iphonesimulator \
             -destination "OS=16.0,name=iPhone 14 Pro" \
@@ -35,7 +37,8 @@ jobs:
             -derivedDataPath DerivedData \
             -resultBundlePath test_output \
             -resolvePackageDependencies \
-            clean build test | xcbeautify
+            CODE_SIGNING_ALLOWED="NO" 
+            clean build test 2>&1 | tee Test.log | xcbeautify
 
       - name: Generate code coverage reports
         run: |
@@ -50,7 +53,7 @@ jobs:
 
       - # Codecov Coverage
         name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2.0.3
+        uses: codecov/codecov-action@v3.1.1
         with:
           fail_ci_if_error: true
           files: ./unit-tests.coverage.lcov,./integration-tests.coverage.lcov
