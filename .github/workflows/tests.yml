@@ -26,8 +26,7 @@ jobs:
       - # Run Unit Tests iOS
         name: Run Unit Tests iOS
         run: |
-          set -o pipefail
-          xcodebuild -workspace . \
+          set -o pipefail && xcodebuild -workspace . \
             -scheme "TPPDF" \
             -sdk iphonesimulator \
             -destination "OS=16.0,name=iPhone 14 Pro" \
@@ -36,8 +35,7 @@ jobs:
             -derivedDataPath DerivedData \
             -resultBundlePath test_output \
             -resolvePackageDependencies \
-            ONLY_ACTIVE_ARCH=YES \
-            test | xcbeautify
+            clean build test | xcbeautify
 
       - name: Generate code coverage reports
         run: |
