@@ -95,7 +95,7 @@ jobs:
       - name: Generate code coverage reports
         run: |
           xcrun llvm-cov export \
-            .build/arm64-apple-macosx/debug/TPPDFPackageTests.xctest \
+            .build/debug/TPPDFPackageTests.xctest/Contents/MacOS/TPPDFPackageTests \
             --instr-profile .build/debug/codecov/default.profdata \
             --format="lcov" > coverage.lcov
 
