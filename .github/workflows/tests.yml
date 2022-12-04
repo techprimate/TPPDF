@@ -48,7 +48,7 @@ jobs:
 
       - name: Generate code coverage reports
         run: |
-          ls /tmp/DerivedData/Build/Products/Debug-iphonesimulator/
+          ls /tmp/DerivedData/**/*.profdata
           ls /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest
           xcrun llvm-cov export \
             /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
