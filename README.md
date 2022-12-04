@@ -46,7 +46,7 @@
   • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md"><strong>Usage</strong></a>
   • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Installation.md">Installation</a>
   • <a href="#credits">Credits</a>
-  • <a href="#license">License</a>
+  • <a href="https://github.com/techprimate/TPPDF/blob/master/LICENSE">License</a>
 </p>
 
 ## Features
@@ -178,7 +178,3 @@ TPPDF is created and maintained by Philip Niedertscheider, founder of [techprima
 Please consider backing this project by using the following **GitHub Sponsor** button.
 
 We want to thank all [contributors](https://github.com/techprimate/TPPDF/graphs/contributors) for their effort!
-
-## License
-
-TPPDF is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
