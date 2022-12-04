@@ -30,7 +30,7 @@ jobs:
           xcodebuild -workspace . \
             -scheme "TPPDF" \
             -sdk iphonesimulator \
-            -destination "OS=16.1,name=iPhone 14 Pro" \
+            -destination "OS=16.0,name=iPhone 14 Pro" \
             -configuration Debug \
             -enableCodeCoverage YES \
             -derivedDataPath DerivedData \
