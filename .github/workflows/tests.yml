@@ -36,7 +36,6 @@ jobs:
             -enableCodeCoverage YES \
             -derivedDataPath DerivedData \
             -resultBundlePath test_output \
-            -resolvePackageDependencies \
             CODE_SIGNING_ALLOWED="NO" 
             test 2>&1 | tee test.log | xcbeautify
 
