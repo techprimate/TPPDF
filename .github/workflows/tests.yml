@@ -26,28 +26,27 @@ jobs:
       - # Run Unit Tests iOS
         name: Run Unit Tests iOS
         run: |
+          set -o pipefail
           xcodebuild -workspace . \
-                     -scheme "TPPDF" \
-                     -sdk iphonesimulator \
-                     -destination "OS=15.5,name=iPhone 12 Pro" \
-                     -configuration Debug \
-                     -enableCodeCoverage YES \
-                     -derivedDataPath DerivedData \
-                     ONLY_ACTIVE_ARCH=YES \
-                     test | xcbeautify
+            -scheme "TPPDF" \
+            -sdk iphonesimulator \
+            -destination "OS=16.1,name=iPhone 14 Pro" \
+            -configuration Debug \
+            -enableCodeCoverage YES \
+            -derivedDataPath DerivedData \
+            -resultBundlePath test_output \
+            ONLY_ACTIVE_ARCH=YES \
+            test | xcbeautify
 
-      - name: Generate code coverage for unit tests
+      - name: Generate code coverage reports
         run: |
           xcrun llvm-cov export \
-            DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFIntegrationTests \
-            --instr-profile $(find DerivedData -name "*.profdata") \
+            DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
+            --instr-profile DerivedData/**/*.profdata \
             --format="lcov" > unit-tests.coverage.lcov
-
-      - name: Generate code coverage for integration tests
-        run: |
           xcrun llvm-cov export \
             DerivedData/Build/Products/Debug-iphonesimulator/TPPDFIntegrationTests.xctest/TPPDFIntegrationTests \
-            --instr-profile $(find DerivedData -name "*.profdata") \
+            --instr-profile DerivedData/**/*.profdata \
             --format="lcov" > integration-tests.coverage.lcov
 
       - # Codecov Coverage
@@ -56,6 +55,7 @@ jobs:
         with:
           fail_ci_if_error: true
           files: ./unit-tests.coverage.lcov,./integration-tests.coverage.lcov
+          xcode_archive_path: test_output.xcresults
 
   macos-unit-tests:
     name: macOS Unit Tests

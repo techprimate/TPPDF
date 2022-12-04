@@ -61,3 +61,8 @@ Example*/Pods/Swiftlint
 
 # Ruby Gems
 vendor
+
+# Code Coverage
+*.lcov
+test_output
+test_output*
