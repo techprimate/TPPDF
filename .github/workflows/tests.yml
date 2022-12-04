@@ -48,11 +48,17 @@ jobs:
 
       - name: Generate code coverage reports
         run: |
-          ls -lR /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest
+          echo 1
+          stat /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests
+          echo 1.1
+          xcrun llvm-cov export \
+            /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests
+          echo 2
           xcrun llvm-cov export \
             /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
             --instr-profile $PROFILE_PATH \
             --format="lcov" > unit-tests.coverage.lcov
+          echo 3
           xcrun llvm-cov export \
             /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFIntegrationTests.xctest/TPPDFIntegrationTests \
             --instr-profile $PROFILE_PATH \
