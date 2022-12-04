@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -12,8 +12,8 @@ let package = Package(
         .library(name: "TPPDF", targets: ["TPPDF"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Quick/Quick", .upToNextMajor(from: "3.0.0")),
-        .package(url: "https://github.com/Quick/Nimble",  .upToNextMajor(from: "9.0.0")),
+        .package(url: "https://github.com/Quick/Quick", .exact("3.1.2")),
+        .package(url: "https://github.com/Quick/Nimble",  .exact("9.2.1")),
     ],
     targets: [
         .target(name: "TPPDF", path: "Source"),

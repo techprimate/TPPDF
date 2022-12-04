@@ -8,11 +8,6 @@ import PDFKit
 class ExternalDocumentTests: QuickSpec {
 
     override func spec() {
-        // This is a hotfix until we can use xcodebuild with SPM resource paths
-        if Bundle.module == Bundle.main {
-            Bundle.module = Bundle(for: ExternalDocumentTests.self)
-        }
-        
         describe("External Document") {
             context("only document") {
                 context("debug mode") {

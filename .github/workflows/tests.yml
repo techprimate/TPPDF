@@ -14,7 +14,7 @@ concurrency:
 jobs:
   ios-unit-tests:
     name: iOS Unit Tests
-    runs-on: macos-latest
+    runs-on: macos-12
     timeout-minutes: 30
     steps:
       - # Checkout the repository
@@ -29,21 +29,37 @@ jobs:
           xcodebuild -workspace . \
                      -scheme "TPPDF" \
                      -sdk iphonesimulator \
-                     -destination "OS=15.2,name=iPhone 12 Pro" \
+                     -destination "OS=15.5,name=iPhone 12 Pro" \
                      -configuration Debug \
                      -enableCodeCoverage YES \
+                     -derivedDataPath DerivedData \
                      ONLY_ACTIVE_ARCH=YES \
                      test | xcbeautify
+
+      - name: Generate code coverage for unit tests
+        run: |
+          xcrun llvm-cov export \
+            DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFIntegrationTests \
+            --instr-profile $(find DerivedData -name "*.profdata") \
+            --format="lcov" > unit-tests.coverage.lcov
+
+      - name: Generate code coverage for integration tests
+        run: |
+          xcrun llvm-cov export \
+            DerivedData/Build/Products/Debug-iphonesimulator/TPPDFIntegrationTests.xctest/TPPDFIntegrationTests \
+            --instr-profile $(find DerivedData -name "*.profdata") \
+            --format="lcov" > integration-tests.coverage.lcov
 
       - # Codecov Coverage
         name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2.0.3
         with:
           fail_ci_if_error: true
+          files: ./unit-tests.coverage.lcov,./integration-tests.coverage.lcov
 
   macos-unit-tests:
     name: macOS Unit Tests
-    runs-on: macos-latest
+    runs-on: macos-12
     timeout-minutes: 30
     steps:
       - # Checkout the repository
