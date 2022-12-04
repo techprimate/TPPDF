@@ -51,18 +51,21 @@ jobs:
           echo 1
           stat /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests
           echo 1.1
+          PROFDATA_PATH=$(find /tmp/DerivedData -name "*.profdata")
+          echo "Detected profdata at path: $PROFDATA_PATH"
+          echo 1.2
           xcrun llvm-cov export \
             /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
-            --instr-profile $PROFILE_PATH
+            --instr-profile $PROFDATA_PATH
           echo 2
           xcrun llvm-cov export \
             /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
-            --instr-profile $PROFILE_PATH \
+            --instr-profile $PROFDATA_PATH \
             --format="lcov" > unit-tests.coverage.lcov
           echo 3
           xcrun llvm-cov export \
             /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFIntegrationTests.xctest/TPPDFIntegrationTests \
-            --instr-profile $PROFILE_PATH \
+            --instr-profile $PROFDATA_PATH \
             --format="lcov" > integration-tests.coverage.lcov
 
       - # Codecov Coverage
