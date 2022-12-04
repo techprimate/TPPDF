@@ -34,7 +34,7 @@ jobs:
             -destination "OS=16.0,name=iPhone 14 Pro" \
             -configuration Debug \
             -enableCodeCoverage YES \
-            -derivedDataPath DerivedData \
+            -derivedDataPath /tmp/DerivedData \
             -resultBundlePath test_output \
             CODE_SIGNING_ALLOWED="NO" \
             test 2>&1 | tee test.log | xcbeautify
@@ -43,16 +43,17 @@ jobs:
         uses: actions/upload-artifact@v3
         if: failure()
         with:
+          name: test.log
           path: test.log
 
       - name: Generate code coverage reports
         run: |
           xcrun llvm-cov export \
-            DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
+            /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
             --instr-profile DerivedData/**/*.profdata \
             --format="lcov" > unit-tests.coverage.lcov
           xcrun llvm-cov export \
-            DerivedData/Build/Products/Debug-iphonesimulator/TPPDFIntegrationTests.xctest/TPPDFIntegrationTests \
+            /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFIntegrationTests.xctest/TPPDFIntegrationTests \
             --instr-profile DerivedData/**/*.profdata \
             --format="lcov" > integration-tests.coverage.lcov
 
