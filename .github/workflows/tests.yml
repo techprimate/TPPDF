@@ -65,6 +65,7 @@ jobs:
         with:
           fail_ci_if_error: true
           files: ./unit-tests.coverage.lcov,./integration-tests.coverage.lcov
+          flags: iOS
           xcode_archive_path: test_output.xcresults
           path_to_write_report: coverage_report.txt
 
@@ -87,7 +88,25 @@ jobs:
       - # Install dependencies
         run: brew install xcbeautify
 
-      - # Run Unit Tests iOS
-        name: Run Unit Tests macOS
+      - # Run tests on macOS with coverage enabled
+        name: Run tests
+        run: swift test --parallel --enable-code-coverage
+
+      - name: Generate code coverage reports
         run: |
-          swift test --parallel
+          PROFDATA_PATH=$(swift test --show-codecov-path)
+          echo "Detected profdata at path: $PROFDATA_PATH"
+          xcrun llvm-cov export \
+            .build/arm64-apple-macosx/debug/TPPDFPackageTests.xctest \
+            --instr-profile $PROFDATA_PATH \
+            --format="lcov" > coverage.lcov
+
+      - # Codecov Coverage
+        name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3.1.1
+        with:
+          fail_ci_if_error: true
+          files: ./coverage.lcov
+          flags: macOS
+          xcode_archive_path: test_output.xcresults
+          path_to_write_report: coverage_report.txt
