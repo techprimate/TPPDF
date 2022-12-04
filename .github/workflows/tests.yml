@@ -31,12 +31,12 @@ jobs:
           xcodebuild -workspace . \
             -scheme "TPPDF" \
             -sdk iphonesimulator \
-            -destination "OS=16.0,name=iPhone 14 Pro" \
+            -destination "OS=16.1,name=iPhone 14 Pro" \
             -configuration Debug \
             -enableCodeCoverage YES \
             -derivedDataPath DerivedData \
             -resultBundlePath test_output \
-            CODE_SIGNING_ALLOWED="NO" 
+            CODE_SIGNING_ALLOWED="NO" \
             test 2>&1 | tee test.log | xcbeautify
 
       - name: Upload test log file on error
