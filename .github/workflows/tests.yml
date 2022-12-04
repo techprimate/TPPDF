@@ -52,7 +52,8 @@ jobs:
           stat /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests
           echo 1.1
           xcrun llvm-cov export \
-            /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests
+            /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
+            --instr-profile $PROFILE_PATH
           echo 2
           xcrun llvm-cov export \
             /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
