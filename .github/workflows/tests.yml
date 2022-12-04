@@ -38,7 +38,13 @@ jobs:
             -resultBundlePath test_output \
             -resolvePackageDependencies \
             CODE_SIGNING_ALLOWED="NO" 
-            clean build test 2>&1 | tee Test.log | xcbeautify
+            test 2>&1 | tee test.log | xcbeautify
+
+      - name: Upload test log file on error
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          path: test.log
 
       - name: Generate code coverage reports
         run: |
