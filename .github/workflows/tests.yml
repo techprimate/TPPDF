@@ -1,0 +1,109 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+      - develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ios-unit-tests:
+    name: iOS Unit Tests
+    runs-on: macos-12
+    timeout-minutes: 30
+    steps:
+      - # Checkout the repository
+        uses: actions/checkout@v2
+
+      - # Install dependencies
+        run: brew install xcbeautify
+
+      - # Run Tests iOS
+        name: Run Tests iOS
+        run: |
+          set -o pipefail && \
+          env NSUnbufferedIO=YES \
+          xcodebuild -workspace . \
+            -scheme "TPPDF" \
+            -sdk iphonesimulator \
+            -destination "OS=16.0,name=iPhone 14 Pro" \
+            -configuration Debug \
+            -enableCodeCoverage YES \
+            -derivedDataPath /tmp/DerivedData \
+            -resultBundlePath test_output \
+            CODE_SIGNING_ALLOWED="NO" \
+            test 2>&1 | tee test.log | xcbeautify
+
+      - name: Upload test log file on error
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: test.log
+          path: test.log
+
+      - name: Generate code coverage reports
+        run: |
+          PROFDATA_PATH=$(find /tmp/DerivedData -name "*.profdata")
+          echo "Detected profdata at path: $PROFDATA_PATH"
+          xcrun llvm-cov export \
+            /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
+            --instr-profile $PROFDATA_PATH \
+            --format="lcov" > unit-tests.coverage.lcov
+          xcrun llvm-cov export \
+            /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFIntegrationTests.xctest/TPPDFIntegrationTests \
+            --instr-profile $PROFDATA_PATH \
+            --format="lcov" > integration-tests.coverage.lcov
+
+      - # Codecov Coverage
+        name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3.1.1
+        with:
+          fail_ci_if_error: true
+          files: ./unit-tests.coverage.lcov,./integration-tests.coverage.lcov
+          flags: iOS
+          xcode_archive_path: test_output.xcresults
+          path_to_write_report: coverage_report.txt
+
+      - # Upload the generated Codecov report to the GitHub artifacts
+        name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        if: success()
+        with:
+          name: coverage_report.txt
+          path: coverage_report.txt
+
+  macos-unit-tests:
+    name: macOS Unit Tests
+    runs-on: macos-12
+    timeout-minutes: 30
+    steps:
+      - # Checkout the repository
+        uses: actions/checkout@v2
+
+      - # Install dependencies
+        run: brew install xcbeautify
+
+      - # Run tests on macOS with coverage enabled
+        name: Run tests
+        run: swift test --parallel --enable-code-coverage
+
+      - name: Generate code coverage reports
+        run: |
+          xcrun llvm-cov export \
+            .build/debug/TPPDFPackageTests.xctest/Contents/MacOS/TPPDFPackageTests \
+            --instr-profile .build/debug/codecov/default.profdata \
+            --format="lcov" > coverage.lcov
+
+      - # Codecov Coverage
+        name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3.1.1
+        with:
+          fail_ci_if_error: true
+          files: ./coverage.lcov
+          flags: macOS
+          path_to_write_report: coverage_report.txt
