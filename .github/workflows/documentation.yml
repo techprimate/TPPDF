@@ -20,7 +20,7 @@ jobs:
 
       - # Generate Docs
         name: Generate Documentation
-        run: bundle exec jazzy --config .jazzy.yml
+        run: bundle exec jazzy --config .jazzy.yaml
 
       - # Small Jazzy fixes for GitHub Pages
         name: Fix Invalid URLs
