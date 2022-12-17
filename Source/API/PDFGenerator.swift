@@ -63,10 +63,8 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
      */
     public let progress = Progress.discreteProgress(totalUnitCount: 3)
     
-    /**
-     Delegate for image processing. Called after resizing and scaling and before drawing.
-     */
-    public var imageDelegate: PDFGeneratorImageDelegate?
+    /// Object acts as a delegate during the generation process
+    public var delegate: PDFGeneratorDelegate?
 
     /**
      Font of each container.

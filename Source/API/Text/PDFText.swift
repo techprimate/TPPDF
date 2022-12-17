@@ -6,7 +6,7 @@
 //
 
 /// Protocol all text objects should implement
-public class PDFText: PDFDocumentObject, CustomStringConvertible, Hashable {
+public class PDFText: PDFDocumentObject, CustomStringConvertible {
 
     var copy: PDFText {
         fatalError()
@@ -29,10 +29,6 @@ public class PDFText: PDFDocumentObject, CustomStringConvertible, Hashable {
             return simpleLhs == simpleRhs
         }
         return false
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        fatalError()
     }
 }
 
