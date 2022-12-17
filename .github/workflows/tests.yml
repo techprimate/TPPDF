@@ -4,8 +4,7 @@ on:
   push:
   pull_request:
     branches:
-      - master
-      - develop
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

@@ -3,8 +3,7 @@ name: Danger
 on:
   pull_request:
     branches:
-      - master
-      - develop
+      - main
 
 jobs:
   job-danger:

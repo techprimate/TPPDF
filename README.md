@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/header.png" alt="TPPDF">
+	<img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/header.png" alt="TPPDF">
 </p>
 
 <p align="center">
@@ -16,12 +16,12 @@
 
 <div align="center">
 	<a href="https://travis-ci.org/techprimate/TPPDF">
-		<img src="https://travis-ci.org/techprimate/TPPDF.svg?branch=master&style=flat-square" alt="Travis">
+		<img src="https://travis-ci.org/techprimate/TPPDF.svg?branch=main&style=flat-square" alt="Travis">
 	</a>
     <a href="https://www.codacy.com/gh/techprimate/TPPDF/dashboard">
         <img src="https://app.codacy.com/project/badge/Grade/1af1a59fe93f49ae942732e4d526067a"/>
 	</a>
-	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-master">
+	<a href="https://codebeat.co/projects/github-com-techprimate-tppdf-main">
 		<img src="https://codebeat.co/badges/ea2a8d79-a50c-43ea-a05a-2ac57baf84de" alt="codebeat">
 	</a>
 	<a href="https://codecov.io/gh/techprimate/TPPDF">
@@ -43,8 +43,8 @@
   <a href="#features">Features</a>
   • <a href="#getting-started">Getting Started</a>
   • <a href="#communication">Communication</a>
-  • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md"><strong>Usage</strong></a>
-  • <a href="https://github.com/techprimate/TPPDF/blob/master/Documentation/Installation.md">Installation</a>
+  • <a href="https://github.com/techprimate/TPPDF/blob/main/Documentation/Usage.md"><strong>Usage</strong></a>
+  • <a href="https://github.com/techprimate/TPPDF/blob/main/Documentation/Installation.md">Installation</a>
   • <a href="#credits">Credits</a>
   • <a href="#license">License</a>
 </p>
@@ -93,15 +93,15 @@ document.add(.contentCenter, text: "Create PDF documents easily.")
 ```
 
 ...then you render the document...
- 
-```swift 
+
+```swift
 let generator = PDFGenerator(document: document)
 let url  = try generator.generateURL(filename: "Example.pdf")
 ```
 
 **...done!**
 
-If you need more details, checkout [Usage](https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md).
+If you need more details, checkout [Usage](https://github.com/techprimate/TPPDF/blob/main/Documentation/Usage.md).
 
 ## Communication
 
@@ -124,7 +124,7 @@ For everything else, please see [Communication](#communication) and [this messag
 
 ## Example
 
-Take a look at the [Getting Started Guide](https://github.com/techprimate/TPPDF/blob/master/Documentation/Usage.md#getting-started) or checkout the Examples (using of one of the following):
+Take a look at the [Getting Started Guide](https://github.com/techprimate/TPPDF/blob/main/Documentation/Usage.md#getting-started) or checkout the Examples (using of one of the following):
 
 - Clone the repository and look at the Example folders
 - Run `pod try TPPDF`
@@ -135,23 +135,23 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 
 [Burnout Coach](https://itunes.apple.com/app/id1495886665) - by Stéphane Mégy
 
-<img src="https://raw.githubusercontent.com/techprimate/TPPDF/master/resources/apps/BurnoutCoach.png" alt="Burnout Coach"/>
+<img src="https://raw.githubusercontent.com/techprimate/TPPDF/main/resources/apps/BurnoutCoach.png" alt="Burnout Coach"/>
 
 [ChatHistory](https://itunes.apple.com/app/id1464880768) - by techprimate
 
-<img src="https://raw.githubusercontent.com/techprimate/TPPDF/master/resources/apps/ChatHistory.png" alt="ChatHistory"/>
+<img src="https://raw.githubusercontent.com/techprimate/TPPDF/main/resources/apps/ChatHistory.png" alt="ChatHistory"/>
 
 [Hikingbook](https://itunes.apple.com/app/id1067838748) - by Zheng-Xiang Ke
 
-<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/Hikingbook.png" alt="Hikingbook"/>
+<img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/Hikingbook.png" alt="Hikingbook"/>
 
 [Bug Journal](https://itunes.apple.com/us/app/bug-journal/id1232077952) - by David Johnson
 
-<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/Bug_Journal.png" alt="Bug Journal"/>
+<img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/Bug_Journal.png" alt="Bug Journal"/>
 
 [Energy Tracker](https://itunes.apple.com/de/app/energy-tracker/id1193010972) - by Stefan Nebel
 
-<img src="https://raw.githubusercontent.com/techprimate/tppdf/master/resources/apps/EnergyTracker.jpg" alt="Energy Tracker"/>
+<img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/EnergyTracker.jpg" alt="Energy Tracker"/>
 
 ## Credits
 
@@ -171,7 +171,6 @@ TPPDF is created and maintained by Philip Niedertscheider, founder of [techprima
 		<img src="https://img.shields.io/badge/facebook-@techprimate-blue.svg?style=flat-square" alt="facebook">
 	</a>
 </p>
-
 
 ### Contributors
 
