@@ -32,6 +32,8 @@
 		D49B05E82658E76C0084A0B7 /* PDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B05E62658E76C0084A0B7 /* PDFDocument.swift */; };
 		D49B05E92658E76C0084A0B7 /* PDFDocumentBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B05E72658E76C0084A0B7 /* PDFDocumentBackground.swift */; };
 		D4B30533293CA38600EA24C5 /* PDFPageFormat+NameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B30532293CA38600EA24C5 /* PDFPageFormat+NameConstants.swift */; };
+		D4E1FB2C294DE37800D654C7 /* PDFGeneratorImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E1FB2A294DE37800D654C7 /* PDFGeneratorImageDelegate.swift */; };
+		D4E1FB2D294DE37800D654C7 /* PDFGeneratorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E1FB2B294DE37800D654C7 /* PDFGeneratorDelegate.swift */; };
 		OBJ_415 /* CwlCatchException.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_356 /* CwlCatchException.swift */; };
 		OBJ_417 /* CwlCatchExceptionSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "CwlCatchException::CwlCatchExceptionSupport::Product" /* CwlCatchExceptionSupport.framework */; };
 		OBJ_425 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_362 /* Package.swift */; };
@@ -635,6 +637,8 @@
 		D49B05E62658E76C0084A0B7 /* PDFDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocument.swift; sourceTree = "<group>"; };
 		D49B05E72658E76C0084A0B7 /* PDFDocumentBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocumentBackground.swift; sourceTree = "<group>"; };
 		D4B30532293CA38600EA24C5 /* PDFPageFormat+NameConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFPageFormat+NameConstants.swift"; sourceTree = "<group>"; };
+		D4E1FB2A294DE37800D654C7 /* PDFGeneratorImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFGeneratorImageDelegate.swift; sourceTree = "<group>"; };
+		D4E1FB2B294DE37800D654C7 /* PDFGeneratorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFGeneratorDelegate.swift; sourceTree = "<group>"; };
 		"Nimble::Nimble::Product" /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* PDFExternalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExternalDocument.swift; sourceTree = "<group>"; };
 		OBJ_101 /* PDFContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFContext.swift; sourceTree = "<group>"; };
@@ -1109,6 +1113,15 @@
 				D49B05E72658E76C0084A0B7 /* PDFDocumentBackground.swift */,
 			);
 			path = Document;
+			sourceTree = "<group>";
+		};
+		D4E1FB29294DE37800D654C7 /* Delegation */ = {
+			isa = PBXGroup;
+			children = (
+				D4E1FB2A294DE37800D654C7 /* PDFGeneratorImageDelegate.swift */,
+				D4E1FB2B294DE37800D654C7 /* PDFGeneratorDelegate.swift */,
+			);
+			path = Delegation;
 			sourceTree = "<group>";
 		};
 		OBJ_100 /* Graphics */ = {
@@ -1987,6 +2000,7 @@
 				OBJ_38 /* PDFGenerator+Generation.swift */,
 				OBJ_40 /* PDFGeneratorProtocol.swift */,
 				OBJ_41 /* PDFMultiDocumentGenerator.swift */,
+				D4E1FB29294DE37800D654C7 /* Delegation */,
 				D49B05E52658E76C0084A0B7 /* Document */,
 				OBJ_9 /* External */,
 				OBJ_11 /* Graphics */,
@@ -2651,6 +2665,7 @@
 				OBJ_659 /* CrossPlattformGraphics.swift in Sources */,
 				OBJ_660 /* PDFConstants.swift in Sources */,
 				OBJ_661 /* PDFCopy.swift in Sources */,
+				D4E1FB2D294DE37800D654C7 /* PDFGeneratorDelegate.swift in Sources */,
 				OBJ_662 /* PDFDocumentObject.swift in Sources */,
 				OBJ_663 /* PDFError.swift in Sources */,
 				OBJ_664 /* PDFRenderObject.swift in Sources */,
@@ -2686,6 +2701,7 @@
 				OBJ_694 /* PDFPageBreakObject.swift in Sources */,
 				OBJ_695 /* PDFPageLayout+Equatable.swift in Sources */,
 				OBJ_696 /* PDFSectionColumnContainer.swift in Sources */,
+				D4E1FB2C294DE37800D654C7 /* PDFGeneratorImageDelegate.swift in Sources */,
 				OBJ_697 /* PDFSpaceObject.swift in Sources */,
 				OBJ_698 /* PDFListObject.swift in Sources */,
 				OBJ_699 /* CGPoint+Math.swift in Sources */,
