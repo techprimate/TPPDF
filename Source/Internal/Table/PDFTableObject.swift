@@ -111,11 +111,11 @@ internal class PDFTableObject: PDFRenderObject {
                 rowIdx += 1
             }
 			
-			// Safety check to make sure we don't reference rows we don't have.
-			// This handles the case where we have a header row, but no data rows.
-			if rowIdx >= table.size.rows {
-				rowIdx = table.size.rows - 1
-			}
+            // Safety check to make sure we don't reference rows we don't have.
+            // This handles the case where we have a header row, but no data rows.
+            if rowIdx >= table.size.rows {
+                rowIdx = table.size.rows - 1
+            }
 
             headerHeight = cells[rowIdx].reduce(0, { (prev, calcCell) in
                 max(prev, calcCell.frames.cell.minY)
