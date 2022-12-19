@@ -1,0 +1,48 @@
+name: Documentation
+
+on:
+  release:
+    types: [published]
+  push:
+    branches: [main]
+
+jobs:
+  deploy_docs:
+    runs-on: macos-latest
+    steps:
+      - # Checkout the repository
+        uses: actions/checkout@v2
+
+      - # Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - # Generate Docs
+        name: Generate Documentation
+        run: bundle exec jazzy --config .jazzy.yaml
+
+      - # Small Jazzy fixes for GitHub Pages
+        name: Fix Invalid URLs
+        run: |
+          cd docs
+          touch .nojekyll
+
+      - # Commit newly generated docs
+        name: Commit Documentation Files
+        run: |
+          cd docs
+          git init
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Deploying Updated Jazzy Docs"
+
+      - # Publish generated docs to the GitHub pages branch
+        name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          directory: docs
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          force: true

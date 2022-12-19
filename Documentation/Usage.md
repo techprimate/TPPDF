@@ -1,31 +1,32 @@
 # Usage
 
-* [Getting Started](#getting-started)
-* [Document Structure](#document-creation)
-  + [Page Layout](#page-layout)
-  + [Elements](#elements)
-  + [Container](#container)
-  + [Header & Footer](#header--footer)
-* [Elements Index](#elements-index)
-  + [Line Separator](#line-separator)
-  + [Simple Text](#simple-text)
-  + [Attributed Text](#attributed-text)
-  + [Image](#image)
+- [Getting Started](#getting-started)
+- [Document Structure](#document-creation)
+  - [Page Layout](#page-layout)
+  - [Elements](#elements)
+  - [Container](#container)
+  - [Header & Footer](#header--footer)
+  - [Background](#background)
+- [Elements Index](#elements-index)
+  - [Line Separator](#line-separator)
+  - [Simple Text](#simple-text)
+  - [Attributed Text](#attributed-text)
+  - [Image](#image)
     - [Round Corners](#round-corners)
     - [Images in one row](#images-in-one-row)
-  + [List](#list)
-  + [Table](#table)
+  - [List](#list)
+  - [Table](#table)
     - [Alignment](#alignment)
     - [Content](#content)
     - [Table Style](#table-style)
     - [Cell Style](#cell-style)
     - [Table generation](#table-generation)
-* [Layout](#layout)
-  + [Multi-Column Sections](#multi-column-sections)
-  + [Column Wrap Sections](#column-wrap-sections)
-  + [Groups](#groups)
-  + [Dynamic Geometry Shapes](#dynamic-geometry-shapes)
-  + [Helpers](#helpers)
+- [Layout](#layout)
+  - [Multi-Column Sections](#multi-column-sections)
+  - [Column Wrap Sections](#column-wrap-sections)
+  - [Groups](#groups)
+  - [Dynamic Geometry Shapes](#dynamic-geometry-shapes)
+  - [Helpers](#helpers)
     - [Space](#space)
     - [Simple Text Font](#simple-text-font)
     - [Reset Simple Text Font](#reset-simple-text-font)
@@ -34,14 +35,14 @@
     - [Indentation](#indentation)
     - [Absolute Position](#absolute-position)
     - [Page Break](#page-break)
-  + [Styling objects](#styling-objects)
+  - [Styling objects](#styling-objects)
     - [Line Style](#line-style)
     - [Pagination](#pagination)
     - [Document Info](#document-info)
     - [Generation](#generation)
     - [Multiple Documents](#multiple-documents)
-* [Progress Observing](#progress-observing)
-* [Debug](#debug)
+- [Progress Observing](#progress-observing)
+- [Debug](#debug)
 
 ## Getting Started
 
@@ -60,8 +61,8 @@ document.add(.contentCenter, text: "Create PDF documents easily.")
 ```
 
 ...then you render the document...
- 
-```swift 
+
+```swift
 let generator = PDFGenerator(document: document)
 let url  = try generator.generateURL(filename: "Example.pdf")
 ```
@@ -78,6 +79,7 @@ You can create a document using a predefined `PDFPageFormat` or by creating a cu
 let layout = PDFPageLayout()
 let document = PDFDocument(layout: layout)
 ```
+
 ```swift
 let document = PDFDocument(format: PDFPageFormat.a4)
 ```
@@ -93,7 +95,7 @@ The following values can be set to format the page:
 
 All values are in dots and are rendered using 72 DPI (dots per inch), as this is the default screen DPI.
 
-You can also used the predefined formats. For details please refer to the source file [PDFPageFormat.swift](https://github.com/techprimate/TPPDF/blob/master/Source/PDFPageFormat.swift)
+You can also used the predefined formats. For details please refer to the source file [PDFPageFormat.swift](https://github.com/techprimate/TPPDF/blob/main/Source/PDFPageFormat.swift)
 
 Keep in mind that the `space.header` is only then applied, if there is at least one element in a header container.
 The same applies to the `space.footer` for footer containers and elements. If no header/footer elements are given, increase the margins themselves instead.
@@ -104,17 +106,17 @@ If you need your page in landscape format, use the `landscapeSize` variable.
 
 ### Elements
 
-TPPDF is an element based builder. When adding any content to the document, you are actually adding an element. 
+TPPDF is an element based builder. When adding any content to the document, you are actually adding an element.
 
-During the render process all elements are calculated into render objects and then converted into PDF drawable objects. 
+During the render process all elements are calculated into render objects and then converted into PDF drawable objects.
 
 But first you need to understand the concept of the layout engine:
 
 ### Container
 
-Every element is placed in a specific container. 
+Every element is placed in a specific container.
 
-Three containers exist: `header`, `content`, `footer`. 
+Three containers exist: `header`, `content`, `footer`.
 Additionally every container has an alignment: `left`, `center`, `right`.
 
 When you add an new element, you need to provide the correct container - the default container is `.contentLeft`, therefore it is an optional parameter. During calculation it will place the element in the correct container and calculate the correct frame accordingly.
@@ -133,6 +135,17 @@ This command adds the text **Created using TPPDF for iOS** to the footer of all 
 Basically all elements which are either to either a header (`headerLeft`, `headerCenter` or `headerRight`) or footer (`footerLeft`, `footerCenter` or `footerRight`) container, are considered as header and footer elements and will be repeated on each page.
 
 If a page does not have any content, e.g. an empty page in between two pages, the header and footer elements won't be added to this page either.
+
+### Background
+
+_Introduced: 2.4.0_
+
+By default the page content is rendered with a transparent background. It is possible to set a different fill color by changing the `document.background.color`:
+
+```
+let document = PDFDocument(format: .a4)
+document.background.color = .green
+```
 
 ## Elements Index
 
@@ -164,7 +177,7 @@ For convenience you are also able to add an attributed string directly, and TPPD
 document.add(text: text, lineSpacing: spacing)
 ```
 
-During the render process it will create an attributed string using the font set by `set(font:)` and the text color set by `set(textColor:)`. 
+During the render process it will create an attributed string using the font set by `set(font:)` and the text color set by `set(textColor:)`.
 
 ### Attributed Text
 
@@ -195,12 +208,12 @@ let imageElement = PDFImage(image: image)
 document.add(image: imageElement)
 ```
 
-A `PDFImage` can also include a optional `caption` which is either a `PDFSimpleText` or `PDFAttributedText`. 
+A `PDFImage` can also include a optional `caption` which is either a `PDFSimpleText` or `PDFAttributedText`.
 The caption is underneath the image and has the image width as the maximum available width.
 All image settings are customizable per image-object.
 
 If you set a `size` it will try to fit in this size, defaults to `CGSize.zero` which will then use the actual image pixel size. The image can either be scaled to fit the `width` the `height` or both. Adjust this by setting the `sizeFit` on of:
- 
+
 - `PDFImageSizeFit.width`
 - `PDFImageSizeFit.height`
 - `PDFImageSizeFit.widthHeight`
@@ -218,7 +231,7 @@ The default value for the `cornerRadius` is set to `nil`, is uses half the image
 
 **Example:**
 
-The  image `Icon.png` has the size `1024px x 1024px` and will be drawn in a frame of `150pt x 150pt`.
+The image `Icon.png` has the size `1024px x 1024px` and will be drawn in a frame of `150pt x 150pt`.
 The corner radius is set to `15pt`, therefore the image will first be clipped with a `1024 / 150 * 25 = 170pt` radius and then drawn in the frame, resulting in the given corner radius.
 
 ```swift
@@ -232,11 +245,11 @@ PDFImage(image: UIImage(named: "Icon.png")!,
 
 To create a image collage, you can add multiple images in a single row with a `spacing` between them.
 
-Just create an array of `PDFImage` and add them as images in a row. 
+Just create an array of `PDFImage` and add them as images in a row.
 
 ```swift
 let images = [
-    PDFImage(image: UIImage(named: "Image-1.jpg")!, 
+    PDFImage(image: UIImage(named: "Image-1.jpg")!,
              caption: PDFAttributedText(text: NSAttributedString(string: "In this picture you can see a beautiful waterfall!", attributes: captionAttributes))),
     PDFImage(image: UIImage(named: "Image-2.jpg")!,
              caption: PDFAttributedText(text: NSAttributedString(string: "Forrest", attributes: captionAttributes))),
@@ -386,7 +399,7 @@ rows.allCellsAlignment = .left		// Sets the alignment for all cells to the same
 Supports all kinds of integer and range combinations.
 
 ```
-var rows = table[0...2, 1] 		//	Selects the first three rows in the first column 
+var rows = table[0...2, 1] 		//	Selects the first three rows in the first column
 rows = table[0..<3, 0..<3]			// Selects the top-left 3x3 cells of the table
 ```
 
@@ -417,7 +430,7 @@ A cell content instance `PDFTableCellContent` has a `content` value and a proper
 - `.none`, empty cell
 - `.string`, a simple string only styled through the cell style
 - `.attributedString`, an attributed string which won't be changed by the cell style
-- `.image`, an image which 
+- `.image`, an image which
 
 If a cell height is too big for the rest of the page, it will be placed on the next page.
 
@@ -442,7 +455,7 @@ All other cells are styled using the `style.contentStyle` and if the optional va
 
 If there are conflicts, e.g a cell is a column and a header row, then the following priority order, with the higher ones beating the lower ones, is used:
 
-- `style.outline` can receive a `PDFLineStyle` to draw table borders. PDFLineStyle can take radius `CGFloat?` propriety to define radius border. This proprity is only used when drawing a rect, like table. 
+- `style.outline` can receive a `PDFLineStyle` to draw table borders. PDFLineStyle can take radius `CGFloat?` propriety to define radius border. This proprity is only used when drawing a rect, like table.
 - `cell.style`, a custom style set for this particular cell
 - `style.columnHeaderStyle`, if the cell is a column header therefore in the top rows
 - `style.footerStyle`, if the cell is a footer row
@@ -485,7 +498,6 @@ table.widths = [0.1, 0.3, 0.4, 0.2]
 
 Also each cell can have a `margin` which is the distance between the cell frame and its inner borders and the `padding` as the distance between the inner borders and the content.
 
-
 ...and finally you add the table to the document:
 
 ```swift
@@ -494,7 +506,7 @@ document.add(table: table)
 
 ## Multi-Column Sections
 
-A multi-column section is a nested container. You create the section with an amount of columns and their relative width, add objects to each column and then add the whole section to the document. 
+A multi-column section is a nested container. You create the section with an amount of columns and their relative width, add objects to each column and then add the whole section to the document.
 
 When adding an object to the section column, you use the Array subscript `section.columns[0]`. You are able to give it an alignment as the first parameter, similar to the `PDFContainer` but only with `.left`, `.center` and `.right` as it is not possible to add a section to the header or footer containers.
 
@@ -520,11 +532,10 @@ for i in 0..<200 { // This is an example for the content
 document.disableColumns(addPageBreak: false);
 ```
 
-
 #### Groups
 
 Groups give you the option to dynamically add elements to your document, but calculate them as one.
-This way it is possible to add e.g. multiple `PDFText` elements and if the calculations require a page break, it can be disabled. 
+This way it is possible to add e.g. multiple `PDFText` elements and if the calculations require a page break, it can be disabled.
 
 Additionally groups allow to set either an `UIColor` as the `backgroundColor` or even create a complex `PDFDynamicGeometryShape` which adapts to the group frame (see [Dynamic Geometry Shapes](#Dynamic-Geometry-Shapes) for more details). You are also able to add a padding to the group to add additional space around the content.
 
@@ -549,10 +560,10 @@ document.add(group: group)
 
 Shapes are very closely related to simple geometric paths, but with the difference, that they adapt to frame changes dynamically.
 
-A `PDFDynamicGeometryShape` holds three properties: 
+A `PDFDynamicGeometryShape` holds three properties:
 
 - `PDFBezierPath` in `path`, defining how the shape looks like
-- `UIColor` in `fillColor` for the content color 
+- `UIColor` in `fillColor` for the content color
 - and a `PDFLineStyle` in `stroke` for the look of the lines
 
 **Example:**
@@ -568,7 +579,7 @@ The following example draws a diamond shape in a `100pt` square.
 ```swift
 let size = CGSize(width: 100, height: 100)
 let path = PDFBezierPath(ref: CGRect(origin: .zero, size: size))
-path.move(to: PDFBezierPathVertex(position: CGPoint(x: size.width / 2, y: 0), 
+path.move(to: PDFBezierPathVertex(position: CGPoint(x: size.width / 2, y: 0),
                                   anchor: .topCenter))
 path.addLine(to: PDFBezierPathVertex(position: CGPoint(x: size.width, y: size.height / 2),
                                      anchor: .middleRight))
@@ -623,7 +634,7 @@ This resets the text color to the default text color, which is `UIColor.black`
 document.resetTextColor(.contentLeft)
 ```
 
-#### `set(_ container: PDFContainer, indent: CGFloat, left: Bool)` 
+#### `set(_ container: PDFContainer, indent: CGFloat, left: Bool)`
 
 Set the indentation to a given `indent` in the container. By setting `left` to `false` you will change the indentation from the right edge.
 
@@ -700,7 +711,7 @@ formatter.currencyCode = "EUR"
 let template = "%@ + %@"
 ```
 
-Page `8` of `13` will return the following: `€8.00 + €13.00` which might be completly unsuitable as a pagination, but displays the possibilities. :) 
+Page `8` of `13` will return the following: `€8.00 + €13.00` which might be completly unsuitable as a pagination, but displays the possibilities. :)
 
 #### `customClosure(closure: (_ page: Int, _ total: Int) -> String)`
 
@@ -772,7 +783,7 @@ try generator.generate(to: url)
 
 #### Multiple Documents
 
-If you want to combine multiple `PDFDocument` into a single PDF file, use the alternative methods to the ones in the previous section, taking multiple `documents` as a parameter. 
+If you want to combine multiple `PDFDocument` into a single PDF file, use the alternative methods to the ones in the previous section, taking multiple `documents` as a parameter.
 
 **Example:**
 

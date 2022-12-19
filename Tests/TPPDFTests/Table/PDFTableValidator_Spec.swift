@@ -66,10 +66,12 @@ class PDFTableValidator_Spec: QuickSpec {
                 }
 
                 it("fails when not same amount of data than widths") {
+                    #if arch(x86_64)
                     table.widths = widths
                     expect {
                         table.content = [["1", "2"]]
                     }.to(throwAssertion())
+                    #endif
                 }
 
                 it("should not fail with valid data") {

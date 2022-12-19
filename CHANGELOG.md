@@ -1,17 +1,14 @@
 # Change Log
 
-## [Unreleased](https://github.com/techprimate/TPPDF/tree/HEAD) (2021-??-??)
-[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.5...HEAD)
+## [Unreleased](https://github.com/techprimate/TPPDF/tree/2.4.0) (2022-12-17)
 
-**Implemented enhancements:**
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.5...2.4.0)
 
-**Fixed bugs:**
+- Added paper background colors (#244)
+- Added name property to `PDFPageFormat` (#299 by @ptrkstr)
 
-**Closed issues:**
+## [2.3.5](https://github.com/techprimate/TPPDF/tree/2.3.5) (2021-04-11)
 
-**Merged pull requests:**
-
-## [Unreleased](https://github.com/techprimate/TPPDF/tree/2.3.5) (2021-04-11)
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.4...2.3.5)
 
 **Fixed bugs:**
@@ -29,6 +26,7 @@
 - PR #268 (by philprime)
 
 ## [2.3.4](https://github.com/techprimate/TPPDF/tree/2.3.4) (2021-03-15)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.3...2.3.4)
 
 **Fixed bugs:**
@@ -44,6 +42,7 @@
 - PR #264 (by Sgkhour)
 
 ## [2.3.3](https://github.com/techprimate/TPPDF/tree/2.3.3) (2021-01-06)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.2...2.3.3)
 
 **Fixed bugs:**
@@ -61,6 +60,7 @@
 - PR #258
 
 ## [2.3.2](https://github.com/techprimate/TPPDF/tree/2.3.2) (2020-12-05)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.1...2.3.2)
 
 **Implemented enhancements:**
@@ -87,6 +87,7 @@
 - PR #255
 
 ## [2.3.1](https://github.com/techprimate/TPPDF/tree/2.3.1) (2020-09-23)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.0...2.3.1)
 
 **Fixed bugs:**
@@ -102,6 +103,7 @@
 - PR #226
 
 ## [2.3.0](https://github.com/techprimate/TPPDF/tree/2.3.0) (2020-07-16)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.2.0...2.3.0)
 
 **Implemented enhancements:**
@@ -110,6 +112,7 @@
 - Added `CaseIterable` to `PDFPageFormat`
 
 ## [2.2.0](https://github.com/techprimate/TPPDF/tree/2.2.0) (2020-06-27)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.2...2.2.0)
 
 **Implemented enhancements:**
@@ -125,6 +128,7 @@
 - PR #217
 
 ## [2.1.2](https://github.com/techprimate/TPPDF/tree/2.1.2) (2020-06-23)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.1...2.1.2)
 
 **Fixed bugs:**
@@ -139,8 +143,8 @@
 
 - PR #214 [by chrisgonzgonz]
 
-
 ## [2.1.1](https://github.com/techprimate/TPPDF/tree/2.1.1) (2020-06-16)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.1.0...2.1.1)
 
 **Implemented enhancements:**
@@ -153,6 +157,7 @@
 - Fixed indentations inside sections
 
 ## [2.1.0](https://github.com/techprimate/TPPDF/tree/2.1.0) (2020-06-15)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.0.1...2.1.0)
 
 **Implemented enhancements:**
@@ -183,6 +188,7 @@
 - Issue #211
 
 ## [2.0.1](https://github.com/techprimate/TPPDF/tree/2.0.1) (2020-05-31)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.0.0...2.0.1)
 
 **Implemented enhancements:**
@@ -199,6 +205,7 @@
 - Issue #204
 
 ## [2.0.0](https://github.com/techprimate/TPPDF/tree/2.0.0) (2020-05-19)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.6.0...2.0.0)
 
 **Implemented enhancements:**
@@ -209,7 +216,7 @@
 
 **Fixed bugs:**
 
-- External document including empty pages 
+- External document including empty pages
 
 **Closed issues:**
 
@@ -231,6 +238,7 @@
 - Issue #181
 
 ## [1.6.0](https://github.com/techprimate/TPPDF/tree/1.6.0) (2020-03-23)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.4...1.6.0)
 
 **Implemented enhancements:**
@@ -261,6 +269,7 @@
 - Issue #177
 
 ## [1.5.4](https://github.com/techprimate/TPPDF/tree/1.5.4) (2019-06-06)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.3...1.5.4)
 
 **Implemented enhancements:**
@@ -268,13 +277,15 @@
 - Fixed carthage support once again
 
 ## [1.5.3](https://github.com/techprimate/TPPDF/tree/1.5.3) (2019-06-06)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.2...1.5.3)
 
 **Implemented enhancements:**
 
-- Fixed padding in groups 
+- Fixed padding in groups
 
 ## [1.5.2](https://github.com/techprimate/TPPDF/tree/1.5.2) (2019-06-06)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.1...1.5.2)
 
 **Implemented enhancements:**
@@ -282,6 +293,7 @@
 - Added group breaking
 
 ## [1.5.1](https://github.com/techprimate/TPPDF/tree/1.5.1) (2019-06-06)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.5.0...1.5.1)
 
 **Implemented enhancements:**
@@ -293,6 +305,7 @@
 - Issue #67
 
 ## [1.5.0](https://github.com/techprimate/TPPDF/tree/1.5.0) (2019-06-05)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.1...1.5.0)
 
 **Implemented enhancements:**
@@ -324,6 +337,7 @@
 - Issue #138
 
 ## [1.4.1](https://github.com/techprimate/TPPDF/tree/1.4.1) (2019-05-19)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.4.0...1.4.1)
 
 **Fixed bugs:**
@@ -335,6 +349,7 @@
 - #135
 
 ## [1.4.0](https://github.com/techprimate/TPPDF/tree/1.4.0) (2019-04-17)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.3...1.4.0)
 
 **Implemented enhancements:**
@@ -353,6 +368,7 @@
 - Issue #128
 
 ## [1.3.3](https://github.com/techprimate/TPPDF/tree/1.3.3) (2019-03-13)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.2...1.3.3)
 
 **Implemented enhancements:**
@@ -375,6 +391,7 @@
 - PR #119 [by yhelfronda]
 
 ## [1.3.2](https://github.com/techprimate/TPPDF/tree/1.3.2) (2019-01-22)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.1...1.3.2)
 
 **Implemented enhancements:**
@@ -392,6 +409,7 @@
 - PR #106 [by protspace]
 
 ## [1.3.1](https://github.com/techprimate/TPPDF/tree/1.3.1) (2018-11-13)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.3.0...1.3.1)
 
 **Fixed bugs:**
@@ -399,6 +417,7 @@
 - Issue #98
 
 ## [1.3.0](https://github.com/techprimate/TPPDF/tree/HEAD) (2018-10-03)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.2.1...1.3.0)
 
 **Implemented enhancements:**
@@ -410,6 +429,7 @@
 - PR #94 [by techprimate-phil]
 
 ## [1.2.0](https://github.com/techprimate/TPPDF/tree/1.2.0) (2018-07-12)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.1.2...1.2.0)
 
 **Implemented enhancements:**
@@ -423,6 +443,7 @@
 - Issue #78
 
 ## [1.1.2](https://github.com/techprimate/TPPDF/tree/1.1.2) (2018-07-12)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.1.1...1.1.2)
 
 **Implemented enhancements:**
@@ -442,6 +463,7 @@
 - PR #77 [by emericspiroux]
 
 ## [1.1.1](https://github.com/techprimate/TPPDF/tree/1.1.1) (2018-06-29)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.1.0...1.1.1)
 
 **Implemented enhancements:**
@@ -457,6 +479,7 @@
 - Issue #76
 
 ## [1.1.0](https://github.com/techprimate/TPPDF/tree/1.1.0) (2018-05-07)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.0.3...1.1.0)
 
 **Implemented enhancements:**
@@ -468,6 +491,7 @@
 - PR #63
 
 ## [1.0.3](https://github.com/techprimate/TPPDF/tree/1.0.3) (2018-05-07)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.0.2...1.0.3)
 
 **Implemented enhancements:**
@@ -480,6 +504,7 @@
 - Issue #64
 
 ## [1.0.2](https://github.com/techprimate/TPPDF/tree/1.0.2) (2018-04-18)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.0.1...1.0.2)
 
 **Fixed bugs:**
@@ -491,6 +516,7 @@
 - Issue #59
 
 ## [1.0.1](https://github.com/techprimate/TPPDF/tree/1.0.1) (2018-04-16)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/1.0.0...1.0.1)
 
 **Merged pull requests:**
@@ -498,6 +524,7 @@
 - PR #56 [by kf99916]
 
 ## [1.0.0](https://github.com/techprimate/TPPDF/tree/1.0.0) (2018-04-08)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/0.4.0...1.0.0)
 
 **Implemented enhancements:**
@@ -505,6 +532,7 @@
 - Rebuilt whole library, too much for one changelog
 
 ## [0.4.0](https://github.com/techprimate/TPPDF/tree/0.4.0) (2017-06-05)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/0.3.0...0.4.0)
 
 **Implemented enhancements:**
@@ -521,6 +549,7 @@
 - Issue #7
 
 ## [0.3.0](https://github.com/techprimate/TPPDF/tree/0.3.0) (2017-01-19)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/0.2.0...0.3.0)
 
 **Implemented enhancements:**
@@ -544,8 +573,8 @@
 
 - PR #3 from kf99916/master
 
-
 ## [0.2.0](https://github.com/techprimate/TPPDF/tree/0.2.0) (2016-11-07)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/0.1.5...0.2.0)
 
 **Implemented enhancements:**
@@ -553,9 +582,11 @@
 - Updated to Swift 3.0
 
 ## [0.1.5](https://github.com/techprimate/TPPDF/tree/0.1.5) (2016-11-09)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/0.1.4...0.1.5)
 
 ## [0.1.4](https://github.com/techprimate/TPPDF/tree/0.1.4) (2016-08-24)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/0.1.3...0.1.4)
 
 **Implemented enhancements:**
@@ -567,6 +598,7 @@
 - Small link issues in `CHANGELOG.md`
 
 ## [0.1.3](https://github.com/techprimate/TPPDF/tree/0.1.3) (2016-08-21)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/0.1.2...0.1.3)
 
 **Implemented enhancements:**
@@ -574,6 +606,7 @@
 - Added indentation command `SetIndentation(points: CGFloat)`
 
 ## [0.1.2](https://github.com/techprimate/TPPDF/tree/0.1.2) (2016-08-16)
+
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/0.1.1...0.1.2)
 
 **Fixed bugs:**

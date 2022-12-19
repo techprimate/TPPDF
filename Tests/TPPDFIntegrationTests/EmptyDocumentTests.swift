@@ -4,6 +4,7 @@ import Nimble
 @testable import TPPDF
 import PDFKit
 
+@available(iOS 11.0, *)
 class EmptyDocumentTests: QuickSpec {
 
     override func spec() {

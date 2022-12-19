@@ -1,0 +1,23 @@
+version = 1
+
+[update]
+autoupdate_label = "♻️ autoupdate"
+
+[approve]
+auto_approve_usernames = ["dependabot"]
+
+[merge]
+method = "squash"
+automerge_label = "🚀 automerge"
+
+[merge.automerge_dependencies]
+# only auto merge "minor" and "patch" version upgrades.
+# do not automerge "major" version upgrades.
+versions = ["minor", "patch"]
+# automerge by upgrade version for pull requests authored by dependabot.
+usernames = ["dependabot"]
+
+[merge.message]
+title = "pull_request_title"
+body = "pull_request_body"
+include_coauthors = true
