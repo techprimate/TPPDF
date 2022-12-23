@@ -133,25 +133,58 @@ Take a look at the [Getting Started Guide](https://github.com/techprimate/TPPDF/
 
 If you are using TPPDF in your app and want to be listed here, simply create a pull request or let us know on Twitter or via GitHub. We are always curious to see, who is using our project :)
 
-[Burnout Coach](https://itunes.apple.com/app/id1495886665) - by Stéphane Mégy
-
-<img src="https://raw.githubusercontent.com/techprimate/TPPDF/main/resources/apps/BurnoutCoach.png" alt="Burnout Coach"/>
-
-[ChatHistory](https://itunes.apple.com/app/id1464880768) - by techprimate
-
-<img src="https://raw.githubusercontent.com/techprimate/TPPDF/main/resources/apps/ChatHistory.png" alt="ChatHistory"/>
-
-[Hikingbook](https://itunes.apple.com/app/id1067838748) - by Zheng-Xiang Ke
-
-<img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/Hikingbook.png" alt="Hikingbook"/>
-
-[Bug Journal](https://itunes.apple.com/us/app/bug-journal/id1232077952) - by David Johnson
-
-<img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/Bug_Journal.png" alt="Bug Journal"/>
-
-[Energy Tracker](https://itunes.apple.com/de/app/energy-tracker/id1193010972) - by Stefan Nebel
-
 <img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/EnergyTracker.jpg" alt="Energy Tracker"/>
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://itunes.apple.com/app/id1495886665">
+        <img src="https://raw.githubusercontent.com/techprimate/TPPDF/main/resources/apps/BurnoutCoach.png" alt="Burnout Coach"/>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://itunes.apple.com/app/id1464880768">
+        <img src="https://raw.githubusercontent.com/techprimate/TPPDF/main/resources/apps/ChatHistory.png" alt="ChatHistory"/>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://itunes.apple.com/app/id1464880768">
+        <img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/Hikingbook.png" alt="Hikingbook"/>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://itunes.apple.com/us/app/bug-journal/id1232077952">
+        <img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/Bug_Journal.png" alt="Bug Journal"/>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://itunes.apple.com/de/app/energy-tracker/id1193010972">
+        <img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/EnergyTracker.jpg" alt="EnergyTracker"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://itunes.apple.com/app/id1464880768">Burnout Coach</strong></a><br>
+      by Stéphane Mégy
+    </td>
+    <td align="center">
+      <a href="https://itunes.apple.com/app/id1464880768">ChatHistory</a><br>
+      by techprimate
+    </td>
+    <td align="center">
+      <a href="https://itunes.apple.com/app/id1067838748">Hikingbook</a><br>
+      by Zheng-Xiang Ke
+    </td>
+    <td align="center">
+      <a href="https://itunes.apple.com/us/app/bug-journal/id1232077952">Bug Journal</a><br>
+      by David Johnson
+    </td>
+    <td align="center">
+      <a href="https://itunes.apple.com/de/app/energy-tracker/id1193010972">EnergyTracker</a><br>
+      by Stefan Nebel
+    </td>
+  </tr>
+</table>
 
 ## Credits
 
