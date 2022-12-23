@@ -106,9 +106,15 @@ internal class PDFTableObject: PDFRenderObject {
         var headerCells: [PDFTableCalculatedCell] = []
         if table.showHeadersOnEveryPage {
             var rowIdx = 0
-            while cells[rowIdx].allSatisfy({ $0.type == .rowHeader || $0.type == .header }) && rowIdx < table.size.rows {
+            while rowIdx < table.size.rows && cells[rowIdx].allSatisfy({ $0.type == .rowHeader || $0.type == .header }) {
                 headerCells += cells[rowIdx]
                 rowIdx += 1
+            }
+			
+            // Safety check to make sure we don't reference rows we don't have.
+            // This handles the case where we have a header row, but no data rows.
+            if rowIdx >= table.size.rows {
+                rowIdx = table.size.rows - 1
             }
 
             headerHeight = cells[rowIdx].reduce(0, { (prev, calcCell) in

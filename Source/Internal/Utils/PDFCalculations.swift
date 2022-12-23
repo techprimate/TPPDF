@@ -407,9 +407,20 @@ internal enum PDFCalculations {
      */
     internal static func calculateCellFrame(generator: PDFGenerator, origin: CGPoint, width: CGFloat, image: Image) -> CGRect {
         let imageSize = image.size
-        let height = imageSize.height / imageSize.width * width
-
-        return CGRect(x: origin.x, y: origin.y, width: width, height: height)
+        var imageHeight = 0.0
+        var imageWidth = 0.0
+        
+        // scale down only if the image's width is larger than the cell's width
+        
+        if imageSize.width > width {
+            imageHeight = imageSize.height / imageSize.width * width
+            imageWidth = width
+        } else {
+            imageHeight = imageSize.height
+            imageWidth = imageSize.width
+        }
+        
+        return CGRect(x: origin.x, y: origin.y, width: imageWidth, height: imageHeight)
     }
 
     /**
