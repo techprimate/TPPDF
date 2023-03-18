@@ -199,24 +199,25 @@ internal class PDFAttributedTextObject: PDFRenderObject {
         }
         for link in links {
             for metric in lineMetrics {
-                if let intersection = NSRange(location: metric.range.location,
-                                              length: metric.range.length).intersection(link.range) {
-                    let startOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location, nil)
-                    let endOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location + intersection.length, nil)
-
-                    let linkFrame = CGRect(
-                        x: self.frame.origin.x + startOffset,
-                        y: metric.bounds.origin.y,
-                        width: endOffset - startOffset,
-                        height: metric.bounds.height)
-                    attributes.append((attribute: .link(url: URL(string: link.url)!), frame: linkFrame))
-
-                    if debug {
-                        PDFGraphics.drawRect(in: context,
-                                             rect: linkFrame,
-                                             outline: .none,
-                                             fill: Color.red.withAlphaComponent(0.4))
-                    }
+                guard let intersection = NSRange(location: metric.range.location, length: metric.range.length).intersection(link.range),
+                      let url = URL(string: link.url) else {
+                    break
+                }
+                let startOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location, nil)
+                let endOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location + intersection.length, nil)
+                
+                let linkFrame = CGRect(
+                    x: self.frame.origin.x + startOffset,
+                    y: metric.bounds.origin.y,
+                    width: endOffset - startOffset,
+                    height: metric.bounds.height)
+                attributes.append((attribute: .link(url: url), frame: linkFrame))
+                
+                if debug {
+                    PDFGraphics.drawRect(in: context,
+                                         rect: linkFrame,
+                                         outline: .none,
+                                         fill: Color.red.withAlphaComponent(0.4))
                 }
             }
         }
