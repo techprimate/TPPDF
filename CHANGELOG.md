@@ -1,6 +1,13 @@
 # Change Log
 
-## [Unreleased](https://github.com/techprimate/TPPDF/tree/2.4.0) (2022-12-17)
+## [2.4.1](https://github.com/techprimate/TPPDF/tree/2.4.1) (2023-03-28)
+
+[Full Changelog](https://github.com/techprimate/TPPDF/compare/2.4.0...2.4.1)
+
+- Fixed crash due to force-unwrapping if not possible to instatiate URL from string (#325 by @neobeppe)
+- Added conditional scaling of images in table only if larger than cell width (#299 by @brendand)
+
+## [2.4.0](https://github.com/techprimate/TPPDF/tree/2.4.0) (2022-12-17)
 
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.3.5...2.4.0)
 
