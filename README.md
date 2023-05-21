@@ -133,7 +133,6 @@ Take a look at the [Getting Started Guide](https://github.com/techprimate/TPPDF/
 
 If you are using TPPDF in your app and want to be listed here, simply create a pull request or let us know on Twitter or via GitHub. We are always curious to see, who is using our project :)
 
-<img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/EnergyTracker.jpg" alt="Energy Tracker"/>
 <table>
   <tr>
     <td align="center">
