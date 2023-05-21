@@ -9,7 +9,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - # Checkout the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - # Install Ruby
         uses: ruby/setup-ruby@v1
