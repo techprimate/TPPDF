@@ -8,7 +8,8 @@
 /// Protocol all text objects should implement
 public class PDFText: PDFDocumentObject, CustomStringConvertible {
 
-    var copy: PDFText {
+    public var copy: PDFText {
         fatalError()
     }
 }
+

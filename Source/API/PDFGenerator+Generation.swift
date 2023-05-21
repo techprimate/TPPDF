@@ -354,6 +354,9 @@ extension PDFGenerator {
      - throws: PDFError, if rendering fails
      */
     internal func render(object: PDFRenderObject, in container: PDFContainer, in context: PDFContext) throws {
+        if let imageObject = object as? PDFImageObject {
+            delegate?.generator(willBeginDrawingImage: imageObject.image, with: context, in: object.frame)
+        }
         try object.draw(generator: self, container: container, in: context)
     }
 
