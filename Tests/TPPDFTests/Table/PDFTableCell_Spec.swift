@@ -33,23 +33,23 @@ class PDFTableCell_Spec: QuickSpec {
                 }
             }
 
-            context("initalizer") {
+            context("initializer") {
 
-                it("can be iniatlized with a content") {
+                it("can be initialized with a content") {
                     let content = try! PDFTableContent(content: "EXAMPLE")
                     let cell = PDFTableCell(content: content)
 
                     expect(cell.content) == content
                 }
 
-                it("can be iniatlized with an alignment") {
+                it("can be initialized with an alignment") {
                     let alignment = PDFTableCellAlignment.bottomRight
                     let cell = PDFTableCell(alignment: alignment)
 
                     expect(cell.alignment) == alignment
                 }
 
-                it("can be iniatlized with a style") {
+                it("can be initialized with a style") {
                     let style = PDFTableCellStyle(colors: (fill: Color.blue, text: Color.green))
                     let cell = PDFTableCell(style: style)
 

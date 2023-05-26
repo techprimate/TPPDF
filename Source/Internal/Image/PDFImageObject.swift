@@ -27,7 +27,7 @@ internal class PDFImageObject: PDFRenderObject {
     internal var captionSpacing: CGFloat
 
     /**
-     Initalizer
+     Initializer
 
      - parameter image: Image object
      - parameter captionSpacing: Spacing to caption, defaults to zero

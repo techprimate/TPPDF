@@ -59,7 +59,7 @@ internal class PDFAttributedTextObject: PDFRenderObject {
     }
 
     /**
-     Initalize with simple text object.
+     Initialize with simple text object.
      Will be converted into a attributed string using the default values from the generator.
 
      - parameter simpleText: Simple text object

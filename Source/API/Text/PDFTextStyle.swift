@@ -32,7 +32,7 @@ public class PDFTextStyle: Hashable {
     public var color: Color?
 
     /**
-     Initalizer
+     Initializer
 
      - parameter name: Name of style
      - parameter font: Font of text, defaults to nil

@@ -50,7 +50,7 @@ class PDFTableContent_Spec: QuickSpec {
 
             context("initializer") {
 
-                it("can be initalized with any") {
+                it("can be initialized with any") {
                     expect {
                         try PDFTableContent(content: 123)
                         }.toNot(throwError())
@@ -59,7 +59,7 @@ class PDFTableContent_Spec: QuickSpec {
                         }.to(throwError())
                 }
 
-                it("can be initalized with type and optional content") {
+                it("can be initialized with type and optional content") {
                     let content = PDFTableContent(type: PDFTableContent.ContentType.attributedString,
                                                   content: NSAttributedString(string: "EXAMPLE"))
                     expect(content.type) == PDFTableContent.ContentType.attributedString

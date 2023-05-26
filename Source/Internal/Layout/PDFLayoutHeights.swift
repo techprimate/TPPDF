@@ -32,7 +32,7 @@ internal struct PDFLayoutHeights: CustomStringConvertible {
     internal var content: CGFloat = 0
 
     /**
-     Initialises the heights by resetting the headers and footers
+     Initializes the heights by resetting the headers and footers
      */
     internal init() {
         resetHeaderFooterHeight()

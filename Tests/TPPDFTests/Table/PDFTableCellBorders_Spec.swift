@@ -36,30 +36,30 @@ class PDFTableCellBorders_Spec: QuickSpec {
                 }
             }
 
-            context("initalizer") {
+            context("initializer") {
 
-                it("can be iniatlized with a left border") {
+                it("can be initialized with a left border") {
                     let style = PDFLineStyle(type: .dotted, color: .orange, width: 10)
                     let borders = PDFTableCellBorders(left: style)
 
                     expect(borders.left) == style
                 }
 
-                it("can be iniatlized with a top border") {
+                it("can be initialized with a top border") {
                     let style = PDFLineStyle(type: .dotted, color: .orange, width: 10)
                     let borders = PDFTableCellBorders(top: style)
 
                     expect(borders.top) == style
                 }
 
-                it("can be iniatlized with a right border") {
+                it("can be initialized with a right border") {
                     let style = PDFLineStyle(type: .dotted, color: .orange, width: 10)
                     let borders = PDFTableCellBorders(right: style)
 
                     expect(borders.right) == style
                 }
 
-                it("can be iniatlized with a bottom border") {
+                it("can be initialized with a bottom border") {
                     let style = PDFLineStyle(type: .dotted, color: .orange, width: 10)
                     let borders = PDFTableCellBorders(bottom: style)
 
