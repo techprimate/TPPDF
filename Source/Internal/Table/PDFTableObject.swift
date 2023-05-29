@@ -110,7 +110,7 @@ internal class PDFTableObject: PDFRenderObject {
                 headerCells += cells[rowIdx]
                 rowIdx += 1
             }
-			
+
             // Safety check to make sure we don't reference rows we don't have.
             // This handles the case where we have a header row, but no data rows.
             if rowIdx >= table.size.rows {
@@ -291,7 +291,6 @@ internal class PDFTableObject: PDFRenderObject {
         var nextPageCells: [PDFTableCalculatedCell] = cells
         var pageEnd = CGPoint.null
         var headerShift = table.showHeadersOnEveryPage
-        
 
         repeat {
             var pageStart = CGPoint.null
@@ -347,7 +346,7 @@ internal class PDFTableObject: PDFRenderObject {
                     nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: headerHeight)
                     headerShift = false
                 }
-                //add table padding around cells
+                // add table padding around cells
                 nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: table.margin)
             }
 
@@ -468,22 +467,22 @@ internal class PDFTableObject: PDFRenderObject {
         }
         return result
     }
-    
+
     internal typealias ShiftedCells = [PDFTableCalculatedCell]
-    
+
     internal func shiftCellsBy(cells: [PDFTableCalculatedCell], shiftValue: CGFloat) -> ShiftedCells {
         var shiftedCells: [PDFTableCalculatedCell] = []
-        
+
         for cell in cells {
             var shiftedCell = cell
-            
+
             shiftedCell.frames.cell.origin.y += shiftValue
             shiftedCell.frames.content.origin.y += shiftValue
             shiftedCells.append(shiftedCell)
         }
         return shiftedCells
     }
-    
+
     internal func createSliceObject(frame: CGRect, elements: [PDFRenderObject], minOffset: CGFloat, maxOffset: CGFloat) -> PDFSlicedObject {
         let sliceObject = PDFSlicedObject(children: elements, frame: frame)
         if frame.maxY > maxOffset {

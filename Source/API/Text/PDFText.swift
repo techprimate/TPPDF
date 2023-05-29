@@ -12,4 +12,3 @@ public class PDFText: PDFDocumentObject, CustomStringConvertible {
         fatalError()
     }
 }
-

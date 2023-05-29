@@ -61,8 +61,8 @@ public class PDFAttributedText: PDFText {
     }
 
     // MARK: - Hashable
-    
-    public override func hash(into hasher: inout Hasher) {
+
+    override public func hash(into hasher: inout Hasher) {
         hasher.combine(text)
     }
 }
