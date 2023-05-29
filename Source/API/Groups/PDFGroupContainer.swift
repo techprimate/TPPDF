@@ -42,7 +42,7 @@ public enum PDFGroupContainer {
 
     /**
      Array of all possible containers, expect `.none`.
-     Useful for initalizing default values for each container
+     Useful for initializing default values for each container
      */
     internal static var all: [PDFGroupContainer] {
         [.left, .center, .right]

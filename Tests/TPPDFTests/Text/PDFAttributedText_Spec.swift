@@ -16,7 +16,7 @@ class PDFAttributedText_Spec: QuickSpec {
     override func spec() {
         describe("PDFAttributedText") {
 
-            it("can be initalized with an attributed string") {
+            it("can be initialized with an attributed string") {
                 let attributed = NSAttributedString(string: "example")
                 let textObject = PDFAttributedText(text: attributed)
 

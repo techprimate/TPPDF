@@ -30,9 +30,9 @@ class PDFTableCellPosition_Spec: QuickSpec {
                 }
             }
 
-            context("initalizer") {
+            context("initializer") {
 
-                it("can be initalized with a row and a column") {
+                it("can be initialized with a row and a column") {
                     expect(position.row) == row
                     expect(position.column) == column
                 }

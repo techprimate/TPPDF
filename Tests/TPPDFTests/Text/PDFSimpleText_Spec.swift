@@ -35,7 +35,7 @@ class PDFSimpleText_Spec: QuickSpec {
                 }
             }
 
-            it("can be initalized without spacing") {
+            it("can be initialized without spacing") {
                 let text = "STRING"
 
                 textObject = PDFSimpleText(text: text)
