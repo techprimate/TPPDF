@@ -9,7 +9,7 @@ import AppKit
  Source for names: https://www.papersizes.org
  */
 public extension PDFPageFormat {
-    
+
     /**
      Returns the defined US names if this format is a US format.
      If it is not a US format, it will check other constants for correct name
@@ -30,7 +30,7 @@ public extension PDFPageFormat {
             return name
         }
     }
-    
+
     /**
      Returns the defined ANSI name if this format is a ANSI format.
      If it is not a ANSI format, it will check other constants for correct name
@@ -51,7 +51,7 @@ public extension PDFPageFormat {
             return name
         }
     }
-    
+
     /**
      Returns the defined A-Series name if this format is a A-Series format.
      If it is not a A-Series format, it will check other constants for correct name
@@ -84,7 +84,7 @@ public extension PDFPageFormat {
             return name
         }
     }
-    
+
     /**
      Returns the defined B-Series name if this format is a B-Series format.
      If it is not a B-Series format, it will check other constants for correct name
@@ -117,7 +117,7 @@ public extension PDFPageFormat {
             return name
         }
     }
-    
+
     /**
      Returns the defined C-Series name if this format is a C-Series format.
      If it is not a C-Series format, it will check other constants for correct name

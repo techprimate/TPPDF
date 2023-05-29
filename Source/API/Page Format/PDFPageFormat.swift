@@ -107,7 +107,7 @@ public enum PDFPageFormat: String, CaseIterable {
     public var landscapeSize: CGSize {
         CGSize(width: size.height, height: size.width)
     }
-    
+
     /**
      Name defined in constants
      */

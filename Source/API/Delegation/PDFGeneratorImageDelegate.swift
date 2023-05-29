@@ -13,6 +13,6 @@ public protocol PDFGeneratorImageDelegate: AnyObject {
 
 public extension PDFGeneratorImageDelegate {
 
-    func generator(willBeginDrawingImage image: PDFImage, with context: PDFContext, in frame: CGRect){}
+    func generator(willBeginDrawingImage image: PDFImage, with context: PDFContext, in frame: CGRect) {}
 
 }

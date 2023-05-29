@@ -125,7 +125,6 @@ internal enum PDFCalculations {
             - generator.currentPadding.right
     }
 
-
     /// Calculates the available height in a given `container` on the current page.
     /// If the container is a header or a footer container, it has no limits and therefore returns the full page layout height
     ///
@@ -384,7 +383,7 @@ internal enum PDFCalculations {
                                             position: (origin: CGPoint, width: CGFloat),
                                             text: NSAttributedString,
                                             alignment: PDFTableCellAlignment) -> CGRect {
-        let textMaxHeight = CGFloat.greatestFiniteMagnitude //PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container)
+        let textMaxHeight = CGFloat.greatestFiniteMagnitude // PDFCalculations.calculateAvailableFrameHeight(for: generator, in: container)
         let frame: CGRect = CGRect(x: position.origin.x, y: position.origin.y, width: position.width, height: textMaxHeight)
 
         let currentRange = CFRange(location: 0, length: 0)
@@ -409,9 +408,9 @@ internal enum PDFCalculations {
         let imageSize = image.size
         var imageHeight = 0.0
         var imageWidth = 0.0
-        
+
         // scale down only if the image's width is larger than the cell's width
-        
+
         if imageSize.width > width {
             imageHeight = imageSize.height / imageSize.width * width
             imageWidth = width
@@ -419,7 +418,7 @@ internal enum PDFCalculations {
             imageHeight = imageSize.height
             imageWidth = imageSize.width
         }
-        
+
         return CGRect(x: origin.x, y: origin.y, width: imageWidth, height: imageHeight)
     }
 

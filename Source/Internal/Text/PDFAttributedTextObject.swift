@@ -205,14 +205,14 @@ internal class PDFAttributedTextObject: PDFRenderObject {
                 }
                 let startOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location, nil)
                 let endOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location + intersection.length, nil)
-                
+
                 let linkFrame = CGRect(
                     x: self.frame.origin.x + startOffset,
                     y: metric.bounds.origin.y,
                     width: endOffset - startOffset,
                     height: metric.bounds.height)
                 attributes.append((attribute: .link(url: url), frame: linkFrame))
-                
+
                 if debug {
                     PDFGraphics.drawRect(in: context,
                                          rect: linkFrame,

@@ -62,7 +62,7 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
      Relative value tracking progress
      */
     public let progress = Progress.discreteProgress(totalUnitCount: 3)
-    
+
     /// Object acts as a delegate during the generation process
     public var delegate: PDFGeneratorDelegate?
 
