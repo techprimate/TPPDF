@@ -42,12 +42,12 @@ class PDFListItem_Spec: QuickSpec {
 
             describe("initializer") {
 
-                it("can be initalized with a symbol") {
+                it("can be initialized with a symbol") {
                     object = PDFListItem(symbol: .dash)
                     expect(object.symbol.rawValue) == PDFListItemSymbol.dash.rawValue
                 }
 
-                it("can be initalized with a content") {
+                it("can be initialized with a content") {
                     let content = "EXAMPLE"
 
                     object = PDFListItem(content: content)

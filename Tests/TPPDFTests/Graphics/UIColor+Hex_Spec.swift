@@ -15,33 +15,33 @@ class Color_Hex_Spec: QuickSpec {
     override func spec() {
         describe("Color+Hex") {
 
-            it("can be initalized with three digit hex") {
+            it("can be initialized with three digit hex") {
                 let color = try? Color(hex: "3F0")
                 expect(color) == Color(red: 0.2, green: 1.0, blue: 0, alpha: 1)
             }
 
-            it("can be initalized with four digit hex") {
+            it("can be initialized with four digit hex") {
                 let color = try? Color(hex: "3F0C")
                 expect(color) == Color(red: 0.2, green: 1.0, blue: 0, alpha: 0.8)
             }
 
-            it("can be initalized with six digit hex") {
+            it("can be initialized with six digit hex") {
                 let color = try? Color(hex: "FF00FF")
                 expect(color) == Color.magenta
             }
 
-            it("can be initalized with eight digit hex") {
+            it("can be initialized with eight digit hex") {
                 let color = try? Color(hex: "FFFF0000")
                 expect(color) == Color.yellow.withAlphaComponent(0.0)
             }
 
-            it("can not be initalized with other length") {
+            it("can not be initialized with other length") {
                 expect {
                     try Color(hex: "1234567890")
                 }.to(throwError())
             }
 
-            it("can not be initalized with invalid hexadecimal characters") {
+            it("can not be initialized with invalid hexadecimal characters") {
                 expect {
                     try Color(hex: "%")
                 }.to(throwError())

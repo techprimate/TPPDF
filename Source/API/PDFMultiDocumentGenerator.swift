@@ -17,12 +17,12 @@ import AppKit
 public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
 
     /**
-     Bounds of first document, set on initialisation
+     Bounds of first document, set on initialization
      */
     private let bounds: CGRect
 
     /**
-     Metadata information of first document, set on initialisation
+     Metadata information of first document, set on initialization
      */
     private let info: PDFInfo
 
@@ -47,10 +47,10 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     public var debug = false
 
     /**
-     Initialises a new multi-document generator for generating the giving documents.
+     Initializes a new multi-document generator for generating the giving documents.
      It will use the page layout of the first document.
 
-     The instance property `progress` is initalised to the total document count.
+     The instance property `progress` is initialized to the total document count.
 
      - parameter documents: Array of `PDFDocument` instances, which will all be rendered into a single PDF context
      */
@@ -79,7 +79,7 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     Creates a file  at the given file URL,  generates the PDF context data and writes the result idata nto the file.
 
     - parameter target: URL of output file,
-    - parameter info: Instance of `PDFInfo` with meta file information, defaults to default initialiser of `PDFInfo`
+    - parameter info: Instance of `PDFInfo` with meta file information, defaults to default initializer of `PDFInfo`
 
     - throws: Exception, if something went wrong
     */
@@ -98,7 +98,7 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     /**
     Generates and returns the PDF context data.
 
-    - parameter info: Instance of `PDFInfo` with meta file information, defaults to default initialiser of `PDFInfo`
+    - parameter info: Instance of `PDFInfo` with meta file information, defaults to default initializer of `PDFInfo`
 
     - throws: Exception, if something went wrong
 

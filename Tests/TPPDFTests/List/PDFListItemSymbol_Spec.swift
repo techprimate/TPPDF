@@ -47,7 +47,7 @@ class PDFListItemSymbol_Spec : QuickSpec {
                 expect(PDFListItemSymbol.numbered(value: nil).rawValue) == "numbered|nil"
             }
 
-            it("can be initalized with raw value") {
+            it("can be initialized with raw value") {
                 expect(PDFListItemSymbol(rawValue: "none")?.rawValue) == PDFListItemSymbol.none.rawValue
                 expect(PDFListItemSymbol(rawValue: "inherit")?.rawValue) == PDFListItemSymbol.inherit.rawValue
                 expect(PDFListItemSymbol(rawValue: "dot")?.rawValue) == PDFListItemSymbol.dot.rawValue

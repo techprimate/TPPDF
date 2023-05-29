@@ -34,7 +34,7 @@ public class PDFSimpleText: PDFText {
     public weak var style: PDFTextStyle?
 
     /**
-     Initalizer
+     Initializer
 
      - parameter text: Text to be drawn
      - parameter spacing: Spacing between text lines, defaults to 0

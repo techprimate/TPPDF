@@ -35,7 +35,7 @@ class PDFImage_Spec: QuickSpec {
 
             context("initializer") {
 
-                it("can be initalized with only an image") {
+                it("can be initialized with only an image") {
                     pdfImage = PDFImage(image: image)
                     expect(pdfImage.image) == image
                     expect(pdfImage.caption).to(beNil())

@@ -22,7 +22,7 @@ internal class PDFFontObject: PDFRenderObject {
     internal var font: Font
 
     /**
-     Initalizer
+     Initializer
 
      - parameter font: New font
      */

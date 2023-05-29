@@ -28,7 +28,7 @@ public protocol PDFGeneratorProtocol: AnyObject {
      Keep in mind, the output file is in a temporary folder of the OS and should be persisted by your own logic.
 
      - parameter filename: Name of output file, `.pdf` will be appended if not given
-     - parameter info: Instance of `PDFInfo` with meta file information, defaults to default initialiser of `PDFInfo`
+     - parameter info: Instance of `PDFInfo` with meta file information, defaults to default initializer of `PDFInfo`
 
      - returns: Temporary URL to the output file
 
@@ -98,7 +98,7 @@ extension PDFGeneratorProtocol {
      Keep in mind, the output file is in a temporary folder of the OS and should be persisted by your own logic.
 
      - parameter filename: Name of output file, `.pdf` will be appended if not given
-     - parameter info: Instance of `PDFInfo` with meta file information, defaults to default initialiser of `PDFInfo`
+     - parameter info: Instance of `PDFInfo` with meta file information, defaults to default initializer of `PDFInfo`
 
      - returns: Temporary URL to the output file
 

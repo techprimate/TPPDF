@@ -25,14 +25,14 @@ class PDFLineSeparatorObject_Spec: QuickSpec {
                 }
             }
 
-            context("initalizers") {
+            context("initializers") {
 
-                it("can be initalized without") {
+                it("can be initialized without") {
                     separator = PDFLineSeparatorObject()
                     expect(separator).toNot(beNil())
                 }
 
-                it("can be initalized with a line style") {
+                it("can be initialized with a line style") {
                     let style = PDFLineStyle(type: .dotted, color: .orange, width: 0.25)
 
                     separator = PDFLineSeparatorObject(style: style)

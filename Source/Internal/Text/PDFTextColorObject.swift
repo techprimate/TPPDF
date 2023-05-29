@@ -22,7 +22,7 @@ internal class PDFTextColorObject: PDFRenderObject {
     internal var color: Color
 
     /**
-     Initalizer
+     Initializer
 
      - parameter textColor: New text color
      */
