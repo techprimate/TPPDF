@@ -42,18 +42,22 @@ internal class PDFListObject: PDFRenderObject {
             result += try createTextItem(generator: generator, container: container, text: item.text)
 
             generator.layout.indentation.setLeft(indentation: originalLeftIndent, in: container)
-            handleCustomInterItemSpacing(generator: generator, container: container)
+            handleCustomInterItemSpacing(item: item, generator: generator, container: container)
         }
 
         return result
     }
     
-    private func handleCustomInterItemSpacing(generator: PDFGenerator, container: PDFContainer) {
-        if let interItemSpacing = list.spacing {
-            generator.layout.heights.add(interItemSpacing, to: container)
+    private func handleCustomInterItemSpacing(item: (level: Int, text: String, symbol: PDFListItemSymbol), generator: PDFGenerator, container: PDFContainer) {
+        guard let interItemSpacing = list.spacing,
+              let lastItem = list.flatted().last,
+              item != lastItem else {
+            //No need to add a space if it's the last item or no spacing has been defined
+            return
         }
+        generator.layout.heights.add(interItemSpacing, to: container)
     }
-
+    
     /**
      TODO: Documentation
      */
