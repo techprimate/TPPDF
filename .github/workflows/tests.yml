@@ -39,7 +39,7 @@ jobs:
             test 2>&1 | tee test.log | xcbeautify
 
       - name: Upload test log file on error
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test.log
@@ -70,7 +70,7 @@ jobs:
 
       - # Upload the generated Codecov report to the GitHub artifacts
         name: Upload coverage report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: success()
         with:
           name: coverage_report.txt
