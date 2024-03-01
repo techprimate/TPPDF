@@ -65,8 +65,7 @@ GEM
     colored2 (3.1.2)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
-    drb (2.2.0)
-      ruby2_keywords
+    drb (2.2.1)
     escape (0.0.4)
     ethon (0.16.0)
       ffi (>= 1.15.0)
@@ -108,7 +107,6 @@ GEM
     rexml (3.2.6)
     rouge (2.0.7)
     ruby-macho (2.5.1)
-    ruby2_keywords (0.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
     slather (2.8.0)
