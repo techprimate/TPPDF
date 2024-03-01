@@ -60,7 +60,7 @@ jobs:
 
       - # Codecov Coverage
         name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.1.1
+        uses: codecov/codecov-action@v3.1.6
         with:
           fail_ci_if_error: true
           files: ./unit-tests.coverage.lcov,./integration-tests.coverage.lcov
@@ -100,7 +100,7 @@ jobs:
 
       - # Codecov Coverage
         name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.1.1
+        uses: codecov/codecov-action@v3.1.6
         with:
           fail_ci_if_error: true
           files: ./coverage.lcov
