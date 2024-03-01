@@ -160,6 +160,11 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
         <img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/EnergyTracker.jpg" alt="EnergyTracker"/>
       </a>
     </td>
+  	<td align="center">
+      <a href="https://apps.apple.com/us/app/lyrcs/id1599888045">
+        <img src="https://raw.githubusercontent.com/techprimate/tppdf/main/resources/apps/Lyrcs.svg" alt="Lyrcs" height=120 />
+      </a>
+    </td>
   </tr>
   <tr>
     <td align="center">
@@ -182,8 +187,13 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
       <a href="https://itunes.apple.com/de/app/energy-tracker/id1193010972">EnergyTracker</a><br>
       by Stefan Nebel
     </td>
+    <td align="center">
+      <a href="https://apps.apple.com/us/app/lyrcs/id1599888045">Lyrcs</a><br>
+      by ptrkstr
+    </td>
   </tr>
 </table>
+
 
 ## Credits
 
