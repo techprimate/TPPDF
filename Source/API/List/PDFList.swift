@@ -16,6 +16,7 @@ import AppKit
  */
 public class PDFList: PDFDocumentObject {
 
+    public var spacing: CGFloat?
     /**
      TODO: Documentation
      */
