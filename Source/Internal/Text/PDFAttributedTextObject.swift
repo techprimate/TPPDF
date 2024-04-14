@@ -197,12 +197,24 @@ internal class PDFAttributedTextObject: PDFRenderObject {
                                     height: ascent + descent + leading)
             lineMetrics.append((line: line, bounds: lineBounds, range: CTLineGetStringRange(line)))
         }
+        
         for link in links {
+            guard let url = URL(string: link.url) else {
+                continue
+            }
+            
+            var found = false
             for metric in lineMetrics {
-                guard let intersection = NSRange(location: metric.range.location, length: metric.range.length).intersection(link.range),
-                      let url = URL(string: link.url) else {
-                    break
+                guard let intersection = NSRange(location: metric.range.location, length: metric.range.length).intersection(link.range) else {
+                    if found {
+                        break
+                    } else {
+                        continue
+                    }
                 }
+                
+                found = true
+                
                 let startOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location, nil)
                 let endOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location + intersection.length, nil)
 
