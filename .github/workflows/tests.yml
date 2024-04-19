@@ -19,10 +19,7 @@ jobs:
       - # Checkout the repository
         uses: actions/checkout@v4
 
-      - # Install dependencies
-        run: brew install xcbeautify
-
-      - # Run Tests iOS
+      - # Run Tests
         name: Run Tests iOS
         run: |
           set -o pipefail && \
@@ -58,26 +55,15 @@ jobs:
             --instr-profile $PROFDATA_PATH \
             --format="lcov" > integration-tests.coverage.lcov
 
-      - # Codecov Coverage
-        name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          fail_ci_if_error: true
-          files: ./unit-tests.coverage.lcov,./integration-tests.coverage.lcov
-          flags: iOS
-
   macos-unit-tests:
     name: macOS Unit Tests
-    runs-on: macos-13
+    runs-on: macos-14
     timeout-minutes: 30
     steps:
       - # Checkout the repository
         uses: actions/checkout@v4
 
-      - # Install dependencies
-        run: brew install xcbeautify
-
-      - # Run tests on macOS with coverage enabled
+      - # Run Tests
         name: Run tests
         run: swift test --parallel --enable-code-coverage
 
