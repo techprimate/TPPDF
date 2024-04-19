@@ -73,11 +73,3 @@ jobs:
             .build/debug/TPPDFPackageTests.xctest/Contents/MacOS/TPPDFPackageTests \
             --instr-profile .build/debug/codecov/default.profdata \
             --format="lcov" > coverage.lcov
-
-      - # Codecov Coverage
-        name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          fail_ci_if_error: true
-          files: ./coverage.lcov
-          flags: macOS
