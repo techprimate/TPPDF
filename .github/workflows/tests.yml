@@ -30,7 +30,7 @@ jobs:
           xcodebuild -workspace . \
             -scheme "TPPDF" \
             -sdk iphonesimulator \
-            -destination "OS=16.2,name=iPhone 14 Pro" \
+            -destination "OS=17.2,name=iPhone 15 Pro" \
             -configuration Debug \
             -enableCodeCoverage YES \
             -derivedDataPath /tmp/DerivedData \
@@ -60,21 +60,11 @@ jobs:
 
       - # Codecov Coverage
         name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.1.1
+        uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: true
           files: ./unit-tests.coverage.lcov,./integration-tests.coverage.lcov
           flags: iOS
-          xcode_archive_path: test_output.xcresults
-          path_to_write_report: coverage_report.txt
-
-      - # Upload the generated Codecov report to the GitHub artifacts
-        name: Upload coverage report
-        uses: actions/upload-artifact@v4
-        if: success()
-        with:
-          name: coverage_report.txt
-          path: coverage_report.txt
 
   macos-unit-tests:
     name: macOS Unit Tests
@@ -100,9 +90,8 @@ jobs:
 
       - # Codecov Coverage
         name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.1.1
+        uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: true
           files: ./coverage.lcov
           flags: macOS
-          path_to_write_report: coverage_report.txt
