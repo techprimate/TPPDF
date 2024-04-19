@@ -13,7 +13,7 @@ concurrency:
 jobs:
   ios-unit-tests:
     name: iOS Unit Tests
-    runs-on: macos-13
+    runs-on: macos-14
     timeout-minutes: 30
     steps:
       - # Checkout the repository
@@ -30,7 +30,7 @@ jobs:
           xcodebuild -workspace . \
             -scheme "TPPDF" \
             -sdk iphonesimulator \
-            -destination "OS=17.2,name=iPhone 15 Pro" \
+            -destination "OS=17.4,name=iPhone 15 Pro" \
             -configuration Debug \
             -enableCodeCoverage YES \
             -derivedDataPath /tmp/DerivedData \
