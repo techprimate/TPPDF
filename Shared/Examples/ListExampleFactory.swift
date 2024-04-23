@@ -41,6 +41,27 @@ class ListExampleFactory: ExampleFactory {
         document.add(list: featureList)
 
         document.add(space: 20)
+        
+        // Simple bullet point list with custom spacing
+        let customSpacingList = PDFList(indentations: [
+            (pre: 10.0, past: 20.0),
+            (pre: 20.0, past: 20.0),
+            (pre: 40.0, past: 20.0)
+        ])
+        
+        //A custom spacing can be setup, this property is optional
+        customSpacingList.spacing = 16
+        
+        // By adding the item first to a list item with the dot symbol, all of them will inherit it
+        customSpacingList
+            .addItem(PDFListItem(symbol: .dot)
+                .addItems(items.map({ item in
+                    PDFListItem(content: item)
+                })))
+        document.add(list: customSpacingList)
+
+        document.add(space: 20)
+
 
         // Numbered list with unusual indentation
         let weirdIndentationList = PDFList(indentations: [
