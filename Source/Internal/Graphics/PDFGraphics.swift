@@ -183,12 +183,21 @@ internal enum PDFGraphics {
                           height: floor(frame.height * resizeFactor))
 
         #if os(iOS)
-        UIGraphicsBeginImageContext(size)
-        image.draw(in: CGRect(origin: .zero, size: size))
-        let finalImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return finalImage ?? image
+        var finalImage: UIImage = image
+        if #available(iOS 17.0, *) {
+            if let cgImage = image.cgImage {
+                finalImage = UIGraphicsImageRenderer(size: size).image { renderContext in
+                    let rect = CGRect(origin: .zero, size: size)
+                    renderContext.cgContext.draw(image: cgImage, in: rect, flipped: true)
+                }
+            }
+        } else {
+            UIGraphicsBeginImageContext(size)
+            image.draw(in: CGRect(origin: .zero, size: size))
+            finalImage = UIGraphicsGetImageFromCurrentImageContext() ?? image
+            UIGraphicsEndImageContext()
+        }
+        return finalImage
         #elseif os(macOS)
         let finalImage = NSImage(size: size)
         finalImage.lockFocus()
