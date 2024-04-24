@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -51,7 +51,7 @@
 /* Begin PBXFileReference section */
 		D45C42EC24A3C1970040FE37 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		D45C42EE24A3C1B80040FE37 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		D48C538524A269F400D7A3DD /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D48C538524A269F400D7A3DD /* Example_macOS-SPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example_macOS-SPM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48C538824A269F400D7A3DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D48C538A24A269F400D7A3DD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D48C538C24A269F500D7A3DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		D48C538624A269F400D7A3DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D48C538524A269F400D7A3DD /* Example.app */,
+				D48C538524A269F400D7A3DD /* Example_macOS-SPM.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,10 +245,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D48C538424A269F400D7A3DD /* Example */ = {
+		D48C538424A269F400D7A3DD /* Example_macOS-SPM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D48C539824A269F500D7A3DD /* Build configuration list for PBXNativeTarget "Example" */;
+			buildConfigurationList = D48C539824A269F500D7A3DD /* Build configuration list for PBXNativeTarget "Example_macOS-SPM" */;
 			buildPhases = (
+				D4E30B4D2BD7044F00BB7AC4 /* SwiftLint */,
 				D48C538124A269F400D7A3DD /* Sources */,
 				D48C538224A269F400D7A3DD /* Frameworks */,
 				D48C538324A269F400D7A3DD /* Resources */,
@@ -257,12 +258,12 @@
 			);
 			dependencies = (
 			);
-			name = Example;
+			name = "Example_macOS-SPM";
 			packageProductDependencies = (
 				D48C53DB24A26E5400D7A3DD /* TPPDF */,
 			);
 			productName = Example;
-			productReference = D48C538524A269F400D7A3DD /* Example.app */;
+			productReference = D48C538524A269F400D7A3DD /* Example_macOS-SPM.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -271,8 +272,9 @@
 		D48C537D24A269F400D7A3DD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = "techprimate GmbH";
 				TargetAttributes = {
 					D48C538424A269F400D7A3DD = {
@@ -280,7 +282,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D48C538024A269F400D7A3DD /* Build configuration list for PBXProject "Example" */;
+			buildConfigurationList = D48C538024A269F400D7A3DD /* Build configuration list for PBXProject "Example_macOS-SPM" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -293,7 +295,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D48C538424A269F400D7A3DD /* Example */,
+				D48C538424A269F400D7A3DD /* Example_macOS-SPM */,
 			);
 		};
 /* End PBXProject section */
@@ -319,6 +321,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D4E30B4D2BD7044F00BB7AC4 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nprintenv \nif which swiftlint > /dev/null; then\n  swiftlint --config \"$SRCROOT/../.swiftlint.yml\" --fix && swiftlint --config \"$SRCROOT/../.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D48C538124A269F400D7A3DD /* Sources */ = {
@@ -402,6 +425,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -463,6 +487,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -491,10 +516,12 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Example/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -516,10 +543,12 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Example/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -536,7 +565,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D48C538024A269F400D7A3DD /* Build configuration list for PBXProject "Example" */ = {
+		D48C538024A269F400D7A3DD /* Build configuration list for PBXProject "Example_macOS-SPM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D48C539624A269F500D7A3DD /* Debug */,
@@ -545,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D48C539824A269F500D7A3DD /* Build configuration list for PBXNativeTarget "Example" */ = {
+		D48C539824A269F500D7A3DD /* Build configuration list for PBXNativeTarget "Example_macOS-SPM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D48C539924A269F500D7A3DD /* Debug */,

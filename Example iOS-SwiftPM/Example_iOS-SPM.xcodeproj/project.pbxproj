@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		D454C07D249A796A0001E4CC /* TPPDF in Frameworks */ = {isa = PBXBuildFile; productRef = D454C07C249A796A0001E4CC /* TPPDF */; };
 		D49855392461FB0B00D54270 /* ExampleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855182461FB0B00D54270 /* ExampleFactory.swift */; };
 		D498553A2461FB0B00D54270 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855192461FB0B00D54270 /* TimeUtils.swift */; };
 		D498553B2461FB0B00D54270 /* LoremIpsum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D498551A2461FB0B00D54270 /* LoremIpsum.swift */; };
@@ -40,19 +41,20 @@
 		D49855532461FB0B00D54270 /* Image-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D49855372461FB0B00D54270 /* Image-4.jpg */; };
 		D49855542461FB0B00D54270 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D49855382461FB0B00D54270 /* Icon.png */; };
 		D49855562461FB9A00D54270 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855552461FB9A00D54270 /* Examples.swift */; };
-		D49B06002658E7FD0084A0B7 /* DocumentSettingsExampleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B05FF2658E7FD0084A0B7 /* DocumentSettingsExampleFactory.swift */; };
+		D49B06082658E84C0084A0B7 /* DocumentSettingsExampleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B06072658E84C0084A0B7 /* DocumentSettingsExampleFactory.swift */; };
+		D4B7EB0725A1D345007D09C7 /* sample-large.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D4B7EB0525A1D32F007D09C7 /* sample-large.pdf */; };
 		D4D28D2323AA1A6D00028D5A /* ExamplesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D28D2223AA1A6D00028D5A /* ExamplesListViewController.swift */; };
-		D4FF9A28249A488A006FF2ED /* TPPDF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4FF9A27249A488A006FF2ED /* TPPDF.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		607FACD01AFB9204008FA782 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD01AFB9204008FA782 /* Example_iOS-SPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example_iOS-SPM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D454C07A249A79570001E4CC /* TPPDF */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TPPDF; path = ..; sourceTree = "<group>"; };
 		D49855182461FB0B00D54270 /* ExampleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleFactory.swift; sourceTree = "<group>"; };
 		D49855192461FB0B00D54270 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		D498551A2461FB0B00D54270 /* LoremIpsum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoremIpsum.swift; sourceTree = "<group>"; };
@@ -81,9 +83,9 @@
 		D49855372461FB0B00D54270 /* Image-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Image-4.jpg"; sourceTree = "<group>"; };
 		D49855382461FB0B00D54270 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D49855552461FB9A00D54270 /* Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
-		D49B05FF2658E7FD0084A0B7 /* DocumentSettingsExampleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentSettingsExampleFactory.swift; sourceTree = "<group>"; };
+		D49B06072658E84C0084A0B7 /* DocumentSettingsExampleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentSettingsExampleFactory.swift; sourceTree = "<group>"; };
+		D4B7EB0525A1D32F007D09C7 /* sample-large.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "sample-large.pdf"; sourceTree = "<group>"; };
 		D4D28D2223AA1A6D00028D5A /* ExamplesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesListViewController.swift; sourceTree = "<group>"; };
-		D4FF9A27249A488A006FF2ED /* TPPDF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TPPDF.framework; path = Carthage/Build/iOS/TPPDF.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4FF9A28249A488A006FF2ED /* TPPDF.framework in Frameworks */,
+				D454C07D249A796A0001E4CC /* TPPDF in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,16 +103,17 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				D4FF9A26249A487B006FF2ED /* Frameworks */,
+				D454C07A249A79570001E4CC /* TPPDF */,
 				607FACD21AFB9204008FA782 /* Example */,
 				607FACD11AFB9204008FA782 /* Products */,
+				D454C07B249A796A0001E4CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD01AFB9204008FA782 /* Example.app */,
+				607FACD01AFB9204008FA782 /* Example_iOS-SPM.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,8 +135,14 @@
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			path = Example;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
+		};
+		D454C07B249A796A0001E4CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
 		};
 		D49855162461FB0B00D54270 /* Shared */ = {
 			isa = PBXGroup;
@@ -159,24 +168,24 @@
 		D498551D2461FB0B00D54270 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				D49B05FF2658E7FD0084A0B7 /* DocumentSettingsExampleFactory.swift */,
-				D498551E2461FB0B00D54270 /* PaginationExampleFactory.swift */,
-				D498551F2461FB0B00D54270 /* TableOfContentsExampleFactory.swift */,
-				D49855202461FB0B00D54270 /* TableExampleFactory.swift */,
-				D49855212461FB0B00D54270 /* LineSeparatorExampleFactory.swift */,
-				D49855222461FB0B00D54270 /* TextStylesExampleFactory.swift */,
-				D49855232461FB0B00D54270 /* MultiSectionExampleFactory.swift */,
+				D49855552461FB9A00D54270 /* Examples.swift */,
+				D498552B2461FB0B00D54270 /* ExperimentFactory.swift */,
+				D49B06072658E84C0084A0B7 /* DocumentSettingsExampleFactory.swift */,
+				D49855262461FB0B00D54270 /* ExternalDocumentExampleFactory.swift */,
 				D49855242461FB0B00D54270 /* GroupExampleFactory.swift */,
 				D49855252461FB0B00D54270 /* HeaderFooterExampleFactory.swift */,
-				D49855262461FB0B00D54270 /* ExternalDocumentExampleFactory.swift */,
-				D49855272461FB0B00D54270 /* MultipleDocumentsExampleFactory.swift */,
-				D49855282461FB0B00D54270 /* ListExampleFactory.swift */,
-				D49855292461FB0B00D54270 /* TextExampleFactory.swift */,
-				D498552A2461FB0B00D54270 /* ObjectAttributesExampleFactory.swift */,
-				D498552B2461FB0B00D54270 /* ExperimentFactory.swift */,
 				D498552C2461FB0B00D54270 /* ImageExampleFactory.swift */,
+				D49855212461FB0B00D54270 /* LineSeparatorExampleFactory.swift */,
+				D49855282461FB0B00D54270 /* ListExampleFactory.swift */,
 				D498552D2461FB0B00D54270 /* MetadataExampleFactory.swift */,
-				D49855552461FB9A00D54270 /* Examples.swift */,
+				D49855272461FB0B00D54270 /* MultipleDocumentsExampleFactory.swift */,
+				D49855232461FB0B00D54270 /* MultiSectionExampleFactory.swift */,
+				D498552A2461FB0B00D54270 /* ObjectAttributesExampleFactory.swift */,
+				D498551E2461FB0B00D54270 /* PaginationExampleFactory.swift */,
+				D49855202461FB0B00D54270 /* TableExampleFactory.swift */,
+				D498551F2461FB0B00D54270 /* TableOfContentsExampleFactory.swift */,
+				D49855292461FB0B00D54270 /* TextExampleFactory.swift */,
+				D49855222461FB0B00D54270 /* TextStylesExampleFactory.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -193,6 +202,7 @@
 		D498552F2461FB0B00D54270 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
+				D4B7EB0525A1D32F007D09C7 /* sample-large.pdf */,
 				D49855302461FB0B00D54270 /* sample.pdf */,
 			);
 			path = Documents;
@@ -234,36 +244,28 @@
 			path = "../../Shared iOS/UI";
 			sourceTree = "<group>";
 		};
-		D4FF9A26249A487B006FF2ED /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D4FF9A27249A488A006FF2ED /* TPPDF.framework */,
-			);
-			name = Frameworks;
-			path = Example;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		607FACCF1AFB9204008FA782 /* Example */ = {
+		607FACCF1AFB9204008FA782 /* Example_iOS-SPM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Example" */;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Example_iOS-SPM" */;
 			buildPhases = (
 				607FACCC1AFB9204008FA782 /* Sources */,
+				D4E6F9A21FA732720049890F /* Swift Lint */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				D4FF9A2A249A489C006FF2ED /* Carthage */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Example;
+			name = "Example_iOS-SPM";
 			packageProductDependencies = (
+				D454C07C249A796A0001E4CC /* TPPDF */,
 			);
 			productName = TPPDF;
-			productReference = 607FACD01AFB9204008FA782 /* Example.app */;
+			productReference = 607FACD01AFB9204008FA782 /* Example_iOS-SPM.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -283,7 +285,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Example" */;
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Example_iOS-SPM" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -298,7 +300,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				607FACCF1AFB9204008FA782 /* Example */,
+				607FACCF1AFB9204008FA782 /* Example_iOS-SPM */,
 			);
 		};
 /* End PBXProject section */
@@ -314,6 +316,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				D4B7EB0725A1D345007D09C7 /* sample-large.pdf in Resources */,
 				D49855512461FB0B00D54270 /* Image-3.jpg in Resources */,
 				D498554F2461FB0B00D54270 /* PortraitImage.jpg in Resources */,
 				D49855542461FB0B00D54270 /* Icon.png in Resources */,
@@ -325,25 +328,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D4FF9A2A249A489C006FF2ED /* Carthage */ = {
+		D4E6F9A21FA732720049890F /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/TPPDF.framework",
 			);
-			name = Carthage;
-			outputFileListPaths = (
-			);
+			name = "Swift Lint";
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TPPDF.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "if which swiftlint >/dev/null; then\n    if [-z \"$CI\"]; then\n        echo \"Skipping SwiftLint as running on CI...\"\n    else\n        cd ../\n        \"swiftlint\" --config .swiftlint.yml\n    fi\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -371,7 +368,7 @@
 				D49855392461FB0B00D54270 /* ExampleFactory.swift in Sources */,
 				D498554C2461FB0B00D54270 /* MetadataExampleFactory.swift in Sources */,
 				D49855412461FB0B00D54270 /* TextStylesExampleFactory.swift in Sources */,
-				D49B06002658E7FD0084A0B7 /* DocumentSettingsExampleFactory.swift in Sources */,
+				D49B06082658E84C0084A0B7 /* DocumentSettingsExampleFactory.swift in Sources */,
 				D49855472461FB0B00D54270 /* ListExampleFactory.swift in Sources */,
 				D498553D2461FB0B00D54270 /* PaginationExampleFactory.swift in Sources */,
 				D49855422461FB0B00D54270 /* MultiSectionExampleFactory.swift in Sources */,
@@ -502,7 +499,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -516,14 +514,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = Example/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techprimate.tppdf.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -540,14 +537,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = Example/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techprimate.tppdf.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -559,7 +555,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Example" */ = {
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Example_iOS-SPM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACED1AFB9204008FA782 /* Debug */,
@@ -568,7 +564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Example" */ = {
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Example_iOS-SPM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,
@@ -578,6 +574,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D454C07C249A796A0001E4CC /* TPPDF */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TPPDF;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
 }
