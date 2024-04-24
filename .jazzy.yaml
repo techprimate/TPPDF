@@ -5,4 +5,12 @@ root_url: https://techprimate.github.io/TPPDF/
 module: TPPDF
 output: docs
 theme: fullwidth
-xcodebuild_arguments: [-project, 'Example macOS/Example_macOS-SPM.xcodeproj', -scheme, 'Example macOS (SPM)']
+xcodebuild_arguments:
+  [
+    -workspace,
+    "Examples.xcworkspace",
+    -scheme,
+    "Example iOS (SPM)",
+    -sdk,
+    "iphonesimulator",
+  ]
