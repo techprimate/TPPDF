@@ -7,14 +7,13 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 import TPPDF
 
 class TextExampleFactory: ExampleFactory {
-
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
@@ -29,7 +28,7 @@ class TextExampleFactory: ExampleFactory {
         // Create and add a subtitle as an attributed string for more customization possibilities
         let title = NSMutableAttributedString(string: "Create PDF documents easily", attributes: [
             .font: Font.systemFont(ofSize: 18.0),
-            .foregroundColor: Color(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0)
+            .foregroundColor: Color(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0),
         ])
         document.add(.contentCenter, attributedText: title)
 
@@ -69,7 +68,7 @@ class TextExampleFactory: ExampleFactory {
 
         document.add(space: 300)
         document.add(text: "Test text here")
-        
+
         return [document]
     }
 }

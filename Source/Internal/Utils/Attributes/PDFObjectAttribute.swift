@@ -11,10 +11,8 @@ import Foundation
  List of attributes an object can obtain
  */
 public enum PDFObjectAttribute: Hashable {
-
     /**
      Adds a clickable link with a redirection to the given URL
      */
     case link(url: URL)
-
 }

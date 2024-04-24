@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class CGPoint_Math_Spec: QuickSpec {
-
     override func spec() {
         describe("CGPoint") {
-
             let point = CGPoint(x: 10, y: 20)
 
             it("can be added to a CGPoint") {
@@ -37,5 +35,4 @@ class CGPoint_Math_Spec: QuickSpec {
             }
         }
     }
-
 }

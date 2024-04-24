@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFLayoutHeights_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFLayoutHeights") {
-
             var heights: PDFLayoutHeights!
 
             beforeEach {
@@ -23,12 +21,11 @@ class PDFLayoutHeights_Spec: QuickSpec {
             }
 
             context("variables") {
-
                 it("has default values per header container") {
                     expect(heights.header) == [
                         PDFContainer.headerLeft: 0,
                         PDFContainer.headerCenter: 0,
-                        PDFContainer.headerRight: 0
+                        PDFContainer.headerRight: 0,
                     ]
                 }
 
@@ -36,7 +33,7 @@ class PDFLayoutHeights_Spec: QuickSpec {
                     expect(heights.footer) == [
                         PDFContainer.footerLeft: 0,
                         PDFContainer.footerCenter: 0,
-                        PDFContainer.footerRight: 0
+                        PDFContainer.footerRight: 0,
                     ]
                 }
 
@@ -50,7 +47,7 @@ class PDFLayoutHeights_Spec: QuickSpec {
                 heights.header = [
                     PDFContainer.headerLeft: 2,
                     PDFContainer.headerCenter: 3,
-                    PDFContainer.headerRight: max
+                    PDFContainer.headerRight: max,
                 ]
                 expect(heights.maxHeaderHeight()) == max
             }
@@ -69,12 +66,12 @@ class PDFLayoutHeights_Spec: QuickSpec {
                 heights.header = [
                     PDFContainer.headerLeft: 10,
                     PDFContainer.headerCenter: 20,
-                    PDFContainer.headerRight: 30
+                    PDFContainer.headerRight: 30,
                 ]
                 heights.footer = [
                     PDFContainer.footerLeft: 40,
                     PDFContainer.footerCenter: 50,
-                    PDFContainer.footerRight: 60
+                    PDFContainer.footerRight: 60,
                 ]
                 heights.content = 70
 
@@ -86,7 +83,6 @@ class PDFLayoutHeights_Spec: QuickSpec {
 
                 heights.add(10, to: .headerRight)
                 expect(heights.header[PDFContainer.headerRight]) == 40
-
 
                 heights.add(10, to: .footerLeft)
                 expect(heights.footer[PDFContainer.footerLeft]) == 50
@@ -119,5 +115,4 @@ class PDFLayoutHeights_Spec: QuickSpec {
             }
         }
     }
-
 }

@@ -51,7 +51,7 @@
 --operatorfunc spaced
 --organizetypes actor,class,enum,struct
 --patternlet hoist
---ranges spaced
+--ranges no-space
 --redundanttype infer-locals-only
 --self init-only
 --selfrequired 
@@ -81,5 +81,5 @@
 --wraptypealiases preserve
 --xcodeindentation enabled
 --yodaswap always
---disable blankLineAfterImports,blankLinesBetweenChainedFunctions,redundantExtensionACL,wrapMultilineStatementBraces
+--disable blankLineAfterImports,blankLinesBetweenChainedFunctions,wrapMultilineStatementBraces
 --enable isEmpty,markTypes

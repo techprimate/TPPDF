@@ -6,37 +6,36 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
  Contains all relevant layout informations of a pdf document
  */
-internal class PDFLayout: CustomStringConvertible {
+class PDFLayout: CustomStringConvertible {
+    /**
+     TODO: documentation
+     */
+    var heights = PDFLayoutHeights()
 
     /**
      TODO: documentation
      */
-    internal var heights = PDFLayoutHeights()
+    var indentation = PDFLayoutIndentations()
 
     /**
      TODO: documentation
      */
-    internal var indentation = PDFLayoutIndentations()
-
-    /**
-     TODO: documentation
-     */
-    internal var margin: EdgeInsets = .zero
+    var margin: EdgeInsets = .zero
 
     // MARK: - INTERNAL FUNCS
 
     /**
      TODO: documentation
      */
-    internal func getContentOffset(in container: PDFContainer) -> CGFloat {
+    func getContentOffset(in container: PDFContainer) -> CGFloat {
         if container.isHeader {
             return heights.header[container]!
         } else if container.isFooter {
@@ -48,7 +47,7 @@ internal class PDFLayout: CustomStringConvertible {
     /**
      TODO: documentation
      */
-    internal func setContentOffset(in container: PDFContainer, to value: CGFloat) {
+    func setContentOffset(in container: PDFContainer, to value: CGFloat) {
         if container.isHeader {
             heights.header[container] = value
         } else if container.isFooter {
@@ -61,7 +60,7 @@ internal class PDFLayout: CustomStringConvertible {
     /**
      TODO: documentation
      */
-    internal func reset() {
+    func reset() {
         heights = PDFLayoutHeights()
         indentation = PDFLayoutIndentations()
         margin = .zero

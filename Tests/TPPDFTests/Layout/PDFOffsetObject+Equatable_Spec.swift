@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFOffsetObject_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFOffsetObject") {
-
             context("Equatable") {
-
                 let object = PDFOffsetObject(offset: 10)
 
                 it("is equal") {
@@ -31,5 +28,4 @@ class PDFOffsetObject_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

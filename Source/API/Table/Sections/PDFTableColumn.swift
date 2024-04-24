@@ -156,7 +156,7 @@ extension PDFTableColumn: PDFTableMergable {
      * - Parameter cell: Cell to use after merge, may be nil
      */
     public func merge(with cell: PDFTableCell? = nil) {
-        for row in 0 ..< table.size.rows {
+        for row in 0..<table.size.rows {
             table.cells[row][position] = cell ?? table.cells[0][position]
         }
     }

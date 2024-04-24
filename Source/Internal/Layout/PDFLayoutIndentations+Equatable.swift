@@ -9,7 +9,6 @@
  TODO: documentation
  */
 extension PDFLayoutIndentations: Equatable {
-
     /**
      TODO: documentation
      */

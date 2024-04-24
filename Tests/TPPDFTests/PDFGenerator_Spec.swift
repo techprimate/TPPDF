@@ -6,20 +6,17 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFGenerator_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFGenerator") {
-
             let document = PDFDocument(format: .a4)
             let generator = PDFGenerator(document: document)
 
             context("variables") {
-
                 it("has a document") {
                     expect(generator.document).toNot(beNil())
                 }
@@ -64,5 +61,4 @@ class PDFGenerator_Spec: QuickSpec {
             }
         }
     }
-
 }

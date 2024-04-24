@@ -7,17 +7,14 @@
 //
 
 import Foundation
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableContent_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableContent") {
-
             context("enum ContentType") {
-
                 it("has a value none") {
                     expect(PDFTableContent.ContentType.none).toNot(beNil())
                 }
@@ -36,7 +33,6 @@ class PDFTableContent_Spec: QuickSpec {
             }
 
             context("variables") {
-
                 it("has a default type") {
                     expect((try? PDFTableContent(content: nil))?.type) == PDFTableContent.ContentType.none
                 }
@@ -49,14 +45,13 @@ class PDFTableContent_Spec: QuickSpec {
             }
 
             context("initializer") {
-
                 it("can be initialized with any") {
                     expect {
                         try PDFTableContent(content: 123)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect {
                         try PDFTableContent(content: ["EXAMPLE"])
-                        }.to(throwError())
+                    }.to(throwError())
                 }
 
                 it("can be initialized with type and optional content") {
@@ -68,7 +63,6 @@ class PDFTableContent_Spec: QuickSpec {
             }
 
             context("content") {
-
                 var content: PDFTableContent!
 
                 beforeEach {
@@ -78,7 +72,7 @@ class PDFTableContent_Spec: QuickSpec {
                 it("can set to nil") {
                     expect {
                         try content.setContent(content: nil)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(content.type).toEventually(equal(PDFTableContent.ContentType.none))
                     expect(content.content).toEventually(beNil())
                 }
@@ -88,7 +82,7 @@ class PDFTableContent_Spec: QuickSpec {
 
                     expect {
                         try content.setContent(content: "EXAMPLE")
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(content.type).toEventually(equal(PDFTableContent.ContentType.string))
                     expect(content.content as? String).toEventually(equal("EXAMPLE"))
                 }
@@ -98,7 +92,7 @@ class PDFTableContent_Spec: QuickSpec {
 
                     expect {
                         try content.setContent(content: value)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(content.type).toEventually(equal(PDFTableContent.ContentType.image))
                     expect(content.content as? Image).toEventually(equal(value))
                 }
@@ -108,17 +102,17 @@ class PDFTableContent_Spec: QuickSpec {
 
                     expect {
                         try content.setContent(content: value)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(content.type).toEventually(equal(PDFTableContent.ContentType.attributedString))
                     expect(content.content as? NSAttributedString).toEventually(equal(value))
                 }
 
                 it("can set to int") {
-                    let value = 123456
+                    let value = 123_456
 
                     expect {
                         try content.setContent(content: value)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(content.type).toEventually(equal(PDFTableContent.ContentType.string))
                     expect(content.content as? String).toEventually(equal("123456"))
                 }
@@ -128,7 +122,7 @@ class PDFTableContent_Spec: QuickSpec {
 
                     expect {
                         try content.setContent(content: value)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(content.type).toEventually(equal(PDFTableContent.ContentType.string))
                     expect(content.content as? String).toEventually(equal("123.456"))
                 }
@@ -138,7 +132,7 @@ class PDFTableContent_Spec: QuickSpec {
 
                     expect {
                         try content.setContent(content: value)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(content.type).toEventually(equal(PDFTableContent.ContentType.string))
                     expect(content.content as? String).toEventually(equal("123.456"))
                 }
@@ -148,12 +142,11 @@ class PDFTableContent_Spec: QuickSpec {
 
                     expect {
                         try content.setContent(content: value)
-                        }.to(throwError())
+                    }.to(throwError())
                 }
             }
 
             context("computed variables") {
-
                 var content: PDFTableContent!
 
                 beforeEach {
@@ -249,9 +242,7 @@ class PDFTableContent_Spec: QuickSpec {
             }
 
             context("extensions") {
-
                 context("String") {
-
                     it("can be converted to content") {
                         let value = "EXAMPLE"
                         let content = value.asTableContent
@@ -261,7 +252,6 @@ class PDFTableContent_Spec: QuickSpec {
                 }
 
                 context("NSAttributedString") {
-
                     it("can be converted to content") {
                         let attributedString = NSAttributedString(string: "EXAMPLE")
                         let content = attributedString.asTableContent
@@ -271,7 +261,6 @@ class PDFTableContent_Spec: QuickSpec {
                 }
 
                 context("Image") {
-
                     it("can be converted to content") {
                         let image = Image()
                         let content = image.asTableContent
@@ -282,5 +271,4 @@ class PDFTableContent_Spec: QuickSpec {
             }
         }
     }
-
 }

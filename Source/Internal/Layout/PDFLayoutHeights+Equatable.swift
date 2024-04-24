@@ -9,7 +9,6 @@
  TODO: documentation
  */
 extension PDFLayoutHeights: Equatable {
-
     /**
      TODO: documentation
      */

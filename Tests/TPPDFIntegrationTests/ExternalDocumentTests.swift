@@ -1,17 +1,15 @@
 import Foundation
-import Quick
 import Nimble
-@testable import TPPDF
 import PDFKit
+import Quick
+@testable import TPPDF
 
 @available(iOS 11.0, *)
 class ExternalDocumentTests: QuickSpec {
-
     override func spec() {
         describe("External Document") {
             context("only document") {
                 context("debug mode") {
-
                     // Test Case:
                     // Precondition:
                     //  - Document is empty
@@ -42,7 +40,6 @@ class ExternalDocumentTests: QuickSpec {
                 }
 
                 context("normal mode") {
-
                     // Test Case:
                     // Precondition:
                     //  - Document is empty
@@ -75,7 +72,6 @@ class ExternalDocumentTests: QuickSpec {
 
             context("content before document") {
                 context("debug mode") {
-
                     // Test Case:
                     // Precondition:
                     //  - Document contains content
@@ -107,7 +103,6 @@ class ExternalDocumentTests: QuickSpec {
                 }
 
                 context("normal mode") {
-
                     // Test Case:
                     // Precondition:
                     //  - Document contains content
@@ -141,7 +136,6 @@ class ExternalDocumentTests: QuickSpec {
 
             context("content after document") {
                 context("debug mode") {
-
                     // Test Case:
                     // Precondition:
                     //  - Document is empty before adding external document
@@ -174,7 +168,6 @@ class ExternalDocumentTests: QuickSpec {
                 }
 
                 context("normal mode") {
-
                     // Test Case:
                     // Precondition:
                     //  - Document is empty before adding external document
@@ -209,7 +202,6 @@ class ExternalDocumentTests: QuickSpec {
 
             context("document between content") {
                 context("debug mode") {
-
                     // Test Case:
                     // Precondition:
                     //  - Document has content before external documnet
@@ -244,7 +236,6 @@ class ExternalDocumentTests: QuickSpec {
                 }
 
                 context("normal mode") {
-
                     // Test Case:
                     // Precondition:
                     //  - Document has content before external documnet
@@ -281,7 +272,6 @@ class ExternalDocumentTests: QuickSpec {
 
             context("multiple external documents") {
                 context("debug mode") {
-
                     // Test Case:
                     // Precondition:
                     //  - Document contains 2 external documents
@@ -343,7 +333,6 @@ class ExternalDocumentTests: QuickSpec {
                 }
 
                 context("normal mode") {
-
                     // Test Case:
                     // Precondition:
                     //  - Document contains 5 external documents

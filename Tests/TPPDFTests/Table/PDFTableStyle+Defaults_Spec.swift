@@ -6,18 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableStyle_Defaults_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableStyle") {
-
             context("Defaults") {
-
                 it("has a simple style") {
                     let darkGray = Color(red: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
 
@@ -65,5 +61,4 @@ class PDFTableStyle_Defaults_Spec: QuickSpec {
             }
         }
     }
-
 }

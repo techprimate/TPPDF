@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFPagination_Closure_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFPagination") {
-
             context("Closure") {
-
                 it("should have a closure typealias") {
                     // TODO: complete this
 //                    let closure: PDFPaginationClosure = { (page: Int, total: Int) -> String in
@@ -26,5 +23,4 @@ class PDFPagination_Closure_Spec: QuickSpec {
             }
         }
     }
-
 }

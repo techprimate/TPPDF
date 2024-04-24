@@ -58,7 +58,7 @@ public class PDFTableSection {
         set {
             assert(newValue.count <= columnsRange.count, "Can not access more columns than available")
             for rowIdx in rowsRange {
-                for colIdx in 0 ..< newValue.count {
+                for colIdx in 0..<newValue.count {
                     cells[rowIdx][colIdx].content = newValue[colIdx]
                 }
             }
@@ -77,8 +77,8 @@ public class PDFTableSection {
         }
         set {
             assert(newValue.count <= columnsRange.count, "Can not access more columns than available")
-            for rowIdx in 0 ..< newValue.count {
-                for colIdx in 0 ..< cells[rowIdx].count {
+            for rowIdx in 0..<newValue.count {
+                for colIdx in 0..<cells[rowIdx].count {
                     cells[rowIdx][colIdx].content = newValue[rowIdx]
                 }
             }
@@ -139,7 +139,7 @@ public class PDFTableSection {
         set {
             assert(newValue.count <= columnsRange.count, "Can not access more columns than available")
             for row in cells {
-                for colIdx in 0 ..< newValue.count {
+                for colIdx in 0..<newValue.count {
                     row[colIdx].style = newValue[colIdx]
                 }
             }
@@ -158,8 +158,8 @@ public class PDFTableSection {
         }
         set {
             assert(newValue.count <= columnsRange.count, "Can not access more columns than available")
-            for rowIdx in 0 ..< newValue.count {
-                for colIdx in 0 ..< cells[rowIdx].count {
+            for rowIdx in 0..<newValue.count {
+                for colIdx in 0..<cells[rowIdx].count {
                     cells[rowIdx][colIdx].style = newValue[rowIdx]
                 }
             }
@@ -220,7 +220,7 @@ public class PDFTableSection {
         set {
             assert(newValue.count <= columnsRange.count, "Can not access more columns than available")
             for row in cells {
-                for colIdx in 0 ..< newValue.count {
+                for colIdx in 0..<newValue.count {
                     row[colIdx].alignment = newValue[colIdx]
                 }
             }
@@ -239,8 +239,8 @@ public class PDFTableSection {
         }
         set {
             assert(newValue.count <= columnsRange.count, "Can not access more columns than available")
-            for rowIdx in 0 ..< newValue.count {
-                for colIdx in 0 ..< cells[rowIdx].count {
+            for rowIdx in 0..<newValue.count {
+                for colIdx in 0..<cells[rowIdx].count {
                     cells[rowIdx][colIdx].alignment = newValue[rowIdx]
                 }
             }

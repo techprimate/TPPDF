@@ -1,5 +1,5 @@
 //
-//  Int+RomanNumeral.swift
+//  Int+RomanNumerals.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 04/11/2017.
@@ -9,11 +9,10 @@
  Extends an integer with conversion to Roman Numerals
  */
 extension Int {
-
     /**
      Converts `self` into a string of roman numerals.
      */
-    internal var romanNumerals: String {
+    var romanNumerals: String {
         let romanValues = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
         let arabicValues = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
 

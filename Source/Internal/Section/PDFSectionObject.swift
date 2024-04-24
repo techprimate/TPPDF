@@ -6,38 +6,37 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
  TODO: Documentation
  */
-internal class PDFSectionObject: PDFRenderObject {
-
-    internal struct PDFSectionColumnMetadata {
-        internal let minX: CGFloat
-        internal let width: CGFloat
-        internal let backgroundColor: Color?
+class PDFSectionObject: PDFRenderObject {
+    struct PDFSectionColumnMetadata {
+        let minX: CGFloat
+        let width: CGFloat
+        let backgroundColor: Color?
     }
 
     /**
      TODO: Documentation
      */
-    internal var section: PDFSection
+    var section: PDFSection
 
     /**
      TODO: Documentation
      */
-    internal init(section: PDFSection) {
+    init(section: PDFSection) {
         self.section = section
     }
 
     /**
      TODO: Documentation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
         // Save state of layout
@@ -123,7 +122,7 @@ internal class PDFSectionObject: PDFRenderObject {
      ...
      ```
      */
-    internal func calulatePageBreakPositions(_ objectsPerColumn: [Int: [PDFLocatedRenderObject]], metadata: [PDFSectionColumnMetadata], container: PDFContainer) -> [PDFLocatedRenderObject] {
+    func calulatePageBreakPositions(_ objectsPerColumn: [Int: [PDFLocatedRenderObject]], metadata: [PDFSectionColumnMetadata], container: PDFContainer) -> [PDFLocatedRenderObject] {
         // stores how many objects are in one column at max
         let maxObjectsPerColumn = objectsPerColumn.reduce(0) { max($0, $1.value.count) }
 
@@ -159,13 +158,11 @@ internal class PDFSectionObject: PDFRenderObject {
                 }
             }
 
-            // swiftlint:disable multiline_function_chains
             let allFrames = resultPerColumn.values.reduce([], +)
                 .map(\.1.frame)
-                .filter({ $0.origin != .null })
+                .filter { $0.origin != .null }
             if let sectionMinY = allFrames.map({ $0.minY }).min(),
-                let sectionMaxY = allFrames.map({ $0.maxY }).max() {
-
+               let sectionMaxY = allFrames.map({ $0.maxY }).max() {
                 for (idx, columnObjects) in resultPerColumn {
                     let met = metadata[idx]
                     guard let backgroundColor = met.backgroundColor else {
@@ -221,7 +218,7 @@ internal class PDFSectionObject: PDFRenderObject {
     /**
      Creates a new `PDFSectionObject` with the same properties
      */
-    override internal var copy: PDFRenderObject {
-        PDFSectionObject(section: self.section.copy)
+    override var copy: PDFRenderObject {
+        PDFSectionObject(section: section.copy)
     }
 }

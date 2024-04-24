@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFGenerator_Layout_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFGenerator+Layout") {
-
             let document = PDFDocument(format: .a4)
             let generator = PDFGenerator(document: document)
 
@@ -33,5 +31,4 @@ class PDFGenerator_Layout_Spec: QuickSpec {
             }
         }
     }
-
 }

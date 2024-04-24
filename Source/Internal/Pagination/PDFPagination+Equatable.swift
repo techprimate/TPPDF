@@ -9,7 +9,6 @@
  TODO: Documentation
  */
 extension PDFPagination: Equatable {
-
     /**
      TODO: Documentation
      */

@@ -7,17 +7,14 @@
 //
 
 import Foundation
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFPaginationStyle_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFPagiationStyle") {
-
             context("default") {
-
                 let style = PDFPaginationStyle.default
 
                 it("can format a page number") {
@@ -26,7 +23,6 @@ class PDFPaginationStyle_Spec: QuickSpec {
             }
 
             context("roman") {
-
                 let style = PDFPaginationStyle.roman(template: "%@ / %@")
 
                 it("can format a page number") {
@@ -35,7 +31,6 @@ class PDFPaginationStyle_Spec: QuickSpec {
             }
 
             context("customNumberFormat") {
-
                 let formatter = NumberFormatter()
                 formatter.minimumFractionDigits = 2
 
@@ -48,9 +43,8 @@ class PDFPaginationStyle_Spec: QuickSpec {
             }
 
             context("customClosure") {
-
-                let style = PDFPaginationStyle.customClosure { (page, total) -> String in
-                    return String(format: "%i - %i", page * page, 2 * total)
+                let style = PDFPaginationStyle.customClosure { page, total -> String in
+                    String(format: "%i - %i", page * page, 2 * total)
                 }
 
                 it("can format a page number") {
@@ -59,7 +53,6 @@ class PDFPaginationStyle_Spec: QuickSpec {
             }
 
             context("equatable") {
-
                 it("can be equated when default") {
                     expect(PDFPaginationStyle.default == PDFPaginationStyle.default).to(beTrue())
                 }
@@ -78,30 +71,29 @@ class PDFPaginationStyle_Spec: QuickSpec {
                     expect(
                         PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter1) ==
                             PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter1)
-                        ).to(beTrue())
+                    ).to(beTrue())
                     expect(
                         PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter1) ==
                             PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter2)
-                        ).to(beFalse())
+                    ).to(beFalse())
                     expect(
                         PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter1) ==
                             PDFPaginationStyle.customNumberFormat(template: template2, formatter: numberFormatter1)
-                        ).to(beFalse())
+                    ).to(beFalse())
                     expect(
                         PDFPaginationStyle.customNumberFormat(template: template1, formatter: numberFormatter1) ==
                             PDFPaginationStyle.customNumberFormat(template: template2, formatter: numberFormatter2)
-                        ).to(beFalse())
+                    ).to(beFalse())
                 }
 
                 it("can be equated when default") {
-                    expect(PDFPaginationStyle.customClosure { (page, total) -> String in
-                        return String(format: "%@ %@", page, total)
-                    } == PDFPaginationStyle.customClosure { (page, total) -> String in
-                        return String(format: "%@ %@", page, total)
+                    expect(PDFPaginationStyle.customClosure { page, total -> String in
+                        String(format: "%@ %@", page, total)
+                    } == PDFPaginationStyle.customClosure { page, total -> String in
+                        String(format: "%@ %@", page, total)
                     }).to(beFalse())
                 }
             }
         }
     }
-
 }

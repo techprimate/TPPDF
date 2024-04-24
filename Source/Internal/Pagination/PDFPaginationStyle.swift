@@ -6,9 +6,9 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
@@ -17,7 +17,6 @@ import AppKit
   Enums using a template String as parameter will replace the first instance of `%@` with the index and the second one with the total amount of pages.
  */
 public enum PDFPaginationStyle {
-
     /**
      Default format, concats current page and total pages with a dash.
 
@@ -28,15 +27,15 @@ public enum PDFPaginationStyle {
     /**
       Returns pagination in roman numerals.
 
-      - parameter template: Template `String`, instances of `%@` will be replaced.
+      - Parameter template: Template `String`, instances of `%@` will be replaced.
      */
     case roman(template: String)
 
     /**
      Formats pagination numbers using the `formatter` and formatting the string using the given `template`.
 
-     - parameter template: Template string where `$@` is replaced
-     - parameter formatter: Number formatter
+     - Parameter template: Template string where `$@` is replaced
+     - Parameter formatter: Number formatter
      */
     case customNumberFormat(template: String, formatter: NumberFormatter)
 
@@ -48,26 +47,26 @@ public enum PDFPaginationStyle {
     /**
      Creates formatted pagination string.
 
-     - parameter page: `Int` - Current page
-     - parameter total: `Int` - Total amount of pages.
+     - Parameter page: `Int` - Current page
+     - Parameter total: `Int` - Total amount of pages.
 
-     - returns: Formatted `String`
+     - Returns: Formatted `String`
      */
     public func format(page: Int, total: Int) -> String {
         switch self {
         case .default:
             return String(format: "%@ - %@", String(page), String(total))
-        case .roman(let template):
+        case let .roman(template):
             let romanIndex = page.romanNumerals
             let romanMax = total.romanNumerals
 
             return String(format: template, romanIndex, romanMax)
-        case .customNumberFormat(let template, let formatter):
+        case let .customNumberFormat(template, formatter):
             let indexString = formatter.string(from: page as NSNumber)!
             let maxString = formatter.string(from: total as NSNumber)!
 
             return String(format: template, indexString, maxString)
-        case .customClosure(let closure):
+        case let .customClosure(closure):
             return closure(page, total)
         }
     }

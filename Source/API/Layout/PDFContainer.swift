@@ -96,7 +96,7 @@ public enum PDFContainer: CaseIterable {
         [
             .headerLeft, .headerCenter, .headerRight,
             .contentLeft, .contentCenter, .contentRight,
-            .footerLeft, .footerCenter, .footerRight
+            .footerLeft, .footerCenter, .footerRight,
         ]
     }
 }

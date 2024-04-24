@@ -6,59 +6,57 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-extension CGPoint {
-
+public extension CGPoint {
     /**
      Adds a vector to a point
 
-     - parameter lhs: CGPoint
-     - parameter rhs: CGVector
+     - Parameter lhs: CGPoint
+     - Parameter rhs: CGVector
 
-     - returns: Translated point
+     - Returns: Translated point
      */
-    public static func + (lhs: CGPoint, rhs: CGVector) -> CGPoint {
+    static func + (lhs: CGPoint, rhs: CGVector) -> CGPoint {
         CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
     }
 
     /**
      Adds two points together, by adding their components.
 
-     - parameter lhs: CGPoint
-     - parameter rhs: CGPoint
+     - Parameter lhs: CGPoint
+     - Parameter rhs: CGPoint
 
-     - returns: Added point
+     - Returns: Added point
      */
-    public static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+    static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
         CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }
 
     /**
      Subtracts two points from each other, by subtracting their components.
 
-     - parameter lhs: CGPoint
-     - parameter rhs: CGPoint
+     - Parameter lhs: CGPoint
+     - Parameter rhs: CGPoint
 
-     - returns: Subtracted point
+     - Returns: Subtracted point
      */
-    public static func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+    static func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
         CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
     }
 
     /**
      Adds a value to both components of a point
 
-     - parameter lhs: Point
-     - parameter value: Value
+     - Parameter lhs: Point
+     - Parameter value: Value
 
-     - returns: Moved point
+     - Returns: Moved point
      */
-    public static func + (lhs: CGPoint, value: CGFloat) -> CGPoint {
+    static func + (lhs: CGPoint, value: CGFloat) -> CGPoint {
         CGPoint(x: lhs.x + value, y: lhs.y + value)
     }
-
 }

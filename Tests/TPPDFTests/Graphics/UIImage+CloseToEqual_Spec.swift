@@ -6,19 +6,16 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class UIImage_CloseToEqual_Spec: QuickSpec {
-
     override func spec() {
         describe("UIImage") {
-
             let color = Color(red: 0.8, green: 0.7, blue: 0.6, alpha: 0.5)
 
             context("CloseToEqual") {
-
                 it("is close to equal if difference is smaller than delta") {
                     let otherColor = Color(red: 0.79999, green: 0.69999, blue: 0.59999, alpha: 0.49999)
                     expect(color.isClose(to: otherColor, decimals: 5)).to(beTrue())
@@ -49,5 +46,4 @@ class UIImage_CloseToEqual_Spec: QuickSpec {
             }
         }
     }
-
 }

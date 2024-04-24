@@ -59,9 +59,9 @@ public enum PDFError: LocalizedError {
             return "No text object has been set"
         case .textObjectNotCalculated:
             return "Text object is missing string, maybe not calculated?"
-        case .invalidHexLength(let length):
+        case let .invalidHexLength(length):
             return "Hex color string has invalid length: \(length)"
-        case .invalidHex(let hex):
+        case let .invalidHex(hex):
             return "Invalid hexdecimal string: " + hex
         case .copyingFailed:
             return "Failed to create a copy of an object"

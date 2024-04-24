@@ -9,7 +9,6 @@
  TODO: documentation
  */
 extension PDFIndentationObject: Equatable {
-
     /**
      TODO: documentation
      */

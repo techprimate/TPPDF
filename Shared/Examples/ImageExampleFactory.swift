@@ -7,14 +7,13 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 import TPPDF
 
 class ImageExampleFactory: ExampleFactory {
-
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
@@ -41,7 +40,6 @@ class ImageExampleFactory: ExampleFactory {
             .foregroundColor: Color(red: 0.171875, green: 0.2421875, blue: 0.3125, alpha: 1.0),
         ]
 
-        
         // Create an image collage with captions
 
         let images = [
@@ -54,7 +52,7 @@ class ImageExampleFactory: ExampleFactory {
                                                                              attributes: captionAttributes))),
                 PDFImage(image: Image(named: "Image-3.jpg")!,
                          caption: PDFAttributedText(text: NSAttributedString(string: "Fireworks",
-                                                                             attributes: captionAttributes)))
+                                                                             attributes: captionAttributes))),
             ],
             [
                 PDFImage(image: Image(named: "Image-3.jpg")!,
@@ -63,7 +61,7 @@ class ImageExampleFactory: ExampleFactory {
                 PDFImage(image: Image(named: "Image-4.jpg")!,
                          caption: PDFAttributedText(text: NSAttributedString(string: "Field",
                                                                              attributes: captionAttributes))),
-            ]
+            ],
         ]
 
         // As an example we can set a tag to the first image, so we can identify in our delegation methods

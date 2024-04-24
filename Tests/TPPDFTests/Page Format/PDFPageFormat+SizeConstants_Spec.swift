@@ -7,19 +7,15 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFPageFormat_SizeConstants_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFPageFormat") {
-
             context("SizeConstants") {
-
                 context("US Series") {
-
                     it("has a US Half Letter format") {
                         expect(PDFPageFormat.usHalfLetter.size) == CGSize(width: 396, height: 612)
                     }
@@ -42,7 +38,6 @@ class PDFPageFormat_SizeConstants_Spec: QuickSpec {
                 }
 
                 context("ANSI Series") {
-
                     it("has a ANSI A format") {
                         expect(PDFPageFormat.ansiA.size) == CGSize(width: 612, height: 792)
                     }
@@ -65,7 +60,6 @@ class PDFPageFormat_SizeConstants_Spec: QuickSpec {
                 }
 
                 context("A Series") {
-
                     it("has a A0 format") {
                         expect(PDFPageFormat.a0.size) == CGSize(width: 2384, height: 3370)
                     }
@@ -112,7 +106,6 @@ class PDFPageFormat_SizeConstants_Spec: QuickSpec {
                 }
 
                 context("B Series") {
-
                     it("has a B0 format") {
                         expect(PDFPageFormat.b0.size) == CGSize(width: 2834, height: 4008)
                     }
@@ -159,7 +152,6 @@ class PDFPageFormat_SizeConstants_Spec: QuickSpec {
                 }
 
                 context("C Series") {
-
                     it("has a C0 format") {
                         expect(PDFPageFormat.c0.size) == CGSize(width: 2599, height: 3677)
                     }
@@ -207,5 +199,4 @@ class PDFPageFormat_SizeConstants_Spec: QuickSpec {
             }
         }
     }
-
 }

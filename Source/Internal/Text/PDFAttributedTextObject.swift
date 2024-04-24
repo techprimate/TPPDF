@@ -6,78 +6,67 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
- Calculates and draws a text
+ Structure used to calculate and render text
+
+ ``PDFSimpleText`` and ``PDFAttributedText`` are both converted into this class, using an ``NSAttributedString`` as an abstraction to ``CoreText``
  */
-internal class PDFAttributedTextObject: PDFRenderObject {
+class PDFAttributedTextObject: PDFRenderObject {
+    /// Instance of attributed text object, holds instance of `NSAttributedString`
+    var attributedText: PDFAttributedText?
+
+    /// Instance of simple text object, will be converted into a attributed string
+    var simpleText: PDFSimpleText?
+
+    /// Attributed string which will be drawn
+    var attributedString: NSAttributedString!
 
     /**
-     Instance of attributed text object, holds instance of `NSAttributedString`
+     * Creates an instance wrapping the given `text`.
+     *
+     * - Parameter text: Subclass of `PDFText`
+     *
+     * - Precondition: `text` must be ``PDFSimpleText`` or ``PDFAttributedText``, otherwise a fatal exception is thrown
      */
-    internal var attributedText: PDFAttributedText?
-
-    /**
-     Instance of simple text object, will be converted into a attributed string
-     */
-    internal var simpleText: PDFSimpleText?
-
-    /**
-     Attributed string which will be drawn
-     */
-    internal var attributedString: NSAttributedString!
-
-    /**
-
-     If the given parameter `text` is neither a
-     instance of `PDFAttributedText` nor a `PDFSimpleText` a `fatalError()` will be thrown,
-     as there are no more subclasses of `PDFText` in the TPPDF framework.
-
-     - parameter text: Subclass of `PDFText`
-     */
-    internal convenience init<T: PDFText>(text: T) {
+    convenience init<T: PDFText>(text: T) {
         if let attributedText = text as? PDFAttributedText {
             self.init(attributedText: attributedText)
         } else if let simpleText = text as? PDFSimpleText {
             self.init(simpleText: simpleText)
         } else {
-            fatalError()
+            fatalError("PDFText subtype \(T.self) is not supported")
         }
     }
 
     /**
-     Initialize with attributed text.
-
-     - parameter attributedText: Object holding instance of `NSAttributedString`
+     * Initialize with attributed text.
+     *
+     * - Parameter attributedText: Object holding instance of `NSAttributedString`
      */
-    internal init(attributedText: PDFAttributedText) {
+    init(attributedText: PDFAttributedText) {
         self.attributedText = attributedText
     }
 
     /**
-     Initialize with simple text object.
-     Will be converted into a attributed string using the default values from the generator.
-
-     - parameter simpleText: Simple text object
+     * Initialize with simple text object.
+     * Will be converted into a attributed string using the default values from the generator.
+     *
+     * - Parameter simpleText: Simple text object
      */
-    internal init(simpleText: PDFSimpleText) {
+    init(simpleText: PDFSimpleText) {
         self.simpleText = simpleText
     }
 
     /**
-     Calculates the frame and the text which will be drawn.
-     Also returns one or multiple page breaks and text objects, if text does not fit on one page.
-
-     - parameter generator: Unused
-     - parameter container: Unused
-
-     - throws: None
+     * Calculates the frame and the text which will be drawn.
+     * Also returns one or multiple page breaks and text objects, if text does not fit on one page.
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
         // Generate attributed string if simple text, otherwise uses given attributedText
@@ -85,9 +74,11 @@ internal class PDFAttributedTextObject: PDFRenderObject {
 
         // Calculate the text frame and the text which is on this page
         // If it is not possible to draw the whole text on this page, a remainder text is returned
-        let (frame, renderString, remainder) = PDFCalculations.calculateText(generator: generator,
-                                                                             container: container,
-                                                                             text: attributedString)
+        let (frame, renderString, remainder) = PDFCalculations.calculateText(
+            generator: generator,
+            container: container,
+            text: attributedString
+        )
 
         // Set data to self, and add it to results
         attributedString = renderString
@@ -115,12 +106,12 @@ internal class PDFAttributedTextObject: PDFRenderObject {
     /**
      Draws the text in the calculated frame using the Core Text framework.
 
-     - parameter generator: Unused
-     - parameter container: Unused
+     - Parameter generator: Unused
+     - Parameter container: Unused
 
-     - throws: None
+     - Throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
+    override func draw(generator: PDFGenerator, container _: PDFContainer, in context: PDFContext) throws {
         if attributedString == nil {
             throw PDFError.textObjectNotCalculated
         }
@@ -157,13 +148,13 @@ internal class PDFAttributedTextObject: PDFRenderObject {
 
         // If debugging is enabled, draw a outline around the text
         if generator.debug {
-            PDFGraphics.drawRect(in: context, rect: self.frame,
+            PDFGraphics.drawRect(in: context, rect: frame,
                                  outline: .init(type: .dashed, color: .red, width: 1.0), fill: .clear)
         }
 
         let allRange = NSRange(location: 0, length: attributedString.length)
         var links: [(String, NSRange)] = []
-        attributedString.enumerateAttribute(.link, in: allRange) { (obj, range, _) in
+        attributedString.enumerateAttribute(.link, in: allRange) { obj, range, _ in
             if let url = obj as? String {
                 links.append((url, range))
             }
@@ -175,7 +166,7 @@ internal class PDFAttributedTextObject: PDFRenderObject {
 
     private func calculateLinkAttributes(with links: [(url: String, range: NSRange)],
                                          in frameRef: CTFrame,
-                                         in allRange: NSRange,
+                                         in _: NSRange,
                                          context: PDFContext,
                                          debug: Bool) {
         guard let lines = CTFrameGetLines(frameRef) as? [CTLine] else {
@@ -191,18 +182,18 @@ internal class PDFAttributedTextObject: PDFRenderObject {
             var lineOrigin = CGPoint.zero
             CTFrameGetLineOrigins(frameRef, CFRange(location: lines.count - i - 1, length: 1), &lineOrigin)
 
-            let lineBounds = CGRect(x: self.frame.origin.x,
-                                    y: self.frame.origin.y + lineOrigin.y,
+            let lineBounds = CGRect(x: frame.origin.x,
+                                    y: frame.origin.y + lineOrigin.y,
                                     width: typoBounds,
                                     height: ascent + descent + leading)
             lineMetrics.append((line: line, bounds: lineBounds, range: CTLineGetStringRange(line)))
         }
-        
+
         for link in links {
             guard let url = URL(string: link.url) else {
                 continue
             }
-            
+
             var found = false
             for metric in lineMetrics {
                 guard let intersection = NSRange(location: metric.range.location, length: metric.range.length).intersection(link.range) else {
@@ -212,17 +203,18 @@ internal class PDFAttributedTextObject: PDFRenderObject {
                         continue
                     }
                 }
-                
+
                 found = true
-                
+
                 let startOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location, nil)
                 let endOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location + intersection.length, nil)
 
                 let linkFrame = CGRect(
-                    x: self.frame.origin.x + startOffset,
+                    x: frame.origin.x + startOffset,
                     y: metric.bounds.origin.y,
                     width: endOffset - startOffset,
-                    height: metric.bounds.height)
+                    height: metric.bounds.height
+                )
                 attributes.append((attribute: .link(url: url), frame: linkFrame))
 
                 if debug {
@@ -240,25 +232,26 @@ internal class PDFAttributedTextObject: PDFRenderObject {
      If a simple text object is given, it will generate default string attributes.
      If a attributed text is given, it will return the attributed string instance
 
-     - parameter generator: Generator, which holds font and text color data
-     - parameter container: Container, where this text object is drawn
+     - Parameter generator: Generator, which holds font and text color data
+     - Parameter container: Container, where this text object is drawn
 
-     - throws: PDFError.textObjectIsNil, if neither `simpleText` nor `attributedText` is set
+     - Throws: PDFError.textObjectIsNil, if neither `simpleText` nor `attributedText` is set
 
-     - returns: `NSAttributedString`, either created from `PDFAttributedTextObject.simpleText` or
+     - Returns: `NSAttributedString`, either created from `PDFAttributedTextObject.simpleText` or
      from extracted from `PDFAttributedTextObject.attributedText`
      */
-    internal func generateAttributedText(generator: PDFGenerator, container: PDFContainer) throws -> NSAttributedString {
-        if let simple = self.simpleText {
+    func generateAttributedText(generator: PDFGenerator, container: PDFContainer) throws -> NSAttributedString {
+        if let simple = simpleText {
             let attributes = PDFAttributedTextObject.generateDefaultTextAttributes(
                 container: container,
                 fonts: &generator.fonts,
                 textColor: &generator.textColor,
                 spacing: simple.spacing,
-                style: simple.style)
+                style: simple.style
+            )
 
             return NSAttributedString(string: simple.text, attributes: attributes)
-        } else if let attributedText = self.attributedText {
+        } else if let attributedText = attributedText {
             return attributedText.text
         } else {
             throw PDFError.textObjectIsNil
@@ -268,19 +261,19 @@ internal class PDFAttributedTextObject: PDFRenderObject {
     /**
      Creates the default text attributes, depending on the given `container`
 
-     - parameter container: Container
-     - parameter fonts: Reference to fonts per container
-     - parameter textColor: Reference to text color per continaer
-     - parameter spacing: Line spacing
-     - parameter style: Optional style used to overrule generator settings
+     - Parameter container: Container
+     - Parameter fonts: Reference to fonts per container
+     - Parameter textColor: Reference to text color per continaer
+     - Parameter spacing: Line spacing
+     - Parameter style: Optional style used to overrule generator settings
 
-     - returns: Attributes dictionary, used for `NSAttributedString` creation
+     - Returns: Attributes dictionary, used for `NSAttributedString` creation
      */
-    internal static func generateDefaultTextAttributes(container: PDFContainer,
-                                                       fonts: inout [PDFContainer: Font],
-                                                       textColor: inout [PDFContainer: Color],
-                                                       spacing: CGFloat,
-                                                       style: PDFTextStyle?) -> [NSAttributedString.Key: NSObject] {
+    static func generateDefaultTextAttributes(container: PDFContainer,
+                                              fonts: inout [PDFContainer: Font],
+                                              textColor: inout [PDFContainer: Color],
+                                              spacing: CGFloat,
+                                              style: PDFTextStyle?) -> [NSAttributedString.Key: NSObject] {
         let paragraphStyle = NSMutableParagraphStyle()
         if container.isLeft {
             paragraphStyle.alignment = .left
@@ -294,14 +287,14 @@ internal class PDFAttributedTextObject: PDFRenderObject {
         return [
             NSAttributedString.Key.font: style?.font ?? fonts[container]!,
             NSAttributedString.Key.foregroundColor: style?.color ?? textColor[container]!,
-            NSAttributedString.Key.paragraphStyle: paragraphStyle
+            NSAttributedString.Key.paragraphStyle: paragraphStyle,
         ]
     }
 
     /**
      TODO: Documentation
      */
-    override internal var copy: PDFRenderObject {
-        PDFAttributedTextObject(text: (self.attributedText ?? self.simpleText)!)
+    override var copy: PDFRenderObject {
+        PDFAttributedTextObject(text: (attributedText ?? simpleText)!)
     }
 }

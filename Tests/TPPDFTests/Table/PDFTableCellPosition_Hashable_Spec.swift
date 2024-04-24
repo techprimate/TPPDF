@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableCellPosition_Hashable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableCellPosition") {
-
             context("Hashable") {
-
                 it("can create a hashvalue") {
                     let position1 = PDFTableCellPosition(row: 1, column: 2)
                     let position2 = PDFTableCellPosition(row: 4, column: 9)
@@ -26,5 +23,4 @@ class PDFTableCellPosition_Hashable_Spec: QuickSpec {
             }
         }
     }
-
 }

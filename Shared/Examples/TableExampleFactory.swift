@@ -7,15 +7,14 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 import TPPDF
 
 class TableExampleFactory: ExampleFactory {
-
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
@@ -25,23 +24,23 @@ class TableExampleFactory: ExampleFactory {
         // Tables can contain Strings, Numbers, Images or nil, in case you need an empty cell.
         // If you add a unknown content type, an assertion will be thrown and the rendering will stop.
         table.content = [
-            [nil, "Name",      "Image",                        "Description"],
-            [1,   "Waterfall", Image(named: "Image-1.jpg")!, "Water flowing down stones."],
-            [2,   "Forrest",   Image(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
-            [3,   "Fireworks", Image(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
-            [4,   "Fields",    Image(named: "Image-4.jpg")!, "Crops growing big and providing food."],
-            [1,   "Waterfall", Image(named: "Image-1.jpg")!, "Water flowing down stones."],
-            [2,   "Forrest",   Image(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
-            [3,   "Fireworks", Image(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
-            [4,   "Fields",    Image(named: "Image-4.jpg")!, "Crops growing big and providing food."],
-            [nil, nil,         nil,                            "Many beautiful places"]
+            [nil, "Name", "Image", "Description"],
+            [1, "Waterfall", Image(named: "Image-1.jpg")!, "Water flowing down stones."],
+            [2, "Forrest", Image(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
+            [3, "Fireworks", Image(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
+            [4, "Fields", Image(named: "Image-4.jpg")!, "Crops growing big and providing food."],
+            [1, "Waterfall", Image(named: "Image-1.jpg")!, "Water flowing down stones."],
+            [2, "Forrest", Image(named: "Image-2.jpg")!, "Sunlight shining through the leafs."],
+            [3, "Fireworks", Image(named: "Image-3.jpg")!, "Fireworks exploding into 100.000 stars"],
+            [4, "Fields", Image(named: "Image-4.jpg")!, "Crops growing big and providing food."],
+            [nil, nil, nil, "Many beautiful places"],
         ]
         table.rows.allRowsAlignment = [.center, .left, .center, .right]
 
         // The widths of each column is proportional to the total width, set by a value between 0.0 and 1.0, representing percentage.
 
         table.widths = [
-            0.1, 0.25, 0.35, 0.3
+            0.1, 0.25, 0.35, 0.3,
         ]
 
         // To speed up table styling, use a default and change it
@@ -52,9 +51,9 @@ class TableExampleFactory: ExampleFactory {
         style.footerStyle = PDFTableCellStyle(
             colors: (
                 fill: Color(red: 0.171875,
-                              green: 0.2421875,
-                              blue: 0.3125,
-                              alpha: 1.0),
+                            green: 0.2421875,
+                            blue: 0.3125,
+                            alpha: 1.0),
                 text: Color.white
             ),
             borders: PDFTableCellBorders(left: PDFLineStyle(type: .full),
@@ -73,7 +72,7 @@ class TableExampleFactory: ExampleFactory {
         table.style = style
 
         // Style each cell individually
-        table[1,1].style = PDFTableCellStyle(colors: (fill: Color.yellow, text: Color.black))
+        table[1, 1].style = PDFTableCellStyle(colors: (fill: Color.yellow, text: Color.black))
 
         // Set table padding and margin
         table.padding = 5.0
@@ -103,15 +102,15 @@ class TableExampleFactory: ExampleFactory {
 
         for i in stride(from: 3, to: 48, by: 3) {
             table[rows: i...(i + 2), column: 1].merge(with: PDFTableCell(content: Array(repeating: "\(i),1", count: 3).joined(separator: "\n").asTableContent,
-                                                           alignment: .center))
+                                                                         alignment: .center))
         }
         for i in stride(from: 4, to: 47, by: 3) {
             table[rows: i...(i + 2), column: 2].merge(with: PDFTableCell(content: Array(repeating: "\(i),2", count: 3).joined(separator: "\n").asTableContent,
-                                                           alignment: .center))
+                                                                         alignment: .center))
         }
         for i in stride(from: 5, to: 48, by: 3) {
             table[rows: i...(i + 2), column: 3].merge(with: PDFTableCell(content: Array(repeating: "\(i),3", count: 3).joined(separator: "\n").asTableContent,
-                                                           alignment: .center))
+                                                                         alignment: .center))
         }
 
         table[rows: 0..<2, column: 2].merge()

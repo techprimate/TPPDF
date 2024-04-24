@@ -6,15 +6,13 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFImageSizeFit_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFImageSizeFit") {
-
             it("should have enum values") {
                 expect(PDFImageSizeFit.width).toNot(beNil())
                 expect(PDFImageSizeFit.height).toNot(beNil())
@@ -22,5 +20,4 @@ class PDFImageSizeFit_Spec: QuickSpec {
             }
         }
     }
-
 }

@@ -6,59 +6,58 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
  TODO: Documentation
  */
-internal class PDFColumnWrapSectionObject: PDFRenderObject {
+class PDFColumnWrapSectionObject: PDFRenderObject {
+    /**
+     TODO: Documentation
+     */
+    var columns: Int
 
     /**
      TODO: Documentation
      */
-    internal var columns: Int
+    var widths: [CGFloat]
 
     /**
      TODO: Documentation
      */
-    internal var widths: [CGFloat]
+    var spacings: [CGFloat]
 
     /**
      TODO: Documentation
      */
-    internal var spacings: [CGFloat]
+    var isDisable: Bool
 
     /**
      TODO: Documentation
      */
-    internal var isDisable: Bool
+    var addPageBreak: Bool
 
     /**
      TODO: Documentation
      */
-    internal var addPageBreak: Bool
-
-    /**
-     TODO: Documentation
-     */
-    internal convenience init(columns: Int, widths: [CGFloat], spacings: [CGFloat]) {
+    convenience init(columns: Int, widths: [CGFloat], spacings: [CGFloat]) {
         self.init(columns: columns, widths: widths, spacings: spacings, isDisable: false, addPageBreak: false)
     }
 
     /**
      TODO: Documentation
      */
-    internal convenience init(isDisable: Bool, addPageBreak: Bool) {
+    convenience init(isDisable: Bool, addPageBreak: Bool) {
         self.init(columns: 0, widths: [], spacings: [], isDisable: isDisable, addPageBreak: addPageBreak)
     }
 
     /**
      TODO: Documentation
      */
-    internal init(columns: Int, widths: [CGFloat], spacings: [CGFloat], isDisable: Bool, addPageBreak: Bool) {
+    init(columns: Int, widths: [CGFloat], spacings: [CGFloat], isDisable: Bool, addPageBreak: Bool) {
         self.columns = columns
         self.widths = widths
         self.spacings = spacings
@@ -69,13 +68,13 @@ internal class PDFColumnWrapSectionObject: PDFRenderObject {
     /**
      Modifies the layout of the given `generator`.
 
-     - parameter generator: Generator which uses this object
-     - parameter container: Container where this object is located
+     - Parameter generator: Generator which uses this object
+     - Parameter container: Container where this object is located
 
-     - returns: Self
+     - Returns: Self
      */
     @discardableResult
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.columnState.set(currentColumn: 0, for: container)
         generator.columnState.set(inset: (0, 0), for: container)
 
@@ -110,11 +109,11 @@ internal class PDFColumnWrapSectionObject: PDFRenderObject {
     /**
      TODO: Documentation
      */
-    override internal var copy: PDFRenderObject {
-        PDFColumnWrapSectionObject(columns: self.columns,
-                                   widths: self.widths,
-                                   spacings: self.spacings,
-                                   isDisable: self.isDisable,
-                                   addPageBreak: self.addPageBreak)
+    override var copy: PDFRenderObject {
+        PDFColumnWrapSectionObject(columns: columns,
+                                   widths: widths,
+                                   spacings: spacings,
+                                   isDisable: isDisable,
+                                   addPageBreak: addPageBreak)
     }
 }

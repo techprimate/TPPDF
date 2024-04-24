@@ -6,15 +6,13 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFContainer_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFContainer") {
-
             it("should have enum values") {
                 expect(PDFContainer.none).toNot(beNil())
 
@@ -104,5 +102,4 @@ class PDFContainer_Spec: QuickSpec {
             }
         }
     }
-
 }

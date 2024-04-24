@@ -7,13 +7,12 @@
 
 import Foundation
 
-internal enum PDFTableMergeUtil {
-
-    internal static func calculateMerged(table: PDFTable) -> [[PDFTableNode]] {
-        guard table.size.rows > 0 && table.size.columns > 0 else {
+enum PDFTableMergeUtil {
+    static func calculateMerged(table: PDFTable) -> [[PDFTableNode]] {
+        guard table.size.rows > 0, table.size.columns > 0 else {
             return []
         }
-        var found = table.cells.map({ $0.map({ _ in false }) })
+        var found = table.cells.map { $0.map { _ in false } }
 
         var rows: [[PDFTableNode]] = []
         // Iterate all rows

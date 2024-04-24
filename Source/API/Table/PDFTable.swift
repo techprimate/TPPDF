@@ -68,8 +68,8 @@ public class PDFTable: PDFDocumentObject {
         assert(rows >= 0, "Can't create a table with negative row count")
         assert(columns >= 0, "Can't create a table with negative column count")
         self.size = (rows: rows, columns: columns)
-        self.cells = (0 ..< rows).map { _ in (0 ..< columns).map { _ in PDFTableCell() } }
-        self.widths = (0 ..< columns).map { _ in 1.0 / CGFloat(columns) }
+        self.cells = (0..<rows).map { _ in (0..<columns).map { _ in PDFTableCell() } }
+        self.widths = (0..<columns).map { _ in 1.0 / CGFloat(columns) }
     }
 
     /// nodoc
@@ -86,12 +86,12 @@ public class PDFTable: PDFDocumentObject {
 
     /// Shorthand accessor to the rows stored in ``PDFTable/cells``
     public var rows: PDFTableRows {
-        self[rows: 0 ..< size.rows]
+        self[rows: 0..<size.rows]
     }
 
     /// Shorthand accessor to the columns stored in ``PDFTable/cells``
     public var columns: PDFTableColumns {
-        self[columns: 0 ..< size.columns]
+        self[columns: 0..<size.columns]
     }
 
     /// Shorthand accessor to the cell values of this table
@@ -129,7 +129,7 @@ public class PDFTable: PDFDocumentObject {
         guard cells.count == otherTable.cells.count else {
             return false
         }
-        for i in 0 ..< cells.count where cells[i] != otherTable.cells[i] {
+        for i in 0..<cells.count where cells[i] != otherTable.cells[i] {
             return false
         }
         guard widths == otherTable.widths else {

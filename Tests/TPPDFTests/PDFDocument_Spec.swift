@@ -6,16 +6,13 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
-class PDFDocument_Spec : QuickSpec {
-
+class PDFDocument_Spec: QuickSpec {
     override func spec() {
-
         describe("PDFDocument") {
-
             let layout = PDFPageLayout()
             var document: PDFDocument!
 
@@ -33,7 +30,6 @@ class PDFDocument_Spec : QuickSpec {
             }
 
             context("variables") {
-
                 it("should have layout") {
                     expect(document.layout).toNot(beNil())
                 }
@@ -52,5 +48,4 @@ class PDFDocument_Spec : QuickSpec {
             }
         }
     }
-
 }

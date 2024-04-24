@@ -9,7 +9,6 @@
 import Foundation
 
 class TimeUtils {
-
     /**
      Used for debugging execution time.
      Converts time interval in seconds to String.

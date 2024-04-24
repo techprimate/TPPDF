@@ -329,7 +329,7 @@ public extension PDFGenerator {
             layout.margin.top + layout.heights.maxHeaderHeight(),
             layout.margin.top + layout.heights.maxHeaderHeight() + document.layout.space.header,
             document.layout.height - layout.margin.bottom - layout.heights.maxFooterHeight(),
-            document.layout.height - layout.margin.bottom - layout.heights.maxFooterHeight() - document.layout.space.footer
+            document.layout.height - layout.margin.bottom - layout.heights.maxFooterHeight() - document.layout.space.footer,
         ]
 
         var lines: [PDFLineObject] = []

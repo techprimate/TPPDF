@@ -1,17 +1,13 @@
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFPageFormat_NameConstants_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFPagename") {
-
             context("NameConstants") {
-
                 context("US Series") {
-
                     it("has a US Half Letter name") {
                         expect(PDFPageFormat.usHalfLetter.name) == "US Half Letter"
                     }
@@ -34,7 +30,6 @@ class PDFPageFormat_NameConstants_Spec: QuickSpec {
                 }
 
                 context("ANSI Series") {
-
                     it("has a ANSI A name") {
                         expect(PDFPageFormat.ansiA.name) == "ANSI A"
                     }
@@ -57,7 +52,6 @@ class PDFPageFormat_NameConstants_Spec: QuickSpec {
                 }
 
                 context("A Series") {
-
                     it("has a A0 name") {
                         expect(PDFPageFormat.a0.name) == "A0"
                     }
@@ -104,7 +98,6 @@ class PDFPageFormat_NameConstants_Spec: QuickSpec {
                 }
 
                 context("B Series") {
-
                     it("has a B0 name") {
                         expect(PDFPageFormat.b0.name) == "B0"
                     }
@@ -151,7 +144,6 @@ class PDFPageFormat_NameConstants_Spec: QuickSpec {
                 }
 
                 context("C Series") {
-
                     it("has a C0 name") {
                         expect(PDFPageFormat.c0.name) == "C0"
                     }
@@ -199,5 +191,4 @@ class PDFPageFormat_NameConstants_Spec: QuickSpec {
             }
         }
     }
-
 }

@@ -5,12 +5,11 @@
 //  Created by Philip Niedertscheider on 23.09.20.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTable_RowSubscriptsSpec: QuickSpec {
-
     override func spec() {
         describe("PDFTable") {
             describe("Row Subscripts") {

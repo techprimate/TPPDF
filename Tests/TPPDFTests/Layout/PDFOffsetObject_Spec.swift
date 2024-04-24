@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFOffsetObject_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFOffsetObject") {
-
             var object: PDFOffsetObject!
             let offset: CGFloat = 20.0
 
@@ -24,14 +22,12 @@ class PDFOffsetObject_Spec: QuickSpec {
             }
 
             describe("variables") {
-
                 it("has an offset value") {
                     expect(object.offset) == offset
                 }
             }
 
             describe("calculation") {
-
                 let document = PDFDocument(format: .a4)
                 var generator: PDFGenerator!
 
@@ -46,7 +42,7 @@ class PDFOffsetObject_Spec: QuickSpec {
                 it("can set offset") {
                     expect {
                         result = try object.calculate(generator: generator, container: container)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(generator.layout.getContentOffset(in: container)).toEventually(equal(object.offset))
 
                     expect(result).toEventually(haveCount(1))
@@ -56,5 +52,4 @@ class PDFOffsetObject_Spec: QuickSpec {
             }
         }
     }
-
 }

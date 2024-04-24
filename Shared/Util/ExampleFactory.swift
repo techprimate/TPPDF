@@ -9,7 +9,5 @@
 import TPPDF
 
 protocol ExampleFactory {
-
     func generateDocument() -> [PDFDocument]
-
 }

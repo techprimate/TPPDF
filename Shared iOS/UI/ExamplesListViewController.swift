@@ -10,12 +10,11 @@ import Foundation
 import UIKit
 
 class ExamplesListViewController: UITableViewController {
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return Examples.factories.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Examples.factories[section].examples.count
     }
 
@@ -30,7 +29,7 @@ class ExamplesListViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         return Examples.factories[section].header
     }
 
@@ -40,7 +39,7 @@ class ExamplesListViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "show-example", let dest = segue.destination as? ViewController, let index = sender as? IndexPath  {
+        if segue.identifier == "show-example", let dest = segue.destination as? ViewController, let index = sender as? IndexPath {
             let section = Examples.factories[index.section].examples
             let item = section[index.row]
 

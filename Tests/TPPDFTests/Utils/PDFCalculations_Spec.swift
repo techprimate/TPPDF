@@ -8,17 +8,14 @@
 
 import CoreGraphics
 import Foundation
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
-class PDFCalculations_Spec : QuickSpec {
-
+class PDFCalculations_Spec: QuickSpec {
     override func spec() {
         describe("PDFCalculations") {
-
             context("calculate text frame and remainder") {
-
                 it("should return correct frame and remainder") {
                     let attributedString = NSAttributedString(string: "12345\n12345\n12345\n12345\n12345")
 
@@ -57,5 +54,4 @@ class PDFCalculations_Spec : QuickSpec {
             }
         }
     }
-
 }

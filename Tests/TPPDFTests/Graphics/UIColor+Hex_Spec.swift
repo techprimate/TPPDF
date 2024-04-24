@@ -1,20 +1,18 @@
 //
-//  Color+Hex_Spec.swift
+//  UIColor+Hex_Spec.swift
 //  TPPDF_Tests
 //
 //  Created by Philip Niedertscheider on 09/11/2017.
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class Color_Hex_Spec: QuickSpec {
-
     override func spec() {
         describe("Color+Hex") {
-
             it("can be initialized with three digit hex") {
                 let color = try? Color(hex: "3F0")
                 expect(color) == Color(red: 0.2, green: 1.0, blue: 0, alpha: 1)
@@ -53,5 +51,4 @@ class Color_Hex_Spec: QuickSpec {
             }
         }
     }
-
 }

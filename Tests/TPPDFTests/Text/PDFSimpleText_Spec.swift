@@ -7,17 +7,15 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFSimpleText_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFSimpleText") {
-
             let simpleText = "EXAMPLE"
-            let spacing: CGFloat =  10.0
+            let spacing: CGFloat = 10.0
             var textObject: PDFSimpleText!
 
             beforeEach {
@@ -25,7 +23,6 @@ class PDFSimpleText_Spec: QuickSpec {
             }
 
             context("variables") {
-
                 it("has a text instance") {
                     expect(textObject.text) == simpleText
                 }
@@ -45,5 +42,4 @@ class PDFSimpleText_Spec: QuickSpec {
             }
         }
     }
-
 }

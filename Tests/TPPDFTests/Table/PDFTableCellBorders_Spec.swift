@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableCellBorders_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableCellBorders") {
-
             context("variables") {
-
                 let borders = PDFTableCellBorders()
 
                 it("has default left border") {
@@ -37,7 +34,6 @@ class PDFTableCellBorders_Spec: QuickSpec {
             }
 
             context("initializer") {
-
                 it("can be initialized with a left border") {
                     let style = PDFLineStyle(type: .dotted, color: .orange, width: 10)
                     let borders = PDFTableCellBorders(left: style)
@@ -68,5 +64,4 @@ class PDFTableCellBorders_Spec: QuickSpec {
             }
         }
     }
-
 }

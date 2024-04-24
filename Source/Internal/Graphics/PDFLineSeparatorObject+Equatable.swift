@@ -6,7 +6,6 @@
 //
 
 extension PDFLineSeparatorObject: Equatable {
-
     /**
      TODO: Documentation
      */
@@ -16,5 +15,4 @@ extension PDFLineSeparatorObject: Equatable {
         }
         return true
     }
-
 }

@@ -1,5 +1,5 @@
 //
-//  Image+Pixel_Spec.swift
+//  UIImage+Pixel_Spec.swift
 //  TPPDF_Tests
 //
 //  Created by Philip Niedertscheider on 05/11/2017.
@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class Image_Pixel_Spec: QuickSpec {
-
     override func spec() {
         describe("Image") {
-
             context("Pixel") {
                 it("can get pixel color") {
                     let size = CGSize(width: 2, height: 2)
@@ -34,7 +32,7 @@ class Image_Pixel_Spec: QuickSpec {
                     context.fill(.init(x: 1, y: 1, width: 1, height: 1))
 
                     let image = PDFContextGraphics.getImage(from: context, size: size)!
-                    
+
                     // Position is upside down
 
                     expect(image.size) == CGSize(width: 2, height: 2)
@@ -46,5 +44,4 @@ class Image_Pixel_Spec: QuickSpec {
             }
         }
     }
-
 }

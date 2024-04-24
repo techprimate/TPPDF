@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFList_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFList") {
-
             context("Equatable") {
-
                 var object: PDFList!
 
                 beforeEach {
@@ -48,5 +45,4 @@ class PDFList_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

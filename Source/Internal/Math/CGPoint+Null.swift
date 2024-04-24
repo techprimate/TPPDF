@@ -6,14 +6,13 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 extension CGPoint {
-
-    internal static var null: CGPoint {
+    static var null: CGPoint {
         CGPoint(x: CGFloat.infinity, y: CGFloat.infinity)
     }
 }

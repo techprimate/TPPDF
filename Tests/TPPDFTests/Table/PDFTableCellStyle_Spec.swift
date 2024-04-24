@@ -6,18 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableCellStyle_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableCellStyle") {
-
             context("variables") {
-
                 let style = PDFTableCellStyle()
 
                 it("has default colors") {
@@ -35,7 +31,6 @@ class PDFTableCellStyle_Spec: QuickSpec {
             }
 
             context("initializer") {
-
                 it("can be initialized with colors") {
                     let colors = (fill: Color.orange, text: Color.green)
                     let cell = PDFTableCellStyle(colors: colors)
@@ -60,5 +55,4 @@ class PDFTableCellStyle_Spec: QuickSpec {
             }
         }
     }
-
 }

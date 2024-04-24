@@ -5,15 +5,13 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class ListSpec: QuickSpec {
-
     override func spec() {
         describe("PDFList") {
-
             let list = PDFList(indentations: [(pre: 0.0, past: 10.0), (pre: 10.0, past: 10.0), (pre: 20.0, past: 10.0)])
             it("has no items by default") {
                 expect(list.count).to(equal(0))
@@ -52,25 +50,25 @@ class ListSpec: QuickSpec {
                                                 PDFListItem(symbol: .none, content: "Child 2.2"),
                                                 PDFListItem(content: "Child 2.3"),
                                             ]
-                                    )
+                                        ),
                                 ]
-                        ),
+                            ),
                         PDFListItem(symbol: .dash, content: "Base 2")
                             .addItems(
                                 [
                                     PDFListItem(content: "Child 2.1")
                                         .addItems(
                                             [
-                                                PDFListItem(symbol: .dot, content: "Child 2.1.1")
+                                                PDFListItem(symbol: .dot, content: "Child 2.1.1"),
                                             ]),
                                     PDFListItem(content: "Child 2.2")
                                         .addItems(
                                             [
-                                                PDFListItem(symbol: .dash, content: "Child 2.2.1")
+                                                PDFListItem(symbol: .dash, content: "Child 2.2.1"),
                                             ]
-                                    )
+                                        ),
                                 ]
-                        )
+                            ),
                     ]
                 )
 
@@ -117,5 +115,4 @@ class ListSpec: QuickSpec {
             }
         }
     }
-
 }

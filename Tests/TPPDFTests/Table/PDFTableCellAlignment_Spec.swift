@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableCellAlignment_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableCellAlignment") {
-
             context("enum values") {
-
                 it("has topLeft") {
                     expect(PDFTableCellAlignment.topLeft).toNot(beNil())
                 }
@@ -111,5 +108,4 @@ class PDFTableCellAlignment_Spec: QuickSpec {
             }
         }
     }
-
 }

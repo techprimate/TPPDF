@@ -9,7 +9,6 @@
  TODO: documentation
  */
 extension PDFLayout: Equatable {
-
     /**
      TODO: documentation
      */

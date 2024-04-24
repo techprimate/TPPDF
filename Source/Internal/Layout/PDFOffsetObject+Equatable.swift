@@ -9,7 +9,6 @@
  TODO: documentation
  */
 extension PDFOffsetObject: Equatable {
-
     /**
      TODO: documentation
      */

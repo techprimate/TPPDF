@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class Int_RomanNUmerals_Spec: QuickSpec {
-
     override func spec() {
         describe("Int") {
-
             describe("RomanNumerals") {
-
                 it("can convert itself into a roman numeral") {
                     expect(0.romanNumerals) == ""
                     expect(1.romanNumerals) == "I"
@@ -101,5 +98,4 @@ class Int_RomanNUmerals_Spec: QuickSpec {
             }
         }
     }
-
 }

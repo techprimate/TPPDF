@@ -5,20 +5,19 @@
 //  Created by Philip Niedertscheider on 12.08.19.
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
-internal class PDFExternalDocumentObject: PDFRenderObject {
+class PDFExternalDocumentObject: PDFRenderObject {
+    var url: URL
+    var pages: [Int]
 
-    internal var url: URL
-    internal var pages: [Int]
-
-    internal init(url: URL, pages: [Int]) {
+    init(url: URL, pages: [Int]) {
         self.url = url
         self.pages = pages
     }
 
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
         guard let cgPDF = CGPDFDocument(url as CFURL) else {
@@ -38,7 +37,7 @@ internal class PDFExternalDocumentObject: PDFRenderObject {
     /**
      TODO: documentation
      */
-    override internal var copy: PDFRenderObject {
-       PDFExternalDocumentObject(url: self.url, pages: self.pages)
+    override var copy: PDFRenderObject {
+        PDFExternalDocumentObject(url: url, pages: pages)
     }
 }

@@ -5,18 +5,15 @@
 //  Created by Philip Niedertscheider on 02/11/2017.
 //
 
-import Foundation
 import CoreGraphics
-import Quick
+import Foundation
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFObject_Spec: QuickSpec {
-
     override func spec() {
-
         describe("PDFObject") {
-
             let object = PDFRenderObject()
 
             it("should have a null frame as default") {
@@ -55,5 +52,4 @@ class PDFObject_Spec: QuickSpec {
             }
         }
     }
-
 }

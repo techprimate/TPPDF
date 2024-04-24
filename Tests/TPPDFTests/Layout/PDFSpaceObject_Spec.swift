@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFSpaceObject_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFSpaceObject") {
-
             var object: PDFSpaceObject!
             let space: CGFloat = 20.0
 
@@ -24,14 +22,12 @@ class PDFSpaceObject_Spec: QuickSpec {
             }
 
             describe("variables") {
-
                 it("has an space value") {
                     expect(object.space) == space
                 }
             }
 
             context("calculation") {
-
                 let document = PDFDocument(format: .a4)
                 var generator: PDFGenerator!
 
@@ -48,7 +44,7 @@ class PDFSpaceObject_Spec: QuickSpec {
 
                     expect {
                         result = try object.calculate(generator: generator, container: container)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(generator.layout.heights.content).toEventually(equal(contentHeight + object.frame.height))
 
                     expect(object.frame) == CGRect(x: 60, y: 60, width: 475, height: space)
@@ -60,7 +56,6 @@ class PDFSpaceObject_Spec: QuickSpec {
             }
 
             context("rendering") {
-
                 let document = PDFDocument(layout: PDFPageLayout(size: CGSize(width: 60, height: 60),
                                                                  margin: EdgeInsets(top: 10, left: 10, bottom: 10, right: 10),
                                                                  space: (header: 5, footer: 5)))
@@ -171,5 +166,4 @@ class PDFSpaceObject_Spec: QuickSpec {
             }
         }
     }
-
 }

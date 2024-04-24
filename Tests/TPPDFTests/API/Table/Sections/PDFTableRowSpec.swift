@@ -5,12 +5,11 @@
 //  Created by Philip Niedertscheider on 23.09.20.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableRowSpec: QuickSpec {
-
     override func spec() {
         describe("PDFTableRow") {
             describe("alignment") {
@@ -20,11 +19,10 @@ class PDFTableRowSpec: QuickSpec {
                     expect(table.rows.alignment) == [
                         [.left, .center, .right],
                         [.left, .center, .right],
-                        [.left, .center, .right]
+                        [.left, .center, .right],
                     ]
                 }
             }
         }
     }
 }
-

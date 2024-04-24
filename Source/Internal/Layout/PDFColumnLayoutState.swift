@@ -6,16 +6,15 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
  TODO: Documentation
  */
-internal class PDFColumnLayoutState: CustomStringConvertible {
-
+class PDFColumnLayoutState: CustomStringConvertible {
     /**
      TODO: Documentation
      */
@@ -49,71 +48,71 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
     /**
      TODO: Documentation
      */
-    internal init() {
-        maxColumns = [:]
-        currentColumn = [
+    init() {
+        self.maxColumns = [:]
+        self.currentColumn = [
             .headerLeft: 0,
             .contentLeft: 0,
-            .footerLeft: 0
+            .footerLeft: 0,
         ]
-        columnWidths = [
+        self.columnWidths = [
             .headerLeft: [],
             .contentLeft: [],
-            .footerLeft: []
+            .footerLeft: [],
         ]
-        columnSpacings = [
+        self.columnSpacings = [
             .headerLeft: [],
             .contentLeft: [],
-            .footerLeft: []
+            .footerLeft: [],
         ]
-        wrapColumnsHeight = [
+        self.wrapColumnsHeight = [
             .headerLeft: 0,
             .contentLeft: 0,
-            .footerLeft: 0
+            .footerLeft: 0,
         ]
-        inset = [
+        self.inset = [
             .headerLeft: (0, 0),
             .contentLeft: (0, 0),
-            .footerLeft: (0, 0)
+            .footerLeft: (0, 0),
         ]
     }
 
     /**
      TODO: Documentation
      */
-    internal func reset() {
+    func reset() {
         maxColumns = [:]
         currentColumn = [
             .headerLeft: 0,
             .contentLeft: 0,
-            .footerLeft: 0
+            .footerLeft: 0,
         ]
         columnWidths = [
             .headerLeft: [],
             .contentLeft: [],
-            .footerLeft: []
+            .footerLeft: [],
         ]
         columnSpacings = [
             .headerLeft: [],
             .contentLeft: [],
-            .footerLeft: []
+            .footerLeft: [],
         ]
         wrapColumnsHeight = [
             .headerLeft: 0,
             .contentLeft: 0,
-            .footerLeft: 0
+            .footerLeft: 0,
         ]
         inset = [
             .headerLeft: (0, 0),
             .contentLeft: (0, 0),
-            .footerLeft: (0, 0)
+            .footerLeft: (0, 0),
         ]
     }
 
     /**
      TODO: Documentation
      */
-    internal func set(maxColumns: Int?, for container: PDFContainer) {
+    func set(maxColumns: Int?, for container: PDFContainer) {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
             self.maxColumns[.headerLeft] = maxColumns
@@ -126,14 +125,14 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
         }
     }
 
-    internal func getMaxColumns(for container: PDFContainer) -> Int? {
+    func getMaxColumns(for container: PDFContainer) -> Int? {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
-            return self.maxColumns[.headerLeft]
+            return maxColumns[.headerLeft]
         case .contentLeft, .contentCenter, .contentRight:
-            return self.maxColumns[.contentLeft]
+            return maxColumns[.contentLeft]
         case .footerLeft, .footerCenter, .footerRight:
-            return self.maxColumns[.footerRight]
+            return maxColumns[.footerRight]
         default:
             return nil
         }
@@ -142,7 +141,7 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
     /**
      TODO: Documentation
      */
-    internal func set(wrapColumnsHeight: CGFloat, for container: PDFContainer) {
+    func set(wrapColumnsHeight: CGFloat, for container: PDFContainer) {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
             self.wrapColumnsHeight[.headerLeft] = wrapColumnsHeight
@@ -155,14 +154,14 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
         }
     }
 
-    internal func getWrapColumnsHeight(for container: PDFContainer) -> CGFloat {
+    func getWrapColumnsHeight(for container: PDFContainer) -> CGFloat {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
-            return self.wrapColumnsHeight[.headerLeft] ?? 0
+            return wrapColumnsHeight[.headerLeft] ?? 0
         case .contentLeft, .contentCenter, .contentRight:
-            return self.wrapColumnsHeight[.contentLeft] ?? 0
+            return wrapColumnsHeight[.contentLeft] ?? 0
         case .footerLeft, .footerCenter, .footerRight:
-            return self.wrapColumnsHeight[.footerRight] ?? 0
+            return wrapColumnsHeight[.footerRight] ?? 0
         default:
             return 0
         }
@@ -171,7 +170,7 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
     /**
      TODO: Documentation
      */
-    internal func set(currentColumn: Int, for container: PDFContainer) {
+    func set(currentColumn: Int, for container: PDFContainer) {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
             self.currentColumn[.headerLeft] = currentColumn
@@ -184,14 +183,14 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
         }
     }
 
-    internal func getCurrentColumn(for container: PDFContainer) -> Int {
+    func getCurrentColumn(for container: PDFContainer) -> Int {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
-            return self.currentColumn[.headerLeft] ?? 0
+            return currentColumn[.headerLeft] ?? 0
         case .contentLeft, .contentCenter, .contentRight:
-            return self.currentColumn[.contentLeft] ?? 0
+            return currentColumn[.contentLeft] ?? 0
         case .footerLeft, .footerCenter, .footerRight:
-            return self.currentColumn[.footerRight] ?? 0
+            return currentColumn[.footerRight] ?? 0
         default:
             return 0
         }
@@ -200,7 +199,7 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
     /**
      TODO: Documentation
      */
-    internal func set(columnSpacings: [CGFloat], for container: PDFContainer) {
+    func set(columnSpacings: [CGFloat], for container: PDFContainer) {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
             self.columnSpacings[.headerLeft] = columnSpacings
@@ -213,14 +212,14 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
         }
     }
 
-    internal func getColumnSpacings(for container: PDFContainer) -> [CGFloat] {
+    func getColumnSpacings(for container: PDFContainer) -> [CGFloat] {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
-            return self.columnSpacings[.headerLeft] ?? []
+            return columnSpacings[.headerLeft] ?? []
         case .contentLeft, .contentCenter, .contentRight:
-            return self.columnSpacings[.contentLeft] ?? []
+            return columnSpacings[.contentLeft] ?? []
         case .footerLeft, .footerCenter, .footerRight:
-            return self.columnSpacings[.footerRight] ?? []
+            return columnSpacings[.footerRight] ?? []
         default:
             return []
         }
@@ -229,7 +228,7 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
     /**
      TODO: Documentation
      */
-    internal func set(inset: (left: CGFloat, right: CGFloat), for container: PDFContainer) {
+    func set(inset: (left: CGFloat, right: CGFloat), for container: PDFContainer) {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
             self.inset[.headerLeft] = inset
@@ -242,14 +241,14 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
         }
     }
 
-    internal func getInset(for container: PDFContainer) -> (left: CGFloat, right: CGFloat) {
+    func getInset(for container: PDFContainer) -> (left: CGFloat, right: CGFloat) {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
-            return self.inset[.headerLeft] ?? (0, 0)
+            return inset[.headerLeft] ?? (0, 0)
         case .contentLeft, .contentCenter, .contentRight:
-            return self.inset[.contentLeft] ?? (0, 0)
+            return inset[.contentLeft] ?? (0, 0)
         case .footerLeft, .footerCenter, .footerRight:
-            return self.inset[.footerRight] ?? (0, 0)
+            return inset[.footerRight] ?? (0, 0)
         default:
             return (0, 0)
         }
@@ -258,7 +257,7 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
     /**
      TODO: Documentation
      */
-    internal func set(columnWidths: [CGFloat], for container: PDFContainer) {
+    func set(columnWidths: [CGFloat], for container: PDFContainer) {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
             self.columnWidths[.headerLeft] = columnWidths
@@ -271,36 +270,37 @@ internal class PDFColumnLayoutState: CustomStringConvertible {
         }
     }
 
-    internal func getColumnWidths(for container: PDFContainer) -> [CGFloat] {
+    func getColumnWidths(for container: PDFContainer) -> [CGFloat] {
         switch container {
         case .headerLeft, .headerCenter, .headerRight:
-            return self.columnWidths[.headerLeft] ?? []
+            return columnWidths[.headerLeft] ?? []
         case .contentLeft, .contentCenter, .contentRight:
-            return self.columnWidths[.contentLeft] ?? []
+            return columnWidths[.contentLeft] ?? []
         case .footerLeft, .footerCenter, .footerRight:
-            return self.columnWidths[.footerRight] ?? []
+            return columnWidths[.footerRight] ?? []
         default:
             return []
         }
     }
 }
 
+// MARK: NSCopying
+
 /**
  TODO: Documentation
  */
 extension PDFColumnLayoutState: NSCopying {
-
     /**
      TODO: Documentation
      */
-    internal func copy(with zone: NSZone? = nil) -> Any {
+    func copy(with _: NSZone? = nil) -> Any {
         let state = PDFColumnLayoutState()
-        state.maxColumns = self.maxColumns
-        state.currentColumn = self.currentColumn
-        state.columnWidths = self.columnWidths
-        state.columnSpacings = self.columnSpacings
-        state.wrapColumnsHeight = self.wrapColumnsHeight
-        state.inset = self.inset
+        state.maxColumns = maxColumns
+        state.currentColumn = currentColumn
+        state.columnWidths = columnWidths
+        state.columnSpacings = columnSpacings
+        state.wrapColumnsHeight = wrapColumnsHeight
+        state.inset = inset
         return state
     }
 }

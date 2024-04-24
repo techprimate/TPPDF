@@ -7,14 +7,13 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 import TPPDF
 
 class PaginationExampleFactory: ExampleFactory {
-
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
@@ -24,13 +23,13 @@ class PaginationExampleFactory: ExampleFactory {
         }
 
         // Add custom pagination, starting at page 1 and excluding page 3
-        document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure { (page, total) -> String in
-            return "\(page) / \(total)"
-            }, range: (1, 20), hiddenPages: [3, 7], textAttributes: [
-                .font: Font.boldSystemFont(ofSize: 30.0),
-                .foregroundColor: Color.blue
+        document.pagination = PDFPagination(container: .footerRight, style: PDFPaginationStyle.customClosure { page, total -> String in
+            "\(page) / \(total)"
+        }, range: (1, 20), hiddenPages: [3, 7], textAttributes: [
+            .font: Font.boldSystemFont(ofSize: 30.0),
+            .foregroundColor: Color.blue,
         ])
-        
+
         return [document]
     }
 }

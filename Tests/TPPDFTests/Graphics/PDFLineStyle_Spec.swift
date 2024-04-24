@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFLineStyle_Spec: QuickSpec {
-
     override func spec() {
         describe("Line Style") {
-
             var lineStyle: PDFLineStyle!
 
             let type = PDFLineType.dotted
@@ -41,7 +39,6 @@ class PDFLineStyle_Spec: QuickSpec {
             }
 
             context("variables") {
-
                 beforeEach {
                     lineStyle = PDFLineStyle(type: type, color: color, width: width)
                 }

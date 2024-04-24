@@ -6,33 +6,32 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
  Calculates the given image and a caption if necessary
  */
-internal class PDFImageObject: PDFRenderObject {
-
+class PDFImageObject: PDFRenderObject {
     /**
      Image object holding all information
      */
-    internal var image: PDFImage
+    var image: PDFImage
 
     /**
      Spacing between image and caption
      */
-    internal var captionSpacing: CGFloat
+    var captionSpacing: CGFloat
 
     /**
      Initializer
 
-     - parameter image: Image object
-     - parameter captionSpacing: Spacing to caption, defaults to zero
+     - Parameter image: Image object
+     - Parameter captionSpacing: Spacing to caption, defaults to zero
      */
-    internal init(image: PDFImage, captionSpacing: CGFloat = 0) {
+    init(image: PDFImage, captionSpacing: CGFloat = 0) {
         self.image = image
         self.captionSpacing = captionSpacing
     }
@@ -40,14 +39,14 @@ internal class PDFImageObject: PDFRenderObject {
     /**
      Calculates the frame of the image and additionally returns one or multiple caption objects.
 
-     - parameter generator: Current instance handling the calculations
-     - parameter container: Container where the image is placed in
+     - Parameter generator: Current instance handling the calculations
+     - Parameter container: Container where the image is placed in
 
-     - throws: Caption calculation errors, see ```PDFAttributedTextObject.calculate(_:,_:)```
+     - Throws: Caption calculation errors, see ```PDFAttributedTextObject.calculate(_:,_:)```
 
-     - returns: Calculated objects and their corresponding container, created by this calculation
+     - Returns: Calculated objects and their corresponding container, created by this calculation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
         var (imageSize, captionSize) = PDFCalculations.calculateImageCaptionSize(generator: generator,
@@ -66,17 +65,18 @@ internal class PDFImageObject: PDFRenderObject {
                     container: container,
                     image: image,
                     size: image.size,
-                    sizeFit: image.sizeFit)
+                    sizeFit: image.sizeFit
+                )
             }
         }
         let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: imageSize)
-        self.frame = CGRect(origin: position, size: imageSize)
+        frame = CGRect(origin: position, size: imageSize)
         updateHeights(generator: generator, container: container)
 
         result.append((container, self))
 
         for attribute in image.attributes {
-            self.attributes.append((attribute: attribute, frame: self.frame))
+            attributes.append((attribute: attribute, frame: frame))
         }
 
         if let caption = image.caption {
@@ -88,10 +88,10 @@ internal class PDFImageObject: PDFRenderObject {
     /**
      Modifies the image and draws it in the previously calculated frame
 
-     - parameter generator: Current instance handling the drawing
-     - parameter container: Container where the image is placed in
+     - Parameter generator: Current instance handling the drawing
+     - Parameter container: Container where the image is placed in
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
+    override func draw(generator _: PDFGenerator, container _: PDFContainer, in context: PDFContext) throws {
         var roundedCorners: RectCorner = []
         if image.options.contains(.rounded) {
             roundedCorners = .allCorners
@@ -120,9 +120,9 @@ internal class PDFImageObject: PDFRenderObject {
 
         let cgImage: CGImage?
         #if os(iOS)
-        cgImage = modifiedImage.cgImage
+            cgImage = modifiedImage.cgImage
         #elseif os(macOS)
-        cgImage = modifiedImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
+            cgImage = modifiedImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
         #endif
         if let cgImage = cgImage {
             context.draw(image: cgImage, in: frame, flipped: true)
@@ -134,17 +134,17 @@ internal class PDFImageObject: PDFRenderObject {
     /**
      Adds the image and caption height to the content height
 
-     - parameter generator: Current instance handling the calculations
-     - parameter container: Container where the image is placed in
+     - Parameter generator: Current instance handling the calculations
+     - Parameter container: Container where the image is placed in
      */
-    internal func updateHeights(generator: PDFGenerator, container: PDFContainer) {
-        generator.layout.heights.add(frame.height + (self.image.caption != nil ? captionSpacing : 0), to: container)
+    func updateHeights(generator: PDFGenerator, container: PDFContainer) {
+        generator.layout.heights.add(frame.height + (image.caption != nil ? captionSpacing : 0), to: container)
     }
 
     /**
      Creates a new `PDFImageObject` with the same properties
      */
-    override internal var copy: PDFRenderObject {
-        PDFImageObject(image: self.image.copy, captionSpacing: self.captionSpacing)
+    override var copy: PDFRenderObject {
+        PDFImageObject(image: image.copy, captionSpacing: captionSpacing)
     }
 }

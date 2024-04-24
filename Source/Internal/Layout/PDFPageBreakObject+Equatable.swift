@@ -9,11 +9,10 @@
  TODO: documentation
  */
 extension PDFPageBreakObject: Equatable {
-
     /**
      TODO: documentation
      */
-    public static func == (lhs: PDFPageBreakObject, rhs: PDFPageBreakObject) -> Bool {
+    public static func == (_: PDFPageBreakObject, _: PDFPageBreakObject) -> Bool {
         true
     }
 }

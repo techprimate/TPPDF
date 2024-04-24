@@ -8,24 +8,23 @@
 /**
  TODO: documentation
  */
-internal class PDFListObject: PDFRenderObject {
+class PDFListObject: PDFRenderObject {
+    /**
+     TODO: documentation
+     */
+    var list: PDFList
 
     /**
      TODO: documentation
      */
-    internal var list: PDFList
-
-    /**
-     TODO: documentation
-     */
-    internal init(list: PDFList) {
+    init(list: PDFList) {
         self.list = list
     }
 
     /**
      TODO: documentation
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
         let originalLeftIndent = generator.layout.indentation.leftIn(container: container)
@@ -77,7 +76,7 @@ internal class PDFListObject: PDFRenderObject {
     /**
      Creates a new `PDFListObject` with the same properties
      */
-    override internal var copy: PDFRenderObject {
-        PDFListObject(list: self.list.copy)
+    override var copy: PDFRenderObject {
+        PDFListObject(list: list.copy)
     }
 }

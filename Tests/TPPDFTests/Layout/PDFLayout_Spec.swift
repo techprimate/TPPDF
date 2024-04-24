@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFLayout_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFLayout") {
-
             var layout: PDFLayout!
 
             beforeEach {
@@ -23,7 +21,6 @@ class PDFLayout_Spec: QuickSpec {
             }
 
             context("variables") {
-
                 it("has an default heights instance") {
                     layout.heights = PDFLayoutHeights()
                 }
@@ -37,7 +34,7 @@ class PDFLayout_Spec: QuickSpec {
                 let headerHeights: [PDFContainer: CGFloat] = [
                     PDFContainer.headerLeft: 1,
                     PDFContainer.headerCenter: 2,
-                    PDFContainer.headerRight: 3
+                    PDFContainer.headerRight: 3,
                 ]
                 layout.heights.header = headerHeights
 
@@ -48,7 +45,7 @@ class PDFLayout_Spec: QuickSpec {
                 let footerHeights: [PDFContainer: CGFloat] = [
                     PDFContainer.footerLeft: 1,
                     PDFContainer.footerCenter: 2,
-                    PDFContainer.footerRight: 3
+                    PDFContainer.footerRight: 3,
                 ]
                 layout.heights.footer = footerHeights
 
@@ -86,5 +83,4 @@ class PDFLayout_Spec: QuickSpec {
             }
         }
     }
-
 }

@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableCellPosition_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableCellPosition") {
-
             context("Equatable") {
-
                 let position = PDFTableCellPosition(row: 1, column: 2)
 
                 it("is equal") {
@@ -36,5 +33,4 @@ class PDFTableCellPosition_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }
