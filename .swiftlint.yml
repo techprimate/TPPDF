@@ -2,6 +2,7 @@
 disabled_rules:
   - large_tuple
   - todo
+  - inclusive_language
 excluded:
   - Carthage
   - Pods
@@ -14,8 +15,6 @@ opt_in_rules:
   - convenience_type
   - empty_count
   - empty_string
-  - explicit_acl
-  - explicit_self
   - file_header
   - first_where
   - last_where
@@ -29,12 +28,14 @@ opt_in_rules:
   - multiline_function_chains
   - redundant_nil_coalescing
   - static_operator
+analyzer_rules:
+  - explicit_self
 file_length:
-  error:          1200
-  warning:        500
-force_cast:       warning
+  error: 1200
+  warning: 500
+force_cast: warning
 force_try:
-  severity:       warning
+  severity: warning
 identifier_name:
   excluded:
     - id
@@ -42,17 +43,17 @@ identifier_name:
     - y
     - i
   min_length:
-    error:        2
-    warning:      2
+    error: 2
+    warning: 2
 included:
   - Source
-line_length:      150
-reporter:         xcode
+line_length: 150
+reporter: xcode
 type_body_length:
   - 300
   - 400
 type_name:
   max_length:
-    error:        60
-    warning:      50
-  min_length:     2
+    error: 60
+    warning: 50
+  min_length: 2
