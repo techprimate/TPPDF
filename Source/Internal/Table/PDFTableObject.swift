@@ -11,7 +11,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable function_parameter_count file_length type_body_length
+// swiftlint:disable function_parameter_count file_length type_body_length function_body_length
 
 /**
  Internal object, used for calculating a `PDFTable`
@@ -267,12 +267,12 @@ class PDFTableObject: PDFRenderObject {
         let attributes: [NSAttributedString.Key: AnyObject] = [
             .foregroundColor: cellStyle.colors.text,
             .font: cellStyle.font,
-            .paragraphStyle: paragraph,
+            .paragraphStyle: paragraph
         ]
         return NSAttributedString(string: text, attributes: attributes)
     }
 
-    func createRenderObjects(
+    func createRenderObjects( // swiftlint:disable:this cyclomatic_complexity
         generator: PDFGenerator,
         container: PDFContainer,
         cells: [PDFTableCalculatedCell],
@@ -356,7 +356,8 @@ class PDFTableObject: PDFRenderObject {
             )
             let onPageCells = filterResult.cells
             nextPageCells = filterResult.remainder
-            // If none of the cells fit on the current page, the algorithm will try again on the next page and if it occurs again, an error should be thrown
+            // If none of the cells fit on the current page, the algorithm will try again on the next page
+            // and if it occurs again, an error should be thrown
             if onPageCells.isEmpty && !firstPage, let firstInvalidCell = nextPageCells.first {
                 throw PDFError.tableCellTooBig(cell: firstInvalidCell.cell)
             }
@@ -432,7 +433,13 @@ class PDFTableObject: PDFRenderObject {
     ///   - maxOffset: Maximum `y`-position on the page
     ///   - shouldSplitCellsOnPageBreak: If `true`, cells won't be sliced and shown on both pages, instead moved entirely to the next page
     /// - Returns: Two lists of cells, see `FilteredCells`
-    func filterCellsOnPage(for _: PDFGenerator, items: [PDFTableCalculatedCell], minOffset: CGFloat, maxOffset: CGFloat, shouldSplitCellsOnPageBreak: Bool) -> FilteredCells {
+    func filterCellsOnPage(
+        for _: PDFGenerator,
+        items: [PDFTableCalculatedCell],
+        minOffset: CGFloat,
+        maxOffset: CGFloat,
+        shouldSplitCellsOnPageBreak: Bool
+    ) -> FilteredCells {
         // Maximum height available
         let contentHeight = maxOffset - minOffset
         var result = FilteredCells(cells: [], remainder: [])
@@ -608,7 +615,7 @@ class PDFTableObject: PDFRenderObject {
                           endPoint: CGPoint(x: frame.maxX, y: frame.maxY)),
             PDFLineObject(style: borders.left,
                           startPoint: CGPoint(x: frame.minX, y: frame.minY),
-                          endPoint: CGPoint(x: frame.minX, y: frame.maxY)),
+                          endPoint: CGPoint(x: frame.minX, y: frame.maxY))
         ]
     }
 
@@ -618,4 +625,4 @@ class PDFTableObject: PDFRenderObject {
     }
 }
 
-// swiftlint:enable function_parameter_count file_length type_body_length
+// swiftlint:enable function_parameter_count file_length type_body_length function_body_length

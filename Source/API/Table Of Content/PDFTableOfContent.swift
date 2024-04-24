@@ -11,7 +11,8 @@ typealias WeakPDFTextStyleRef = WeakRef<PDFTextStyle>
 /**
   Creates a table of content for the given list of render objects.
 
-  The given list of `styles` are used to identify which ``PDFAttributedTextObject`` should be considered as "headers" and therefore be in the table of contents.
+  The given list of `styles` are used to identify which ``PDFAttributedTextObject`` should be considered as "headers"
+  and therefore be in the table of contents.
 
   Furthermore, the index of the style in the list of `styles` is used as the nesting level.
 

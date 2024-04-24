@@ -3,7 +3,6 @@
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 24.06.20.
-//  Copyright © 2020 Philip Niedertscheider. All rights reserved.
 //
 
 import CoreGraphics

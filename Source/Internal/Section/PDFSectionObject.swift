@@ -114,11 +114,16 @@ class PDFSectionObject: PDFRenderObject {
      * ...
      * ```
      */
-    func calulatePageBreakPositions(_ objectsPerColumn: [Int: [PDFLocatedRenderObject]], metadata: [PDFSectionColumnMetadata], container: PDFContainer) -> [PDFLocatedRenderObject] {
+    func calulatePageBreakPositions( // swiftlint:disable:this cyclomatic_complexity function_body_length
+        _ objectsPerColumn: [Int: [PDFLocatedRenderObject]],
+        metadata: [PDFSectionColumnMetadata],
+        container: PDFContainer
+    ) -> [PDFLocatedRenderObject] {
         // stores how many objects are in one column at max
         let maxObjectsPerColumn = objectsPerColumn.reduce(0) { max($0, $1.value.count) }
 
-        /* as soon as a column requests a page break, we need to stack subsequent objects of the very same column until the following is `true`:
+        /* 
+         * as soon as a column requests a page break, we need to stack subsequent objects of the very same column until the following is `true`:
          * one or more columns do not have more objects and all other columns, which have more objects left, are requesting a page break
          */
         var stackedObjectsPerColumn = [Int: [PDFLocatedRenderObject]]()

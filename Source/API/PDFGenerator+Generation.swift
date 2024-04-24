@@ -211,7 +211,7 @@ public extension PDFGenerator {
      *
      * - Throws: ``PDFError`` if the calculations fail
      */
-    private func calculateRenderObjects(
+    private func calculateRenderObjects( // swiftlint:disable:this cyclomatic_complexity
         contentObjs: [PDFLocatedRenderObject],
         masterObj: [PDFLocatedRenderObject],
         progress: Progress

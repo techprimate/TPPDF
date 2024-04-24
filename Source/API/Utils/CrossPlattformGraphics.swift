@@ -60,6 +60,7 @@
     }
 
     public extension NSEdgeInsets {
+        /// An edge insets struct whose top, left, bottom, and right fields are all set to 0.
         static var zero: NSEdgeInsets {
             NSEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
@@ -133,7 +134,7 @@
             )
         }
 
-        convenience init(roundedRect rect: CGRect, byRoundingCorners corners: RectCorner, cornerRadii: CGSize) {
+        convenience init(roundedRect rect: CGRect, byRoundingCorners corners: RectCorner, cornerRadii: CGSize) { // swiftlint:disable:this function_body_length line_length
             let path = CGMutablePath()
 
             // Coordinate system is flipped
