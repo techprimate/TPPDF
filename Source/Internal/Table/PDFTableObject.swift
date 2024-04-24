@@ -252,9 +252,6 @@ class PDFTableObject: PDFRenderObject {
         return frame.content.minY + (frame.cell.height - 2 * table.padding - frame.content.height) / 2
     }
 
-    /**
-     TODO: Documentation
-     */
     func createAttributedCellText(text: String, cellStyle: PDFTableCellStyle, alignment: PDFTableCellAlignment) -> NSAttributedString {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = {
@@ -270,19 +267,18 @@ class PDFTableObject: PDFRenderObject {
         let attributes: [NSAttributedString.Key: AnyObject] = [
             .foregroundColor: cellStyle.colors.text,
             .font: cellStyle.font,
-            .paragraphStyle: paragraph
+            .paragraphStyle: paragraph,
         ]
         return NSAttributedString(string: text, attributes: attributes)
     }
 
-    /**
-     TODO: Documentation
-     */
-    func createRenderObjects(generator: PDFGenerator,
-                             container: PDFContainer,
-                             cells: [PDFTableCalculatedCell],
-                             headerCells: [PDFTableCalculatedCell]?,
-                             headerHeight: CGFloat) throws -> (objects: [PDFLocatedRenderObject], offset: CGFloat) {
+    func createRenderObjects(
+        generator: PDFGenerator,
+        container: PDFContainer,
+        cells: [PDFTableCalculatedCell],
+        headerCells: [PDFTableCalculatedCell]?,
+        headerHeight: CGFloat
+    ) throws -> (objects: [PDFLocatedRenderObject], offset: CGFloat) {
         var result: [PDFLocatedRenderObject] = []
 
         var firstPage = true
@@ -317,10 +313,12 @@ class PDFTableObject: PDFRenderObject {
                     cellElements += [createCellBackgroundObject(style: item.style, frame: cellFrame)]
 
                     // Content
-                    if let contentObj = createCellContentObject(content: item.cell.content,
-                                                                style: item.style,
-                                                                alignment: item.cell.alignment,
-                                                                frame: contentFrame) {
+                    if let contentObj = createCellContentObject(
+                        content: item.cell.content,
+                        style: item.style,
+                        alignment: item.cell.alignment,
+                        frame: contentFrame
+                    ) {
                         cellElements.append(contentObj)
                     }
 
@@ -331,10 +329,12 @@ class PDFTableObject: PDFRenderObject {
                         .map(\.1)
                     cellElements += outline
 
-                    let sliceObject = createSliceObject(frame: cellFrame,
-                                                        elements: cellElements,
-                                                        minOffset: minOffset,
-                                                        maxOffset: maxOffset)
+                    let sliceObject = createSliceObject(
+                        frame: cellFrame,
+                        elements: cellElements,
+                        minOffset: minOffset,
+                        maxOffset: maxOffset
+                    )
                     result += try sliceObject.calculate(generator: generator, container: container)
                 }
                 minOffset += headerHeight
@@ -349,9 +349,11 @@ class PDFTableObject: PDFRenderObject {
                 nextPageCells = shiftCellsBy(cells: nextPageCells, shiftValue: table.margin)
             }
 
-            let filterResult = filterCellsOnPage(for: generator, items: nextPageCells,
-                                                 minOffset: minOffset, maxOffset: maxOffset,
-                                                 shouldSplitCellsOnPageBreak: table.shouldSplitCellsOnPageBreak)
+            let filterResult = filterCellsOnPage(
+                for: generator, items: nextPageCells,
+                minOffset: minOffset, maxOffset: maxOffset,
+                shouldSplitCellsOnPageBreak: table.shouldSplitCellsOnPageBreak
+            )
             let onPageCells = filterResult.cells
             nextPageCells = filterResult.remainder
             // If none of the cells fit on the current page, the algorithm will try again on the next page and if it occurs again, an error should be thrown
@@ -606,7 +608,7 @@ class PDFTableObject: PDFRenderObject {
                           endPoint: CGPoint(x: frame.maxX, y: frame.maxY)),
             PDFLineObject(style: borders.left,
                           startPoint: CGPoint(x: frame.minX, y: frame.minY),
-                          endPoint: CGPoint(x: frame.minX, y: frame.maxY))
+                          endPoint: CGPoint(x: frame.minX, y: frame.maxY)),
         ]
     }
 

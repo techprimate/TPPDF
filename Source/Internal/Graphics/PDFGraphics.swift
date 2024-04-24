@@ -86,7 +86,13 @@ enum PDFGraphics {
     // MARK: - Shape Utility
 
     /**
-     TODO: Documentation
+     * Draws the `path` in the `context` using the given `outline` style for the stroke and `fillColor` for filling the shape
+     *
+     * - Parameters:
+     *     - path: Instance of ``BezierPath`` to draw
+     *     - context: PDF graphics context
+     *     - outline: Style of the stroke outline
+     *     - fillColor: ``Color`` used to fill the shape
      */
     static func drawPath(path: BezierPath, in context: PDFContext, outline: PDFLineStyle, fillColor: Color) {
         prepareForDrawingPath(path: path.cgPath, in: context, strokeStyle: outline)
@@ -95,7 +101,7 @@ enum PDFGraphics {
     }
 
     /**
-     TODO: Documentation
+     * Helper method to prepare the graphics context `context` to draw the given `path`
      */
     static func prepareForDrawingPath(path: CGPath, in context: PDFContext, strokeStyle: PDFLineStyle) {
         context.beginPath()
@@ -276,17 +282,10 @@ enum PDFGraphics {
     }
 
     /**
-     Constants for filling, mostly used for debugging elements
+     * Constants for filling, mostly used for debugging elements
      */
     enum FillPattern {
-        /**
-         TODO: Documentation
-         */
         case dotted(foreColor: Color, backColor: Color)
-
-        /**
-         TODO: Documentation
-         */
         func setFill(in context: PDFContext) {
             switch self {
             case let .dotted(foreColor, backColor):

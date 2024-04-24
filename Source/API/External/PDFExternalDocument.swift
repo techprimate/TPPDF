@@ -12,7 +12,11 @@ public class PDFExternalDocument {
     /// File URL to an external document
     public private(set) var url: URL
 
-    /// Array of page indicies which should be included from external documents
+    /**
+     * Array of page indicies which should be included from external documents
+     *
+     * - Note: An empty array will be result in all pages to be included.
+     */
     public var pages: [Int] = []
 
     /**

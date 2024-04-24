@@ -11,45 +11,24 @@
     import AppKit
 #endif
 
-/**
- TODO: Documentation
- */
 class PDFMarginObject: PDFRenderObject {
-    /**
-     TODO: Documentation
-     */
     var values: (left: CGFloat?, right: CGFloat?, top: CGFloat?, bottom: CGFloat?)
-
-    /**
-     TODO: Documentation
-     */
     var reset: Bool
 
-    /**
-     TODO: Documentation
-     */
     convenience init(reset: Bool) {
         self.init(left: nil, right: nil, top: nil, bottom: nil, reset: reset)
     }
 
-    /**
-     TODO: Documentation
-     */
     convenience init(left: CGFloat? = nil, right: CGFloat? = nil, top: CGFloat? = nil, bottom: CGFloat? = nil) {
         self.init(left: left, right: right, top: top, bottom: bottom, reset: false)
     }
 
-    /**
-     TODO: Documentation
-     */
     init(left: CGFloat?, right: CGFloat?, top: CGFloat?, bottom: CGFloat?, reset: Bool) {
         self.values = (left, right, top, bottom)
         self.reset = reset
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         if reset {
             generator.layout.margin = generator.document.layout.margin
@@ -71,14 +50,14 @@ class PDFMarginObject: PDFRenderObject {
         return [(container, self)]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     override var copy: PDFRenderObject {
-        PDFMarginObject(left: values.left,
-                        right: values.right,
-                        top: values.top,
-                        bottom: values.bottom,
-                        reset: reset)
+        PDFMarginObject(
+            left: values.left,
+            right: values.right,
+            top: values.top,
+            bottom: values.bottom,
+            reset: reset
+        )
     }
 }

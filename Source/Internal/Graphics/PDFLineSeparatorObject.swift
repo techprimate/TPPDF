@@ -17,9 +17,7 @@
  Separator line is drawn between left and right indentation.
  */
 class PDFLineSeparatorObject: PDFRenderObject {
-    /**
-     Defines the style of the separator line
-     */
+    /// Defines the style of the separator line
     var style: PDFLineStyle
 
     /**
@@ -31,16 +29,7 @@ class PDFLineSeparatorObject: PDFRenderObject {
         self.style = style
     }
 
-    /**
-     Calculates the line start and end point
-
-     - Parameter generator: Generator which uses this object
-     - Parameter container: Container where the line is set
-
-     - Throws: None
-
-     - Returns: Self
-     */
+    /// nodoc
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         let width = PDFCalculations.calculateAvailableFrameWidth(for: generator, in: container)
         let size = CGSize(width: width, height: style.width)
@@ -50,14 +39,7 @@ class PDFLineSeparatorObject: PDFRenderObject {
         return [(container, self)]
     }
 
-    /**
-     Draws the line in the calculated frame
-
-     - Parameter generator: Unused
-     - Parameter container: unused
-
-     - Throws: None
-     */
+    /// nodoc
     override func draw(generator: PDFGenerator, container _: PDFContainer, in context: PDFContext) throws {
         PDFGraphics.drawLine(
             in: context,
@@ -75,9 +57,7 @@ class PDFLineSeparatorObject: PDFRenderObject {
         applyAttributes(in: context)
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     override var copy: PDFRenderObject {
         PDFLineSeparatorObject(style: style)
     }

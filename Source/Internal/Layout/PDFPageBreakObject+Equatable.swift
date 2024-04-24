@@ -5,13 +5,8 @@
 //  Created by Philip Niedertscheider on 14/11/2017.
 //
 
-/**
- TODO: documentation
- */
 extension PDFPageBreakObject: Equatable {
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     public static func == (_: PDFPageBreakObject, _: PDFPageBreakObject) -> Bool {
         true
     }

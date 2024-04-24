@@ -11,52 +11,21 @@
     import AppKit
 #endif
 
-/**
- TODO: Documentation
- */
 class PDFColumnWrapSectionObject: PDFRenderObject {
-    /**
-     TODO: Documentation
-     */
     var columns: Int
-
-    /**
-     TODO: Documentation
-     */
     var widths: [CGFloat]
-
-    /**
-     TODO: Documentation
-     */
     var spacings: [CGFloat]
-
-    /**
-     TODO: Documentation
-     */
     var isDisable: Bool
-
-    /**
-     TODO: Documentation
-     */
     var addPageBreak: Bool
 
-    /**
-     TODO: Documentation
-     */
     convenience init(columns: Int, widths: [CGFloat], spacings: [CGFloat]) {
         self.init(columns: columns, widths: widths, spacings: spacings, isDisable: false, addPageBreak: false)
     }
 
-    /**
-     TODO: Documentation
-     */
     convenience init(isDisable: Bool, addPageBreak: Bool) {
         self.init(columns: 0, widths: [], spacings: [], isDisable: isDisable, addPageBreak: addPageBreak)
     }
 
-    /**
-     TODO: Documentation
-     */
     init(columns: Int, widths: [CGFloat], spacings: [CGFloat], isDisable: Bool, addPageBreak: Bool) {
         self.columns = columns
         self.widths = widths
@@ -106,14 +75,14 @@ class PDFColumnWrapSectionObject: PDFRenderObject {
         return [(container, self)]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     override var copy: PDFRenderObject {
-        PDFColumnWrapSectionObject(columns: columns,
-                                   widths: widths,
-                                   spacings: spacings,
-                                   isDisable: isDisable,
-                                   addPageBreak: addPageBreak)
+        PDFColumnWrapSectionObject(
+            columns: columns,
+            widths: widths,
+            spacings: spacings,
+            isDisable: isDisable,
+            addPageBreak: addPageBreak
+        )
     }
 }

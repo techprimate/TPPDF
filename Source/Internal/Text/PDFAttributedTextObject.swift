@@ -291,9 +291,7 @@ class PDFAttributedTextObject: PDFRenderObject {
         ]
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     override var copy: PDFRenderObject {
         PDFAttributedTextObject(text: (attributedText ?? simpleText)!)
     }

@@ -5,25 +5,14 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-/**
- TODO: documentation
- */
 class PDFListObject: PDFRenderObject {
-    /**
-     TODO: documentation
-     */
     var list: PDFList
 
-    /**
-     TODO: documentation
-     */
     init(list: PDFList) {
         self.list = list
     }
 
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
@@ -46,12 +35,11 @@ class PDFListObject: PDFRenderObject {
         return result
     }
 
-    /**
-     TODO: Documentation
-     */
-    private func createSymbolItem(generator: PDFGenerator,
-                                  container: PDFContainer,
-                                  symbol: PDFListItemSymbol) throws -> [PDFLocatedRenderObject] {
+    private func createSymbolItem(
+        generator: PDFGenerator,
+        container: PDFContainer,
+        symbol: PDFListItemSymbol
+    ) throws -> [PDFLocatedRenderObject] {
         let symbol: String = symbol.stringValue
         let symbolText = PDFSimpleText(text: symbol)
         let symbolTextObject = PDFAttributedTextObject(simpleText: symbolText)
@@ -73,9 +61,7 @@ class PDFListObject: PDFRenderObject {
         return try itemTextObject.calculate(generator: generator, container: container)
     }
 
-    /**
-     Creates a new `PDFListObject` with the same properties
-     */
+    /// nodoc
     override var copy: PDFRenderObject {
         PDFListObject(list: list.copy)
     }

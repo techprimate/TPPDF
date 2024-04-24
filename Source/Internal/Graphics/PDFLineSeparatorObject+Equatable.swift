@@ -6,9 +6,7 @@
 //
 
 extension PDFLineSeparatorObject: Equatable {
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     public static func == (lhs: PDFLineSeparatorObject, rhs: PDFLineSeparatorObject) -> Bool {
         guard lhs.style == rhs.style else {
             return false

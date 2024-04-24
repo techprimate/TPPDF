@@ -10,61 +10,27 @@
 #elseif os(macOS)
     import AppKit
 #endif
-/**
- TODO: Documentation
- */
+
 class PDFGroupObject: PDFRenderObject {
-    /**
-     TODO: Documentation
-     */
     var allowsBreaks: Bool
-
-    /**
-     TODO: Documentation
-     */
     var objects: [(container: PDFGroupContainer, object: PDFRenderObject)]
-
-    /**
-     TODO: Documentation
-     */
     var isFullPage: Bool
-
-    /**
-     TODO: Documentation
-     */
     var backgroundColor: Color?
-
-    /**
-     TODO: Documentation
-     */
     var backgroundImage: PDFImage?
-
-    /**
-     TODO: Documentation
-     */
     var backgroundShape: PDFDynamicGeometryShape?
-
-    /**
-     TODO: Documentation
-     */
     var outline: PDFLineStyle
-
-    /**
-     TODO: Documentation
-     */
     var padding: EdgeInsets
 
-    /**
-     TODO: Documentation
-     */
-    init(objects: [(container: PDFGroupContainer, object: PDFRenderObject)],
-         allowsBreaks: Bool,
-         isFullPage: Bool,
-         backgroundColor: Color?,
-         backgroundImage: PDFImage?,
-         backgroundShape: PDFDynamicGeometryShape?,
-         outline: PDFLineStyle,
-         padding: EdgeInsets) {
+    init(
+        objects: [(container: PDFGroupContainer, object: PDFRenderObject)],
+        allowsBreaks: Bool,
+        isFullPage: Bool,
+        backgroundColor: Color?,
+        backgroundImage: PDFImage?,
+        backgroundShape: PDFDynamicGeometryShape?,
+        outline: PDFLineStyle,
+        padding: EdgeInsets
+    ) {
         self.objects = objects
         self.allowsBreaks = allowsBreaks
         self.isFullPage = isFullPage
@@ -75,9 +41,7 @@ class PDFGroupObject: PDFRenderObject {
         self.padding = padding
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         let heights = generator.layout.heights
         guard let columnState = generator.columnState.copy() as? PDFColumnLayoutState else {
@@ -95,7 +59,7 @@ class PDFGroupObject: PDFRenderObject {
         }
 
         var groupedResult = [
-            [PDFLocatedRenderObject]()
+            [PDFLocatedRenderObject](),
         ]
 
         // Set padding
@@ -146,9 +110,11 @@ class PDFGroupObject: PDFRenderObject {
         return result
     }
 
-    private func calculateOnNextPage(generator: PDFGenerator,
-                                     container: PDFContainer,
-                                     pbObj: PDFPageBreakObject) throws -> [PDFLocatedRenderObject] {
+    private func calculateOnNextPage(
+        generator: PDFGenerator,
+        container: PDFContainer,
+        pbObj: PDFPageBreakObject
+    ) throws -> [PDFLocatedRenderObject] {
         frame = CGRect.null
 
         var result: [PDFLocatedRenderObject] = []
@@ -171,9 +137,6 @@ class PDFGroupObject: PDFRenderObject {
         generator.document.layout.bounds.inset(by: generator.layout.margin)
     }
 
-    /**
-     TODO: Documentation
-     */
     private func calculateFrame(objects: [(container: PDFContainer, object: PDFRenderObject)]) -> CGRect {
         var resultFrame = CGRect.null
         for arg in objects {
@@ -195,9 +158,7 @@ class PDFGroupObject: PDFRenderObject {
         return resultFrame
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     override func draw(generator: PDFGenerator, container _: PDFContainer, in context: PDFContext) throws {
         if let color = backgroundColor {
             PDFGraphics.drawRect(

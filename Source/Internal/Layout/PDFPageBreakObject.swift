@@ -12,13 +12,8 @@
 #endif
 import CoreGraphics
 
-/**
- Used in the rendering to create a new page
- */
+/// Used in the rendering to create a new page
 class PDFPageBreakObject: PDFRenderObject {
-    /**
-     TODO: Documentation
-     */
     var stayOnSamePage: Bool = false
 
     /**
@@ -82,9 +77,7 @@ class PDFPageBreakObject: PDFRenderObject {
         applyAttributes(in: context)
     }
 
-    /**
-     Creates a new `PDFPageBreakObject`
-     */
+    /// nodoc
     override var copy: PDFRenderObject {
         PDFPageBreakObject()
     }

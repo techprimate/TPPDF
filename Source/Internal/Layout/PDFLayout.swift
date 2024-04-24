@@ -15,26 +15,10 @@
  Contains all relevant layout informations of a pdf document
  */
 class PDFLayout: CustomStringConvertible {
-    /**
-     TODO: documentation
-     */
     var heights = PDFLayoutHeights()
-
-    /**
-     TODO: documentation
-     */
     var indentation = PDFLayoutIndentations()
-
-    /**
-     TODO: documentation
-     */
     var margin: EdgeInsets = .zero
 
-    // MARK: - INTERNAL FUNCS
-
-    /**
-     TODO: documentation
-     */
     func getContentOffset(in container: PDFContainer) -> CGFloat {
         if container.isHeader {
             return heights.header[container]!
@@ -44,9 +28,6 @@ class PDFLayout: CustomStringConvertible {
         return heights.content
     }
 
-    /**
-     TODO: documentation
-     */
     func setContentOffset(in container: PDFContainer, to value: CGFloat) {
         if container.isHeader {
             heights.header[container] = value
@@ -57,9 +38,6 @@ class PDFLayout: CustomStringConvertible {
         }
     }
 
-    /**
-     TODO: documentation
-     */
     func reset() {
         heights = PDFLayoutHeights()
         indentation = PDFLayoutIndentations()

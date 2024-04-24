@@ -5,25 +5,14 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
-/**
- TODO: Documentation
- */
 class PDFSectionColumnObject: PDFRenderObject {
-    /**
-     TODO: Documentation
-     */
     var column: PDFSectionColumn
 
-    /**
-     TODO: Documentation
-     */
     init(column: PDFSectionColumn) {
         self.column = column
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
@@ -34,9 +23,7 @@ class PDFSectionColumnObject: PDFRenderObject {
         return result
     }
 
-    /**
-     Creates a new `PDFSectionColumnObject` with the same properties
-     */
+    /// nodoc
     override var copy: PDFRenderObject {
         PDFSectionColumnObject(column: column.copy)
     }

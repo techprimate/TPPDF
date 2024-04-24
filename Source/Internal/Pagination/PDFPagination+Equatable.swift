@@ -5,13 +5,8 @@
 //  Created by Philip Niedertscheider on 04/11/2017.
 //
 
-/**
- TODO: Documentation
- */
 extension PDFPagination: Equatable {
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     public static func == (lhs: PDFPagination, rhs: PDFPagination) -> Bool {
         guard lhs.container == rhs.container else {
             return false

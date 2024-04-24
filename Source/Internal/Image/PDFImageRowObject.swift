@@ -11,37 +11,18 @@
     import AppKit
 #endif
 
-/**
- TODO: documentation
- */
 class PDFImageRowObject: PDFRenderObject {
-    /**
-     TODO: documentation
-     */
     var images: [PDFImage]
-
-    /**
-     TODO: documentation
-     */
     var spacing: CGFloat
-
-    /**
-     TODO: documentation
-     */
     var captionSpacing: CGFloat
 
-    /**
-     TODO: documentation
-     */
     init(images: [PDFImage], spacing: CGFloat = 1.0, captionSpacing: CGFloat = 5.0) {
         self.images = images
         self.spacing = spacing
         self.captionSpacing = captionSpacing
     }
 
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
@@ -65,10 +46,14 @@ class PDFImageRowObject: PDFRenderObject {
 
             let imageObject = PDFImageObject(image: image, captionSpacing: captionSpacing)
 
-            generator.layout.indentation.setLeft(indentation: originalInsetLeft + additionInset + spacing * CGFloat(idx),
-                                                 in: container)
-            generator.layout.indentation.setRight(indentation: originalInsetRight + (imageWidth + spacing) * CGFloat(images.count - idx - 1),
-                                                  in: container)
+            generator.layout.indentation.setLeft(
+                indentation: originalInsetLeft + additionInset + spacing * CGFloat(idx),
+                in: container
+            )
+            generator.layout.indentation.setRight(
+                indentation: originalInsetRight + (imageWidth + spacing) * CGFloat(images.count - idx - 1),
+                in: container
+            )
 
             let res = try imageObject.calculate(generator: generator, container: container)
             if res.contains(where: { $0.1 is PDFPageBreakObject }) {
@@ -90,9 +75,7 @@ class PDFImageRowObject: PDFRenderObject {
         return result
     }
 
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     override var copy: PDFRenderObject {
         PDFImageRowObject(images: images, spacing: spacing, captionSpacing: captionSpacing)
     }
