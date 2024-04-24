@@ -30,9 +30,6 @@ public enum PDFError: LocalizedError {
     /// Thrown when a ``PDFAttributedText`` should be rendered without being calculated first
     case textObjectNotCalculated
 
-    case invalidHexLength(length: Int)
-    case invalidHex(hex: String)
-
     /// Thrown when copying of a PDF object fails
     case copyingFailed
 
@@ -59,10 +56,6 @@ public enum PDFError: LocalizedError {
             return "No text object has been set"
         case .textObjectNotCalculated:
             return "Text object is missing string, maybe not calculated?"
-        case let .invalidHexLength(length):
-            return "Hex color string has invalid length: \(length)"
-        case let .invalidHex(hex):
-            return "Invalid hexdecimal string: " + hex
         case .copyingFailed:
             return "Failed to create a copy of an object"
         case let .externalDocumentURLInvalid(url):

@@ -22,9 +22,6 @@ class PDFError_Spec: QuickSpec {
 
                 expect(PDFError.textObjectIsNil).toNot(beNil())
                 expect(PDFError.textObjectNotCalculated).toNot(beNil())
-
-                expect(PDFError.invalidHexLength(length: 7)).toNot(beNil())
-                expect(PDFError.invalidHex(hex: "ABCD")).toNot(beNil())
             }
 
             it("should have a localized description") {
@@ -36,9 +33,6 @@ class PDFError_Spec: QuickSpec {
 
                 expect(PDFError.textObjectIsNil.localizedDescription) == "No text object has been set"
                 expect(PDFError.textObjectNotCalculated.localizedDescription) == "Text object is missing string, maybe not calculated?"
-
-                expect(PDFError.invalidHexLength(length: 7).localizedDescription) == "Hex color string has invalid length: 7"
-                expect(PDFError.invalidHex(hex: "ABCD").localizedDescription) == "Invalid hexdecimal string: ABCD"
             }
         }
     }

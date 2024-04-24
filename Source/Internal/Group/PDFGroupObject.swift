@@ -95,7 +95,7 @@ class PDFGroupObject: PDFRenderObject {
         }
 
         var groupedResult = [
-            [PDFLocatedRenderObject](),
+            [PDFLocatedRenderObject]()
         ]
 
         // Set padding

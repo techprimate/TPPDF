@@ -21,7 +21,7 @@ class PDFExternalPageObject: PDFRenderObject {
     override func calculate(generator _: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         frame = page.getBoxRect(.mediaBox)
         return [
-            (container, self),
+            (container, self)
         ]
     }
 

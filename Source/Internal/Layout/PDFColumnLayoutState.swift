@@ -53,27 +53,27 @@ class PDFColumnLayoutState: CustomStringConvertible {
         self.currentColumn = [
             .headerLeft: 0,
             .contentLeft: 0,
-            .footerLeft: 0,
+            .footerLeft: 0
         ]
         self.columnWidths = [
             .headerLeft: [],
             .contentLeft: [],
-            .footerLeft: [],
+            .footerLeft: []
         ]
         self.columnSpacings = [
             .headerLeft: [],
             .contentLeft: [],
-            .footerLeft: [],
+            .footerLeft: []
         ]
         self.wrapColumnsHeight = [
             .headerLeft: 0,
             .contentLeft: 0,
-            .footerLeft: 0,
+            .footerLeft: 0
         ]
         self.inset = [
             .headerLeft: (0, 0),
             .contentLeft: (0, 0),
-            .footerLeft: (0, 0),
+            .footerLeft: (0, 0)
         ]
     }
 
@@ -85,27 +85,27 @@ class PDFColumnLayoutState: CustomStringConvertible {
         currentColumn = [
             .headerLeft: 0,
             .contentLeft: 0,
-            .footerLeft: 0,
+            .footerLeft: 0
         ]
         columnWidths = [
             .headerLeft: [],
             .contentLeft: [],
-            .footerLeft: [],
+            .footerLeft: []
         ]
         columnSpacings = [
             .headerLeft: [],
             .contentLeft: [],
-            .footerLeft: [],
+            .footerLeft: []
         ]
         wrapColumnsHeight = [
             .headerLeft: 0,
             .contentLeft: 0,
-            .footerLeft: 0,
+            .footerLeft: 0
         ]
         inset = [
             .headerLeft: (0, 0),
             .contentLeft: (0, 0),
-            .footerLeft: (0, 0),
+            .footerLeft: (0, 0)
         ]
     }
 

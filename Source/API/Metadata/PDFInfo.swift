@@ -98,7 +98,7 @@ public class PDFInfo {
             kCGPDFContextSubject as String: subject,
             kCGPDFContextKeywords as String: keywords,
             kCGPDFContextAllowsPrinting as String: allowsPrinting,
-            kCGPDFContextAllowsCopying as String: allowsCopying,
+            kCGPDFContextAllowsCopying as String: allowsCopying
         ]
 
         var creator = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "TPPDF"

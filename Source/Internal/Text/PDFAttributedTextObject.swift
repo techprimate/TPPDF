@@ -287,7 +287,7 @@ class PDFAttributedTextObject: PDFRenderObject {
         return [
             NSAttributedString.Key.font: style?.font ?? fonts[container]!,
             NSAttributedString.Key.foregroundColor: style?.color ?? textColor[container]!,
-            NSAttributedString.Key.paragraphStyle: paragraphStyle,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
         ]
     }
 

@@ -270,7 +270,7 @@ class PDFTableObject: PDFRenderObject {
         let attributes: [NSAttributedString.Key: AnyObject] = [
             .foregroundColor: cellStyle.colors.text,
             .font: cellStyle.font,
-            .paragraphStyle: paragraph,
+            .paragraphStyle: paragraph
         ]
         return NSAttributedString(string: text, attributes: attributes)
     }
@@ -606,7 +606,7 @@ class PDFTableObject: PDFRenderObject {
                           endPoint: CGPoint(x: frame.maxX, y: frame.maxY)),
             PDFLineObject(style: borders.left,
                           startPoint: CGPoint(x: frame.minX, y: frame.minY),
-                          endPoint: CGPoint(x: frame.minX, y: frame.maxY)),
+                          endPoint: CGPoint(x: frame.minX, y: frame.maxY))
         ]
     }
 

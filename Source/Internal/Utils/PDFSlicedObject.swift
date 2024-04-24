@@ -23,7 +23,7 @@ class PDFSlicedObject: PDFRenderObject {
 
     override func calculate(generator _: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         [
-            (container, self),
+            (container, self)
         ]
     }
 
