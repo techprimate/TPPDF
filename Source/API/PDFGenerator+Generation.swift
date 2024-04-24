@@ -6,82 +6,78 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- Gives the generator the functionality to convert a `PDFDocument` into a `PDF`
- */
-extension PDFGenerator {
-
+/// Extends the base structure with multiple ways of generating PDF documents from a ``PDFDocument``.
+public extension PDFGenerator {
     // MARK: - PUBLIC FUNCS
 
-    /// nodoc
-    public func generateURL(filename: String) throws -> URL {
-        try self.generateURL(filename: filename, info: nil)
+    /// Convenience method for ``PDFGenerator/generate(to:info:)`` without `info`
+    func generateURL(filename: String) throws -> URL {
+        try generateURL(filename: filename, info: nil)
     }
 
-    /// nodoc
-    public func generate(to url: URL) throws {
-        try self.generate(to: url, info: nil)
+    /// Convenience method for ``PDFGenerator/generate(to:info:)`` without `info`
+    func generate(to url: URL) throws {
+        try generate(to: url, info: nil)
     }
 
     /**
-     Generates PDF data and writes it to a temporary file.
-
-     - parameter to:    URL where file should be saved.
-     - parameter info:  PDF file information
-
-     - throws:          PDFError
+     * Generates PDF data and writes it to a temporary file at the given URL `to`.
+     *
+     * - Parameter to:    URL where file should be saved.
+     * - Parameter info:  PDF file information
+     *
+     * - Throws: ``PDFError`` if the calculations or rendering fails
      */
-    public func generate(to url: URL, info: PDFInfo?) throws {
+    func generate(to url: URL, info: PDFInfo?) throws {
         let context = PDFContextGraphics.createPDFContext(url: url, bounds: document.layout.bounds, info: info ?? document.info)
         try generatePDFContext(context: context)
         PDFContextGraphics.closePDFContext(context)
     }
 
-    /// nodoc
-    public func generateData() throws -> Data {
-        try self.generateData(info: nil)
+    /// Convenience method for ``PDFGenerator/generateData(info:)`` without defining `info`
+    func generateData() throws -> Data {
+        try generateData(info: nil)
     }
 
     /**
-     Generates PDF data and returns it
-
-     - parameter document:  PDFDocument which should be converted into a PDF file.
-     - parameter info:      Metadata Information added to file
-
-     - returns:             PDF Data
-
-     - throws:              PDFError
+     * Generates PDF data and returns it
+     *
+     * - Parameter info: Metadata Information added to file
+     *
+     * - Throws: ``PDFError`` if the calculations or rendering fails
+     *
+     * - Returns: PDF file data
      */
-    public func generateData(info: PDFInfo?) throws -> Data {
+    func generateData(info: PDFInfo?) throws -> Data {
         let (data, context) = PDFContextGraphics.createPDFDataContext(bounds: document.layout.bounds, info: info ?? document.info)
         try generatePDFContext(context: context)
         PDFContextGraphics.closePDFContext(context)
         return data as Data
     }
 
-    // MARK: - INTERNAL FUNCS
-
     /**
-     Generate PDF Context from PDFCommands
-
-     - throws: PDFError
+     * Generate PDF Context from PDFCommands
+     *
+     * - Throws: ``PDFError`` if the calculations or rendering fails
      */
-    public func generatePDFContext(context: PDFContext) throws {
+    func generatePDFContext(context: PDFContext) throws {
         let renderObjects = try createRenderObjects()
         try render(objects: renderObjects, in: context)
     }
 
     /**
-     Creates a list of container-object pairs which will be rendered.
-
-     - returns: List of renderable objects
+     * Creates a list of container-object pairs which will be rendered.
+     *
+     * - Throws: ``PDFError`` if the calculations fail
+     *
+     * - Returns: List of renderable objects
      */
-    public func createRenderObjects() throws -> [PDFLocatedRenderObject] {
+    func createRenderObjects() throws -> [PDFLocatedRenderObject] {
         layout.margin = document.layout.margin
 
         // First calculate master objects
@@ -127,11 +123,21 @@ extension PDFGenerator {
         // Set layout margin according to document spec
         layout.margin = document.layout.margin
 
-        // Calculate
+        // Calculate the actual elements
         return try calculateRenderObjects(contentObjs: contentObjects, masterObj: masterObjects, progress: calculationProgress)
     }
 
-    internal func estimateTotalPageCount(of contentObjects: [PDFLocatedRenderObject], progress: Progress) throws -> Int {
+    /**
+     * Estimation algorithm for the total pages in the output document
+     *
+     * This method is used to calculate an over-estimate of the total page count, to reserve enough space in the layout for the necessary elements
+     *
+     * - Parameter contentObjects: List of objects with their corresponding location
+     * - Parameter progress: ``Foundation.Progress`` to report render and calculation progress
+     *
+     * - Throws: ``PDFError`` if the calculations fail
+     */
+    private func estimateTotalPageCount(of contentObjects: [PDFLocatedRenderObject], progress: Progress) throws -> Int {
         // Only calculate render header & footer metrics if page has content.
         if !contentObjects.isEmpty && !(contentObjects.first?.1 is PDFExternalPageObject) {
             _ = try addHeaderFooterObjects()
@@ -145,9 +151,11 @@ extension PDFGenerator {
             let (container, pdfObject) = locatedPdfObject
             if let tocObject = pdfObject as? PDFTableOfContentObject {
                 // Create table of content from objects
-                tocObject.list = PDFGenerator.createTableOfContentList(objects: contentObjects,
-                                                                       styles: tocObject.options.styles,
-                                                                       symbol: tocObject.options.symbol)
+                tocObject.list = PDFGenerator.createTableOfContentList(
+                    objects: contentObjects,
+                    styles: tocObject.options.styles,
+                    symbol: tocObject.options.symbol
+                )
             }
             let objects = try pdfObject.calculate(generator: self, container: container)
             var prevObj: PDFLocatedRenderObject?
@@ -192,7 +200,22 @@ extension PDFGenerator {
         return result
     }
 
-    private func calculateRenderObjects(contentObjs: [PDFLocatedRenderObject], masterObj: [PDFLocatedRenderObject], progress: Progress) throws -> [PDFLocatedRenderObject] {
+    /**
+     * Calculates the layout of given render objects in `contentObjs`, in addition to the given page master object `masterObj`,
+     * and returns a list of objects ready to be rendered.
+     *
+     * - Parameters:
+     *     - contentObjs: List of render objects with their location
+     *     - masterObj: List of render objects which should be added to every new page
+     *     - progress: ``Foundation.Progress`` to report render and calculation progress
+     *
+     * - Throws: ``PDFError`` if the calculations fail
+     */
+    private func calculateRenderObjects(
+        contentObjs: [PDFLocatedRenderObject],
+        masterObj: [PDFLocatedRenderObject],
+        progress: Progress
+    ) throws -> [PDFLocatedRenderObject] {
         guard !contentObjs.isEmpty else {
             return []
         }
@@ -217,7 +240,7 @@ extension PDFGenerator {
             var prevObj: PDFLocatedRenderObject?
             for obj in objects {
                 if needsPageBreak {
-                    if !(prevObj?.1 is PDFExternalPageObject) && !(obj.1 is PDFExternalPageObject) {
+                    if !(prevObj?.1 is PDFExternalPageObject), !(obj.1 is PDFExternalPageObject) {
                         needsPageBreak = false
                         result += try PDFPageBreakObject().calculate(generator: self, container: container)
                         currentPage += 1
@@ -258,12 +281,13 @@ extension PDFGenerator {
     }
 
     /**
-     Returns a list of all header and footer objects with their corresponding container.
-     This list also contains the pagination object
-
-     - throws: PDFError
-
-     - returns: List of renderable objects
+     * Returns a list of all header and footer objects with their corresponding container.
+     *
+     * This list also contains the pagination object.
+     *
+     * - Throws: ``PDFError`` if calculations fail
+     *
+     * - Returns: List of renderable objects with their corresponding location
      */
     private func addHeaderFooterObjects() throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
@@ -273,7 +297,7 @@ extension PDFGenerator {
         let pagination = document.pagination
 
         if pagination.container != .none {
-            if !pagination.hiddenPages.contains(currentPage) && currentPage >= pagination.range.start && currentPage <= pagination.range.end {
+            if !pagination.hiddenPages.contains(currentPage), currentPage >= pagination.range.start, currentPage <= pagination.range.end {
                 let text = pagination.style.format(page: currentPage, total: totalPages)
                 let attributedText = NSAttributedString(string: text, attributes: pagination.textAttributes)
                 let textObject = PDFAttributedTextObject(attributedText: PDFAttributedText(text: attributedText))
@@ -292,7 +316,11 @@ extension PDFGenerator {
     }
 
     /**
-     TODO: Documentation
+     * Creates objects to visually render the borders of the header and footer areas
+     *
+     * - Throws: ``PDFError`` if the calculation fail
+     *
+     * - Returns: List of render objects with their corresponding location
      */
     private func headerFooterDebugLines() throws -> [PDFLocatedRenderObject] {
         let headerFooterDebugLineStyle = PDFLineStyle(type: .dashed, color: .orange, width: 1)
@@ -322,9 +350,9 @@ extension PDFGenerator {
     }
 
     /**
-     Renders a list of objects in their corresponding container
-
-     - throws: PDFError, if rendering fails
+     * Renders a list of objects in their corresponding container
+     *
+     * - Throws: ``PDFError`` if the rendering fails
      */
     internal func render(objects: [PDFLocatedRenderObject], in context: PDFContext) throws {
         let renderProgress = Progress.discreteProgress(totalUnitCount: Int64(objects.count))
@@ -349,9 +377,15 @@ extension PDFGenerator {
     }
 
     /**
-     Render a object in its corresponding container
-
-     - throws: PDFError, if rendering fails
+     * Render a object in its corresponding container
+     *
+     * If a ``PDFGenerator/delegate`` has been configured, its `willBeginDrawing...` and `didFinishDrawing...` methods will be called for
+     * the respective render objects as defined here:
+     *
+     * - ``PDFImageObject``:
+     *     - ``PDFGeneratorImageDelegate/generator(willBeginDrawingImage:with:in:)`` before drawing
+     *
+     * - Throws: ``PDFError``, if rendering fails
      */
     internal func render(object: PDFRenderObject, in container: PDFContainer, in context: PDFContext) throws {
         if let imageObject = object as? PDFImageObject {
@@ -363,49 +397,58 @@ extension PDFGenerator {
     // MARK: - INTERNAL STATIC FUNCS
 
     /**
-     Filters out all objects which are in the header area
-
-     - parameter objects: List objects
-
-     - returns: List of all header objects
+     * Filters out all objects which are in the header area
+     *
+     * - Parameter objects: List of ``PDFLocatedRenderObject``
+     *
+     * - Returns: Filtered list of ``PDFLocatedRenderObject``
      */
     internal static func extractHeaderObjects(objects: [PDFLocatedRenderObject]) -> [PDFLocatedRenderObject] {
         objects.filter { $0.0.isHeader }
     }
 
     /**
-     Filters out all objects which are in the footer area
-
-     - parameter objects: List objects
-
-     - returns: List of all footer objects
+     * Filters out all objects which are in the footer area
+     *
+     * - Parameter objects: List of ``PDFLocatedRenderObject``
+     *
+     * - Returns: Filtered list of ``PDFLocatedRenderObject``
      */
     internal static func extractFooterObjects(objects: [PDFLocatedRenderObject]) -> [PDFLocatedRenderObject] {
         objects.filter { $0.0.isFooter }
     }
 
     /**
-     Filters out all objects which are in the content area
-
-     - parameter objects: List objects
-
-     - returns: List of all content objects
+     * Filters out all objects which are in the content area
+     *
+     * - Parameter objects: List of ``PDFLocatedRenderObject``
+     *
+     * - Returns: Filtered list of ``PDFLocatedRenderObject``
      */
     internal static func extractContentObjects(objects: [PDFLocatedRenderObject]) -> [PDFLocatedRenderObject] {
         objects.filter { !$0.0.isFooter && !$0.0.isHeader }
     }
 
     /**
-     TODO: Documentation
+     * Creates a tree of nested ``PDFList`` used to render the table of contents.
+     *
+     * - Parameters:
+     *     - objects: List of render objects used as the basis to create the table of contents
+     *     - styles: Weak references to the ``PDFTextStyle``
+     *     - symbol: Symbol used for the list items, see ``PDFListItem/symbol``
+     *
+     * - Note: See documentation of ``PDFTableOfContent`` for details on the usage
      */
-    internal static func createTableOfContentList(objects: [PDFLocatedRenderObject],
-                                                  styles: [WeakPDFTextStyleRef],
-                                                  symbol: PDFListItemSymbol) -> PDFList {
+    internal static func createTableOfContentList(
+        objects: [PDFLocatedRenderObject],
+        styles: [WeakPDFTextStyleRef],
+        symbol: PDFListItemSymbol
+    ) -> PDFList {
         var elements: [(Int, PDFAttributedTextObject)] = []
         for (_, obj) in objects {
             if let textObj = obj as? PDFAttributedTextObject,
-                let style = textObj.simpleText?.style,
-                let styleIndex = styles.firstIndex(where: { $0.value === style }) {
+               let style = textObj.simpleText?.style,
+               let styleIndex = styles.firstIndex(where: { $0.value === style }) {
                 elements.append((styleIndex, textObj))
             }
         }

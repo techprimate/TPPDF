@@ -1,76 +1,94 @@
 //
-//  List.swift
+//  PDFList.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
- TODO: Documentation
+ * Creates a new bullet list or numbered list with multiple, indented levels.
+ *
+ * Each list item has a `pre` spacing between the page indentation to the left side of the ``PDFListItem/symbol``, and a `past` spacing at
+ * the right side of the symbol.
+ *
+ * ```swift
+ * let list = PDFList(indentations: [(pre: 0.0, past: 20.0), (pre: 20.0, past: 20.0), (pre: 40.0, past: 20.0)])
+ * ```
  */
 public class PDFList: PDFDocumentObject {
+    /// Items in this list
+    public var items: [PDFListItem] = []
+
+    /// Spacing before and after the symbol for each nesting level
+    public var levelIndentations: [(pre: CGFloat, past: CGFloat)] = []
 
     /**
-     TODO: Documentation
-     */
-    internal var items: [PDFListItem] = []
-
-    /**
-     TODO: Documentation
-     */
-    internal var levelIndentations: [(pre: CGFloat, past: CGFloat)] = []
-
-    /**
-     TODO: Documentation
+     * Creates a new list
+     *
+     * - Parameter indentations: Spacing before and after the symbol for each nesting level.
+     *                           If not enough indentation levels are provided, the default value `0` will be used for `pre` and `past`.
      */
     public init(indentations: [(pre: CGFloat, past: CGFloat)]) {
         self.levelIndentations = indentations
     }
 
     /**
-     TODO: Documentation
+     * Adds the given `item` to this list
+     *
+     * - Parameter item: Item to add
+     *
+     * - Returns: Reference to this instance, useful for chaining
      */
     @discardableResult public func addItem(_ item: PDFListItem) -> PDFList {
-        self.items.append(item)
-
+        items.append(item)
         return self
     }
 
     /**
-     TODO: Documentation
+     * Appends the given `items` to this list
+     *
+     * - Parameter items: Items to append
+     *
+     * - Returns: Reference to this instance, useful for chaining
      */
     @discardableResult public func addItems(_ items: [PDFListItem]) -> PDFList {
         self.items += items
-
         return self
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// Count of items in this list
     public var count: Int {
         items.count
     }
 
     /**
-     TODO: Documentation
+     * Converts the added instances of ``PDFListItem`` from a nested structure into an array of tuples
+     *
+     * - Returns: Array of tuples with `level`, `text` and `symbol` for each item
      */
     public func flatted() -> [(level: Int, text: String, symbol: PDFListItemSymbol)] {
         var result: [(level: Int, text: String, symbol: PDFListItemSymbol)] = []
-        for (idx, item) in self.items.enumerated() {
+        for (idx, item) in items.enumerated() {
             result += flatItem(item: item, level: 0, index: idx)
         }
         return result
     }
 
     /**
-     TODO: Documentation
+     * Converts the added instances of ``PDFListItem`` from a nested structure into an array of tuples.
+     *
+     * - Parameters:
+     *     - item: Instance of ``PDFListItem`` to map recursively
+     *     - level: Current nesting level, increased during recursive calls
+     *     - index: Index in the current level, used with ``PDFListItemSymbol/numbered(value:)``
+     *
+     * - Returns: Array of tuples with `level`, `text` and `symbol` for each item
      */
     private func flatItem(item: PDFListItem, level: Int, index: Int) -> [(level: Int, text: String, symbol: PDFListItemSymbol)] {
         var result: [(level: Int, text: String, symbol: PDFListItemSymbol)] = []
@@ -97,27 +115,23 @@ public class PDFList: PDFDocumentObject {
         return result
     }
 
-    internal func clear() {
-        self.items = []
+    /// Removes all items from this list
+    func clear() {
+        items = []
     }
 
-    /**
-     TODO: Documentation
-     */
-    internal var copy: PDFList {
-        let list = PDFList(indentations: self.levelIndentations)
+    // MARK: - Copying
+
+    /// nodoc
+    var copy: PDFList {
+        let list = PDFList(indentations: levelIndentations)
         list.items = items.map(\.copy)
         return list
     }
 
     // MARK: - Equatable
 
-    /// Compares two instances of `PDFList` for equality
-    ///
-    /// - Parameters:
-    ///   - lhs: One instance of `PDFList`
-    ///   - rhs: Another instance of `PDFList`
-    /// - Returns: `true`, if `levelIndentations` and `items` equal; otherwise `false`
+    /// nodoc
     override public func isEqual(to other: PDFDocumentObject) -> Bool {
         guard super.isEqual(to: other) else {
             return false
@@ -125,16 +139,16 @@ public class PDFList: PDFDocumentObject {
         guard let otherList = other as? PDFList else {
             return false
         }
-        guard self.levelIndentations.count == otherList.levelIndentations.count else {
+        guard levelIndentations.count == otherList.levelIndentations.count else {
             return false
         }
-        for (idx, indentation) in self.levelIndentations.enumerated() where otherList.levelIndentations[idx] != indentation {
+        for (idx, indentation) in levelIndentations.enumerated() where otherList.levelIndentations[idx] != indentation {
             return false
         }
-        guard self.items.count == otherList.items.count else {
+        guard items.count == otherList.items.count else {
             return false
         }
-        for (idx, item) in self.items.enumerated() where otherList.items[idx] != item {
+        for (idx, item) in items.enumerated() where otherList.items[idx] != item {
             return false
         }
         return true
@@ -142,6 +156,7 @@ public class PDFList: PDFDocumentObject {
 
     // MARK: - Hashable
 
+    /// nodoc
     override public func hash(into hasher: inout Hasher) {
         super.hash(into: &hasher)
         for (pre, post) in levelIndentations {
@@ -152,15 +167,19 @@ public class PDFList: PDFDocumentObject {
     }
 }
 
-extension PDFList: CustomDebugStringConvertible {
+// MARK: CustomDebugStringConvertible
 
+extension PDFList: CustomDebugStringConvertible {
+    /// nodoc
     public var debugDescription: String {
         "PDFList(levels: \(levelIndentations.debugDescription), items: \(items.debugDescription))"
     }
 }
 
-extension PDFList: CustomStringConvertible {
+// MARK: CustomStringConvertible
 
+extension PDFList: CustomStringConvertible {
+    /// nodoc
     public var description: String {
         "PDFList(levels: \(levelIndentations), items: \(items))"
     }

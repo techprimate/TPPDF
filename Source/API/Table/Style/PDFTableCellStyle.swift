@@ -6,37 +6,35 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- TODO: Documentation
- */
+/// Structure used to manage the custom style of a ``PDFTableCell``
 public struct PDFTableCellStyle: Hashable {
-
-    /**
-     TODO: Documentation
-     */
+    /// The cell fill (background) color and the text color
     public var colors: (fill: Color, text: Color)
 
-    /**
-     TODO: Documentation
-     */
+    /// Custom border styling (see ``PDFTableCellBorders`` for details)
     public var borders: PDFTableCellBorders
 
-    /**
-     TODO: Documentation
-     */
+    /// Font used for text content in cells
     public var font: Font
 
     /**
-     TODO: Documentation
+     * Creates a new cell style
+     *
+     * - Parameters:
+     *     - colors: See ``PDFTableCellStyle/colors``
+     *     - borders: See ``PDFTableCellStyle/borders``
+     *     - font: See ``PDFTableCellStyle/font``
      */
-    public init(colors: (fill: Color, text: Color) = (Color.clear, Color.black),
-                borders: PDFTableCellBorders = PDFTableCellBorders(),
-                font: Font = Font.systemFont(ofSize: PDFConstants.defaultFontSize)) {
+    public init(
+        colors: (fill: Color, text: Color) = (Color.clear, Color.black),
+        borders: PDFTableCellBorders = PDFTableCellBorders(),
+        font: Font = Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+    ) {
         self.colors = colors
         self.borders = borders
         self.font = font
@@ -44,6 +42,7 @@ public struct PDFTableCellStyle: Hashable {
 
     // MARK: - Equatable
 
+    /// nodoc
     public static func == (lhs: PDFTableCellStyle, rhs: PDFTableCellStyle) -> Bool {
         guard lhs.colors == rhs.colors else {
             return false
@@ -56,8 +55,10 @@ public struct PDFTableCellStyle: Hashable {
         }
         return true
     }
+
     // MARK: - Hashable
 
+    /// nodoc
     public func hash(into hasher: inout Hasher) {
         hasher.combine(colors.fill)
         hasher.combine(colors.text)
@@ -66,9 +67,11 @@ public struct PDFTableCellStyle: Hashable {
     }
 }
 
-extension PDFTableCellStyle {
-
-    public static let none = PDFTableCellStyle(colors: (fill: Color.clear, text: Color.black),
-                                               borders: .none,
-                                               font: Font.systemFont(ofSize: PDFConstants.defaultFontSize))
+public extension PDFTableCellStyle {
+    /// Default cell style not displaying any background or borders
+    static let none = PDFTableCellStyle(
+        colors: (fill: Color.clear, text: Color.black),
+        borders: .none,
+        font: Font.systemFont(ofSize: PDFConstants.defaultFontSize)
+    )
 }

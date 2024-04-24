@@ -1,5 +1,5 @@
 //
-//  PDFGeneratorImageDelegate.swift
+//  PDFGeneratorDelegate.swift
 //  TPPDF
 //
 //  Created by Chris Gonzales on 10/10/20.

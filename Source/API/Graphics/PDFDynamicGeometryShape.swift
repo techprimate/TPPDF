@@ -6,33 +6,29 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- TODO: Documentation
- */
+/// Renders an arbitrary path into the graphics context
 public class PDFDynamicGeometryShape: CustomStringConvertible {
-
-    /**
-     TODO: Documentation
-     */
+    /// Path of the geometry shape
     public var path: PDFBezierPath
 
-    /**
-     TODO: Documentation
-     */
+    /// Color used to fill the shape
     public var fillColor: Color = .black
 
-    /**
-     TODO: Documentation
-     */
+    /// Line style used to stroke the shape
     public var stroke: PDFLineStyle = .none
 
     /**
-     TODO: Documentation
+     * Creates a new dynamic geometry shape
+     *
+     * - Parameters:
+     *    - path: See ``PDFDynamicGeometryShape/path`
+     *    - fillColor: See ``PDFDynamicGeometryShape/fillColor`
+     *    - strolke: See ``PDFDynamicGeometryShape/stroke`
      */
     public init(path: PDFBezierPath, fillColor: Color, stroke: PDFLineStyle) {
         self.path = path

@@ -6,40 +6,86 @@
 //
 
 /**
- TODO: documentation
+ * An item used in a ``PDFList``
+ *
+ * By configuring the ``PDFListItem/symbol`` it is possible to mix the symbols used by list items.
+ *
+ * ```swift
+ * let document = PDFDocument(format: .a4)
+ *
+ * let items = [
+ *     "Simple text drawing",
+ *     "Advanced text drawing using AttributedString",
+ *     "Multi-layer rendering by simply setting the offset",
+ *     "Fully calculated content sizing",
+ *     "Automatic page wrapping",
+ *     "Customizable pagination",
+ *     "Fully editable header and footer",
+ *     "Simple image positioning and rendering",
+ *     "Image captions"
+ * ]
+ *
+ * // Simple bullet point list
+ * let featureList = PDFList(indentations: [
+ *     (pre: 10.0, past: 20.0),
+ *     (pre: 20.0, past: 20.0),
+ *     (pre: 40.0, past: 20.0)
+ * ])
+ *
+ * // By adding the item first to a list item with the dot symbol, all of them will inherit it
+ * featureList
+ *     .addItem(PDFListItem(symbol: .dot)
+ *     .addItems(items.map { PDFListItem(content: $0) })
+ * document.add(list: featureList)
+ *
+ * document.add(space: 20)
+ *
+ * // Numbered list with unusual indentation
+ * let weirdIndentationList = PDFList(indentations: [
+ *     (pre: 10.0, past: 20.0),
+ *     (pre: 40.0, past: 30.0),
+ *     (pre: 20.0, past: 50.0)
+ * ])
+ *
+ * weirdIndentationList.addItems(items.enumerated().map { arg in
+ *     PDFListItem(symbol: .numbered(value: "\(arg.offset + 1)"), content: arg.element)
+ * })
+ * document.add(list: weirdIndentationList)
+ * ```
  */
 public class PDFListItem: PDFDocumentObject {
-
-    /**
-     TODO: documentation
-     */
+    /// Weak reference to the parent list item, used to implement the list symbol ``PDFListItemSymbol/inherit``
     public weak var parent: PDFListItem?
 
-    /**
-     TODO: documentation
-     */
+    /// Text content of this list item, calculated and rendered using ``PDFSimpleText``
     public var content: String?
 
-    /**
-     TODO: documentation
-     */
+    /// List of ``PDFListItem`` nested in this instance
     public var children: [PDFListItem]?
 
-    /**
-     TODO: documentation
-     */
+    /// Symbol used for this list item
     public var symbol: PDFListItemSymbol
 
     /**
-     TODO: documentation
+     * Creates a new list item
+     *
+     * - Parameter symbol: See ``PDFListItem/symbol`` for details, defaults to ``PDFListItemSymbol/inherit``
+     * - Parameter content: See ``PDFListItem/content``, defaults to `nil`
      */
-    public init(symbol: PDFListItemSymbol = PDFListItemSymbol.inherit, content: String? = nil) {
+    public init(
+        symbol: PDFListItemSymbol = PDFListItemSymbol.inherit,
+        content: String? = nil
+    ) {
         self.symbol = symbol
         self.content = content
     }
 
     /**
-     TODO: documentation
+     * Appends the given `items` to the list of nested items
+     *
+     * - Parameter items: Items to append
+     *
+     * - Returns: Reference to this instance, useful for chaining
      */
     @discardableResult public func addItems(_ items: [PDFListItem]) -> PDFListItem {
         for item in items {
@@ -50,17 +96,25 @@ public class PDFListItem: PDFDocumentObject {
     }
 
     /**
-     TODO: documentation
+     * Adds the given `item` to the list of nested items
+     *
+     * - Parameter item: Item to add
+     *
+     * - Returns: Reference to this instance, useful for chaining
      */
     @discardableResult public func addItem(_ item: PDFListItem) -> PDFListItem {
         item.parent = self
-        self.children = (self.children ?? []) + [item]
+        children = (children ?? []) + [item]
 
         return self
     }
 
     /**
-     TODO: documentation
+     * Sets the content of this list item
+     *
+     * - Parameter content: See ``PDFListItem/content`` for details
+     *
+     * - Returns: Reference to this instance, useful for chaining
      */
     @discardableResult public func setContent(_ content: String) -> PDFListItem {
         self.content = content
@@ -68,11 +122,11 @@ public class PDFListItem: PDFDocumentObject {
         return self
     }
 
-    /**
-     TODO: documentation
-     */
+    // MARK: - Copying
+
+    /// nodoc
     public var copy: PDFListItem {
-        let item = PDFListItem(symbol: self.symbol, content: self.content)
+        let item = PDFListItem(symbol: symbol, content: content)
         for child in children ?? [] {
             item.addItem(child.copy)
         }
@@ -81,12 +135,7 @@ public class PDFListItem: PDFDocumentObject {
 
     // MARK: - Equatable
 
-    /// Compares two instances of `PDFListItem` for equality
-    ///
-    /// - Parameters:
-    ///   - lhs: One instance of `PDFListItem`
-    ///   - rhs: Another instance of `PDFListItem`
-    /// - Returns: `true`, if `attributes`, `tag`, `content`, `children` and `symbol` equal; otherwise `false`
+    /// nodoc
     override public func isEqual(to other: PDFDocumentObject) -> Bool {
         guard super.isEqual(to: other) else {
             return false
@@ -94,13 +143,13 @@ public class PDFListItem: PDFDocumentObject {
         guard let otherListItem = other as? PDFListItem else {
             return false
         }
-        guard self.content == otherListItem.content else {
+        guard content == otherListItem.content else {
             return false
         }
-        guard self.children == otherListItem.children else {
+        guard children == otherListItem.children else {
             return false
         }
-        guard self.symbol == otherListItem.symbol else {
+        guard symbol == otherListItem.symbol else {
             return false
         }
         return true
@@ -108,6 +157,7 @@ public class PDFListItem: PDFDocumentObject {
 
     // MARK: - Equatable
 
+    /// nodoc
     override public func hash(into hasher: inout Hasher) {
         super.hash(into: &hasher)
         hasher.combine(content)
@@ -116,8 +166,10 @@ public class PDFListItem: PDFDocumentObject {
     }
 }
 
-extension PDFListItem: CustomDebugStringConvertible {
+// MARK: CustomDebugStringConvertible
 
+extension PDFListItem: CustomDebugStringConvertible {
+    /// nodoc
     public var debugDescription: String {
         let content = self.content ?? "nil"
         let children = self.children?.debugDescription ?? "nil"
@@ -125,8 +177,10 @@ extension PDFListItem: CustomDebugStringConvertible {
     }
 }
 
-extension PDFListItem: CustomStringConvertible {
+// MARK: CustomStringConvertible
 
+extension PDFListItem: CustomStringConvertible {
+    /// nodoc
     public var description: String {
         let content = self.content ?? "nil"
         let children = self.children?.description ?? "nil"

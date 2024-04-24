@@ -6,60 +6,48 @@
 //
 
 /**
- TODO: documentation
+ * Options used to configure the behaviour of ``PDFImage``
+ *
+ * Multiple options can be combined by using the ``OptionSet`` operators, i.e. using the array syntax.
+ *
+ * **Example:**
+ *
+ * ```swift
+ * let image = PDFImage(
+ *     options: [.resize, .compress]
+ * )
+ * ```
  */
 public struct PDFImageOptions: OptionSet, Hashable {
-
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     public let rawValue: Int
 
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     public init(rawValue: Int) {
         self.rawValue = rawValue
     }
 
-    /**
-     TODO: documentation
-     */
+    /// Image will be resized to the calculated frame
     public static let resize = PDFImageOptions(rawValue: 1 << 0)
 
-    /**
-     TODO: documentation
-     */
+    /// Image will be compressed using the value set in the property `quality`
     public static let compress = PDFImageOptions(rawValue: 1 << 1)
 
-    /**
-     TODO: documentation
-     */
+    /// Top-left corner of image will be rounded
     public static let roundedTopLeft = PDFImageOptions(rawValue: 1 << 2)
 
-    /**
-     TODO: documentation
-     */
+    /// Top-right corner of image will be rounded
     public static let roundedTopRight = PDFImageOptions(rawValue: 1 << 3)
 
-    /**
-     TODO: documentation
-     */
+    /// Bottom-right corner of image will be rounded
     public static let roundedBottomRight = PDFImageOptions(rawValue: 1 << 4)
 
-    /**
-     TODO: documentation
-     */
+    /// Bottom-left corner of image will be rounded
     public static let roundedBottomLeft = PDFImageOptions(rawValue: 1 << 5)
 
-    /**
-     TODO: documentation
-     */
+    /// Short-hand option to round all corners
     public static let rounded = PDFImageOptions(rawValue: 1 << 6)
 
-    /**
-     TODO: documentation
-     */
+    /// Disables all options
     public static let none = PDFImageOptions(rawValue: 1 << 7)
-
 }

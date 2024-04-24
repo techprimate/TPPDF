@@ -5,11 +5,8 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-/**
- TODO: Documentation
- */
+/// Structure used to style the border lines of a ``PDFTableCell``
 public struct PDFTableCellBorders: Hashable {
-
     /// Style of left edge line
     public var left: PDFLineStyle
 
@@ -23,12 +20,20 @@ public struct PDFTableCellBorders: Hashable {
     public var bottom: PDFLineStyle
 
     /**
-     TODO: Documentation
+     * Creates a new instance with the given line styles
+     *
+     * - Parameters:
+     *     - left: See ``PDFTableCellBorders/left``
+     *     - top: See ``PDFTableCellBorders/top``
+     *     - right: See ``PDFTableCellBorders/right``
+     *     - bottom: See ``PDFTableCellBorders/bottom``
      */
-    public init(left: PDFLineStyle = .none,
-                top: PDFLineStyle = .none,
-                right: PDFLineStyle = .none,
-                bottom: PDFLineStyle = .none) {
+    public init(
+        left: PDFLineStyle = .none,
+        top: PDFLineStyle = .none,
+        right: PDFLineStyle = .none,
+        bottom: PDFLineStyle = .none
+    ) {
         self.left = left
         self.top = top
         self.right = right
@@ -37,6 +42,7 @@ public struct PDFTableCellBorders: Hashable {
 
     // MARK: - Equatable
 
+    /// nodoc
     public static func == (lhs: PDFTableCellBorders, rhs: PDFTableCellBorders) -> Bool {
         guard lhs.left == rhs.left else { return false }
         guard lhs.top == rhs.top else { return false }
@@ -47,6 +53,7 @@ public struct PDFTableCellBorders: Hashable {
 
     // MARK: - Hashable
 
+    /// nodoc
     public func hash(into hasher: inout Hasher) {
         hasher.combine(left)
         hasher.combine(top)
@@ -57,8 +64,7 @@ public struct PDFTableCellBorders: Hashable {
 
 // MARK: - Defaults
 
-extension PDFTableCellBorders {
-
-    public static let none = PDFTableCellBorders(left: .none, top: .none, right: .none, bottom: .none)
-
+public extension PDFTableCellBorders {
+    /// Convenience configuration for not displaying any cell border
+    static let none = PDFTableCellBorders(left: .none, top: .none, right: .none, bottom: .none)
 }

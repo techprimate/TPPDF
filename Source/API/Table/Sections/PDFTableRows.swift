@@ -7,29 +7,35 @@
 
 import Foundation
 
-/**
- References to multiple rows of a `PDFTable`
- */
+/// References to multiple rows (``PDFTableRow``) of a ``PDFTable``
 public class PDFTableRows {
-
-    /**
-     List of row references
-     */
+    /// Array of references to ``PDFTableRow``
     public let rows: [PDFTableRow]
 
+    /// Reference to the ``PDFTable``
     private let table: PDFTable
+
+    /// Range of rows in the ``PDFTableRows/table``
     private let range: Range<Int>
 
-    internal init(rows: [PDFTableRow], of table: PDFTable, in range: Range<Int>) {
+    /**
+     * Creates a new reference to multiple rows in a table.
+     *
+     * - Parameters:
+     *     - rows: See ``PDFTableRows/rows`` for details
+     *     - table: See ``PDFTableRows/table`` for details
+     *     - range: See ``PDFTableRows/range`` for details
+     */
+    init(rows: [PDFTableRow], of table: PDFTable, in range: Range<Int>) {
         self.rows = rows
         self.table = table
         self.range = range
     }
 
     /**
-     Access content of all cells in all rows or sets the content of a subsection of cells.
-
-     If the bounds of the section is exceeded, when setting new values, an assertion error will be thrown.
+     * Access content of all cells in all rows or sets the content of a subsection of cells.
+     *
+     * If the bounds of the section is exceeded, when setting new values, an assertion error will be thrown.
      */
     public var content: [[PDFTableContentable?]] {
         get {
@@ -37,14 +43,16 @@ public class PDFTableRows {
         }
         set {
             assert(newValue.count <= rows.count, "Can not access more rows than available")
-            rows.enumerated().forEach { (rowIdx, row) in
+            for (rowIdx, row) in rows.enumerated() {
                 row.content = newValue[rowIdx]
             }
         }
     }
 
     /**
-     Setter method to change the content of all rows to the same
+     * Setter method to change the content of all rows to the same
+     *
+     * - Note: This method can not be used to get contents, because the type can only be a single value per row.
      */
     public var allRowsContent: [PDFTableContent?] {
         @available(*, unavailable)
@@ -57,7 +65,9 @@ public class PDFTableRows {
     }
 
     /**
-     Setter method to change the content of all cells in the row
+     * Setter method to change the content of all cells in the row
+     *
+     * - Note: This method can not be used to get contents, because the type can only be a single value.
      */
     public var allCellsContent: PDFTableContent? {
         @available(*, unavailable)
@@ -70,9 +80,9 @@ public class PDFTableRows {
     }
 
     /**
-     Access style of all cells in section or sets a content of a subsection of cells.
-
-     If the bounds of the section is exceeded, when setting new values, an assertion error will be thrown.
+     * Access style of all cells in section or sets a content of a subsection of cells.
+     *
+     * If the bounds of the section is exceeded, when setting new values, an assertion error will be thrown.
      */
     public var style: [[PDFTableCellStyle?]] {
         get {
@@ -80,14 +90,16 @@ public class PDFTableRows {
         }
         set {
             assert(newValue.count <= rows.count, "Can not access more rows than available")
-            rows.enumerated().forEach { (rowIdx, row) in
+            for (rowIdx, row) in rows.enumerated() {
                 row.style = newValue[rowIdx]
             }
         }
     }
 
     /**
-     Setter method to change the style of all rows to the same
+     * Setter method to change the style of all cells in the row
+     *
+     * - Note: This method can not be used to get styles, because the type can only be a single value per row
      */
     public var allRowsStyle: [PDFTableCellStyle?] {
         @available(*, unavailable)
@@ -100,7 +112,9 @@ public class PDFTableRows {
     }
 
     /**
-     Setter method to change the style of all cells in the row
+     * Setter method to change the style of all cells in the row
+     *
+     * - Note: This method can not be used to get styles, because the type can only be a single value.
      */
     public var allCellsStyle: PDFTableCellStyle? {
         @available(*, unavailable)
@@ -113,9 +127,9 @@ public class PDFTableRows {
     }
 
     /**
-     Access alignment of all cells in section or sets a content of a subsection of cells.
-
-     If the bounds of the section is exceeded, when setting values, an assertion error will be thrown.
+     * Access alignment of all cells in section or sets a content of a subsection of cells.
+     *
+     * If the bounds of the section is exceeded, when setting values, an assertion error will be thrown.
      */
     public var alignment: [[PDFTableCellAlignment]] {
         get {
@@ -123,16 +137,16 @@ public class PDFTableRows {
         }
         set {
             assert(newValue.count <= rows.count, "Can not access more rows than available")
-            rows.enumerated().forEach { (rowIdx, row) in
+            for (rowIdx, row) in rows.enumerated() {
                 row.alignment = newValue[rowIdx]
             }
         }
     }
 
     /**
-     Sets the same alignment for each row
-
-     If the bounds of the section is exceeded, an assertion error will be thrown.
+     * Setter method to change the style of all cells in the rows
+     *
+     * - Note: This method can not be used to get alignment, because the type can only be a single value per row
      */
     public var allRowsAlignment: [PDFTableCellAlignment] {
         @available(*, unavailable)
@@ -140,15 +154,17 @@ public class PDFTableRows {
             fatalError("You cannot read from this object.")
         }
         set {
-            rows.forEach {
-                assert(newValue.count <= $0.cells.count, "Can not access more columns than available")
-                $0.alignment = newValue
+            for row in rows {
+                assert(newValue.count <= row.cells.count, "Can not access more rows than available")
+                row.alignment = newValue
             }
         }
     }
 
     /**
-     Setter method to change the style of all cells in the rows
+     * Setter method to change the style of all cells in the rows
+     *
+     * - Note: This method can not be used to get alignments, because the type can only be a single value.
      */
     public var allCellsAlignment: PDFTableCellAlignment {
         @available(*, unavailable)
@@ -161,19 +177,20 @@ public class PDFTableRows {
     }
 }
 
-extension PDFTableRows: PDFTableMergable {
+// MARK: PDFTableMergable
 
+extension PDFTableRows: PDFTableMergable {
     /// nodoc
     public func merge() {
-        self.merge(with: nil)
+        merge(with: nil)
     }
 
     /**
-     Merges all cells by replacing them with the same reference.
-
-     If no parameter `cell` is given, the first cell in the first row will be used.
-
-     - parameter cell: Cell to use after merge, may be nil
+     * Merges all cells by replacing them with the same reference.
+     *
+     * If no parameter `cell` is given, the first cell in the first row will be used.
+     *
+     * - Parameter cell: Cell to use after merge, may be nil
      */
     public func merge(with cell: PDFTableCell? = nil) {
         for row in rows {

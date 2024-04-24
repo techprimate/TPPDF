@@ -1,5 +1,5 @@
 //
-//  PDFTable+SingleCellSubscripts.swift
+//  PDFTable+CellSubscripts.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 22.12.19.
@@ -7,17 +7,15 @@
 
 import Foundation
 
-extension PDFTable {
-
+public extension PDFTable {
     /**
-     Accessor for a specific cell at the given position
-
-     - parameter row: Index of row
-     - parameter column: Index of column
-
-     - returns: cell at given indicies
+     * Accessor for a specific ``PDFTableCell`` at the given position
+     *
+     * - Parameter position: ``PDFTableCellPosition`` with row and column index
+     *
+     * - Returns: ``PDFTableCell`` at the given position
      */
-    public subscript(position position: PDFTableCellPosition) -> PDFTableCell {
+    subscript(position position: PDFTableCellPosition) -> PDFTableCell {
         get {
             self[position.row, position.column]
         }
@@ -27,19 +25,19 @@ extension PDFTable {
     }
 
     /**
-     Accessor for a specific cell at the given position
-
-     - parameter row: Index of row
-     - parameter column: Index of column
-
-     - returns: cell at given indicies
+     * Accessor for a specific cell at the given position
+     *
+     * - Parameter row: Index of row
+     * - Parameter column: Index of column
+     *
+     * - Returns: ``PDFTableCell``at the given position
      */
-    public subscript(row: Int, column: Int) -> PDFTableCell {
+    subscript(row: Int, column: Int) -> PDFTableCell {
         get {
-            self.cells[row][column]
+            cells[row][column]
         }
         set {
-            self.cells[row][column] = newValue
+            cells[row][column] = newValue
         }
     }
 }

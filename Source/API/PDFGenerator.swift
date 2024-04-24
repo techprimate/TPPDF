@@ -6,93 +6,78 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
- Factory which converts a document into a PDF file
+ * Factory to convert a single `PDFDocument` into a PDF file
+ *
+ * This is one of the main classes used to interact with the framework.
+ *
+ * The `PDFGenerator` is a stateful object which should be used exactly once per generator task.
  */
 public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
-
     // MARK: - INTERNAL VARS
 
-    /**
-     Document which will be converted
-     */
-    internal var document: PDFDocument
+    /// Document which will be converted
+    var document: PDFDocument
 
-    /**
-     List of header and footer objects extracted from the document
-     */
-    internal var headerFooterObjects: [PDFLocatedRenderObject] = []
+    /// List of header and footer objects extracted from the document
+    var headerFooterObjects: [PDFLocatedRenderObject] = []
 
-    /**
-     Layout which holds current state
-     */
-    internal var layout = PDFLayout()
+    /// Layout which holds current state
+    var layout = PDFLayout()
 
-    /**
-     Current page which increments during preparation
-     */
-    internal var currentPage: Int = 1
+    /// Current page which increments during preparation
+    var currentPage: Int = 1
 
-    /**
-     Total page count used for displaying in rendered PDF
-     */
+    /// Total page count used for displaying in rendered PDF
     public var totalPages: Int = 1
 
-    /**
-     Layout information used for columns layout
-     */
-    internal var columnState = PDFColumnLayoutState()
+    /// Layout information used for columns layout
+    var columnState = PDFColumnLayoutState()
 
-    /**
-     Group holding elements which will be rendered on each page if not nil
-     */
-    internal var masterGroup: PDFGroupObject?
+    /// Group holding elements which will be rendered on each page if not nil
+    var masterGroup: PDFGroupObject?
 
-    /**
-     Generator wide padding used for calculations of groups
-     */
-    internal var currentPadding = EdgeInsets.zero
+    /// Generator wide padding used for calculations of groups
+    var currentPadding = EdgeInsets.zero
 
-    /**
-     Relative value tracking progress
-     */
+    /// Relative value tracking progress
     public let progress = Progress.discreteProgress(totalUnitCount: 3)
 
     /// Object acts as a delegate during the generation process
     public var delegate: PDFGeneratorDelegate?
 
-    /**
-     Font of each container.
-     These values are used for simple text objects
-     */
-    internal lazy var fonts: [PDFContainer: Font] = .init(uniqueKeysWithValues: PDFContainer.allCases.map({ container in
-        (container, Font.systemFont(ofSize: PDFConstants.defaultFontSize))
-    }))
-
-    /**
-     Enables debugging on all generator instance
-     */
+    /// Enables the debugging mode, which will render additional visual information on different elements.
     public var debug: Bool = false
 
     /**
-     Text color of each container.
-     These values are used for simple text objects
+     * Font of each container.
+     *
+     * These values are used for simple text objects
      */
-    internal lazy var textColor: [PDFContainer: Color] = .init(uniqueKeysWithValues: PDFContainer.allCases.map({ container in
+    lazy var fonts: [PDFContainer: Font] = .init(uniqueKeysWithValues: PDFContainer.allCases.map { container in
+        (container, Font.systemFont(ofSize: PDFConstants.defaultFontSize))
+    })
+
+    /**
+     * Text color of each container.
+     *
+     * These values are used for simple text objects
+     */
+    lazy var textColor: [PDFContainer: Color] = .init(uniqueKeysWithValues: PDFContainer.allCases.map { container in
         (container, Color.black)
-    }))
+    })
 
     // MARK: - PUBLIC INITS
 
     /**
-     Initializes the generator with a document.
-
-     - parameter document: The document which will be converted
+     * Initializes the generator with a ``PDFDocument```.
+     *
+     * - Parameter document: The document which will be used to create the PDF document file
      */
     public init(document: PDFDocument) {
         self.document = document
@@ -103,9 +88,11 @@ public class PDFGenerator: PDFGeneratorProtocol, CustomStringConvertible {
     // MARK: - INTERNAL FUNCS
 
     /**
-     Resets the generator
+     * Resets all temporary values of the generator.
+     *
+     * This is an internal method used to reset the generator between render passes.
      */
-    internal func resetGenerator() {
+    func resetGenerator() {
         layout.reset()
         columnState.reset()
         currentPage = 1

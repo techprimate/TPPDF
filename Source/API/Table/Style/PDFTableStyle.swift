@@ -6,81 +6,70 @@
 //
 
 /**
- TODO: Documentation
+ * Structure used to manage the styling of a ``PDFTable``
+ *
+ * The styling of a ``PDFTable`` can be defined by setting the property ``PDFTable/style``
  */
 public class PDFTableStyle {
-
-    /**
-     TODO: Documentation
-     */
+    /// Count of rows which will use the style configured in ``rowHeaderStyle``
     public var rowHeaderCount: Int
 
-    /**
-     TODO: Documentation
-     */
+    /// Count of columns which will use the style configured in ``columnHeaderStyle``
     public var columnHeaderCount: Int
 
-    /**
-     TODO: Documentation
-     */
+    /// Count of footers which will use the style configured in ``footerStyle``
     public var footerCount: Int
 
-    /**
-     TODO: Documentation
-     */
+    /// Style used for the outer border
     public var outline: PDFLineStyle
 
-    /**
-     The cell style of row headers. Horizontal border lines are ignored, as these are defined in
-     */
+    /// Style of cells in the header rows
     public var rowHeaderStyle: PDFTableCellStyle
 
-    /**
-     TODO: Documentation
-     */
+    /// Style of cells in the header columns
     public var columnHeaderStyle: PDFTableCellStyle
 
-    /**
-     TODO: Documentation
-     */
+    /// Style of cells in the footer rows
     public var footerStyle: PDFTableCellStyle
 
-    /**
-     TODO: Documentation
-     */
+    /// Style of cells without special purpose
     public var contentStyle: PDFTableCellStyle
 
     /**
-     TODO: Documentation
+     * Style used for alternating content rows
+     *
+     * Setting this property will enable alternating row styling, which will apply this style to every other row
      */
     public var alternatingContentStyle: PDFTableCellStyle?
 
     /**
-     Create a table style. All parameters are optional
-
-     - Parameters:
-       - rowHeaderCount: Number of top rows which have header style, defaults to `1`
-       - columnHeaderCount: Number of left columns with header style, defaults to `1`
-       - footerCount: Number of footer rows with header style, defaults to `1`
-       - outline: Line style of the outer borderlines, defaults to `TablePDFLineStyle.init`
-       - showHorizontalGridLines: Render horizontal grid lines, defaults to `true`
-       - showVerticalGridLines: Render vertical grid lines, defaults to `true`
-       - showRowHeaderGridLines: Render row header grid lines, defaults to `true`
-       - showColumnHeaderGridLines: Render column header grid lines, defaults to `true`
-       - showFooterGridLines: Render footer grid lines, defaults to `true`
-       - rowHeaderStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
-       - columnHeaderStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
-       - footerStyle: The cell style of row header cells, defaults to `TablePDFLineStyle.init`
+     * Create a table style
+     *
+     * - Parameters:
+     *     - rowHeaderCount: Number of top rows which have header style
+     *     - columnHeaderCount: Number of left columns with header style
+     *     - footerCount: Number of footer rows with header style
+     *     - outline: Line style of the outer borderlines
+     *     - showHorizontalGridLines: Render horizontal grid lines
+     *     - showVerticalGridLines: Render vertical grid lines
+     *     - showRowHeaderGridLines: Render row header grid lines
+     *     - showColumnHeaderGridLines: Render column header grid lines
+     *     - showFooterGridLines: Render footer grid lines
+     *     - rowHeaderStyle: The cell style of row header cells
+     *     - columnHeaderStyle: The cell style of row header cells
+     *     - footerStyle: The cell style of row header cells
      */
-    public init(rowHeaderCount: Int = 1,
-                columnHeaderCount: Int = 1,
-                footerCount: Int = 1,
-                outline: PDFLineStyle = PDFLineStyle(),
-                rowHeaderStyle: PDFTableCellStyle = PDFTableCellStyle(),
-                columnHeaderStyle: PDFTableCellStyle = PDFTableCellStyle(),
-                footerStyle: PDFTableCellStyle = PDFTableCellStyle(),
-                contentStyle: PDFTableCellStyle = PDFTableCellStyle(),
-                alternatingContentStyle: PDFTableCellStyle? = nil) {
+    public init(
+        rowHeaderCount: Int = 1,
+        columnHeaderCount: Int = 1,
+        footerCount: Int = 1,
+        outline: PDFLineStyle = PDFLineStyle(),
+        rowHeaderStyle: PDFTableCellStyle = PDFTableCellStyle(),
+        columnHeaderStyle: PDFTableCellStyle = PDFTableCellStyle(),
+        footerStyle: PDFTableCellStyle = PDFTableCellStyle(),
+        contentStyle: PDFTableCellStyle = PDFTableCellStyle(),
+        alternatingContentStyle: PDFTableCellStyle? = nil
+    ) {
         self.rowHeaderCount = rowHeaderCount
         self.columnHeaderCount = columnHeaderCount
         self.footerCount = footerCount
@@ -94,21 +83,18 @@ public class PDFTableStyle {
         self.alternatingContentStyle = alternatingContentStyle
     }
 
-    /**
-     Creates a identical copy of this style
-     */
+    /// nodoc
     public func copy() -> PDFTableStyle {
         PDFTableStyle(
-            rowHeaderCount: self.rowHeaderCount,
-            columnHeaderCount: self.columnHeaderCount,
-            footerCount: self.footerCount,
-            outline: self.outline,
-            rowHeaderStyle: self.rowHeaderStyle,
-            columnHeaderStyle: self.columnHeaderStyle,
-            footerStyle: self.footerStyle,
-            contentStyle: self.contentStyle,
-            alternatingContentStyle: self.alternatingContentStyle
+            rowHeaderCount: rowHeaderCount,
+            columnHeaderCount: columnHeaderCount,
+            footerCount: footerCount,
+            outline: outline,
+            rowHeaderStyle: rowHeaderStyle,
+            columnHeaderStyle: columnHeaderStyle,
+            footerStyle: footerStyle,
+            contentStyle: contentStyle,
+            alternatingContentStyle: alternatingContentStyle
         )
     }
-
 }

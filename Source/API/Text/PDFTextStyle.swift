@@ -6,37 +6,39 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
- TODO: Documentation
+ * Structure to combine multiple aspects of text styling.
+ *
+ * Used to define text styling configuration in a global context.
+ *
+ * Furthermore, styles of a ``PDFDocument`` should be used to select headers for a ``PDFTableOfContent``.
+ * See ``PDFTableOfContent`` for details.
  */
 public class PDFTextStyle: Hashable {
-
-    /**
-     Name of style
-     */
+    /// Name of style
     public var name: String
 
-    /**
-     Font of object
-     */
+    /// Font of the text
     public var font: Font?
 
-    /**
-     Text color of object
-     */
+    /// Color of the text
     public var color: Color?
 
     /**
-     Initializer
-
-     - parameter name: Name of style
-     - parameter font: Font of text, defaults to nil
-     - parameter color: Color of text, defaults to nil
+     * Creates a new style with the given parameters.
+     *
+     * By setting all parameters to `nil` (except `name`, which is required) the style can be used only to detect text objects
+     * for the ``PDFTableOfContent``, without actually affecting the styling of the text.
+     *
+     * - Parameters:
+     *     - name: Name of style
+     *     - font: Font of text, defaults to `nil`
+     *     - color: Color of text, defaults to `nil`
      */
     public init(name: String, font: Font? = nil, color: Color? = nil) {
         self.name = name
@@ -46,6 +48,7 @@ public class PDFTextStyle: Hashable {
 
     // MARK: - Equatable
 
+    /// nodoc
     public static func == (lhs: PDFTextStyle, rhs: PDFTextStyle) -> Bool {
         guard lhs.name == rhs.name else {
             return false
@@ -61,6 +64,7 @@ public class PDFTextStyle: Hashable {
 
     // MARK: - Hashable
 
+    /// nodoc
     public func hash(into hasher: inout Hasher) {
         hasher.combine(name)
         hasher.combine(font)

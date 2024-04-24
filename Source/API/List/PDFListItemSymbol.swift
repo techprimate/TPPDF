@@ -5,67 +5,56 @@
 //  Created by Philip Niedertscheider on 13/06/2017.
 //
 
-/**
- TODO: documentation
- */
+/// Symbol used by a list item in a ``PDFList``
 public enum PDFListItemSymbol: RawRepresentable, Hashable {
-
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     public typealias RawValue = String
 
-    /**
-     TODO: documentation
-     */
+    /// Doesn't display a symbol before the content
     case none
 
-    /**
-     TODO: documentation
-     */
+    /// If an item is nested and uses this symbol, it will take the same one as the parent.
     case inherit
 
-    /**
-     TODO: documentation
-     */
+    /// Symbol is a middle-dot
     case dot
 
-    /**
-     TODO: documentation
-     */
+    /// Symbol is a dash/minus.
     case dash
 
     /**
-     TODO: documentation
+     * Any string `value` must be provided, which will then be used as the symbol.
+     *
+     * The indentation value of the ``PDFList`` must be set correctly in the initializer ``PDFList/init(indentations:)``,
+     * as the indentation is not based on the symbol frame width.
      */
     case custom(value: String)
 
     /**
-     TODO: documentation
+     * When the parent of multiple list items is of type `numbered`, it will then use the index as the symbol, starting with `1` and
+     * append a dot `.` to the number.
+     *
+     * If a `value` is provided, this will be used for the parent item, in case you want to override the value.
      */
     case numbered(value: String?)
 
-    /**
-     TODO: documentation
-     */
+    /// Returns the symbol as a string, to be calculated and rendered using ``PDFText``
     public var stringValue: String {
         switch self {
         case .dot:
             return "\u{00B7}"
         case .dash:
             return "-"
-        case .numbered(let value):
+        case let .numbered(value):
             return (value ?? "?") + "."
-        case .custom(let value):
+        case let .custom(value):
             return value
         default:
             return ""
         }
     }
 
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     public var rawValue: String {
         switch self {
         case .none:
@@ -83,9 +72,7 @@ public enum PDFListItemSymbol: RawRepresentable, Hashable {
         }
     }
 
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     public init?(rawValue: PDFListItemSymbol.RawValue) {
         switch rawValue {
         case "none":
@@ -101,7 +88,7 @@ public enum PDFListItemSymbol: RawRepresentable, Hashable {
             if comps.count == 2 {
                 switch comps[0] {
                 case "numbered":
-                    self = .numbered(value: (comps[1] == "nil" ? nil : comps[1]))
+                    self = .numbered(value: comps[1] == "nil" ? nil : comps[1])
                 case "custom":
                     self = .custom(value: comps[1])
                 default:
@@ -115,6 +102,7 @@ public enum PDFListItemSymbol: RawRepresentable, Hashable {
 
     // MARK: - Equatable
 
+    /// nodoc
     public static func == (lhs: PDFListItemSymbol, rhs: PDFListItemSymbol) -> Bool {
         switch (lhs, rhs) {
         case (.none, .none),
@@ -133,6 +121,7 @@ public enum PDFListItemSymbol: RawRepresentable, Hashable {
 
     // MARK: - Hashable
 
+    /// nodoc
     public func hash(into hasher: inout Hasher) {
         hasher.combine(rawValue)
     }

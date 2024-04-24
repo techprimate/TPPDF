@@ -6,43 +6,33 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- This struct defines how a line or border of a table is drawn.
- */
+/// Structure defining how a line should be drawn into graphics context
 public struct PDFLineStyle: Hashable {
-
-    /**
-     Defines the type of this line
-     */
+    /// Type of the line
     public var type: PDFLineType
 
-    /**
-     Defines the color of this line
-     */
+    /// Color of the line
     public var color: Color
 
-    /**
-     Defines the width of this line
-     */
+    /// Width of the line
     public var width: CGFloat
 
-    /**
-     Defines the width of this radius (Only for rect draw, not for line)
-     */
+    /// Defines the width of this radius (Only for rect draw, not for line)
     public var radius: CGFloat?
 
     /**
-     Initialize a table line style
-
-     - parameter type: of Line
-     - parameter color: of Line
-     - parameter width: of Line
-     - parameter radius: of border
+     * Initialize a table line style
+     *
+     * - Parameters:
+     *    - type: See ``PDFLineStyle/type``
+     *    - color: See ``PDFLineStyle/color``
+     *    - width: See ``PDFLineStyle/width``
+     *    - radius: See ``PDFLineStyle/radius``
      */
     public init(type: PDFLineType = .full, color: Color = .black, width: CGFloat = 0.25, radius: CGFloat? = nil) {
         self.type = type
@@ -53,6 +43,7 @@ public struct PDFLineStyle: Hashable {
 
     // MARK: - Equatable
 
+    /// nodoc
     public static func == (lhs: PDFLineStyle, rhs: PDFLineStyle) -> Bool {
         guard lhs.type == rhs.type else { return false }
         guard lhs.color == rhs.color else { return false }
@@ -62,6 +53,7 @@ public struct PDFLineStyle: Hashable {
 
     // MARK: - Hashable
 
+    /// nodoc
     public func hash(into hasher: inout Hasher) {
         hasher.combine(type)
         hasher.combine(color)
@@ -71,10 +63,9 @@ public struct PDFLineStyle: Hashable {
 
 // MARK: - Defaults
 
-extension PDFLineStyle {
-
+public extension PDFLineStyle {
     /// Shorthand method for creating an invisible line
-    public static var none: PDFLineStyle {
+    static var none: PDFLineStyle {
         PDFLineStyle(type: .none, width: 0)
     }
 }
