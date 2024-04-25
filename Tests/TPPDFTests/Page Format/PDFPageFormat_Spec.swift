@@ -6,17 +6,14 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFPageFormat_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFPageFormat") {
-
             context("size") {
-
                 it("falls back to correct size") {
                     expect(PDFPageFormat.c0.usSize) == PDFPageFormat.c0.size
                     expect(PDFPageFormat.c0.ansiSize) == PDFPageFormat.c0.size
@@ -34,5 +31,4 @@ class PDFPageFormat_Spec: QuickSpec {
             }
         }
     }
-
 }

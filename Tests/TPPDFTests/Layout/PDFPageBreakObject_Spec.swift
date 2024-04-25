@@ -6,17 +6,15 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Foundation
 import CoreGraphics
-import Quick
+import Foundation
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFPageBreakObject_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFPageBreakObject") {
-
             var object: PDFPageBreakObject!
 
             beforeEach {
@@ -24,7 +22,6 @@ class PDFPageBreakObject_Spec: QuickSpec {
             }
 
             describe("calculation and drawing") {
-
                 let document = PDFDocument(format: .a4)
                 var generator: PDFGenerator!
                 var context: CGContext!
@@ -43,7 +40,7 @@ class PDFPageBreakObject_Spec: QuickSpec {
                 it("can set offset") {
                     expect {
                         result = try object.calculate(generator: generator, container: container)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(generator.layout.heights.content) == 0
 
                     expect(result).toEventually(haveCount(1))
@@ -59,5 +56,4 @@ class PDFPageBreakObject_Spec: QuickSpec {
             }
         }
     }
-
 }

@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-internal struct PDFTableCalculatedCell {
+struct PDFTableCalculatedCell {
     var cell: PDFTableCell
     var type: PDFTableObject.CellType
     var style: PDFTableCellStyle

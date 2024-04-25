@@ -7,17 +7,14 @@
 //
 
 import Foundation
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFAttributedTextObject_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFAttributedTextObject") {
-
             describe("initializer") {
-
                 let simpleText = "example"
 
                 it("can be initialized with a simple object") {
@@ -43,12 +40,11 @@ class PDFAttributedTextObject_Spec: QuickSpec {
 
                         let custom = CustomTextObject()
                         expect {
-                            let _ = PDFAttributedTextObject(text: custom)
-                            }.to(throwAssertion())
+                            _ = PDFAttributedTextObject(text: custom)
+                        }.to(throwAssertion())
                     #endif
                 }
             }
         }
     }
-
 }

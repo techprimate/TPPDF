@@ -6,34 +6,28 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 import CoreGraphics
 
-/**
- Used in the rendering to create a new page
- */
-internal class PDFPageBreakObject: PDFRenderObject {
-
-    /**
-     TODO: Documentation
-     */
-    internal var stayOnSamePage: Bool = false
+/// Used in the rendering to create a new page
+class PDFPageBreakObject: PDFRenderObject {
+    var stayOnSamePage: Bool = false
 
     /**
      Modifies the layout and page count of the given `generator`.
      The parameter `container` is unused, as page breaks are container-independent.
 
-     - parameter generator: Generator which uses this object
-     - parameter container: Unused
+     - Parameter generator: Generator which uses this object
+     - Parameter container: Unused
 
-     - throws: None
+     - Throws: None
 
-     - returns: Self
+     - Returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.layout.heights.content = generator.columnState.getWrapColumnsHeight(for: container)
 
         stayOnSamePage = false
@@ -65,12 +59,12 @@ internal class PDFPageBreakObject: PDFRenderObject {
      Creates a new page in the PDF context.
      Draws debug page overlay on newly created page
 
-     - parameter generator: Generator which uses this object
-     - parameter container: Unused
+     - Parameter generator: Generator which uses this object
+     - Parameter container: Unused
 
-     - throws: None
+     - Throws: None
      */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
+    override func draw(generator: PDFGenerator, container _: PDFContainer, in context: PDFContext) throws {
         if !stayOnSamePage {
             PDFContextGraphics.endPDFPage(in: context)
             PDFContextGraphics.beginPDFPage(in: context, for: generator.document.layout.bounds)
@@ -83,10 +77,8 @@ internal class PDFPageBreakObject: PDFRenderObject {
         applyAttributes(in: context)
     }
 
-    /**
-     Creates a new `PDFPageBreakObject`
-     */
-    override internal var copy: PDFRenderObject {
+    /// nodoc
+    override var copy: PDFRenderObject {
         PDFPageBreakObject()
     }
 }

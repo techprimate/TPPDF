@@ -6,41 +6,40 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
  Changes the font of the container, where this object is in.
  */
-internal class PDFFontObject: PDFRenderObject {
-
+class PDFFontObject: PDFRenderObject {
     /**
      New font of container after calculation
      */
-    internal var font: Font
+    var font: Font
 
     /**
      Initializer
 
-     - parameter font: New font
+     - Parameter font: New font
      */
-    internal init(font: Font) {
+    init(font: Font) {
         self.font = font
     }
 
     /**
      Sets the font in `container`
 
-     - parameter generator: Generator which holds font information
-     - parameter container: Container, where the font is changed
+     - Parameter generator: Generator which holds font information
+     - Parameter container: Container, where the font is changed
 
-     - throws: None
+     - Throws: None
 
-     - returns: Self
+     - Returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         generator.fonts[container] = font
 
         return [(container, self)]
@@ -49,7 +48,7 @@ internal class PDFFontObject: PDFRenderObject {
     /**
      Creates a new `PDFFontObject` with the same properties
      */
-    override internal var copy: PDFRenderObject {
-        PDFFontObject(font: self.font)
+    override var copy: PDFRenderObject {
+        PDFFontObject(font: font)
     }
 }

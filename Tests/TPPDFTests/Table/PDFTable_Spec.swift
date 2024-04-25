@@ -6,18 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTable") {
-
             context("variables") {
-
                 let table = PDFTable(rows: 0, columns: 0)
 
                 it("has a default style") {
@@ -46,7 +42,6 @@ class PDFTable_Spec: QuickSpec {
             }
 
             context("cell style") {
-
                 it("can set style of cell") {
                     let table = PDFTable(rows: 0, columns: 0)
                     table.cells = [[PDFTableCell()]]
@@ -55,10 +50,8 @@ class PDFTable_Spec: QuickSpec {
 
                     table[0, 0].style = style
                     expect(table.cells[0][0].style).toEventually(equal(style))
-
                 }
             }
         }
     }
-
 }

@@ -7,14 +7,13 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 import TPPDF
 
 class LineSeparatorExampleFactory: ExampleFactory {
-
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 

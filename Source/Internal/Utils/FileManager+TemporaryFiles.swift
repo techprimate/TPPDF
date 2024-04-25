@@ -8,7 +8,6 @@
 import Foundation
 
 extension FileManager {
-
     /**
      Creates a guaranteed temporary PDF file URL with the given name
 
@@ -16,7 +15,7 @@ extension FileManager {
 
      - Returns: URL to a temporary file
      */
-    internal static func generateTemporaryOutputURL(for name: String) -> URL {
+    static func generateTemporaryOutputURL(for name: String) -> URL {
         let normalisedName = name.lowercased().hasSuffix(".pdf") ? name : (name + ".pdf")
         return URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(normalisedName)
     }

@@ -6,18 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableCell_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableCell") {
-
             context("variables") {
-
                 let cell = PDFTableCell()
 
                 it("has an optional content") {
@@ -34,7 +30,6 @@ class PDFTableCell_Spec: QuickSpec {
             }
 
             context("initializer") {
-
                 it("can be initialized with a content") {
                     let content = try! PDFTableContent(content: "EXAMPLE")
                     let cell = PDFTableCell(content: content)
@@ -58,5 +53,4 @@ class PDFTableCell_Spec: QuickSpec {
             }
         }
     }
-
 }

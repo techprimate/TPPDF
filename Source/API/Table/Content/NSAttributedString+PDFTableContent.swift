@@ -7,14 +7,9 @@
 
 import Foundation
 
-/**
- Adds functionality to convert to PDF table content
- */
+/// Adds functionality to convert to PDF table content
 extension NSAttributedString: PDFTableContentable {
-
-    /**
-    - returns: Instance of `PDFTableContent` of type attributed string, using self as content
-     */
+    /// Instance of ``PDFTableContent`` of type attributed string, using `self` as content
     public var asTableContent: PDFTableContent {
         PDFTableContent(type: .attributedString, content: self)
     }

@@ -5,14 +5,8 @@
 //  Created by Philip Niedertscheider on 04/11/2017.
 //
 
-/**
- TODO: Documentation
- */
 extension PDFPaginationStyle: Equatable {
-
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     public static func == (lhs: PDFPaginationStyle, rhs: PDFPaginationStyle) -> Bool {
         if case PDFPaginationStyle.default = lhs, case PDFPaginationStyle.default = rhs {
             return true
@@ -23,11 +17,11 @@ extension PDFPaginationStyle: Equatable {
         }
 
         if case let PDFPaginationStyle.customNumberFormat(lhsTemplate, lhsFormatter) = lhs,
-            case let PDFPaginationStyle.customNumberFormat(rhsTemplate, rhsFormatter) = rhs {
+           case let PDFPaginationStyle.customNumberFormat(rhsTemplate, rhsFormatter) = rhs {
             return lhsTemplate == rhsTemplate && lhsFormatter == rhsFormatter
         }
 
-        if case PDFPaginationStyle.customClosure(_) = lhs, case PDFPaginationStyle.customClosure(_) = rhs {
+        if case PDFPaginationStyle.customClosure = lhs, case PDFPaginationStyle.customClosure = rhs {
             // Always return false if a custom closure is used
             // https://stackoverflow.com/questions/24111984/how-do-you-test-functions-and-closures-for-equality
             return false
@@ -35,5 +29,4 @@ extension PDFPaginationStyle: Equatable {
 
         return false
     }
-
 }

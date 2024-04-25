@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "container:Example macOS/Example_macOS-SPM.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:Example iOS-Carthage/Example_iOS-Carthage.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:Example iOS-Cocoapods/Example_iOS-Cocoapods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:Example iOS-SwiftPM/Example_iOS-SPM.xcodeproj">
+   </FileRef>
+</Workspace>

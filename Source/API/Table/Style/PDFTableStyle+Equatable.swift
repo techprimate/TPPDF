@@ -5,14 +5,8 @@
 //  Created by Philip Niedertscheider on 09/11/2017.
 //
 
-/**
- TODO: Documentation
- */
 extension PDFTableStyle: Equatable {
-
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     public static func == (lhs: PDFTableStyle, rhs: PDFTableStyle) -> Bool {
         guard lhs.rowHeaderCount == rhs.rowHeaderCount else {
             return false
@@ -43,5 +37,4 @@ extension PDFTableStyle: Equatable {
         }
         return true
     }
-
 }

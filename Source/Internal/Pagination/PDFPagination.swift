@@ -6,16 +6,15 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
  Used to define the pagination behaviour of a document.
  */
 public struct PDFPagination {
-
     /**
      Container where the pagination will be placed
      */
@@ -45,10 +44,10 @@ public struct PDFPagination {
     /**
      Initializer
 
-     - parameter container: Container where pagination is placed, defaults to `PDFContainer.none`, meaning it won't be rendered
-     - parameter style: Style of pagination, defaults to `PDFPaginationStyle.default`
-     - parameter range: Start and end of pages which will be included
-     - parameter hiddenPages: List of numbers which are excluded from rendering
+     - Parameter container: Container where pagination is placed, defaults to `PDFContainer.none`, meaning it won't be rendered
+     - Parameter style: Style of pagination, defaults to `PDFPaginationStyle.default`
+     - Parameter range: Start and end of pages which will be included
+     - Parameter hiddenPages: List of numbers which are excluded from rendering
      */
     public init(container: PDFContainer = .none,
                 style: PDFPaginationStyle = .default,

@@ -7,17 +7,14 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFPageLayout_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFPageLayout") {
-
             context("Equatable") {
-
                 var object: PDFPageLayout!
 
                 beforeEach {
@@ -58,5 +55,4 @@ class PDFPageLayout_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

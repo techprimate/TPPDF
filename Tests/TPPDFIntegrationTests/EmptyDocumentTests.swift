@@ -1,12 +1,11 @@
 import Foundation
-import Quick
 import Nimble
-@testable import TPPDF
 import PDFKit
+import Quick
+@testable import TPPDF
 
 @available(iOS 11.0, *)
 class EmptyDocumentTests: QuickSpec {
-
     override func spec() {
         describe("Empty Document") {
             it("it should have a single page") {

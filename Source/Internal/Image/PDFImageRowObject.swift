@@ -6,44 +6,24 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- TODO: documentation
- */
-internal class PDFImageRowObject: PDFRenderObject {
+class PDFImageRowObject: PDFRenderObject {
+    var images: [PDFImage]
+    var spacing: CGFloat
+    var captionSpacing: CGFloat
 
-    /**
-     TODO: documentation
-     */
-    internal var images: [PDFImage]
-
-    /**
-     TODO: documentation
-     */
-    internal var spacing: CGFloat
-
-    /**
-     TODO: documentation
-     */
-    internal var captionSpacing: CGFloat
-
-    /**
-     TODO: documentation
-     */
-    internal init(images: [PDFImage], spacing: CGFloat = 1.0, captionSpacing: CGFloat = 5.0) {
+    init(images: [PDFImage], spacing: CGFloat = 1.0, captionSpacing: CGFloat = 5.0) {
         self.images = images
         self.spacing = spacing
         self.captionSpacing = captionSpacing
     }
 
-    /**
-     TODO: documentation
-     */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    /// nodoc
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
         let originalInsetLeft = generator.layout.indentation.leftIn(container: container)
@@ -66,10 +46,14 @@ internal class PDFImageRowObject: PDFRenderObject {
 
             let imageObject = PDFImageObject(image: image, captionSpacing: captionSpacing)
 
-            generator.layout.indentation.setLeft(indentation: originalInsetLeft + additionInset + spacing * CGFloat(idx),
-                                                 in: container)
-            generator.layout.indentation.setRight(indentation: originalInsetRight + (imageWidth + spacing) * CGFloat(images.count - idx - 1),
-                                                  in: container)
+            generator.layout.indentation.setLeft(
+                indentation: originalInsetLeft + additionInset + spacing * CGFloat(idx),
+                in: container
+            )
+            generator.layout.indentation.setRight(
+                indentation: originalInsetRight + (imageWidth + spacing) * CGFloat(images.count - idx - 1),
+                in: container
+            )
 
             let res = try imageObject.calculate(generator: generator, container: container)
             if res.contains(where: { $0.1 is PDFPageBreakObject }) {
@@ -91,10 +75,8 @@ internal class PDFImageRowObject: PDFRenderObject {
         return result
     }
 
-    /**
-     TODO: documentation
-     */
-    override internal var copy: PDFRenderObject {
-        PDFImageRowObject(images: self.images, spacing: self.spacing, captionSpacing: self.captionSpacing)
+    /// nodoc
+    override var copy: PDFRenderObject {
+        PDFImageRowObject(images: images, spacing: spacing, captionSpacing: captionSpacing)
     }
 }

@@ -5,33 +5,25 @@
 //  Created by Philip Niedertscheider on 02/11/2017.
 //
 
-/**
- These types of lines are available for rendering
-
- - full: Line without any breaks
- - dashed: Line consists out of short dashes
- - dotted: Lines consists out of dots
- */
+/// Different types of lines
 public enum PDFLineType: String {
+    /// No visible line
+    case none
+
+    /// Full line
+    case full
 
     /**
-     No visible line
+     * Dashed Line
+     *
+     * Dash length and spacing is three times the line width
      */
-    case none = "none"
+    case dashed
 
     /**
-     Full line
+     * Dotted Line
+     *
+     * Dot spacing is twice the line width
      */
-    case full = "full"
-
-    /**
-     Line is dashed, dash length and spacing is three times the line width
-     */
-    case dashed = "dashed"
-
-    /**
-     Line is dotted. Dot spacing is twice the line width
-     */
-    case dotted = "dotted"
-
+    case dotted
 }

@@ -6,18 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableCellStyle_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableCellStyle") {
-
             context("Equatable") {
-
                 let style = PDFTableCellStyle()
 
                 it("is equal") {
@@ -45,5 +41,4 @@ class PDFTableCellStyle_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

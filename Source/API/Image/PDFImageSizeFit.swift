@@ -5,24 +5,14 @@
 //  Created by Philip Niedertscheider on 02/11/2017.
 //
 
-/**
- Constants defining scaling behaviour of an image, if not enough space to render full size is given.
- */
+/// Constants defining scaling behaviour of an image, if not enough space to render full size is given.
 public enum PDFImageSizeFit {
-
-    /**
-     TODO: documentation
-     */
+    /// Scale the image to fit the available width, while keeping the aspect ratio
     case width
 
-    /**
-     TODO: documentation
-     */
+    /// Scale the image to fit the available height, while keeping the aspect ratio
     case height
 
-    /**
-     TODO: documentation
-     */
+    /// Scale the image to fit the available width or height, while keeping the aspect ratio
     case widthHeight
-
 }

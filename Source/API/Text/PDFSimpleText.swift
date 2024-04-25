@@ -6,39 +6,37 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
- Text and spacing of a text object.
-
- Use this class for simple and quick text drawing
+ * Plain text object with basic styling.
+ *
+ * The text of a ``PDFSimpleText`` will be styled using either the referenced ``PDFTextStyle`` set on `style`, or otherwise using the
+ * styling of the parent container.
+ *
+ * Use this class for simple text drawing.
+ * For advanced use cases see ``PDFAttributedText``.
  */
 public class PDFSimpleText: PDFText {
-
-    /**
-     Text to be drawn
-     */
+    /// Text to be drawn
     public var text: String
 
-    /**
-     Line spacing if multiple lines
-     */
+    //// Line spacing if multiple lines
     public var spacing: CGFloat
 
-    /**
-     Weak reference to style used by this text object
-     */
+    /// Weak reference to style used by this text object
     public weak var style: PDFTextStyle?
 
     /**
-     Initializer
-
-     - parameter text: Text to be drawn
-     - parameter spacing: Spacing between text lines, defaults to 0
-     - parameter style: Reference to style, defaults to nil
+     * Creates a new simple text object
+     *
+     * - Parameters:
+     *     - text: Text to be drawn
+     *     - spacing: Spacing between text lines, defaults to `0`
+     *     - style: Reference to ``PDFTextStyle``, defaults to `nil`
      */
     public init(text: String, spacing: CGFloat = 0, style: PDFTextStyle? = nil) {
         self.text = text
@@ -46,20 +44,14 @@ public class PDFSimpleText: PDFText {
         self.style = style
     }
 
-    /**
-     Creates a new `PDFSimpleText` with the same properties
-     */
+    /// Creates a new `PDFSimpleText` with the same properties
     override public var copy: PDFText {
-        PDFSimpleText(text: self.text, spacing: self.spacing, style: self.style)
+        PDFSimpleText(text: text, spacing: spacing, style: style)
     }
 
     // MARK: - Equatable
 
-    /// Compares two instances of `PDFSimpleText` for equality
-    ///
-    /// - Parameters:
-    ///   - other: Another instance of `PDFSimpleText`
-    /// - Returns: `true`, if `attributes`, `tag`, `text` and `spacing` equal; otherwise `false`
+    /// nodoc
     override public func isEqual(to other: PDFDocumentObject) -> Bool {
         guard super.isEqual(to: other) else {
             return false
@@ -67,13 +59,13 @@ public class PDFSimpleText: PDFText {
         guard let otherText = other as? PDFSimpleText else {
             return false
         }
-        guard self.text == otherText.text else {
+        guard text == otherText.text else {
             return false
         }
-        guard self.spacing == otherText.spacing else {
+        guard spacing == otherText.spacing else {
             return false
         }
-        guard self.style == otherText.style else {
+        guard style == otherText.style else {
             return false
         }
         return true
@@ -81,6 +73,7 @@ public class PDFSimpleText: PDFText {
 
     // MARK: - Hashable
 
+    /// nodoc
     override public func hash(into hasher: inout Hasher) {
         hasher.combine(text)
         hasher.combine(spacing)

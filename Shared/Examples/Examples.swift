@@ -9,21 +9,16 @@
 import Foundation
 
 struct ExampleSection {
-
     let header: String
     let examples: [Example]
-
 }
 
 struct Example {
-
     let name: String
     let factory: ExampleFactory
-
 }
 
 enum Examples {
-
     static var factories: [ExampleSection] {
         [
             .init(header: "Popular Examples", examples: [
@@ -42,11 +37,11 @@ enum Examples {
                 .init(name: "Pagination", factory: PaginationExampleFactory()),
                 .init(name: "Text Styles", factory: TextStylesExampleFactory()),
                 .init(name: "External Documents", factory: ExternalDocumentExampleFactory()),
-                .init(name: "Object Attributes", factory: ObjectAttributesExampleFactory())
+                .init(name: "Object Attributes", factory: ObjectAttributesExampleFactory()),
             ]),
             .init(header: "Developer Examples", examples: [
                 .init(name: "Experiment", factory: ExperimentFactory()),
-            ])
+            ]),
         ]
     }
 
@@ -54,4 +49,3 @@ enum Examples {
         return factories[1].examples[0]
     }
 }
-

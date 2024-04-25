@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFLineSeparatorObject_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFLineSeparatorObject") {
-
             context("Equatable") {
-
                 it("is equal") {
                     let style = PDFLineStyle(type: .dotted, color: .orange, width: 0.25)
 

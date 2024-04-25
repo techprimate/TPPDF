@@ -6,15 +6,13 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFListItem_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFListItem") {
-
             var object: PDFListItem!
 
             beforeEach {
@@ -22,7 +20,6 @@ class PDFListItem_Spec: QuickSpec {
             }
 
             describe("variables") {
-
                 it("has an optional parent") {
                     expect(object.parent).to(beNil())
                 }
@@ -41,7 +38,6 @@ class PDFListItem_Spec: QuickSpec {
             }
 
             describe("initializer") {
-
                 it("can be initialized with a symbol") {
                     object = PDFListItem(symbol: .dash)
                     expect(object.symbol.rawValue) == PDFListItemSymbol.dash.rawValue
@@ -56,11 +52,10 @@ class PDFListItem_Spec: QuickSpec {
             }
 
             context("children") {
-
                 it("can add multiple items") {
                     let items = [
                         PDFListItem(symbol: .dash, content: "A1"),
-                        PDFListItem(symbol: .dot, content: "A2")
+                        PDFListItem(symbol: .dot, content: "A2"),
                     ]
 
                     expect(object.addItems(items)) === object
@@ -92,5 +87,4 @@ class PDFListItem_Spec: QuickSpec {
             }
         }
     }
-
 }

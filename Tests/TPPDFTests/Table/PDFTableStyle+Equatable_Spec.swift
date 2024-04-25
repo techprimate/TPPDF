@@ -6,18 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableStyle_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableStyle") {
-
             context("Equatable") {
-
                 let style = PDFTableStyle(rowHeaderCount: 1,
                                           columnHeaderCount: 2,
                                           footerCount: 3,
@@ -30,14 +26,14 @@ class PDFTableStyle_Equatable_Spec: QuickSpec {
 
                 it("is equal") {
                     let otherStyle = PDFTableStyle(rowHeaderCount: 1,
-                                              columnHeaderCount: 2,
-                                              footerCount: 3,
-                                              outline: PDFLineStyle.none,
-                                              rowHeaderStyle: PDFTableCellStyle(),
-                                              columnHeaderStyle: PDFTableCellStyle(),
-                                              footerStyle: PDFTableCellStyle(),
-                                              contentStyle: PDFTableCellStyle(),
-                                              alternatingContentStyle: PDFTableCellStyle())
+                                                   columnHeaderCount: 2,
+                                                   footerCount: 3,
+                                                   outline: PDFLineStyle.none,
+                                                   rowHeaderStyle: PDFTableCellStyle(),
+                                                   columnHeaderStyle: PDFTableCellStyle(),
+                                                   footerStyle: PDFTableCellStyle(),
+                                                   contentStyle: PDFTableCellStyle(),
+                                                   alternatingContentStyle: PDFTableCellStyle())
 
                     expect(style) == otherStyle
                 }
@@ -178,5 +174,4 @@ class PDFTableStyle_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

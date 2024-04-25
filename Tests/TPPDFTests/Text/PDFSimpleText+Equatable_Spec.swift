@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFSimpleText_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFSimpleText") {
-
             context("Equatable") {
-
                 let text = PDFSimpleText(text: "EXAMPLE")
 
                 it("is equal") {
@@ -36,5 +33,4 @@ class PDFSimpleText_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

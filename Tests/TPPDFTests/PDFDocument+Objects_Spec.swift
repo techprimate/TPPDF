@@ -6,19 +6,16 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Foundation
 import CoreGraphics
-import Quick
+import Foundation
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFDocument_Objects_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFDocument") {
-
             context("Objects") {
-
                 var document: PDFDocument!
 
                 beforeEach {
@@ -26,7 +23,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                 }
 
                 context("spacing") {
-
                     let value: CGFloat = 20
 
                     it("is possible to add into default container") {
@@ -49,7 +45,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                 }
 
                 context("line separator") {
-
                     let style = PDFLineStyle(type: .dotted, color: .red, width: 10)
 
                     it("is possible to add into default container") {
@@ -74,7 +69,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                 }
 
                 context("image") {
-
                     let base64String = "/9j/4AAQSkZJRgABAQAASABIAAD/4QBYRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgAAQABAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMABgYGBgYGCgYGCg4KCgoOEg4ODg4SFxISEhISFxwXFxcXFxccHBwcHBwcHCIiIiIiIicnJycnLCwsLCwsLCwsLP/bAEMBBwcHCwoLEwoKEy4fGh8uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLv/dAAQAAf/aAAwDAQACEQMRAD8A6+iiivxY/Sz/2Q==".data(using: String.Encoding.utf8)!
                     let data = Data(base64Encoded: base64String)!
                     let image = Image(data: data)!
@@ -102,7 +96,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
 
                     context("rows") {
-
                         let images = [pdfImage, pdfImage, pdfImage]
                         let spacing: CGFloat = 10.0
 
@@ -129,12 +122,9 @@ class PDFDocument_Objects_Spec: QuickSpec {
                     }
                 }
 
-                context("image row") {
-
-                }
+                context("image row") {}
 
                 context("simple text") {
-
                     let text = "EXAMPLE"
                     let spacing: CGFloat = 2.5
 
@@ -163,7 +153,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                 }
 
                 context("attributed text") {
-
                     let text = NSAttributedString(string: "EXAMPLE")
 
                     it("is possible to add an attributed text to the default container") {
@@ -190,7 +179,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                 }
 
                 context("text font") {
-
                     let font = Font.systemFont(ofSize: 20, weight: .bold)
 
                     it("is possible to set the text color of the default container") {
@@ -235,7 +223,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                 }
 
                 context("text color") {
-
                     let color = Color.orange
 
                     it("is possible to set the text color of the default container") {
@@ -280,7 +267,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                 }
 
                 context("table") {
-
                     let table = PDFTable(rows: 0, columns: 0)
 
                     it("is possible to add a table into the default container") {
@@ -305,7 +291,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                 }
 
                 context("list") {
-
                     let indentations: [(pre: CGFloat, past: CGFloat)] = [(pre: 0, past: 10)]
                     let list = PDFList(indentations: indentations)
 
@@ -331,7 +316,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                 }
 
                 context("indentation") {
-
                     let indentation: CGFloat = 20.0
                     let leftSide = true
 
@@ -359,7 +343,6 @@ class PDFDocument_Objects_Spec: QuickSpec {
                 }
 
                 context("absolute offset") {
-
                     let offset: CGFloat = 20.0
 
                     it("is possible to set absolute offset of default container") {
@@ -393,5 +376,4 @@ class PDFDocument_Objects_Spec: QuickSpec {
             }
         }
     }
-
 }

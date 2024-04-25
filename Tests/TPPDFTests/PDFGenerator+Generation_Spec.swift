@@ -6,14 +6,13 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Foundation
 import CoreGraphics
-import Quick
+import Foundation
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFGenerator_Generation_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFGenerator") {
             context("Generation") {
@@ -25,13 +24,13 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         var url: URL!
                         expect {
                             url = try PDFGenerator(document: document).generateURL(filename: filename)
-                            }.toNot(throwError())
+                        }.toNot(throwError())
                         expect(url).toEventuallyNot(beNil())
 
                         var writtenData: Data!
                         expect {
                             writtenData = try Data(contentsOf: url)
-                            }.toNot(throwError())
+                        }.toNot(throwError())
                         expect(writtenData).toEventuallyNot(beNil())
 
                         //                        let expectedBase64 = ""
@@ -45,13 +44,13 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         var url: URL!
                         expect {
                             url = try PDFGenerator(document: document).generateURL(filename: filename)
-                            }.toNot(throwError())
+                        }.toNot(throwError())
                         expect(url).toEventuallyNot(beNil())
 
                         var writtenData: Data!
                         expect {
                             writtenData = try Data(contentsOf: url)
-                            }.toNot(throwError())
+                        }.toNot(throwError())
                         expect(writtenData).toEventuallyNot(beNil())
 
                         //                        let expectedBase64 = ""
@@ -65,13 +64,13 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         var url: URL!
                         expect {
                             url = try PDFGenerator(document: document).generateURL(filename: filename)
-                            }.toNot(throwError())
+                        }.toNot(throwError())
                         expect(url).toEventuallyNot(beNil())
 
                         var writtenData: Data!
                         expect {
                             writtenData = try Data(contentsOf: url)
-                            }.toNot(throwError())
+                        }.toNot(throwError())
                         expect(writtenData).toEventuallyNot(beNil())
 
                         //                        let expectedBase64 = ""
@@ -81,14 +80,13 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                 }
 
                 describe("data") {
-
                     it("should generate") {
                         //                        let filename = "FILENAME"
 
                         var data: Data!
                         expect {
                             data = try PDFGenerator(document: document).generateData()
-                            }.toNot(throwError())
+                        }.toNot(throwError())
                         expect(data).toEventuallyNot(beNil())
                         //                        let expectedBase64 = ""
                         // TODO: implement correct base64
@@ -101,7 +99,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                         var data: Data!
                         expect {
                             data = try PDFGenerator(document: document).generateData()
-                            }.toNot(throwError())
+                        }.toNot(throwError())
                         expect(data).toEventuallyNot(beNil())
                         //                        let expectedBase64 = ""
                         // TODO: implement correct base64
@@ -127,13 +125,11 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                 it("should render object") {
                     class CustomObject: PDFRenderObject {
-
                         static var called = false
 
-                        override func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
+                        override func draw(generator _: PDFGenerator, container _: PDFContainer, in _: PDFContext) throws {
                             CustomObject.called = true
                         }
-
                     }
 
                     let obj = CustomObject()
@@ -150,7 +146,6 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                 }
 
                 context("extract") {
-
                     let objs: [PDFLocatedRenderObject] = [
                         (PDFContainer.headerLeft, PDFSpaceObject(space: 10)),
                         (PDFContainer.headerLeft, PDFSpaceObject(space: 10)),
@@ -175,7 +170,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         (PDFContainer.footerLeft, PDFSpaceObject(space: 10)),
                         (PDFContainer.footerCenter, PDFSpaceObject(space: 10)),
-                        (PDFContainer.footerRight, PDFSpaceObject(space: 10))
+                        (PDFContainer.footerRight, PDFSpaceObject(space: 10)),
                     ]
                     let headerObjs = objs[0...8]
                     let contentObjs = objs[9...14]
@@ -207,7 +202,6 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                 }
 
                 describe("table of content") {
-
                     let headingStyle1 = document.add(style: PDFTextStyle(name: "Heading 1", font: Font.systemFont(ofSize: 25), color: Color.green))
                     let headingStyle2 = document.add(style: PDFTextStyle(name: "Heading 2", font: Font.systemFont(ofSize: 20), color: Color.red))
                     let headingStyle3 = document.add(style: PDFTextStyle(name: "Heading 3", font: Font.systemFont(ofSize: 18), color: Color.blue))
@@ -216,8 +210,8 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                     let styles = [
                         headingStyle1,
                         headingStyle2,
-                        headingStyle3
-                        ].map(WeakPDFTextStyleRef.init(value:))
+                        headingStyle3,
+                    ].map(WeakPDFTextStyleRef.init(value:))
 
                     let textObjects = [
                         PDFSimpleText(text: "Heading 1", style: headingStyle1),
@@ -246,16 +240,16 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                         PDFSimpleText(text: "Heading 3.1.1", style: headingStyle3),
                         PDFSimpleText(text: "Body", style: bodyStyle),
-                        PDFSimpleText(text: "Body", style: bodyStyle)
+                        PDFSimpleText(text: "Body", style: bodyStyle),
                     ]
-                    let objs: [PDFLocatedRenderObject] = textObjects.map { return (PDFContainer.contentLeft, PDFAttributedTextObject(simpleText: $0)) }
+                    let objs: [PDFLocatedRenderObject] = textObjects.map { (PDFContainer.contentLeft, PDFAttributedTextObject(simpleText: $0)) }
 
                     it("should create list based on styles") {
                         let list = PDFGenerator.createTableOfContentList(objects: objs, styles: styles, symbol: .dot)
                         let expectedList = PDFList(indentations: [
                             (pre: CGFloat(10), past: CGFloat(10)),
                             (pre: CGFloat(20), past: CGFloat(10)),
-                            (pre: CGFloat(30), past: CGFloat(10))
+                            (pre: CGFloat(30), past: CGFloat(10)),
                         ])
                         expectedList.addItems([
                             PDFListItem(symbol: .dot, content: textObjects[0].text)
@@ -266,7 +260,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
                             PDFListItem(symbol: .dot, content: textObjects[15].text)
                                 .addItem(PDFListItem(symbol: .none, content: nil)
                                     .addItem(PDFListItem(symbol: .dot, content: textObjects[18].text))),
-                            ])
+                        ])
 
                         expect(list).to(equal(expectedList))
                     }
@@ -274,7 +268,6 @@ class PDFGenerator_Generation_Spec: QuickSpec {
             }
 
             describe("total page estimation") {
-
                 // Test Case:
                 // Precondition:
                 //  - Document contains an external document

@@ -7,102 +7,60 @@
 
 import Foundation
 
-/**
- List of errors which can occur during using this framework
- */
+/// List of errors which can be thrown during configuration, calculations or rendering
 public enum PDFError: LocalizedError {
-
-    /**
-     TODO: Documentation
-     */
+    /// The associated `value` is an instance of an unsupported type.
     case tableContentInvalid(value: Any?)
 
-    /**
-     TODO: Documentation
-     */
+    /// Indicates that a table without any data was added to the document, which is unsupported
     case tableIsEmpty
 
-    /**
-     TODO: Documentation
-     */
+    /// The given table structure does not match, i.e. the data matrix size does not match the cell alignment configuration
     case tableStructureInvalid(message: String)
 
-    /**
-     TODO: Documentation
-     */
+    /// Thrown when accessing a cell outside of the table bounds
     case tableIndexOutOfBounds(index: Int, length: Int)
-
-    /**
-     TODO: Documentation
-     */
-    case tableCellWeakReferenceBroken
 
     /// Indicates that the cell is too big to be rendered onto a single page
     case tableCellTooBig(cell: PDFTableCell)
 
-    /**
-     TODO: Documentation
-     */
+    /// Thrown when neither a ``PDFSimpleText`` nor a ``UIKit/NSAttributedString`` is set in an ``PDFAttributedText``
     case textObjectIsNil
 
-    /**
-     TODO: Documentation
-     */
+    /// Thrown when a ``PDFAttributedText`` should be rendered without being calculated first
     case textObjectNotCalculated
 
-    /**
-     TODO: Documentation
-     */
-    case invalidHexLength(length: Int)
-
-    /**
-     TODO: Documentation
-     */
-    case invalidHex(hex: String)
-
-    /**
-     TODO: Documentation
-     */
+    /// Thrown when copying of a PDF object fails
     case copyingFailed
 
-    /**
-     TODO: Documentation
-     */
+    /// Thrown when an external PDF document could not be loaded from the given `url`
     case externalDocumentURLInvalid(url: URL)
 
     /// Index of page in external document is out of bounds
     case pageOutOfBounds(index: Int)
 
-    /**
-     TODO: Documentation
-     */
+    /// nodoc
     public var errorDescription: String? {
         switch self {
-        case .tableContentInvalid(let value):
+        case let .tableContentInvalid(value):
             return "Table content is invalid: " + value.debugDescription
         case .tableIsEmpty:
             return "Table is empty"
-        case .tableStructureInvalid(let message):
+        case let .tableStructureInvalid(message):
             return "Table structure invalid: " + message
-        case .tableIndexOutOfBounds(let index, let length):
+        case let .tableIndexOutOfBounds(index, length):
             return "Table index out of bounds: <index: \(index), length: \(length)>"
-        case .tableCellWeakReferenceBroken:
-            return "Weak reference in table cell is broken"
-        case .tableCellTooBig(let cell):
+        case let .tableCellTooBig(cell):
             return "Table cell is too big to be rendered: \(cell)"
         case .textObjectIsNil:
             return "No text object has been set"
         case .textObjectNotCalculated:
             return "Text object is missing string, maybe not calculated?"
-        case .invalidHexLength(let length):
-            return "Hex color string has invalid length: \(length)"
-        case .invalidHex(let hex):
-            return "Invalid hexdecimal string: " + hex
         case .copyingFailed:
             return "Failed to create a copy of an object"
-        case .externalDocumentURLInvalid(let url):
+        case let .externalDocumentURLInvalid(url):
             return "Could not open PDF document at url: " + url.absoluteString
-        case .pageOutOfBounds(let index):
+        case let .pageOutOfBounds(index):
             return "Page \(index) in external document is out of bounds"
         }
     }

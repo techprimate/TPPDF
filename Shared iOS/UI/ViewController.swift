@@ -6,13 +6,12 @@
 //  Copyright © 2019 Philip Niedertscheider. All rights reserved.
 //
 
-import UIKit
 import TPPDF
+import UIKit
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet var webView: UIWebView!
+    @IBOutlet var progressView: UIProgressView!
 
     var progressObserver: NSObjectProtocol!
 
@@ -38,7 +37,7 @@ class ViewController: UIViewController {
         print("Preparation took: " + TimeUtils.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
         startTime = CFAbsoluteTimeGetCurrent()
         /* ---- Execution Metrics ---- */
-        
+
         var generator: PDFGeneratorProtocol
         if documents.count > 1 {
             generator = PDFMultiDocumentGenerator(documents: documents)
@@ -47,15 +46,15 @@ class ViewController: UIViewController {
         }
         generator.debug = exampleFactory is ExperimentFactory
 
-        self.progressView.observedProgress = generator.progress
-        observer = generator.progress.observe(\.completedUnitCount) { (p, _) in
+        progressView.observedProgress = generator.progress
+        observer = generator.progress.observe(\.completedUnitCount) { p, _ in
             print(p.localizedDescription ?? "")
         }
         DispatchQueue.global(qos: .background).async {
             do {
                 let url = try generator.generateURL(filename: "Example.pdf")
                 print("Output URL:", url)
-                
+
                 /* ---- Execution Metrics ---- */
                 print("Generation took: " + TimeUtils.stringFromTimeInterval(interval: CFAbsoluteTimeGetCurrent() - startTime))
                 /* ---- Execution Metrics ---- */

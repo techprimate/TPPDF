@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFInfo_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFInfo") {
-
             var info: PDFInfo!
 
             beforeEach {
@@ -23,7 +21,6 @@ class PDFInfo_Spec: QuickSpec {
             }
 
             context("default variables") {
-
                 it("should have default title") {
                     expect(info.title) == "Title"
                 }
@@ -76,5 +73,4 @@ class PDFInfo_Spec: QuickSpec {
             }
         }
     }
-
 }

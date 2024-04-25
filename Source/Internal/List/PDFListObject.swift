@@ -5,27 +5,15 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-/**
- TODO: documentation
- */
-internal class PDFListObject: PDFRenderObject {
+class PDFListObject: PDFRenderObject {
+    var list: PDFList
 
-    /**
-     TODO: documentation
-     */
-    internal var list: PDFList
-
-    /**
-     TODO: documentation
-     */
-    internal init(list: PDFList) {
+    init(list: PDFList) {
         self.list = list
     }
 
-    /**
-     TODO: documentation
-     */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    /// nodoc
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
         let originalLeftIndent = generator.layout.indentation.leftIn(container: container)
@@ -47,7 +35,7 @@ internal class PDFListObject: PDFRenderObject {
 
         return result
     }
-    
+
     private func handleCustomInterItemSpacing(item: (level: Int, text: String, symbol: PDFListItemSymbol), generator: PDFGenerator, container: PDFContainer) {
         guard let interItemSpacing = list.spacing,
               let lastItem = list.flatted().last,
@@ -57,13 +45,12 @@ internal class PDFListObject: PDFRenderObject {
         }
         generator.layout.heights.add(interItemSpacing, to: container)
     }
-    
-    /**
-     TODO: Documentation
-     */
-    private func createSymbolItem(generator: PDFGenerator,
-                                  container: PDFContainer,
-                                  symbol: PDFListItemSymbol) throws -> [PDFLocatedRenderObject] {
+
+    private func createSymbolItem(
+        generator: PDFGenerator,
+        container: PDFContainer,
+        symbol: PDFListItemSymbol
+    ) throws -> [PDFLocatedRenderObject] {
         let symbol: String = symbol.stringValue
         let symbolText = PDFSimpleText(text: symbol)
         let symbolTextObject = PDFAttributedTextObject(simpleText: symbolText)
@@ -85,10 +72,8 @@ internal class PDFListObject: PDFRenderObject {
         return try itemTextObject.calculate(generator: generator, container: container)
     }
 
-    /**
-     Creates a new `PDFListObject` with the same properties
-     */
-    override internal var copy: PDFRenderObject {
-        PDFListObject(list: self.list.copy)
+    /// nodoc
+    override var copy: PDFRenderObject {
+        PDFListObject(list: list.copy)
     }
 }

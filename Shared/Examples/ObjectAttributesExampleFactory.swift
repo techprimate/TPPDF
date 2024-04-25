@@ -7,14 +7,13 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 import TPPDF
 
 class ObjectAttributesExampleFactory: ExampleFactory {
-
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
@@ -25,7 +24,7 @@ class ObjectAttributesExampleFactory: ExampleFactory {
         let veryLongLink = "This is a very long link i guess"
         let pattern = "Word Link Word - " + veryLongLink + " - "
         let count = 20
-        let text = (0..<count).reduce("", { (prev, _) in prev + pattern})
+        let text = (0..<count).reduce("") { prev, _ in prev + pattern }
         let attributedString = NSMutableAttributedString(string: text)
         for i in 0..<20 {
             attributedString.addAttribute(.link,
@@ -37,7 +36,7 @@ class ObjectAttributesExampleFactory: ExampleFactory {
                                           range: NSRange(location: pattern.count * i + 17, length: veryLongLink.count))
         }
         document.add(attributedText: attributedString)
-        
+
         return [document]
     }
 }

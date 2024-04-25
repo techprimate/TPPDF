@@ -6,29 +6,28 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 import CoreGraphics
 
-internal class PDFSlicedObject: PDFRenderObject {
+class PDFSlicedObject: PDFRenderObject {
+    var children: [PDFRenderObject]
 
-    internal var children: [PDFRenderObject]
-
-    internal init(children: [PDFRenderObject] = [], frame: CGRect = .null) {
+    init(children: [PDFRenderObject] = [], frame: CGRect = .null) {
         self.children = children
         super.init()
         self.frame = frame
     }
 
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    override func calculate(generator _: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         [
             (container, self)
         ]
     }
 
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
+    override func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
         if frame != .null {
             context.saveGState()
             context.beginPath()

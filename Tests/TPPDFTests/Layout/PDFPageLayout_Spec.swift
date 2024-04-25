@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFPageLayout_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFPageLayout") {
-
             var layout: PDFPageLayout!
 
             beforeEach {
@@ -23,7 +21,6 @@ class PDFPageLayout_Spec: QuickSpec {
             }
 
             context("variables") {
-
                 it("has default value size") {
                     expect(layout.size) == CGSize.zero
                 }
@@ -39,7 +36,6 @@ class PDFPageLayout_Spec: QuickSpec {
             }
 
             context("computed variables") {
-
                 it("has a value bounds") {
                     layout.size = CGSize(width: 10, height: 20)
                     expect(layout.bounds) == CGRect(x: 0, y: 0, width: 10, height: 20)
@@ -57,5 +53,4 @@ class PDFPageLayout_Spec: QuickSpec {
             }
         }
     }
-
 }

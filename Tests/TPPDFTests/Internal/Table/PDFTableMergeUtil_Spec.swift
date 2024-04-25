@@ -7,15 +7,13 @@
 //
 
 import Foundation
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableMergeUtilSpec: QuickSpec {
-
     override func spec() {
         describe("PDFTableMergeUtil") {
-
             let ROWS = 10
             let COLS = 10
 
@@ -31,7 +29,6 @@ class PDFTableMergeUtilSpec: QuickSpec {
             }
 
             context("no merging") {
-
                 it("should return a node for each cell") {
                     let result = PDFTableMergeUtil.calculateMerged(table: table)
                     expect(result).to(haveCount(ROWS))
@@ -50,7 +47,6 @@ class PDFTableMergeUtilSpec: QuickSpec {
             }
 
             context("with merging") {
-
                 it("should return a node with merged row span") {
                     for row in 0..<ROWS {
                         table[row: row].merge()

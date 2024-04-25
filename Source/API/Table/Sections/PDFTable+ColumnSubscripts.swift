@@ -1,5 +1,5 @@
 //
-//  PDFTable+Subscripts.swift
+//  PDFTable+ColumnSubscripts.swift
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 20.12.19.
@@ -7,34 +7,33 @@
 
 import Foundation
 
-extension PDFTable {
-
+public extension PDFTable {
     /**
-     Accessor for a specific column
-
-     - parameter column: Index of column
-
-     - returns: `PDFTableColumn` with references to cells of this table
+     * Accessor for a specific column
+     *
+     * - Parameter column: Index of column
+     *
+     * - Returns: ``PDFTableColumn`` with references to cells of this table
      */
-    public subscript(column index: Int) -> PDFTableColumn {
+    subscript(column index: Int) -> PDFTableColumn {
         get {
-            PDFTableColumn(cells: self.cells.map({ row in row[index] }), of: self, at: index)
+            PDFTableColumn(cells: cells.map { row in row[index] }, of: self, at: index)
         }
         set {
-            for idx in self.cells.indices {
-                self.cells[idx][index] = newValue.cells[idx]
+            for idx in cells.indices {
+                cells[idx][index] = newValue.cells[idx]
             }
         }
     }
 
     /**
-     Accessors of columns in the given range.
-
-     - parameter columns: Range of indicies
-
-     - returns: `PDFTableColumns` with references to columns
+     * Accessors of columns in the given range.
+     *
+     * - Parameter columns: Range of indicies
+     *
+     * - Returns: `PDFTableColumns` with references to columns
      */
-    public subscript(columns range: ClosedRange<Int>) -> PDFTableColumns {
+    subscript(columns range: ClosedRange<Int>) -> PDFTableColumns {
         get {
             self[columns: range.relative(to: cells[0])]
         }
@@ -44,13 +43,13 @@ extension PDFTable {
     }
 
     /**
-     Accessors of columns in the given range.
-
-     - parameter columns: Range of indicies
-
-     - returns: `PDFTableColumns` with references to columns
+     * Accessors of columns in the given range.
+     *
+     * - Parameter columns: Range of indicies
+     *
+     * - Returns: `PDFTableColumns` with references to columns
      */
-    public subscript(columns range: PartialRangeFrom<Int>) -> PDFTableColumns {
+    subscript(columns range: PartialRangeFrom<Int>) -> PDFTableColumns {
         get {
             self[columns: range.relative(to: cells[0])]
         }
@@ -60,13 +59,13 @@ extension PDFTable {
     }
 
     /**
-     Accessors of columns in the given range.
-
-     - parameter columns: Range of indicies
-
-     - returns: `PDFTableColumns` with references to columns
+     * Accessors of columns in the given range.
+     *
+     * - Parameter columns: Range of indicies
+     *
+     * - Returns: `PDFTableColumns` with references to columns
      */
-    public subscript(columns range: PartialRangeThrough<Int>) -> PDFTableColumns {
+    subscript(columns range: PartialRangeThrough<Int>) -> PDFTableColumns {
         get {
             self[columns: range.relative(to: cells[0])]
         }
@@ -76,13 +75,13 @@ extension PDFTable {
     }
 
     /**
-     Accessors of columns in the given range.
-
-     - parameter columns: Range of indicies
-
-     - returns: `PDFTableColumns` with references to columns
+     * Accessors of columns in the given range.
+     *
+     * - Parameter columns: Range of indicies
+     *
+     * - Returns: `PDFTableColumns` with references to columns
      */
-    public subscript(columns range: PartialRangeUpTo<Int>) -> PDFTableColumns {
+    subscript(columns range: PartialRangeUpTo<Int>) -> PDFTableColumns {
         get {
             self[columns: range.relative(to: cells[0])]
         }
@@ -92,22 +91,23 @@ extension PDFTable {
     }
 
     /**
-     Accessors of columns in the given range.
-
-     - parameter columns: Range of indicies
-
-     - returns: `PDFTableColumns` with references to columns
+     * Accessors of columns in the given range.
+     *
+     * - Parameter columns: Range of indicies
+     *
+     * - Returns: `PDFTableColumns` with references to columns
      */
-    public subscript(columns range: Range<Int>) -> PDFTableColumns {
+    subscript(columns range: Range<Int>) -> PDFTableColumns {
         get {
             PDFTableColumns(
                 columns: range
-                    .map({ column in
-                        (position: column, cells: self.cells.map({ $0[column] }))
-                    })
-                    .map({ PDFTableColumn.init(cells: $0.cells, of: self, at: $0.position) }),
+                    .map { column in
+                        (position: column, cells: self.cells.map { $0[column] })
+                    }
+                    .map { PDFTableColumn(cells: $0.cells, of: self, at: $0.position) },
                 of: self,
-                in: range)
+                in: range
+            )
         }
         set {
             for (colIdx, column) in range.enumerated() {

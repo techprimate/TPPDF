@@ -6,38 +6,26 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- TODO: Documentation
- */
-internal class PDFSectionObject: PDFRenderObject {
-
-    internal struct PDFSectionColumnMetadata {
-        internal let minX: CGFloat
-        internal let width: CGFloat
-        internal let backgroundColor: Color?
+class PDFSectionObject: PDFRenderObject {
+    struct PDFSectionColumnMetadata {
+        let minX: CGFloat
+        let width: CGFloat
+        let backgroundColor: Color?
     }
 
-    /**
-     TODO: Documentation
-     */
-    internal var section: PDFSection
+    var section: PDFSection
 
-    /**
-     TODO: Documentation
-     */
-    internal init(section: PDFSection) {
+    init(section: PDFSection) {
         self.section = section
     }
 
-    /**
-     TODO: Documentation
-     */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    /// nodoc
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
         // Save state of layout
@@ -64,9 +52,11 @@ internal class PDFSectionObject: PDFRenderObject {
             objectsPerColumn[columnIndex] = try PDFSectionColumnObject(column: column)
                 .calculate(generator: generator, container: container)
 
-            columnMetadata.append(.init(minX: generator.layout.margin.left + leftColumnGuide,
-                                        width: columnWidth,
-                                        backgroundColor: column.backgroundColor))
+            columnMetadata.append(.init(
+                minX: generator.layout.margin.left + leftColumnGuide,
+                width: columnWidth,
+                backgroundColor: column.backgroundColor
+            ))
 
             leftColumnGuide = rightColumnGuide + section.columnMargin
         }
@@ -102,32 +92,38 @@ internal class PDFSectionObject: PDFRenderObject {
         return result
     }
 
-    /** The `PDFDocument` render engine calculates each object, which returns a list of calculated objects.
-     As an example if you add a text object, it will be calculated and return one text object which will then be rendered.
-
-     **BUT** if the text is too long to fit the space, then it will be split up into two text objects with a `PDFPageBreakObject` in-between.
-
-     During the render process whenever a page break object is found, it will create a new pdf page and continue there.
-     In order to render multi columns correctly, we need to merge the page breaks of all columns and make sure
-     the page break occurs at the right time:
-
-     ```
-     All objects of column 1 before the first pagebreak
-     All objects of column 2 before the first pagebreak
-     All objects of column 3 before the first pagebreak
-     Pagebreak
-     All objects of column 1 after the first pagebreak up to the next pagebreak
-     All objects of column 2 after the first pagebreak up to the next pagebreak
-     All objects of column 3 after the first pagebreak up to the next pagebreak
-     Pagebreak
-     ...
-     ```
+    /**
+     * The `PDFDocument` render engine calculates each object, which returns a list of calculated objects.
+     * As an example if you add a text object, it will be calculated and return one text object which will then be rendered.
+     *
+     * **BUT** if the text is too long to fit the space, then it will be split up into two text objects with a `PDFPageBreakObject` in-between.
+     *
+     * During the render process whenever a page break object is found, it will create a new pdf page and continue there.
+     * In order to render multi columns correctly, we need to merge the page breaks of all columns and make sure
+     * the page break occurs at the right time:
+     *
+     * ```
+     * All objects of column 1 before the first pagebreak
+     * All objects of column 2 before the first pagebreak
+     * All objects of column 3 before the first pagebreak
+     * Pagebreak
+     * All objects of column 1 after the first pagebreak up to the next pagebreak
+     * All objects of column 2 after the first pagebreak up to the next pagebreak
+     * All objects of column 3 after the first pagebreak up to the next pagebreak
+     * Pagebreak
+     * ...
+     * ```
      */
-    internal func calulatePageBreakPositions(_ objectsPerColumn: [Int: [PDFLocatedRenderObject]], metadata: [PDFSectionColumnMetadata], container: PDFContainer) -> [PDFLocatedRenderObject] {
+    func calulatePageBreakPositions( // swiftlint:disable:this cyclomatic_complexity function_body_length
+        _ objectsPerColumn: [Int: [PDFLocatedRenderObject]],
+        metadata: [PDFSectionColumnMetadata],
+        container: PDFContainer
+    ) -> [PDFLocatedRenderObject] {
         // stores how many objects are in one column at max
         let maxObjectsPerColumn = objectsPerColumn.reduce(0) { max($0, $1.value.count) }
 
-        /* as soon as a column requests a page break, we need to stack subsequent objects of the very same column until the following is `true`:
+        /* 
+         * as soon as a column requests a page break, we need to stack subsequent objects of the very same column until the following is `true`:
          * one or more columns do not have more objects and all other columns, which have more objects left, are requesting a page break
          */
         var stackedObjectsPerColumn = [Int: [PDFLocatedRenderObject]]()
@@ -159,13 +155,11 @@ internal class PDFSectionObject: PDFRenderObject {
                 }
             }
 
-            // swiftlint:disable multiline_function_chains
             let allFrames = resultPerColumn.values.reduce([], +)
                 .map(\.1.frame)
-                .filter({ $0.origin != .null })
+                .filter { $0.origin != .null }
             if let sectionMinY = allFrames.map({ $0.minY }).min(),
-                let sectionMaxY = allFrames.map({ $0.maxY }).max() {
-
+               let sectionMaxY = allFrames.map({ $0.maxY }).max() {
                 for (idx, columnObjects) in resultPerColumn {
                     let met = metadata[idx]
                     guard let backgroundColor = met.backgroundColor else {
@@ -218,10 +212,8 @@ internal class PDFSectionObject: PDFRenderObject {
         return result
     }
 
-    /**
-     Creates a new `PDFSectionObject` with the same properties
-     */
-    override internal var copy: PDFRenderObject {
-        PDFSectionObject(section: self.section.copy)
+    /// nodoc
+    override var copy: PDFRenderObject {
+        PDFSectionObject(section: section.copy)
     }
 }

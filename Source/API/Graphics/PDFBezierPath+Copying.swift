@@ -6,22 +6,18 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- TODO: Documentation
- */
-extension PDFBezierPath: NSCopying {
+// MARK: - PDFBezierPath + NSCopying
 
-    /**
-     TODO: Documentation
-     */
-    public func copy(with zone: NSZone? = nil) -> Any {
-        let path = PDFBezierPath(ref: self.refFrame)
-        path.elements = self.elements
+extension PDFBezierPath: NSCopying {
+    /// Creates a copy of this path with references to the same vertices
+    public func copy(with _: NSZone? = nil) -> Any {
+        let path = PDFBezierPath(ref: refFrame)
+        path.elements = elements
         return path
     }
 }

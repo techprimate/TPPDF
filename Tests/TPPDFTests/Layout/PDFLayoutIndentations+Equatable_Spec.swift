@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFLayoutIndentations_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFLayoutIndentations") {
-
             context("Equatable") {
-
                 let indentation = PDFLayoutIndentations()
 
                 it("is equal") {
@@ -44,5 +41,4 @@ class PDFLayoutIndentations_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

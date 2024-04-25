@@ -7,17 +7,14 @@
 //
 
 import Foundation
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFText_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFSimpleText") {
-
             context("Equatable") {
-
                 it("is equal if both simple text") {
                     let text: PDFText = PDFSimpleText(text: "EXAMPLE")
                     let otherText: PDFText = PDFSimpleText(text: "EXAMPLE")
@@ -43,5 +40,4 @@ class PDFText_Spec: QuickSpec {
             }
         }
     }
-
 }

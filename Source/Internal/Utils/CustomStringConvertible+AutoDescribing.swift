@@ -7,15 +7,14 @@
 
 import Foundation
 
-extension CustomStringConvertible {
-
+public extension CustomStringConvertible {
     /**
      Default implementation for `description` using class reflection to create a comma concatenated list of properties and values
 
      - Returns: String of comma-separated key/value pairs
      */
-    public var description: String {
-        var description: String = ""
+    var description: String {
+        var description = ""
         description = withUnsafePointer(to: self) { pointer in
             String(format: "%@<%p>", String(describing: type(of: self)), pointer)
         }
@@ -23,25 +22,24 @@ extension CustomStringConvertible {
         return String(format: "%@(%@)",
                       description,
                       selfMirror.children
-                        .compactMap({ child in
-                            if let propertyName = child.label {
-                                return "\(propertyName): \(child.value)"
-                            }
-                            return nil
-                        })
-                        .joined(separator: ", "))
+                          .compactMap { child in
+                              if let propertyName = child.label {
+                                  return "\(propertyName): \(child.value)"
+                              }
+                              return nil
+                          }
+                          .joined(separator: ", "))
     }
 }
 
-extension CustomDebugStringConvertible {
-
+public extension CustomDebugStringConvertible {
     /**
      Default implementation for `debugDescription` using class reflection to create a comma concatenated list of properties and values
 
      - Returns: String of comma-separated key/value pairs
      */
-    public var debugDescription: String {
-        var description: String = ""
+    var debugDescription: String {
+        var description = ""
         description = String(format: "%@<%@>",
                              String(describing: type(of: self)),
                              Unmanaged.passUnretained(self as AnyObject).toOpaque().debugDescription)
@@ -49,12 +47,12 @@ extension CustomDebugStringConvertible {
         return String(format: "%@(%@)",
                       description,
                       selfMirror.children
-                        .compactMap({ child in
-                            if let propertyName = child.label {
-                                return "\(propertyName): \(child.value)"
-                            }
-                            return nil
-                        })
-                        .joined(separator: ", "))
+                          .compactMap { child in
+                              if let propertyName = child.label {
+                                  return "\(propertyName): \(child.value)"
+                              }
+                              return nil
+                          }
+                          .joined(separator: ", "))
     }
 }

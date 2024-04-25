@@ -10,7 +10,6 @@ import Foundation
 import TPPDF
 
 class MultipleDocumentsExampleFactory: ExampleFactory {
-
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
         document.add(text: "This is a my first document!")

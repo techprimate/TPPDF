@@ -7,17 +7,14 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFGenerator_Debug_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFGenerator") {
-
             context("Debug") {
-
 //                let document = PDFDocument(layout: PDFPageLayout(size: CGSize(width: 50, height: 50),
 //                                                                 margin: EdgeInsets(top: 10, left: 10, bottom: 10, right: 10),
 //                                                                 space: (header: 5, footer: 5)))
@@ -46,7 +43,7 @@ class PDFGenerator_Debug_Spec: QuickSpec {
 //                                let expected = Color.clear.hex
 //                                let result = pixel.hex
 //                                // TODO: add pixel testing
-////                                expect(result).to(equal(expected), description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
+                ////                                expect(result).to(equal(expected), description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
 //
 //                                // Early exit to only fail at first error!
 //                                if result != expected {
@@ -87,9 +84,9 @@ class PDFGenerator_Debug_Spec: QuickSpec {
 //                                    expected = Color.blue
 //                                }
 //
-////                                expect(result.isClose(to: expected, decimals: 2))
-////                                    .to(beTrue(),
-////                                        description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
+                ////                                expect(result.isClose(to: expected, decimals: 2))
+                ////                                    .to(beTrue(),
+                ////                                        description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
 //
 //                                // Early exit to only fail at first error!
 //                                if result != expected {
@@ -102,5 +99,4 @@ class PDFGenerator_Debug_Spec: QuickSpec {
             }
         }
     }
-
 }

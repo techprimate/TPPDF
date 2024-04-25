@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTextColorObject_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTextColorObject") {
-
             let color = Color.red
             var object: PDFTextColorObject!
 
@@ -24,14 +22,12 @@ class PDFTextColorObject_Spec: QuickSpec {
             }
 
             context("variables") {
-
                 it("has a color instance") {
                     expect(object.color) == color
                 }
             }
 
             describe("calculation") {
-
                 let document = PDFDocument(format: .a4)
                 var generator: PDFGenerator!
 
@@ -46,7 +42,7 @@ class PDFTextColorObject_Spec: QuickSpec {
                 it("can set text color") {
                     expect {
                         result = try object.calculate(generator: generator, container: container)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(generator.textColor[container]).toEventually(equal(color))
 
                     expect(object.frame) == CGRect.null
@@ -58,5 +54,4 @@ class PDFTextColorObject_Spec: QuickSpec {
             }
         }
     }
-
 }

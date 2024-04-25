@@ -10,56 +10,51 @@ import PDFKit
 import SwiftUI
 
 #if os(macOS)
-import AppKit
+    import AppKit
 
-struct PDFKitRepresentedView: NSViewRepresentable {
+    struct PDFKitRepresentedView: NSViewRepresentable {
+        var url: URL?
 
-    var url: URL?
-
-    init(url: URL?) {
-        self.url = url
-    }
-
-    func makeNSView(context: NSViewRepresentableContext<PDFKitRepresentedView>) -> PDFKitRepresentedView.NSViewType {
-        let pdfView = PDFView()
-        if let url = self.url {
-            pdfView.document = PDFDocument(url: url)
-        } else {
-            pdfView.document = nil
+        func makeNSView(context _: NSViewRepresentableContext<PDFKitRepresentedView>) -> PDFKitRepresentedView.NSViewType {
+            let pdfView = PDFView()
+            if let url = url {
+                pdfView.document = PDFDocument(url: url)
+            } else {
+                pdfView.document = nil
+            }
+            return pdfView
         }
-        return pdfView
-    }
 
-    func updateNSView(_ nsView: NSView, context: NSViewRepresentableContext<PDFKitRepresentedView>) {
-        guard let pdfView = nsView as? PDFView else {
-            return
-        }
-        if let url = self.url {
-            pdfView.document = PDFDocument(url: url)
-        } else {
-            pdfView.document = nil
+        func updateNSView(_ nsView: NSView, context _: NSViewRepresentableContext<PDFKitRepresentedView>) {
+            guard let pdfView = nsView as? PDFView else {
+                return
+            }
+            if let url = url {
+                pdfView.document = PDFDocument(url: url)
+            } else {
+                pdfView.document = nil
+            }
         }
     }
-}
 
 #elseif os(iOS)
-import UIKit
+    import UIKit
 
-struct PDFKitRepresentedView: UIViewRepresentable {
-    let url: URL
+    struct PDFKitRepresentedView: UIViewRepresentable {
+        let url: URL
 
-    init(_ url: URL) {
-        self.url = url
+        init(_ url: URL) {
+            self.url = url
+        }
+
+        func makeUIView(context _: UIViewRepresentableContext<PDFKitRepresentedView>) -> PDFKitRepresentedView.UIViewType {
+            // Create a `PDFView` and set its `PDFDocument`.
+            let pdfView = PDFView()
+            pdfView.document = PDFDocument(url: url)
+            return pdfView
+        }
+
+        func updateUIView(_: UIView, context _: UIViewRepresentableContext<PDFKitRepresentedView>) {}
     }
-
-    func makeUIView(context: UIViewRepresentableContext<PDFKitRepresentedView>) -> PDFKitRepresentedView.UIViewType {
-        // Create a `PDFView` and set its `PDFDocument`.
-        let pdfView = PDFView()
-        pdfView.document = PDFDocument(url: self.url)
-        return pdfView
-    }
-
-    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<PDFKitRepresentedView>) {}
-}
 
 #endif

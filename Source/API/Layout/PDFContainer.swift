@@ -6,67 +6,44 @@
 //
 
 /**
- A container defines the position of an element in the page.
-
- Generally a document is vertically split up into a header, a content and a footer area.
- Also each part is horizontally split up into a left, a center and a right area.
+ * A container defines the position of an element in the page.
+ *
+ * Generally a document is vertically split up into a header, a content and a footer area.
+ * Also each part is horizontally split up into a left, a center and a right area.
  */
 public enum PDFContainer: CaseIterable {
-
-    /**
-     Element is in no container, only real use is as a default value
-     */
+    /// Element is in no container, only real use is as a default value
     case none
 
-    /**
-     Container at the top left
-     */
+    /// Container at the top left
     case headerLeft
 
-    /**
-     Container at the top center
-     */
+    /// Container at the top center
     case headerCenter
 
-    /**
-     Container at the top right
-     */
+    /// Container at the top right
     case headerRight
 
-    /**
-     Container in the center, aligned to left
-     */
+    /// Container in the center, aligned to left
     case contentLeft
 
-    /**
-     Container in the center, aligned to center
-     */
+    /// Container in the center, aligned to center
     case contentCenter
 
-    /**
-     Container in the center, aligned to right
-     */
+    /// Container in the center, aligned to right
     case contentRight
 
-    /**
-     Container at the bottom left
-     */
+    /// Container at the bottom left
     case footerLeft
 
-    /**
-     Container at the bottom center
-     */
+    /// Container at the bottom center
     case footerCenter
 
-    /**
-     Container at the bottom right
-     */
+    /// Container at the bottom right
     case footerRight
 
-    /**
-     Checks if this container is in the header area
-     */
-    internal var isHeader: Bool {
+    /// Checks if this container is in the header area
+    var isHeader: Bool {
         switch self {
         case .headerLeft, .headerCenter, .headerRight:
             return true
@@ -75,10 +52,8 @@ public enum PDFContainer: CaseIterable {
         }
     }
 
-    /**
-     Checks if this container is in the footer area
-     */
-    internal var isFooter: Bool {
+    /// Checks if this container is in the footer area
+    var isFooter: Bool {
         switch self {
         case .footerLeft, .footerCenter, .footerRight:
             return true
@@ -87,17 +62,13 @@ public enum PDFContainer: CaseIterable {
         }
     }
 
-    /**
-     Checks if this container is neither in header nor in footer, therefore in the center area
-     */
-    internal var isCenter: Bool {
+    /// Checks if this container is neither in header nor in footer, therefore in the vertical center area
+    var isCenter: Bool {
         !isHeader && !isFooter
     }
 
-    /**
-     Checks if this container is on the left side
-     */
-    internal var isLeft: Bool {
+    /// Checks if this container is on the left side of the page
+    var isLeft: Bool {
         switch self {
         case .headerLeft, .contentLeft, .footerLeft:
             return true
@@ -106,10 +77,8 @@ public enum PDFContainer: CaseIterable {
         }
     }
 
-    /**
-     Checks if this container is on the right side
-     */
-    internal var isRight: Bool {
+    /// Checks if this container is on the right side of the page
+    var isRight: Bool {
         switch self {
         case .headerRight, .contentRight, .footerRight:
             return true
@@ -119,10 +88,11 @@ public enum PDFContainer: CaseIterable {
     }
 
     /**
-     Array of all possible containers, expect `.none`.
-     Useful for initializing default values for each container
+     * Array of all possible containers, except ``PDFContainer/none``.
+     *
+     * Useful for initializing default values for each container
      */
-    internal static var all: [PDFContainer] {
+    static var all: [PDFContainer] {
         [
             .headerLeft, .headerCenter, .headerRight,
             .contentLeft, .contentCenter, .contentRight,

@@ -6,19 +6,16 @@
 //  Copyright © 2022 techprimate GmbH. All rights reserved.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 import TPPDF
 
 class ContentViewModel: ObservableObject {
-
     @Published var url: URL?
     @State var selectedFactory = Examples.defaultFactory
-
 }
 
 struct ContentView: View {
-
     @ObservedObject var viewModel = ContentViewModel()
 
     var body: some View {

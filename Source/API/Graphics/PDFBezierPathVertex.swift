@@ -6,78 +6,59 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- TODO: Documentation
- */
+/// A vertex in a ``PDFBezierPath``
 public class PDFBezierPathVertex: CustomStringConvertible {
-
-    /**
-     TODO: Documentation
-     */
+    /// Anchor used to define the handling of scaling a ``PDFBezierPath``
     public enum Anchor {
-        /**
-         TODO: Documentation
-         */
+        /// Keep distance to top and left edges of frame
         case topLeft
 
-        /**
-         TODO: Documentation
-         */
+        /// Keep distance to top and horizontal center edges of frame
         case topCenter
 
-        /**
-         TODO: Documentation
-         */
+        /// Keep distance to top and right edges of frame
         case topRight
 
-        /**
-         TODO: Documentation
-         */
+        /// Keep distance to vertical middle and left edges of frame
         case middleLeft
 
-        /**
-         TODO: Documentation
-         */
+        /// Keep distance to center of frame
         case middleCenter
 
-        /**
-         TODO: Documentation
-         */
+        /// Keep distance to vertical middle and right edges of frame
         case middleRight
 
-        /**
-         TODO: Documentation
-         */
+        /// Keep distance to bottom and left edges of frame
         case bottomLeft
 
-        /**
-         TODO: Documentation
-         */
+        /// Keep distance to bottom edge and horizontal of frame
         case bottomCenter
 
-        /**
-         TODO: Documentation
-         */
+        /// Keep distance to bottom and right edges of frame
         case bottomRight
     }
 
-    /**
-     TODO: Documentation
-     */
+    /// Position of the vertex, relative to the ``PDFBezierPath`` using this vertex.
     public var position: CGPoint
 
     /**
-     TODO: Documentation
+     * Anchor used modify the position during scaling
+     *
+     * See ``PDFBezierPath`` for details.
      */
     public var anchor: Anchor
 
     /**
-     TODO: Documentation
+     * Creates a new instance of a bezier path to be used with ``PDFDynamicGeometryShape`` to render complex but dynamic shapes
+     *
+     * - Parameters:
+     *   - position: See ``PDFBezierPathVertex/position``
+     *   - anchor: See ``PDFBezierPathVertex/anchor``
      */
     public init(position: CGPoint, anchor: Anchor) {
         self.position = position

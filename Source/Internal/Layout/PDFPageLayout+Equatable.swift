@@ -5,14 +5,8 @@
 //  Created by Philip Niedertscheider on 04/11/2017.
 //
 
-/**
- TODO: documentation
- */
 extension PDFPageLayout: Equatable {
-
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     public static func == (lhs: PDFPageLayout, rhs: PDFPageLayout) -> Bool {
         guard lhs.size == rhs.size else {
             return false

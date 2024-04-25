@@ -6,27 +6,26 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-internal class PDFExternalPageObject: PDFRenderObject {
+class PDFExternalPageObject: PDFRenderObject {
+    var page: CGPDFPage
 
-    internal var page: CGPDFPage
-
-    internal init(page: CGPDFPage) {
+    init(page: CGPDFPage) {
         self.page = page
     }
 
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
-        self.frame = page.getBoxRect(.mediaBox)
+    override func calculate(generator _: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+        frame = page.getBoxRect(.mediaBox)
         return [
             (container, self)
         ]
     }
 
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
+    override func draw(generator _: PDFGenerator, container _: PDFContainer, in context: PDFContext) throws {
         if !context.currentPageContainsDrawnContent {
             // If page is empty and no page is active, we are good to go
             // Otherwise we need to delete the empty page

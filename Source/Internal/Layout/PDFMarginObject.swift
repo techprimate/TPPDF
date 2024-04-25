@@ -6,52 +6,30 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- TODO: Documentation
- */
-internal class PDFMarginObject: PDFRenderObject {
+class PDFMarginObject: PDFRenderObject {
+    var values: (left: CGFloat?, right: CGFloat?, top: CGFloat?, bottom: CGFloat?)
+    var reset: Bool
 
-    /**
-     TODO: Documentation
-     */
-    internal var values: (left: CGFloat?, right: CGFloat?, top: CGFloat?, bottom: CGFloat?)
-
-    /**
-     TODO: Documentation
-     */
-    internal var reset: Bool
-
-    /**
-     TODO: Documentation
-     */
-    internal convenience init(reset: Bool) {
+    convenience init(reset: Bool) {
         self.init(left: nil, right: nil, top: nil, bottom: nil, reset: reset)
     }
 
-    /**
-     TODO: Documentation
-     */
-    internal convenience init(left: CGFloat? = nil, right: CGFloat? = nil, top: CGFloat? = nil, bottom: CGFloat? = nil) {
+    convenience init(left: CGFloat? = nil, right: CGFloat? = nil, top: CGFloat? = nil, bottom: CGFloat? = nil) {
         self.init(left: left, right: right, top: top, bottom: bottom, reset: false)
     }
 
-    /**
-     TODO: Documentation
-     */
-    internal init(left: CGFloat?, right: CGFloat?, top: CGFloat?, bottom: CGFloat?, reset: Bool) {
+    init(left: CGFloat?, right: CGFloat?, top: CGFloat?, bottom: CGFloat?, reset: Bool) {
         self.values = (left, right, top, bottom)
         self.reset = reset
     }
 
-    /**
-     TODO: Documentation
-     */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    /// nodoc
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         if reset {
             generator.layout.margin = generator.document.layout.margin
             return [(container, self)]
@@ -72,14 +50,14 @@ internal class PDFMarginObject: PDFRenderObject {
         return [(container, self)]
     }
 
-    /**
-     TODO: Documentation
-     */
-    override internal var copy: PDFRenderObject {
-        PDFMarginObject(left: self.values.left,
-                        right: self.values.right,
-                        top: self.values.top,
-                        bottom: self.values.bottom,
-                        reset: self.reset)
+    /// nodoc
+    override var copy: PDFRenderObject {
+        PDFMarginObject(
+            left: values.left,
+            right: values.right,
+            top: values.top,
+            bottom: values.bottom,
+            reset: reset
+        )
     }
 }

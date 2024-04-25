@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  PDFContext.swift
+//
 //
 //  Created by Philip Niedertscheider on 03.01.21.
 //
@@ -10,7 +10,6 @@ import CoreText
 
 /// Encapsulates the graphics context
 public class PDFContext {
-
     private enum Command {
         case beginPDFPage(pageConfig: CFDictionary?)
         case translateBy(x: CGFloat, y: CGFloat)
@@ -19,31 +18,31 @@ public class PDFContext {
 
     private let cgContext: CGContext
 
-    internal private(set) var currentPageContainsDrawnContent = false
-    internal private(set) var hasActivePage = false
+    private(set) var currentPageContainsDrawnContent = false
+    private(set) var hasActivePage = false
 
     private var delayedCommands: [Command] = []
 
-    internal init(cgContext: CGContext) {
+    init(cgContext: CGContext) {
         self.cgContext = cgContext
     }
 
     // MARK: - PDF
 
-    internal func beginPDFPage(_ pageInfo: CFDictionary?) {
+    func beginPDFPage(_ pageInfo: CFDictionary?) {
         // Do not create page immediately, instead invoke it as soon as necessary
         delayedCommands.append(.beginPDFPage(pageConfig: pageInfo))
         currentPageContainsDrawnContent = false
         hasActivePage = true
     }
 
-    internal func endPDFPage() {
+    func endPDFPage() {
         applyDelayedCommands()
         cgContext.endPDFPage()
         hasActivePage = false
     }
 
-    internal func closePDF() {
+    func closePDF() {
         applyDelayedCommands()
         cgContext.closePDF()
         hasActivePage = false
@@ -51,35 +50,35 @@ public class PDFContext {
 
     // MARK: - Coordinate System
 
-    internal var userSpaceToDeviceSpaceTransform: CGAffineTransform {
+    var userSpaceToDeviceSpaceTransform: CGAffineTransform {
         cgContext.userSpaceToDeviceSpaceTransform
     }
 
     // MARK: - Translation
 
-    internal func translateBy(x: CGFloat, y: CGFloat) {
+    func translateBy(x: CGFloat, y: CGFloat) {
         delayedCommands.append(.translateBy(x: x, y: y))
     }
 
-    internal func scaleBy(x: CGFloat, y: CGFloat) {
+    func scaleBy(x: CGFloat, y: CGFloat) {
         delayedCommands.append(.scaleBy(x: x, y: y))
     }
 
     // MARK: - Drawing
 
-    internal func drawPath(using mode: CGPathDrawingMode) {
+    func drawPath(using mode: CGPathDrawingMode) {
         applyDelayedCommands()
         cgContext.drawPath(using: mode)
         currentPageContainsDrawnContent = true
     }
 
-    internal func drawPDFPage(_ page: CGPDFPage) {
+    func drawPDFPage(_ page: CGPDFPage) {
         applyDelayedCommands()
         cgContext.drawPDFPage(page)
         currentPageContainsDrawnContent = true
     }
 
-    internal func draw(image: CGImage, in frame: CGRect, flipped: Bool) {
+    func draw(image: CGImage, in frame: CGRect, flipped: Bool) {
         applyDelayedCommands()
         cgContext.draw(image: image, in: frame, flipped: flipped)
         currentPageContainsDrawnContent = true
@@ -87,7 +86,7 @@ public class PDFContext {
 
     // MARK: - Colors
 
-    internal func setFillColor(_ color: CGColor) {
+    func setFillColor(_ color: CGColor) {
         applyDelayedCommands()
         cgContext.setFillColor(color)
         currentPageContainsDrawnContent = true
@@ -95,37 +94,37 @@ public class PDFContext {
 
     // MARK: - Paths
 
-    internal func beginPath() {
+    func beginPath() {
         applyDelayedCommands()
         cgContext.beginPath()
         currentPageContainsDrawnContent = true
     }
 
-    internal func addPath(_ path: CGPath) {
+    func addPath(_ path: CGPath) {
         applyDelayedCommands()
         cgContext.addPath(path)
         currentPageContainsDrawnContent = true
     }
 
-    internal func setLineDash(phase: CGFloat, lengths: [CGFloat]) {
+    func setLineDash(phase: CGFloat, lengths: [CGFloat]) {
         applyDelayedCommands()
         cgContext.setLineDash(phase: phase, lengths: lengths)
         currentPageContainsDrawnContent = true
     }
 
-    internal func setLineCap(_ cap: CGLineCap) {
+    func setLineCap(_ cap: CGLineCap) {
         applyDelayedCommands()
         cgContext.setLineCap(cap)
         currentPageContainsDrawnContent = true
     }
 
-    internal func setLineWidth(_ width: CGFloat) {
+    func setLineWidth(_ width: CGFloat) {
         applyDelayedCommands()
         cgContext.setLineWidth(width)
         currentPageContainsDrawnContent = true
     }
 
-    internal func setStrokeColor(_ color: CGColor) {
+    func setStrokeColor(_ color: CGColor) {
         applyDelayedCommands()
         cgContext.setStrokeColor(color)
         currentPageContainsDrawnContent = true
@@ -133,19 +132,19 @@ public class PDFContext {
 
     // MARK: - State
 
-    internal func saveGState() {
+    func saveGState() {
         applyDelayedCommands()
         cgContext.saveGState()
     }
 
-    internal func restoreGState() {
+    func restoreGState() {
         applyDelayedCommands()
         cgContext.restoreGState()
     }
 
     // MARK: - CoreText
 
-    internal var textMatrix: CGAffineTransform {
+    var textMatrix: CGAffineTransform {
         get {
             cgContext.textMatrix
         }
@@ -154,7 +153,7 @@ public class PDFContext {
         }
     }
 
-    internal func draw(ctFrame frameRef: CTFrame) {
+    func draw(ctFrame frameRef: CTFrame) {
         applyDelayedCommands()
         CTFrameDraw(frameRef, cgContext)
         currentPageContainsDrawnContent = true
@@ -162,7 +161,7 @@ public class PDFContext {
 
     // MARK: - Masking
 
-    internal func clip() {
+    func clip() {
         applyDelayedCommands()
         cgContext.clip()
         currentPageContainsDrawnContent = true
@@ -170,7 +169,7 @@ public class PDFContext {
 
     // MARK: - Metadata
 
-    internal func setURL(_ url: CFURL, for rect: CGRect) {
+    func setURL(_ url: CFURL, for rect: CGRect) {
         applyDelayedCommands()
         cgContext.setURL(url, for: rect)
         currentPageContainsDrawnContent = true
@@ -178,14 +177,14 @@ public class PDFContext {
 
     // MARK: - Helpers
 
-    internal func resetDelayedCommands() {
+    func resetDelayedCommands() {
         delayedCommands = []
     }
 
     private func applyDelayedCommands() {
         for command in delayedCommands {
             switch command {
-            case .beginPDFPage(let pageConfig):
+            case let .beginPDFPage(pageConfig):
                 cgContext.beginPDFPage(pageConfig)
             case let .scaleBy(x, y):
                 cgContext.scaleBy(x: x, y: y)

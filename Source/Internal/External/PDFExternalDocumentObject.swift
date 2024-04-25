@@ -5,22 +5,31 @@
 //  Created by Philip Niedertscheider on 12.08.19.
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
-internal class PDFExternalDocumentObject: PDFRenderObject {
+class PDFExternalDocumentObject: PDFRenderObject {
+    /// File URL to an external document
+    var url: URL
+    /// Array of page indicies which should be included from the external document
+    var pages: [Int]
 
-    internal var url: URL
-    internal var pages: [Int]
-
-    internal init(url: URL, pages: [Int]) {
+    /**
+     * Creates a new instance for the given URL
+     *
+     * - Parameter url: File URL to an external document, see ``PDFExternalDocument/url``
+     * - Parameter pages: Array of page indicies which should be included from the external document, see ``PDFExternalDocument/pages``
+     */
+    init(url: URL, pages: [Int]) {
         self.url = url
         self.pages = pages
     }
 
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    /// nodoc
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var result: [PDFLocatedRenderObject] = []
 
+        // Load the PDF document from the defined file URL and split it into individual page objects
         guard let cgPDF = CGPDFDocument(url as CFURL) else {
             throw PDFError.externalDocumentURLInvalid(url: url)
         }
@@ -35,10 +44,8 @@ internal class PDFExternalDocumentObject: PDFRenderObject {
         return result
     }
 
-    /**
-     TODO: documentation
-     */
-    override internal var copy: PDFRenderObject {
-       PDFExternalDocumentObject(url: self.url, pages: self.pages)
+    /// nodoc
+    override var copy: PDFRenderObject {
+        PDFExternalDocumentObject(url: url, pages: pages)
     }
 }

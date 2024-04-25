@@ -6,25 +6,22 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- A collection of table style defaults
- */
+/// A collection of commonly used ``PDFTableStyle
 public enum PDFTableStyleDefaults {
-
     /**
-     None:
-
-     - No header rows
-     - No header columns
-     - No footer row
-     - No alternating rows
-     - Simple outline
-     - Simple borders
+     * None:
+     *
+     *  - No header rows
+     *  - No header columns
+     *  - No footer row
+     *  - No alternating rows
+     *  - Simple outline
+     *  - Simple borders
      */
     public static var none: PDFTableStyle {
         PDFTableStyle(
@@ -40,20 +37,23 @@ public enum PDFTableStyleDefaults {
                     left: PDFLineStyle(type: .full, color: .black, width: 1),
                     top: PDFLineStyle(type: .full, color: .black, width: 1),
                     right: PDFLineStyle(type: .full, color: .black, width: 1),
-                    bottom: PDFLineStyle(type: .full, color: .black, width: 1))),
-            alternatingContentStyle: nil)
+                    bottom: PDFLineStyle(type: .full, color: .black, width: 1)
+                )),
+            alternatingContentStyle: nil
+        )
     }
-    /**
-     Simple table:
 
-     - One header row
-     - One header column
-     - Row Header:
-     - Text color white
-     - No border, only light gray border at bottom
-     - Column Header:
-     - Bold font
-     - Alternating content rows
+    /**
+     * Simple table:
+     *
+     *  - One header row
+     *  - One header column
+     *  - Row Header:
+     *  - Text color white
+     *  - No border, only light gray border at bottom
+     *  - Column Header:
+     *  - Bold font
+     *  - Alternating content rows
      */
     public static var simple: PDFTableStyle {
         let darkGray = Color(red: 59.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)

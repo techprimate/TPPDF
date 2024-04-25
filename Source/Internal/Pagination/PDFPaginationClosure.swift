@@ -8,9 +8,9 @@
 /**
  Closure for custom pagination formatting.
 
- - parameter page: `Int` - Current page number
- - parameter total: `Int` - Total amount of pages
+ - Parameter page: `Int` - Current page number
+ - Parameter total: `Int` - Total amount of pages
 
- - returns: Formatted pagination string
+ - Returns: Formatted pagination string
  */
 public typealias PDFPaginationClosure = (_ page: Int, _ total: Int) -> String

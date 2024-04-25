@@ -5,48 +5,49 @@
 //  Created by Philip Niedertscheider on 31/10/2017.
 //
 
+import Foundation
+
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
- Attributed text objects hold an instance of `NSAttributedString`
-
- Use this class for advanced text drawing
+ * Advanced text objects using an attributed string``Foundation.NSAttributedString`` as the internal structure.
+ *
+ * Use this class for advanced text drawing.
+ * For simpler use cases, consider ``PDFSimpleText``.
  */
 public class PDFAttributedText: PDFText {
-
-    /**
-     Text which will be drawn
-     */
+    /// Attributed string which will be drawn in the PDF graphics context
     public var text: NSAttributedString
 
     /**
-     Initializer
-
-     - parameter text: Text, which will be drawn
+     * Creates a new attributed text object with the given `text`
+     *
+     * - Parameter text: ``Foundation.NSAttributedString`` to be drawn in the document
      */
     public init(text: NSAttributedString) {
         self.text = text
     }
 
-    /**
-     Creats a new `PDFAttributedText` with the same properties
-     */
+    /// Creates a new ``PDFAttributedText`` with the same properties
     override public var copy: PDFText {
         PDFAttributedText(text: text)
     }
 
     // MARK: - Equatable
 
-    /// Compares two instances of `PDFAttributedText` for equality
-    ///
-    /// - Parameters:
-    ///   - lhs: One instance of `PDFAttributedText`
-    ///   - rhs: Another instance of `PDFAttributedText`
-    /// - Returns: `true`, if `attributes`, `tag` and `text` equal; otherwise `false`
+    /**
+     * Compares two instances of `PDFAttributedText` for equality
+     *
+     * - Parameters:
+     *    - lhs: One instance of `PDFAttributedText`
+     *    - rhs: Another instance of `PDFAttributedText`
+     *
+     * - Returns: `true`, if `text` equal; otherwise `false`
+     */
     override public func isEqual(to other: PDFDocumentObject) -> Bool {
         guard super.isEqual(to: other) else {
             return false
@@ -54,7 +55,7 @@ public class PDFAttributedText: PDFText {
         guard let otherAttributedText = other as? PDFAttributedText else {
             return false
         }
-        guard self.text == otherAttributedText.text else {
+        guard text == otherAttributedText.text else {
             return false
         }
         return true
@@ -62,6 +63,7 @@ public class PDFAttributedText: PDFText {
 
     // MARK: - Hashable
 
+    /// nodoc
     override public func hash(into hasher: inout Hasher) {
         hasher.combine(text)
     }

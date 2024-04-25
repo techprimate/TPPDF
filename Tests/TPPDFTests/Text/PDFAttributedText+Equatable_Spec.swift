@@ -7,17 +7,14 @@
 //
 
 import Foundation
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFAttributedText_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFAttributedText") {
-
             context("Equatable") {
-
                 let text = PDFAttributedText(text: NSAttributedString(string: "EXAMPLE"))
 
                 it("is equal") {
@@ -32,5 +29,4 @@ class PDFAttributedText_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

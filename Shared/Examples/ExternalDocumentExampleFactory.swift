@@ -10,7 +10,6 @@ import Foundation
 import TPPDF
 
 class ExternalDocumentExampleFactory: ExampleFactory {
-
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 

@@ -6,15 +6,13 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFLayoutIndentations_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFLayoutHeights") {
-
             var indentations: PDFLayoutIndentations!
 
             beforeEach {
@@ -22,7 +20,6 @@ class PDFLayoutIndentations_Spec: QuickSpec {
             }
 
             context("variables") {
-
                 it("has default header values") {
                     expect(indentations.header.left) == 0
                     expect(indentations.header.right) == 0
@@ -40,7 +37,6 @@ class PDFLayoutIndentations_Spec: QuickSpec {
             }
 
             context("accessors") {
-
                 beforeEach {
                     indentations.header = (10, 20)
                     indentations.content = (30, 40)
@@ -48,7 +44,6 @@ class PDFLayoutIndentations_Spec: QuickSpec {
                 }
 
                 context("left") {
-
                     it("can get value of header containers") {
                         expect(indentations.leftIn(container: PDFContainer.headerLeft)) == 10
                         expect(indentations.leftIn(container: PDFContainer.headerCenter)) == 10
@@ -69,7 +64,6 @@ class PDFLayoutIndentations_Spec: QuickSpec {
                 }
 
                 context("right") {
-
                     it("can get value of header containers") {
                         expect(indentations.rightIn(container: PDFContainer.headerLeft)) == 20
                         expect(indentations.rightIn(container: PDFContainer.headerCenter)) == 20
@@ -91,9 +85,7 @@ class PDFLayoutIndentations_Spec: QuickSpec {
             }
 
             context("modifiers") {
-
                 context("left") {
-
                     it("can set a value to a header container") {
                         indentations.setLeft(indentation: 10, in: PDFContainer.headerLeft)
                         expect(indentations.leftIn(container: PDFContainer.headerLeft)) == 10
@@ -129,7 +121,6 @@ class PDFLayoutIndentations_Spec: QuickSpec {
                 }
 
                 context("right") {
-
                     it("can set a value to a header container") {
                         indentations.setRight(indentation: 10, in: PDFContainer.headerLeft)
                         expect(indentations.rightIn(container: PDFContainer.headerLeft)) == 10
@@ -166,5 +157,4 @@ class PDFLayoutIndentations_Spec: QuickSpec {
             }
         }
     }
-
 }

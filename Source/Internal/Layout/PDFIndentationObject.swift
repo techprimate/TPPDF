@@ -6,39 +6,38 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
 /**
  Used to modify the indentation of a container
  */
-internal class PDFIndentationObject: PDFRenderObject {
-
+class PDFIndentationObject: PDFRenderObject {
     /**
      Offset from edge of container
      */
-    internal var indentation: CGFloat
+    var indentation: CGFloat
 
     /**
      Offset is from left edge if `true`, right if `false`
      */
-    internal var left: Bool
+    var left: Bool
 
     /**
      Flag to check if section inset inside column needs to be changed.
      If `true`, the indention is relative to the column left guide
      */
-    internal var insideSectionColumn: Bool
+    var insideSectionColumn: Bool
 
     /**
      Initializer
 
-     - parameter indentation: Offset in points from edge
-     - parameter left: Offset is from left side if `true`, from right if `false`
+     - Parameter indentation: Offset in points from edge
+     - Parameter left: Offset is from left side if `true`, from right if `false`
      */
-    internal init(indentation: CGFloat, left: Bool, insideSectionColumn: Bool) {
+    init(indentation: CGFloat, left: Bool, insideSectionColumn: Bool) {
         self.indentation = indentation
         self.left = left
         self.insideSectionColumn = insideSectionColumn
@@ -47,14 +46,14 @@ internal class PDFIndentationObject: PDFRenderObject {
     /**
      Modifies the indentation of the given `generator` in the given `container`
 
-     - parameter generator: Generator which uses this object
-     - parameter container: Container where the indentation will change
+     - Parameter generator: Generator which uses this object
+     - Parameter container: Container where the indentation will change
 
-     - throws: None
+     - Throws: None
 
-     - returns: Self
+     - Returns: Self
      */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         var indent = indentation
         if left {
             if insideSectionColumn {
@@ -74,7 +73,7 @@ internal class PDFIndentationObject: PDFRenderObject {
     /**
      Creates a new `PDFIndentationObject` with the same properties
      */
-    override internal var copy: PDFRenderObject {
-        PDFIndentationObject(indentation: self.indentation, left: self.left, insideSectionColumn: self.insideSectionColumn)
+    override var copy: PDFRenderObject {
+        PDFIndentationObject(indentation: indentation, left: left, insideSectionColumn: insideSectionColumn)
     }
 }

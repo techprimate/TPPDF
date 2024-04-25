@@ -504,7 +504,7 @@ Also each cell can have a `margin` which is the distance between the cell frame 
 document.add(table: table)
 ```
 
-## Multi-Column Sections
+### Multi-Column Sections
 
 A multi-column section is a nested container. You create the section with an amount of columns and their relative width, add objects to each column and then add the whole section to the document.
 

@@ -6,15 +6,13 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
-class PDFListItemSymbol_Spec : QuickSpec {
-
+class PDFListItemSymbol_Spec: QuickSpec {
     override func spec() {
         describe("PDFListItemSymbol") {
-
             it("should have enum values") {
                 expect(PDFListItemSymbol.none).toNot(beNil())
                 expect(PDFListItemSymbol.inherit).toNot(beNil())
@@ -64,5 +62,4 @@ class PDFListItemSymbol_Spec : QuickSpec {
             }
         }
     }
-
 }

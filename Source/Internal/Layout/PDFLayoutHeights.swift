@@ -6,42 +6,22 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 
-/**
- TODO: documentation
- */
-internal struct PDFLayoutHeights: CustomStringConvertible {
+struct PDFLayoutHeights: CustomStringConvertible {
+    var header: [PDFContainer: CGFloat] = [:]
+    var footer: [PDFContainer: CGFloat] = [:]
+    var content: CGFloat = 0
 
-    /**
-     TODO: documentation
-     */
-    internal var header: [PDFContainer: CGFloat] = [:]
-
-    /**
-     TODO: documentation
-     */
-    internal var footer: [PDFContainer: CGFloat] = [:]
-
-    /**
-     Tracks the current height of the document content
-     */
-    internal var content: CGFloat = 0
-
-    /**
-     Initializes the heights by resetting the headers and footers
-     */
-    internal init() {
+    init() {
         resetHeaderFooterHeight()
     }
 
-    /**
-     Resets all three header and footer containers to be zero
-     */
-    internal mutating func resetHeaderFooterHeight() {
+    /// Resets all three header and footer containers to be zero
+    mutating func resetHeaderFooterHeight() {
         header[.headerLeft] = 0
         header[.headerCenter] = 0
         header[.headerRight] = 0
@@ -51,10 +31,7 @@ internal struct PDFLayoutHeights: CustomStringConvertible {
         footer[.footerRight] = 0
     }
 
-    /**
-     TODO: documentation
-     */
-    internal mutating func add(_ value: CGFloat, to container: PDFContainer) {
+    mutating func add(_ value: CGFloat, to container: PDFContainer) {
         if container.isHeader {
             header[container] = (header[container] ?? 0) + value
         } else if container.isFooter {
@@ -65,23 +42,20 @@ internal struct PDFLayoutHeights: CustomStringConvertible {
     }
 
     /**
-     - returns: Height of highest header container
+     * - Returns: Height of highest header container
      */
-    internal func maxHeaderHeight() -> CGFloat {
+    func maxHeaderHeight() -> CGFloat {
         header.values.max() ?? 0
     }
 
     /**
-     - returns: Height of highestfooter  container
+     * - Returns: Height of highest footer  container
      */
-    internal func maxFooterHeight() -> CGFloat {
+    func maxFooterHeight() -> CGFloat {
         footer.values.max() ?? 0
     }
 
-    /**
-     TODO: documentation
-     */
-    internal func value(for container: PDFContainer) -> CGFloat {
+    func value(for container: PDFContainer) -> CGFloat {
         if container.isHeader {
             return header[container] ?? 0
         } else if container.isFooter {
@@ -91,10 +65,7 @@ internal struct PDFLayoutHeights: CustomStringConvertible {
         }
     }
 
-    /**
-     TODO: documentation
-     */
-    internal mutating func set(_ value: CGFloat, to container: PDFContainer) {
+    mutating func set(_ value: CGFloat, to container: PDFContainer) {
         if container.isHeader {
             header[container] = value
         } else if container.isFooter {

@@ -7,14 +7,13 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
 import TPPDF
 
 class MetadataExampleFactory: ExampleFactory {
-
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
         // Set document meta data
@@ -30,7 +29,7 @@ class MetadataExampleFactory: ExampleFactory {
 
         document.set(font: Font.systemFont(ofSize: 30))
         document.add(text: "Nothing to see here, as it is just meta!")
-        
+
         return [document]
     }
 }

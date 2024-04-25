@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFTableCellBorders_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFTableCellBorders") {
-
             context("Equatable") {
-
                 let style = PDFLineStyle(type: .dotted, color: .orange, width: 10)
                 let borders = PDFTableCellBorders()
 
@@ -47,5 +44,4 @@ class PDFTableCellBorders_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

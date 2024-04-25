@@ -6,15 +6,13 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFPagination_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFPagination") {
-
             var pagination: PDFPagination!
 
             beforeEach {
@@ -22,7 +20,6 @@ class PDFPagination_Spec: QuickSpec {
             }
 
             context("default variables") {
-
                 it("should have a default container") {
                     expect(pagination.container) == PDFContainer.none
                 }
@@ -42,5 +39,4 @@ class PDFPagination_Spec: QuickSpec {
             }
         }
     }
-
 }

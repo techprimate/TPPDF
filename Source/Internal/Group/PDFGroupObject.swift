@@ -6,66 +6,31 @@
 //
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #endif
-/**
- TODO: Documentation
- */
-internal class PDFGroupObject: PDFRenderObject {
 
-    /**
-     TODO: Documentation
-     */
-    internal var allowsBreaks: Bool
+class PDFGroupObject: PDFRenderObject {
+    var allowsBreaks: Bool
+    var objects: [(container: PDFGroupContainer, object: PDFRenderObject)]
+    var isFullPage: Bool
+    var backgroundColor: Color?
+    var backgroundImage: PDFImage?
+    var backgroundShape: PDFDynamicGeometryShape?
+    var outline: PDFLineStyle
+    var padding: EdgeInsets
 
-    /**
-     TODO: Documentation
-     */
-    internal var objects: [(container: PDFGroupContainer, object: PDFRenderObject)]
-
-    /**
-     TODO: Documentation
-     */
-    internal var isFullPage: Bool
-
-    /**
-     TODO: Documentation
-     */
-    internal var backgroundColor: Color?
-
-    /**
-     TODO: Documentation
-     */
-    internal var backgroundImage: PDFImage?
-
-    /**
-     TODO: Documentation
-     */
-    internal var backgroundShape: PDFDynamicGeometryShape?
-
-    /**
-     TODO: Documentation
-     */
-    internal var outline: PDFLineStyle
-
-    /**
-     TODO: Documentation
-     */
-    internal var padding: EdgeInsets
-
-    /**
-     TODO: Documentation
-     */
-    internal init(objects: [(container: PDFGroupContainer, object: PDFRenderObject)],
-                  allowsBreaks: Bool,
-                  isFullPage: Bool,
-                  backgroundColor: Color?,
-                  backgroundImage: PDFImage?,
-                  backgroundShape: PDFDynamicGeometryShape?,
-                  outline: PDFLineStyle,
-                  padding: EdgeInsets) {
+    init(
+        objects: [(container: PDFGroupContainer, object: PDFRenderObject)],
+        allowsBreaks: Bool,
+        isFullPage: Bool,
+        backgroundColor: Color?,
+        backgroundImage: PDFImage?,
+        backgroundShape: PDFDynamicGeometryShape?,
+        outline: PDFLineStyle,
+        padding: EdgeInsets
+    ) {
         self.objects = objects
         self.allowsBreaks = allowsBreaks
         self.isFullPage = isFullPage
@@ -76,10 +41,8 @@ internal class PDFGroupObject: PDFRenderObject {
         self.padding = padding
     }
 
-    /**
-     TODO: Documentation
-     */
-    override internal func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
+    /// nodoc
+    override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
         let heights = generator.layout.heights
         guard let columnState = generator.columnState.copy() as? PDFColumnLayoutState else {
             throw PDFError.copyingFailed
@@ -116,8 +79,8 @@ internal class PDFGroupObject: PDFRenderObject {
 
             // Check for page breaks
             let pageBreaks: [(Int, PDFPageBreakObject)] = calcResult.enumerated()
-                .compactMap({ ($0.offset, $0.element.1 as? PDFPageBreakObject) })
-                .compactMap({ $0.1 == nil ? nil : ($0.0, $0.1!) })
+                .compactMap { ($0.offset, $0.element.1 as? PDFPageBreakObject) }
+                .compactMap { $0.1 == nil ? nil : ($0.0, $0.1!) }
 
             if pageBreaks.count == 1 && !allowsBreaks { // If one pagebreak, start group on next page.
                 generator.layout.heights = heights
@@ -147,9 +110,11 @@ internal class PDFGroupObject: PDFRenderObject {
         return result
     }
 
-    private func calculateOnNextPage(generator: PDFGenerator,
-                                     container: PDFContainer,
-                                     pbObj: PDFPageBreakObject) throws -> [PDFLocatedRenderObject] {
+    private func calculateOnNextPage(
+        generator: PDFGenerator,
+        container: PDFContainer,
+        pbObj: PDFPageBreakObject
+    ) throws -> [PDFLocatedRenderObject] {
         frame = CGRect.null
 
         var result: [PDFLocatedRenderObject] = []
@@ -163,7 +128,7 @@ internal class PDFGroupObject: PDFRenderObject {
             result += try object.calculate(generator: generator, container: container.contentContainer)
         }
 
-        self.frame  = isFullPage ? calculateBoundsFrame(generator: generator) : calculateFrame(objects: result)
+        frame = isFullPage ? calculateBoundsFrame(generator: generator) : calculateFrame(objects: result)
         generator.layout.heights.add(padding.bottom, to: container)
         return result
     }
@@ -172,9 +137,6 @@ internal class PDFGroupObject: PDFRenderObject {
         generator.document.layout.bounds.inset(by: generator.layout.margin)
     }
 
-    /**
-     TODO: Documentation
-     */
     private func calculateFrame(objects: [(container: PDFContainer, object: PDFRenderObject)]) -> CGRect {
         var resultFrame = CGRect.null
         for arg in objects {
@@ -196,27 +158,56 @@ internal class PDFGroupObject: PDFRenderObject {
         return resultFrame
     }
 
-    /**
-     TODO: Documentation
-     */
-    override internal func draw(generator: PDFGenerator, container: PDFContainer, in context: PDFContext) throws {
+    /// nodoc
+    override func draw(generator: PDFGenerator, container _: PDFContainer, in context: PDFContext) throws {
         if let color = backgroundColor {
-            PDFGraphics.drawRect(in: context, rect: self.frame, outline: self.outline, fill: color)
+            PDFGraphics.drawRect(
+                in: context,
+                rect: frame,
+                outline: outline,
+                fill: color
+            )
         }
         if let shape = backgroundShape {
-            PDFGraphics.drawPath(path: shape.path.bezierPath(in: self.frame),
-                                 in: context,
-                                 outline: shape.stroke,
-                                 fillColor: shape.fillColor)
+            PDFGraphics.drawPath(
+                path: shape.path.bezierPath(in: frame),
+                in: context,
+                outline: shape.stroke,
+                fillColor: shape.fillColor
+            )
+        }
+        if let image = backgroundImage {
+            let modifiedImage = PDFGraphics.resizeAndCompressImage(
+                image: image.image,
+                frame: frame,
+                shouldResize: image.options.contains(.resize),
+                shouldCompress: image.options.contains(.compress),
+                quality: image.quality,
+                cornerRadius: image.cornerRadius
+            )
+
+            let cgImage: CGImage?
+            #if os(iOS)
+                cgImage = modifiedImage.cgImage
+            #elseif os(macOS)
+                cgImage = modifiedImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
+            #endif
+            if let cgImage = cgImage {
+                context.draw(image: cgImage, in: frame, flipped: true)
+            }
         }
 
         if generator.debug {
-            PDFGraphics.drawRect(in: context,
-                                 rect: self.frame,
-                                 outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0), fill: .clear)
-            PDFGraphics.drawRect(in: context,
-                                 rect: self.frame.inset(by: padding),
-                                 outline: PDFLineStyle(type: .full, color: .purple, width: 1.0), fill: .clear)
+            PDFGraphics.drawRect(
+                in: context,
+                rect: frame,
+                outline: PDFLineStyle(type: .dashed, color: .red, width: 1.0), fill: .clear
+            )
+            PDFGraphics.drawRect(
+                in: context,
+                rect: frame.inset(by: padding),
+                outline: PDFLineStyle(type: .full, color: .purple, width: 1.0), fill: .clear
+            )
         }
         applyAttributes(in: context)
     }
@@ -224,14 +215,14 @@ internal class PDFGroupObject: PDFRenderObject {
     /**
      Creates a new `PDFGroupObject` with the same properties
      */
-    override internal var copy: PDFRenderObject {
-        PDFGroupObject(objects: self.objects.map { ($0, $1.copy) },
-                       allowsBreaks: self.allowsBreaks,
-                       isFullPage: self.isFullPage,
-                       backgroundColor: self.backgroundColor,
-                       backgroundImage: self.backgroundImage?.copy,
-                       backgroundShape: self.backgroundShape,
-                       outline: self.outline,
-                       padding: self.padding)
+    override var copy: PDFRenderObject {
+        PDFGroupObject(objects: objects.map { ($0, $1.copy) },
+                       allowsBreaks: allowsBreaks,
+                       isFullPage: isFullPage,
+                       backgroundColor: backgroundColor,
+                       backgroundImage: backgroundImage?.copy,
+                       backgroundShape: backgroundShape,
+                       outline: outline,
+                       padding: padding)
     }
 }

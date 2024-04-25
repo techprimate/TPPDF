@@ -5,14 +5,8 @@
 //  Created by Philip Niedertscheider on 12/11/2017.
 //
 
-/**
- TODO: documentation
- */
 extension PDFLayoutHeights: Equatable {
-
-    /**
-     TODO: documentation
-     */
+    /// nodoc
     public static func == (lhs: PDFLayoutHeights, rhs: PDFLayoutHeights) -> Bool {
         guard lhs.header == rhs.header else {
             return false

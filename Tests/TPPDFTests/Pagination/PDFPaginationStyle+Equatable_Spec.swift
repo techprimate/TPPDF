@@ -7,17 +7,14 @@
 //
 
 import Foundation
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFPaginationStyle_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFPaginationStyle") {
-
             context("Equatable") {
-
                 it("is equal when both default") {
                     let lhsPagination = PDFPaginationStyle.default
                     let rhsPagination = PDFPaginationStyle.default
@@ -43,7 +40,6 @@ class PDFPaginationStyle_Equatable_Spec: QuickSpec {
                     let secondFormatter = NumberFormatter()
                     secondFormatter.numberStyle = NumberFormatter.Style.decimal
 
-
                     let firstTemplate = "123"
                     let secondTemplate = "456"
 
@@ -52,7 +48,7 @@ class PDFPaginationStyle_Equatable_Spec: QuickSpec {
                         PDFPaginationStyle.customNumberFormat(template: firstTemplate, formatter: secondFormatter),
 
                         PDFPaginationStyle.customNumberFormat(template: secondTemplate, formatter: firstFormatter),
-                        PDFPaginationStyle.customNumberFormat(template: secondTemplate, formatter: secondFormatter)
+                        PDFPaginationStyle.customNumberFormat(template: secondTemplate, formatter: secondFormatter),
                     ]
 
                     expect(paginations[0]) == paginations[0]
@@ -77,8 +73,8 @@ class PDFPaginationStyle_Equatable_Spec: QuickSpec {
                 }
 
                 it("is never equal with custom closure") {
-                    let pagination = PDFPaginationStyle.customClosure { (page, total) -> String in
-                        return ""
+                    let pagination = PDFPaginationStyle.customClosure { _, _ -> String in
+                        ""
                     }
                     expect(pagination) != pagination
                     expect(pagination.format(page: 1, total: 2)) == ""
@@ -86,5 +82,4 @@ class PDFPaginationStyle_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

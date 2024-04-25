@@ -6,11 +6,10 @@
 //  Copyright © 2022 techprimate GmbH. All rights reserved.
 //
 
-import TPPDF
 import SwiftUI
+import TPPDF
 
 struct DetailView: View {
-
     @State var example: Example
     @State var generator: PDFGeneratorProtocol!
     @State var isGenerated = false
@@ -38,7 +37,7 @@ struct DetailView: View {
             PDFKitRepresentedView(url: url)
                 .onAppear {
                     self.generatePDF(force: false)
-            }
+                }
         }
     }
 
@@ -54,8 +53,8 @@ struct DetailView: View {
         }
         generator.debug = true
 
-        observer = generator.progress.observe(\.completedUnitCount) { (p, v) in
-            self.progressValue = p.fractionCompleted
+        observer = generator.progress.observe(\.completedUnitCount) { progress, _ in
+            self.progressValue = progress.fractionCompleted
         }
 
         DispatchQueue.global(qos: .background).async {

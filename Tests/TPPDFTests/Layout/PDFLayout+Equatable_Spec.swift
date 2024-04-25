@@ -6,17 +6,14 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFLayout_Equatable_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFLayout") {
-
             context("Equatable") {
-
                 let layout = PDFLayout()
 
                 it("is equal") {
@@ -40,5 +37,4 @@ class PDFLayout_Equatable_Spec: QuickSpec {
             }
         }
     }
-
 }

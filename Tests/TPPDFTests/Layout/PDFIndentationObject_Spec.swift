@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFIndentationObject_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFIndentationObject") {
-
             var object: PDFIndentationObject!
             let indentation: CGFloat = 20.0
             let left = false
@@ -26,7 +24,6 @@ class PDFIndentationObject_Spec: QuickSpec {
             }
 
             describe("variables") {
-
                 it("has an indentation") {
                     expect(object.indentation) == indentation
                 }
@@ -41,7 +38,6 @@ class PDFIndentationObject_Spec: QuickSpec {
             }
 
             describe("calculation") {
-
                 let document = PDFDocument(format: .a4)
                 var generator: PDFGenerator!
 
@@ -58,7 +54,7 @@ class PDFIndentationObject_Spec: QuickSpec {
 
                     expect {
                         result = try object.calculate(generator: generator, container: container)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(generator.layout.indentation.leftIn(container: PDFContainer.contentLeft)).toEventually(equal(object.indentation))
 
                     expect(result).toEventually(haveCount(1))
@@ -70,9 +66,8 @@ class PDFIndentationObject_Spec: QuickSpec {
                     object.left = false
                     expect {
                         result = try object.calculate(generator: generator, container: PDFContainer.contentLeft)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(generator.layout.indentation.rightIn(container: PDFContainer.contentLeft)).toEventually(equal(object.indentation))
-
 
                     expect(result).toEventually(haveCount(1))
                     expect(result.first?.0).toEventually(equal(container))
@@ -81,5 +76,4 @@ class PDFIndentationObject_Spec: QuickSpec {
             }
         }
     }
-
 }

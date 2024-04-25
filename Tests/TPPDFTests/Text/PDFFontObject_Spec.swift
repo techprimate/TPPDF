@@ -7,15 +7,13 @@
 //
 
 import CoreGraphics
-import Quick
 import Nimble
+import Quick
 @testable import TPPDF
 
 class PDFFontObject_Spec: QuickSpec {
-
     override func spec() {
         describe("PDFFontObject") {
-
             let font = Font.boldSystemFont(ofSize: 100)
             var object: PDFFontObject!
 
@@ -24,14 +22,12 @@ class PDFFontObject_Spec: QuickSpec {
             }
 
             context("variables") {
-
                 it("has a font instance") {
                     expect(object.font) == font
                 }
             }
 
             describe("calculation") {
-
                 let document = PDFDocument(format: .a4)
                 var generator: PDFGenerator!
 
@@ -46,7 +42,7 @@ class PDFFontObject_Spec: QuickSpec {
                 it("can set text color") {
                     expect {
                         result = try object.calculate(generator: generator, container: container)
-                        }.toNot(throwError())
+                    }.toNot(throwError())
                     expect(generator.fonts[container]).toEventually(equal(font))
 
                     expect(object.frame) == CGRect.null
@@ -58,5 +54,4 @@ class PDFFontObject_Spec: QuickSpec {
             }
         }
     }
-
 }

@@ -5,14 +5,8 @@
 //  Created by Philip Niedertscheider on 20.12.19.
 //
 
-/**
- Adds functionality to convert to PDF table content
- */
 extension String: PDFTableContentable {
-
-    /**
-     - returns: Instance of `PDFTableContent` of type string, using self as content
-     */
+    /// Instance of ``PDFTableContent`` holding `self` as the content value
     public var asTableContent: PDFTableContent {
         PDFTableContent(type: .string, content: self)
     }
