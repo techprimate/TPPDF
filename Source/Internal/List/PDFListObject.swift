@@ -18,7 +18,8 @@ class PDFListObject: PDFRenderObject {
 
         let originalLeftIndent = generator.layout.indentation.leftIn(container: container)
 
-        for item in list.flatted() {
+        let flattedList = list.flatted()
+        for (idx, item) in flattedList.enumerated() {
             let indent = item.level < list.levelIndentations.count ?
                 list.levelIndentations[item.level] :
                 list.levelIndentations.last ?? (pre: 0, past: 0)
@@ -30,20 +31,13 @@ class PDFListObject: PDFRenderObject {
             result += try createTextItem(generator: generator, container: container, text: item.text)
 
             generator.layout.indentation.setLeft(indentation: originalLeftIndent, in: container)
-            handleCustomInterItemSpacing(item: item, generator: generator, container: container)
+            if let interItemSpacing = list.spacing, idx < flattedList.count - 1 {
+                // No need to add a space if it's the last item or no spacing has been defined
+                generator.layout.heights.add(interItemSpacing, to: container)
+            }
         }
 
         return result
-    }
-
-    private func handleCustomInterItemSpacing(item: (level: Int, text: String, symbol: PDFListItemSymbol), generator: PDFGenerator, container: PDFContainer) {
-        guard let interItemSpacing = list.spacing,
-              let lastItem = list.flatted().last,
-              item != lastItem else {
-            //No need to add a space if it's the last item or no spacing has been defined
-            return
-        }
-        generator.layout.heights.add(interItemSpacing, to: container)
     }
 
     private func createSymbolItem(
