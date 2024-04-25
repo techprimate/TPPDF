@@ -3,6 +3,7 @@ name: Documentation
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   deploy_docs:
