@@ -37,15 +37,15 @@ swift_build_tool: spm
 #   xcrun --sdk iphonesimulator --show-sdk-path
 build_tool_arguments:
   - --sdk
-  - /Applications/Xcode-15.3.0.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator17.4.sdk
+  - /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
   - -Xswiftc
   - -target
   - -Xswiftc
-  - arm64-apple-ios17.2-simulator
+  - arm64-apple-ios17.4-simulator
   - -Xswiftc
   - -sdk
   - -Xswiftc
-  - /Applications/Xcode-15.3.0.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator17.4.sdk
+  - /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
 
 # The base URL on the source host of the project's files, to link from individual declarations.
 # For example https://github.com/realm/realm-cocoa/tree/v0.87.1
