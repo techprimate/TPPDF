@@ -12,7 +12,7 @@ let package = Package(
         .library(name: "TPPDF", targets: ["TPPDF"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Quick/Quick", .exact("3.1.2")),
+        .package(url: "https://github.com/Quick/Quick", .exact("7.5.0")),
         .package(url: "https://github.com/Quick/Nimble", .exact("9.2.1")),
     ],
     targets: [
