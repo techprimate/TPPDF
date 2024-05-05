@@ -1,16 +1,64 @@
-author: Philip Niedertscheider
-author_url: https://www.github.com/philprime
-github_url: https://www.github.com/techprimate/TPPDF
-root_url: https://techprimate.github.io/TPPDF/
+# Name of module being documented.
 module: TPPDF
+# Folder to output the HTML docs to
 output: docs
+
+# Name of author to attribute in docs
+author: Philip Niedertscheider
+# Author URL of this project
+author_url: https://github.com/philprime
+# Copyright markdown rendered at the bottom of the docs pages
+copyright: "© 2024 [techprimate GmbH](https://techprimate.com). All rights reserved."
+# URL to link from the source host's logo.
+source_host_url: https://github.com/techprimate/TPPDF
+github_url: https://github.com/techprimate/TPPDF
+root_url: https://techprimate.github.io/TPPDF/
+
+# Which theme to use. Specify either 'apple' (default), one of the other built-in theme names, or the
+# path to your mustache templates and other assets for a custom theme.
 theme: fullwidth
-xcodebuild_arguments:
-  [
-    -workspace,
-    "Examples.xcworkspace",
-    -scheme,
-    "Example iOS (SPM)",
-    -sdk,
-    "iphonesimulator",
-  ]
+# Title to display at the top of each page, overriding the default generated from module name and version.
+title: TPPDF
+
+# The SDK for which your code should be built.
+sdk: iphonesimulator
+# Source file pathnames to be included in documentation. Supports wildcards.
+include: Source/**
+# Control whether Jazzy uses Swift Package Manager, xcodebuild, or swift-symbolgraph to build the module to be documented.
+# By default it uses xcodebuild if there is a .xcodeproj file in the source directory.
+swift_build_tool: spm
+
+# Arguments to forward to xcodebuild, swift build, or sourcekitten.
+#
+# THESE ARE PROBABLY OUTDATED BUT ARE OVERWRITTEN IN THE CI
+#
+# You can find the SDK path using:
+#
+#   xcrun --sdk iphonesimulator --show-sdk-path
+build_tool_arguments:
+  - --sdk
+  - /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
+  - -Xswiftc
+  - -target
+  - -Xswiftc
+  - arm64-apple-ios17.4-simulator
+  - -Xswiftc
+  - -sdk
+  - -Xswiftc
+  - /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
+
+# The base URL on the source host of the project's files, to link from individual declarations.
+# For example https://github.com/realm/realm-cocoa/tree/v0.87.1
+# source_host_files_url: ''
+# minimum access control level to document
+min_acl: public
+# Don't document declarations that have no documentation comments.
+skip_undocumented: false
+# Default text for undocumented symbols. The default is "Undocumented", put "" if no text is required
+undocumented_text: Undocumented
+# Replace unsafe characters in filenames with an encoded representation.
+# This will reduce human readability of some URLs, but may be necessary for projects that
+# expose filename-unfriendly functions such as /(_:_:)
+use_safe_filenames: true
+# Create separate pages for all global declarations (classes, structures, enums etc.) even if they don't have children.
+separate_global_declarations: true
