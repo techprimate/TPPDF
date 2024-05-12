@@ -22,8 +22,8 @@ extension PDFPaginationStyle: Equatable {
         }
 
         if case PDFPaginationStyle.customClosure = lhs, case PDFPaginationStyle.customClosure = rhs {
-            // Always return false if a custom closure is used
-            // https://stackoverflow.com/questions/24111984/how-do-you-test-functions-and-closures-for-equality
+            // Always return false if a custom closure is used, because closures can not be equated
+            // Reference: https://stackoverflow.com/questions/24111984/how-do-you-test-functions-and-closures-for-equality
             return false
         }
 
