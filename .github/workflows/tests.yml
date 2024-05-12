@@ -93,7 +93,9 @@ jobs:
           sed  -i.bak "s/main/$ESCAPED_REF_NAME/g" Cartfile
 
       - name: Carthage Update
-        run: carthage update
+        run: |
+          carthage update \
+            --no-use-binaries
 
       - name: Build for iOS
         run: |
