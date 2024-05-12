@@ -95,7 +95,8 @@ jobs:
       - name: Carthage Update
         run: |
           carthage update \
-            --no-use-binaries
+            --no-use-binaries \
+            --verbose
 
       - name: Build for iOS
         run: |
