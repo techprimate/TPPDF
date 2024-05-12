@@ -93,10 +93,26 @@ jobs:
           sed  -i.bak "s/main/$ESCAPED_REF_NAME/g" Cartfile
 
       - name: Carthage Update
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ github.token }}
         run: |
+          set -o pipefail && \
+          env NSUnbufferedIO=YES \
           carthage update \
             --no-use-binaries \
-            --verbose
+            --use-xcframeworks \
+            --verbose | xcbeautify \
+            --preserve-unbeautified
+
+      - name: Carthage Build
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ github.token }}
+        run: |
+          set -o pipefail && \
+          env NSUnbufferedIO=YES \
+          carthage build \
+            --verbose | xcbeautify \
+            --preserve-unbeautified
 
       - name: Build for iOS
         run: |
@@ -105,4 +121,4 @@ jobs:
           xcodebuild \
             -project Example_iOS-Carthage.xcodeproj \
             CODE_SIGNING_ALLOWED="NO" \
-            build 2>&1 | tee test.log | xcbeautify
+            build 2>&1 | xcbeautify
