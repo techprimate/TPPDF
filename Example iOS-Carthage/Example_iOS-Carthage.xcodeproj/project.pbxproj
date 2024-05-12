@@ -42,7 +42,7 @@
 		D49855562461FB9A00D54270 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49855552461FB9A00D54270 /* Examples.swift */; };
 		D49B06002658E7FD0084A0B7 /* DocumentSettingsExampleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B05FF2658E7FD0084A0B7 /* DocumentSettingsExampleFactory.swift */; };
 		D4D28D2323AA1A6D00028D5A /* ExamplesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D28D2223AA1A6D00028D5A /* ExamplesListViewController.swift */; };
-		D4FF9A28249A488A006FF2ED /* TPPDF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4FF9A27249A488A006FF2ED /* TPPDF.framework */; };
+		D4E49EE92BF110EF00BC7B0A /* TPPDF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4FF9A27249A488A006FF2ED /* TPPDF.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4FF9A28249A488A006FF2ED /* TPPDF.framework in Frameworks */,
+				D4E49EE92BF110EF00BC7B0A /* TPPDF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +343,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\ncarthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

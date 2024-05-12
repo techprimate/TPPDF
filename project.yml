@@ -1,0 +1,21 @@
+name: TPPDF
+
+targets:
+  TPPDF:
+    type: framework
+    sources: Source
+    platform: [iOS, macOS]
+    deploymentTarget:
+      iOS: 9.0
+      macOS: 10.14
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.techprimate
+
+schemes:
+  TPPDF:
+    shared: true
+    build:
+      targets:
+        TPPDF_iOS: all
+        TPPDF_macOS: all
