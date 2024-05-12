@@ -8,43 +8,37 @@
 
 import Foundation
 import TPPDF
+import UIKit
 
 class ExperimentFactory: ExampleFactory {
     func generateDocument() -> [PDFDocument] {
-        let document = PDFDocument(format: .a4)
+        let document = PDFDocument(format: .b5)
+        document.add(.contentCenter, text: "Some Test Name")
+        let images = [
+            "file:///Users/Philip/Downloads/test_images/0000.jpg",
+            "file:///Users/Philip/Downloads/test_images/0001.jpg",
+            "file:///Users/Philip/Downloads/test_images/0002.jpg",
+            "file:///Users/Philip/Downloads/test_images/0003.jpg",
+            "file:///Users/Philip/Downloads/test_images/0004.jpg",
+            "file:///Users/Philip/Downloads/test_images/0005.jpg",
+            "file:///Users/Philip/Downloads/test_images/0006.jpg",
+            "file:///Users/Philip/Downloads/test_images/0007.jpg",
+            "file:///Users/Philip/Downloads/test_images/0008.jpg",
+            "file:///Users/Philip/Downloads/test_images/0009.jpg",
+        ]
+        images[0..<images.count].compactMap({ imageFileUrl -> PDFImage? in
+            guard let imageURL = URL(string: imageFileUrl),
+                  let image = UIImage(contentsOfFile: imageURL.path(percentEncoded: false)),
+                  image.size != .zero
+            else {
+                return nil
+            }
 
-        let items = (0..<40).map { $0.description }
-
-        // Simple bullet point list
-        let featureList = PDFList(indentations: [
-            (pre: 10.0, past: 20.0),
-            (pre: 20.0, past: 20.0),
-            (pre: 40.0, past: 20.0),
-        ])
-
-        // By adding the item first to a list item with the dot symbol, all of them will inherit it
-        featureList
-            .addItem(PDFListItem(symbol: .dot)
-                .addItems(items.map { item in
-                    PDFListItem(content: item)
-                }))
-        document.add(list: featureList)
-
-        document.add(space: 20)
-
-        // Numbered list with unusual indentation
-        let weirdIndentationList = PDFList(indentations: [
-            (pre: 10.0, past: 20.0),
-            (pre: 40.0, past: 30.0),
-            (pre: 20.0, past: 50.0),
-        ])
-
-        weirdIndentationList
-            .addItems(items.enumerated().map { arg in
-                PDFListItem(symbol: .numbered(value: "\(arg.offset + 1)"), content: arg.element)
-            })
-        document.add(list: weirdIndentationList)
-
+            let pdfImage = PDFImage(image: image)
+            return pdfImage
+        }).forEach({ pdfImage in
+            document.add(image: pdfImage)
+        })
         return [document]
     }
 }
