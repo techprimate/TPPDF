@@ -34,6 +34,7 @@
 		D4B30533293CA38600EA24C5 /* PDFPageFormat+NameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B30532293CA38600EA24C5 /* PDFPageFormat+NameConstants.swift */; };
 		D4E1FB2C294DE37800D654C7 /* PDFGeneratorImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E1FB2A294DE37800D654C7 /* PDFGeneratorImageDelegate.swift */; };
 		D4E1FB2D294DE37800D654C7 /* PDFGeneratorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E1FB2B294DE37800D654C7 /* PDFGeneratorDelegate.swift */; };
+		D4E49EED2BF11C0300BC7B0A /* Int+RomanNumerals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E49EEC2BF11C0200BC7B0A /* Int+RomanNumerals.swift */; };
 		OBJ_415 /* CwlCatchException.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_356 /* CwlCatchException.swift */; };
 		OBJ_417 /* CwlCatchExceptionSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "CwlCatchException::CwlCatchExceptionSupport::Product" /* CwlCatchExceptionSupport.framework */; };
 		OBJ_425 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_362 /* Package.swift */; };
@@ -215,8 +216,6 @@
 		OBJ_673 /* PDFLineSeparatorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_106 /* PDFLineSeparatorObject.swift */; };
 		OBJ_674 /* PDFRectangleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_107 /* PDFRectangleObject.swift */; };
 		OBJ_675 /* UIColor+CloseToEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_108 /* UIColor+CloseToEqual.swift */; };
-		OBJ_676 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_109 /* UIColor+Hex.swift */; };
-		OBJ_677 /* UIImage+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_110 /* UIImage+Pixel.swift */; };
 		OBJ_678 /* PDFGroupObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_112 /* PDFGroupObject.swift */; };
 		OBJ_679 /* PDFImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_114 /* PDFImageObject.swift */; };
 		OBJ_680 /* PDFImageRowObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_115 /* PDFImageRowObject.swift */; };
@@ -242,7 +241,6 @@
 		OBJ_700 /* CGPoint+Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_138 /* CGPoint+Null.swift */; };
 		OBJ_701 /* PDFGenerator+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_139 /* PDFGenerator+Debug.swift */; };
 		OBJ_702 /* PDFGenerator+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_140 /* PDFGenerator+Layout.swift */; };
-		OBJ_703 /* Int+RomanNumerals.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_142 /* Int+RomanNumerals.swift */; };
 		OBJ_704 /* PDFPagination+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_143 /* PDFPagination+Equatable.swift */; };
 		OBJ_705 /* PDFPagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_144 /* PDFPagination.swift */; };
 		OBJ_706 /* PDFPaginationClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_145 /* PDFPaginationClosure.swift */; };
@@ -639,6 +637,7 @@
 		D4B30532293CA38600EA24C5 /* PDFPageFormat+NameConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PDFPageFormat+NameConstants.swift"; sourceTree = "<group>"; };
 		D4E1FB2A294DE37800D654C7 /* PDFGeneratorImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFGeneratorImageDelegate.swift; sourceTree = "<group>"; };
 		D4E1FB2B294DE37800D654C7 /* PDFGeneratorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFGeneratorDelegate.swift; sourceTree = "<group>"; };
+		D4E49EEC2BF11C0200BC7B0A /* Int+RomanNumerals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+RomanNumerals.swift"; sourceTree = "<group>"; };
 		"Nimble::Nimble::Product" /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* PDFExternalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExternalDocument.swift; sourceTree = "<group>"; };
 		OBJ_101 /* PDFContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFContext.swift; sourceTree = "<group>"; };
@@ -649,8 +648,6 @@
 		OBJ_106 /* PDFLineSeparatorObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLineSeparatorObject.swift; sourceTree = "<group>"; };
 		OBJ_107 /* PDFRectangleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFRectangleObject.swift; sourceTree = "<group>"; };
 		OBJ_108 /* UIColor+CloseToEqual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CloseToEqual.swift"; sourceTree = "<group>"; };
-		OBJ_109 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
-		OBJ_110 /* UIImage+Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Pixel.swift"; sourceTree = "<group>"; };
 		OBJ_112 /* PDFGroupObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGroupObject.swift; sourceTree = "<group>"; };
 		OBJ_114 /* PDFImageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFImageObject.swift; sourceTree = "<group>"; };
 		OBJ_115 /* PDFImageRowObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFImageRowObject.swift; sourceTree = "<group>"; };
@@ -679,7 +676,6 @@
 		OBJ_139 /* PDFGenerator+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+Debug.swift"; sourceTree = "<group>"; };
 		OBJ_14 /* PDFBezierPathVertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFBezierPathVertex.swift; sourceTree = "<group>"; };
 		OBJ_140 /* PDFGenerator+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFGenerator+Layout.swift"; sourceTree = "<group>"; };
-		OBJ_142 /* Int+RomanNumerals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+RomanNumerals.swift"; sourceTree = "<group>"; };
 		OBJ_143 /* PDFPagination+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFPagination+Equatable.swift"; sourceTree = "<group>"; };
 		OBJ_144 /* PDFPagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPagination.swift; sourceTree = "<group>"; };
 		OBJ_145 /* PDFPaginationClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPaginationClosure.swift; sourceTree = "<group>"; };
@@ -1135,8 +1131,6 @@
 				OBJ_106 /* PDFLineSeparatorObject.swift */,
 				OBJ_107 /* PDFRectangleObject.swift */,
 				OBJ_108 /* UIColor+CloseToEqual.swift */,
-				OBJ_109 /* UIColor+Hex.swift */,
-				OBJ_110 /* UIImage+Pixel.swift */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -1215,7 +1209,6 @@
 		OBJ_141 /* Pagination */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_142 /* Int+RomanNumerals.swift */,
 				OBJ_143 /* PDFPagination+Equatable.swift */,
 				OBJ_144 /* PDFPagination.swift */,
 				OBJ_145 /* PDFPaginationClosure.swift */,
@@ -1268,6 +1261,7 @@
 		OBJ_164 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D4E49EEC2BF11C0200BC7B0A /* Int+RomanNumerals.swift */,
 				OBJ_165 /* Attributes */,
 				OBJ_168 /* CustomStringConvertible+AutoDescribing.swift */,
 				OBJ_169 /* FileManager+TemporaryFiles.swift */,
@@ -2014,6 +2008,7 @@
 				OBJ_51 /* Table */,
 				OBJ_49 /* Table Of Content */,
 				OBJ_82 /* Text */,
+				OBJ_141 /* Pagination */,
 				OBJ_88 /* Utils */,
 			);
 			path = API;
@@ -2065,7 +2060,6 @@
 				OBJ_136 /* Math */,
 				OBJ_139 /* PDFGenerator+Debug.swift */,
 				OBJ_140 /* PDFGenerator+Layout.swift */,
-				OBJ_141 /* Pagination */,
 				OBJ_148 /* Section */,
 				OBJ_152 /* Table Of Content */,
 				OBJ_154 /* Table */,
@@ -2628,6 +2622,7 @@
 				D49B05E92658E76C0084A0B7 /* PDFDocumentBackground.swift in Sources */,
 				OBJ_624 /* PDFSection.swift in Sources */,
 				OBJ_625 /* PDFSectionColumn.swift in Sources */,
+				D4E49EED2BF11C0300BC7B0A /* Int+RomanNumerals.swift in Sources */,
 				OBJ_626 /* PDFTableOfContent.swift in Sources */,
 				OBJ_627 /* NSAttributedString+PDFTableContent.swift in Sources */,
 				OBJ_628 /* Number+PDFTableContentable.swift in Sources */,
@@ -2680,8 +2675,6 @@
 				OBJ_673 /* PDFLineSeparatorObject.swift in Sources */,
 				OBJ_674 /* PDFRectangleObject.swift in Sources */,
 				OBJ_675 /* UIColor+CloseToEqual.swift in Sources */,
-				OBJ_676 /* UIColor+Hex.swift in Sources */,
-				OBJ_677 /* UIImage+Pixel.swift in Sources */,
 				OBJ_678 /* PDFGroupObject.swift in Sources */,
 				OBJ_679 /* PDFImageObject.swift in Sources */,
 				OBJ_680 /* PDFImageRowObject.swift in Sources */,
@@ -2708,7 +2701,6 @@
 				OBJ_700 /* CGPoint+Null.swift in Sources */,
 				OBJ_701 /* PDFGenerator+Debug.swift in Sources */,
 				OBJ_702 /* PDFGenerator+Layout.swift in Sources */,
-				OBJ_703 /* Int+RomanNumerals.swift in Sources */,
 				D49B05E82658E76C0084A0B7 /* PDFDocument.swift in Sources */,
 				OBJ_704 /* PDFPagination+Equatable.swift in Sources */,
 				OBJ_705 /* PDFPagination.swift in Sources */,
