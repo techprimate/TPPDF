@@ -89,7 +89,7 @@ jobs:
       - name: Patch Cartfile to pull request branch
         if: github.event_name == 'pull_request'
         run: |
-          ESCAPED_REF_NAME=$(echo "${{ github.ref }}" | sed 's/[\/&]/\\&/g' | sed 's/refs//g')
+          ESCAPED_REF_NAME=$(echo "${{ github.head_ref }}" | sed 's/[\/&]/\\&/g')
           sed  -i.bak "s/main/$ESCAPED_REF_NAME/g" Cartfile
 
       - name: Carthage Update
