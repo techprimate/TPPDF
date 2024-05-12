@@ -74,3 +74,32 @@ jobs:
             .build/debug/TPPDFPackageTests.xctest/Contents/MacOS/TPPDFPackageTests \
             --instr-profile .build/debug/codecov/default.profdata \
             --format="lcov" > coverage.lcov
+
+  carthage-integration:
+    name: Test Carthage Integration
+    runs-on: macos-14
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: Example iOS-Carthage
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Patch Cartfile to pull request branch
+        if: github.event_name == 'pull_request'
+        run: |
+          ESCAPED_REF_NAME=$(echo "${{ github.ref }}" | sed 's/[\/&]/\\&/g')
+          sed  -i.bak "s/main/$ESCAPED_REF_NAME/g" Cartfile
+
+      - name: Carthage Update
+        run: carthage update
+
+      - name: Build for iOS
+        run: |
+          set -o pipefail && \
+          env NSUnbufferedIO=YES \
+          xcodebuild \
+            -project Example_iOS-Carthage.xcodeproj \
+            CODE_SIGNING_ALLOWED="NO" \
+            build 2>&1 | tee test.log | xcbeautify
