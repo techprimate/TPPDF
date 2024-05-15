@@ -56,7 +56,10 @@ class PDFImageObject: PDFRenderObject {
                                                                                  sizeFit: image.sizeFit)
         let availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         if container.isCenter {
-            if imageSize.height + captionSize.height > availableSize.height || (image.sizeFit == .height && imageSize.height < image.size.height) {
+            let isAvailableHeightZero = availableSize.height == 0
+            let isImageCaptionHeightCombinedTooSmall = imageSize.height + captionSize.height > availableSize.height
+            let isImageHeightTooSmall = image.sizeFit == .height && imageSize.height < image.size.height
+            if isAvailableHeightZero || isImageCaptionHeightCombinedTooSmall || isImageHeightTooSmall {
                 result += try PDFPageBreakObject().calculate(generator: generator, container: container)
                 generator.layout.heights.content = 0
 
