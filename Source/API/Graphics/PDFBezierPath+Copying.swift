@@ -5,11 +5,7 @@
 //  Created by Philip Niedertscheider on 03.06.19.
 //
 
-#if os(iOS)
-    import UIKit
-#elseif os(macOS)
-    import AppKit
-#endif
+import Foundation
 
 // MARK: - PDFBezierPath + NSCopying
 
