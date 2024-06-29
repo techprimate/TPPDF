@@ -6,7 +6,7 @@
 //  Copyright © 2022 techprimate GmbH. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
 #elseif os(macOS)
     import AppKit

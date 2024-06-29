@@ -9,8 +9,12 @@
 </p>
 
 <div align="center">
-	<img src="https://img.shields.io/badge/language-Swift-orange.svg?style=flat-square" alt="Swift"/>
-	<img src="https://img.shields.io/badge/platforms-iOS|macOS-lightgrey.svg?style=flat-square" alt="iOS|macOS"/>
+  <a href="https://swiftpackageindex.com/techprimate/TPPDF">
+    <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Ftechprimate%2FTPPDF%2Fbadge%3Ftype%3Dswift-versions" alt="Supported Swift Versions">
+  </a>
+  <a href="https://swiftpackageindex.com/techprimate/TPPDF">
+    <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Ftechprimate%2FTPPDF%2Fbadge%3Ftype%3Dplatforms" alt="Supported Platforms">
+  </a>
 	<img src="https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square" alt="License"/>
 </div>
 

@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 01.06.19.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
 #elseif os(macOS)
     import AppKit
@@ -198,13 +198,13 @@ public class PDFBezierPath: CustomStringConvertible {
             case let .move(point):
                 bezierPath.move(to: calculate(point: point, in: frame))
             case let .line(point):
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                     bezierPath.addLine(to: calculate(point: point, in: frame))
                 #else
                     bezierPath.line(to: calculate(point: point, in: frame))
                 #endif
             case let .curve(endPoint, controlPoint1, controlPoint2):
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                     bezierPath.addCurve(
                         to: calculate(point: endPoint, in: frame),
                         controlPoint1: calculate(point: controlPoint1, in: frame),
@@ -218,7 +218,7 @@ public class PDFBezierPath: CustomStringConvertible {
                     )
                 #endif
             case let .quadCurve(endPoint, controlPoint):
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                     bezierPath.addQuadCurve(
                         to: calculate(point: endPoint, in: frame),
                         controlPoint: calculate(point: controlPoint, in: frame)
@@ -230,7 +230,7 @@ public class PDFBezierPath: CustomStringConvertible {
                     )
                 #endif
             case let .arc(center, radius, startAngle, endAngle, clockwise):
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                     bezierPath.addArc(
                         withCenter: calculate(point: center, in: frame),
                         radius: radius,

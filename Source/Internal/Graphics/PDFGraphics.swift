@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 13/08/2017.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
 #elseif os(macOS)
     import AppKit
@@ -187,7 +187,7 @@ enum PDFGraphics {
         let size = CGSize(width: floor(frame.width * resizeFactor),
                           height: floor(frame.height * resizeFactor))
 
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
             UIGraphicsBeginImageContext(size)
             image.draw(in: CGRect(origin: .zero, size: size))
             let finalImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -215,7 +215,7 @@ enum PDFGraphics {
      - Returns: Compressed image
      */
     static func compress(image: Image, quality: CGFloat) -> Image {
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
             guard let data = image.jpegData(compressionQuality: quality) else {
                 return image
             }
@@ -256,7 +256,7 @@ enum PDFGraphics {
 
         let clipPath = BezierPath(roundedRect: CGRect(origin: .zero, size: size), byRoundingCorners: corners, cornerRadii: cornerRadii)
 
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
             UIGraphicsBeginImageContext(size)
         #elseif os(macOS)
             let finalImage = NSImage(size: size)
@@ -266,7 +266,7 @@ enum PDFGraphics {
         clipPath.addClip()
         image.draw(in: CGRect(origin: .zero, size: size))
 
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
             let finalImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             return finalImage ?? image
@@ -291,7 +291,7 @@ enum PDFGraphics {
             case let .dotted(foreColor, backColor):
                 let size = CGSize(width: 5, height: 5)
 
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                     UIGraphicsBeginImageContext(size)
                 #elseif os(macOS)
                     let image = NSImage(size: size)
@@ -307,7 +307,7 @@ enum PDFGraphics {
                 path = BezierPath(ovalIn: CGRect(x: 2.5, y: 2.5, width: 2.5, height: 2.5))
                 path.fill()
 
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                     let image = UIGraphicsGetImageFromCurrentImageContext()!
                     UIGraphicsEndImageContext()
                 #elseif os(macOS)

@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 31.05.19.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
 #elseif os(macOS)
     import AppKit
@@ -187,7 +187,7 @@ class PDFGroupObject: PDFRenderObject {
             )
 
             let cgImage: CGImage?
-            #if os(iOS)
+            #if os(iOS) || os(visionOS)
                 cgImage = modifiedImage.cgImage
             #elseif os(macOS)
                 cgImage = modifiedImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
