@@ -5,7 +5,7 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
 #elseif os(macOS)
     import AppKit

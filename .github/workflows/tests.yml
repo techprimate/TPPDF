@@ -16,6 +16,12 @@ jobs:
     name: iOS Unit Tests
     runs-on: macos-14
     timeout-minutes: 30
+    strategy:
+      matrix:
+        build: [
+          { sdk: 'iphonesimulator', destination: 'platform=iOS Simulator,OS=17.5,name=iPhone 15 Pro' },
+          { sdk: 'xros', destination: 'platform=visionOS Simulator,OS=1.2,name=Apple Vision Pro' }
+        ]
     steps:
       - # Checkout the repository
         uses: actions/checkout@v4
@@ -27,8 +33,8 @@ jobs:
           env NSUnbufferedIO=YES \
           xcodebuild -workspace . \
             -scheme "TPPDF" \
-            -sdk iphonesimulator \
-            -destination "OS=17.4,name=iPhone 15 Pro" \
+            -sdk "${{ matrix.build.sdk }}" \
+            -destination "${{ matrix.build.destination }}" \
             -configuration Debug \
             -enableCodeCoverage YES \
             -derivedDataPath /tmp/DerivedData \
