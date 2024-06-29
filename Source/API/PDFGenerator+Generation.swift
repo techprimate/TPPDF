@@ -452,7 +452,7 @@ public extension PDFGenerator {
                 elements.append((styleIndex, textObj))
             }
         }
-        let list = PDFList(indentations: styles.enumerated().map { (pre: CGFloat($0.offset + 1) * 10, past: 10) })
+        let list = PDFList(indentations: styles.indices.map { (pre: CGFloat($0 + 1) * 10, past: 10) })
         var stack = Stack<PDFListItem>()
         for (index, element) in elements {
             let item = PDFListItem(symbol: symbol, content: element.simpleText?.text)

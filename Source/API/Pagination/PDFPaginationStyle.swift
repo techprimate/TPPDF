@@ -10,7 +10,8 @@ import Foundation
 /**
  * Use predefined pagination styles or create a custom one, using `.CustomNumberFormat` or `.CustomClosure`.
  *
- * Enums using a template String as parameter will replace the first instance of `%@` with the index and the second one with the total amount of pages.
+ * Enums using a template String as parameter will replace the first instance of `%@` with the index
+ * and the second one with the total amount of pages.
  */
 public enum PDFPaginationStyle {
     /**

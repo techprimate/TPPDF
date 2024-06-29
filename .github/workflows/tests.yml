@@ -12,22 +12,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  ios-unit-tests:
-    name: iOS Unit Tests
+  unit-tests:
+    name: Unit Tests
     runs-on: macos-14
     timeout-minutes: 30
     strategy:
       matrix:
         build: [
-          { sdk: 'iphonesimulator', destination: 'platform=iOS Simulator,OS=17.5,name=iPhone 15 Pro' },
-          { sdk: 'xros', destination: 'platform=visionOS Simulator,OS=1.2,name=Apple Vision Pro' }
+          { sdk: 'iphonesimulator', destination: 'platform=iOS Simulator,OS=17.5,name=iPhone 15 Pro', action: 'test' },
+          { sdk: 'xros', destination: 'platform=visionOS Simulator,OS=1.2,name=Apple Vision Pro', action: 'build' }
         ]
     steps:
-      - # Checkout the repository
+      - name: Checkout the repository
         uses: actions/checkout@v4
-
-      - # Run Tests
-        name: Run Tests iOS
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: Check environment
+        run: |
+            xcodebuild -version
+            swift --version
+      - name: Run Tests
         run: |
           set -o pipefail && \
           env NSUnbufferedIO=YES \
@@ -36,20 +41,19 @@ jobs:
             -sdk "${{ matrix.build.sdk }}" \
             -destination "${{ matrix.build.destination }}" \
             -configuration Debug \
-            -enableCodeCoverage YES \
+            ${{ matrix.build.action == 'test' && '-enableCodeCoverage YES' || '' }} \
             -derivedDataPath /tmp/DerivedData \
             -resultBundlePath test_output \
             CODE_SIGNING_ALLOWED="NO" \
-            test 2>&1 | tee test.log | xcbeautify
-
+            ${{ matrix.build.action }} 2>&1 | tee test.log | xcbeautify
       - name: Upload test log file on error
         uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test.log
           path: test.log
-
       - name: Generate code coverage reports
+        if: matrix.build.action == 'test'
         run: |
           PROFDATA_PATH=$(find /tmp/DerivedData -name "*.profdata")
           echo "Detected profdata at path: $PROFDATA_PATH"
@@ -67,13 +71,17 @@ jobs:
     runs-on: macos-14
     timeout-minutes: 30
     steps:
-      - # Checkout the repository
+      - name: Checkout the repository
         uses: actions/checkout@v4
-
-      - # Run Tests
-        name: Run tests
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: Check environment
+        run: |
+            xcodebuild -version
+            swift --version
+      - name: Run tests
         run: swift test --parallel --enable-code-coverage
-
       - name: Generate code coverage reports
         run: |
           xcrun llvm-cov export \
