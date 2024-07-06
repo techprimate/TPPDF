@@ -9,6 +9,8 @@ jobs:
   job-danger:
     name: Review, Lint, Verify
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - uses: actions/checkout@v4
 
