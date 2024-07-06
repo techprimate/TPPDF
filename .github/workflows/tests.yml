@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   unit-tests:
-    name: Unit Tests
+    name: Unit Tests (${{ matrix.build.sdk }})
     runs-on: macos-14
     timeout-minutes: 30
     strategy:
