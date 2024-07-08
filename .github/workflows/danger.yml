@@ -9,21 +9,6 @@ jobs:
   job-danger:
     name: Review, Lint, Verify
     runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      attestations: read
-      checks: read
-      contents: read
-      deployments: read
-      discussions: read
-      id-token: write
-      issues: write
-      packages: read
-      pages: read
-      pull-requests: write
-      repository-projects: read
-      security-events: read
-      statuses: read
     steps:
       - uses: actions/checkout@v4
 
