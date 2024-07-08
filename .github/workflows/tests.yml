@@ -67,7 +67,7 @@ jobs:
             --format="lcov" > integration-tests.coverage.lcov
 
   macos-unit-tests:
-    name: macOS Unit Tests
+    name: Unit Tests (macos)
     runs-on: macos-14
     timeout-minutes: 30
     steps:
