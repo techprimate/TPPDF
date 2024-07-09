@@ -122,7 +122,7 @@ echo "Creating ZIP archive"
 ditto -c -k --keepParent $OUTPUT_XCFRAMEWORK_PATH $ARCHIVES_PATH/TPPDF.zip
 
 echo "Creating SHA256 hash"
-sha256sum $ARCHIVES_PATH/TPPDF.zip >$ARCHIVES_PATH/TPPDF.sha256
+shasum -a 256 $ARCHIVES_PATH/TPPDF.zip >$ARCHIVES_PATH/TPPDF.sha256
 
 # 4. Summary
 echo "XCFramework created at $OUTPUT_XCFRAMEWORK_PATH"
