@@ -96,6 +96,9 @@ if [ -d $OUTPUT_XCFRAMEWORK_PATH ]; then
     rm -r $OUTPUT_XCFRAMEWORK_PATH
 fi
 
+echo "Tree of archives:"
+tree archives
+
 xcodebuild -create-xcframework \
     -output $OUTPUT_XCFRAMEWORK_PATH \
     \
