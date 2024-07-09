@@ -15,12 +15,6 @@ jobs:
     name: Publish Release
     runs-on: macos-latest
     steps:
-      - name: Prepare macOS
-        run: |
-          defaults write com.apple.dt.Xcode AllowUnsupportedVisionOSHost -bool YES
-          defaults write com.apple.CoreSimulator AllowUnsupportedVisionOSHost -bool YES
-          xcodebuild -downloadPlatform visionOS
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -34,5 +28,5 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            TPPDF.sha256
-            TPPDF.zip
+            archives/TPPDF.zip
+            archives/TPPDF.sha256

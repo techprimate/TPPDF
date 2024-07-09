@@ -19,6 +19,22 @@ set -o pipefail
 ARCHIVES_PATH="$(pwd)/archives"
 OUTPUT_XCFRAMEWORK_PATH="$ARCHIVES_PATH/TPPDF.xcframework"
 
+echo "Available SDKs:"
+xcodebuild -showsdks
+
+echo "Available Destinations:"
+xcodebuild -showdestinations -project TPPDF.xcodeproj -scheme TPPDF
+
+echo "Available Simulators:"
+xcrun simctl list devices
+
+echo "Selected SDK Info:"
+echo " - Path: $(xcrun -show-sdk-path)"
+echo " - Version: $(xcrun -show-sdk-version)"
+echo " - Build Version: $(xcrun -show-sdk-build-version)"
+echo " - Platform Path: $(xcrun -show-sdk-platform-path)"
+echo " - Platform Version: $(xcrun -show-sdk-platform-version)"
+
 # 1. Archive the Swift Package for each platform
 echo "Building XCFramework for iOS"
 xcodebuild archive \
@@ -66,7 +82,7 @@ xcodebuild archive \
     -scheme TPPDF \
     -destination "generic/platform=visionOS Simulator" \
     -archivePath "$ARCHIVES_PATH/TPPDF-visionOS-Simulator.xcarchive" \
-    -sdk xros \
+    -sdk xrsimulator \
     SKIP_INSTALL=NO \
     BUILD_LIBRARY_FOR_DISTRIBUTION=YES | xcbeautify
 
@@ -97,7 +113,14 @@ xcodebuild -create-xcframework \
 # 3. Create a ZIP and a SHA256 hash
 echo "Creating ZIP archive"
 ditto -c -k --keepParent $OUTPUT_XCFRAMEWORK_PATH $ARCHIVES_PATH/TPPDF.zip
+
+echo "Creating SHA256 hash"
 sha256sum $ARCHIVES_PATH/TPPDF.zip >$ARCHIVES_PATH/TPPDF.sha256
+
+# 4. Summary
+echo "XCFramework created at $OUTPUT_XCFRAMEWORK_PATH"
+echo "ZIP archive created at $ARCHIVES_PATH/TPPDF.zip"
+echo "SHA256 hash created at $ARCHIVES_PATH/TPPDF.sha256"
 
 # -- End Script --
 
