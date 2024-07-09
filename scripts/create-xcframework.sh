@@ -108,7 +108,7 @@ xcodebuild -create-xcframework \
     -framework $ARCHIVES_PATH/TPPDF-iOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
     -debug-symbols $ARCHIVES_PATH/TPPDF-iOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
     \
-    -framework $ARCHIVES_PATH/TPPDF-iOSSimulator.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -framework $ARCHIVES_PATH/TPPDF-iOS-Simulator.xcarchive/Products/Library/Frameworks/TPPDF.framework \
     -debug-symbols $ARCHIVES_PATH/TPPDF-iOS-Simulator.xcarchive/dSYMs/TPPDF.framework.dSYM \
     \
     -framework $ARCHIVES_PATH/TPPDF-visionOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
