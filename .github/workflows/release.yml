@@ -18,14 +18,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Install Dependencies
+        run: brew install tree
+
       - name: Create XCFramework
-        uses: segment-integrations/swift-create-xcframework@2.4.0
+        run: ./scripts/create-xcframework.sh
 
       - name: Create GitHub Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
+          automatic_release_tag: ${{ github.event.inputs.tag }}
+          title: ${{ github.event.inputs.tag }}
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            TPPDF.sha256
-            TPPDF.zip
+            archives/TPPDF.zip
+            archives/TPPDF.sha256
