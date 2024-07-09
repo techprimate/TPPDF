@@ -19,6 +19,10 @@ set -o pipefail
 ARCHIVES_PATH="$(pwd)/archives"
 OUTPUT_XCFRAMEWORK_PATH="$ARCHIVES_PATH/TPPDF.xcframework"
 
+echo "Tool Versions:"
+echo " - xcodebuild: $(xcodebuild -version)"
+echo " - swift: $(swift --version)"
+
 echo "Available SDKs:"
 xcodebuild -showsdks
 
