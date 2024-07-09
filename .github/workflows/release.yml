@@ -15,14 +15,17 @@ jobs:
     name: Publish Release
     runs-on: macos-latest
     steps:
+      - name: Prepare macOS
+        run: |
+          defaults write com.apple.dt.Xcode AllowUnsupportedVisionOSHost -bool YES
+          defaults write com.apple.CoreSimulator AllowUnsupportedVisionOSHost -bool YES
+          xcodebuild -downloadPlatform visionOS
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Create XCFramework
         run: ./scripts/create-xcframework.sh
-
-      - name: Create Archive
-        run: |
 
       - name: Create GitHub Release
         uses: marvinpinto/action-automatic-releases@latest
