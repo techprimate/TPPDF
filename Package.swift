@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.9
 
 import PackageDescription
 
@@ -7,6 +7,7 @@ let package = Package(
     platforms: [
         .iOS(.v9),
         .macOS(.v10_14),
+        .visionOS(.v1)
     ],
     products: [
         .library(name: "TPPDF", targets: ["TPPDF"]),
