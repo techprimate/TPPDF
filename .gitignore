@@ -6,6 +6,7 @@
 ## Build generated
 build/
 DerivedData
+test.log
 
 ## Various settings
 *.pbxuser

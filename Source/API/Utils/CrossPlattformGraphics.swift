@@ -6,7 +6,7 @@
 //  Created by Philip Niedertscheider on 19.05.20.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
 
     /// Cross-plattform type for `UIColor` and `NSColor`
