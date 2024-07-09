@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CZA-F0-5Pi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CZA-F0-5Pi">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example_iOS_Carthage" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cnM-58-c1z"/>
                         <viewControllerLayoutGuide type="bottom" id="6df-A8-lCn"/>
@@ -19,33 +19,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhg-dm-cGT">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWi-cf-GIW">
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ECf-M0-eMp">
-                                <rect key="frame" x="132" y="443" width="150" height="10"/>
+                                <rect key="frame" x="16" y="472" width="382" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Npy-uE-RHq"/>
                                 </constraints>
-                                <color key="progressTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="progressTintColor" systemColor="systemGreenColor"/>
                             </progressView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="dhg-dm-cGT" firstAttribute="top" secondItem="cnM-58-c1z" secondAttribute="bottom" id="G7f-Nc-ygc"/>
-                            <constraint firstItem="6df-A8-lCn" firstAttribute="top" secondItem="dhg-dm-cGT" secondAttribute="bottom" id="OBA-EM-IEV"/>
-                            <constraint firstItem="dhg-dm-cGT" firstAttribute="leading" secondItem="y9Q-UB-G5G" secondAttribute="leading" id="ZFp-iK-dzX"/>
-                            <constraint firstItem="ECf-M0-eMp" firstAttribute="centerX" secondItem="y9Q-UB-G5G" secondAttribute="centerX" id="ZuF-rx-ajr"/>
-                            <constraint firstItem="ECf-M0-eMp" firstAttribute="centerY" secondItem="y9Q-UB-G5G" secondAttribute="centerY" id="bMd-uV-Qnf"/>
-                            <constraint firstAttribute="trailing" secondItem="dhg-dm-cGT" secondAttribute="trailing" id="ddb-h6-0Kq"/>
-                            <constraint firstItem="ECf-M0-eMp" firstAttribute="leading" secondItem="y9Q-UB-G5G" secondAttribute="leading" constant="132" id="jie-x0-42q"/>
+                            <constraint firstAttribute="trailing" secondItem="aWi-cf-GIW" secondAttribute="trailing" id="Luq-wu-p44"/>
+                            <constraint firstItem="ECf-M0-eMp" firstAttribute="trailing" secondItem="aWi-cf-GIW" secondAttribute="trailing" constant="-16" id="PrP-JI-vxh"/>
+                            <constraint firstItem="aWi-cf-GIW" firstAttribute="top" secondItem="cnM-58-c1z" secondAttribute="bottom" id="Tp6-kI-cXY"/>
+                            <constraint firstItem="ECf-M0-eMp" firstAttribute="leading" secondItem="aWi-cf-GIW" secondAttribute="leading" constant="16" id="Uqd-tc-BqV"/>
+                            <constraint firstItem="6df-A8-lCn" firstAttribute="top" secondItem="aWi-cf-GIW" secondAttribute="bottom" id="cPb-lT-smd"/>
+                            <constraint firstItem="ECf-M0-eMp" firstAttribute="centerY" secondItem="aWi-cf-GIW" secondAttribute="centerY" id="sDV-bI-lUx"/>
+                            <constraint firstItem="aWi-cf-GIW" firstAttribute="leading" secondItem="y9Q-UB-G5G" secondAttribute="leading" id="xDT-cD-Z1K"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AOi-yM-ZqB"/>
                     <connections>
                         <outlet property="progressView" destination="ECf-M0-eMp" id="45h-Jk-28n"/>
-                        <outlet property="webView" destination="dhg-dm-cGT" id="l9E-a3-BRe"/>
+                        <outlet property="webView" destination="aWi-cf-GIW" id="uMO-Su-otG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -55,11 +59,11 @@
         <!--Examples-->
         <scene sceneID="e2C-tU-P2m">
             <objects>
-                <tableViewController id="OQp-47-Jlk" customClass="ExamplesListViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="OQp-47-Jlk" customClass="ExamplesListViewController" customModule="Example_iOS_Carthage" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="jy2-SO-vwO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="example-cell" textLabel="jGR-ZO-nLT" style="IBUITableViewCellStyleDefault" id="8S8-SC-SS5">
                                 <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
@@ -99,7 +103,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CZA-F0-5Pi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zct-xR-tbq">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -112,4 +116,12 @@
             <point key="canvasLocation" x="-878.26086956521749" y="30.803571428571427"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

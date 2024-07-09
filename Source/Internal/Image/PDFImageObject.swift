@@ -5,7 +5,7 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
 #elseif os(macOS)
     import AppKit
@@ -122,7 +122,7 @@ class PDFImageObject: PDFRenderObject {
                                                                cornerRadius: image.cornerRadius)
 
         let cgImage: CGImage?
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
             cgImage = modifiedImage.cgImage
         #elseif os(macOS)
             cgImage = modifiedImage.cgImage(forProposedRect: nil, context: nil, hints: nil)

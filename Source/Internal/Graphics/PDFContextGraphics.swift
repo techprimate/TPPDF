@@ -32,7 +32,7 @@ enum PDFContextGraphics {
         }
         #if os(macOS)
             return Image(cgImage: cgImage, size: size)
-        #elseif os(iOS)
+        #elseif os(iOS) || os(visionOS)
             return Image(cgImage: cgImage)
         #endif
     }
