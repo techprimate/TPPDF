@@ -289,6 +289,7 @@ class PDFTableObject: PDFRenderObject {
 
         repeat {
             var pageStart = CGPoint.null
+            pageEnd = CGPoint()
 
             // Calculate top page inset
             var minOffset = PDFCalculations.calculateTopMinimum(for: generator)
@@ -303,9 +304,12 @@ class PDFTableObject: PDFRenderObject {
                     cellFrame.origin.y += table.margin
                     contentFrame.origin.y -= startPosition.y - minOffset
                     contentFrame.origin.y += table.margin
-
-                    pageStart = pageStart == .null ? cellFrame.origin : pageStart
-                    pageEnd = CGPoint(x: cellFrame.maxX, y: cellFrame.maxY) + CGPoint(x: table.margin, y: table.margin)
+                    
+                    // Maintain pageStart and pageEnd
+                    pageStart.x = min(cellFrame.minX, pageStart.x)
+                    pageStart.y = min(cellFrame.minY, pageStart.y)
+                    pageEnd.x = max(cellFrame.maxX, pageEnd.x)
+                    pageEnd.y = max(cellFrame.maxY, pageEnd.y)
 
                     var cellElements = [PDFRenderObject]()
 
@@ -362,13 +366,14 @@ class PDFTableObject: PDFRenderObject {
                 throw PDFError.tableCellTooBig(cell: firstInvalidCell.cell)
             }
 
-            for (idx, item) in onPageCells.enumerated() {
+            for item in onPageCells {
                 let cellFrame = item.frames.cell
 
-                if pageStart == CGPoint.null {
-                    pageStart = cellFrame.origin - CGPoint(x: table.margin, y: table.margin)
-                }
-                pageEnd = CGPoint(x: cellFrame.maxX, y: cellFrame.maxY) + CGPoint(x: table.margin, y: table.margin)
+                // Maintain pageStart and pageEnd
+                pageStart.x = min(cellFrame.minX, pageStart.x)
+                pageStart.y = min(cellFrame.minY, pageStart.y)
+                pageEnd.x = max(cellFrame.maxX, pageEnd.x)
+                pageEnd.y = max(cellFrame.maxY, pageEnd.y)
 
                 var cellElements = [PDFRenderObject]()
 
@@ -395,24 +400,24 @@ class PDFTableObject: PDFRenderObject {
                                                     minOffset: minOffset,
                                                     maxOffset: maxOffset)
                 result += try sliceObject.calculate(generator: generator, container: container)
-
-                if nextPageCells.isEmpty && idx == cells.count - 1 {
-                    let tableOutlineObject = PDFRectangleObject(lineStyle: table.style.outline, size: CGSize.zero)
-                    tableOutlineObject.frame = CGRect(
-                        x: pageStart.x,
-                        y: pageStart.y,
-                        width: pageEnd.x - pageStart.x,
-                        height: pageEnd.y - pageStart.y
-                    )
-                    result += try tableOutlineObject.calculate(generator: generator, container: container)
-                }
             }
+            
+            // Draw the table outline for the page
+            let tableOutlineObject = PDFRectangleObject(lineStyle: table.style.outline, frame: CGRect(
+                x: pageStart.x - table.margin,
+                y: pageStart.y - table.margin,
+                width: pageEnd.x - pageStart.x + table.margin*2,
+                height: pageEnd.y - pageStart.y + table.margin*2
+            ))
+            result += [(container, tableOutlineObject)]
+            
             if !nextPageCells.isEmpty {
                 result += try PDFPageBreakObject().calculate(generator: generator, container: container)
                 firstPage = false
                 pageEnd = .null
             }
         } while !nextPageCells.isEmpty
+        
         return (objects: result, offset: pageEnd.y)
     }
 
@@ -511,9 +516,7 @@ class PDFTableObject: PDFRenderObject {
     ///   - frame: Frame of cell
     /// - Returns: Calculated `PDFRectangleObject`
     func createCellBackgroundObject(style: PDFTableCellStyle, frame: CGRect) -> PDFRenderObject {
-        let object = PDFRectangleObject(lineStyle: .none, size: frame.size, fillColor: style.colors.fill)
-        object.frame = frame
-        return object
+        return PDFRectangleObject(lineStyle: .none, frame: frame, fillColor: style.colors.fill)
     }
 
     /**
