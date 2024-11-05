@@ -14,7 +14,7 @@ concurrency:
 jobs:
   unit-tests:
     name: Unit Tests (${{ matrix.build.sdk }})
-    runs-on: macos-15
+    runs-on: ${{ matrix.build.runs-on }}
     timeout-minutes: 30
     strategy:
       matrix:
@@ -22,13 +22,15 @@ jobs:
           [
             {
               sdk: "iphonesimulator",
-              destination: "platform=iOS Simulator,OS=17.5,name=iPhone 15 Pro",
+              destination: "platform=iOS Simulator,OS=18.0,name=iPhone 16 Pro",
               action: "test",
+              runs-on: "macos-14",
             },
             {
               sdk: "xros",
               destination: "platform=visionOS Simulator,OS=2.1,name=Apple Vision Pro",
               action: "build",
+              runs-on: "macos-15",
             },
           ]
     steps:
