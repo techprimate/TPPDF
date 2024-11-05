@@ -14,14 +14,23 @@ concurrency:
 jobs:
   unit-tests:
     name: Unit Tests (${{ matrix.build.sdk }})
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 30
     strategy:
       matrix:
-        build: [
-          { sdk: 'iphonesimulator', destination: 'platform=iOS Simulator,OS=17.5,name=iPhone 15 Pro', action: 'test' },
-          { sdk: 'xros', destination: 'platform=visionOS Simulator,OS=1.2,name=Apple Vision Pro', action: 'build' }
-        ]
+        build:
+          [
+            {
+              sdk: "iphonesimulator",
+              destination: "platform=iOS Simulator,OS=17.5,name=iPhone 15 Pro",
+              action: "test",
+            },
+            {
+              sdk: "xros",
+              destination: "platform=visionOS Simulator,OS=2.1,name=Apple Vision Pro",
+              action: "build",
+            },
+          ]
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
@@ -30,8 +39,10 @@ jobs:
           xcode-version: latest-stable
       - name: Check environment
         run: |
-            xcodebuild -version
-            swift --version
+          set -ex
+          xcodebuild -version
+          swift --version
+          xcrun simctl list
       - name: Run Tests
         run: |
           set -o pipefail && \
@@ -78,8 +89,8 @@ jobs:
           xcode-version: latest-stable
       - name: Check environment
         run: |
-            xcodebuild -version
-            swift --version
+          xcodebuild -version
+          swift --version
       - name: Run tests
         run: swift test --parallel --enable-code-coverage
       - name: Generate code coverage reports
