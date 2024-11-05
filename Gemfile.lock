@@ -5,15 +5,18 @@ GEM
       base64
       nkf
       rexml
-    activesupport (7.1.4)
+    activesupport (7.1.5)
       base64
+      benchmark (>= 0.3)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
       connection_pool (>= 2.2.5)
       drb
       i18n (>= 1.6, < 2)
+      logger (>= 1.4.2)
       minitest (>= 5.1)
       mutex_m
+      securerandom (>= 0.3)
       tzinfo (~> 2.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
@@ -22,6 +25,7 @@ GEM
       json (>= 1.5.1)
     atomos (0.1.3)
     base64 (0.2.0)
+    benchmark (0.3.0)
     bigdecimal (3.1.8)
     claide (1.1.0)
     clamp (1.3.2)
@@ -76,7 +80,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
-    jazzy (0.15.2)
+    jazzy (0.15.3)
       cocoapods (~> 1.5)
       mustache (~> 1.1)
       open4 (~> 1.3)
@@ -86,8 +90,9 @@ GEM
       sassc (~> 2.1)
       sqlite3 (~> 1.3)
       xcinvoke (~> 0.3.0)
-    json (2.7.2)
+    json (2.7.6)
     liferaft (0.0.6)
+    logger (1.6.1)
     mini_portile2 (2.8.7)
     minitest (5.22.3)
     molinillo (0.8.0)
@@ -110,6 +115,7 @@ GEM
     ruby-macho (2.5.1)
     sassc (2.4.0)
       ffi (~> 1.9)
+    securerandom (0.3.1)
     slather (2.8.3)
       CFPropertyList (>= 2.2, < 4)
       activesupport
