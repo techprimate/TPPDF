@@ -414,11 +414,10 @@ class PDFTableObject: PDFRenderObject {
             if !nextPageCells.isEmpty {
                 result += try PDFPageBreakObject().calculate(generator: generator, container: container)
                 firstPage = false
-                pageEnd = .null
             }
         } while !nextPageCells.isEmpty
         
-        return (objects: result, offset: pageEnd.y)
+        return (objects: result, offset: pageEnd.y + table.margin)
     }
 
     /// Holds two lists of cells, used during table calculations
