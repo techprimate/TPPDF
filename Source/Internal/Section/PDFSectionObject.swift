@@ -167,8 +167,7 @@ class PDFSectionObject: PDFRenderObject {
                         continue
                     }
                     let frame = CGRect(x: met.minX, y: sectionMinY, width: met.width, height: sectionMaxY - sectionMinY)
-                    let rect = PDFRectangleObject(lineStyle: .none, size: frame.size, fillColor: backgroundColor)
-                    rect.frame = frame
+                    let rect = PDFRectangleObject(lineStyle: .none, frame: frame, fillColor: backgroundColor)
                     result += [(container, rect)] + columnObjects
                 }
             }

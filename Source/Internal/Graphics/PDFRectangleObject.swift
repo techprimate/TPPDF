@@ -23,11 +23,6 @@ class PDFRectangleObject: PDFRenderObject {
     var lineStyle: PDFLineStyle
 
     /**
-     Defines the size of the rectangle
-     */
-    var size: CGSize
-
-    /**
      Defines the fill color the rectangle
      */
     var fillColor: Color
@@ -39,10 +34,10 @@ class PDFRectangleObject: PDFRenderObject {
      - Parameter size: Size of rectangle, defaults to `CGSize.zero`
      - Parameter fillColor: Fill color, defaults to `Color.clear`
      */
-    init(lineStyle: PDFLineStyle = PDFLineStyle(), size: CGSize = CGSize.zero, fillColor: Color = Color.clear) {
+    init(lineStyle: PDFLineStyle = PDFLineStyle(), frame: CGRect = CGRect.zero, fillColor: Color = Color.clear) {
         self.lineStyle = lineStyle
-        self.size = size
         self.fillColor = fillColor
+        super.init(frame: frame)
     }
 
     /**
@@ -56,9 +51,9 @@ class PDFRectangleObject: PDFRenderObject {
      - Returns: Self
      */
     override func calculate(generator: PDFGenerator, container: PDFContainer) throws -> [PDFLocatedRenderObject] {
-        let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: size)
+        let position = PDFCalculations.calculateElementPosition(for: generator, in: container, with: frame.size)
 
-        frame = CGRect(origin: position, size: size)
+        frame = CGRect(origin: position, size: frame.size)
 
         return [(container, self)]
     }
@@ -80,6 +75,6 @@ class PDFRectangleObject: PDFRenderObject {
      Creates new `PDFRectangleObject` with the same properties
      */
     override var copy: PDFRenderObject {
-        PDFRectangleObject(lineStyle: lineStyle, size: size, fillColor: fillColor)
+        PDFRectangleObject(lineStyle: lineStyle, frame: frame, fillColor: fillColor)
     }
 }
