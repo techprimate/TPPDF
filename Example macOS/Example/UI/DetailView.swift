@@ -18,14 +18,22 @@ struct DetailView: View {
     @State var observer: NSObjectProtocol! = nil
     @State var progressValue: Double = 0.5
 
+    @State var debug = false
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
                 Text("\(example.name)")
                     .font(.headline)
+                Toggle(isOn: $debug) {
+                    Text("Debug Mode")
+                }
+                .onChange(of: debug) { debug in
+                    self.generatePDF(force: true, debug: debug)
+                }
                 Spacer()
                 Button(action: {
-                    self.generatePDF(force: true)
+                    self.generatePDF(force: true, debug: debug)
                 }, label: {
                     Text("Refresh")
                 })
@@ -36,12 +44,12 @@ struct DetailView: View {
 
             PDFKitRepresentedView(url: url)
                 .onAppear {
-                    self.generatePDF(force: false)
+                    self.generatePDF(force: false, debug: debug)
                 }
         }
     }
 
-    func generatePDF(force: Bool) {
+    func generatePDF(force: Bool, debug: Bool) {
         if url != nil && !force {
             return
         }
@@ -51,7 +59,7 @@ struct DetailView: View {
         } else {
             generator = PDFMultiDocumentGenerator(documents: docs)
         }
-        generator.debug = true
+        generator.debug = debug
 
         observer = generator.progress.observe(\.completedUnitCount) { progress, _ in
             self.progressValue = progress.fractionCompleted
@@ -59,7 +67,7 @@ struct DetailView: View {
 
         DispatchQueue.global(qos: .background).async {
             do {
-                let url = try self.generator.generateURL(filename: "output.pdf")
+                let url = try self.generator.generateURL(filename: "output-\(UUID().uuidString).pdf")
                 DispatchQueue.main.async {
                     self.url = url
                 }
