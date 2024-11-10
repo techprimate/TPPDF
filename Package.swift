@@ -7,7 +7,7 @@ let package = Package(
     platforms: [
         .iOS(.v9),
         .macOS(.v10_14),
-        .visionOS(.v1)
+        .visionOS(.v1),
     ],
     products: [
         .library(name: "TPPDF", targets: ["TPPDF"]),

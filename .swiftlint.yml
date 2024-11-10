@@ -3,6 +3,7 @@ disabled_rules:
   - large_tuple
   - todo
   - inclusive_language
+  - trailing_comma
 excluded:
   - Carthage
   - Pods

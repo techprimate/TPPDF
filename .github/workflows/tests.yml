@@ -22,9 +22,9 @@ jobs:
           [
             {
               sdk: "iphonesimulator",
-              destination: "platform=iOS Simulator,OS=18.0,name=iPhone 16 Pro",
+              destination: "platform=iOS Simulator,OS=18.1,name=iPhone 16 Pro",
               action: "test",
-              runs-on: "macos-14",
+              runs-on: "macos-15",
             },
             {
               sdk: "xros",
