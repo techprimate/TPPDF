@@ -16,13 +16,14 @@ import XCTest
             let columns = 4
             let count = rows * columns
 
-            let table = generateTable(rows: rows, columns: columns)
+            let table = generateTable(rows: rows, columns: columns, columnHeaderCount: 3)
             table.showHeadersOnEveryPage = false
             let result = try calculate(table: table)
 
-            // should return correct cell count including necessary page breaks
-            XCTAssertEqual(result.count, count + 1)
-            XCTAssertTrue(result[56].1 is PDFPageBreakObject)
+            // should return correct cell count including the table outline and the necessary page breaks
+            XCTAssertEqual(result.count, count + 1 /* Page Break */ + 2 /* Outline on two pages */)
+            XCTAssertTrue(result[56].1 is PDFRectangleObject)
+            XCTAssertTrue(result[57].1 is PDFPageBreakObject)
 
             // check cell frames
 
@@ -96,7 +97,7 @@ import XCTest
             }
             for rowIdx in 14..<rowYPositions.count {
                 for colIdx in 0..<columnXPositions.count {
-                    let locatedCell = result[rowIdx * columns + colIdx + 1] // add one for page break offset
+                    let locatedCell = result[rowIdx * columns + colIdx + 1 /* Table outline on page 1 */ + 1 /* Page Break */]
 
                     XCTAssertEqual(locatedCell.1.frame.origin.x, columnXPositions[colIdx], "Cell \(rowIdx),\(colIdx) has invalid x position")
                     XCTAssertEqual(locatedCell.1.frame.origin.y, rowYPositions[rowIdx], "Cell \(rowIdx),\(colIdx) has invalid y position")
@@ -114,14 +115,20 @@ import XCTest
             let rows = 20
             let columns = 4
             let count = rows * columns
+            let columnHeaderCount = 3
 
-            let table = generateTable(rows: rows, columns: columns)
+            let table = generateTable(rows: rows, columns: columns, columnHeaderCount: columnHeaderCount)
             table.showHeadersOnEveryPage = true
             let result = try calculate(table: table)
 
             // should return correct cell count including necessary page breaks
-            XCTAssertEqual(result.count, count + 1 + 12)
-            XCTAssertTrue(result[56].1 is PDFPageBreakObject)
+            XCTAssertEqual(result.count, count
+                           + 2 /* Table outline on each page */
+                           + 1 /* Page break */
+                           + 12 /* 3 header rows with 4 columns each on second page*/
+            )
+            XCTAssertTrue(result[56].1 is PDFRectangleObject)
+            XCTAssertTrue(result[57].1 is PDFPageBreakObject)
 
             // check cell frames
 
@@ -203,7 +210,7 @@ import XCTest
             }
             for rowIdx in 14..<rowYPositions.count {
                 for colIdx in 0..<columnXPositions.count {
-                    let locatedCell = result[rowIdx * columns + colIdx + 1] // add one for page break offset
+                    let locatedCell = result[rowIdx * columns + colIdx + 1 /* Table outline on page 1 */ + 1 /* Page Break */]
 
                     XCTAssertEqual(locatedCell.1.frame.origin.x, columnXPositions[colIdx], "Cell \(rowIdx),\(colIdx) has invalid x position")
                     XCTAssertEqual(locatedCell.1.frame.origin.y, rowYPositions[rowIdx], "Cell \(rowIdx),\(colIdx) has invalid y position")
@@ -213,13 +220,13 @@ import XCTest
             }
         }
 
-        private func generateTable(rows: Int, columns: Int) -> PDFTable {
+        private func generateTable(rows: Int, columns: Int, columnHeaderCount: Int) -> PDFTable {
             let table = PDFTable(rows: rows, columns: columns)
             table.widths = [0.1, 0.3, 0.3, 0.3]
             table.margin = 10
             table.padding = 10
             table.shouldSplitCellsOnPageBreak = false
-            table.style.columnHeaderCount = 3
+            table.style.columnHeaderCount = columnHeaderCount
 
             for row in 0..<table.size.rows {
                 table[row, 0].content = "\(row)".asTableContent
