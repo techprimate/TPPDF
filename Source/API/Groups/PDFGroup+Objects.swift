@@ -12,6 +12,26 @@
 #endif
 
 public extension PDFGroup {
+  //MARK: Fetch objects and add rendered objects
+  /**
+   * Returns all objects in the group
+   * - Returns: Array of tuples containing the container and the render object
+   */
+  func getObjects() -> [(PDFGroupContainer, PDFRenderObject)] {
+    return objects
+  }
+
+  /**
+   * Adds a render object to the group in the given container
+   * - Parameter container: Container where the object will be set
+   * - Parameter renderObject: Render object to be added
+   */
+  func add(_ container: PDFGroupContainer, _ renderObject: PDFRenderObject) {
+    objects.append((container, renderObject))
+  }
+}
+
+public extension PDFGroup {
     // MARK: - PUBLIC FUNCS
 
     // MARK: - Layout
