@@ -4,7 +4,6 @@ about: Create a report to help us improve
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 > ℹ Please fill out this template when filing an issue.
@@ -16,16 +15,16 @@ assignees: ''
 
 ## What did you expect to happen?
 
-ℹ Please replace this with what you expected to happen.  
+ℹ Please replace this with what you expected to happen.
 
 ## What happened instead?
 
-ℹ Please replace this with of what happened instead.  
+ℹ Please replace this with of what happened instead.
 
 ## TPPDF Environment
 
 **TPPDF version:** ℹ
-**Xcode version:**  ℹ
+**Xcode version:** ℹ
 **Swift version:** ℹ
 
 ## Demo Code / Project

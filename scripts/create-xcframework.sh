@@ -2,7 +2,7 @@
 set -e
 
 # Store current working directory
-pushd $(pwd) >/dev/null
+pushd "$(pwd)" >/dev/null
 # Change to script directory
 cd "${0%/*}"
 
@@ -91,38 +91,38 @@ xcodebuild archive \
     BUILD_LIBRARY_FOR_DISTRIBUTION=YES | xcbeautify
 
 # 2. Create XCFramework
-if [ -d $OUTPUT_XCFRAMEWORK_PATH ]; then
+if [ -d "$OUTPUT_XCFRAMEWORK_PATH" ]; then
     echo "Old XCFramework found, removing..."
-    rm -r $OUTPUT_XCFRAMEWORK_PATH
+    rm -r "$OUTPUT_XCFRAMEWORK_PATH"
 fi
 
 echo "Tree of archives:"
 tree archives
 
 xcodebuild -create-xcframework \
-    -output $OUTPUT_XCFRAMEWORK_PATH \
+    -output "$OUTPUT_XCFRAMEWORK_PATH" \
     \
-    -framework $ARCHIVES_PATH/TPPDF-macOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
-    -debug-symbols $ARCHIVES_PATH/TPPDF-macOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
+    -framework "$ARCHIVES_PATH"/TPPDF-macOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -debug-symbols "$ARCHIVES_PATH"/TPPDF-macOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
     \
-    -framework $ARCHIVES_PATH/TPPDF-iOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
-    -debug-symbols $ARCHIVES_PATH/TPPDF-iOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
+    -framework "$ARCHIVES_PATH"/TPPDF-iOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -debug-symbols "$ARCHIVES_PATH"/TPPDF-iOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
     \
-    -framework $ARCHIVES_PATH/TPPDF-iOS-Simulator.xcarchive/Products/Library/Frameworks/TPPDF.framework \
-    -debug-symbols $ARCHIVES_PATH/TPPDF-iOS-Simulator.xcarchive/dSYMs/TPPDF.framework.dSYM \
+    -framework "$ARCHIVES_PATH"/TPPDF-iOS-Simulator.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -debug-symbols "$ARCHIVES_PATH"/TPPDF-iOS-Simulator.xcarchive/dSYMs/TPPDF.framework.dSYM \
     \
-    -framework $ARCHIVES_PATH/TPPDF-visionOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
-    -debug-symbols $ARCHIVES_PATH/TPPDF-visionOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
+    -framework "$ARCHIVES_PATH"/TPPDF-visionOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -debug-symbols "$ARCHIVES_PATH"/TPPDF-visionOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
     \
-    -framework $ARCHIVES_PATH/TPPDF-visionOS-Simulator.xcarchive/Products/Library/Frameworks/TPPDF.framework \
-    -debug-symbols $ARCHIVES_PATH/TPPDF-visionOS-Simulator.xcarchive/dSYMs/TPPDF.framework.dSYM
+    -framework "$ARCHIVES_PATH"/TPPDF-visionOS-Simulator.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -debug-symbols "$ARCHIVES_PATH"/TPPDF-visionOS-Simulator.xcarchive/dSYMs/TPPDF.framework.dSYM
 
 # 3. Create a ZIP and a SHA256 hash
 echo "Creating ZIP archive"
-ditto -c -k --keepParent $OUTPUT_XCFRAMEWORK_PATH $ARCHIVES_PATH/TPPDF.zip
+ditto -c -k --keepParent "$OUTPUT_XCFRAMEWORK_PATH" "$ARCHIVES_PATH"/TPPDF.zip
 
 echo "Creating SHA256 hash"
-shasum -a 256 $ARCHIVES_PATH/TPPDF.zip >$ARCHIVES_PATH/TPPDF.sha256
+shasum -a 256 "$ARCHIVES_PATH"/TPPDF.zip >"$ARCHIVES_PATH"/TPPDF.sha256
 
 # 4. Summary
 echo "XCFramework created at $OUTPUT_XCFRAMEWORK_PATH"
