@@ -19,20 +19,14 @@ jobs:
     strategy:
       matrix:
         build:
-          [
-            {
-              sdk: "iphonesimulator",
-              destination: "platform=iOS Simulator,OS=18.1,name=iPhone 16 Pro",
-              action: "test",
-              runs-on: "macos-15",
-            },
-            {
-              sdk: "xros",
-              destination: "platform=visionOS Simulator,OS=2.1,name=Apple Vision Pro",
-              action: "build",
-              runs-on: "macos-15",
-            },
-          ]
+          - sdk: "iphonesimulator"
+            destination: "platform=iOS Simulator,OS=18.1,name=iPhone 16 Pro"
+            action: "test"
+            runs-on: "macos-15"
+          - sdk: "xros"
+            destination: "platform=visionOS Simulator,OS=2.1,name=Apple Vision Pro"
+            action: "build"
+            runs-on: "macos-15"
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v5

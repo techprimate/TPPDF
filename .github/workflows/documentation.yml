@@ -13,36 +13,32 @@ jobs:
     name: Generate Documentation
     runs-on: macos-15
     steps:
-      - # Checkout the repository
+      - name: Checkout the repository
         uses: actions/checkout@v5
 
-      - # Install Ruby
+      - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
 
-      - # Adapt the default title by adding the reference name from GitHub
-        name: Patch Title
+      - name: Patch title with GitHub reference
         run: |
           ESCAPED_REF_NAME=$(echo "${{ github.ref }}" | sed 's/[\/&]/\\&/g')
           sed  -i.bak "s/title:\(.*\)/title:\1 ($ESCAPED_REF_NAME)/g" .jazzy.yaml
 
-      - # Generate Documentation
-        name: Generate
+      - name: Generate Documentation with Jazzy
         run: |
           SDK_PATH=`xcrun --sdk iphonesimulator --show-sdk-path`
           SDK_VERSION=`xcrun --sdk iphonesimulator --show-sdk-version`
           bundle exec jazzy \
             --build-tool-arguments "--sdk,${SDK_PATH},-Xswiftc,-sdk,-Xswiftc,$SDK_PATH,-Xswiftc,-target,-Xswiftc,arm64-apple-ios${SDK_VERSION}-simulator"
 
-      - # Small Jazzy fixes for GitHub Pages
-        name: Fix Invalid URLs
+      - name: Fix Invalid URLs
         run: |
           cd docs
           touch .nojekyll
 
-      - # Commit newly generated docs
-        name: Commit Documentation Files
+      - name: Commit documentation files
         if: github.event_name != 'pull_request'
         run: |
           cd docs
@@ -52,9 +48,8 @@ jobs:
           git add .
           git commit -m "Deploying Updated Jazzy Docs"
 
-      - # Publish generated docs to the GitHub pages branch
-        name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Push changes to GitHub Pages
+        uses: ad-m/github-push-action@v1
         if: github.event_name != 'pull_request'
         with:
           directory: docs
