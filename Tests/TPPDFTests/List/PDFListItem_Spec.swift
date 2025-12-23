@@ -3,7 +3,7 @@
 //  TPPDF_Example
 //
 //  Created by Philip Niedertscheider on 05.12.17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Nimble

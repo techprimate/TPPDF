@@ -3,7 +3,7 @@
 //  TPPDF_Example
 //
 //  Created by Philip Niedertscheider on 18.12.19.
-//  Copyright © 2019 Philip Niedertscheider. All rights reserved.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Foundation

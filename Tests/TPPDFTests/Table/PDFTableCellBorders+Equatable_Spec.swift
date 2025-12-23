@@ -3,7 +3,7 @@
 //  TPPDF_Tests
 //
 //  Created by Philip Niedertscheider on 16/11/2017.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Nimble
