@@ -3,7 +3,7 @@
 //  TPPDF_Example
 //
 //  Created by Philip Niedertscheider on 22.05.19.
-//  Copyright © 2021 techprimate GmbH & Co. KG. All rights reserved.
+//  Copyright © 2026-2025 techprimate GmbH. All rights reserved.
 //
 
 #if os(iOS) || os(visionOS)

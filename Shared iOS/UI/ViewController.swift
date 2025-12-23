@@ -3,7 +3,7 @@
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 08.11.16.
-//  Copyright © 2019 Philip Niedertscheider. All rights reserved.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import TPPDF
