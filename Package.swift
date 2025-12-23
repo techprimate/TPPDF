@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "TPPDF",
     platforms: [
-        .iOS(.v9),
+        .iOS(.v12),
         .macOS(.v10_14),
         .visionOS(.v1),
     ],
