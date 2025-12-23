@@ -1,0 +1,7 @@
+{
+  "editor.defaultFormatter": "dprint.dprint",
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.formatOnSave": true
+  }
+}
