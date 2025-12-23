@@ -92,6 +92,9 @@ jobs:
           xcodebuild -version
           swift --version
           xcrun simctl list
+      - name: Enable development dependencies
+        run: |
+          sed -i.bak "s/\/\/dev//g" Package.swift
       - name: Run tests
         run: swift test --parallel --enable-code-coverage
       - name: Generate code coverage reports
