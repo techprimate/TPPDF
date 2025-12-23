@@ -1,0 +1,56 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-xml
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: detect-private-key
+      - id: end-of-file-fixer
+
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.27.3
+    hooks:
+      - id: check-github-actions
+      - id: check-github-workflows
+        args: [--verbose]
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+
+  - repo: local
+    hooks:
+      - id: format-json
+        name: Format JSON
+        description: "Format JSON"
+        files: ^.*\.json$
+        types_or: [json]
+        entry: dprint
+        language: system
+        args:
+          - "fmt"
+
+      - id: format-markdown
+        name: Format Markdown
+        description: "Format Markdown"
+        files: ^.*\.md$
+        types_or: [markdown]
+        entry: dprint
+        language: system
+        args:
+          - "fmt"
+
+      - id: format-yaml
+        name: Format YAML
+        description: "Format YAML"
+        files: ^.*\.(yaml|yml)$
+        types_or: [yaml]
+        entry: dprint
+        language: system
+        args:
+          - "fmt"
