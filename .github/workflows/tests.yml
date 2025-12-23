@@ -39,6 +39,9 @@ jobs:
           xcodebuild -version
           swift --version
           xcrun simctl list
+      - name: Enable development dependencies
+        run: |
+          sed -i.bak "s/\/\/dev//g" Package.swift
       - name: Run Tests
         run: |
           set -o pipefail && \
