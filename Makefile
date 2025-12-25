@@ -11,9 +11,6 @@
 # CONFIGURATION
 # ============================================================================
 
-# Xcode project used to build TPPDF
-XCODE_PROJECT = TPPDF.xcodeproj
-
 # Xcode scheme used to build TPPDF
 XCODE_SCHEME = TPPDF
 
@@ -209,7 +206,6 @@ test-disable:
 .PHONY: test-ios
 test-ios: build-ios test-enable
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=iOS Simulator,OS=$(IOS_SIMULATOR_OS),name=$(IOS_DEVICE_NAME)' \
 		test | tee raw-test-ios.log | xcbeautify --preserve-unbeautified
@@ -221,7 +217,6 @@ test-ios: build-ios test-enable
 .PHONY: test-macos
 test-macos: build-macos test-enable
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=macOS' \
 		test | tee raw-test-macos.log | xcbeautify --preserve-unbeautified
@@ -233,7 +228,6 @@ test-macos: build-macos test-enable
 .PHONY: test-maccatalyst
 test-maccatalyst: build-maccatalyst test-enable
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=macOS,variant=Mac Catalyst' \
 		test | tee raw-test-maccatalyst.log | xcbeautify --preserve-unbeautified
@@ -245,7 +239,6 @@ test-maccatalyst: build-maccatalyst test-enable
 .PHONY: test-tvos
 test-tvos: build-tvos test-enable
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=tvOS Simulator,OS=$(TVOS_SIMULATOR_OS),name=$(TVOS_DEVICE_NAME)' \
 		test | tee raw-test-tvos.log | xcbeautify --preserve-unbeautified
@@ -257,7 +250,6 @@ test-tvos: build-tvos test-enable
 .PHONY: test-watchos
 test-watchos: build-watchos test-enable
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=watchOS Simulator,OS=$(WATCHOS_SIMULATOR_OS),name=$(WATCHOS_DEVICE_NAME)' \
 		test | tee raw-test-watchos.log | xcbeautify --preserve-unbeautified
@@ -269,7 +261,6 @@ test-watchos: build-watchos test-enable
 .PHONY: test-visionos
 test-visionos: build-visionos test-enable
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=visionOS Simulator,OS=$(VISION_OS_SIMULATOR_OS),name=$(VISION_OS_DEVICE_NAME)' \
 		test | tee raw-test-visionos.log | xcbeautify --preserve-unbeautified
