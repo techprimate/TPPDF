@@ -21,8 +21,7 @@ if (danger.github.pullRequest.additions ?? 0) > 500 {
 // Xcode project to avoid breaking things for our Carthage/manual framework.
 let addedSwiftLibraryFiles = danger.git.createdFiles.contains { $0.fileType == .swift && $0.hasPrefix("Source") }
 let deletedSwiftLibraryFiles = danger.git.deletedFiles.contains { $0.fileType == .swift && $0.hasPrefix("Source") }
-let modifiedCarthageXcodeProject = danger.git.modifiedFiles.contains { $0.contains("TPPDF.xcodeproj") }
-if addedSwiftLibraryFiles || deletedSwiftLibraryFiles, !modifiedCarthageXcodeProject {
+if addedSwiftLibraryFiles || deletedSwiftLibraryFiles {
     fail("Added or removed library files require the Carthage Xcode project to be updated.")
 }
 

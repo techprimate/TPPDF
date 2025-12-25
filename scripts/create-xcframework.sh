@@ -27,7 +27,7 @@ echo "Available SDKs:"
 xcodebuild -showsdks
 
 echo "Available Destinations:"
-xcodebuild -showdestinations -project TPPDF.xcodeproj -scheme TPPDF
+xcodebuild -showdestinations -scheme TPPDF
 
 echo "Available Simulators:"
 xcrun simctl list devices
