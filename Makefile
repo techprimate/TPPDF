@@ -106,7 +106,6 @@ build: build-ios build-macos build-maccatalyst build-tvos build-watchos build-vi
 .PHONY: build-ios
 build-ios:
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=iOS Simulator,OS=$(IOS_SIMULATOR_OS),name=$(IOS_DEVICE_NAME)' \
 		build | tee raw-build-ios.log | xcbeautify --preserve-unbeautified
@@ -118,7 +117,6 @@ build-ios:
 .PHONY: build-macos
 build-macos:
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=macOS' \
 		build | tee raw-build-macos.log | xcbeautify --preserve-unbeautified
@@ -130,7 +128,6 @@ build-macos:
 .PHONY: build-maccatalyst
 build-maccatalyst:
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=macOS,variant=Mac Catalyst' \
 		build | tee raw-build-maccatalyst.log | xcbeautify --preserve-unbeautified
@@ -142,7 +139,6 @@ build-maccatalyst:
 .PHONY: build-tvos
 build-tvos:
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=tvOS Simulator,OS=$(TVOS_SIMULATOR_OS),name=$(TVOS_DEVICE_NAME)' \
 		build | tee raw-build-tvos.log | xcbeautify --preserve-unbeautified
@@ -154,7 +150,6 @@ build-tvos:
 .PHONY: build-visionos
 build-visionos:
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=visionOS Simulator,OS=$(VISION_OS_SIMULATOR_OS),name=$(VISION_OS_DEVICE_NAME)' \
 		build | tee raw-build-visionos.log | xcbeautify --preserve-unbeautified
@@ -166,7 +161,6 @@ build-visionos:
 .PHONY: build-watchos
 build-watchos:
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
-		-project $(XCODE_PROJECT) \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=watchOS Simulator,OS=$(WATCHOS_SIMULATOR_OS),name=$(WATCHOS_DEVICE_NAME)' \
 		build | tee raw-build-watchos.log | xcbeautify --preserve-unbeautified
