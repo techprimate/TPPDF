@@ -60,13 +60,62 @@ xcodebuild archive \
     SKIP_INSTALL=NO \
     BUILD_LIBRARY_FOR_DISTRIBUTION=YES | xcbeautify
 
-# echo "Building XCFramework for macOS"
+echo "Building XCFramework for macOS"
 xcodebuild archive \
     -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=macOS" \
     -archivePath "$ARCHIVES_PATH/TPPDF-macOS.xcarchive" \
     -sdk macosx \
+    SKIP_INSTALL=NO \
+    BUILD_LIBRARY_FOR_DISTRIBUTION=YES | xcbeautify
+
+echo "Building XCFramework for Mac Catalyst"
+xcodebuild archive \
+    -project TPPDF.xcodeproj \
+    -scheme TPPDF \
+    -destination "generic/platform=macOS,variant=Mac Catalyst" \
+    -archivePath "$ARCHIVES_PATH/TPPDF-Mac-Catalyst.xcarchive" \
+    SKIP_INSTALL=NO \
+    BUILD_LIBRARY_FOR_DISTRIBUTION=YES | xcbeautify
+
+echo "Building XCFramework for tvOS"
+xcodebuild archive \
+    -project TPPDF.xcodeproj \
+    -scheme TPPDF \
+    -destination "generic/platform=tvOS" \
+    -archivePath "$ARCHIVES_PATH/TPPDF-tvOS.xcarchive" \
+    -sdk appletvos \
+    SKIP_INSTALL=NO \
+    BUILD_LIBRARY_FOR_DISTRIBUTION=YES | xcbeautify
+
+echo "Building XCFramework for tvOS Simulator"
+xcodebuild archive \
+    -project TPPDF.xcodeproj \
+    -scheme TPPDF \
+    -destination "generic/platform=tvOS Simulator" \
+    -archivePath "$ARCHIVES_PATH/TPPDF-tvOS-Simulator.xcarchive" \
+    -sdk appletvsimulator \
+    SKIP_INSTALL=NO \
+    BUILD_LIBRARY_FOR_DISTRIBUTION=YES | xcbeautify
+
+echo "Building XCFramework for watchOS"
+xcodebuild archive \
+    -project TPPDF.xcodeproj \
+    -scheme TPPDF \
+    -destination "generic/platform=watchOS" \
+    -archivePath "$ARCHIVES_PATH/TPPDF-watchOS.xcarchive" \
+    -sdk watchos \
+    SKIP_INSTALL=NO \
+    BUILD_LIBRARY_FOR_DISTRIBUTION=YES | xcbeautify
+
+echo "Building XCFramework for watchOS Simulator"
+xcodebuild archive \
+    -project TPPDF.xcodeproj \
+    -scheme TPPDF \
+    -destination "generic/platform=watchOS Simulator" \
+    -archivePath "$ARCHIVES_PATH/TPPDF-watchOS-Simulator.xcarchive" \
+    -sdk watchsimulator \
     SKIP_INSTALL=NO \
     BUILD_LIBRARY_FOR_DISTRIBUTION=YES | xcbeautify
 
@@ -105,11 +154,26 @@ xcodebuild -create-xcframework \
     -framework "$ARCHIVES_PATH"/TPPDF-macOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
     -debug-symbols "$ARCHIVES_PATH"/TPPDF-macOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
     \
+    -framework "$ARCHIVES_PATH"/TPPDF-Mac-Catalyst.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -debug-symbols "$ARCHIVES_PATH"/TPPDF-Mac-Catalyst.xcarchive/dSYMs/TPPDF.framework.dSYM \
+    \
     -framework "$ARCHIVES_PATH"/TPPDF-iOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
     -debug-symbols "$ARCHIVES_PATH"/TPPDF-iOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
     \
     -framework "$ARCHIVES_PATH"/TPPDF-iOS-Simulator.xcarchive/Products/Library/Frameworks/TPPDF.framework \
     -debug-symbols "$ARCHIVES_PATH"/TPPDF-iOS-Simulator.xcarchive/dSYMs/TPPDF.framework.dSYM \
+    \
+    -framework "$ARCHIVES_PATH"/TPPDF-tvOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -debug-symbols "$ARCHIVES_PATH"/TPPDF-tvOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
+    \
+    -framework "$ARCHIVES_PATH"/TPPDF-tvOS-Simulator.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -debug-symbols "$ARCHIVES_PATH"/TPPDF-tvOS-Simulator.xcarchive/dSYMs/TPPDF.framework.dSYM \
+    \
+    -framework "$ARCHIVES_PATH"/TPPDF-watchOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -debug-symbols "$ARCHIVES_PATH"/TPPDF-watchOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
+    \
+    -framework "$ARCHIVES_PATH"/TPPDF-watchOS-Simulator.xcarchive/Products/Library/Frameworks/TPPDF.framework \
+    -debug-symbols "$ARCHIVES_PATH"/TPPDF-watchOS-Simulator.xcarchive/dSYMs/TPPDF.framework.dSYM \
     \
     -framework "$ARCHIVES_PATH"/TPPDF-visionOS.xcarchive/Products/Library/Frameworks/TPPDF.framework \
     -debug-symbols "$ARCHIVES_PATH"/TPPDF-visionOS.xcarchive/dSYMs/TPPDF.framework.dSYM \
