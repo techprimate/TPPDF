@@ -272,7 +272,7 @@ class PDFTableObject: PDFRenderObject {
         return NSAttributedString(string: text, attributes: attributes)
     }
 
-    func createRenderObjects( // swiftlint:disable:this cyclomatic_complexity
+    func createRenderObjects(
         generator: PDFGenerator,
         container: PDFContainer,
         cells: [PDFTableCalculatedCell],
@@ -304,7 +304,7 @@ class PDFTableObject: PDFRenderObject {
                     cellFrame.origin.y += table.margin
                     contentFrame.origin.y -= startPosition.y - minOffset
                     contentFrame.origin.y += table.margin
-                    
+
                     // Maintain pageStart and pageEnd
                     pageStart.x = min(cellFrame.minX, pageStart.x)
                     pageStart.y = min(cellFrame.minY, pageStart.y)
@@ -401,7 +401,7 @@ class PDFTableObject: PDFRenderObject {
                                                     maxOffset: maxOffset)
                 result += try sliceObject.calculate(generator: generator, container: container)
             }
-            
+
             // Draw the table outline for the page
             let tableOutlineObject = PDFRectangleObject(lineStyle: table.style.outline, frame: CGRect(
                 x: pageStart.x - table.margin,
@@ -410,13 +410,13 @@ class PDFTableObject: PDFRenderObject {
                 height: pageEnd.y - pageStart.y + table.margin*2
             ))
             result += [(container, tableOutlineObject)]
-            
+
             if !nextPageCells.isEmpty {
                 result += try PDFPageBreakObject().calculate(generator: generator, container: container)
                 firstPage = false
             }
         } while !nextPageCells.isEmpty
-        
+
         return (objects: result, offset: pageEnd.y + table.margin)
     }
 
@@ -515,7 +515,7 @@ class PDFTableObject: PDFRenderObject {
     ///   - frame: Frame of cell
     /// - Returns: Calculated `PDFRectangleObject`
     func createCellBackgroundObject(style: PDFTableCellStyle, frame: CGRect) -> PDFRenderObject {
-        return PDFRectangleObject(lineStyle: .none, frame: frame, fillColor: style.colors.fill)
+        PDFRectangleObject(lineStyle: .none, frame: frame, fillColor: style.colors.fill)
     }
 
     /**
