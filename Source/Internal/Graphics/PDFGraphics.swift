@@ -5,9 +5,9 @@
 //  Created by Philip Niedertscheider on 13/08/2017.
 //
 
-#if os(iOS) || os(visionOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import UIKit
-#elseif os(macOS)
+#else
     import AppKit
 #endif
 
@@ -187,14 +187,14 @@ enum PDFGraphics {
         let size = CGSize(width: floor(frame.width * resizeFactor),
                           height: floor(frame.height * resizeFactor))
 
-        #if os(iOS) || os(visionOS)
+        #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
             UIGraphicsBeginImageContext(size)
             image.draw(in: CGRect(origin: .zero, size: size))
             let finalImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
 
             return finalImage ?? image
-        #elseif os(macOS)
+        #else
             let finalImage = NSImage(size: size)
             finalImage.lockFocus()
             let context = NSGraphicsContext.current!
@@ -215,11 +215,11 @@ enum PDFGraphics {
      - Returns: Compressed image
      */
     static func compress(image: Image, quality: CGFloat) -> Image {
-        #if os(iOS) || os(visionOS)
+        #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
             guard let data = image.jpegData(compressionQuality: quality) else {
                 return image
             }
-        #elseif os(macOS)
+        #else
             guard let imageData = image.tiffRepresentation,
                   let bitmapData = NSBitmapImageRep(data: imageData),
                   let data = bitmapData.representation(using: .jpeg, properties: [:]) else {
@@ -256,9 +256,9 @@ enum PDFGraphics {
 
         let clipPath = BezierPath(roundedRect: CGRect(origin: .zero, size: size), byRoundingCorners: corners, cornerRadii: cornerRadii)
 
-        #if os(iOS) || os(visionOS)
+        #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
             UIGraphicsBeginImageContext(size)
-        #elseif os(macOS)
+        #else
             let finalImage = NSImage(size: size)
             finalImage.lockFocus()
         #endif
@@ -266,11 +266,11 @@ enum PDFGraphics {
         clipPath.addClip()
         image.draw(in: CGRect(origin: .zero, size: size))
 
-        #if os(iOS) || os(visionOS)
+        #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
             let finalImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             return finalImage ?? image
-        #elseif os(macOS)
+        #else
             finalImage.unlockFocus()
             guard let data = finalImage.tiffRepresentation,
                   let imageRep = NSBitmapImageRep(data: data),
@@ -291,9 +291,9 @@ enum PDFGraphics {
             case let .dotted(foreColor, backColor):
                 let size = CGSize(width: 5, height: 5)
 
-                #if os(iOS) || os(visionOS)
+                #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                     UIGraphicsBeginImageContext(size)
-                #elseif os(macOS)
+                #else
                     let image = NSImage(size: size)
                     image.lockFocus()
                 #endif
@@ -307,10 +307,10 @@ enum PDFGraphics {
                 path = BezierPath(ovalIn: CGRect(x: 2.5, y: 2.5, width: 2.5, height: 2.5))
                 path.fill()
 
-                #if os(iOS) || os(visionOS)
+                #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                     let image = UIGraphicsGetImageFromCurrentImageContext()!
                     UIGraphicsEndImageContext()
-                #elseif os(macOS)
+                #else
                     image.unlockFocus()
                 #endif
 

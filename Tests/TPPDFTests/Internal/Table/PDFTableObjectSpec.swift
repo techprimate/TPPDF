@@ -5,7 +5,8 @@ import Quick
 @testable import TPPDF
 import XCTest
 
-#if os(iOS) || os(visionOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
+    import UIKit
 class PDFTableObjectSpec: XCTestCase {
     /// Preconditions:
     /// - Multiple pages

@@ -64,8 +64,8 @@ class PDFLayout_Spec: QuickSpec {
             it("can set content offset in heights") {
                 expect(PDFContainer.all).to(allPass {
                     let random = CGFloat(arc4random())
-                    layout.setContentOffset(in: $0!, to: random)
-                    return layout.getContentOffset(in: $0!) == random
+                    layout.setContentOffset(in: $0, to: random)
+                    return layout.getContentOffset(in: $0) == random
                 })
             }
 

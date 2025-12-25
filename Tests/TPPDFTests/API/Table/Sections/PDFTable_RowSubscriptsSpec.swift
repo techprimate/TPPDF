@@ -15,7 +15,7 @@ class PDFTable_RowSubscriptsSpec: QuickSpec {
             describe("Row Subscripts") {
                 it("should return row by index") {
                     let table = PDFTable(rows: 3, columns: 3)
-                    expect(table[row: 1].cells) === table.cells[1]
+                    expect(table[row: 1].cells) == table.cells[1]
                 }
             }
         }

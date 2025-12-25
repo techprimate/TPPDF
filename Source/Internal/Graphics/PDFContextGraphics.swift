@@ -30,10 +30,10 @@ enum PDFContextGraphics {
         guard let cgImage = context.makeImage() else {
             return nil
         }
-        #if os(macOS)
-            return Image(cgImage: cgImage, size: size)
-        #elseif os(iOS) || os(visionOS)
+        #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
             return Image(cgImage: cgImage)
+        #else
+        return Image(cgImage: cgImage, size: size)
         #endif
     }
 

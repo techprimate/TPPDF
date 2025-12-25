@@ -5,9 +5,9 @@
 //  Created by Marco Betschart on 05.05.18.
 //
 
-#if os(iOS) || os(visionOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import UIKit
-#elseif os(macOS)
+#else
     import AppKit
 #endif
 
