@@ -81,6 +81,13 @@ install-bundler:
 	rbenv exec gem update bundler
 	rbenv exec bundle install
 
+## Install dependencies for CI environment.
+#
+# Installs only the dependencies needed for continuous integration environments.
+.PHONY: install-ci
+install-ci:
+	@$(MAKE) --no-print-directory install-dependencies
+
 # ============================================================================
 # BUILDING
 # ============================================================================
@@ -163,6 +170,14 @@ build-watchos:
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=watchOS Simulator,OS=$(WATCHOS_SIMULATOR_OS),name=$(WATCHOS_DEVICE_NAME)' \
 		build | tee raw-build-watchos.log | xcbeautify --preserve-unbeautified
+
+## Build XCFramework for all platforms
+#
+# Builds a universal XCFramework containing builds for iOS, macOS, Mac Catalyst, tvOS, watchOS, and visionOS.
+# Uses the create-xcframework.sh script to perform the build.
+.PHONY: build-xcframework
+build-xcframework:
+	./scripts/create-xcframework.sh
 
 # ============================================================================
 # TESTING

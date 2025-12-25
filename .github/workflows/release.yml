@@ -18,15 +18,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v5
 
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: latest-stable
-
       - name: Install Dependencies
-        run: brew install tree
+        run: make install-ci
 
       - name: Create XCFramework
-        run: ./scripts/create-xcframework.sh
+        run: make build-xcframework
 
       - name: Create GitHub Release
         uses: marvinpinto/action-automatic-releases@latest
