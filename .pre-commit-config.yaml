@@ -54,3 +54,10 @@ repos:
         language: system
         args:
           - "fmt"
+
+      - id: check-testing-disabled
+        name: Check testing is disabled
+        description: "Ensure Package.swift has testing disabled and Package.resolved is not committed"
+        files: ^(Package\.swift|Package\.resolved)$
+        entry: .git-hooks/check-testing-disabled.sh
+        language: script
