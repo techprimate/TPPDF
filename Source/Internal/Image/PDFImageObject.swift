@@ -5,9 +5,9 @@
 //  Created by Philip Niedertscheider on 12/08/2017.
 //
 
-#if os(iOS) || os(visionOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import UIKit
-#elseif os(macOS)
+#else
     import AppKit
 #endif
 
@@ -122,9 +122,9 @@ class PDFImageObject: PDFRenderObject {
                                                                cornerRadius: image.cornerRadius)
 
         let cgImage: CGImage?
-        #if os(iOS) || os(visionOS)
+        #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
             cgImage = modifiedImage.cgImage
-        #elseif os(macOS)
+        #else
             cgImage = modifiedImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
         #endif
         if let cgImage = cgImage {

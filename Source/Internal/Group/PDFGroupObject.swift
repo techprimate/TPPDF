@@ -5,9 +5,9 @@
 //  Created by Philip Niedertscheider on 31.05.19.
 //
 
-#if os(iOS) || os(visionOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import UIKit
-#elseif os(macOS)
+#else
     import AppKit
 #endif
 
@@ -187,9 +187,9 @@ class PDFGroupObject: PDFRenderObject {
             )
 
             let cgImage: CGImage?
-            #if os(iOS) || os(visionOS)
+            #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                 cgImage = modifiedImage.cgImage
-            #elseif os(macOS)
+            #else
                 cgImage = modifiedImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
             #endif
             if let cgImage = cgImage {

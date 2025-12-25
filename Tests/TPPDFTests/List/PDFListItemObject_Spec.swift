@@ -57,10 +57,10 @@ class PDFListItemObject_Spec: QuickSpec {
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 10))
                     expect(item?.frame.origin.y).to(equal(60))
                     expect(item?.frame.size.width).to(beCloseTo(12, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
-                        expect(item?.frame.size.height).to(equal(21.0))
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
+                    expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                    expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: "1.")))
 
@@ -69,11 +69,15 @@ class PDFListItemObject_Spec: QuickSpec {
                     item = result?[1].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
                     expect(item?.frame.origin.y).to(equal(60))
+                    #if os(watchOS)
+                    expect(item?.frame.size.width).to(beCloseTo(76.2, within: 1))
+                    #else
                     expect(item?.frame.size.width).to(beCloseTo(75, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
-                        expect(item?.frame.size.height).to(equal(21.0))
+                    #endif
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
+                    expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                    expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: "Heading 1")))
 
@@ -81,16 +85,16 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[2].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 10))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(80))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(81))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(80))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(13, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: "?.")))
 
@@ -98,16 +102,16 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[3].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(80))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(81))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(80))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(78, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: "Heading 2")))
 
@@ -115,16 +119,20 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[4].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 10))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(100))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(102))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(100))
                     #endif
+                    #if os(watchOS)
+                    expect(item?.frame.size.width).to(beCloseTo(5.4, within: 1))
+                    #else
                     expect(item?.frame.size.width).to(beCloseTo(4, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #endif
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: PDFListItemSymbol.dot.stringValue)))
 
@@ -132,16 +140,16 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[5].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(100))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(102))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(100))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(79, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: "Heading 3")))
 
@@ -149,16 +157,20 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[6].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(120))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(123))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(120))
                     #endif
+                    #if os(watchOS)
+                    expect(item?.frame.size.width).to(beCloseTo(6.9, within: 1))
+                    #else
                     expect(item?.frame.size.width).to(beCloseTo(8, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #endif
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: PDFListItemSymbol.dash.stringValue)))
 
@@ -166,16 +178,20 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[7].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 30))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(120))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(123))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(120))
                     #endif
+                    #if os(watchOS)
+                    expect(item?.frame.size.width).to(beCloseTo(104.5, within: 1))
+                    #else
                     expect(item?.frame.size.width).to(beCloseTo(103, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #endif
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: "Subheading 1")))
 
@@ -183,16 +199,16 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[8].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 30))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(140))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(144))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(140))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(106, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: "Subheading 2")))
 
@@ -200,16 +216,20 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[9].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(160))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(165))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(160))
                     #endif
+                    #if os(watchOS)
+                    expect(item?.frame.size.width).to(beCloseTo(5.4, within: 1))
+                    #else
                     expect(item?.frame.size.width).to(beCloseTo(4, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #endif
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: PDFListItemSymbol.dot.stringValue)))
 
@@ -217,16 +237,20 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[10].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 30))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(160))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(165))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(160))
                     #endif
+                    #if os(watchOS)
+                    expect(item?.frame.size.width).to(beCloseTo(106.2, within: 1))
+                    #else
                     expect(item?.frame.size.width).to(beCloseTo(105.4, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #endif
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: "Subheading 3")))
 
@@ -234,16 +258,20 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[11].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 10))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(180))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(186))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(180))
                     #endif
+                    #if os(watchOS)
+                    expect(item?.frame.size.width).to(beCloseTo(9.47, within: 1))
+                    #else
                     expect(item?.frame.size.width).to(beCloseTo(11, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #endif
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: "+")))
 
@@ -251,16 +279,16 @@ class PDFListItemObject_Spec: QuickSpec {
 
                     item = result?[12].1 as? PDFAttributedTextObject
                     expect(item?.frame.origin.x).to(equal(document.layout.margin.left + 20))
-                    #if os(macOS)
-                        expect(item?.frame.origin.y).to(equal(180))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.origin.y).to(equal(186))
+                    #else
+                        expect(item?.frame.origin.y).to(equal(180))
                     #endif
                     expect(item?.frame.size.width).to(beCloseTo(79, within: 1))
-                    #if os(macOS)
-                        expect(item?.frame.size.height).to(equal(20.0))
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item?.frame.size.height).to(equal(21.0))
+                    #else
+                        expect(item?.frame.size.height).to(equal(20.0))
                     #endif
                     expect(item?.simpleText).to(equal(PDFSimpleText(text: "Heading 4")))
                 }
@@ -285,10 +313,10 @@ class PDFListItemObject_Spec: QuickSpec {
                     expect(item.frame.origin.x) == document.layout.margin.left
                     expect(item.frame.origin.y) == 60
                     expect(item.frame.size.width).to(beCloseTo(12, within: 1))
-                    #if os(macOS)
-                        expect(item.frame.size.height) == 20
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(item.frame.size.height) == 21
+                    #else
+                        expect(item.frame.size.height) == 20
                     #endif
                     expect(item.simpleText) == PDFSimpleText(text: "1.")
 
@@ -301,10 +329,10 @@ class PDFListItemObject_Spec: QuickSpec {
                     expect(otherItem.frame.origin.x) == document.layout.margin.left
                     expect(otherItem.frame.origin.y) == 60
                     expect(otherItem.frame.size.width).to(beCloseTo(76, within: 1))
-                    #if os(macOS)
-                        expect(otherItem.frame.size.height) == 20
-                    #elseif os(iOS)
+                    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
                         expect(otherItem.frame.size.height) == 21
+                    #else
+                        expect(otherItem.frame.size.height) == 20
                     #endif
                     expect(otherItem.simpleText) == PDFSimpleText(text: "Heading 1")
 

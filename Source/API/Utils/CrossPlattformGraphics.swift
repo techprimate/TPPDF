@@ -6,7 +6,7 @@
 //  Created by Philip Niedertscheider on 19.05.20.
 //
 
-#if os(iOS) || os(visionOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import UIKit
 
     /// Cross-plattform type for `UIColor` and `NSColor`
@@ -24,7 +24,7 @@
     /// Cross-plattform type for `UIRectCorner` and `RectCorner`
     public typealias RectCorner = UIRectCorner
 
-#elseif os(macOS)
+#else
 
     import AppKit
 

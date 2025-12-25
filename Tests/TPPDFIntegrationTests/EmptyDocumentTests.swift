@@ -1,8 +1,10 @@
 import Foundation
 import Nimble
-import PDFKit
 import Quick
 @testable import TPPDF
+
+#if canImport(PDFKit)
+import PDFKit
 
 @available(iOS 11.0, *)
 class EmptyDocumentTests: QuickSpec {
@@ -25,3 +27,4 @@ class EmptyDocumentTests: QuickSpec {
         }
     }
 }
+#endif

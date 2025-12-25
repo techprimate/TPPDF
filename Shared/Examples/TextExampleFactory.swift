@@ -6,9 +6,9 @@
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
-#if os(iOS) || os(visionOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import UIKit
-#elseif os(macOS)
+#else
     import AppKit
 #endif
 import TPPDF
