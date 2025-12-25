@@ -42,7 +42,6 @@ echo " - Platform Version: $(xcrun -show-sdk-platform-version)"
 # 1. Archive the Swift Package for each platform
 echo "Building XCFramework for iOS"
 xcodebuild archive \
-    -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=iOS" \
     -archivePath "$ARCHIVES_PATH/TPPDF-iOS.xcarchive" \
@@ -52,7 +51,6 @@ xcodebuild archive \
 
 echo "Building XCFramework for iOS Simulator"
 xcodebuild archive \
-    -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=iOS Simulator" \
     -archivePath "$ARCHIVES_PATH/TPPDF-iOS-Simulator.xcarchive" \
@@ -62,7 +60,6 @@ xcodebuild archive \
 
 echo "Building XCFramework for macOS"
 xcodebuild archive \
-    -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=macOS" \
     -archivePath "$ARCHIVES_PATH/TPPDF-macOS.xcarchive" \
@@ -72,7 +69,6 @@ xcodebuild archive \
 
 echo "Building XCFramework for Mac Catalyst"
 xcodebuild archive \
-    -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=macOS,variant=Mac Catalyst" \
     -archivePath "$ARCHIVES_PATH/TPPDF-Mac-Catalyst.xcarchive" \
@@ -81,7 +77,6 @@ xcodebuild archive \
 
 echo "Building XCFramework for tvOS"
 xcodebuild archive \
-    -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=tvOS" \
     -archivePath "$ARCHIVES_PATH/TPPDF-tvOS.xcarchive" \
@@ -91,7 +86,6 @@ xcodebuild archive \
 
 echo "Building XCFramework for tvOS Simulator"
 xcodebuild archive \
-    -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=tvOS Simulator" \
     -archivePath "$ARCHIVES_PATH/TPPDF-tvOS-Simulator.xcarchive" \
@@ -101,7 +95,6 @@ xcodebuild archive \
 
 echo "Building XCFramework for watchOS"
 xcodebuild archive \
-    -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=watchOS" \
     -archivePath "$ARCHIVES_PATH/TPPDF-watchOS.xcarchive" \
@@ -111,7 +104,6 @@ xcodebuild archive \
 
 echo "Building XCFramework for watchOS Simulator"
 xcodebuild archive \
-    -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=watchOS Simulator" \
     -archivePath "$ARCHIVES_PATH/TPPDF-watchOS-Simulator.xcarchive" \
@@ -121,7 +113,6 @@ xcodebuild archive \
 
 echo "Building XCFramework for visionOS"
 xcodebuild archive \
-    -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=visionOS" \
     -archivePath "$ARCHIVES_PATH/TPPDF-visionOS.xcarchive" \
@@ -131,7 +122,6 @@ xcodebuild archive \
 
 echo "Building XCFramework for visionOS Simulator"
 xcodebuild archive \
-    -project TPPDF.xcodeproj \
     -scheme TPPDF \
     -destination "generic/platform=visionOS Simulator" \
     -archivePath "$ARCHIVES_PATH/TPPDF-visionOS-Simulator.xcarchive" \
