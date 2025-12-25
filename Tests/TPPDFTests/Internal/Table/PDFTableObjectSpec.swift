@@ -35,6 +35,62 @@ class PDFTableObjectSpec: XCTestCase {
         let columnXPositions: [CGFloat] = [70, 117.5, 260, 402.5]
         let columnWidths: [CGFloat] = [27.5, 122.5, 122.5, 122.5]
 
+        #if targetEnvironment(macCatalyst)
+        let rowYPositions: [CGFloat] = [
+            // Page 1
+            // Headers
+            70, // 70,                     // Header Row 0
+            117, // 70 + 37 + 10,           // Header Row 1
+            164, // 70 + (37 + 10) * 2,     // Header Row 2
+            // First smaller rows
+            211, // 70 + (37 + 10) * 3,     // Row 3
+            258, // 70 + (37 + 10) * 4,     // Row 4
+            305, // 70 + (37 + 10) * 5,     // Row 5
+            352, // 70 + (37 + 10) * 6,     // Row 6
+            399, // 70 + (37 + 10) * 7,     // Row 7
+            446, // 70 + (37 + 10) * 8,                      // Row 8
+            493, // 70 + (37 + 10) * 9,                      // Row 9
+            // Larger rows (Catalyst renders at 50pt height)
+            540, // 70 + (37 + 10) * 10,                     // Row 10
+            600, // 70 + (37 + 10) * 10 + (50 + 10) * 1,     // Row 11
+            660, // 70 + (37 + 10) * 10 + (50 + 10) * 2,     // Row 12
+            720, // 70 + (37 + 10) * 10 + (50 + 10) * 3,     // Row 13
+            // Page 2
+            70, // 70 + (50 + 10),                         // Row 14
+            130, // 70 + (50 + 10) * 1,                     // Row 15
+            190, // 70 + (50 + 10) * 2,                     // Row 16
+            250, // 70 + (50 + 10) * 3,                     // Row 17
+            310, // 70 + (50 + 10) * 4,                     // Row 18
+            370, // 70 + (50 + 10) * 5,                     // Row 19
+        ]
+        let rowHeights: [CGFloat] = [
+            // Page 1
+            // Headers
+            37, // Header Row 0
+            37, // Header Row 1
+            37, // Header Row 2
+            // First smaller rows
+            37, // Row 3
+            37, // Row 4
+            37, // Row 5
+            37, // Row 6
+            37, // Row 7
+            37, // Row 8
+            37, // Row 9
+            // Larger rows (Catalyst renders at 50pt height)
+            50, // Row 10
+            50, // Row 11
+            50, // Row 12
+            50, // Row 13
+            // Page 2
+            50, // Row 14
+            50, // Row 15
+            50, // Row 16
+            50, // Row 17
+            50, // Row 18
+            50, // Row 19
+        ]
+        #else
         let rowYPositions: [CGFloat] = [
             // Page 1
             // Headers
@@ -89,6 +145,7 @@ class PDFTableObjectSpec: XCTestCase {
             48, // Row 18
             48, // Row 19
         ]
+        #endif
 
         for rowIdx in 0..<14 {
             for colIdx in 0..<columnXPositions.count {
@@ -140,6 +197,70 @@ class PDFTableObjectSpec: XCTestCase {
         let columnXPositions: [CGFloat] = [70, 117.5, 260, 402.5]
         let columnWidths: [CGFloat] = [27.5, 122.5, 122.5, 122.5]
 
+        #if targetEnvironment(macCatalyst)
+        let rowYPositions: [CGFloat] = [
+            // Page 1
+            // Headers
+            70, // 70,                     // Header Row 0
+            117, // 70 + 37 + 10,           // Header Row 1
+            164, // 70 + (37 + 10) * 2,     // Header Row 2
+            // First smaller rows
+            211, // 70 + (37 + 10) * 3,     // Row 3
+            258, // 70 + (37 + 10) * 4,     // Row 4
+            305, // 70 + (37 + 10) * 5,     // Row 5
+            352, // 70 + (37 + 10) * 6,     // Row 6
+            399, // 70 + (37 + 10) * 7,     // Row 7
+            446, // 70 + (37 + 10) * 8,                      // Row 8
+            493, // 70 + (37 + 10) * 9,                      // Row 9
+            // Larger rows (Catalyst renders at 50pt height)
+            540, // 70 + (37 + 10) * 10,                     // Row 10
+            600, // 70 + (37 + 10) * 10 + (50 + 10) * 1,     // Row 11
+            660, // 70 + (37 + 10) * 10 + (50 + 10) * 2,     // Row 12
+            720, // 70 + (37 + 10) * 10 + (50 + 10) * 3,     // Row 13
+            // Page 2
+            // Headers
+            70, // 70,                     // Header Row 0
+            117, // 70 + 37 + 10,           // Header Row 1
+            164, // 70 + (37 + 10) * 2,     // Header Row 2
+            211, // 70 + (37 + 10) * 3,         // Row 14
+            271, // 70 + (37 + 10) * 3 + (50 + 10) * 1,     // Row 15
+            331, // 70 + (37 + 10) * 3 + (50 + 10) * 2,     // Row 16
+            391, // 70 + (37 + 10) * 3 + (50 + 10) * 3,     // Row 17
+            451, // 70 + (37 + 10) * 3 + (50 + 10) * 4,     // Row 18
+            511, // 70 + (37 + 10) * 3 + (50 + 10) * 5,     // Row 19
+        ]
+        let rowHeights: [CGFloat] = [
+            // Page 1
+            // Headers
+            37, // Header Row 0
+            37, // Header Row 1
+            37, // Header Row 2
+            // First smaller rows
+            37, // Row 3
+            37, // Row 4
+            37, // Row 5
+            37, // Row 6
+            37, // Row 7
+            37, // Row 8
+            37, // Row 9
+            // Larger rows (Catalyst renders at 50pt height)
+            50, // Row 10
+            50, // Row 11
+            50, // Row 12
+            50, // Row 13
+            // Page 2
+            // Headers
+            37, // Header Row 0
+            37, // Header Row 1
+            37, // Header Row 2
+            50, // Row 14
+            50, // Row 15
+            50, // Row 16
+            50, // Row 17
+            50, // Row 18
+            50, // Row 19
+        ]
+        #else
         let rowYPositions: [CGFloat] = [
             // Page 1
             // Headers
@@ -202,6 +323,7 @@ class PDFTableObjectSpec: XCTestCase {
             48, // Row 18
             48, // Row 19
         ]
+        #endif
 
         for rowIdx in 0..<14 {
             for colIdx in 0..<columnXPositions.count {
