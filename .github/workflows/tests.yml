@@ -13,93 +13,40 @@ concurrency:
 
 jobs:
   unit-tests:
-    name: Unit Tests (${{ matrix.build.sdk }})
-    runs-on: ${{ matrix.build.runs-on }}
+    name: Unit Tests (${{ matrix.build.name }})
+    runs-on: macos-26
     timeout-minutes: 30
     strategy:
       matrix:
         build:
-          - sdk: "iphonesimulator"
-            destination: "platform=iOS Simulator,OS=18.1,name=iPhone 16 Pro"
-            action: "test"
-            runs-on: "macos-15"
-          - sdk: "xros"
-            destination: "platform=visionOS Simulator,OS=2.1,name=Apple Vision Pro"
-            action: "build"
-            runs-on: "macos-15"
+          - name: iOS
+            action: test-ios
+            logfiles: raw-*-ios.log
+          - name: macOS
+            action: test-macos
+            logfiles: raw-*-macos.log
+          - name: Mac Catalyst
+            action: test-maccatalyst
+            logfiles: raw-*-maccatalyst.log
+          - name: tvOS
+            action: test-tvos
+            logfiles: raw-*-tvos.log
+          - name: watchOS
+            action: test-watchos
+            logfiles: raw-*-watchos.log
+          - name: visionOS
+            action: test-visionos
+            logfiles: raw-*-visionos.log
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v5
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: latest-stable
-      - name: Check environment
-        run: |
-          set -ex
-          xcodebuild -version
-          swift --version
-          xcrun simctl list
-      - name: Enable development dependencies
-        run: |
-          sed -i.bak "s/\/\/dev//g" Package.swift
+
       - name: Run Tests
-        run: |
-          set -o pipefail && \
-          env NSUnbufferedIO=YES \
-          xcodebuild -workspace . \
-            -scheme "TPPDF" \
-            -sdk "${{ matrix.build.sdk }}" \
-            -destination "${{ matrix.build.destination }}" \
-            -configuration Debug \
-            ${{ matrix.build.action == 'test' && '-enableCodeCoverage YES' || '' }} \
-            -derivedDataPath /tmp/DerivedData \
-            -resultBundlePath test_output \
-            CODE_SIGNING_ALLOWED="NO" \
-            ${{ matrix.build.action }} 2>&1 | tee test.log | xcbeautify
+        run: make ${{ matrix.build.action }} DESTINATION="${{ matrix.build.destination }}"
+
       - name: Upload test log file on error
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: test.log
-          path: test.log
-      - name: Generate code coverage reports
-        if: matrix.build.action == 'test'
-        run: |
-          PROFDATA_PATH=$(find /tmp/DerivedData -name "*.profdata")
-          echo "Detected profdata at path: $PROFDATA_PATH"
-          xcrun llvm-cov export \
-            /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFTests.xctest/TPPDFTests \
-            --instr-profile $PROFDATA_PATH \
-            --format="lcov" > unit-tests.coverage.lcov
-          xcrun llvm-cov export \
-            /tmp/DerivedData/Build/Products/Debug-iphonesimulator/TPPDFIntegrationTests.xctest/TPPDFIntegrationTests \
-            --instr-profile $PROFDATA_PATH \
-            --format="lcov" > integration-tests.coverage.lcov
-
-  macos-unit-tests:
-    name: Unit Tests (macos)
-    runs-on: macos-15
-    timeout-minutes: 30
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v5
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: latest-stable
-      - name: Check environment
-        run: |
-          set -ex
-          xcodebuild -version
-          swift --version
-          xcrun simctl list
-      - name: Enable development dependencies
-        run: |
-          sed -i.bak "s/\/\/dev//g" Package.swift
-      - name: Run tests
-        run: swift test --parallel --enable-code-coverage
-      - name: Generate code coverage reports
-        run: |
-          xcrun llvm-cov export \
-            .build/debug/TPPDFPackageTests.xctest/Contents/MacOS/TPPDFPackageTests \
-            --instr-profile .build/debug/codecov/default.profdata \
-            --format="lcov" > coverage.lcov
+          name: Test Logs - ${{ matrix.build.name }}
+          path: ${{ matrix.build.logfiles }}
