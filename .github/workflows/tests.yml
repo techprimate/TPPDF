@@ -51,7 +51,7 @@ jobs:
         run: make ${{ matrix.build.action }}
 
       - name: Upload test log file on error
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: failure()
         with:
           name: Test Logs - ${{ matrix.build.name }}
