@@ -43,7 +43,12 @@ fi
 
 check_runtime_loaded() {
     echo "Checking if runtime $PLATFORM ($OS_VERSION) is loaded..."
-    if xcrun simctl list runtimes -v | grep -qE "$PLATFORM $OS_VERSION" && ! xcrun simctl list runtimes -v | grep -qE "$PLATFORM $OS_VERSION.*unavailable" ; then
+    RUNTIMES=$(xcrun simctl list runtimes -v)
+
+    echo "Available runtimes:"
+    echo "$RUNTIMES"
+
+    if echo "$RUNTIMES" | grep -qE "$PLATFORM $OS_VERSION" && ! echo "$RUNTIMES" | grep -qE "$PLATFORM $OS_VERSION.*unavailable" ; then
         echo "Runtime $OS_VERSION is loaded"
         exit 0
     fi

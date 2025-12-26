@@ -24,7 +24,6 @@ jobs:
           - name: iOS
             action: test-ios
             logfiles: raw-*-ios.log
-            platform: ios
           - name: macOS
             action: test-macos
             logfiles: raw-*-macos.log
@@ -34,15 +33,15 @@ jobs:
           - name: tvOS
             action: test-tvos
             logfiles: raw-*-tvos.log
-            platform: tvos
+            platform: tvOS
           - name: watchOS
             action: test-watchos
             logfiles: raw-*-watchos.log
-            platform: watchos
+            platform: watchOS
           - name: visionOS
             action: test-visionos
             logfiles: raw-*-visionos.log
-            platform: visionos
+            platform: visionOS
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v6
