@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PDFDocument Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/PDFDocument" class="dashAnchor"></a>
+
+    <a title="PDFDocument Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          TPPDF (refs/tags/3.0.0-alpha.1)
+        </a>
+         (100% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/techprimate/TPPDF">
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Ftechprimate.github.io%2FTPPDF%2Fdocsets%2FTPPDF.xml">
+            <img class="header-icon" src="../img/dash.png" alt="Dash"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">TPPDF</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Classes.html">Classes</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      PDFDocument Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFAttributedText.html">PDFAttributedText</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFBezierPath.html">PDFBezierPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFBezierPathVertex.html">PDFBezierPathVertex</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFBezierPathVertex/Anchor.html">– Anchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFContext.html">PDFContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFDocument.html">PDFDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFDocumentObject.html">PDFDocumentObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFDynamicGeometryShape.html">PDFDynamicGeometryShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFExternalDocument.html">PDFExternalDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFGenerator.html">PDFGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFGroup.html">PDFGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFImage.html">PDFImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFInfo.html">PDFInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFList.html">PDFList</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFListItem.html">PDFListItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFMasterGroup.html">PDFMasterGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFMultiDocumentGenerator.html">PDFMultiDocumentGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFRenderObject.html">PDFRenderObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFSection.html">PDFSection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFSectionColumn.html">PDFSectionColumn</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFSimpleText.html">PDFSimpleText</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTable.html">PDFTable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableCell.html">PDFTableCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableColumn.html">PDFTableColumn</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableColumns.html">PDFTableColumns</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableContent.html">PDFTableContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableContent/ContentType.html">– ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableOfContent.html">PDFTableOfContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableRow.html">PDFTableRow</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableRows.html">PDFTableRows</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableSection.html">PDFTableSection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTableStyle.html">PDFTableStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFText.html">PDFText</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PDFTextStyle.html">PDFTextStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFConstants.html">PDFConstants</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFContainer.html">PDFContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFGroupContainer.html">PDFGroupContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFImageSizeFit.html">PDFImageSizeFit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFLineType.html">PDFLineType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFListItemSymbol.html">PDFListItemSymbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFObjectAttribute.html">PDFObjectAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFPageFormat.html">PDFPageFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFPaginationStyle.html">PDFPaginationStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFSectionColumnContainer.html">PDFSectionColumnContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFTableCellAlignment.html">PDFTableCellAlignment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PDFTableStyleDefaults.html">PDFTableStyleDefaults</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CGPoint.html">CGPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CustomDebugStringConvertible.html">CustomDebugStringConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CustomStringConvertible.html">CustomStringConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Float.html">Float</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Image.html">Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/NSAttributedString.html">NSAttributedString</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/NSEdgeInsets.html">NSEdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFAttributableObject.html">PDFAttributableObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFCopy.html">PDFCopy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFGeneratorImageDelegate.html">PDFGeneratorImageDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFGeneratorProtocol.html">PDFGeneratorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFTableContentable.html">PDFTableContentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFTableMergable.html">PDFTableMergable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PDFTaggableObject.html">PDFTaggableObject</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFDocumentBackground.html">PDFDocumentBackground</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFImageOptions.html">PDFImageOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFLineStyle.html">PDFLineStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFPageLayout.html">PDFPageLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFPagination.html">PDFPagination</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFTableCellBorders.html">PDFTableCellBorders</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFTableCellPosition.html">PDFTableCellPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PDFTableCellStyle.html">PDFTableCellStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/RectCorner.html">RectCorner</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Stack.html">Stack</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/BezierPath.html">BezierPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/BezierPath.html">BezierPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/Color.html">Color</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/Color.html">Color</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/EdgeInsets.html">EdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/EdgeInsets.html">EdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/Font.html">Font</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/Font.html">Font</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/Image.html">Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/Image.html">Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/PDFGeneratorDelegate.html">PDFGeneratorDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/PDFLocatedRenderObject.html">PDFLocatedRenderObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/PDFPaginationClosure.html">PDFPaginationClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/Point.html">Point</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/Point.html">Point</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/RectCorner.html">RectCorner</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>PDFDocument</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PDFDocument</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                </div>
+              </div>
+            <p>This object holds the information about the document and also all PDF objects.</p>
+
+<p>This is the main structure to create new documents. It is the base for the <code><a href="../Classes/PDFGenerator.html">PDFGenerator</a></code> to generate the PDF output</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/PUBLIC%20VARS"></a>
+                <a name="//apple_ref/swift/Section/PUBLIC VARS" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/PUBLIC%20VARS"></a>
+                  <h3 class="section-name"><span>PUBLIC VARS</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC6layoutAA13PDFPageLayoutVvp"></a>
+                    <a name="//apple_ref/swift/Property/layout" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC6layoutAA13PDFPageLayoutVvp">layout</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Holds all layout information</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">layout</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFPageLayout.html">PDFPageLayout</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC4infoAA7PDFInfoCvp"></a>
+                    <a name="//apple_ref/swift/Property/info" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC4infoAA7PDFInfoCvp">info</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Holds all document information</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">info</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFInfo.html">PDFInfo</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC10paginationAA13PDFPaginationVvp"></a>
+                    <a name="//apple_ref/swift/Property/pagination" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC10paginationAA13PDFPaginationVvp">pagination</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Holds all pagination information</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">pagination</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFPagination.html">PDFPagination</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC6stylesSayAA12PDFTextStyleCGvp"></a>
+                    <a name="//apple_ref/swift/Property/styles" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC6stylesSayAA12PDFTextStyleCGvp">styles</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Holds strong references to all text styles</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">styles</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/PDFTextStyle.html">PDFTextStyle</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC10backgroundAA0B10BackgroundVvp"></a>
+                    <a name="//apple_ref/swift/Property/background" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC10backgroundAA0B10BackgroundVvp">background</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Configuration for document/paper background</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">background</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFDocumentBackground.html">PDFDocumentBackground</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/PUBLIC%20INITIALIZERS"></a>
+                <a name="//apple_ref/swift/Section/PUBLIC INITIALIZERS" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/PUBLIC%20INITIALIZERS"></a>
+                  <h3 class="section-name"><span>PUBLIC INITIALIZERS</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC6layoutAcA13PDFPageLayoutV_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(layout:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC6layoutAcA13PDFPageLayoutV_tcfc">init(layout:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new document with the given <code><a href="../Classes/PDFDocument.html#/s:5TPPDF11PDFDocumentC6layoutAA13PDFPageLayoutVvp">layout</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">layout</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFPageLayout.html">PDFPageLayout</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>layout</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Layout information for document</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC6formatAcA13PDFPageFormatO_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(format:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC6formatAcA13PDFPageFormatO_tcfc">init(format:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new document with a predefined <code><a href="../Enums/PDFPageFormat.html">PDFPageFormat</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFPageFormat.html">PDFPageFormat</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>layout</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Predefined page formats</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Layout"></a>
+                <a name="//apple_ref/swift/Section/Layout" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Layout"></a>
+                  <h3 class="section-name"><span>Layout</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add_5spaceyAA12PDFContainerO_14CoreFoundation7CGFloatVtF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:space:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add_5spaceyAA12PDFContainerO_14CoreFoundation7CGFloatVtF">add(_:<wbr>space:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a empty space in the given container, between the previous and the next element</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">space</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the space will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>space</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Space distance in points</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Lines"></a>
+                <a name="//apple_ref/swift/Section/Lines" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Lines"></a>
+                  <h3 class="section-name"><span>Lines</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC16addLineSeparator_5styleyAA12PDFContainerO_AA12PDFLineStyleVtF"></a>
+                    <a name="//apple_ref/swift/Method/addLineSeparator(_:style:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC16addLineSeparator_5styleyAA12PDFContainerO_AA12PDFLineStyleVtF">addLineSeparator(_:<wbr>style:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a horizontal line spearator to the given container. The line starts at the left indentation and ends at the right indentation.
+ Customize by adjusting parameter <code>style</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addLineSeparator</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">style</span><span class="p">:</span> <span class="kt"><a href="../Structs/PDFLineStyle.html">PDFLineStyle</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the space will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>style</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Style of line</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Image"></a>
+                <a name="//apple_ref/swift/Section/Image" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Image"></a>
+                  <h3 class="section-name"><span>Image</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add_5imageyAA12PDFContainerO_AA8PDFImageCtF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:image:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add_5imageyAA12PDFContainerO_AA8PDFImageCtF">add(_:<wbr>image:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds an image to the given container.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFImage.html">PDFImage</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the space will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>image</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Image object</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add_11imagesInRow7spacingyAA12PDFContainerO_SayAA8PDFImageCG14CoreFoundation7CGFloatVtF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:imagesInRow:spacing:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add_11imagesInRow7spacingyAA12PDFContainerO_SayAA8PDFImageCG14CoreFoundation7CGFloatVtF">add(_:<wbr>imagesInRow:<wbr>spacing:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds an image row to the given container.
+ This image row will fill the full available width between left indentation and right indentation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="n">imagesInRow</span> <span class="nv">images</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/PDFImage.html">PDFImage</a></span><span class="p">],</span> <span class="nv">spacing</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the space will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>images</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of images, from left to right</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>spacing</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Horizontal distance between images</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Text"></a>
+                <a name="//apple_ref/swift/Section/Text" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Text"></a>
+                  <h3 class="section-name"><span>Text</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add_4text11lineSpacingyAA12PDFContainerO_SS14CoreFoundation7CGFloatVtF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:text:lineSpacing:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add_4text11lineSpacingyAA12PDFContainerO_SS14CoreFoundation7CGFloatVtF">add(_:<wbr>text:<wbr>lineSpacing:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Shorthand public function to add a String text to the given container</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">lineSpacing</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the space will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>images</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of images, from left to right</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>spacing</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Horizontal distance between images</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add_10textObjectyAA12PDFContainerO_AA13PDFSimpleTextCtF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:textObject:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add_10textObjectyAA12PDFContainerO_AA13PDFSimpleTextCtF">add(_:<wbr>textObject:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds an text object to the given container</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">textObject</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFSimpleText.html">PDFSimpleText</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the space will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>textObject</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Simple text object</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add_14attributedTextyAA12PDFContainerO_So18NSAttributedStringCtF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:attributedText:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add_14attributedTextyAA12PDFContainerO_So18NSAttributedStringCtF">add(_:<wbr>attributedText:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Shorthand public function to add a attributed String text to the given container</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">attributedText</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the space will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>text</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An attributed string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add_20attributedTextObjectyAA12PDFContainerO_AA013PDFAttributedE0CtF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:attributedTextObject:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add_20attributedTextObjectyAA12PDFContainerO_AA013PDFAttributedE0CtF">add(_:<wbr>attributedTextObject:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds an attributed text object to the given container</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">attributedTextObject</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFAttributedText.html">PDFAttributedText</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the space will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>textObject</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Attributed text object</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3set_4fontyAA12PDFContainerO_So6UIFontCtF"></a>
+                    <a name="//apple_ref/swift/Method/set(_:font:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3set_4fontyAA12PDFContainerO_So6UIFontCtF">set(_:<wbr>font:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set font in given container. This text color will be used when adding a <code><a href="../Classes/PDFSimpleText.html">PDFSimpleText</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">font</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/Font.html">Font</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the font will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>font</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Font of text</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC9resetFontyyAA12PDFContainerOF"></a>
+                    <a name="//apple_ref/swift/Method/resetFont(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC9resetFontyyAA12PDFContainerOF">resetFont(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reset text color in given container to default.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resetFont</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container whose text color will be reset</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3set_9textColoryAA12PDFContainerO_So7UIColorCtF"></a>
+                    <a name="//apple_ref/swift/Method/set(_:textColor:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3set_9textColoryAA12PDFContainerO_So7UIColorCtF">set(_:<wbr>textColor:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set text color in given container. This text color will be used when adding a <code><a href="../Classes/PDFSimpleText.html">PDFSimpleText</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">textColor</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/Color.html">Color</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the text color will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>color</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Color of the text</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC14resetTextColoryyAA12PDFContainerOF"></a>
+                    <a name="//apple_ref/swift/Method/resetTextColor(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC14resetTextColoryyAA12PDFContainerOF">resetTextColor(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reset text color in given container to default.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resetTextColor</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container whose text color will be reset</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Table"></a>
+                <a name="//apple_ref/swift/Section/Table" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Table"></a>
+                  <h3 class="section-name"><span>Table</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add_5tableyAA12PDFContainerO_AA8PDFTableCtF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:table:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add_5tableyAA12PDFContainerO_AA8PDFTableCtF">add(_:<wbr>table:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a table object to the document in the defined container</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">table</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFTable.html">PDFTable</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the table color will be added</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>color</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Table to add to document</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/List"></a>
+                <a name="//apple_ref/swift/Section/List" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/List"></a>
+                  <h3 class="section-name"><span>List</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add_4listyAA12PDFContainerO_AA7PDFListCtF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:list:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add_4listyAA12PDFContainerO_AA7PDFListCtF">add(_:<wbr>list:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a list object to the document in the defined container</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">list</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFList.html">PDFList</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the text color will be set</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>color</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Color of the text</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Section"></a>
+                <a name="//apple_ref/swift/Section/Section" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Section"></a>
+                  <h3 class="section-name"><span>Section</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add7sectionyAA10PDFSectionC_tF"></a>
+                    <a name="//apple_ref/swift/Method/add(section:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add7sectionyAA10PDFSectionC_tF">add(section:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a section object to the document</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nv">section</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFSection.html">PDFSection</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>section</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Section</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Layout2"></a>
+                <a name="//apple_ref/swift/Section/Layout" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Layout2"></a>
+                  <h3 class="section-name"><span>Layout</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3set_6indent4leftyAA12PDFContainerO_14CoreFoundation7CGFloatVSbtF"></a>
+                    <a name="//apple_ref/swift/Method/set(_:indent:left:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3set_6indent4leftyAA12PDFContainerO_14CoreFoundation7CGFloatVSbtF">set(_:<wbr>indent:<wbr>left:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Change the indentation in a container, use the parameter <code>left</code> to define from which side.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">indent</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container whose indentation should be changed</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Points from the side</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>left</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If <code>true</code> then the left side indentation is set, else the right indentation is set</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3set_14absoluteOffsetyAA12PDFContainerO_14CoreFoundation7CGFloatVtF"></a>
+                    <a name="//apple_ref/swift/Method/set(_:absoluteOffset:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3set_14absoluteOffsetyAA12PDFContainerO_14CoreFoundation7CGFloatVtF">set(_:<wbr>absoluteOffset:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Change the absolute top offset in a container</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">absoluteOffset</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container whose current absoilute offset should be changed</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>absoluteOffset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Points from the top</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC13createNewPageyyF"></a>
+                    <a name="//apple_ref/swift/Method/createNewPage()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC13createNewPageyyF">createNewPage()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new page by adding a page break object</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">createNewPage</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add5styleAA12PDFTextStyleCAG_tF"></a>
+                    <a name="//apple_ref/swift/Method/add(style:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add5styleAA12PDFTextStyleCAG_tF">add(style:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a new style to the list of known styles</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nv">style</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFTextStyle.html">PDFTextStyle</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFTextStyle.html">PDFTextStyle</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>style</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Definition of the text style</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add14tableOfContentyAA08PDFTableeF0C_tF"></a>
+                    <a name="//apple_ref/swift/Method/add(tableOfContent:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add14tableOfContentyAA08PDFTableeF0C_tF">add(tableOfContent:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a table of content</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nv">tableOfContent</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFTableOfContent.html">PDFTableOfContent</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableOfContent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Options of the table of content</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Column%20Wrapping"></a>
+                <a name="//apple_ref/swift/Section/Column Wrapping" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Column%20Wrapping"></a>
+                  <h3 class="section-name"><span>Column Wrapping</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC6enable_7columns6widths8spacingsyAA12PDFContainerO_SiSay14CoreFoundation7CGFloatVGAMtF"></a>
+                    <a name="//apple_ref/swift/Method/enable(_:columns:widths:spacings:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC6enable_7columns6widths8spacingsyAA12PDFContainerO_SiSay14CoreFoundation7CGFloatVGAMtF">enable(_:<wbr>columns:<wbr>widths:<wbr>spacings:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Starts a column section with automatic wrapping</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">enable</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">widths</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">],</span> <span class="nv">spacings</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC14disableColumns_12addPageBreakyAA12PDFContainerO_SbtF"></a>
+                    <a name="//apple_ref/swift/Method/disableColumns(_:addPageBreak:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC14disableColumns_12addPageBreakyAA12PDFContainerO_SbtF">disableColumns(_:<wbr>addPageBreak:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Finishes a column section</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">disableColumns</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">addPageBreak</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add_5groupyAA12PDFContainerO_AA8PDFGroupCtF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:group:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add_5groupyAA12PDFContainerO_AA8PDFGroupCtF">add(_:<wbr>group:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a group</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/PDFContainer.html">PDFContainer</a></span><span class="o">.</span><span class="n">contentLeft</span><span class="p">,</span> <span class="nv">group</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFGroup.html">PDFGroup</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Container where the group will be added</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>group</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Instance of <code><a href="../Classes/PDFGroup.html">PDFGroup</a></code> to add</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3set6masteryAA14PDFMasterGroupC_tF"></a>
+                    <a name="//apple_ref/swift/Method/set(master:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3set6masteryAA14PDFMasterGroupC_tF">set(master:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces current master group with the given one.</p>
+
+<p>See <code>PDFDocument/masterGroup</code> for details.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="n">master</span> <span class="nv">group</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFMasterGroup.html">PDFMasterGroup</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>master</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Instance of <code><a href="../Classes/PDFMasterGroup.html">PDFMasterGroup</a></code>,</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5TPPDF11PDFDocumentC3add16externalDocumentyAA011PDFExternalE0C_tF"></a>
+                    <a name="//apple_ref/swift/Method/add(externalDocument:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5TPPDF11PDFDocumentC3add16externalDocumentyAA011PDFExternalE0C_tF">add(externalDocument:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds an external document to the document</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">externalDocument</span> <span class="nv">doc</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFExternalDocument.html">PDFExternalDocument</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>doc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Instance of <code><a href="../Classes/PDFExternalDocument.html">PDFExternalDocument</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2016-2025 <a class="link" href="https://techprimate.com" target="_blank" rel="external noopener">techprimate GmbH</a>. All rights reserved.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>
