@@ -18,6 +18,25 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v5
 
+      - name: Determine Tag
+        id: tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "value=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "value=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check if Pre-release
+        id: prerelease
+        run: |
+          TAG="${{ steps.tag.outputs.value }}"
+          if [[ "$TAG" =~ -(alpha|beta|rc)\. ]]; then
+            echo "value=true" >> $GITHUB_OUTPUT
+          else
+            echo "value=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Install Dependencies
         run: make install-ci
 
@@ -27,10 +46,10 @@ jobs:
       - name: Create GitHub Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
-          automatic_release_tag: ${{ github.event.inputs.tag }}
-          title: ${{ github.event.inputs.tag }}
+          automatic_release_tag: ${{ steps.tag.outputs.value }}
+          title: ${{ steps.tag.outputs.value }}
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
+          prerelease: ${{ steps.prerelease.outputs.value }}
           files: |
             archives/TPPDF.zip
             archives/TPPDF.sha256
