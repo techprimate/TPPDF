@@ -52,7 +52,7 @@ jobs:
 
       - name: Ensuring required simulator runtimes are loaded
         if: matrix.build.platform != null
-        run: scripts/ci-ensure-runtime-loaded.sh --os-version 26.2 --platform ${{ matrix.build.platform }}
+        run: scripts/ensure-runtime-loaded.sh --os-version 26.2 --platform ${{ matrix.build.platform }}
 
       - name: Run Tests
         run: make ${{ matrix.build.action }}
