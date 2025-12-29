@@ -27,11 +27,7 @@ jobs:
           sed  -i.bak "s/title:\(.*\)/title:\1 ($ESCAPED_REF_NAME)/g" .jazzy.yaml
 
       - name: Generate Documentation with Jazzy
-        run: |
-          SDK_PATH=`xcrun --sdk iphonesimulator --show-sdk-path`
-          SDK_VERSION=`xcrun --sdk iphonesimulator --show-sdk-version`
-          bundle exec jazzy \
-            --build-tool-arguments "--sdk,${SDK_PATH},-Xswiftc,-sdk,-Xswiftc,$SDK_PATH,-Xswiftc,-target,-Xswiftc,arm64-apple-ios${SDK_VERSION}-simulator"
+        run: make docs
 
       - name: Fix Invalid URLs
         run: |
