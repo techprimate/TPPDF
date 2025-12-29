@@ -18,7 +18,7 @@
  * )
  * ```
  */
-public struct PDFImageOptions: OptionSet, Hashable {
+public struct PDFImageOptions: OptionSet, Hashable, Sendable {
     /// nodoc
     public let rawValue: Int
 

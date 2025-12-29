@@ -11,7 +11,7 @@ on:
 jobs:
   deploy_docs:
     name: Generate Documentation
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v6

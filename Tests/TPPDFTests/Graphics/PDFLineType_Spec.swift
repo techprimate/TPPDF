@@ -15,7 +15,7 @@ class PDFLineType_Spec: QuickSpec {
         describe("PDFLineType") {}
     }
 
-    static var allTests = [
+    static let allTests = [
         ("spec", spec),
     ]
 }
