@@ -2,7 +2,8 @@
 //  PDFList_Spec.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 13/06/2017.
+//  Created by Philip Niedertscheider on 06.13.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Nimble
@@ -10,6 +11,7 @@ import Quick
 @testable import TPPDF
 
 class ListSpec: QuickSpec {
+    // swiftlint:disable closure_body_length function_body_length
     override func spec() {
         describe("PDFList") {
             let list = PDFList(indentations: [(pre: 0.0, past: 10.0), (pre: 10.0, past: 10.0), (pre: 20.0, past: 10.0)])
@@ -115,4 +117,5 @@ class ListSpec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length function_body_length
 }

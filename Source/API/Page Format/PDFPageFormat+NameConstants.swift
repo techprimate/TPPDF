@@ -1,3 +1,11 @@
+//
+//  PDFPageFormat+NameConstants.swift
+//  TPPDF
+//
+//  Created by Philip Niedertscheider on 25.06.2022.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
+//
+
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import UIKit
 #else

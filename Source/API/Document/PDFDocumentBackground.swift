@@ -1,3 +1,11 @@
+//
+//  PDFDocumentBackground.swift
+//  TPPDF
+//
+//  Created by Philip Niedertscheider on 25.08.2021.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
+//
+
 /// Document background configuration
 public struct PDFDocumentBackground {
     /**

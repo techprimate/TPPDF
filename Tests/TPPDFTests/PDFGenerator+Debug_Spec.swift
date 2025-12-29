@@ -1,8 +1,8 @@
 //
 //  PDFGenerator+Debug_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 23.11.17.
+//  Created by Philip Niedertscheider on 23.11.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -43,7 +43,8 @@ class PDFGenerator_Debug_Spec: QuickSpec {
 //                                let expected = Color.clear.hex
 //                                let result = pixel.hex
 //                                // TODO: add pixel testing
-                ////                                expect(result).to(equal(expected), description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
+// swiftlint:disable:next line_length
+//                                expect(result).to(equal(expected), description: "Pixel at <\(x), \(y)> is expected to equal <\(expected)>, got <\(result)>")
 //
 //                                // Early exit to only fail at first error!
 //                                if result != expected {

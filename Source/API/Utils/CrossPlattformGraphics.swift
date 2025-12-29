@@ -1,10 +1,12 @@
 //
 //  CrossPlattformGraphics.swift
+//  TPPDF
 //
-//  This file contains convenience types to support cross-plattform usage on iOS and macOS
+//  Created by Philip Niedertscheider on 19.05.2020.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
-//  Created by Philip Niedertscheider on 19.05.20.
-//
+
+/// This file contains convenience types to support cross-plattform usage on iOS and macOS
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import UIKit

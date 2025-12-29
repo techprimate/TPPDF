@@ -1,8 +1,8 @@
 //
 //  PDFPaginationStyle+Equatable_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 27.12.17.
+//  Created by Philip Niedertscheider on 27.12.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import Quick
 @testable import TPPDF
 
 class PDFPaginationStyle_Equatable_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length function_body_length
     override func spec() {
         describe("PDFPaginationStyle") {
             context("Equatable") {
@@ -77,9 +78,10 @@ class PDFPaginationStyle_Equatable_Spec: QuickSpec {
                         ""
                     }
                     expect(pagination) != pagination
-                    expect(pagination.format(page: 1, total: 2)) == ""
+                    expect(pagination.format(page: 1, total: 2)) == "" // swiftlint:disable:this empty_string
                 }
             }
         }
     }
+    // swiftlint:enable closure_body_length function_body_length
 }

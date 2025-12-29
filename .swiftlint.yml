@@ -31,6 +31,15 @@ opt_in_rules:
   - static_operator
 analyzer_rules:
   - explicit_self
+file_header:
+  required_pattern: |
+    \/\/
+    \/\/  .*?\.swift
+    \/\/  TPPDF
+    \/\/
+    \/\/  (Created by .*? on \d{2}\.\d{2}\.\d{4}\.)
+    \/\/  Copyright © \d{4}-\d{4} techprimate GmbH. All rights reserved\.
+    \/\/
 file_length:
   error: 1200
   warning: 500
@@ -47,7 +56,10 @@ identifier_name:
     error: 2
     warning: 2
 included:
+  - Example*
+  - Shared*
   - Source
+  - Tests
 line_length: 150
 reporter: xcode
 type_body_length:
@@ -58,3 +70,5 @@ type_name:
     error: 60
     warning: 50
   min_length: 2
+  allowed_symbols:
+    - _

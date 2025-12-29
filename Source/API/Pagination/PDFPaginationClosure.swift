@@ -2,7 +2,8 @@
 //  PDFPaginationClosure.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 04/11/2017.
+//  Created by Philip Niedertscheider on 11.04.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 /**

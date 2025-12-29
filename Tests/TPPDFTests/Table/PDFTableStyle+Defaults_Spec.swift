@@ -1,8 +1,8 @@
 //
 //  PDFTableStyle+Defaults_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 13/11/2017.
+//  Created by Philip Niedertscheider on 11.13.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -11,6 +11,7 @@ import Quick
 @testable import TPPDF
 
 class PDFTableStyle_Defaults_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length
     override func spec() {
         describe("PDFTableStyle") {
             context("Defaults") {
@@ -61,4 +62,5 @@ class PDFTableStyle_Defaults_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length
 }

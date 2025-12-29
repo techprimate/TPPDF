@@ -1,14 +1,14 @@
 //
 //  TimeUtils.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 18.12.19.
+//  Created by Philip Niedertscheider on 18.12.2019.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Foundation
 
-class TimeUtils {
+enum TimeUtils {
     /**
      Used for debugging execution time.
      Converts time interval in seconds to String.

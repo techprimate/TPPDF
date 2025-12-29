@@ -1,8 +1,8 @@
 //
 //  PDFTextColorObject_Spec.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 05.12.17.
+//  Created by Philip Niedertscheider on 05.12.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 

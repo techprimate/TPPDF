@@ -2,7 +2,8 @@
 //  PDFTableStyle+Defaults.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 19/01/2017.
+//  Created by Philip Niedertscheider on 01.19.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)

@@ -2,7 +2,8 @@
 //  PDFListObject.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 12/08/2017.
+//  Created by Philip Niedertscheider on 08.12.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 class PDFListObject: PDFRenderObject {

@@ -1,8 +1,8 @@
 //
 //  PDFLayout_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 14/11/2017.
+//  Created by Philip Niedertscheider on 11.14.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import Quick
 @testable import TPPDF
 
 class PDFLayout_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length function_body_length
     override func spec() {
         describe("PDFLayout") {
             var layout: PDFLayout!
@@ -63,7 +64,7 @@ class PDFLayout_Spec: QuickSpec {
 
             it("can set content offset in heights") {
                 expect(PDFContainer.all).to(allPass {
-                    let random = CGFloat(arc4random())
+                    let random = CGFloat.random(in: 0...10000)
                     layout.setContentOffset(in: $0!, to: random)
                     return layout.getContentOffset(in: $0!) == random
                 })
@@ -83,4 +84,5 @@ class PDFLayout_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length function_body_length
 }

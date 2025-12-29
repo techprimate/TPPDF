@@ -1,8 +1,8 @@
 //
 //  DocumentSettingsExampleFactory.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 22.05.19.
+//  Created by Philip Niedertscheider on 22.05.2019.
 //  Copyright © 2026-2025 techprimate GmbH. All rights reserved.
 //
 

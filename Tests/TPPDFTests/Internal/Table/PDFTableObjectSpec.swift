@@ -1,3 +1,11 @@
+//
+//  PDFTableObjectSpec.swift
+//  TPPDF
+//
+//  Created by Philip Niedertscheider on 05.12.2020.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
+//
+
 import CoreGraphics
 import Foundation
 import Nimble
@@ -12,7 +20,7 @@ class PDFTableObjectSpec: XCTestCase {
     /// - Multiple pages
     /// - No cell splicing
     /// - No column headers on every page
-    func testCells_unmergedCellsMultiplePagesNoSplicingTableNoHeadersEveryPage_shouldNotAddHeadersToEveryPage() throws {
+    func testCells_unmergedCellsMultiplePagesNoSplicingTableNoHeadersEveryPage_shouldNotAddHeadersToEveryPage() throws { // swiftlint:disable:this function_body_length line_length
         let rows = 20
         let columns = 4
         let count = rows * columns
@@ -173,7 +181,7 @@ class PDFTableObjectSpec: XCTestCase {
     /// - Multiple pages
     /// - No cell splicing
     /// - Column headers on every page
-    func testCells_unmergedCellsMultiplePagesNoSplicingTableHeadersEveryPage_shouldDuplicateHeadersToEveryPage() throws {
+    func testCells_unmergedCellsMultiplePagesNoSplicingTableHeadersEveryPage_shouldDuplicateHeadersToEveryPage() throws { // swiftlint:disable:this function_body_length line_length
         let rows = 20
         let columns = 4
         let count = rows * columns

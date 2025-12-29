@@ -1,8 +1,8 @@
 //
 //  PDFSpaceObject_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 14/11/2017.
+//  Created by Philip Niedertscheider on 11.14.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import Quick
 @testable import TPPDF
 
 class PDFSpaceObject_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length
     override func spec() {
         describe("PDFSpaceObject") {
             var object: PDFSpaceObject!
@@ -56,4 +57,5 @@ class PDFSpaceObject_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length
 }

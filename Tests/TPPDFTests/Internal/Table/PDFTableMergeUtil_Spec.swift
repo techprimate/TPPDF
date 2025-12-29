@@ -1,8 +1,8 @@
 //
 //  PDFTableMergeUtil_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 22.12.19.
+//  Created by Philip Niedertscheider on 22.12.2019.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import Quick
 @testable import TPPDF
 
 class PDFTableMergeUtilSpec: QuickSpec {
+    // swiftlint:disable closure_body_length function_body_length
     override func spec() {
         describe("PDFTableMergeUtil") {
             let ROWS = 10
@@ -81,4 +82,5 @@ class PDFTableMergeUtilSpec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length function_body_length
 }

@@ -2,7 +2,8 @@
 //  PDFTableOfContentObject.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 28.05.19.
+//  Created by Philip Niedertscheider on 28.05.2019.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Foundation

@@ -1,8 +1,8 @@
 //
 //  Examples.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 05.05.20.
+//  Created by Philip Niedertscheider on 05.05.2020.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -46,6 +46,6 @@ enum Examples {
     }
 
     static var defaultFactory: Example {
-        return factories[1].examples[0]
+        factories[1].examples[0]
     }
 }

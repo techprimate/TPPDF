@@ -2,7 +2,8 @@
 //  PDFListItemSymbol.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 13/06/2017.
+//  Created by Philip Niedertscheider on 06.13.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 /// Symbol used by a list item in a ``PDFList``

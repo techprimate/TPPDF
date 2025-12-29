@@ -1,8 +1,8 @@
 //
 //  PDFTableValidator_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 16/11/2017.
+//  Created by Philip Niedertscheider on 11.16.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import Quick
 @testable import TPPDF
 
 class PDFTableValidator_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length function_body_length
     override func spec() {
         describe("PDFTableValidator") {
             let data = [
@@ -115,4 +116,5 @@ class PDFTableValidator_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length function_body_length
 }

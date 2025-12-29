@@ -1,16 +1,18 @@
 //
 //  PDFTable+Equatable_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 14/11/2017.
+//  Created by Philip Niedertscheider on 11.14.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Nimble
 import Quick
 @testable import TPPDF
+import XCTest
 
 class PDFTable_Equatable_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length
     override func spec() {
         describe("PDFTable") {
             context("Equatable") {
@@ -36,7 +38,7 @@ class PDFTable_Equatable_Spec: QuickSpec {
                     otherTable.cells = [[PDFTableCell(), PDFTableCell()]]
                     expect(table) != otherTable
 
-                    table.cells = [[PDFTableCell(content: try! PDFTableContent(content: "TEST")), PDFTableCell()]]
+                    table.cells = [[PDFTableCell(content: try XCTUnwrap(PDFTableContent(content: "TEST"))), PDFTableCell()]]
                     expect(table) != otherTable
                 }
 
@@ -66,4 +68,5 @@ class PDFTable_Equatable_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length
 }

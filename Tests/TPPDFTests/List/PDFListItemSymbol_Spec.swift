@@ -1,8 +1,8 @@
 //
 //  PDFListItemSymbol_Spec.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 05.12.17.
+//  Created by Philip Niedertscheider on 05.12.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -11,6 +11,7 @@ import Quick
 @testable import TPPDF
 
 class PDFListItemSymbol_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length
     override func spec() {
         describe("PDFListItemSymbol") {
             it("should have enum values") {
@@ -23,8 +24,8 @@ class PDFListItemSymbol_Spec: QuickSpec {
             }
 
             it("has a string value") {
-                expect(PDFListItemSymbol.none.stringValue) == ""
-                expect(PDFListItemSymbol.inherit.stringValue) == ""
+                expect(PDFListItemSymbol.none.stringValue) == "" // swiftlint:disable:this empty_string
+                expect(PDFListItemSymbol.inherit.stringValue) == "" // swiftlint:disable:this empty_string
                 expect(PDFListItemSymbol.dot.stringValue) == "\u{00B7}"
                 expect(PDFListItemSymbol.dash.stringValue) == "-"
                 expect(PDFListItemSymbol.custom(value: "%@").stringValue) == "%@"
@@ -62,4 +63,5 @@ class PDFListItemSymbol_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length
 }

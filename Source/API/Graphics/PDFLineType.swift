@@ -2,7 +2,8 @@
 //  PDFLineType.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 02/11/2017.
+//  Created by Philip Niedertscheider on 11.02.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 /// Different types of lines

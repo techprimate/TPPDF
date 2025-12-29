@@ -2,7 +2,8 @@
 //  PDFSectionColumnObject.swift
 //  TPPDF
 //
-//  Created by Marco Betschart on 05.05.18.
+//  Created by Marco Betschart on 05.05.2018.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 class PDFSectionColumnObject: PDFRenderObject {

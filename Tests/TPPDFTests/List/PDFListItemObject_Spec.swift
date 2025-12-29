@@ -1,8 +1,8 @@
 //
 //  PDFListItemObject_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 06.12.17.
+//  Created by Philip Niedertscheider on 06.12.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -12,7 +12,8 @@ import Nimble
 import Quick
 @testable import TPPDF
 
-class PDFListItemObject_Spec: QuickSpec {
+class PDFListItemObject_Spec: QuickSpec { // swiftlint:disable:this type_body_length
+    // swiftlint:disable closure_body_length function_body_length
     override func spec() {
         describe("PDFListObject") {
             let list = PDFList(indentations: [(pre: 10, past: 10), (pre: 20, past: 10)])
@@ -367,4 +368,5 @@ class PDFListItemObject_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length function_body_length
 }

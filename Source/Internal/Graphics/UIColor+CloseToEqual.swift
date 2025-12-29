@@ -2,7 +2,8 @@
 //  UIColor+CloseToEqual.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 16/11/2017.
+//  Created by Philip Niedertscheider on 11.16.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
