@@ -72,12 +72,12 @@
         }
     }
 
-    public struct RectCorner: OptionSet, Sendable {
+    public struct RectCorner: OptionSet {
         public static let topLeft: RectCorner = .init(rawValue: 1 << 0)
         public static let topRight: RectCorner = .init(rawValue: 1 << 1)
         public static let bottomLeft: RectCorner = .init(rawValue: 1 << 2)
         public static let bottomRight: RectCorner = .init(rawValue: 1 << 3)
-        public static let allCorners: RectCorner = .init(rawValue: 1 << 4 - 1)
+        public static let allCorners: RectCorner = .init(rawValue: (1 << 4) - 1)
 
         let value: Int
 
