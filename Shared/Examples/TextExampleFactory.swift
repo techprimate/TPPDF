@@ -47,7 +47,7 @@ class TextExampleFactory: ExampleFactory {
         document.set(font: Font.systemFont(ofSize: 13.0))
 
         // Add long simple text. This will automatically word wrap if content width is not enough.
-        document.add(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.")
+        document.add(text: "Generating a PDF file using TPPDF feels like a breeze. You can easily setup a document using many convenient commands, and the framework will calculate and render the PDF file at top speed. A small document with 2 pages can be generated in less than 100 milliseconds. A larger document with more complex content, like tables, is still computed in less than a second.") // swiftlint:disable:this line_length
         document.add(space: 10)
 
         document.add(text: "TPPDF includes many different features:")

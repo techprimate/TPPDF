@@ -308,7 +308,7 @@ format-yaml:
 # Runs SwiftLint and dprint checks without modifying files.
 .PHONY: lint
 lint:
-	swiftlint --config .swiftlint.yml --strict
+	swiftlint --config .swiftlint.yml --strict --quiet
 	dprint check "**/*.{md,json,yaml,yml}"
 
 # ============================================================================

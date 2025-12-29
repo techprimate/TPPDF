@@ -14,6 +14,7 @@ import TPPDF
 #endif
 
 class MultiSectionExampleFactory: ExampleFactory {
+    // swiftlint:disable line_length
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
@@ -55,4 +56,5 @@ class MultiSectionExampleFactory: ExampleFactory {
 
         return [document]
     }
+    // swiftlint:enable line_length
 }

@@ -56,6 +56,8 @@ identifier_name:
     error: 2
     warning: 2
 included:
+  - Example*
+  - Shared*
   - Source
   - Tests
 line_length: 150

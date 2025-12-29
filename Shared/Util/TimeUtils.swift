@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TimeUtils {
+enum TimeUtils {
     /**
      Used for debugging execution time.
      Converts time interval in seconds to String.
