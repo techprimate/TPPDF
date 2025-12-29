@@ -312,7 +312,22 @@ lint:
 	dprint check "**/*.{md,json,yaml,yml}"
 
 # ============================================================================
-# HELP & DOCUMENTATION
+# DOCUMENTATION
+# ============================================================================
+
+## Generate documentation using Jazzy
+#
+# Generates documentation for the TPPDF project using Jazzy.
+.PHONY: docs
+docs:
+	SDK_PATH=$$(xcrun --sdk iphonesimulator --show-sdk-path); \
+	echo "SDK Path: $$SDK_PATH"; \
+	SDK_VERSION=$$(xcrun --sdk iphonesimulator --show-sdk-version); \
+	echo "SDK Version: $$SDK_VERSION"; \
+	bundle exec jazzy --build-tool-arguments "--sdk,$$SDK_PATH,-Xswiftc,-sdk,-Xswiftc,$$SDK_PATH,-Xswiftc,-target,-Xswiftc,arm64-apple-ios$$SDK_VERSION-simulator"
+
+# ============================================================================
+# HELP
 # ============================================================================
 
 # Reusable awk script for detailed help output
