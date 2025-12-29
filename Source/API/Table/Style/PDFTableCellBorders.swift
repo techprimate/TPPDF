@@ -6,7 +6,7 @@
 //
 
 /// Structure used to style the border lines of a ``PDFTableCell``
-public struct PDFTableCellBorders: Hashable {
+public struct PDFTableCellBorders: Hashable, Sendable {
     /// Style of left edge line
     public var left: PDFLineStyle
 

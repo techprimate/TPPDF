@@ -12,7 +12,7 @@
 #endif
 
 /// Structure defining how a line should be drawn into graphics context
-public struct PDFLineStyle: Hashable {
+public struct PDFLineStyle: Hashable, Sendable {
     /// Type of the line
     public var type: PDFLineType
 

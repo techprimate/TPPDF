@@ -6,7 +6,7 @@
 //
 
 /// An instance of a table cell
-public class PDFTableCell: PDFDocumentObject {
+public class PDFTableCell: PDFDocumentObject, @unchecked Sendable {
     /**
      * Content of this cell, can be different kinds of data inside a `PDFTableContent` object.
      *

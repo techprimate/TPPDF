@@ -6,7 +6,7 @@
 //
 
 /// Different types of lines
-public enum PDFLineType: String {
+public enum PDFLineType: String, Sendable {
     /// No visible line
     case none
 

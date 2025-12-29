@@ -55,7 +55,7 @@ class PDFLineSeparatorObject_Spec: QuickSpec {
         }
     }
 
-    static var allTests = [
+    static let allTests = [
         ("spec", spec),
     ]
 }

@@ -12,7 +12,7 @@
 #endif
 
 /// Structure used to manage the custom style of a ``PDFTableCell``
-public struct PDFTableCellStyle: Hashable {
+public struct PDFTableCellStyle: Hashable, @unchecked Sendable {
     /// The cell fill (background) color and the text color
     public var colors: (fill: Color, text: Color)
 
