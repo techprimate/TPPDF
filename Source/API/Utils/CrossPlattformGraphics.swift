@@ -77,7 +77,7 @@
         public static var topRight: RectCorner = .init(rawValue: 1 << 1)
         public static var bottomLeft: RectCorner = .init(rawValue: 1 << 2)
         public static var bottomRight: RectCorner = .init(rawValue: 1 << 3)
-        public static var allCorners: RectCorner = .init(rawValue: 1 << 4 - 1)
+        public static var allCorners: RectCorner = .init(rawValue: (1 << 4) - 1)
 
         let value: Int
 
