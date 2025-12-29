@@ -1,3 +1,11 @@
+//
+//  ExternalDocumentTests.swift
+//  TPPDF
+//
+//  Created by Philip Niedertscheider on 03.01.2021.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
+//
+
 import Foundation
 import Nimble
 import Quick
@@ -8,6 +16,7 @@ import PDFKit
 
 @available(iOS 11.0, *)
 class ExternalDocumentTests: QuickSpec {
+    // swiftlint:disable closure_body_length function_body_length
     override func spec() {
         describe("External Document") {
             context("only document") {
@@ -397,5 +406,6 @@ class ExternalDocumentTests: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length function_body_length
 }
 #endif

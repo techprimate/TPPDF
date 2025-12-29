@@ -2,7 +2,8 @@
 //  PDFLayoutHeights.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 30/10/2017.
+//  Created by Philip Niedertscheider on 10.30.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)

@@ -2,7 +2,7 @@
 //  ProgressBar.swift
 //  Example
 //
-//  Created by Philip Niedertscheider on 24.06.20.
+//  Created by Philip Niedertscheider on 24.06.2020.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 

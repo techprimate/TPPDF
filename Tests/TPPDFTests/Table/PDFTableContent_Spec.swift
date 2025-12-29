@@ -1,8 +1,8 @@
 //
 //  PDFTableContent_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 16/11/2017.
+//  Created by Philip Niedertscheider on 11.16.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -10,8 +10,10 @@ import Foundation
 import Nimble
 import Quick
 @testable import TPPDF
+import XCTest
 
 class PDFTableContent_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length function_body_length
     override func spec() {
         describe("PDFTableContent") {
             context("enum ContentType") {
@@ -66,7 +68,11 @@ class PDFTableContent_Spec: QuickSpec {
                 var content: PDFTableContent!
 
                 beforeEach {
-                    content = try! PDFTableContent(content: nil)
+                    do {
+                        content = try XCTUnwrap(PDFTableContent(content: nil))
+                    } catch {
+                        XCTFail("Failed to create PDFTableContent")
+                    }
                 }
 
                 it("can set to nil") {
@@ -78,7 +84,7 @@ class PDFTableContent_Spec: QuickSpec {
                 }
 
                 it("can set to string") {
-                    let content = try! PDFTableContent(content: nil)
+                    let content = try XCTUnwrap(PDFTableContent(content: nil))
 
                     expect {
                         try content.setContent(content: "EXAMPLE")
@@ -271,4 +277,5 @@ class PDFTableContent_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length function_body_length
 }

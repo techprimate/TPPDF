@@ -1,14 +1,15 @@
 //
 //  PDFTableCell_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 16/11/2017.
+//  Created by Philip Niedertscheider on 11.16.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Nimble
 import Quick
 @testable import TPPDF
+import XCTest
 
 class PDFTableCell_Spec: QuickSpec {
     override func spec() {
@@ -31,7 +32,7 @@ class PDFTableCell_Spec: QuickSpec {
 
             context("initializer") {
                 it("can be initialized with a content") {
-                    let content = try! PDFTableContent(content: "EXAMPLE")
+                    let content = try XCTUnwrap(PDFTableContent(content: "EXAMPLE"))
                     let cell = PDFTableCell(content: content)
 
                     expect(cell.content) == content

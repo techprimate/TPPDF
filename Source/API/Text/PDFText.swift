@@ -2,7 +2,8 @@
 //  PDFText.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 31/10/2017.
+//  Created by Philip Niedertscheider on 10.31.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 /// Abstract class all text objects should implement
