@@ -2,7 +2,8 @@
 //  PDFDocumentObject.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 19.12.19.
+//  Created by Philip Niedertscheider on 19.12.2019.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 /// All document objects are instances of ``PDFDocumentObject`` to share common properties, e.g. `attributes`.

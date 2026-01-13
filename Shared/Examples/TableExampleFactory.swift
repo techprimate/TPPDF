@@ -1,8 +1,8 @@
 //
 //  TableExampleFactory.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 16.12.19.
+//  Created by Philip Niedertscheider on 16.12.2019.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -15,7 +15,7 @@
 import TPPDF
 
 class TableExampleFactory: ExampleFactory {
-    func generateDocument() -> [PDFDocument] {
+    func generateDocument() -> [PDFDocument] { // swiftlint:disable:this function_body_length
         let document = PDFDocument(format: .a4)
 
         // Create a table
@@ -101,16 +101,22 @@ class TableExampleFactory: ExampleFactory {
         }
 
         for i in stride(from: 3, to: 48, by: 3) {
-            table[rows: i...(i + 2), column: 1].merge(with: PDFTableCell(content: Array(repeating: "\(i),1", count: 3).joined(separator: "\n").asTableContent,
-                                                                         alignment: .center))
+            table[rows: i...(i + 2), column: 1].merge(with: PDFTableCell(
+                content: Array(repeating: "\(i),1", count: 3).joined(separator: "\n").asTableContent,
+                alignment: .center)
+            )
         }
         for i in stride(from: 4, to: 47, by: 3) {
-            table[rows: i...(i + 2), column: 2].merge(with: PDFTableCell(content: Array(repeating: "\(i),2", count: 3).joined(separator: "\n").asTableContent,
-                                                                         alignment: .center))
+            table[rows: i...(i + 2), column: 2].merge(with: PDFTableCell(
+                content: Array(repeating: "\(i),2", count: 3).joined(separator: "\n").asTableContent,
+                alignment: .center)
+            )
         }
         for i in stride(from: 5, to: 48, by: 3) {
-            table[rows: i...(i + 2), column: 3].merge(with: PDFTableCell(content: Array(repeating: "\(i),3", count: 3).joined(separator: "\n").asTableContent,
-                                                                         alignment: .center))
+            table[rows: i...(i + 2), column: 3].merge(with: PDFTableCell(
+                content: Array(repeating: "\(i),3", count: 3).joined(separator: "\n").asTableContent,
+                alignment: .center)
+            )
         }
 
         table[rows: 0..<2, column: 2].merge()

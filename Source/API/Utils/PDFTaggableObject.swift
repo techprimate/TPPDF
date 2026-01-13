@@ -2,7 +2,8 @@
 //  PDFTaggableObject.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 04.12.20.
+//  Created by Philip Niedertscheider on 04.12.2020.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 /// Object can be identified using the `tag` property

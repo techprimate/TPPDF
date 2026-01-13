@@ -1,8 +1,8 @@
 //
 //  PDFLineStyle_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 12/11/2017.
+//  Created by Philip Niedertscheider on 11.12.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import Quick
 @testable import TPPDF
 
 class PDFLineStyle_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length
     override func spec() {
         describe("Line Style") {
             var lineStyle: PDFLineStyle!
@@ -61,6 +62,7 @@ class PDFLineStyle_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length
 
     static let allTests = [
         ("spec", spec),

@@ -2,7 +2,8 @@
 //  PDFTableRowSpec.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 23.09.20.
+//  Created by Philip Niedertscheider on 23.09.2020.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Nimble

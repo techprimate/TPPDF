@@ -1,3 +1,11 @@
+//
+//  Bundle+Module.swift
+//  TPPDF
+//
+//  Created by Philip Niedertscheider on 03.01.2021.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
+//
+
 import Foundation
 
 extension Bundle {

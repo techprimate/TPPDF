@@ -49,5 +49,13 @@ if sourceChanges, !testsUpdated {
     warn("The library files were changed, but the tests remained unmodified. Consider updating or adding to the tests to match the library changes.")
 }
 
-// Run Swiftlint
-SwiftLint.lint(inline: false, configFile: ".swiftlint.yml")
+// Run SwiftLint only on files in included paths (Source/ and Tests/)
+let includedPaths = ["Source", "Tests"]
+let changedSwiftFiles = (danger.git.modifiedFiles + danger.git.createdFiles)
+    .filter { file in
+        file.fileType == .swift && includedPaths.contains { file.hasPrefix($0) }
+    }
+
+if !changedSwiftFiles.isEmpty {
+    SwiftLint.lint(inline: false, configFile: ".swiftlint.yml")
+}

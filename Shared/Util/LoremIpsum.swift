@@ -1,14 +1,15 @@
 //
 //  LoremIpsum.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 18.12.19.
+//  Created by Philip Niedertscheider on 18.12.2019.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Foundation
 
-class LoremIpsum {
+// swiftlint:disable line_length
+enum LoremIpsum {
     static let text = """
     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
@@ -232,3 +233,4 @@ class LoremIpsum {
         return String(text[...lastWord.endIndex])
     }
 }
+// swiftlint:enable line_length

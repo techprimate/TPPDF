@@ -1,8 +1,8 @@
 //
 //  ExamplesListViewController.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 18.12.19.
+//  Created by Philip Niedertscheider on 18.12.2019.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -11,11 +11,11 @@ import UIKit
 
 class ExamplesListViewController: UITableViewController {
     override func numberOfSections(in _: UITableView) -> Int {
-        return Examples.factories.count
+        Examples.factories.count
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Examples.factories[section].examples.count
+        Examples.factories[section].examples.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -30,7 +30,7 @@ class ExamplesListViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Examples.factories[section].header
+        Examples.factories[section].header
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

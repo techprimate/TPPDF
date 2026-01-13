@@ -1,8 +1,8 @@
 //
 //  PDFGenerator+Generation_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 27.12.17.
+//  Created by Philip Niedertscheider on 27.12.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -13,6 +13,7 @@ import Quick
 @testable import TPPDF
 
 class PDFGenerator_Generation_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length function_body_length
     override func spec() {
         describe("PDFGenerator") {
             context("Generation") {
@@ -331,4 +332,5 @@ class PDFGenerator_Generation_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length function_body_length
 }
