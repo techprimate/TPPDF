@@ -1,8 +1,8 @@
 //
 //  PDFAttributedText_Spec.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 05/11/2017.
+//  Created by Philip Niedertscheider on 11.05.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 

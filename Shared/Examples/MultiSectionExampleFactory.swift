@@ -1,8 +1,8 @@
 //
 //  MultiSectionExampleFactory.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 16.12.19.
+//  Created by Philip Niedertscheider on 16.12.2019.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -14,6 +14,7 @@ import TPPDF
 #endif
 
 class MultiSectionExampleFactory: ExampleFactory {
+    // swiftlint:disable line_length
     func generateDocument() -> [PDFDocument] {
         let document = PDFDocument(format: .a4)
 
@@ -55,4 +56,5 @@ class MultiSectionExampleFactory: ExampleFactory {
 
         return [document]
     }
+    // swiftlint:enable line_length
 }

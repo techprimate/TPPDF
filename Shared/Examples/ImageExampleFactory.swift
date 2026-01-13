@@ -1,8 +1,8 @@
 //
 //  ImageExampleFactory.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 18.12.19.
+//  Created by Philip Niedertscheider on 18.12.2019.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -14,13 +14,19 @@
 import TPPDF
 
 class ImageExampleFactory: ExampleFactory {
-    func generateDocument() -> [PDFDocument] {
+    func generateDocument() -> [PDFDocument] { // swiftlint:disable:this function_body_length
         let document = PDFDocument(format: .a4)
 
-        // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed to save file size.
-        // Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression quality. This is applied if the option `compress` is set.
-        // Use `none` for better and crisp quality of image. You don't need to set the image quality if you set this option.
-        // let logoImage = PDFImage(image: Image(named: "Icon.png")!, size: CGSize(width: 150, height: 150), quality: 0.9, options: [.resize, .compress])
+        // Add an image and scale it down. Image will not be drawn scaled, instead it will be scaled down and compressed
+        // to save file size. Also you can define a quality in percent between 0.0 and 1.0 which is the JPEG compression
+        // quality. This is applied if the option `compress` is set.
+        //
+        // Use `none` for better and crisp quality of image. You don't need to set the image quality if you set this
+        // option.
+        //
+        //     let logoImage = PDFImage(image: Image(named: "Icon.png")!,
+        //                              size: CGSize(width: 150, height: 150),
+        //                              quality: 0.9, options: [.resize, .compress])
         let logoImage = PDFImage(image: Image(named: "Icon.png")!,
                                  size: CGSize(width: 150, height: 150),
                                  options: [.rounded],

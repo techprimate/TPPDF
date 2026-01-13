@@ -2,7 +2,8 @@
 //  PDFExternalDocumentObject.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 12.08.19.
+//  Created by Philip Niedertscheider on 12.08.2019.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import CoreGraphics

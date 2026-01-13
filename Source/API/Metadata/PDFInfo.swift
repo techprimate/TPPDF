@@ -2,7 +2,8 @@
 //  PDFInfo.swift
 //  TPPDF
 //
-//  Created by Zheng-Xiang Ke on 2016/12/15.
+//  Created by Zheng-Xiang Ke on 15.12.2016.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)

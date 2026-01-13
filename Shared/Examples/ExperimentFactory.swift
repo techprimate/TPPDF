@@ -1,8 +1,8 @@
 //
 //  ExperimentFactory.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 12.12.19.
+//  Created by Philip Niedertscheider on 12.12.2019.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 

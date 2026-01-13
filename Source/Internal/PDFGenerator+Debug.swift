@@ -2,7 +2,8 @@
 //  PDFGenerator+Debug.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 24/08/2017.
+//  Created by Philip Niedertscheider on 08.24.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)

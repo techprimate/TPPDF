@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 08.11.16.
+//  Created by Philip Niedertscheider on 08.11.2016.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -16,7 +16,7 @@ class ViewController: UIViewController {
 
     var progressObserver: NSObjectProtocol!
 
-    public var exampleFactory: ExampleFactory?
+    var exampleFactory: ExampleFactory?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,8 +48,8 @@ class ViewController: UIViewController {
         generator.debug = exampleFactory is ExperimentFactory
 
         progressView.observedProgress = generator.progress
-        observer = generator.progress.observe(\.completedUnitCount) { p, _ in
-            print(p.localizedDescription ?? "")
+        observer = generator.progress.observe(\.completedUnitCount) { progress, _ in
+            print(progress.localizedDescription ?? "")
         }
         DispatchQueue.global(qos: .background).async {
             do {

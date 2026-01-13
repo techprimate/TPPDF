@@ -2,7 +2,8 @@
 //  PDFTableCellPosition+Equatable-Hashable.swift
 //  TPPDF
 //
-//  Created by Philip Niedertscheider on 09/11/2017.
+//  Created by Philip Niedertscheider on 11.09.2017.
+//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
 import Foundation

@@ -1,8 +1,8 @@
 //
 //  Int+RomanNumerals_Spec.swift
-//  TPPDF_Example
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 09/11/2017.
+//  Created by Philip Niedertscheider on 11.09.2017.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
@@ -11,11 +11,12 @@ import Quick
 @testable import TPPDF
 
 class Int_RomanNUmerals_Spec: QuickSpec {
+    // swiftlint:disable closure_body_length function_body_length
     override func spec() {
         describe("Int") {
             describe("RomanNumerals") {
                 it("can convert itself into a roman numeral") {
-                    expect(0.romanNumerals) == ""
+                    expect(0.romanNumerals) == "" // swiftlint:disable:this empty_string
                     expect(1.romanNumerals) == "I"
                     expect(2.romanNumerals) == "II"
                     expect(3.romanNumerals) == "III"
@@ -98,4 +99,5 @@ class Int_RomanNUmerals_Spec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable closure_body_length function_body_length
 }
