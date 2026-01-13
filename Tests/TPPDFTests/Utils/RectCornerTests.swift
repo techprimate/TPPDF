@@ -1,8 +1,8 @@
 //
 //  RectCornerTests.swift
-//  TPPDF_Tests
+//  TPPDF
 //
-//  Created by Philip Niedertscheider on 2025-12-29.
+//  Created by Philip Niedertscheider on 29.12.2025.
 //  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
 //
 
