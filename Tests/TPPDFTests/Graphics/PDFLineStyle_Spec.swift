@@ -64,7 +64,7 @@ class PDFLineStyle_Spec: QuickSpec {
     }
     // swiftlint:enable closure_body_length
 
-    static var allTests = [
+    static let allTests = [
         ("spec", spec),
     ]
 }

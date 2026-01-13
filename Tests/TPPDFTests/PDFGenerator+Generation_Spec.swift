@@ -126,7 +126,7 @@ class PDFGenerator_Generation_Spec: QuickSpec {
 
                 it("should render object") {
                     class CustomObject: PDFRenderObject {
-                        static var called = false
+                        nonisolated(unsafe) static var called = false
 
                         override func draw(generator _: PDFGenerator, container _: PDFContainer, in _: PDFContext) throws {
                             CustomObject.called = true
