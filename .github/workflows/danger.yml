@@ -10,7 +10,7 @@ jobs:
     name: Review, Lint, Verify
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Danger
         uses: docker://ghcr.io/danger/danger-swift-with-swiftlint:3.22.1
