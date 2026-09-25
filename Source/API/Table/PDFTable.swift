@@ -44,6 +44,23 @@ public class PDFTable: PDFDocumentObject {
     public var shouldSplitCellsOnPageBreak = false
 
     /**
+     * Optional fixed heights for individual table rows.
+     *
+     * The dictionary key is the zero-based row index and the value is the height
+     * of that row. Rows without an entry keep the default automatic height
+     * calculation based on their content.
+     *
+     * ```swift
+     * table.fixedRowHeights = [
+     *     0: 24,
+     *     1: 28,
+     *     2: 32
+     * ]
+     * ```
+     */
+    public var fixedRowHeights: [Int: CGFloat] = [:]
+
+    /**
      * Count of rows and columns in this table
      *
      * The size of the table needs to be defined beforehand, so that cells can be accessed using subscript accessors
@@ -82,6 +99,7 @@ public class PDFTable: PDFDocumentObject {
         table.padding = padding
         table.margin = margin
         table.showHeadersOnEveryPage = showHeadersOnEveryPage
+        table.fixedRowHeights = fixedRowHeights
         return table
     }
 
@@ -143,6 +161,9 @@ public class PDFTable: PDFDocumentObject {
             return false
         }
         guard showHeadersOnEveryPage == otherTable.showHeadersOnEveryPage else {
+            return false
+        }
+        guard fixedRowHeights == otherTable.fixedRowHeights else {
             return false
         }
         return true

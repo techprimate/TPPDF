@@ -65,6 +65,12 @@ class PDFTable_Equatable_Spec: QuickSpec {
                     otherTable.showHeadersOnEveryPage = !table.showHeadersOnEveryPage
                     expect(table) != otherTable
                 }
+
+                it("is not equal with different fixedRowHeights") {
+                    let otherTable = PDFTable(rows: 0, columns: 0)
+                    otherTable.fixedRowHeights = [0: 24]
+                    expect(table) != otherTable
+                }
             }
         }
     }

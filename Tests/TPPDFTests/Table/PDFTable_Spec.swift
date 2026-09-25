@@ -39,6 +39,10 @@ class PDFTable_Spec: QuickSpec {
                 it("has a default showHeadersOnEveryPage") {
                     expect(table.showHeadersOnEveryPage).to(beFalse())
                 }
+
+                it("has no default fixed row heights") {
+                    expect(table.fixedRowHeights.isEmpty).to(beTrue())
+                }
             }
 
             context("cell style") {
