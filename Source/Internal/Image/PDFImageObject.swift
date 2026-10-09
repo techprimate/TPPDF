@@ -60,7 +60,11 @@ class PDFImageObject: PDFRenderObject {
             let isAvailableHeightZero = availableSize.height == 0
             let isImageCaptionHeightCombinedTooSmall = imageSize.height + captionSize.height > availableSize.height
             let isImageHeightTooSmall = image.sizeFit == .height && imageSize.height < image.size.height
-            if isAvailableHeightZero || isImageCaptionHeightCombinedTooSmall || isImageHeightTooSmall {
+            let heightAtAvailableWidth = image.size.height * min(1, availableSize.width / image.size.width)
+            let isNonResizableImageTooTall = !image.options.contains(.resize)
+                && generator.layout.heights.content > 0
+                && heightAtAvailableWidth > availableSize.height
+            if isAvailableHeightZero || isImageCaptionHeightCombinedTooSmall || isImageHeightTooSmall || isNonResizableImageTooTall {
                 result += try PDFPageBreakObject().calculate(generator: generator, container: container)
                 generator.layout.heights.content = 0
 
