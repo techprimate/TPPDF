@@ -104,23 +104,12 @@ class PDFTableObject: PDFRenderObject {
         // If column headers should be on every page, we prepare them for repeated use
         var headerHeight: CGFloat = 0
         var headerCells: [PDFTableCalculatedCell] = []
-        if table.showHeadersOnEveryPage {
-            var rowIdx = 0
-            while rowIdx < table.size.rows && cells[rowIdx].allSatisfy({ $0.type == .rowHeader || $0.type == .header }) {
-                headerCells += cells[rowIdx]
-                rowIdx += 1
-            }
-
-            // Safety check to make sure we don't reference rows we don't have.
-            // This handles the case where we have a header row, but no data rows.
-            if rowIdx >= table.size.rows {
-                rowIdx = table.size.rows - 1
-            }
-
-            headerHeight = cells[rowIdx].reduce(0) { prev, calcCell in
-                max(prev, calcCell.frames.cell.minY)
-            } - headerCells.reduce(CGFloat.greatestFiniteMagnitude) { prev, calcCell in
-                min(prev, calcCell.frames.cell.minY)
+        if table.showHeadersOnEveryPage && table.style.columnHeaderCount > 0 {
+            // A custom cell style changes its type, not its position in the header rows.
+            headerCells = cells.prefix(table.style.columnHeaderCount).flatMap { $0 }
+            if let minY = headerCells.map({ $0.frames.cell.minY }).min(),
+               let maxY = headerCells.map({ $0.frames.cell.maxY }).max() {
+                headerHeight = maxY - minY + table.margin
             }
         }
 
