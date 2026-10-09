@@ -71,7 +71,7 @@ class PDFImageRowObject: PDFRenderObject {
         generator.layout.heights.set(maxHeight, to: container)
 
         generator.layout.indentation.setLeft(indentation: originalInsetLeft, in: container)
-        generator.layout.indentation.setLeft(indentation: originalInsetRight, in: container)
+        generator.layout.indentation.setRight(indentation: originalInsetRight, in: container)
 
         return result
     }
