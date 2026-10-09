@@ -52,7 +52,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           force: true
-
-      - name: Run CI Diagnostics
-        if: failure()
-        run: bash scripts/ci-diagnostics.sh

@@ -88,7 +88,3 @@ jobs:
         with:
           name: Test Logs - ${{ matrix.build.name }}
           path: ${{ matrix.build.logfiles }}
-
-      - name: Run CI Diagnostics
-        if: failure()
-        run: bash scripts/ci-diagnostics.sh
