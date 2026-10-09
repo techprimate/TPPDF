@@ -92,6 +92,57 @@ struct PDFTableHeaderPaginationTests {
         #expect(pages.flatMap { $0 }.filter { text(in: $0) == "cell-0-0" }.count == 1)
     }
 
+    @Test(arguments: [1, 2], [false, true])
+    func headerAndFirstBodyRowMoveTogether(headerRows: Int, headersFit: Bool) throws {
+        let table = makeTable(rows: headerRows + 2, headerRows: headerRows)
+        let generator = PDFGenerator(document: PDFDocument(format: .a4))
+        let availableHeight = PDFCalculations.calculateAvailableFrameHeight(for: generator, in: .contentLeft)
+        let remainingHeight: CGFloat = headersFit ? CGFloat(headerRows * 26 + 14) : 10
+        _ = try PDFSpaceObject(space: availableHeight - remainingHeight).calculate(generator: generator, container: .contentLeft)
+
+        let result = try PDFTableObject(table: table).calculate(generator: generator, container: .contentLeft)
+        let pages = slicesByPage(result)
+
+        #expect(result.first?.1 is PDFPageBreakObject)
+        try #require(pages.count == 2)
+        #expect(pages[0].isEmpty)
+        #expect(pages[1].count == (headerRows + 2) * 2)
+        for row in 0..<(headerRows + 2) {
+            for column in 0..<2 {
+                #expect(pages[1].filter { text(in: $0) == "cell-\(row)-\(column)" }.count == 1)
+            }
+        }
+    }
+
+    @Test(arguments: [1, 2])
+    func headerAndBodyRowsStayWhenTheyFit(headerRows: Int) throws {
+        let table = makeTable(rows: headerRows + 2, headerRows: headerRows)
+        let generator = PDFGenerator(document: PDFDocument(format: .a4))
+        let availableHeight = PDFCalculations.calculateAvailableFrameHeight(for: generator, in: .contentLeft)
+        _ = try PDFSpaceObject(space: availableHeight - 150).calculate(generator: generator, container: .contentLeft)
+
+        let result = try PDFTableObject(table: table).calculate(generator: generator, container: .contentLeft)
+
+        #expect(!result.contains { $0.1 is PDFPageBreakObject })
+        #expect(result.filter { $0.1 is PDFSlicedObject }.count == (headerRows + 2) * 2)
+    }
+
+    @Test func enabledCellSplittingStillUsesTheRemainingSpace() throws {
+        let table = makeTable(rows: 3, headerRows: 1)
+        table.shouldSplitCellsOnPageBreak = true
+        let generator = PDFGenerator(document: PDFDocument(format: .a4))
+        let availableHeight = PDFCalculations.calculateAvailableFrameHeight(for: generator, in: .contentLeft)
+        _ = try PDFSpaceObject(space: availableHeight - 40).calculate(generator: generator, container: .contentLeft)
+
+        let result = try PDFTableObject(table: table).calculate(generator: generator, container: .contentLeft)
+        let pages = slicesByPage(result)
+
+        #expect(!(result.first?.1 is PDFPageBreakObject))
+        try #require(!pages.isEmpty)
+        #expect(pages[0].contains { text(in: $0) == "cell-0-0" })
+        #expect(pages[0].contains { text(in: $0) == "cell-1-0" })
+    }
+
     private func makeTable(rows: Int, headerRows: Int) -> PDFTable {
         let table = PDFTable(rows: rows, columns: 2)
         let style = PDFTableCellStyle(font: Font.systemFont(ofSize: 12))
