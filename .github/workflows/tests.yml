@@ -16,7 +16,7 @@ concurrency:
 jobs:
   unit-tests:
     name: Unit Tests (${{ matrix.build.name }})
-    runs-on: macos-26
+    runs-on: macos-latest
     timeout-minutes: 30
     strategy:
       matrix:
@@ -24,6 +24,8 @@ jobs:
           - name: iOS
             action: test-ios
             logfiles: raw-*-ios.log
+            platform: iOS
+            simulator-prefix: IOS
           - name: macOS
             action: test-macos
             logfiles: raw-*-macos.log
@@ -34,25 +36,45 @@ jobs:
             action: test-tvos
             logfiles: raw-*-tvos.log
             platform: tvOS
+            simulator-prefix: TVOS
           - name: watchOS
             action: test-watchos
             logfiles: raw-*-watchos.log
             platform: watchOS
+            simulator-prefix: WATCHOS
           - name: visionOS
             action: test-visionos
             logfiles: raw-*-visionos.log
             platform: visionOS
+            simulator-prefix: VISION_OS
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v6
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: "26.2"
+          xcode-version: latest-stable
 
-      - name: Ensuring required simulator runtimes are loaded
+      - name: Select an available simulator
         if: matrix.build.platform != null
-        run: scripts/ensure-runtime-loaded.sh --os-version 26.2 --platform ${{ matrix.build.platform }}
+        env:
+          PLATFORM: ${{ matrix.build.platform }}
+          SIMULATOR_PREFIX: ${{ matrix.build.simulator-prefix }}
+        run: |
+          SIMULATOR=$(xcrun simctl list devices available --json | jq -er --arg platform "$PLATFORM" '
+            [.devices | to_entries[]
+              | select(.key | startswith("com.apple.CoreSimulator.SimRuntime." + $platform + "-"))
+              | (.key | split($platform + "-")[1] | gsub("-"; ".")) as $version
+              | .value[] | select(.isAvailable)
+              | {version: $version, name: .name}]
+            | sort_by([.version | split(".")[] | tonumber], .name) | last
+            | if . == null then error("No available simulator for " + $platform) else . end
+            | [.version, .name] | @tsv
+          ')
+          IFS=$'\t' read -r OS_VERSION DEVICE_NAME <<< "$SIMULATOR"
+          echo "Selected $PLATFORM $OS_VERSION: $DEVICE_NAME"
+          echo "${SIMULATOR_PREFIX}_SIMULATOR_OS=$OS_VERSION" >> "$GITHUB_ENV"
+          echo "${SIMULATOR_PREFIX}_DEVICE_NAME=$DEVICE_NAME" >> "$GITHUB_ENV"
 
       - name: Run Tests
         run: make ${{ matrix.build.action }}
