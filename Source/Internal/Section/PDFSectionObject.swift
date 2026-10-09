@@ -115,97 +115,56 @@ class PDFSectionObject: PDFRenderObject {
      * ...
      * ```
      */
-    func calulatePageBreakPositions( // swiftlint:disable:this cyclomatic_complexity function_body_length
+    func calulatePageBreakPositions(
         _ objectsPerColumn: [Int: [PDFLocatedRenderObject]],
         metadata: [PDFSectionColumnMetadata],
         container: PDFContainer
     ) -> [PDFLocatedRenderObject] {
-        // stores how many objects are in one column at max
-        let maxObjectsPerColumn = objectsPerColumn.reduce(0) { max($0, $1.value.count) }
-
-        /*
-         * as soon as a column requests a page break, we need to stack subsequent objects of the very same column until the following is `true`:
-         * one or more columns do not have more objects and all other columns, which have more objects left, are requesting a page break
-         */
-        var stackedObjectsPerColumn = [Int: [PDFLocatedRenderObject]]()
-        for columnIndex in objectsPerColumn.keys {
-            stackedObjectsPerColumn[columnIndex] = []
+        // Object indices are not aligned vertically across columns. Group by page
+        // before drawing backgrounds so later slices cannot cover earlier text.
+        let pagesPerColumn = objectsPerColumn.mapValues { objects in
+            var pages: [[PDFLocatedRenderObject]] = [[]]
+            for object in objects {
+                if object.1 is PDFPageBreakObject {
+                    pages.append([])
+                } else {
+                    pages[pages.count - 1].append(object)
+                }
+            }
+            return pages
         }
-
-        // stores the final objects which can be drawn to the pdf
+        let pageCount = pagesPerColumn.values.map(\.count).max() ?? 0
+        let columnIndices = objectsPerColumn.keys.sorted()
         var result: [PDFLocatedRenderObject] = []
 
-        // loop through all objects, row by row for each column
-        for objectIndex in 0..<maxObjectsPerColumn {
-            // track the result elements per column, so we can calculate the section column frames
-            var resultPerColumn = [Int: [PDFLocatedRenderObject]]()
-
-            for (columnIndex, columnObjects) in objectsPerColumn where columnObjects.count > objectIndex {
-                let columnObject = columnObjects[objectIndex]
-
-                if var columnStack = stackedObjectsPerColumn[columnIndex], !columnStack.isEmpty {
-                    // if we already began to stack objects for this column, we simply put all subsequent objects onto the stack
-                    columnStack.append(columnObject)
-                    stackedObjectsPerColumn[columnIndex] = columnStack
-                } else if columnObject.1 is PDFPageBreakObject {
-                    // if the column is requesting a page break, we start stacking the objects
-                    stackedObjectsPerColumn[columnIndex] = [columnObject]
-                } else {
-                    // if the column does not have a stack and is not requesting a page break we just add the object to the result
-                    resultPerColumn[columnIndex] = (resultPerColumn[columnIndex] ?? []) + [columnObject]
-                }
+        for pageIndex in 0..<pageCount {
+            if pageIndex > 0 {
+                result.append((.contentLeft, PDFPageBreakObject()))
             }
 
-            let allFrames = resultPerColumn.values.reduce([], +)
+            var pageObjects: [Int: [PDFLocatedRenderObject]] = [:]
+            for columnIndex in columnIndices {
+                if let pages = pagesPerColumn[columnIndex], pageIndex < pages.count {
+                    pageObjects[columnIndex] = pages[pageIndex]
+                }
+            }
+            let frames = pageObjects.values.flatMap { $0 }
                 .map(\.1.frame)
-                .filter { $0.origin != .null }
-            if let sectionMinY = allFrames.map({ $0.minY }).min(),
-               let sectionMaxY = allFrames.map({ $0.maxY }).max() {
-                for (idx, columnObjects) in resultPerColumn {
-                    let met = metadata[idx]
-                    guard let backgroundColor = met.backgroundColor else {
-                        result += columnObjects
-                        continue
-                    }
-                    let frame = CGRect(x: met.minX, y: sectionMinY, width: met.width, height: sectionMaxY - sectionMinY)
+                .filter { !$0.isNull }
+
+            if let minY = frames.map(\.minY).min(),
+               let maxY = frames.map(\.maxY).max() {
+                for columnIndex in columnIndices {
+                    guard let objects = pageObjects[columnIndex], !objects.isEmpty,
+                          let backgroundColor = metadata[columnIndex].backgroundColor else { continue }
+                    let column = metadata[columnIndex]
+                    let frame = CGRect(x: column.minX, y: minY, width: column.width, height: maxY - minY)
                     let rect = PDFRectangleObject(lineStyle: .none, frame: frame, fillColor: backgroundColor)
-                    result += [(container, rect)] + columnObjects
+                    result.append((container, rect))
                 }
             }
-
-            // does any of the columns request a page break?
-            let isPageBreakNeeded = objectsPerColumn.keys.contains { columnIndex -> Bool in
-                stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject
-            }
-            guard isPageBreakNeeded else { continue }
-
-            // do all columns requesting a page break or if not, do they not contain any further objects?
-            let isPageBreakAllowed = objectsPerColumn.keys.allSatisfy { columnIndex in
-                stackedObjectsPerColumn[columnIndex]?.first?.1 is PDFPageBreakObject ||
-                    (objectsPerColumn[columnIndex]?.count ?? 0) < objectIndex
-            }
-            guard isPageBreakAllowed else { continue }
-
-            // we need to draw a page break now. For this we remove the first elements of all stacks
-            // since these are the page breaks stored for each column
-            for columnIndex in stackedObjectsPerColumn.keys {
-                guard var columnStack = stackedObjectsPerColumn[columnIndex] else { continue }
-                if columnStack.first?.1 is PDFPageBreakObject {
-                    columnStack.removeFirst()
-                }
-                stackedObjectsPerColumn[columnIndex] = columnStack
-            }
-
-            // now we add one page break for all columns ...
-            result += [(.contentLeft, PDFPageBreakObject())]
-
-            // ... and process the stacked objects first
-            result += calulatePageBreakPositions(stackedObjectsPerColumn, metadata: metadata, container: container)
-
-            // now we can empty the column stacks and keep going
-            // with the objects which still need to be processed
-            for columnIndex in objectsPerColumn.keys {
-                stackedObjectsPerColumn[columnIndex]?.removeAll()
+            for columnIndex in columnIndices {
+                result += pageObjects[columnIndex] ?? []
             }
         }
 
