@@ -3,7 +3,7 @@
 //  TPPDF
 //
 //  Created by Zheng-Xiang Ke on 15.12.2016.
-//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
+//  Copyright © 2016-2026 techprimate GmbH. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
