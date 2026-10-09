@@ -3,7 +3,7 @@
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 08.11.2017.
-//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
+//  Copyright © 2016-2026 techprimate GmbH. All rights reserved.
 //
 
 /// Options for aligning content inside a table cell

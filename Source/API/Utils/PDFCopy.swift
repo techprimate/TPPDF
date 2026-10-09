@@ -3,7 +3,7 @@
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 06.04.2018.
-//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
+//  Copyright © 2016-2026 techprimate GmbH. All rights reserved.
 //
 
 /// A protocol that objects adopt to provide functional copies of themselves.

@@ -3,7 +3,7 @@
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 19.05.2020.
-//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
+//  Copyright © 2016-2026 techprimate GmbH. All rights reserved.
 //
 
 /// This file contains convenience types to support cross-plattform usage on iOS and macOS

@@ -3,7 +3,7 @@
 //  TPPDF
 //
 //  Created by Marco Betschart on 05.05.2018.
-//  Copyright © 2016-2025 techprimate GmbH. All rights reserved.
+//  Copyright © 2016-2026 techprimate GmbH. All rights reserved.
 //
 
 /**

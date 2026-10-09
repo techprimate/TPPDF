@@ -3,7 +3,7 @@
 //  TPPDF
 //
 //  Created by Philip Niedertscheider on 22.05.2019.
-//  Copyright © 2026-2025 techprimate GmbH. All rights reserved.
+//  Copyright © 2016-2026 techprimate GmbH. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
