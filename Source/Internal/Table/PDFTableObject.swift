@@ -101,6 +101,16 @@ class PDFTableObject: PDFRenderObject {
             }
         }
 
+        // Keep repeated headers with the first body row when cells must stay whole.
+        if container.isCenter, table.showHeadersOnEveryPage, !table.shouldSplitCellsOnPageBreak,
+           generator.layout.heights.content > 0,
+           table.style.columnHeaderCount > 0, table.style.columnHeaderCount < cells.count,
+           let firstBodyBottom = cells[table.style.columnHeaderCount].map({ $0.frames.cell.maxY }).max(),
+           firstBodyBottom >= PDFCalculations.calculateBottomMaximum(for: generator) {
+            let pageBreak = try PDFPageBreakObject().calculate(generator: generator, container: container)
+            return pageBreak + (try calculate(generator: generator, container: container))
+        }
+
         // If column headers should be on every page, we prepare them for repeated use
         var headerHeight: CGFloat = 0
         var headerCells: [PDFTableCalculatedCell] = []

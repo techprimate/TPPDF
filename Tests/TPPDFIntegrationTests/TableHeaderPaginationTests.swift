@@ -14,6 +14,44 @@ import Testing
 import PDFKit
 
 struct TableHeaderPaginationTests {
+    @Test(arguments: [false, true])
+    func tableStartsOnNextPageWithoutOrphanedOrDuplicateHeaders(headersFit: Bool) throws {
+        let table = PDFTable(rows: 3, columns: 3)
+        table.widths = [0.3, 0.2, 0.5]
+        table.padding = 10
+        table.style = PDFTableStyle(
+            rowHeaderCount: 0, columnHeaderCount: 1, footerCount: 2,
+            columnHeaderStyle: PDFTableCellStyle(font: Font.boldSystemFont(ofSize: 12)),
+            footerStyle: PDFTableCellStyle(font: Font.systemFont(ofSize: 10))
+        )
+        table.content = [
+            ["HEADERA", "HEADERB", "HEADERC"],
+            ["ROWONEA", "ROWONEB", "ROWONEC"],
+            ["ROWTWOA", "ROWTWOB", "ROWTWOC"],
+        ]
+        table.showHeadersOnEveryPage = true
+        let document = TPPDF.PDFDocument(format: .a4)
+        document.add(text: "FIRSTPAGE")
+        let pageContentHeight = document.layout.height - document.layout.margin.top - document.layout.margin.bottom
+        document.add(space: pageContentHeight - (headersFit ? 60 : 30))
+        document.add(table: table)
+
+        let data = try PDFGenerator(document: document).generateData()
+        let outputDocument = PDFKit.PDFDocument(data: data)
+        let output = try #require(outputDocument)
+        try #require(output.pageCount == 2)
+        let firstPage = try #require(output.page(at: 0))
+        let firstText = try #require(firstPage.string)
+        #expect(firstText.contains("FIRSTPAGE"))
+        #expect(!firstText.contains("HEADER"))
+        #expect(!firstText.contains("ROW"))
+        let secondPage = try #require(output.page(at: 1))
+        let secondText = try #require(secondPage.string)
+        for marker in ["HEADERA", "HEADERB", "HEADERC", "ROWONEA", "ROWONEB", "ROWONEC", "ROWTWOA", "ROWTWOB", "ROWTWOC"] {
+            #expect(secondText.components(separatedBy: marker).count - 1 == 1)
+        }
+    }
+
     @Test(arguments: [0, 1], [0, 1, 2])
     func generatedPagesPreserveHeadersAndAllBodyText(headerRows: Int, styledColumns: Int) throws {
         let table = PDFTable(rows: 60, columns: 2)
