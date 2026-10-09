@@ -53,3 +53,7 @@ jobs:
           files: |
             archives/TPPDF.zip
             archives/TPPDF.sha256
+
+      - name: Run CI Diagnostics
+        if: failure()
+        run: bash scripts/ci-diagnostics.sh

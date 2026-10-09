@@ -26,6 +26,7 @@ jobs:
             logfiles: raw-*-ios.log
             platform: iOS
             simulator-prefix: IOS
+            device: iPhone 17 Pro
           - name: macOS
             action: test-macos
             logfiles: raw-*-macos.log
@@ -37,16 +38,19 @@ jobs:
             logfiles: raw-*-tvos.log
             platform: tvOS
             simulator-prefix: TVOS
+            device: Apple TV 4K (3rd generation)
           - name: watchOS
             action: test-watchos
             logfiles: raw-*-watchos.log
             platform: watchOS
             simulator-prefix: WATCHOS
+            device: Apple Watch Series 11 (46mm)
           - name: visionOS
             action: test-visionos
             logfiles: raw-*-visionos.log
             platform: visionOS
             simulator-prefix: VISION_OS
+            device: Apple Vision Pro
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v6
@@ -55,24 +59,23 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      - name: Select an available simulator
+      - name: Ensuring required simulator runtimes are loaded
+        id: simulator
+        if: matrix.build.platform != null
+        uses: kula-app/wait-for-services-action/ios-simulator@v1
+        with:
+          platform: ${{ matrix.build.platform }}
+          device: ${{ matrix.build.device }}
+          boot: true
+          timeout: 300
+
+      - name: Configure simulator destination
         if: matrix.build.platform != null
         env:
-          PLATFORM: ${{ matrix.build.platform }}
           SIMULATOR_PREFIX: ${{ matrix.build.simulator-prefix }}
+          OS_VERSION: ${{ steps.simulator.outputs.runtime }}
+          DEVICE_NAME: ${{ matrix.build.device }}
         run: |
-          SIMULATOR=$(xcrun simctl list devices available --json | jq -er --arg platform "$PLATFORM" '
-            [.devices | to_entries[]
-              | select(.key | startswith("com.apple.CoreSimulator.SimRuntime." + $platform + "-"))
-              | (.key | split($platform + "-")[1] | gsub("-"; ".")) as $version
-              | .value[] | select(.isAvailable)
-              | {version: $version, name: .name}]
-            | sort_by([.version | split(".")[] | tonumber], .name) | last
-            | if . == null then error("No available simulator for " + $platform) else . end
-            | [.version, .name] | @tsv
-          ')
-          IFS=$'\t' read -r OS_VERSION DEVICE_NAME <<< "$SIMULATOR"
-          echo "Selected $PLATFORM $OS_VERSION: $DEVICE_NAME"
           echo "${SIMULATOR_PREFIX}_SIMULATOR_OS=$OS_VERSION" >> "$GITHUB_ENV"
           echo "${SIMULATOR_PREFIX}_DEVICE_NAME=$DEVICE_NAME" >> "$GITHUB_ENV"
 
@@ -85,3 +88,7 @@ jobs:
         with:
           name: Test Logs - ${{ matrix.build.name }}
           path: ${{ matrix.build.logfiles }}
+
+      - name: Run CI Diagnostics
+        if: failure()
+        run: bash scripts/ci-diagnostics.sh
