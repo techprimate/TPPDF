@@ -281,8 +281,10 @@ class PDFTableObject: PDFRenderObject {
             var pageStart = CGPoint.null
             pageEnd = CGPoint()
 
-            // Calculate top page inset
-            var minOffset = PDFCalculations.calculateTopMinimum(for: generator)
+            // Document headers must not be clipped to the body content's top boundary.
+            var minOffset = container.isHeader
+                ? generator.layout.margin.top
+                : PDFCalculations.calculateTopMinimum(for: generator)
             // Calculate bottom page maximum limit
             let maxOffset = PDFCalculations.calculateBottomMaximum(for: generator)
 

@@ -1,5 +1,6 @@
 # Bug fixes and pull requests
 
+- Read the full issue body and every comment before investigating. Do not rely on the title alone.
 - Investigate the issue and reproduce the bug before changing production code. Keep each fix focused.
 - For a new PR, branch from freshly fetched `origin/main`. Stack only when the fix genuinely depends on an unmerged PR, and explain the dependency.
 - Keep independent fixes in separate PRs. Do not carry unrelated commits or generated test artifacts into a PR.
