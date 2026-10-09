@@ -56,7 +56,8 @@ class PDFImageObject: PDFRenderObject {
                                                                                  size: image.size,
                                                                                  sizeFit: image.sizeFit)
         let availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
-        if container.isCenter {
+        // A page break cannot provide more room when the content area is already empty.
+        if container.isCenter && generator.layout.heights.content > 0 {
             let isAvailableHeightZero = availableSize.height == 0
             let isImageCaptionHeightCombinedTooSmall = imageSize.height + captionSize.height > availableSize.height
             let isImageHeightTooSmall = image.sizeFit == .height && imageSize.height < image.size.height
