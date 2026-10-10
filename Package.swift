@@ -18,6 +18,7 @@ if isTestingEnabled {
             "Nimble",
         ], resources: [
             .copy("resources/sample.pdf"),
+            .copy("resources/image-fixture.jpg"),
         ]),
         .testTarget(name: "TPPDFIntegrationTests", dependencies: [
             "TPPDF",
