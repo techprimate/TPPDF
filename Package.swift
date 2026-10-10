@@ -17,6 +17,7 @@ if isTestingEnabled {
             "Quick",
             "Nimble",
         ], resources: [
+            .copy("resources/graphics-fixture.gif"),
             .copy("resources/sample.pdf"),
         ]),
         .testTarget(name: "TPPDFIntegrationTests", dependencies: [
