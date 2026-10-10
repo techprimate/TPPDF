@@ -7,32 +7,27 @@
 //
 
 import Foundation
-import Nimble
-import Quick
+import Testing
 @testable import TPPDF
 
 #if canImport(PDFKit)
 import PDFKit
 
-@available(iOS 11.0, *)
-class EmptyDocumentTests: QuickSpec {
-    override func spec() {
-        describe("Empty Document") {
-            it("it should have a single page") {
-                let document = PDFDocument(format: .usLetter)
-                let generator = PDFGenerator(document: document)
-                generator.debug = true
+struct EmptyDocumentTests {
+    @Test func generatingEmptyDocumentWithDebugOverlayProducesOnePage() throws {
+        // Arrange
+        let document = TPPDF.PDFDocument(format: .usLetter)
+        let generator = PDFGenerator(document: document)
+        generator.debug = true
 
-                var outputURL: URL! = nil
-                expect {
-                    outputURL = try generator.generateURL(filename: "output.pdf")
-                }.toNot(throwError())
-                expect(generator.totalPages) == 1
+        // Act
+        let data = try generator.generateData()
+        let outputDocument = PDFKit.PDFDocument(data: data)
+        let output = try #require(outputDocument)
 
-                let outputDoc = PDFKit.PDFDocument(url: outputURL)
-                expect(outputDoc?.pageCount) == 1
-            }
-        }
+        // Assert
+        #expect(generator.totalPages == 1)
+        #expect(output.pageCount == 1)
     }
 }
 #endif
