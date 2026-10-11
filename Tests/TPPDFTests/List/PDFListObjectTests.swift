@@ -27,23 +27,24 @@ struct PDFListObjectTests {
         let object = PDFListObject(list: makeList())
         let document = PDFDocument(format: .a4)
         let generator = PDFGenerator(document: document)
-        let xOffsets: [CGFloat] = [10, 20, 10, 20, 10, 20, 20, 30, 30, 20, 30, 10, 20]
-        let expectedTexts = [
-            "1.", "Heading 1", "?.", "Heading 2", "\u{00B7}", "Heading 3", "-",
-            "Subheading 1", "Subheading 2", "\u{00B7}", "Subheading 3", "+", "Heading 4",
+        let expectations: [(text: String, indent: CGFloat, line: Int, width: CGFloat, watchWidth: CGFloat, catalystWidth: CGFloat)] = [
+            ("1.", 10, 0, 12, 12, 12),
+            ("Heading 1", 20, 0, 75, 76.2, 78),
+            ("?.", 10, 1, 13, 13, 13),
+            ("Heading 2", 20, 1, 78, 78, 80),
+            ("\u{00B7}", 10, 2, 4, 5.4, 4),
+            ("Heading 3", 20, 2, 79, 79, 81),
+            ("-", 20, 3, 8, 6.9, 8),
+            ("Subheading 1", 30, 3, 103, 104.5, 106.4),
+            ("Subheading 2", 30, 4, 106, 106, 108.8),
+            ("\u{00B7}", 20, 5, 4, 5.4, 4),
+            ("Subheading 3", 30, 5, 105.4, 106.2, 109.2),
+            ("+", 10, 6, 11, 9.47, 11),
+            ("Heading 4", 20, 6, 79, 79, 81.2),
         ]
-        #if os(watchOS)
-        let expectedWidths: [CGFloat] = [12, 76.2, 13, 78, 5.4, 79, 6.9, 104.5, 106, 5.4, 106.2, 9.47, 79]
-        #elseif targetEnvironment(macCatalyst)
-        let expectedWidths: [CGFloat] = [12, 78, 13, 80, 4, 81, 8, 106.4, 108.8, 4, 109.2, 11, 81.2]
-        #else
-        let expectedWidths: [CGFloat] = [12, 75, 13, 78, 4, 79, 8, 103, 106, 4, 105.4, 11, 79]
-        #endif
         #if (os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)) && !targetEnvironment(macCatalyst)
-        let expectedYPositions: [CGFloat] = [60, 60, 81, 81, 102, 102, 123, 123, 144, 165, 165, 186, 186]
         let expectedHeight: CGFloat = 21
         #else
-        let expectedYPositions: [CGFloat] = [60, 60, 80, 80, 100, 100, 120, 120, 140, 160, 160, 180, 180]
         let expectedHeight: CGFloat = 20
         #endif
 
@@ -51,15 +52,22 @@ struct PDFListObjectTests {
         let result = try object.calculate(generator: generator, container: .contentLeft)
 
         // Assert
-        try #require(result.count == 13)
-        for index in result.indices {
+        try #require(result.count == expectations.count)
+        for (index, expected) in expectations.enumerated() {
+            #if os(watchOS)
+            let width = expected.watchWidth
+            #elseif targetEnvironment(macCatalyst)
+            let width = expected.catalystWidth
+            #else
+            let width = expected.width
+            #endif
             #expect(result[index].0 == .contentLeft)
             let item = try #require(result[index].1 as? PDFAttributedTextObject)
-            #expect(item.frame.origin.x == document.layout.margin.left + xOffsets[index])
-            #expect(item.frame.origin.y == expectedYPositions[index])
-            #expect(abs(item.frame.width - expectedWidths[index]) < 1)
+            #expect(item.frame.origin.x == document.layout.margin.left + expected.indent)
+            #expect(item.frame.origin.y == 60 + CGFloat(expected.line) * expectedHeight)
+            #expect(abs(item.frame.width - width) < 1, "Width for \(expected.text)")
             #expect(item.frame.height == expectedHeight)
-            #expect(item.simpleText == PDFSimpleText(text: expectedTexts[index]))
+            #expect(item.simpleText == PDFSimpleText(text: expected.text))
         }
     }
 

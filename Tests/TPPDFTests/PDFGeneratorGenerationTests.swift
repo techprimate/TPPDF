@@ -12,7 +12,7 @@ import Testing
 @testable import TPPDF
 
 struct PDFGeneratorGenerationTests {
-    @Test(arguments: [(false, false), (true, false), (false, true)])
+    @Test(arguments: [false, true], [false, true])
     func generatingURLWritesReadablePDFWithOrWithoutFilenameSuffix(suffix: Bool, debug: Bool) throws {
         // Arrange
         let generator = PDFGenerator(document: PDFDocument(format: .a4))
@@ -58,26 +58,70 @@ struct PDFGeneratorGenerationTests {
         #expect(object.called)
     }
 
-    @Test(arguments: [("header", 9), ("content", 6), ("footer", 3)])
-    func extractingRegionReturnsItsObjects(region: String, expectedCount: Int) {
+    @Test(arguments: Region.allCases, [false, true])
+    func extractingRegionPreservesObjectIdentityAndOrder(region: Region, empty: Bool) throws {
         // Arrange
         let containers: [PDFContainer] = [
-            .headerLeft, .headerLeft, .headerLeft, .headerCenter, .headerCenter, .headerCenter,
-            .headerRight, .headerRight, .headerRight, .contentLeft, .contentLeft,
-            .contentCenter, .contentCenter, .contentRight, .contentRight, .footerLeft, .footerCenter, .footerRight,
+            .footerRight, .contentCenter, .headerLeft, .none, .headerRight,
+            .contentLeft, .footerLeft, .headerCenter, .contentRight, .footerCenter, .headerLeft,
         ]
-        let objects: [PDFLocatedRenderObject] = containers.map { ($0, PDFSpaceObject(space: 10)) }
+        let objects: [PDFLocatedRenderObject] = empty ? [] : containers.map { ($0, PDFSpaceObject(space: 10)) }
+        let expectedIndices = empty ? [] : region.expectedIndices
 
         // Act
-        let extracted: [PDFLocatedRenderObject]
-        switch region {
-        case "header": extracted = PDFGenerator.extractHeaderObjects(objects: objects)
-        case "footer": extracted = PDFGenerator.extractFooterObjects(objects: objects)
-        default: extracted = PDFGenerator.extractContentObjects(objects: objects)
+        let extracted = region.extract(objects)
+
+        // Assert
+        try #require(extracted.count == expectedIndices.count)
+        for (index, sourceIndex) in expectedIndices.enumerated() {
+            #expect(extracted[index].0 == objects[sourceIndex].0)
+            #expect(extracted[index].1 === objects[sourceIndex].1)
+        }
+    }
+
+    @Test func renderingPropagatesDrawErrors() throws {
+        // Arrange
+        let object = FailingDrawingObject()
+        let generator = PDFGenerator(document: PDFDocument(format: .a4))
+        let context = try #require(PDFContextGraphics.createBitmapContext(size: CGSize(width: 100, height: 100)))
+
+        // Act
+        let error = #expect(throws: DrawFailure.self) {
+            try generator.render(object: object, in: .contentLeft, in: PDFContext(cgContext: context))
         }
 
         // Assert
-        #expect(extracted.count == expectedCount)
+        #expect(error == .expected)
+    }
+
+    enum Region: CaseIterable {
+        case header, content, footer
+
+        var expectedIndices: [Int] {
+            switch self {
+            case .header: [2, 4, 7, 10]
+            case .content: [1, 3, 5, 8]
+            case .footer: [0, 6, 9]
+            }
+        }
+
+        func extract(_ objects: [PDFLocatedRenderObject]) -> [PDFLocatedRenderObject] {
+            switch self {
+            case .header: PDFGenerator.extractHeaderObjects(objects: objects)
+            case .content: PDFGenerator.extractContentObjects(objects: objects)
+            case .footer: PDFGenerator.extractFooterObjects(objects: objects)
+            }
+        }
+    }
+
+    private enum DrawFailure: Error {
+        case expected
+    }
+
+    private final class FailingDrawingObject: PDFRenderObject {
+        override func draw(generator _: PDFGenerator, container _: PDFContainer, in _: PDFContext) throws {
+            throw DrawFailure.expected
+        }
     }
 
     @Test func tableOfContentsUsesHeadingStylesAndPreservesNestedLevels() {

@@ -57,18 +57,24 @@ struct PDFDocumentObjectsTests {
         #expect(object.image == image)
     }
 
-    @Test func addingImageRowPreservesImagesSpacingAndExplicitContainer() throws {
+    @Test(arguments: [false, true])
+    func addingImageRowPreservesImagesSpacingAndContainer(explicit: Bool) throws {
         // Arrange
         let document = PDFDocument(format: .a4)
         let image = try loadImage()
         let images = [image, image, image]
         let spacing: CGFloat = 10
+        let container: PDFContainer = explicit ? .headerRight : .contentLeft
 
         // Act
-        document.add(.headerRight, imagesInRow: images, spacing: spacing)
+        if explicit {
+            document.add(.headerRight, imagesInRow: images, spacing: spacing)
+        } else {
+            document.add(imagesInRow: images, spacing: spacing)
+        }
 
         // Assert
-        let object = try onlyObject(PDFImageRowObject.self, in: document, container: .headerRight)
+        let object = try onlyObject(PDFImageRowObject.self, in: document, container: container)
         #expect(object.images == images)
         #expect(object.spacing == spacing)
     }
@@ -175,20 +181,20 @@ struct PDFDocumentObjectsTests {
         #expect(object.list == list)
     }
 
-    @Test(arguments: [false, true])
-    func settingIndentationPreservesValueSideAndContainer(explicit: Bool) throws {
+    @Test(arguments: [false, true], [false, true])
+    func settingIndentationPreservesValueSideAndContainer(explicit: Bool, left: Bool) throws {
         // Arrange
         let document = PDFDocument(format: .a4)
         let value: CGFloat = 20
         let container: PDFContainer = explicit ? .headerRight : .contentLeft
 
         // Act
-        if explicit { document.set(.headerRight, indent: value, left: true) } else { document.set(indent: value, left: true) }
+        if explicit { document.set(.headerRight, indent: value, left: left) } else { document.set(indent: value, left: left) }
 
         // Assert
         let object = try onlyObject(PDFIndentationObject.self, in: document, container: container)
         #expect(object.indentation == value)
-        #expect(object.left)
+        #expect(object.left == left)
     }
 
     @Test(arguments: [false, true])

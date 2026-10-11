@@ -14,6 +14,9 @@
 # Xcode scheme used to build TPPDF
 XCODE_SCHEME = TPPDF
 
+# Optional macOS test identifier, for example TPPDFTests/PDFTableValidatorTests
+TEST_FILTER ?=
+
 # iOS Simulator OS version (defaults to '26.2', can be overridden via IOS_SIMULATOR_OS=26.2)
 IOS_SIMULATOR_OS ?= 26.2
 
@@ -219,7 +222,7 @@ test-macos: build-macos test-enable
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=macOS' \
-		test | tee raw-test-macos.log | xcbeautify --preserve-unbeautified
+		test $(if $(TEST_FILTER),-only-testing:$(TEST_FILTER),) | tee raw-test-macos.log | xcbeautify --preserve-unbeautified
 
 ## Run unit tests for TPPDF on Mac Catalyst
 #
