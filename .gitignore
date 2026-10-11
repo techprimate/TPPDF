@@ -45,17 +45,8 @@ Example*/dependencies-state.json
 Example*/manifest.db
 Exampl*/repositories
 
-# Carthage
-Example*/Carthage
-Example*/derived_data
-Example*/Cartfile.resolved
-
 # Swift Package Manager
 .swiftpm
-
-# Xcode Schemes, so Carthage doesn't complain
-!Example iOS/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF.xcscheme
-!Example iOS/TPPDF.xcodeproj/xcsharedata/xcschemes/TPPDF-Example.xcscheme
 
 # Ruby Gems
 vendor

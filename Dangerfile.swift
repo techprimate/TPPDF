@@ -17,14 +17,6 @@ if (danger.github.pullRequest.additions ?? 0) > 500 {
     warn("Big PR, try to keep changes smaller if you can")
 }
 
-// Added (or removed) library files need to be added (or removed) from the
-// Xcode project to avoid breaking things for our Carthage/manual framework.
-let addedSwiftLibraryFiles = danger.git.createdFiles.contains { $0.fileType == .swift && $0.hasPrefix("Source") }
-let deletedSwiftLibraryFiles = danger.git.deletedFiles.contains { $0.fileType == .swift && $0.hasPrefix("Source") }
-if addedSwiftLibraryFiles || deletedSwiftLibraryFiles {
-    fail("Added or removed library files require the Carthage Xcode project to be updated.")
-}
-
 // Warning message for not updated package manifest(s)
 let manifests = [
     "Package.swift",
