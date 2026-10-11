@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example_iOS_Carthage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example_iOS_SPM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cnM-58-c1z"/>
                         <viewControllerLayoutGuide type="bottom" id="6df-A8-lCn"/>
@@ -59,7 +59,7 @@
         <!--Examples-->
         <scene sceneID="e2C-tU-P2m">
             <objects>
-                <tableViewController id="OQp-47-Jlk" customClass="ExamplesListViewController" customModule="Example_iOS_Carthage" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="OQp-47-Jlk" customClass="ExamplesListViewController" customModule="Example_iOS_SPM" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="jy2-SO-vwO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

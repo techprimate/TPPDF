@@ -20,7 +20,6 @@
 
 <div align="center">
 	<img src="https://img.shields.io/badge/SPM-compatible-brightgreen.svg?style=flat-square" alt="Swift Package Manager"/>
-	<img src="https://img.shields.io/badge/Carthage-compatible-blue.svg?style=flat-square" alt="Carthage"/>
 </div>
 
 <p align="center">

@@ -12,30 +12,11 @@ As of TPPDF 2.0 and Swift 5.2, we do not actively support older Swift versions a
 | Swift 2.3 | [swift-2.3](https://github.com/techprimate/TPPDF/tree/swift-2.3) | Xcode 8, Xcode 7.3.x | iOS 8.0+    |
 | Swift 2.2 | [swift-2.2](https://github.com/techprimate/TPPDF/tree/swift-2.3) | Xcode 7.3.x          | iOS 8.0+    |
 
-## Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate TPPDF into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
-github "techprimate/TPPDF" ~> 1.4
-```
-
-Run `carthage update` to build the framework and drag the built `TPPDF.framework` into your Xcode project
-
 ## Swift Package Manager
 
-Swift Package Manager is now supported for iOS. macOS support is a requested feature and work-in-progress.
+Swift Package Manager is the supported dependency manager for TPPDF on iOS, macOS, Mac Catalyst, tvOS, watchOS, and visionOS.
 
-Linux support is not available, as `UIKit` is not available on linux.
+Linux is not supported because TPPDF depends on Apple graphics frameworks.
 
 Once you have your Swift package set up, adding TPPDF as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
 

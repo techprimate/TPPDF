@@ -5,7 +5,6 @@ disabled_rules:
   - inclusive_language
   - trailing_comma
 excluded:
-  - Carthage
   - Dangerfile.swift
 opt_in_rules:
   - array_init
