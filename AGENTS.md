@@ -13,5 +13,5 @@
 - Watch the regression fail before implementing the fix, then verify it passes. Cover relevant boundaries and unchanged behavior.
 - For PDF rendering or pagination bugs, add generated-PDF integration coverage when practical, not just layout assertions.
 - Use the Makefile. Run focused tests first, then `make test-macos`, `make lint`, and `git diff --check` before reporting completion.
-- Test targets temporarily enable the flag in `Package.swift`. If initially disabled, restore it with `make test-disable` after testing.
+- Test targets are always declared in `Package.swift`. Test commands must not modify the package manifest.
 - Report which platforms were tested and any remaining failures or diagnostics. Do not imply all-platform verification from macOS alone.
