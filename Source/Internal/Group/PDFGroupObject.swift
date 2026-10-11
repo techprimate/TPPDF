@@ -49,9 +49,10 @@ class PDFGroupObject: PDFRenderObject {
             throw PDFError.copyingFailed
         }
         let cPadding = generator.currentPadding
+        defer { generator.currentPadding = cPadding }
 
-        // Top Padding
-        generator.layout.heights.add(padding.top, to: container)
+        // Keep the inset active when child calculations reset heights at page or column breaks.
+        generator.currentPadding = padding
 
         // Fix if not enough space left
         var result: [PDFLocatedRenderObject] = []
@@ -62,9 +63,6 @@ class PDFGroupObject: PDFRenderObject {
         var groupedResult = [
             [PDFLocatedRenderObject](),
         ]
-
-        // Set padding
-        generator.currentPadding = padding
 
         // Calculate content
         for arg in objects {
@@ -105,8 +103,7 @@ class PDFGroupObject: PDFRenderObject {
             result += grouped
         }
 
-        generator.layout.heights.add(padding.bottom, to: container)
-        generator.currentPadding = cPadding
+        generator.layout.heights.add(padding.top + padding.bottom, to: container)
 
         return result
     }
@@ -122,7 +119,6 @@ class PDFGroupObject: PDFRenderObject {
         result += try pbObj.calculate(generator: generator, container: container)
         result += [(container, self)]
 
-        generator.layout.heights.add(padding.top, to: container)
         generator.currentPadding = padding
 
         for (container, object) in objects {
@@ -130,7 +126,7 @@ class PDFGroupObject: PDFRenderObject {
         }
 
         frame = isFullPage ? calculateBoundsFrame(generator: generator) : calculateFrame(objects: result)
-        generator.layout.heights.add(padding.bottom, to: container)
+        generator.layout.heights.add(padding.top + padding.bottom, to: container)
         return result
     }
 
