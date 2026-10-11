@@ -2,30 +2,18 @@
 
 import PackageDescription
 
-var testingDependencies: [Package.Dependency] = []
 var testingTargets: [Target] = []
 
 let isTestingEnabled = /*TESTING_FLAG*/false/*TESTING_FLAG*/
 if isTestingEnabled {
-    testingDependencies = [
-        .package(url: "https://github.com/Quick/Quick", exact: "3.1.2"),
-        .package(url: "https://github.com/Quick/Nimble", exact: "9.2.1"),
-    ]
     testingTargets = [
-        .testTarget(name: "TPPDFTests", dependencies: [
-            "TPPDF",
-            "Quick",
-            "Nimble",
-        ], resources: [
+        .testTarget(name: "TPPDFTests", dependencies: ["TPPDF"], resources: [
             .copy("resources/graphics-fixture.gif"),
             .copy("resources/sample.pdf"),
             .copy("resources/image-fixture.jpg"),
+            .copy("resources/table-content-fixture.png"),
         ]),
-        .testTarget(name: "TPPDFIntegrationTests", dependencies: [
-            "TPPDF",
-            "Quick",
-            "Nimble",
-        ], resources: [
+        .testTarget(name: "TPPDFIntegrationTests", dependencies: ["TPPDF"], resources: [
             .copy("resources/50-pages.pdf"),
         ]),
     ]
@@ -44,7 +32,6 @@ let package = Package(
     products: [
         .library(name: "TPPDF", targets: ["TPPDF"]),
     ],
-    dependencies: testingDependencies,
     targets: [
         .target(name: "TPPDF", path: "Source"),
     ] + testingTargets
