@@ -49,6 +49,69 @@ struct ComplexLayoutRegressionTests {
         #expect(Int(pixels[0]) > Int(pixels[2]) + 128)
     }
 
+    @Test(arguments: [CGFloat(0), 25], [false, true])
+    func breakingGroupKeepsContinuationPaddingAndDoesNotCoverPageHeaders(topPadding: CGFloat, debug: Bool) throws {
+        // Arrange
+        let document = TPPDF.PDFDocument(layout: PDFPageLayout(
+            size: CGSize(width: 200, height: 240), margin: EdgeInsets(top: 20, left: 20, bottom: 20, right: 20), space: (5, 5)
+        ))
+        document.set(font: Font.systemFont(ofSize: 12))
+        document.set(.headerLeft, font: Font.systemFont(ofSize: 12))
+        document.set(.footerLeft, font: Font.systemFont(ofSize: 10))
+        document.add(.headerLeft, text: "HEADER")
+        document.add(.footerLeft, text: "FOOTER")
+        document.add(text: "BEFORE")
+        let markers = (0..<40).map { "GROUPLINE\($0)END" }
+        let group = PDFGroup(allowsBreaks: true, backgroundColor: Color(white: 0.95, alpha: 1),
+                             padding: EdgeInsets(top: topPadding, left: 8, bottom: 10, right: 8))
+        group.add(text: markers.joined(separator: "\n"))
+        document.add(group: group)
+        document.add(text: "AFTER")
+        let generator = PDFGenerator(document: document)
+        generator.debug = debug
+
+        // Act
+        let data = try generator.generateData()
+        let outputDocument = PDFKit.PDFDocument(data: data)
+        let output = try #require(outputDocument)
+
+        // Assert
+        #expect(output.pageCount > 2)
+        #expect(generator.totalPages == output.pageCount)
+        let allText = try #require(output.string)
+        for marker in ["BEFORE"] + markers + ["AFTER"] {
+            #expect(allText.components(separatedBy: marker).count - 1 == 1)
+        }
+        for index in 0..<output.pageCount {
+            let page = try #require(output.page(at: index))
+            let text = try #require(page.string)
+            #expect(text.components(separatedBy: "HEADER").count - 1 == 1)
+            #expect(text.components(separatedBy: "FOOTER").count - 1 == 1)
+            let header = try #require(page.selection(for: (text as NSString).range(of: "HEADER")))
+            let marker = try #require(markers.first { text.contains($0) })
+            let firstLine = try #require(page.selection(for: (text as NSString).range(of: marker)))
+            #expect(header.bounds(for: page).minY - firstLine.bounds(for: page).maxY >= topPadding)
+            #expect(try blackPixels(on: page, in: header.bounds(for: page)) > 5, "Header must remain visible on page \(index)")
+        }
+        #expect(generator.currentPadding == .zero)
+    }
+
+    private func blackPixels(on page: PDFPage, in bounds: CGRect) throws -> Int {
+        let crop = bounds.integral
+        let context = try #require(CGContext(
+            data: nil, width: Int(crop.width), height: Int(crop.height), bitsPerComponent: 8, bytesPerRow: Int(crop.width) * 4,
+            space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+        ))
+        context.setFillColor(gray: 1, alpha: 1)
+        context.fill(CGRect(origin: .zero, size: crop.size))
+        context.translateBy(x: -crop.minX, y: -crop.minY)
+        page.draw(with: .mediaBox, to: context)
+        let bytes = try #require(context.data).assumingMemoryBound(to: UInt8.self)
+        return stride(from: 0, to: context.bytesPerRow * context.height, by: 4).filter {
+            Int(bytes[$0]) + Int(bytes[$0 + 1]) + Int(bytes[$0 + 2]) < 150
+        }.count
+    }
+
     private final class ReplacingImageDelegate: PDFGeneratorImageDelegate {
         let replacement: Image
         var images: [PDFImage] = []
