@@ -49,6 +49,7 @@ class PDFGroupObject: PDFRenderObject {
             throw PDFError.copyingFailed
         }
         let cPadding = generator.currentPadding
+        defer { generator.currentPadding = cPadding }
 
         // Top Padding
         generator.layout.heights.add(padding.top, to: container)
@@ -63,8 +64,9 @@ class PDFGroupObject: PDFRenderObject {
             [PDFLocatedRenderObject](),
         ]
 
-        // Set padding
+        // Top padding is already included in content height, so do not inset it a second time.
         generator.currentPadding = padding
+        generator.currentPadding.top = 0
 
         // Calculate content
         for arg in objects {
@@ -106,7 +108,6 @@ class PDFGroupObject: PDFRenderObject {
         }
 
         generator.layout.heights.add(padding.bottom, to: container)
-        generator.currentPadding = cPadding
 
         return result
     }
@@ -124,6 +125,7 @@ class PDFGroupObject: PDFRenderObject {
 
         generator.layout.heights.add(padding.top, to: container)
         generator.currentPadding = padding
+        generator.currentPadding.top = 0
 
         for (container, object) in objects {
             result += try object.calculate(generator: generator, container: container.contentContainer)

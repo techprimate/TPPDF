@@ -177,16 +177,16 @@ class PDFAttributedTextObject: PDFRenderObject {
         for (i, line) in lines.enumerated() {
             var ascent: CGFloat = 0
             var descent: CGFloat = 0
-            var leading: CGFloat = 0
-            let typoBounds = CGFloat(CTLineGetTypographicBounds(line, &ascent, &descent, &leading))
+            let typoBounds = CGFloat(CTLineGetTypographicBounds(line, &ascent, &descent, nil))
 
             var lineOrigin = CGPoint.zero
-            CTFrameGetLineOrigins(frameRef, CFRange(location: lines.count - i - 1, length: 1), &lineOrigin)
+            CTFrameGetLineOrigins(frameRef, CFRange(location: i, length: 1), &lineOrigin)
 
-            let lineBounds = CGRect(x: frame.origin.x,
-                                    y: frame.origin.y + lineOrigin.y,
+            // Convert this line's baseline from Core Text's bottom-up frame to document coordinates.
+            let lineBounds = CGRect(x: frame.origin.x + lineOrigin.x,
+                                    y: frame.maxY - lineOrigin.y - ascent,
                                     width: typoBounds,
-                                    height: ascent + descent + leading)
+                                    height: ascent + descent)
             lineMetrics.append((line: line, bounds: lineBounds, range: CTLineGetStringRange(line)))
         }
 
@@ -211,7 +211,7 @@ class PDFAttributedTextObject: PDFRenderObject {
                 let endOffset = CTLineGetOffsetForStringIndex(metric.line, intersection.location + intersection.length, nil)
 
                 let linkFrame = CGRect(
-                    x: frame.origin.x + startOffset,
+                    x: metric.bounds.minX + startOffset,
                     y: metric.bounds.origin.y,
                     width: endOffset - startOffset,
                     height: metric.bounds.height
