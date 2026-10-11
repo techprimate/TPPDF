@@ -47,13 +47,6 @@ Example*/Carthage
 Example*/derived_data
 Example*/Cartfile.resolved
 
-# Cocoapods
-Example*/Pods
-Example*/Pods/Local Podspecs
-Example*/Pods/Nimble
-Example*/Pods/Quick
-Example*/Pods/Swiftlint
-
 # Swift Package Manager
 .swiftpm
 

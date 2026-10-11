@@ -6,7 +6,6 @@ disabled_rules:
   - trailing_comma
 excluded:
   - Carthage
-  - Pods
   - Dangerfile.swift
 opt_in_rules:
   - array_init

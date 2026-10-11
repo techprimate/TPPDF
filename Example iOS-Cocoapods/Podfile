@@ -1,8 +1,0 @@
-source 'https://cdn.cocoapods.org/'
-
-platform :ios, "13.5"
-use_frameworks!
-
-target "Example_iOS-Cocoapods" do
-    pod "TPPDF", :path => "../"
-end
