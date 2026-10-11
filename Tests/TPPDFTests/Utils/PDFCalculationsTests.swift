@@ -34,4 +34,47 @@ struct PDFCalculationsTests {
         #expect(result.size.height == CGFloat(expectedHeight))
         #expect(result.remainder == remainder)
     }
+
+    @Test(arguments: [
+        (bounds: CGSize(width: 1000, height: 1000), rendersText: true, hasRemainder: false),
+        (bounds: CGSize(width: 100, height: 20), rendersText: true, hasRemainder: true),
+        (bounds: CGSize(width: 100, height: 1), rendersText: false, hasRemainder: true),
+    ])
+    func splittingPreservesDistinctUnicodeTextAndAttributes(
+        scenario: (bounds: CGSize, rendersText: Bool, hasRemainder: Bool)
+    ) {
+        // Arrange
+        let text = NSMutableAttributedString(string: "FIRST café e\u{301} 👩🏽‍💻\nSECOND Ω\nTHIRD 終",
+                                             attributes: [.font: Font.systemFont(ofSize: 12)])
+        text.addAttribute(.foregroundColor, value: Color.red, range: NSRange(location: 0, length: 5))
+        let original = NSAttributedString(attributedString: text)
+
+        // Act
+        let result = PDFCalculations.calculateTextSizeAndRemainder(of: text, in: scenario.bounds)
+        let reconstructed = NSMutableAttributedString(attributedString: result.text)
+        if let remainder = result.remainder { reconstructed.append(remainder) }
+
+        // Assert
+        #expect((result.text.length > 0) == scenario.rendersText)
+        #expect((result.remainder != nil) == scenario.hasRemainder)
+        #expect(reconstructed == original)
+        #expect(text == original)
+    }
+
+    @Test(arguments: [CGFloat(0), -1])
+    func noRemainingHeightDefersAllTextWithoutRendering(height: CGFloat) {
+        // Arrange
+        let generator = PDFGenerator(document: PDFDocument(format: .a4))
+        let availableHeight = PDFCalculations.calculateAvailableFrameHeight(for: generator, in: .contentLeft)
+        generator.layout.heights.content = availableHeight - height
+        let text = NSAttributedString(string: "Deferred text")
+
+        // Act
+        let result = PDFCalculations.calculateText(generator: generator, container: .contentLeft, text: text)
+
+        // Assert
+        #expect(result.frame == .zero)
+        #expect(result.render == nil)
+        #expect(result.remainder == text)
+    }
 }

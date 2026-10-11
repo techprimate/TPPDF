@@ -82,6 +82,7 @@ public class PDFTable: PDFDocumentObject {
         table.padding = padding
         table.margin = margin
         table.showHeadersOnEveryPage = showHeadersOnEveryPage
+        table.shouldSplitCellsOnPageBreak = shouldSplitCellsOnPageBreak
         return table
     }
 

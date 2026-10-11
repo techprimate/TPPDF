@@ -73,7 +73,7 @@ public class PDFMultiDocumentGenerator: PDFGeneratorProtocol {
     public func generate(to target: URL, info: PDFInfo?) throws {
         assert(!generators.isEmpty, "At least one document is required!")
 
-        let context = PDFContextGraphics.createPDFContext(url: target, bounds: bounds, info: self.info)
+        let context = PDFContextGraphics.createPDFContext(url: target, bounds: bounds, info: info ?? self.info)
         try processDocuments(context: context)
         PDFContextGraphics.closePDFContext(context)
     }

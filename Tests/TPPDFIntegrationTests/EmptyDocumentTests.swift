@@ -14,11 +14,12 @@ import Testing
 import PDFKit
 
 struct EmptyDocumentTests {
-    @Test func generatingEmptyDocumentWithDebugOverlayProducesOnePage() throws {
+    @Test(arguments: [false, true])
+    func generatingEmptyDocumentProducesOnePage(debug: Bool) throws {
         // Arrange
         let document = TPPDF.PDFDocument(format: .usLetter)
         let generator = PDFGenerator(document: document)
-        generator.debug = true
+        generator.debug = debug
 
         // Act
         let data = try generator.generateData()

@@ -52,6 +52,38 @@ struct TableHeaderPaginationTests {
         }
     }
 
+    @Test(arguments: [false, true])
+    func copiedSplittableTableStillRendersInRemainingPageSpace(copied: Bool) throws {
+        // Arrange
+        let table = PDFTable(rows: 3, columns: 1)
+        let style = PDFTableCellStyle(font: Font.systemFont(ofSize: 12))
+        table.style = PDFTableStyle(rowHeaderCount: 0, columnHeaderCount: 1, footerCount: 0,
+                                    columnHeaderStyle: style, contentStyle: style)
+        table.padding = 4
+        table.margin = 3
+        table.showHeadersOnEveryPage = true
+        table.shouldSplitCellsOnPageBreak = true
+        table.content = [["HEADER"], ["FIRSTBODY"], ["LASTBODY"]]
+        let document = TPPDF.PDFDocument(format: .a4)
+        let contentHeight = document.layout.height - document.layout.margin.top - document.layout.margin.bottom
+        document.add(space: contentHeight - 40)
+        let object = PDFTableObject(table: table)
+        document.objects.append((.contentLeft, copied ? object.copy : object))
+        let generator = PDFGenerator(document: document)
+
+        // Act
+        let data = try generator.generateData()
+        let outputDocument = PDFKit.PDFDocument(data: data)
+        let output = try #require(outputDocument)
+
+        // Assert
+        #expect(output.pageCount == 2)
+        #expect(generator.totalPages == output.pageCount)
+        #expect(output.page(at: 0)?.string?.contains("HEADER") == true)
+        #expect(output.string?.contains("FIRSTBODY") == true)
+        #expect(output.string?.contains("LASTBODY") == true)
+    }
+
     @Test(arguments: [0, 1], [0, 1, 2])
     func generatedPagesPreserveHeadersAndAllBodyText(headerRows: Int, styledColumns: Int) throws {
         let table = PDFTable(rows: 60, columns: 2)

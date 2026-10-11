@@ -26,6 +26,22 @@ struct PDFTableTests {
         #expect(!table.showHeadersOnEveryPage)
     }
 
+    @Test(arguments: [false, true], [false, true])
+    func copyingTablePreservesPaginationSettings(splitCells: Bool, repeatHeaders: Bool) {
+        // Arrange
+        let table = PDFTable(rows: 2, columns: 2)
+        table.shouldSplitCellsOnPageBreak = splitCells
+        table.showHeadersOnEveryPage = repeatHeaders
+
+        // Act
+        let copy = table.copy
+
+        // Assert
+        #expect(copy !== table)
+        #expect(copy.shouldSplitCellsOnPageBreak == splitCells)
+        #expect(copy.showHeadersOnEveryPage == repeatHeaders)
+    }
+
     @Test func settingStyleThroughCellSubscriptUpdatesStoredCell() {
         // Arrange
         let table = PDFTable(rows: 0, columns: 0)

@@ -51,9 +51,21 @@ struct PDFLayoutIndentationsTests {
     func settingContainerIndentationReplacesEarlierValuesOnChosenSide(index: Int, right: Bool) {
         // Arrange
         var indentations = PDFLayoutIndentations()
+        indentations.header = (1, 2)
+        indentations.content = (3, 4)
+        indentations.footer = (5, 6)
         let containers = PDFContainer.all
         let values: [CGFloat] = [10, 20, 30]
         let regionStart = index / 3 * 3
+        var expectedLeft: [CGFloat] = [1, 1, 1, 3, 3, 3, 5, 5, 5]
+        var expectedRight: [CGFloat] = [2, 2, 2, 4, 4, 4, 6, 6, 6]
+        for position in regionStart..<(regionStart + 3) {
+            if right {
+                expectedRight[position] = values[index % 3]
+            } else {
+                expectedLeft[position] = values[index % 3]
+            }
+        }
 
         // Act
         for position in regionStart...index {
@@ -63,10 +75,11 @@ struct PDFLayoutIndentationsTests {
                 indentations.setLeft(indentation: values[position % 3], in: containers[position])
             }
         }
-        let result = right ? indentations.rightIn(container: containers[index])
-            : indentations.leftIn(container: containers[index])
 
         // Assert
-        #expect(result == values[index % 3])
+        for (position, container) in containers.enumerated() {
+            #expect(indentations.leftIn(container: container) == expectedLeft[position])
+            #expect(indentations.rightIn(container: container) == expectedRight[position])
+        }
     }
 }

@@ -127,16 +127,22 @@ struct PDFTableHeaderPaginationTests {
         #expect(result.filter { $0.1 is PDFSlicedObject }.count == (headerRows + 2) * 2)
     }
 
-    @Test func enabledCellSplittingStillUsesTheRemainingSpace() throws {
+    @Test(arguments: [false, true])
+    func enabledCellSplittingStillUsesTheRemainingSpace(copied: Bool) throws {
+        // Arrange
         let table = makeTable(rows: 3, headerRows: 1)
         table.shouldSplitCellsOnPageBreak = true
         let generator = PDFGenerator(document: PDFDocument(format: .a4))
         let availableHeight = PDFCalculations.calculateAvailableFrameHeight(for: generator, in: .contentLeft)
         _ = try PDFSpaceObject(space: availableHeight - 40).calculate(generator: generator, container: .contentLeft)
+        let object = PDFTableObject(table: table)
+        let subject = copied ? object.copy : object
 
-        let result = try PDFTableObject(table: table).calculate(generator: generator, container: .contentLeft)
+        // Act
+        let result = try subject.calculate(generator: generator, container: .contentLeft)
         let pages = slicesByPage(result)
 
+        // Assert
         #expect(!(result.first?.1 is PDFPageBreakObject))
         try #require(!pages.isEmpty)
         #expect(pages[0].contains { text(in: $0) == "cell-0-0" })
