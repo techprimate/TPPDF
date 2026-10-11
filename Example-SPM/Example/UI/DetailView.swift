@@ -10,69 +10,118 @@ import SwiftUI
 import TPPDF
 
 struct DetailView: View {
-    @State var example: Example
-    @State var generator: PDFGeneratorProtocol!
-    @State var isGenerated = false
-    @State var url: URL?
-
-    @State var observer: NSObjectProtocol! = nil
-    @State var progressValue: Double = 0.5
-
-    @State var debug = false
+    let example: Example
+    @State private var url: URL?
+    @State private var observer: NSKeyValueObservation?
+    @State private var progressValue: Double = 0
+    @State private var isGenerating = false
+    @State private var errorMessage: String?
+    @State private var debug = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Text("\(example.name)")
-                    .font(.headline)
-                Toggle(isOn: $debug) {
-                    Text("Debug Mode")
-                }
-                .onChange(of: debug) { debug in
-                    self.generatePDF(force: true, debug: debug)
-                }
-                Spacer()
-                Button(action: {
-                    self.generatePDF(force: true, debug: debug)
-                }, label: {
-                    Text("Refresh")
-                })
-                ProgressBar(value: $progressValue)
-                    .frame(width: 100, height: 20)
-                    .fixedSize(horizontal: true, vertical: true)
-            }.padding(10)
+        #if os(watchOS)
+        ScrollView {
+            detailContent
+        }
+        #else
+        detailContent
+        #endif
+    }
 
+    private var detailContent: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(example.name)
+                .font(.headline)
+
+            #if os(watchOS)
+            VStack {
+                generationControls
+            }
+            #else
+            HStack {
+                generationControls
+            }
+            #endif
+
+            if let errorMessage = errorMessage {
+                Text("Generation failed: \(errorMessage)")
+                    .foregroundColor(.red)
+            }
+
+            #if os(watchOS)
+            if let url = url {
+                Text("PDF generated")
+                Text(url.lastPathComponent)
+                    .font(.caption)
+                    .lineLimit(2)
+            } else if isGenerating {
+                Text("Generating PDF…")
+            }
+            #else
             PDFKitRepresentedView(url: url)
-                .onAppear {
-                    self.generatePDF(force: false, debug: debug)
-                }
+            #endif
+        }
+        .padding(10)
+        .onAppear {
+            generatePDF(force: false, debug: debug)
         }
     }
 
-    func generatePDF(force: Bool, debug: Bool) {
-        if url != nil && !force {
+    @ViewBuilder
+    private var generationControls: some View {
+        Toggle("Debug Mode", isOn: Binding(
+            get: { debug },
+            set: { value in
+                debug = value
+                generatePDF(force: true, debug: value)
+            }
+        ))
+        .disabled(isGenerating)
+        Button("Refresh") {
+            generatePDF(force: true, debug: debug)
+        }
+        .disabled(isGenerating)
+        ProgressView(value: progressValue)
+    }
+
+    private func generatePDF(force: Bool, debug: Bool) {
+        guard !isGenerating, url == nil || force else {
             return
         }
-        let docs = example.factory.generateDocument()
-        if docs.count == 1 {
-            generator = PDFGenerator(document: docs[0])
+        isGenerating = true
+        errorMessage = nil
+        progressValue = 0
+
+        let documents = example.factory.generateDocument()
+        var generator: PDFGeneratorProtocol
+        if documents.count == 1 {
+            generator = PDFGenerator(document: documents[0])
         } else {
-            generator = PDFMultiDocumentGenerator(documents: docs)
+            generator = PDFMultiDocumentGenerator(documents: documents)
         }
         generator.debug = debug
 
         observer = generator.progress.observe(\.completedUnitCount) { progress, _ in
-            self.progressValue = progress.fractionCompleted
+            let value = progress.fractionCompleted
+            DispatchQueue.main.async {
+                progressValue = value
+            }
         }
 
         DispatchQueue.global(qos: .background).async {
             do {
-                let url = try self.generator.generateURL(filename: "output-\(UUID().uuidString).pdf")
+                let generatedURL = try generator.generateURL(filename: "output-\(UUID().uuidString).pdf")
                 DispatchQueue.main.async {
-                    self.url = url
+                    url = generatedURL
+                    progressValue = 1
+                    isGenerating = false
                 }
             } catch {
-                print("Error while generating PDF: " + error.localizedDescription)
+                let message = error.localizedDescription
+                DispatchQueue.main.async {
+                    errorMessage = message
+                    isGenerating = false
+                }
             }
         }
     }

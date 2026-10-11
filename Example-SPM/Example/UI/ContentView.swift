@@ -11,17 +11,13 @@ import TPPDF
 
 struct ContentView: View {
     var body: some View {
+        #if os(watchOS) || os(tvOS)
+        NavigationStack {
+            examplesList
+        }
+        #else
         NavigationView {
-            List {
-                ForEach(Examples.factories, id: \.header) { section in
-                    Section(header: Text(section.header)) {
-                        ForEach(section.examples, id: \.name) { example in
-                            NavigationLink(example.name, destination: DetailView(example: example))
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Examples")
+            examplesList
             #if os(macOS)
             .frame(minWidth: 200, idealWidth: 250, maxWidth: 300)
             .listStyle(SidebarListStyle())
@@ -33,6 +29,20 @@ struct ContentView: View {
                        alignment: .topLeading)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        #endif
+    }
+
+    private var examplesList: some View {
+        List {
+            ForEach(Examples.factories, id: \.header) { section in
+                Section(header: Text(section.header)) {
+                    ForEach(section.examples, id: \.name) { example in
+                        NavigationLink(example.name, destination: DetailView(example: example))
+                    }
+                }
+            }
+        }
+        .navigationTitle("Examples")
     }
 }
 

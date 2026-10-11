@@ -6,10 +6,11 @@
 //  Copyright © 2016-2026 techprimate GmbH. All rights reserved.
 //
 
+#if !os(watchOS)
 import PDFKit
 import SwiftUI
 
-#if os(iOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 struct PDFKitRepresentedView: UIViewRepresentable {
     var url: URL?
 
@@ -37,4 +38,5 @@ struct PDFKitRepresentedView: NSViewRepresentable {
         pdfView.document = url.flatMap { PDFDocument(url: $0) }
     }
 }
+#endif
 #endif

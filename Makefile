@@ -214,6 +214,54 @@ build-example-spm-ios: generate-example-spm
 		-derivedDataPath build/Example-SPM \
 		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
 
+## Build the Swift Package Manager example for Mac Catalyst
+#
+# Builds the shared example app without requiring signing credentials.
+.PHONY: build-example-spm-maccatalyst
+build-example-spm-maccatalyst: generate-example-spm
+	set -o pipefail && xcrun xcodebuild \
+		-project Example-SPM/Example-SPM.xcodeproj \
+		-scheme Example-SPM \
+		-destination 'generic/platform=macOS,variant=Mac Catalyst' \
+		-derivedDataPath build/Example-SPM-maccatalyst \
+		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
+
+## Build the Swift Package Manager example for tvOS Simulator
+#
+# Builds the shared example app without requiring signing credentials.
+.PHONY: build-example-spm-tvos
+build-example-spm-tvos: generate-example-spm
+	set -o pipefail && xcrun xcodebuild \
+		-project Example-SPM/Example-SPM.xcodeproj \
+		-scheme Example-SPM \
+		-destination 'generic/platform=tvOS Simulator' \
+		-derivedDataPath build/Example-SPM-tvos \
+		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
+
+## Build the Swift Package Manager example for watchOS Simulator
+#
+# Builds the shared example app without requiring signing credentials.
+.PHONY: build-example-spm-watchos
+build-example-spm-watchos: generate-example-spm
+	set -o pipefail && xcrun xcodebuild \
+		-project Example-SPM/Example-SPM.xcodeproj \
+		-scheme Example-SPM \
+		-destination 'generic/platform=watchOS Simulator' \
+		-derivedDataPath build/Example-SPM-watchos \
+		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
+
+## Build the Swift Package Manager example for visionOS Simulator
+#
+# Builds the shared example app without requiring signing credentials.
+.PHONY: build-example-spm-visionos
+build-example-spm-visionos: generate-example-spm
+	set -o pipefail && xcrun xcodebuild \
+		-project Example-SPM/Example-SPM.xcodeproj \
+		-scheme Example-SPM \
+		-destination 'generic/platform=visionOS Simulator' \
+		-derivedDataPath build/Example-SPM-visionos \
+		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
+
 # ============================================================================
 # TESTING
 # ============================================================================

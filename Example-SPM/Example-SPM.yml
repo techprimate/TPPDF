@@ -4,6 +4,9 @@ options:
   deploymentTarget:
     iOS: "16.0"
     macOS: "12.0"
+    tvOS: "16.0"
+    watchOS: "9.0"
+    visionOS: "1.0"
 fileGroups:
   - Example-SPM.yml
 configs:
@@ -15,7 +18,7 @@ packages:
 targets:
   Example-SPM:
     type: application
-    platform: iOS
+    platform: auto
     sources:
       - path: Example
       - path: ../Shared/Examples
@@ -28,17 +31,26 @@ targets:
     settings:
       base:
         SDKROOT: auto
-        SUPPORTED_PLATFORMS: "iphoneos iphonesimulator macosx"
-        SUPPORTS_MACCATALYST: NO
+        SUPPORTED_PLATFORMS: "iphoneos iphonesimulator macosx appletvos appletvsimulator watchos watchsimulator xros xrsimulator"
+        SUPPORTS_MACCATALYST: YES
+        DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER: YES
         TARGETED_DEVICE_FAMILY: "1,2"
+        "TARGETED_DEVICE_FAMILY[sdk=appletv*]": "3"
+        "TARGETED_DEVICE_FAMILY[sdk=watch*]": "4"
+        "TARGETED_DEVICE_FAMILY[sdk=xr*]": "7"
         IPHONEOS_DEPLOYMENT_TARGET: "16.0"
         MACOSX_DEPLOYMENT_TARGET: "12.0"
+        TVOS_DEPLOYMENT_TARGET: "16.0"
+        WATCHOS_DEPLOYMENT_TARGET: "9.0"
+        XROS_DEPLOYMENT_TARGET: "1.0"
         SWIFT_VERSION: "5.0"
         PRODUCT_BUNDLE_IDENTIFIER: com.techprimate.TPPDF.Example
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: TPPDF Examples
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        "INFOPLIST_KEY_WKApplication[sdk=watch*]": YES
+        "INFOPLIST_KEY_WKWatchOnly[sdk=watch*]": YES
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
         CODE_SIGN_STYLE: Automatic
