@@ -27,7 +27,6 @@ if addedSwiftLibraryFiles || deletedSwiftLibraryFiles {
 
 // Warning message for not updated package manifest(s)
 let manifests = [
-    "TPPDF.podspec",
     "Package.swift",
     "Package.resolved",
 ]
