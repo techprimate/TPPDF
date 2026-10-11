@@ -184,30 +184,12 @@ build-xcframework:
 .PHONY: test
 test: test-ios test-macos test-maccatalyst test-tvos test-watchos test-visionos
 
-## Enable test targets by setting testing flag to true
-#
-# Modifies the Package.swift to set the testing flag to true, enabling test targets.
-.PHONY: test-enable
-test-enable:
-	@echo "Setting testing flag to enable test targets..."
-	@sed -i.bak 's|/\*TESTING_FLAG\*/false/\*TESTING_FLAG\*/|/\*TESTING_FLAG\*/true/\*TESTING_FLAG\*/|g' Package.swift
-	@rm Package.swift.bak
-
-## Disable test targets by setting testing flag to false
-#
-# Modifies the Package.swift to set the testing flag to false, disabling test targets.
-.PHONY: test-disable
-test-disable:
-	@echo "Setting testing flag to disable test targets..."
-	@sed -i.bak 's|/\*TESTING_FLAG\*/true/\*TESTING_FLAG\*/|/\*TESTING_FLAG\*/false/\*TESTING_FLAG\*/|g' Package.swift
-	@rm Package.swift.bak
-
 ## Run unit tests for TPPDF on latest iOS Simulator
 #
 # Runs unit tests for the TPPDF scheme on the latest iOS Simulator (iPhone 17 Pro).
 # Writes logs to raw-test-ios.log and formats output with xcbeautify.
 .PHONY: test-ios
-test-ios: build-ios test-enable
+test-ios: build-ios
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=iOS Simulator,OS=$(IOS_SIMULATOR_OS),name=$(IOS_DEVICE_NAME)' \
@@ -218,7 +200,7 @@ test-ios: build-ios test-enable
 # Runs unit tests for the TPPDF scheme on macOS.
 # Writes logs to raw-test-macos.log and formats output with xcbeautify.
 .PHONY: test-macos
-test-macos: build-macos test-enable
+test-macos: build-macos
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=macOS' \
@@ -229,7 +211,7 @@ test-macos: build-macos test-enable
 # Runs unit tests for the TPPDF scheme on Mac Catalyst.
 # Writes logs to raw-test-maccatalyst.log and formats output with xcbeautify.
 .PHONY: test-maccatalyst
-test-maccatalyst: build-maccatalyst test-enable
+test-maccatalyst: build-maccatalyst
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=macOS,variant=Mac Catalyst' \
@@ -240,7 +222,7 @@ test-maccatalyst: build-maccatalyst test-enable
 # Runs unit tests for the TPPDF scheme on the latest tvOS Simulator (Apple TV 4K 3rd generation).
 # Writes logs to raw-test-tvos.log and formats output with xcbeautify.
 .PHONY: test-tvos
-test-tvos: build-tvos test-enable
+test-tvos: build-tvos
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=tvOS Simulator,OS=$(TVOS_SIMULATOR_OS),name=$(TVOS_DEVICE_NAME)' \
@@ -251,7 +233,7 @@ test-tvos: build-tvos test-enable
 # Runs unit tests for the TPPDF scheme on the latest watchOS Simulator (Apple Watch Series 11).
 # Writes logs to raw-test-watchos.log and formats output with xcbeautify.
 .PHONY: test-watchos
-test-watchos: build-watchos test-enable
+test-watchos: build-watchos
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=watchOS Simulator,OS=$(WATCHOS_SIMULATOR_OS),name=$(WATCHOS_DEVICE_NAME)' \
@@ -262,7 +244,7 @@ test-watchos: build-watchos test-enable
 # Runs unit tests for the TPPDF scheme on the latest visionOS Simulator (Apple Vision Pro).
 # Writes logs to raw-test-visionos.log and formats output with xcbeautify.
 .PHONY: test-visionos
-test-visionos: build-visionos test-enable
+test-visionos: build-visionos
 	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
 		-scheme $(XCODE_SCHEME) \
 		-destination 'platform=visionOS Simulator,OS=$(VISION_OS_SIMULATOR_OS),name=$(VISION_OS_DEVICE_NAME)' \
