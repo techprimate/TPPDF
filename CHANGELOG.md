@@ -1,5 +1,15 @@
 # Change Log
 
+## Unreleased
+
+**Fixed bugs:**
+
+- Fixed table copies losing the `shouldSplitCellsOnPageBreak` setting (#461).
+- Fixed `PDFMultiDocumentGenerator.generate(to:info:)` ignoring explicitly supplied metadata (#461).
+- Fixed group padding leaking into subsequent content after a page move or a calculation error (#462).
+- Fixed double-counted group top padding causing subsequent content to overlap the group background (#462).
+- Fixed hyperlink hitboxes not matching wrapped, mixed-font, or center/right-aligned linked text (#462).
+
 ## [2.4.1](https://github.com/techprimate/TPPDF/tree/2.4.1) (2023-03-28)
 
 [Full Changelog](https://github.com/techprimate/TPPDF/compare/2.4.0...2.4.1)
