@@ -3,6 +3,9 @@
 
 # Xcode
 
+# Generated with make generate-example-spm
+Example-SPM/Example-SPM.xcodeproj/
+
 ## Build generated
 build/
 DerivedData

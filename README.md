@@ -114,8 +114,11 @@ For everything else, please see [Communication](#communication) and [this messag
 
 Take a look at the [Getting Started Guide](https://github.com/techprimate/TPPDF/blob/main/Documentation/Usage.md#getting-started) or checkout the Examples (using of one of the following):
 
-- Clone the repository and open the `Examples.xcworkspace`
-- Run the `Example macOS (SPM)` or `Example macOS (iOS)`
+- Clone the repository and install XcodeGen with `brew bundle`.
+- Run `make generate-example-spm`, then open `Example-SPM/Example-SPM.xcodeproj`.
+- Run the `Example-SPM` scheme with a Mac, iPhone, or iPad destination (macOS 12+ or iOS 16+).
+- Edit `Example-SPM/Example-SPM.yml` to change project configuration, then regenerate it. The generated Xcode project is not committed.
+- Build from the command line with `make build-example-spm-macos` or `make build-example-spm-ios`.
 
 ## Apps using TPPDF
 

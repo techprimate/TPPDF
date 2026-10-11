@@ -6,18 +6,10 @@
 //  Copyright © 2016-2026 techprimate GmbH. All rights reserved.
 //
 
-import Combine
 import SwiftUI
 import TPPDF
 
-class ContentViewModel: ObservableObject {
-    @Published var url: URL?
-    @State var selectedFactory = Examples.defaultFactory
-}
-
 struct ContentView: View {
-    @ObservedObject var viewModel = ContentViewModel()
-
     var body: some View {
         NavigationView {
             List {
@@ -29,12 +21,13 @@ struct ContentView: View {
                     }
                 }
             }
-            .frame(minWidth: 100, idealWidth: 200, maxWidth: 300,
-                   minHeight: 0, maxHeight: .infinity,
-                   alignment: .topLeading)
+            .navigationTitle("Examples")
+            #if os(macOS)
+            .frame(minWidth: 200, idealWidth: 250, maxWidth: 300)
             .listStyle(SidebarListStyle())
+            #endif
 
-            DetailView(example: viewModel.selectedFactory)
+            DetailView(example: Examples.defaultFactory)
                 .frame(minWidth: 0, maxWidth: .infinity,
                        minHeight: 0, maxHeight: .infinity,
                        alignment: .topLeading)

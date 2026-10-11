@@ -88,6 +88,19 @@ install-bundler:
 install-ci:
 	@$(MAKE) --no-print-directory install-dependencies
 
+## Generate all example projects
+#
+# Invokes all individual generate targets to ensure all example projects are up-to-date.
+.PHONY: generate
+generate: generate-example-spm
+
+## Generate the shared Swift Package Manager example project
+#
+# Regenerates Example-SPM.xcodeproj from its XcodeGen specification.
+.PHONY: generate-example-spm
+generate-example-spm:
+	xcodegen generate --spec Example-SPM/Example-SPM.yml
+
 # ============================================================================
 # BUILDING
 # ============================================================================
@@ -172,6 +185,34 @@ build-watchos:
 .PHONY: build-xcframework
 build-xcframework:
 	./scripts/create-xcframework.sh
+
+# ============================================================================
+# EXAMPLES
+# ============================================================================
+
+## Build the Swift Package Manager example for macOS
+#
+# Builds the shared example app without requiring signing credentials.
+.PHONY: build-example-spm-macos
+build-example-spm-macos: generate-example-spm
+	set -o pipefail && xcrun xcodebuild \
+		-project Example-SPM/Example-SPM.xcodeproj \
+		-scheme Example-SPM \
+		-destination 'platform=macOS' \
+		-derivedDataPath build/Example-SPM \
+		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
+
+## Build the Swift Package Manager example for iOS Simulator
+#
+# Builds the shared example app for any available iOS Simulator SDK.
+.PHONY: build-example-spm-ios
+build-example-spm-ios: generate-example-spm
+	set -o pipefail && xcrun xcodebuild \
+		-project Example-SPM/Example-SPM.xcodeproj \
+		-scheme Example-SPM \
+		-destination 'generic/platform=iOS Simulator' \
+		-derivedDataPath build/Example-SPM \
+		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
 
 # ============================================================================
 # TESTING

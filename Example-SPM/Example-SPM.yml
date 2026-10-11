@@ -1,0 +1,61 @@
+name: Example-SPM
+options:
+  bundleIdPrefix: com.techprimate.TPPDF
+  deploymentTarget:
+    iOS: "16.0"
+    macOS: "12.0"
+fileGroups:
+  - Example-SPM.yml
+configs:
+  Debug: debug
+  Release: release
+packages:
+  TPPDF:
+    path: ..
+targets:
+  Example-SPM:
+    type: application
+    platform: iOS
+    sources:
+      - path: Example
+      - path: ../Shared/Examples
+      - path: ../Shared/Util
+      - path: ../Shared/Data
+        buildPhase: resources
+    dependencies:
+      - package: TPPDF
+        product: TPPDF
+    settings:
+      base:
+        SDKROOT: auto
+        SUPPORTED_PLATFORMS: "iphoneos iphonesimulator macosx"
+        SUPPORTS_MACCATALYST: NO
+        TARGETED_DEVICE_FAMILY: "1,2"
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+        MACOSX_DEPLOYMENT_TARGET: "12.0"
+        SWIFT_VERSION: "5.0"
+        PRODUCT_BUNDLE_IDENTIFIER: com.techprimate.TPPDF.Example
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: TPPDF Examples
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        CODE_SIGN_STYLE: Automatic
+        "CODE_SIGN_IDENTITY[sdk=macosx*]": "-"
+        ENABLE_APP_SANDBOX: YES
+        ENABLE_HARDENED_RUNTIME: YES
+        ENABLE_USER_SELECTED_FILES: readonly
+        ENABLE_PREVIEWS: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+schemes:
+  Example-SPM:
+    build:
+      targets:
+        Example-SPM: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    archive:
+      config: Release
