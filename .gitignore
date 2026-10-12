@@ -3,8 +3,8 @@
 
 # Xcode
 
-# Generated with make generate-example-spm
-Example-SPM/Example-SPM.xcodeproj/
+# Generated with make generate-example
+Example/Example.xcodeproj/
 
 ## Build generated
 build/

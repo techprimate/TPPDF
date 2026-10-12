@@ -92,14 +92,14 @@ install-ci:
 #
 # Invokes all individual generate targets to ensure all example projects are up-to-date.
 .PHONY: generate
-generate: generate-example-spm
+generate: generate-example
 
-## Generate the shared Swift Package Manager example project
+## Generate the SwiftUI example project
 #
-# Regenerates Example-SPM.xcodeproj from its XcodeGen specification.
-.PHONY: generate-example-spm
-generate-example-spm:
-	xcodegen generate --spec Example-SPM/Example-SPM.yml
+# Regenerates Example.xcodeproj from its XcodeGen specification.
+.PHONY: generate-example
+generate-example:
+	xcodegen generate --spec Example/Example.yml
 
 # ============================================================================
 # BUILDING
@@ -190,76 +190,76 @@ build-xcframework:
 # EXAMPLES
 # ============================================================================
 
-## Build the Swift Package Manager example for macOS
+## Build the SwiftUI example for macOS
 #
-# Builds the shared example app without requiring signing credentials.
-.PHONY: build-example-spm-macos
-build-example-spm-macos: generate-example-spm
+# Builds the SwiftUI example app without requiring signing credentials.
+.PHONY: build-example-macos
+build-example-macos: generate-example
 	set -o pipefail && xcrun xcodebuild \
-		-project Example-SPM/Example-SPM.xcodeproj \
-		-scheme Example-SPM \
+		-project Example/Example.xcodeproj \
+		-scheme Example \
 		-destination 'platform=macOS' \
-		-derivedDataPath build/Example-SPM \
+		-derivedDataPath build/Example \
 		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
 
-## Build the Swift Package Manager example for iOS Simulator
+## Build the SwiftUI example for iOS Simulator
 #
-# Builds the shared example app for any available iOS Simulator SDK.
-.PHONY: build-example-spm-ios
-build-example-spm-ios: generate-example-spm
+# Builds the SwiftUI example app for any available iOS Simulator SDK.
+.PHONY: build-example-ios
+build-example-ios: generate-example
 	set -o pipefail && xcrun xcodebuild \
-		-project Example-SPM/Example-SPM.xcodeproj \
-		-scheme Example-SPM \
+		-project Example/Example.xcodeproj \
+		-scheme Example \
 		-destination 'generic/platform=iOS Simulator' \
-		-derivedDataPath build/Example-SPM \
+		-derivedDataPath build/Example \
 		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
 
-## Build the Swift Package Manager example for Mac Catalyst
+## Build the SwiftUI example for Mac Catalyst
 #
-# Builds the shared example app without requiring signing credentials.
-.PHONY: build-example-spm-maccatalyst
-build-example-spm-maccatalyst: generate-example-spm
+# Builds the SwiftUI example app without requiring signing credentials.
+.PHONY: build-example-maccatalyst
+build-example-maccatalyst: generate-example
 	set -o pipefail && xcrun xcodebuild \
-		-project Example-SPM/Example-SPM.xcodeproj \
-		-scheme Example-SPM \
+		-project Example/Example.xcodeproj \
+		-scheme Example \
 		-destination 'generic/platform=macOS,variant=Mac Catalyst' \
-		-derivedDataPath build/Example-SPM-maccatalyst \
+		-derivedDataPath build/Example-maccatalyst \
 		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
 
-## Build the Swift Package Manager example for tvOS Simulator
+## Build the SwiftUI example for tvOS Simulator
 #
-# Builds the shared example app without requiring signing credentials.
-.PHONY: build-example-spm-tvos
-build-example-spm-tvos: generate-example-spm
+# Builds the SwiftUI example app without requiring signing credentials.
+.PHONY: build-example-tvos
+build-example-tvos: generate-example
 	set -o pipefail && xcrun xcodebuild \
-		-project Example-SPM/Example-SPM.xcodeproj \
-		-scheme Example-SPM \
+		-project Example/Example.xcodeproj \
+		-scheme Example \
 		-destination 'generic/platform=tvOS Simulator' \
-		-derivedDataPath build/Example-SPM-tvos \
+		-derivedDataPath build/Example-tvos \
 		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
 
-## Build the Swift Package Manager example for watchOS Simulator
+## Build the SwiftUI example for watchOS Simulator
 #
-# Builds the shared example app without requiring signing credentials.
-.PHONY: build-example-spm-watchos
-build-example-spm-watchos: generate-example-spm
+# Builds the SwiftUI example app without requiring signing credentials.
+.PHONY: build-example-watchos
+build-example-watchos: generate-example
 	set -o pipefail && xcrun xcodebuild \
-		-project Example-SPM/Example-SPM.xcodeproj \
-		-scheme Example-SPM \
+		-project Example/Example.xcodeproj \
+		-scheme Example \
 		-destination 'generic/platform=watchOS Simulator' \
-		-derivedDataPath build/Example-SPM-watchos \
+		-derivedDataPath build/Example-watchos \
 		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
 
-## Build the Swift Package Manager example for visionOS Simulator
+## Build the SwiftUI example for visionOS Simulator
 #
-# Builds the shared example app without requiring signing credentials.
-.PHONY: build-example-spm-visionos
-build-example-spm-visionos: generate-example-spm
+# Builds the SwiftUI example app without requiring signing credentials.
+.PHONY: build-example-visionos
+build-example-visionos: generate-example
 	set -o pipefail && xcrun xcodebuild \
-		-project Example-SPM/Example-SPM.xcodeproj \
-		-scheme Example-SPM \
+		-project Example/Example.xcodeproj \
+		-scheme Example \
 		-destination 'generic/platform=visionOS Simulator' \
-		-derivedDataPath build/Example-SPM-visionos \
+		-derivedDataPath build/Example-visionos \
 		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
 
 # ============================================================================

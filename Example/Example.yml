@@ -1,4 +1,4 @@
-name: Example-SPM
+name: Example
 options:
   bundleIdPrefix: com.techprimate.TPPDF
   deploymentTarget:
@@ -8,7 +8,7 @@ options:
     watchOS: "9.0"
     visionOS: "1.0"
 fileGroups:
-  - Example-SPM.yml
+  - Example.yml
 configs:
   Debug: debug
   Release: release
@@ -16,14 +16,12 @@ packages:
   TPPDF:
     path: ..
 targets:
-  Example-SPM:
+  Example:
     type: application
     platform: auto
     sources:
-      - path: Example
-      - path: ../Shared/Examples
-      - path: ../Shared/Util
-      - path: ../Shared/Data
+      - path: Sources
+      - path: Resources
         buildPhase: resources
     dependencies:
       - package: TPPDF
@@ -61,10 +59,10 @@ targets:
         ENABLE_PREVIEWS: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 schemes:
-  Example-SPM:
+  Example:
     build:
       targets:
-        Example-SPM: all
+        Example: all
     run:
       config: Debug
     profile:
