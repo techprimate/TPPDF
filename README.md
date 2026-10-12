@@ -113,11 +113,11 @@ For everything else, please see [Communication](#communication) and [this messag
 Take a look at the [Getting Started Guide](https://github.com/techprimate/TPPDF/blob/main/Documentation/Usage.md#getting-started) or checkout the Examples (using of one of the following):
 
 - Clone the repository and install XcodeGen with `brew bundle`.
-- Run `make generate-example-spm`, then open `Example-SPM/Example-SPM.xcodeproj`.
-- Run the `Example-SPM` scheme on iOS 16+, macOS 12+, Mac Catalyst, tvOS 16+, visionOS 1+, or watchOS 9+.
+- Run `make generate-example`, then open `Example/Example.xcodeproj`.
+- Run the `Example` scheme on iOS 16+, macOS 12+, Mac Catalyst, tvOS 16+, visionOS 1+, or watchOS 9+.
 - iOS, macOS, Mac Catalyst, tvOS, and visionOS display generated PDFs. watchOS reports generation success or errors without a PDF viewer.
-- Edit `Example-SPM/Example-SPM.yml` to change project configuration, then regenerate it. The generated Xcode project is not committed.
-- Build from the command line with `make build-example-spm-<platform>`, where `<platform>` is `ios`, `macos`, `maccatalyst`, `tvos`, `watchos`, or `visionos`.
+- Edit `Example/Example.yml` to change project configuration, then regenerate it. The generated Xcode project is not committed.
+- Build from the command line with `make build-example-<platform>`, where `<platform>` is `ios`, `macos`, `maccatalyst`, `tvos`, `watchos`, or `visionos`.
 
 ## Apps using TPPDF
 
