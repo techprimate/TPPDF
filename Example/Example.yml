@@ -58,11 +58,27 @@ targets:
         ENABLE_USER_SELECTED_FILES: readonly
         ENABLE_PREVIEWS: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  ExampleUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: UITests
+    dependencies:
+      - target: Example
+    settings:
+      base:
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: Example
 schemes:
   Example:
     build:
       targets:
         Example: all
+    test:
+      config: Debug
+      targets:
+        - ExampleUITests
     run:
       config: Debug
     profile:

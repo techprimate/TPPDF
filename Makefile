@@ -214,6 +214,22 @@ build-example-ios: generate-example
 		-derivedDataPath build/Example \
 		CODE_SIGNING_ALLOWED=NO build | xcbeautify --preserve-unbeautified
 
+## Run the SwiftUI example launch smoke test on iOS Simulator
+#
+# Builds and launches the example app on the configured iOS Simulator.
+# Writes logs to raw-test-example-ios.log and saves results in build/ExampleUITests.
+.PHONY: test-example-ios
+test-example-ios: generate-example
+	set -o pipefail && NSUnbufferedIO=YES xcrun xcodebuild \
+		-project Example/Example.xcodeproj \
+		-scheme Example \
+		-destination 'platform=iOS Simulator,OS=$(IOS_SIMULATOR_OS),name=$(IOS_DEVICE_NAME)' \
+		-derivedDataPath build/Example \
+		-resultBundlePath build/ExampleUITests/$(shell date +%Y%m%d-%H%M%S).xcresult \
+		-only-testing:ExampleUITests \
+		-parallel-testing-enabled NO \
+		CODE_SIGNING_ALLOWED=NO test | tee raw-test-example-ios.log | xcbeautify --preserve-unbeautified
+
 ## Build the SwiftUI example for Mac Catalyst
 #
 # Builds the SwiftUI example app without requiring signing credentials.
