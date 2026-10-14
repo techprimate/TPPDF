@@ -116,7 +116,7 @@ GEM
     sassc (2.4.0)
       ffi (~> 1.9)
     securerandom (0.4.1)
-    slather (2.8.6)
+    slather (2.8.7)
       CFPropertyList (>= 2.2, < 4)
       activesupport
       clamp (~> 1.3)
