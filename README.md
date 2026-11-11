@@ -126,8 +126,8 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
 <table>
   <tr>
     <td align="center">
-      <a href="https://itunes.apple.com/app/id1495886665">
-        <img src="https://raw.githubusercontent.com/techprimate/TPPDF/main/resources/apps/BurnoutCoach.png" alt="Burnout Coach"/>
+      <a href="https://apple.co/4ycsV72">
+        <img src="https://raw.githubusercontent.com/techprimate/TPPDF/main/resources/apps/Stokk.png" alt="Stökk"/>
       </a>
     </td>
     <td align="center">
@@ -158,7 +158,7 @@ If you are using TPPDF in your app and want to be listed here, simply create a p
   </tr>
   <tr>
     <td align="center">
-      <a href="https://itunes.apple.com/app/id1464880768">Burnout Coach</strong></a><br>
+      <a href="https://apple.co/4ycsV72">Stökk</strong></a><br>
       by Stéphane Mégy
     </td>
     <td align="center">
