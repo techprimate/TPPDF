@@ -19,25 +19,10 @@ set -o pipefail
 ARCHIVES_PATH="$(pwd)/archives"
 OUTPUT_XCFRAMEWORK_PATH="$ARCHIVES_PATH/TPPDF.xcframework"
 
-echo "Tool Versions:"
-echo " - xcodebuild: $(xcodebuild -version)"
-echo " - swift: $(swift --version)"
-
-echo "Available SDKs:"
-xcodebuild -showsdks
+echo "Swift version: $(swift --version)"
 
 echo "Available Destinations:"
 xcodebuild -showdestinations -scheme TPPDF
-
-echo "Available Simulators:"
-xcrun simctl list devices
-
-echo "Selected SDK Info:"
-echo " - Path: $(xcrun -show-sdk-path)"
-echo " - Version: $(xcrun -show-sdk-version)"
-echo " - Build Version: $(xcrun -show-sdk-build-version)"
-echo " - Platform Path: $(xcrun -show-sdk-platform-path)"
-echo " - Platform Version: $(xcrun -show-sdk-platform-version)"
 
 # 1. Archive the Swift Package for each platform
 echo "Building XCFramework for iOS"
