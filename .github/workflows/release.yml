@@ -36,7 +36,7 @@ jobs:
 
       - name: CI diagnostics
         if: always()
-        uses: philprime/diagnostics-action@v0.0.1
+        uses: philprime/diagnostics-action@v0.0.2
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v3
